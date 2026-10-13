@@ -9,6 +9,8 @@ import type { SeasonKey } from "@/lib/color/seasons";
 import { buildGuide, type Swatch } from "@/lib/guide/build";
 import { makeReferralCode, referralUrl } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
+import { track } from "@/lib/analytics";
+import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { Wordmark } from "../ui";
@@ -32,14 +34,17 @@ export default function Guide() {
     setR(fresh);
     setName(fresh?.name ?? "");
     setSite(location.host);
-    if (fresh?.refCode) {
-      void import("qrcode")
-        .then((q) => q.toDataURL(referralUrl(location.origin, fresh.refCode!), { margin: 1, width: 360, color: { dark: "#111111", light: "#ffffff" } }))
-        .then(setQr)
-        .catch(() => {});
-    }
     setLoaded(true);
   }, []);
+  // regenerate when the code changes (it gets the name once a name is filled in)
+  const refCode = r?.refCode;
+  useEffect(() => {
+    if (!refCode) return;
+    void import("qrcode")
+      .then((q) => q.toDataURL(referralUrl(location.origin, refCode), { margin: 1, width: 360, color: { dark: "#111111", light: "#ffffff" } }))
+      .then(setQr)
+      .catch(() => {});
+  }, [refCode]);
   const g = useMemo(() => (r ? buildGuide(r.profile, config.key) : null), [r, config.key]);
 
   if (!loaded) return <main className="screen" />;
@@ -73,6 +78,7 @@ export default function Guide() {
         </label>
         <button className="btn btn-sm" onClick={() => window.print()}>Opslaan als PDF</button>
       </div>
+      <PushToggle season={r.profile.match.season} />
 
       {/* 01 cover */}
       <section className="g-page g-cover">
@@ -239,6 +245,49 @@ export default function Guide() {
         <p className="g-closing">{gc.closing[0]} <em>{gc.closing[1]}</em></p>
       </Page>
     </main>
+  );
+}
+
+/** The weekly colour tip: opt-in, asked only after a tap, off with one tap. Screen only. */
+function PushToggle({ season }: { season: SeasonKey }) {
+  const { config, voice, copy, ctx } = useBrand();
+  const t = copy.retention.push;
+  const [state, setState] = useState<PushState>("unsupported");
+  const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setState(pushState()), []);
+  if (state === "unsupported") return null;
+
+  async function on() {
+    setBusy(true);
+    setFailed(false);
+    try {
+      const s = await pushOn({ brand: config.key, voice, season });
+      setState(s);
+      if (s === "on") track("push_optin", ctx, { season });
+    } catch {
+      setFailed(true);
+    }
+    setBusy(false);
+  }
+  async function off() {
+    setBusy(true);
+    await pushOff().catch(() => {});
+    setState("off");
+    track("push_optout", ctx);
+    setBusy(false);
+  }
+
+  return (
+    <aside className="g-push" aria-live="polite">
+      <div>
+        <b>{t.title}</b>
+        <p>{state === "on" ? t.on : state === "ios-install" ? t.ios : state === "denied" ? t.denied : t.text}</p>
+        {failed && <p className="g-push-err">Dat lukte nu niet. Probeer het later nog eens.</p>}
+      </div>
+      {state === "off" && <button className="btn btn-sm" disabled={busy} onClick={on}>{t.cta}</button>}
+      {state === "on" && <button className="link-btn" disabled={busy} onClick={off}>{t.off}</button>}
+    </aside>
   );
 }
 

@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { OCCASIONS } from "@/lib/brand/config";
 import type { OccasionKey } from "@/lib/brand/types";
 import { track } from "@/lib/analytics";
-import { familyOf } from "@/lib/color/describe";
+import { SEASONS } from "@/lib/color/seasons";
 import { decodeToken, EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
+import { journey, resumeFor, type Resume } from "@/lib/flow/journey";
+import { invite } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
 import { switchUrl } from "@/lib/flow/switch";
 import { useBrand } from "./BrandProvider";
@@ -16,11 +18,14 @@ import { AppBar, CheckIcon, Display, Footer, LockIcon, OccasionIcon, Wordmark } 
 
 export default function Landing() {
   const { config, copy, ctx } = useBrand();
+  const rt = copy.retention;
   const router = useRouter();
   const [answers, setAnswers] = useState<Answers>(EMPTY);
   const [switchHref, setSwitchHref] = useState(`/?brand=${config.other}`);
-  // returning visitor: the profile is stored on this device (CLAUDE.md §5)
-  const [returning, setReturning] = useState<string | null>(null);
+  // returning visitor: progress and profile are stored on this device (CLAUDE.md §5)
+  const [resume, setResume] = useState<{ r: Resume; type?: string } | null>(null);
+  // invited by a friend (?ref=): only shown when there really is a valid code
+  const [invited, setInvited] = useState<{ friend?: string } | null>(null);
 
   useEffect(() => {
     // Answers carried over from the other brand arrive as a short-lived token.
@@ -37,8 +42,19 @@ export default function Landing() {
     }
     setAnswers(a);
     const prev = flowSession.result();
-    if (prev) setReturning(familyOf(prev.profile.match.season));
-    track("landing_view", ctx, { carried: !!token, returning: !!prev });
+    const res = resumeFor(journey.get(), !!prev, !!prev?.paid, Date.now());
+    // opened from the home screen with a guide: straight into the guide
+    if (res?.kind === "guide" && params.get("utm_source") === "homescreen") return router.replace("/gids");
+    if (res) {
+      setResume({ r: res, type: prev ? SEASONS[prev.profile.match.season].name : undefined });
+      track("resume_shown", ctx, { kind: res.kind });
+    }
+    const ref = invite.capture(location.search);
+    if (ref && !prev?.paid) {
+      setInvited({ friend: ref.friend });
+      track("invite_view", ctx, { named: !!ref.friend });
+    }
+    track("landing_view", ctx, { carried: !!token, returning: !!prev, invited: !!ref });
   }, []);
 
   useEffect(() => setSwitchHref(switchUrl(config.key, answers, location)), [answers, config.key]);
@@ -75,13 +91,32 @@ export default function Landing() {
       </nav>
 
       <div className="pad landing">
-        {returning && (
-          <section className="welcome">
-            <p>{copy.result.welcomeBack.replace("{familie}", returning)}</p>
-            <div className="row-2">
-              <button className="btn" onClick={() => router.push("/resultaat")}>{copy.result.seeColors}</button>
-              <button className="link-btn" onClick={() => { flowSession.clear(); setReturning(null); }}>{copy.result.startOver}</button>
-            </div>
+        {invited && !resume && (
+          <p className="invite">{invited.friend ? rt.invited.replace("{naam}", invited.friend) : rt.invitedAnon}</p>
+        )}
+
+        {resume && (
+          <section className="welcome" aria-live="polite">
+            {resume.r.kind === "continue" ? (
+              <>
+                <p className="welcome-title">{rt.resumeTitle}</p>
+                <p className="welcome-text">{rt.resumeText.replace("{n}", String(resume.r.stepsLeft)).replace("{s}", String(resume.r.seconds))}</p>
+                <button className="btn" onClick={() => { track("resume_click", ctx, { kind: "continue" }); router.push((resume.r as { href: string }).href); }}>{rt.resumeCta}</button>
+              </>
+            ) : (
+              <>
+                <p className="welcome-title">{rt.greet.replace("{type}", resume.type ?? "")}</p>
+                <p className="welcome-text">{resume.r.kind === "guide" ? rt.guideText : rt.resultText}</p>
+                <div className="row-2">
+                  <button className="btn" onClick={() => { track("resume_click", ctx, { kind: resume.r.kind }); router.push(resume.r.kind === "guide" ? "/gids" : "/resultaat"); }}>
+                    {resume.r.kind === "guide" ? "Open mijn stijlgids" : copy.result.seeColors}
+                  </button>
+                  {resume.r.kind === "result" && (
+                    <button className="link-btn" onClick={() => { flowSession.clear(); journey.clear(); setResume(null); }}>{copy.result.startOver}</button>
+                  )}
+                </div>
+              </>
+            )}
           </section>
         )}
 

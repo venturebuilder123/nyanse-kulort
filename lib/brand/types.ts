@@ -36,6 +36,24 @@ export type VoiceCopy = {
     trust: { title: Headline; items: readonly [title: string, text: string][] };
     final: { title: Headline; cta: string };
   };
+  /** coming back: resume, invitation, greeting by colour type, weekly push (all opt-in, all true) */
+  retention: {
+    /** {type} = the person's season, e.g. "Deep Autumn" */
+    greet: string;
+    resumeTitle: string;
+    /** {n} steps left, {s} seconds */
+    resumeText: string;
+    resumeCta: string;
+    resultText: string;
+    guideText: string;
+    /** {naam} = the friend's first name from the code */
+    invited: string;
+    invitedAnon: string;
+    friendLine: string;
+    push: { title: string; text: string; cta: string; on: string; off: string; ios: string; denied: string };
+    /** weekly notification: {type}, {kleur} */
+    weekly: { title: string; bodies: readonly string[] };
+  };
   /** voice lines for the style guide */
   guide: {
     tagline: string;

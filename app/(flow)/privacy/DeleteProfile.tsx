@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { flowSession } from "@/lib/flow/session";
+import { forgetMe } from "@/lib/flow/forget";
 
 export default function DeleteProfile() {
   const [done, setDone] = useState(false);
   return done ? (
-    <p className="notice">Je profiel is verwijderd van dit apparaat.</p>
+    <p className="notice">Je profiel is verwijderd, van dit apparaat en van onze server.</p>
   ) : (
-    <button className="btn" onClick={() => { flowSession.clear(); setDone(true); }}>Verwijder mijn profiel</button>
+    <button className="btn" onClick={() => { void forgetMe().then(() => setDone(true)); }}>Verwijder mijn profiel</button>
   );
 }

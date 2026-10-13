@@ -1,5 +1,5 @@
 // Answers collected before the selfie. No personal data: occasion, budget and shops only.
-// Kept in sessionStorage; carried across brands in a short-lived URL token (CLAUDE.md §2).
+// Kept on this device (so "je antwoorden zijn bewaard" is true when someone comes back); carried across brands in a short-lived URL token (CLAUDE.md §2).
 
 import type { BudgetKey, OccasionKey } from "@/lib/brand/types";
 
@@ -31,7 +31,7 @@ export function sanitize(raw: unknown): Answers {
 
 export function loadAnswers(): Answers {
   try {
-    return sanitize(JSON.parse(sessionStorage.getItem(KEY) ?? "null"));
+    return sanitize(JSON.parse(sessionStorage.getItem(KEY) ?? localStorage.getItem(KEY) ?? "null"));
   } catch {
     return { ...EMPTY };
   }
@@ -40,6 +40,7 @@ export function loadAnswers(): Answers {
 export function saveAnswers(a: Answers): void {
   try {
     sessionStorage.setItem(KEY, JSON.stringify(a));
+    localStorage.setItem(KEY, JSON.stringify(a));
   } catch {
     // private mode or storage disabled: the flow still works within the page
   }

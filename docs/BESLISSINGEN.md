@@ -2,6 +2,21 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — terugkomen en engagement (churn)
+
+- **"Je bent er bijna"** op de landing voor wie halverwege afhaakte, met het echte aantal stappen en seconden. Voortgang en antwoorden staan op het apparaat (geen persoonsgegevens). Na de selfie begint het weer bij de selfie, want de foto bewaren we nooit. Na 30 dagen stopt de melding.
+- **Aanspreken als kleurtype** ("Hey Deep Autumn ✨", "Welkom terug, Soft Summer.") voor wie terugkomt, per stem.
+- **Uitnodiging van een vriend alleen als het waar is:** een geldige code in de link (`?ref=DANIEL-7K3Q`) toont "Daniel stuurde je dit" en €1 korting in de checkout. De korting wordt bij de betaling opnieuw op de server gecontroleerd (max. 10 per code, CLAUDE.md §2).
+- **Kleur van de week via web push (opt-in, gratis):** één melding per week, alleen tussen 10:00 en 20:00 lokale tijd, met een kleur uit het eigen palet. De toestemming wordt pas gevraagd na een tik op onze knop in de gids, en uitzetten kan met één tik. Op de iPhone werkt push alleen vanaf het beginscherm. Daarom is er nu een echte app per merk (manifest en icoon). Opslag in Supabase (EU), en "Verwijder mijn profiel" wist het ook daar. Kosten: €0 (Vercel Cron en web push zijn gratis).
+- **Gebruik meten:** `app_open` (bezoek, dagen sinds eerste bezoek, vanaf beginscherm ja/nee, fase), `resume_shown/click`, `invite_view`, `push_optin/optout`.
+- **Bewust niet gebouwd** (CLAUDE.md §2 en §12, plus de DSA en de Wet oneerlijke handelspraktijken):
+  - korting of downsell als iemand wil weggaan;
+  - meldingen getimed op doomscrollen of op hoe lang iemand online is;
+  - "je vrienden raden dit aan" zonder echte uitnodiging;
+  - "deze outfits kun je mislopen" zonder echte einddatum;
+  - bekende namen per regio. "Vaak genoemd als" kunnen we voor Nederlandse bekendheden niet onderbouwen; dat wordt een verzonnen claim over een echt persoon.
+  - "Doorpakken op wie live is": het enige verkoopmoment blijft de knop die op de resultaatpagina blijft staan.
+
 ## 13 oktober 2026 — gratis precies type, printpartner, grote schermen
 
 - **Het precieze type (bijv. Bright Winter) is gratis.** Het is via Google toch te vinden en het is het deelbare moment. De gids verkoopt wat Google niet kan: *"Welke 30 kleuren precies bij jóu passen, en hoe je ze combineert, niet."* Het gratis resultaat toont familie plus precies type.

@@ -13,6 +13,8 @@ import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/pale
 import { track } from "@/lib/analytics";
 import { euro, PRICES, type Tier } from "@/lib/flow/pricing";
 import { suggestEmail } from "@/lib/flow/email";
+import { forgetMe } from "@/lib/flow/forget";
+import { FRIEND_DISCOUNT, invite } from "@/lib/flow/referral";
 import { flowSession, type FaceBox } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
@@ -64,6 +66,11 @@ export default function Result() {
     io.observe(el);
     return () => io.disconnect();
   }, [loaded]);
+
+  // friend code from the invite link: €1 off, checked again server-side at payment (CLAUDE.md §2)
+  const [ref, setRef] = useState<ReturnType<typeof invite.get>>(null);
+  useEffect(() => setRef(invite.get()), []);
+  const pay = (k: "card" | "digital") => PRICES[k] - (ref ? FRIEND_DISCOUNT : 0);
 
   const pal = useMemo(() => (r ? paletteFor(r.profile, config.key) : null), [r, config.key]);
   if (!loaded) return <main className="screen" />;
@@ -244,7 +251,7 @@ export default function Result() {
         </section>
         )}
 
-        <button className="link-btn" onClick={() => { flowSession.clear(); router.replace("/"); }}>{t.deleteProfile}</button>
+        <button className="link-btn" onClick={() => { void forgetMe().then(() => router.replace("/")); }}>{t.deleteProfile}</button>
       </div>
       <Footer />
 
@@ -260,6 +267,9 @@ export default function Result() {
           <div className="sheet-body">
             <div className="grab" />
             <div className="line"><span>{t.tiers[tier].name}</span><b>{euro(PRICES[tier])}</b></div>
+            {ref && (
+              <div className="line discount"><span>{copy.retention.friendLine} · {ref.code}</span><b>−{euro(FRIEND_DISCOUNT)}</b></div>
+            )}
             {tier === "card" && (
               <>
                 <div className="line muted"><span>{t.checkout.shipping}</span><span>{t.checkout.shippingWhen}</span></div>
@@ -285,7 +295,7 @@ export default function Result() {
               <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
               <span>{t.checkout.withdrawal}</span>
             </label>
-            <button className="btn" disabled>{t.checkout.pay} · {euro(PRICES[tier])}</button>
+            <button className="btn" disabled>{t.checkout.pay} · {euro(pay(tier))}</button>
             <p className="notice">{t.checkout.test}</p>
             <button className="link-btn" onClick={() => dialog.current?.close()}>{t.checkout.close}</button>
           </div>

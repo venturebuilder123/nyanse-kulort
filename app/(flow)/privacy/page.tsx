@@ -23,7 +23,8 @@ export default function Privacy() {
           <li><b>Je kleurprofiel</b> (getallen voor ondertoon, diepte en helderheid) en je antwoorden (gelegenheid, budget, winkels, haar, goud of zilver). Om je profiel en gids te maken.</li>
           <li><b>Je e-mailadres</b>, alleen als je het geeft. Om je profiel en gids te sturen. Maandmails alleen als je dat apart aanvinkt; afmelden kan in elke mail. Zonder bestelling bewaren we je adres maximaal 2 jaar na je laatste contact.</li>
           <li><b>Bestelgegevens</b> en, bij de kleurenpas, je adres. Om te leveren en voor de boekhouding (7 jaar bewaarplicht).</li>
-          <li><b>Gebruik van de app</b>, zonder je naam of foto, om te zien welke stappen werken.</li>
+          <li><b>Kleur van de week</b>, alleen als je die aanzet: het pushadres van je browser, je merk, je kleurtype en je tijdzone. Maximaal één melding per week, overdag. Uitzetten kan in je gids; met &quot;Verwijder mijn profiel&quot; verdwijnt het ook van onze server.</li>
+          <li><b>Gebruik van de app</b>, zonder je naam of foto, om te zien welke stappen werken en hoe vaak de app terugkomt. Je voortgang staat op je eigen telefoon, zodat je verder kunt waar je was.</li>
         </ul>
         <p>We gebruiken je gezicht nooit om je te herkennen en we leiden er niets gevoeligs uit af. We verkopen niets door.</p>
 

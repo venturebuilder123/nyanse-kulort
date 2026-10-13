@@ -26,6 +26,16 @@
 .g-name { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--muted); }
 .g-name input { border: 1.5px solid var(--line-strong); background: var(--card); color: var(--ink); border-radius: var(--radius-btn); padding: 8px 10px; font: inherit; font-size: 16px; width: 160px; }
 
+.g-push {
+  width: min(100% - 24px, var(--page-w)); margin: 16px auto 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 16px 20px; border: 1px solid var(--line-strong); background: var(--card);
+}
+.g-push b { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
+.g-push p { margin-top: 4px; font-size: 14px; color: var(--muted); max-width: 52ch; }
+.g-push .g-push-err { color: var(--warn, #b42318); }
+.g-push .btn, .g-push .link-btn { width: auto; }
+
 /* ---------- page ---------- */
 .g-page {
   width: min(100% - 24px, var(--page-w));
@@ -205,7 +215,7 @@
 @page { size: A4; margin: 0; }
 @media print {
   .app, .guide { background: #fff !important; }
-  .g-toolbar { display: none; }
+  .g-toolbar, .g-push { display: none; }
   .guide { padding: 0; gap: 0; display: block; }
   .g-page {
     width: 210mm; height: 297mm; min-height: 0; margin: 0; box-shadow: none;

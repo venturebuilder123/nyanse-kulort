@@ -393,6 +393,9 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 /* ---------- CX review additions ---------- */
 .welcome { display: grid; gap: 10px; padding: 14px 16px; border-radius: var(--radius); background: var(--card); border: 1.5px solid var(--accent); }
 .welcome p { font-weight: 800; }
+.welcome .welcome-title { font-family: var(--f-display); font-size: 20px; line-height: 1.15; }
+.welcome .welcome-text { font-weight: 500; color: var(--muted); }
+.invite { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line-strong); font-size: 14px; font-weight: 600; }
 .row-2 { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
 .row-2 .link-btn { width: auto; }
 .row-inline { display: flex; gap: 8px; }
@@ -557,3 +560,6 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   .topnav .wm-kulort { font-size: 17px; }
   .topnav .wm-nyanse { font-size: 20px; }
 }
+[data-brand="kulort"] .welcome .welcome-title { font-stretch: 112%; text-transform: uppercase; font-size: 17px; letter-spacing: .02em; }
+[data-voice="atelier"] .welcome .welcome-title { font-weight: 400; font-style: italic; font-size: 22px; }
+.line.discount { color: var(--accent-text); font-weight: 600; }
