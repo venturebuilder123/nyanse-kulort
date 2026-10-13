@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FAMILY_TEXT_NL } from "@/lib/brand/common";
+import { SEASON_TEXT_NL } from "@/lib/brand/common";
+import { SEASONS } from "@/lib/color/seasons";
 import type { WhyBlock } from "@/lib/brand/types";
 import { clarityWord, depthWord, familyOf, undertoneWord } from "@/lib/color/describe";
 import { hexToLab, labToLch } from "@/lib/color/convert";
@@ -67,7 +68,6 @@ export default function Result() {
 
   const p = r.profile;
   const family = familyOf(p.match.season);
-  const secondFamily = familyOf(p.match.second);
   // Recomputed with the latest answers (e.g. "Kaal" lifts the hair penalty), not the flag from the selfie.
   const low = p.confidence.overall < LOW_CONFIDENCE;
   const chroma = (hex: string) => labToLch(hexToLab(hex)).C;
@@ -93,9 +93,11 @@ export default function Result() {
       <section className="r-hero">
         <p className="label-sm">{t.label}{low && <span className="tag-soft">{t.provisional}</span>}</p>
         <h1 className="disp r-family">{family}</h1>
-        {p.match.border && secondFamily !== family && <p className="r-between">{t.between.replace("{b}", secondFamily)}</p>}
+        {/* the precise type is free: it is googleable anyway; the guide sells what Google can't */}
+        <p className="r-typename"><span>{t.typeLabel}</span><b>{SEASONS[p.match.season].name}</b></p>
+        {p.match.border && <p className="r-between">{t.between.replace("{b}", SEASONS[p.match.second].name)}</p>}
         <span className="r-swatches" aria-hidden="true">{six.map((c) => <i key={c.id} style={{ background: c.hex }} />)}</span>
-        <p className="r-desc">{FAMILY_TEXT_NL[family as keyof typeof FAMILY_TEXT_NL]}</p>
+        <p className="r-desc">{SEASON_TEXT_NL[p.match.season]}</p>
       </section>
 
       <div className="pad result">
@@ -146,6 +148,7 @@ export default function Result() {
 
         <section className="q">
           <h2 className="eyebrow-h">{t.lockedTitle}</h2>
+          <p className="locked-why">{t.lockedWhy}</p>
           <div className="locked">
             <MiniPass />
             <ul className="locked-list">
@@ -239,6 +242,7 @@ export default function Result() {
                   <select value={country} onChange={(e) => setCountry(e.target.value)} aria-label={t.checkout.country}>
                     <option value="NL">Nederland</option>
                     <option value="BE">België</option>
+                    <option value="DE">Duitsland</option>
                     <option value="other">Ander land</option>
                   </select>
                   {country === "other" && <p className="small warn-text">{t.checkout.countryNote}</p>}

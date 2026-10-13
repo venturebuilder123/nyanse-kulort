@@ -101,6 +101,7 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   label: "Jouw kleurtype",
   provisional: "Voorlopig",
   between: "op de grens met {b}",
+  typeLabel: "Je precieze type",
   scalesTitle: "Zo is je kleur opgebouwd",
   avoidTitle: "Liever niet bij je gezicht",
   avoidText: "Deze kleuren werken tegen je in. Draag ze liever niet direct onder je gezicht.",
@@ -108,20 +109,20 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   baHint: "Sleep om te vergelijken",
   lowConfidence: "Je foto was lastig te lezen, dus dit is een voorlopig profiel. Met een selfie bij daglicht wordt het preciezer.",
   lowConfidenceCta: "Nog een selfie",
-  lockedTitle: "In je gids",
-  lockedSubtype: "Je precieze type (één van 12)",
+  lockedTitle: "Wat de gids je extra geeft",
+  lockedWhy: "Je kleurtype vind je ook op Google. Welke 30 kleuren precies bij jóu passen, en hoe je ze combineert, niet.",
   tiersTitle: "Kies je gids",
   tiers: {
     card: {
       name: "Gids + kleurenpas",
       badge: "Aanrader",
-      line: "Je pas in de brievenbus, verzending inbegrepen, binnen 10 werkdagen",
-      features: ["Alles uit de digitale gids", "Stevige kleurenpas voor in je portemonnee, ook handig in de winkel"],
+      line: "Je pas in de brievenbus (NL, BE, DE), verzending inbegrepen, binnen ±1 week",
+      features: ["Alles uit de digitale gids", "Stevige kleurenpas met je 8 kernkleuren, voor in je portemonnee en in de winkel"],
     },
     digital: {
       name: "Digitale gids",
       line: "Direct op je telefoon",
-      features: ["Je precieze type en alle 30 kleuren", "Stijlgids als PDF, op jouw naam", "Digitale kleurenpas op je telefoon"],
+      features: ["Alle 30 kleuren met namen, in basis-, accent- en neutrale kleuren", "Combinaties die werken en wat je beter laat hangen", "Stijlgids als PDF op jouw naam en een digitale pas op je telefoon"],
     },
   },
   ctaChoose: "Kies je gids",
@@ -131,14 +132,14 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   checkout: {
     pay: "Betalen",
     shipping: "Verzending",
-    shippingWhen: "inbegrepen · binnen 10 werkdagen",
+    shippingWhen: "inbegrepen · binnen ±1 week",
     address: "Waar mag je pas heen?",
     name: "Naam",
     street: "Straat en huisnummer",
     postcode: "Postcode",
     city: "Plaats",
     country: "Land",
-    countryNote: "De pas versturen we nu alleen in Nederland en België. Kies de digitale gids, of mail ons.",
+    countryNote: "De pas versturen we nu naar Nederland, België en Duitsland. Kies de digitale gids, of mail ons.",
     withdrawal: "Ik wil de digitale gids direct ontvangen. Daarmee vervalt mijn herroepingsrecht voor de digitale gids.",
     test: "Testversie: betalen staat nog uit. Hier komen Apple Pay, Google Pay, iDEAL | Wero, PayPal en kaart.",
     close: "Sluiten",
@@ -177,3 +178,44 @@ export const SEASON_TEXT_NL = {
 } as const;
 
 export const FAMILY_NL = { Spring: "Lente", Summer: "Zomer", Autumn: "Herfst", Winter: "Winter" } as const;
+
+type Page = import("./types").VoiceCopy["page"];
+
+/** Sections shared by all voices; the voice files override titles where their tone differs. */
+export const pageNl = (o: { galleryTitle: Page["gallery"]["title"]; howTitle: Page["how"]["title"]; compareTitle: Page["compare"]["title"]; finalTitle: Page["final"]["title"]; accessories: string; trustTitle: Page["trust"]["title"] }): Page => ({
+  nav: { how: "Hoe het werkt", prices: "Gratis of gids", start: "Begin gratis" },
+  gallery: { title: o.galleryTitle, text: "Dezelfde foto, alleen een ander kleurdoek eronder. Precies wat de app met jouw selfie doet." },
+  how: {
+    title: o.howTitle,
+    steps: [
+      ["Eén selfie", "Bij daglicht, op je telefoon. De AI-kleuranalyse draait op je toestel; je foto gaat nergens heen."],
+      ["Je kleurprofiel", "Je precieze type, je plek op de schalen ondertoon, diepte en helderheid, en 6 kleuren die werken. Gratis."],
+      ["Je gids", "Al je 30 kleuren met namen, combinaties die werken en " + o.accessories + ". Als PDF, met een pas voor in de winkel."],
+    ],
+  },
+  compare: {
+    title: o.compareTitle,
+    free: "Gratis",
+    paid: "Gids",
+    rows: [
+      ["Je precieze kleurtype (1 van 12)", true, true],
+      ["Ondertoon, diepte en helderheid", true, true],
+      ["6 kleuren die werken", true, true],
+      ["Kleuren om te vermijden", true, true],
+      ["Alle 30 kleuren met namen", false, true],
+      ["Combinaties die samen werken", false, true],
+      [o.accessories.charAt(0).toUpperCase() + o.accessories.slice(1), false, true],
+      ["Stijlgids als PDF op jouw naam", false, true],
+      ["Digitale kleurenpas (of een echte in de bus)", false, true],
+    ],
+  },
+  trust: {
+    title: o.trustTitle,
+    items: [
+      ["Je foto blijft bij jou", "De analyse draait op je telefoon. We sturen je foto nergens heen en bewaren hem niet."],
+      ["Geen account nodig", "Je profiel staat op je eigen toestel. Met één tik verwijderd."],
+      ["Aanbevolen op kleur", "Nooit op commissie. We laten zien wat jou staat, niet wat ons het meest oplevert."],
+    ],
+  },
+  final: { title: o.finalTitle, cta: "Begin gratis" },
+});

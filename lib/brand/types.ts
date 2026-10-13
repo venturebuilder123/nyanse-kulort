@@ -27,6 +27,15 @@ export type VoiceCopy = {
     paid: { title: string; text: string };
     hero: { caption: string; bad: string; good: string };
   };
+  /** the sections below the first tap (and the desktop page) */
+  page: {
+    nav: { how: string; prices: string; start: string };
+    gallery: { title: Headline; text: string };
+    how: { title: Headline; steps: readonly [title: string, text: string][] };
+    compare: { title: Headline; free: string; paid: string; rows: readonly [label: string, free: boolean, paid: boolean][] };
+    trust: { title: Headline; items: readonly [title: string, text: string][] };
+    final: { title: Headline; cta: string };
+  };
   /** the kleurenpas in the hero: the season stays hidden until the selfie */
   pass: { label: string; season: string };
   style: {
@@ -151,6 +160,7 @@ export type ResultCopy = {
   label: string;
   provisional: string;
   between: string;
+  typeLabel: string;
   scalesTitle: string;
   colorsTitle: string;
   avoidTitle: string;
@@ -160,7 +170,8 @@ export type ResultCopy = {
   lowConfidence: string;
   lowConfidenceCta: string;
   lockedTitle: string;
-  lockedSubtype: string;
+  /** why the guide is worth paying for when the type itself is free (and googleable) */
+  lockedWhy: string;
   lockedItems: readonly string[];
   why: WhyBlock;
   tiersTitle: string;

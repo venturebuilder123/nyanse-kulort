@@ -2,6 +2,16 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — gratis precies type, printpartner, grote schermen
+
+- **Het precieze type (bijv. Bright Winter) is gratis.** Het is via Google toch te vinden en het is het deelbare moment. De gids verkoopt wat Google niet kan: *"Welke 30 kleuren precies bij jóu passen, en hoe je ze combineert, niet."* Het gratis resultaat toont familie plus precies type.
+- **Kleurenpas via een printpartner** (print-on-demand, automatisch, nul werk voor de oprichter). De wekelijkse batch per post uit §7 vervalt. Levering: "binnen ±1 week".
+- **Verzending naar NL, BE en DE.** Talen (EN, DE, ES) staan op de verbeterlijst; Duits eerst.
+- **Geen juristcheck en geen conceptlabels in de interface** (besluit oprichter: kleine bedragen, zelf oplossen). Het wettelijk verplichte vinkje voor afstand van het herroepingsrecht blijft.
+- **Betalen: keuze later.** Zonder KvK geen Mollie; de checkout is neutraal gebouwd. KvK-inschrijving staat bovenaan de verbeterlijst.
+- **De landing is een volledige productpagina:** op desktop links de tekst en de eerste keuze, rechts een grote foto. Daaronder een galerij met het verschil, de drie stappen, een vergelijking tussen gratis en gids, en vertrouwen.
+- Verbeterlijst: [fase-b/VERBETERLIJST.md](fase-b/VERBETERLIJST.md).
+
 ## 13 oktober 2026 — Customer Experience-review en AI-beelden
 
 - **AI-gegenereerde mensen in de hero** (besluit van de oprichter). Voorwaarden: AI-label onder het beeld, één neutrale foto per persoon, en het kleurdoek legt de app er zelf onder op basis van onze eigen analyse (geen apart bewerkte "slechte" versie). Shotlist en prompts: [fase-b/AI-BEELDEN.md](fase-b/AI-BEELDEN.md). Meetscript: `scripts/measure-people.mjs`.

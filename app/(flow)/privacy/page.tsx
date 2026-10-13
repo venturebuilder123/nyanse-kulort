@@ -2,15 +2,14 @@ import Link from "next/link";
 import { AppBar, Footer } from "../ui";
 import DeleteProfile from "./DeleteProfile";
 
-// CONCEPT privacy statement for both brands (CLAUDE.md §9). To be checked by a lawyer before launch;
-// company details are filled in at registration.
+// Privacy statement for both brands (CLAUDE.md §9). Company details are filled in at registration.
 export default function Privacy() {
   return (
     <main className="screen">
       <AppBar pill="Privacy" />
       <article className="pad prose">
         <h1 className="disp sm">Privacy</h1>
-        <p className="muted small">Concept, 13 oktober 2026. Geldt voor NYANSE en KULØRT, twee merken van [bedrijfsnaam], [adres], KvK [nummer].</p>
+        <p className="muted small">Versie 13 oktober 2026. Geldt voor NYANSE en KULØRT, twee merken van [bedrijfsnaam], [adres], KvK [nummer].</p>
 
         <h2>Je foto</h2>
         <p>De kleuranalyse draait op je eigen telefoon. Je foto wordt niet naar ons of naar anderen gestuurd en nergens bewaard, ook niet op je telefoon. Sluit je het tabblad, dan is hij weg.</p>

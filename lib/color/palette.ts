@@ -133,6 +133,12 @@ export function colorName(c: PaletteColor, brand: BrandKey): string {
 
 export const MASTER_SIZE = ALL.length;
 
+/** Name of a master colour by hex (for the landing gallery), brand-specific where it differs. */
+export function nameForHex(hex: string, brand: BrandKey): string | undefined {
+  const c = ALL.find((x) => x.hex.toLowerCase() === hex.toLowerCase());
+  return c && colorName(c, brand);
+}
+
 export type ProfilePalette = {
   /** 30 colours, nearest first */
   colors: PaletteColor[];

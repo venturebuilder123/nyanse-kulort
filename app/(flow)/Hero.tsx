@@ -42,10 +42,13 @@ function PhotoHero() {
   return (
     <figure className="hero2 hero-photo" aria-label={copy.landing.hero.caption}>
       <div className="hero2-stage">
-        <span className={`hero2-tag bad${!good ? " on" : ""}`}>✕ {copy.landing.hero.bad}</span>
-        <span className={`hero2-tag good${good ? " on" : ""}`}>✓ {copy.landing.hero.good}</span>
-        <Drape photo={person.src} face={{ ...person.face, mirrored: false }} color={good ? person.good : person.bad} fit={{ w: 0.4, cy: 0.38 }} className="hero-portrait" />
-        <div className="hero2-pass"><MiniPass /></div>
+        {/* tags sit on the photo itself, so they never drift off on wide screens */}
+        <div className="hero-frame">
+          <Drape photo={person.src} face={{ ...person.face, mirrored: false }} color={good ? person.good : person.bad} fit={{ w: 0.4, cy: 0.38 }} className="hero-portrait" />
+          <span className={`hero2-tag bad${!good ? " on" : ""}`}>✕ {copy.landing.hero.bad}</span>
+          <span className={`hero2-tag good${good ? " on" : ""}`}>✓ {copy.landing.hero.good}</span>
+          <div className="hero2-pass"><MiniPass /></div>
+        </div>
       </div>
       <figcaption className="hero2-caption">{copy.landing.hero.caption}<span className="ai-label">Voorbeeld · beeld gemaakt met AI, kleurdoek door onze analyse</span></figcaption>
     </figure>

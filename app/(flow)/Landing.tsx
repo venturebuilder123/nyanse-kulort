@@ -11,7 +11,8 @@ import { flowSession } from "@/lib/flow/session";
 import { switchUrl } from "@/lib/flow/switch";
 import { useBrand } from "./BrandProvider";
 import { Hero } from "./Hero";
-import { AppBar, CheckIcon, Display, Footer, LockIcon, OccasionIcon } from "./ui";
+import { LandingSections } from "./LandingSections";
+import { AppBar, CheckIcon, Display, Footer, LockIcon, OccasionIcon, Wordmark } from "./ui";
 
 export default function Landing() {
   const { config, copy, ctx } = useBrand();
@@ -49,9 +50,30 @@ export default function Landing() {
     router.push("/stijl");
   }
 
+  const startHere = () => {
+    document.getElementById("occ-q")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    (document.querySelector(".tile") as HTMLButtonElement | null)?.focus({ preventScroll: true });
+  };
+  const switchLink = (
+    <a href={switchHref} onClick={() => track("brand_switch", ctx, { to: config.other })}>
+      {config.other === "nyanse" ? "NYANSE" : "KULØRT"} →
+    </a>
+  );
+
   return (
-    <main className="screen">
+    <main className="screen landing-screen">
       <AppBar pill={copy.landing.pill} />
+      {/* large screens: a real top navigation instead of the app bar pill */}
+      <nav className="topnav" aria-label="Hoofdmenu">
+        <Wordmark />
+        <div className="topnav-links">
+          <a href="#hoe">{copy.page.nav.how}</a>
+          <a href="#gids">{copy.page.nav.prices}</a>
+          <span className="muted">{config.switchLabel}? {switchLink}</span>
+          <button className="btn btn-sm" onClick={startHere}>{copy.page.nav.start}</button>
+        </div>
+      </nav>
+
       <div className="pad landing">
         {returning && (
           <section className="welcome">
@@ -62,39 +84,35 @@ export default function Landing() {
             </div>
           </section>
         )}
-        <p className="eyebrow">{copy.landing.eyebrow}</p>
-        <Display text={copy.landing.headline} />
-        <p className="sub">{copy.landing.sub}</p>
-        {/* Pipeline A keeps the photo on the device, so this claim is true (CLAUDE.md §5). */}
-        <p className="trust-main"><LockIcon />{copy.landing.trustMain}</p>
-        <Hero />
 
-        <section className="q" aria-labelledby="occ-q">
-          <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
-          <div className="tiles">
-            {OCCASIONS.map((o) => (
-              <button key={o.key} className="tile" aria-pressed={answers.occasions[0] === o.key} onClick={() => pick(o.key)}>
-                <OccasionIcon k={o.key} />
-                {o.label}
-              </button>
-            ))}
+        <div className="l-hero">
+          <div className="l-copy">
+            <p className="eyebrow">{copy.landing.eyebrow}</p>
+            <Display text={copy.landing.headline} />
+            <p className="sub">{copy.landing.sub}</p>
+            {/* Pipeline A keeps the photo on the device, so this claim is true (CLAUDE.md §5). */}
+            <p className="trust-main"><LockIcon />{copy.landing.trustMain}</p>
           </div>
-          <p className="trustrow">
-            {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
-          </p>
-        </section>
+          <div className="l-visual"><Hero /></div>
+          <section className="l-tap q" aria-labelledby="occ-q">
+            <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
+            <div className="tiles">
+              {OCCASIONS.map((o) => (
+                <button key={o.key} className="tile" aria-pressed={answers.occasions[0] === o.key} onClick={() => pick(o.key)}>
+                  <OccasionIcon k={o.key} />
+                  {o.label}
+                </button>
+              ))}
+            </div>
+            <p className="trustrow">
+              {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
+            </p>
+          </section>
+        </div>
 
-        <section className="gets" aria-label="Wat je krijgt">
-          <div><b className="label-sm">{copy.landing.free.title}</b><p>{copy.landing.free.text}</p></div>
-          <div><b className="label-sm">{copy.landing.paid.title}</b><p>{copy.landing.paid.text}</p></div>
-        </section>
+        <LandingSections onStart={startHere} />
 
-        <p className="switch">
-          {config.switchLabel}?{" "}
-          <a href={switchHref} onClick={() => track("brand_switch", ctx, { to: config.other })}>
-            {config.other === "nyanse" ? "NYANSE" : "KULØRT"} →
-          </a>
-        </p>
+        <p className="switch">{config.switchLabel}? {switchLink}</p>
       </div>
       <Footer />
     </main>

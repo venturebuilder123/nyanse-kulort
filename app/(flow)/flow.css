@@ -414,8 +414,137 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 /* the hero never pushes the first tiles below the fold, not even on an iPhone SE */
 .hero2-stage { height: clamp(140px, 24svh, 172px); }
 .hero-photo .hero2-stage { height: clamp(170px, 30svh, 230px); }
-/* short screens (iPhone SE with Safari bars): first tap before the illustration */
-@media (max-height: 640px) {
-  .landing .hero2 { order: 1; }
-  .landing .gets, .landing .switch { order: 2; }
+
+
+.r-typename { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.r-typename span { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.r-typename b { font-family: var(--f-display); font-size: 24px; font-weight: 700; color: var(--accent-text); }
+[data-brand="kulort"] .r-typename b { font-stretch: 112%; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em; }
+[data-voice="atelier"] .r-typename b { font-style: italic; font-weight: 500; font-size: 26px; }
+.locked-why { font-size: 16px; font-weight: 700; line-height: 1.4; }
+
+/* ---------- landing as a full product page (all screens) ---------- */
+.topnav { display: none; }
+.l-hero { display: grid; gap: 16px; grid-template-areas: "copy" "visual" "tap"; }
+.l-copy { grid-area: copy; display: grid; gap: 14px; }
+.l-visual { grid-area: visual; }
+.l-tap { grid-area: tap; }
+/* short phones (iPhone SE with Safari bars): first tap before the visual */
+@media (max-height: 640px) and (max-width: 700px) {
+  .l-hero { grid-template-areas: "copy" "tap" "visual"; }
+}
+.l-section { display: grid; gap: 14px; padding-top: 30px; }
+.l-section .sub { max-width: 46ch; }
+.ai-label.center { text-align: center; }
+
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.split { display: grid; gap: 6px; }
+.split-frame { position: relative; }
+.split-frame .drape { border-radius: 14px; }
+[data-brand="kulort"] .split-frame .drape { border-radius: 4px; }
+.split-left { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+.split-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; }
+.split figcaption { display: flex; justify-content: space-between; gap: 6px; font-size: 12px; font-weight: 800; }
+.split figcaption .bad { color: var(--muted); }
+.split figcaption .good { color: var(--ok); text-align: right; }
+
+.steps { list-style: none; padding: 0; display: grid; gap: 10px; }
+.steps li { display: grid; grid-template-columns: 36px 1fr; gap: 2px 12px; padding: 14px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.step-n { grid-row: span 2; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-weight: 800; }
+[data-brand="kulort"] .step-n { border-radius: 4px; }
+.steps b { font-size: 16px; }
+.steps p { font-size: 14.5px; color: var(--muted); }
+
+.compare-table { border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); overflow: hidden; }
+.ct-row { display: grid; grid-template-columns: 1fr 64px 84px; align-items: center; gap: 8px; padding: 11px 14px; border-top: 1px solid var(--line); font-size: 14.5px; }
+.ct-row span:nth-child(n + 2) { text-align: center; color: var(--muted); display: grid; justify-items: center; }
+.ct-row svg { color: var(--ok); }
+.ct-head { border-top: 0; font-weight: 800; font-size: 13px; }
+.ct-head span:nth-child(3) { color: var(--accent-text); }
+.ct-head small { display: block; font-size: 11px; font-weight: 700; color: var(--muted); }
+
+.trust-grid { display: grid; gap: 10px; }
+.trust-item { padding: 14px 16px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); display: grid; gap: 4px; }
+.trust-item p { font-size: 14.5px; color: var(--muted); }
+.l-final { text-align: center; justify-items: center; padding-top: 40px; }
+
+.btn-sm { min-height: 44px; width: auto; padding: 0 18px; font-size: 14px; }
+
+/* ---------- large screens: the landing becomes a full-width product page ---------- */
+@media (min-width: 1024px) {
+  .app:has(.landing-screen) { background: var(--bg); }
+  .landing-screen { max-width: 1200px; margin: 0 auto; border-radius: 0; box-shadow: none; overflow: visible; }
+  .landing-screen .appbar { display: none; }
+  .topnav { display: flex; align-items: center; justify-content: space-between; padding: 28px 40px 0; }
+  .topnav .wm-kulort { font-size: 18px; }
+  .topnav .wm-nyanse { font-size: 28px; }
+  .topnav-links { display: flex; gap: 28px; align-items: center; font-weight: 700; font-size: 15px; }
+  .topnav-links a { text-decoration: none; }
+  .topnav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .landing { padding: 40px 40px 60px; gap: 24px; }
+  .l-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); grid-template-areas: "copy visual" "tap visual"; gap: 28px 64px; align-items: center; min-height: min(78vh, 720px); }
+  .l-copy { align-self: end; gap: 20px; }
+  .l-tap { align-self: start; max-width: 520px; }
+  .landing .disp { font-size: 64px; }
+  [data-brand="kulort"] .landing .disp { font-size: 56px; }
+  .landing .l-copy .sub { font-size: 20px; max-width: 30ch; }
+  .landing .eyebrow { font-size: 14px; }
+  .landing .trust-main { font-size: 16px; }
+  .l-visual .hero2 { margin: 0; }
+  .l-visual .hero2-stage, .l-visual .hero-photo .hero2-stage { height: min(68vh, 600px); }
+  .l-visual .hero2-tag { font-size: 15px; padding: 8px 14px; }
+  .l-visual .hero2-tag.bad { left: 0; }
+  .l-visual .hero2-tag.good { right: 0; }
+  .l-visual .hero2-pass { right: 6%; bottom: 4%; }
+  .l-visual .minipass { width: 160px; padding: 14px; }
+  .l-visual .minipass-brand { font-size: 12px; }
+  .l-visual .minipass-strip { height: 14px; }
+  .l-visual .hero2-caption { font-size: 14px; margin-top: 8px; }
+  .tiles { gap: 12px; }
+  .tile { min-height: 64px; font-size: 17px; }
+  .l-section { padding-top: 96px; gap: 22px; }
+  .l-section > .disp { font-size: 48px; }
+  [data-brand="kulort"] .l-section > .disp { font-size: 40px; }
+  .l-section .sub { font-size: 18px; }
+  .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .split figcaption { font-size: 14px; }
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .steps li { grid-template-columns: 1fr; padding: 24px; gap: 10px; align-content: start; }
+  .step-n { grid-row: auto; width: 40px; height: 40px; font-size: 18px; }
+  .steps b { font-size: 20px; }
+  .steps p { font-size: 16px; }
+  .compare-table { max-width: 820px; }
+  .ct-row { grid-template-columns: 1fr 120px 140px; padding: 14px 22px; font-size: 16px; }
+  .trust-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .trust-item { padding: 24px; }
+  .trust-item b { font-size: 18px; }
+  .trust-item p { font-size: 16px; }
+  .l-final { padding: 120px 0 40px; }
+  .l-final .disp { font-size: 56px; }
+  .l-final .btn { width: auto; padding: 0 40px; }
+  .landing-screen .switch, .landing-screen > .foot { padding-left: 40px; padding-right: 40px; }
+}
+
+/* photo hero: frame wraps the portrait; tags and pass are placed on it */
+.hero-frame { position: relative; height: 100%; aspect-ratio: 4 / 5; }
+.hero-frame .hero-portrait { height: 100%; width: 100%; }
+.hero-frame .hero2-tag { top: 12px; }
+.hero-frame .hero2-tag.bad { left: 10px; }
+.hero-frame .hero2-tag.good { right: 10px; }
+.hero-frame .hero2-tag:not(.on) { opacity: 0; }
+.hero-frame .hero2-pass { right: -18px; bottom: 10px; }
+.gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+@media (min-width: 1024px) {
+  .gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .l-visual .hero-frame .hero2-tag { top: 18px; }
+  .l-visual .hero-frame .hero2-tag.bad { left: 18px; }
+  .l-visual .hero-frame .hero2-tag.good { right: 18px; }
+  .l-visual .hero-frame .hero2-pass { right: -28px; bottom: 6%; }
+}
+@media (max-width: 1023px) {
+  /* the drape is the message: keep the pass small and in the corner */
+  .hero-frame .hero2-pass { right: -26px; bottom: -8px; }
+  .hero-frame .minipass { width: 78px; padding: 7px 8px; }
+  .hero-frame .minipass-brand { font-size: 7.5px; }
+  .hero-frame .minipass-strip { height: 7px; }
 }
