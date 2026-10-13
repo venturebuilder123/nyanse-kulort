@@ -1,0 +1,2 @@
+reportlab==5.0.1
+opencv-contrib-python-headless==5.0.0.93

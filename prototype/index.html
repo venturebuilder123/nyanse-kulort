@@ -1,0 +1,1218 @@
+<title>Nyanse &amp; Kulørt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: studio-wand — telefoon met de echte flow links, ontwerpnotities rechts. Drie huisstijlen: Girl Math (dames, speels, Bricolage + kers/boter), Atelier (dames, Bodoni + poeder), Wingman (heren, breed Archivo + cognac). */
+:root{
+  --bg:#F4F3F6; --surface:#FFFFFF; --ink:#18161F; --muted:#6C687A; --line:#E2E0E8;
+  --acc-a:#C8285A; --soft-a:#F7E3EA;
+  --acc-g:#D61F5B; --soft-g:#FFE6EE; --butter:#FFE9A6;
+  --acc-w:#8A4A26; --soft-w:#F2E6DA;
+  --accent:var(--acc-a); --soft:var(--soft-a); --accent-ink:#FFFFFF;
+  --ok:#1E7F5C; --warn:#9A5B00; --bezel:#18161F;
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-men:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-girl:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#100E15; --surface:#1A1722; --ink:#F1EEF6; --muted:#A29DB2; --line:#2E2A38;
+  --acc-a:#FF5C8A; --soft-a:#3A1A27; --acc-g:#FF6B9A; --soft-g:#3D1626; --butter:#5A4A16;
+  --acc-w:#E39A63; --soft-w:#382A1F; --accent-ink:#1A0710;
+  --ok:#53C79A; --warn:#E9A23B; --bezel:#2E2A38; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#100E15; --surface:#1A1722; --ink:#F1EEF6; --muted:#A29DB2; --line:#2E2A38;
+  --acc-a:#FF5C8A; --soft-a:#3A1A27; --acc-g:#FF6B9A; --soft-g:#3D1626; --butter:#5A4A16;
+  --acc-w:#E39A63; --soft-w:#382A1F; --accent-ink:#1A0710;
+  --ok:#53C79A; --warn:#E9A23B; --bezel:#2E2A38; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,input:focus-visible,label:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.top{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-block:20px 18px}
+.wordmark{font-family:var(--f-display);font-style:italic;font-weight:600;font-size:30px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px;line-height:1}
+.wordmark .dots{display:inline-flex;gap:3px;transform:translateY(-2px)}
+.wordmark .dots i{width:7px;height:7px;border-radius:50%;display:block}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs button{border:0;background:transparent;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.top .note{margin-left:auto;font-size:12px;color:var(--muted)}
+
+.studio{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:410px minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:900px){.studio{grid-template-columns:minmax(0,1fr);gap:24px}}
+.phone-wrap{display:flex;flex-direction:column;gap:12px;align-items:center}
+.phone{width:100%;max-width:390px;height:800px;border-radius:46px;border:10px solid var(--bezel);background:var(--surface);position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(24,22,31,.45)}
+.phone[data-mode="girlmath"]{--accent:var(--acc-g);--soft:var(--soft-g)}
+.phone[data-mode="wingman"]{--accent:var(--acc-w);--soft:var(--soft-w)}
+@media (max-width:520px){.phone{border-width:6px;border-radius:30px;height:760px}}
+.modebar{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.modebar button{border:0;background:transparent;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--muted)}
+.modebar button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.restart{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
+
+.scr{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;background:var(--surface)}
+.scr-pad{padding:16px 20px 32px;display:flex;flex-direction:column;gap:18px;flex:1}
+.appbar{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0}
+.appbar .wordmark{font-size:22px}
+.appbar .wordmark .dots i{width:5px;height:5px}
+.phone[data-mode="girlmath"] .wordmark{font-family:var(--f-girl);font-style:normal;font-weight:800;letter-spacing:-.03em}
+.phone[data-mode="wingman"] .wordmark{font-family:var(--f-men);font-style:normal;font-stretch:125%;font-weight:850;text-transform:uppercase;letter-spacing:.02em;font-size:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--soft);color:var(--accent)}
+
+/* display type per huisstijl */
+.disp{font-family:var(--f-display);font-weight:600;letter-spacing:-.015em;line-height:1}
+.disp em{font-style:italic;font-weight:500;color:var(--accent)}
+.disp.it{font-style:italic;font-weight:500}
+.phone[data-mode="girlmath"] .disp{font-family:var(--f-girl);font-style:normal;font-weight:800;letter-spacing:-.035em;line-height:.95}
+.phone[data-mode="girlmath"] .disp em{font-style:normal;font-weight:800;color:var(--ink);background:linear-gradient(transparent 55%,var(--butter) 55%);padding:0 .08em}
+.phone[data-mode="wingman"] .disp{font-family:var(--f-men);font-stretch:125%;font-weight:850;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;font-style:normal}
+.phone[data-mode="wingman"] .disp em{font-style:normal;font-weight:850}
+
+.crumbs{list-style:none;margin:0;padding:12px 20px 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.crumbs li{display:grid;gap:5px;font-size:10.5px;font-weight:700;color:var(--muted);text-align:center}
+.crumbs li::before{content:"";height:4px;border-radius:4px;background:var(--line);transition:background .3s}
+.crumbs li.done::before{background:var(--ink)}
+.crumbs li.now{color:var(--ink)}
+.crumbs li.now::before{background:var(--accent)}
+
+.btn{border:0;border-radius:16px;padding:16px 18px;font-weight:800;font-size:16px;background:var(--accent);color:var(--accent-ink);width:100%;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center}
+.phone[data-mode="girlmath"] .btn{border-radius:999px}
+.phone[data-mode="wingman"] .btn{border-radius:6px;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.pay{border:0;border-radius:14px;padding:14px;font-weight:800;font-size:15px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
+.pay.apple{background:#000;color:#fff}
+.pay.google{background:#fff;color:#1f1f1f;border:1.5px solid #dadce0}
+.pay.wero{background:#1A1A1A;color:#fff}
+.pay.wero b{color:#FFD500}
+.pay.paypal{background:#FFC439;color:#111}
+.pay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.link{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;padding:4px}
+.small{font-size:12.5px;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:10px}
+.sec h3{font-size:17px;font-weight:800}
+.why{background:var(--bg);border-radius:14px;padding:12px 14px;font-size:13.5px;display:grid;gap:4px}
+.checklist{display:grid;gap:8px;font-size:14px}
+.checklist div{display:flex;gap:10px;align-items:flex-start}
+.checklist i{width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--surface);flex:none;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;margin-top:1px}
+
+/* feed (bewust altijd donker: Reels/Stories) */
+.feed{background:#0B0A0E;color:#FFFFFF}
+.feed-art{position:absolute;inset:0}
+.feed-art svg{width:100%;height:100%;display:block}
+.knit{animation:slidein .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes slidein{from{transform:translateX(330px)}to{transform:none}}
+.adcard{position:absolute;left:16px;top:110px;width:62%;background:rgba(255,255,255,.92);color:#16141C;border-radius:16px;padding:14px 16px;display:grid;gap:4px;box-shadow:0 10px 30px -12px rgba(0,0,0,.4)}
+.adcard .t{font-size:13px;font-weight:700}
+.adcard .h{font-weight:800;font-size:21px;line-height:1.1}
+.adcard .s{font-size:13px}
+.adcard.receipt{font-family:var(--f-mono);border-radius:4px;background:#FFFDF6;padding:14px 14px 18px;transform:rotate(-2.5deg);gap:2px;font-size:12.5px;-webkit-mask:radial-gradient(circle at 6px 100%,transparent 5px,#000 5.5px) 0 0/12px 100% repeat-x}
+.adcard.receipt .h{font-family:var(--f-girl);font-size:26px;letter-spacing:-.03em;margin-bottom:4px}
+.adcard.receipt .r{display:flex;justify-content:space-between;gap:8px}
+.adcard.receipt .tot{border-top:1.5px dashed #16141C;margin-top:6px;padding-top:6px;font-weight:700}
+.adcard.wing{background:rgba(27,36,51,.9);color:#F3EEE8;border-radius:4px}
+.adcard.wing .h{font-family:var(--f-men);font-stretch:125%;text-transform:uppercase;font-weight:850;font-size:22px;letter-spacing:-.01em}
+.feed-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.75) 88%)}
+.feed-ui{position:relative;margin-top:auto;padding:22px 72px 24px 18px;display:flex;flex-direction:column;gap:10px}
+.feed-meta{font-size:13px;opacity:.95}
+.feed-tags{display:flex;gap:6px;flex-wrap:wrap}
+.feed-tags span{font-size:11px;font-weight:700;background:rgba(255,255,255,.2);border-radius:6px;padding:3px 7px}
+.feed-cta{border:0;border-radius:12px;padding:13px 14px;background:#FFFFFF;color:#0B0A0E;font-weight:800;font-size:15px;text-align:left;display:flex;justify-content:space-between}
+.feed-top{position:absolute;top:16px;left:16px;right:16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700}
+.feed-top .av{width:28px;height:28px;border-radius:50%;background:#fff;color:#16141C;display:grid;place-items:center;font:600 italic 14px var(--f-display)}
+.feed-top .bars{position:absolute;top:-8px;left:0;right:0;display:flex;gap:4px}
+.feed-top .bars i{flex:1;height:2px;border-radius:2px;background:rgba(255,255,255,.4)}
+.feed-top .bars i:first-child{background:#fff}
+
+/* start */
+.ring-stage{height:170px;perspective:700px;display:grid;place-items:center;margin-top:4px}
+.ring3d{position:relative;width:70px;height:116px;transform-style:preserve-3d;animation:spinY 16s linear infinite}
+.ring3d i{position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+@keyframes spinY{to{transform:rotateY(360deg)}}
+.pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pick button{border:1.5px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 12px;display:grid;gap:8px;justify-items:center;font-weight:800;font-size:16px}
+.pick button:hover{border-color:var(--ink)}
+.pick svg{width:60px;height:60px}
+.invite{display:flex;gap:10px;align-items:center;background:var(--bg);border-radius:14px;padding:10px 12px;font-size:13px}
+.invite .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;color:#fff;background:#B9926B}
+
+.qgroup{display:grid;gap:8px}
+.qgroup h3{font-size:16px;font-weight:800}
+.chipset{display:flex;flex-wrap:wrap;gap:6px}
+.chipset button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 13px;font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.chipset button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.chipset i{width:14px;height:14px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.1)}
+.phone[data-mode="wingman"] .chipset button{border-radius:6px}
+
+.viewfinder{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:#2A2630}
+.viewfinder .fbox{position:absolute;inset:0}
+.oval{position:absolute;left:50%;top:44%;width:58%;aspect-ratio:3/4;transform:translate(-50%,-50%);border:3px dashed rgba(255,255,255,.85);border-radius:50%}
+.vf-tips{position:absolute;left:10px;right:10px;bottom:10px;display:flex;flex-wrap:wrap;gap:6px}
+.vf-tips span{font-size:11.5px;font-weight:700;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:4px 9px}
+.vf-tips span.ok{background:rgba(30,127,92,.85)}
+.trustline{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600}
+
+.fbox{position:relative;overflow:hidden;background:#D9D3CC}
+.fbox img,.fbox>svg.face{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.fbox .glow{position:absolute;inset:0;mix-blend-mode:soft-light;opacity:.55;transition:background .5s}
+.fbox svg.drape{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;display:block}
+.fbox svg.drape path{transition:fill .45s ease}
+.scan{display:grid;justify-items:center;gap:14px}
+.scan .fbox{width:220px;height:240px;border-radius:120px 120px 24px 24px;max-width:100%}
+.drape-verdict{min-height:44px;text-align:center;font-size:14px;display:grid;gap:2px}
+.drape-verdict b{font-size:16px}
+.checks{display:grid;gap:6px;width:100%;font-size:14px}
+.checks div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
+.checks span:last-child{color:var(--muted)}
+.checks .ok span:last-child{color:var(--ok);font-weight:700}
+.shopname{font-family:var(--f-display);font-style:italic;font-size:28px;min-height:36px;text-align:center}
+.phone[data-mode="girlmath"] .shopname{font-family:var(--f-girl);font-style:normal;font-weight:800}
+.phone[data-mode="wingman"] .shopname{font-family:var(--f-men);font-style:normal;font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:22px}
+.counter{font-family:var(--f-mono);font-size:13px;color:var(--muted);text-align:center}
+
+.field{display:grid;gap:8px}
+.field input{width:100%;min-width:0;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;padding:14px;font:inherit;font-size:16px}
+.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.teaser-mini{display:flex;gap:12px;align-items:center;background:var(--bg);border-radius:16px;padding:10px}
+.teaser-mini .fbox{width:64px;height:64px;border-radius:50%;flex:none}
+.teaser-mini .strip{display:flex;height:16px;border-radius:4px;overflow:hidden;flex:1}
+.teaser-mini .strip i{flex:1}
+
+.big-season{font-size:58px}
+.blur{filter:blur(6px);user-select:none}
+.chip{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.chip i{display:block;height:52px}
+.chip div{padding:6px 8px;display:grid;gap:1px}
+.chip b{font-size:12px;font-weight:700;line-height:1.2}
+.chip code{font-family:var(--f-mono);font-size:10.5px;color:var(--muted)}
+.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ba{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:1/1;max-width:100%}
+.ba .fbox{position:absolute;inset:0}
+.ba .divider{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);pointer-events:none}
+.ba .tag{position:absolute;top:10px;font-size:11.5px;font-weight:800;background:rgba(0,0,0,.6);color:#fff;border-radius:999px;padding:4px 9px}
+.ba .tag.l{left:10px}.ba .tag.r{right:10px}
+.ba-range{width:100%;accent-color:var(--accent)}
+.tiers{display:grid;gap:10px}
+.tier{border:1.5px solid var(--line);border-radius:18px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;text-align:left;background:var(--surface);position:relative;align-items:start}
+.tier[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px var(--soft)}
+.tier .tt{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tier .tt b{font-size:17px}
+.tier .tt span{font-family:var(--f-mono);font-size:17px;font-weight:500}
+.tier ul{margin:0;padding-left:18px;font-size:13px;display:grid;gap:2px;color:var(--muted)}
+.tier .mini-card{width:74px}
+.tier .badge{position:absolute;top:-10px;right:14px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px}
+.pdf-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.pdf{flex:none;width:104px;aspect-ratio:3/4;border-radius:6px;background:#FBFAF7;color:#18161F;box-shadow:0 6px 14px -8px rgba(0,0,0,.4);padding:9px;display:flex;flex-direction:column;gap:5px;overflow:hidden;scroll-snap-align:start;border:1px solid var(--line)}
+.pdf .pt{font:600 italic 13px/1.05 var(--f-display)}
+.pdf .pl{font:700 7px var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.pdf .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.pdf .grid i{aspect-ratio:1;display:block;border-radius:1px}
+.pdf .strip{display:flex;height:16px;border-radius:2px;overflow:hidden}
+.pdf .strip i{flex:1}
+.pdf svg{width:100%;height:auto;display:block;border-radius:3px}
+.pdf .lines{display:grid;gap:3px}
+.pdf .lines i{height:3px;border-radius:2px;background:#DAD6CF;display:block}
+.pdf .num{margin-top:auto;font:500 7px var(--f-mono);opacity:.5;text-align:right}
+.lockwrap{position:relative}
+.lockwrap .pdf-row{filter:blur(2.5px)}
+.lockbadge{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.lockbadge span{background:var(--ink);color:var(--surface);font-size:12.5px;font-weight:800;border-radius:999px;padding:7px 12px}
+.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.compare div{border-radius:14px;padding:12px;display:grid;gap:2px;font-size:13px}
+.compare .them{background:var(--bg);color:var(--muted)}
+.compare .us{background:var(--ink);color:var(--surface)}
+.compare b{font-size:20px;font-variant-numeric:tabular-nums}
+.bon{font-family:var(--f-mono);font-size:13px;background:#FFFDF6;color:#16141C;border-radius:4px;padding:16px 16px 22px;display:grid;gap:4px;transform:rotate(-1.5deg);box-shadow:0 10px 24px -14px rgba(0,0,0,.45);-webkit-mask:radial-gradient(circle at 6px 100%,transparent 5px,#000 5.5px) 0 0/12px 100% repeat-x}
+.bon .h{font-family:var(--f-girl);font-weight:800;font-size:24px;letter-spacing:-.03em}
+.bon .r{display:flex;justify-content:space-between;gap:8px}
+.bon .tot{border-top:1.5px dashed #16141C;margin-top:6px;padding-top:6px;font-weight:700}
+.impress{background:#1B2433;color:#F3EEE8;border-radius:6px;padding:16px;display:grid;gap:6px}
+.impress .big{font-family:var(--f-men);font-stretch:125%;font-weight:850;font-size:40px;line-height:1}
+.sticky-cta{position:sticky;bottom:0;padding:12px 20px 16px;background:linear-gradient(180deg,transparent,var(--surface) 30%);display:grid;gap:6px;z-index:2}
+
+/* fysieke kleurenpas */
+.pcard{aspect-ratio:85.6/54;border-radius:9px;padding:9%;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 24px -12px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.12);position:relative;overflow:hidden;max-width:100%}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.28) 45%,transparent 60%);transform:translateX(-60%);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{0%,60%{transform:translateX(-80%)}100%{transform:translateX(80%)}}
+.pcard .pn{font:500 italic 1.1em/1 var(--f-display)}
+.pcard .ps{display:flex;height:16%;border-radius:3px;overflow:hidden}
+.pcard .ps i{flex:1}
+.pcard .pl{font:700 .5em var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.mailer{position:relative;height:200px;display:grid;place-items:end center;perspective:800px}
+.mailer .env{position:absolute;bottom:0;left:8%;right:8%;height:120px;background:#E9E1D4;border-radius:6px;box-shadow:0 12px 24px -14px rgba(0,0,0,.5)}
+.mailer .env::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 49.5%,#D8CDBC 50%) left/50% 100% no-repeat,linear-gradient(200deg,transparent 49.5%,#D8CDBC 50%) right/50% 100% no-repeat;border-radius:6px}
+.mailer .env span{position:absolute;right:12px;top:10px;width:34px;height:40px;border:2px dashed #B9AE9C;border-radius:3px;font:700 9px var(--f-body);color:#8A7F6E;display:grid;place-items:center}
+.mailer .pcard{position:absolute;bottom:56px;width:62%;font-size:15px;animation:rise 1.4s cubic-bezier(.2,.8,.2,1) .2s both}
+@keyframes rise{from{transform:translateY(70px) rotate(0)}to{transform:translateY(0) rotate(-4deg)}}
+
+.outfit{border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid}
+.outfit .flat svg{width:100%;height:auto;display:block}
+.outfit .body{padding:12px 14px;display:grid;gap:8px}
+.outfit h4{font-size:15px;display:flex;justify-content:space-between;gap:8px}
+.outfit h4 span{font-family:var(--f-mono);font-weight:500;font-size:12.5px;color:var(--muted)}
+.items{display:grid;gap:6px}
+.item{display:flex;align-items:center;gap:8px;font-size:13px}
+.item i{width:12px;height:12px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.12)}
+.item span{flex:1;min-width:0}
+.item small{color:var(--muted);font-size:11.5px}
+.item s{color:var(--muted)}
+.item button{border:0;background:var(--soft);color:var(--accent);font-weight:700;font-size:12px;border-radius:8px;padding:5px 8px;white-space:nowrap}
+.item.have{background:var(--bg);border-radius:10px;padding:6px 8px}
+.shop-all{border:0;border-radius:12px;padding:11px;background:var(--ink);color:var(--surface);font-weight:800;font-size:14px}
+.avoid{display:flex;gap:8px}
+.avoid i{flex:1;height:40px;border-radius:10px;position:relative;overflow:hidden}
+.avoid i::after{content:"";position:absolute;left:-10%;top:50%;width:120%;height:2px;background:var(--surface);transform:rotate(-18deg)}
+.fine{font-size:11px;color:var(--muted);text-align:center}
+
+.r-hero{padding:22px 20px 22px;display:flex;flex-direction:column;gap:10px;background:var(--p0);color:var(--p0ink)}
+.r-hero .label{color:inherit;opacity:.75}
+.r-hero .disp{font-size:50px}
+.traits{display:flex;flex-wrap:wrap;gap:6px}
+.traits span{font-size:12px;font-weight:700;border:1px solid currentColor;border-radius:999px;padding:3px 9px;opacity:.9}
+.rtabs{position:sticky;top:0;z-index:3;background:var(--surface);display:flex;gap:4px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line)}
+.rtabs button{flex:none;border:0;background:transparent;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;color:var(--muted)}
+.rtabs button[aria-selected="true"]{background:var(--ink);color:var(--surface)}
+.acc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.acc{border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;gap:6px;font-size:13px}
+.acc svg{width:100%;height:58px;display:block}
+.acc b{font-size:13.5px}
+.acc .sw{display:flex;gap:4px}
+.acc .sw i{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+
+.sheet-back{position:absolute;inset:0;background:rgba(10,8,14,.45);display:flex;align-items:flex-end;z-index:5}
+.sheet{background:var(--surface);width:100%;border-radius:24px 24px 0 0;padding:14px 18px 20px;display:flex;flex-direction:column;gap:12px;max-height:94%;overflow-y:auto}
+.grab{width:40px;height:5px;border-radius:5px;background:var(--line);margin:0 auto}
+.line{display:flex;justify-content:space-between;gap:12px;font-size:14.5px}
+.line b{font-variant-numeric:tabular-nums}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.total b{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.addr{display:grid;gap:6px}
+.addr input{width:100%;min-width:0;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:11px;font:inherit}
+
+.flip{perspective:900px}
+.flip .card{position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);aspect-ratio:85.6/54}
+.flip.flipped .card{transform:rotateY(180deg)}
+.flip .side{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip .side .pcard{height:100%;font-size:19px}
+.flip .back{transform:rotateY(180deg)}
+.flip .back .pcard{flex-direction:row;align-items:center;gap:12px}
+.flip svg.qr{height:100%;width:auto;background:#fff;border-radius:6px;padding:4px;display:block}
+.actions{display:grid;gap:8px}
+
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mode{border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;text-align:left;display:grid;gap:4px;font-size:13px;cursor:pointer}
+.mode b{font-size:14px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.prod{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:6px;display:grid;gap:2px;font-size:10.5px;text-align:center}
+.prod[aria-pressed="true"]{border-color:var(--accent)}
+.prod svg{width:100%;height:40px}
+.verdict{border-radius:16px;padding:14px;background:var(--bg);display:grid;gap:10px}
+.meter{height:10px;border-radius:10px;background:var(--line);overflow:hidden}
+.meter b{display:block;height:100%;border-radius:10px;transition:width .4s ease}
+.offer{border:1.5px solid var(--ink);border-radius:18px;padding:16px;display:grid;gap:10px}
+
+.toast{position:absolute;left:14px;right:14px;bottom:18px;background:var(--ink);color:var(--surface);border-radius:12px;padding:12px 14px;font-size:13.5px;z-index:9}
+
+.notes{display:flex;flex-direction:column;gap:22px;min-width:0;padding-top:6px}
+.steps{display:flex;flex-wrap:wrap;gap:6px}
+.steps button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.steps button[aria-current="true"]{border-color:var(--ink);color:var(--ink);background:var(--soft-a)}
+.note-card{display:flex;flex-direction:column;gap:12px}
+.note-card h2{font-family:var(--f-display);font-weight:600;font-size:34px;line-height:1.05;letter-spacing:-.01em}
+.note-card h2 em{font-style:italic;font-weight:500;color:var(--acc-a)}
+.note-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch}
+.note-card li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;font-size:15px}
+.note-card li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--acc-a);margin-top:7px}
+.note-card .yours{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px;max-width:62ch}
+.kpi{display:flex;flex-wrap:wrap;gap:8px}
+.kpi span{font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:5px 9px;background:var(--surface)}
+.kpi b{font-family:var(--f-mono);font-weight:500}
+.honest{font-size:13px;color:var(--muted);max-width:62ch;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+
+.mk{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:56px;padding-top:8px}
+.mk-intro{display:grid;gap:14px;max-width:70ch}
+.mk-intro h1{font-family:var(--f-display);font-size:clamp(36px,6vw,60px);line-height:1;font-weight:600;letter-spacing:-.02em}
+.mk-intro h1 em{font-style:italic;font-weight:500;color:var(--acc-a)}
+.mk-intro p{font-size:17px;color:var(--muted)}
+.mk section{display:flex;flex-direction:column;gap:18px}
+.mk h2{font-family:var(--f-display);font-weight:600;font-size:30px;letter-spacing:-.01em}
+.mk h2 small{display:block;font-family:var(--f-body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.mk p.lead{max-width:68ch;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.panel h3{font-size:16px;font-weight:800}
+.panel p,.panel li{font-size:14.5px}
+.panel ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.panel .src{font-size:12px;color:var(--muted)}
+.alert{border-left:4px solid var(--warn)}
+.persona{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px}
+.persona .av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff}
+.persona q{font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.3;quotes:"\201C" "\201D"}
+.persona .meta{font-size:12.5px;color:var(--muted)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:860px){.trio{grid-template-columns:minmax(0,1fr)}}
+.brandcard{border-radius:18px;padding:20px;display:grid;gap:12px;border:1px solid var(--line);align-content:start}
+.brandcard .bn{font-size:34px;line-height:1}
+.brandcard .row{display:flex;gap:6px}
+.brandcard .row i{flex:1;height:32px;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
+.brandcard .q{font-size:15px;font-weight:700}
+.brandcard ul{margin:0;padding-left:18px;font-size:13.5px;display:grid;gap:3px}
+.funnel{display:grid;gap:10px}
+.frow{display:grid;grid-template-columns:170px minmax(0,1fr) 104px;gap:12px;align-items:center;font-size:14px}
+@media (max-width:560px){.frow{grid-template-columns:100px minmax(0,1fr) 76px;font-size:13px}}
+.frow .bar{height:24px;background:var(--line);border-radius:6px;overflow:hidden}
+.frow .bar b{display:block;height:100%;background:var(--ink);border-radius:6px}
+.frow .bar b.money{background:var(--acc-a)}
+.frow .n{font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.state{display:inline-block;font-size:11.5px;font-weight:800;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.state.go{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.state.pivot{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.state.kill{background:var(--soft-a);color:var(--acc-a)}
+.ad{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:10px;min-width:0}
+.ad .hook{font-family:var(--f-display);font-weight:600;font-size:21px;line-height:1.1}
+.ad .hook.g{font-family:var(--f-girl);font-weight:800;letter-spacing:-.03em}
+.ad .hook.w{font-family:var(--f-men);font-stretch:125%;font-weight:850;text-transform:uppercase;font-size:18px}
+.ad ol{margin:0;padding-left:18px;font-size:13.5px;display:grid;gap:3px}
+.ad .meta{display:flex;flex-wrap:wrap;gap:6px}
+.ad .meta span{font-size:11.5px;font-weight:700;background:var(--bg);border-radius:6px;padding:3px 7px;color:var(--muted)}
+.mail{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;align-items:start}
+.mail .when{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.mail b{display:block}
+.mail span{font-size:13.5px;color:var(--muted)}
+.big-num{font-family:var(--f-mono);font-size:34px;font-weight:500;line-height:1}
+</style>
+
+<header class="top">
+  <div class="wordmark" aria-label="Nyanse en Kulørt">nyanse · kulørt<span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-proto" aria-selected="true">Prototype</button>
+    <button role="tab" id="tab-research" aria-selected="false">Onderzoek &amp; keuzes</button>
+    <button role="tab" id="tab-money" aria-selected="false">Funnel &amp; omzet</button>
+    <button role="tab" id="tab-mk" aria-selected="false">Huisstijlen &amp; ads</button>
+  </div>
+  <div class="note">Klikbaar prototype v0.5 · geen echte analyse, geen betaling</div>
+</header>
+
+<!-- ================= PROTOTYPE ================= -->
+<main id="view-proto" class="studio">
+  <div class="phone-wrap">
+    <div class="modebar" id="modebar" aria-label="Huisstijl">
+      <button data-m="girlmath">NYANSE · Girl Math</button><button data-m="atelier">NYANSE · Atelier</button><button data-m="wingman">KULØRT</button>
+    </div>
+    <div class="phone" id="phone" data-mode="girlmath">
+
+      <section class="scr feed" data-s="feed">
+        <div class="feed-art" id="feed-art" aria-hidden="true"></div>
+        <div class="feed-top"><div class="bars"><i></i><i></i><i></i></div><span class="av bn-av">n</span><span class="bn">nyanse</span><span style="opacity:.7;font-weight:600">Gesponsord</span></div>
+        <div id="adcard"></div>
+        <div class="feed-shade" aria-hidden="true"></div>
+        <div class="feed-ui">
+          <div class="feed-meta" id="feed-meta"></div>
+          <div class="feed-tags"><span>Gesponsord</span><span>Gemaakt met AI</span></div>
+          <button class="feed-cta" data-go="start"><span id="feed-cta">Ontdek je kleuren</span><span>›</span></button>
+        </div>
+      </section>
+
+      <section class="scr" data-s="start" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Gratis · 30 sec</span></div>
+        <ol class="crumbs" data-crumb="0"></ol>
+        <div class="scr-pad">
+          <div class="invite"><span class="av">S</span><span><b>Sanne nodigde je uit.</b> Zij is Soft Autumn. Jij krijgt €1 korting.</span></div>
+          <div class="ring-stage" aria-hidden="true"><div class="ring3d" id="ring3d"></div></div>
+          <h1 class="disp" style="font-size:40px" id="start-h"></h1>
+          <div class="checklist" id="start-list"></div>
+          <div class="qgroup"><h3>Voor wie zoeken we?</h3>
+            <div class="pick">
+              <button data-g="dames"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M24 10 14 16l5 9 4-2-3 33h24l-3-33 4 2 5-9-10-6c-2 4-4 6-8 6s-6-2-8-6z" fill="#C9A9AC"/></svg>Dames</button>
+              <button data-g="heren"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 8 8 15l6 12 6-3v32h24V24l6 3 6-12-14-7c-2 5-5.5 7-10 7s-8-2-10-7z" fill="#5E6A7A"/></svg>Heren</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scr" data-s="style" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Nog ±25 sec</span></div>
+        <ol class="crumbs" data-crumb="1"></ol>
+        <div class="scr-pad">
+          <h2 class="disp" style="font-size:30px" id="style-h"></h2>
+          <div class="qgroup"><h3>Waar wil je er goed uitzien?</h3><div class="chipset" data-q="occ" data-multi><button data-v="werk">Werk</button><button data-v="weekend">Weekend</button><button data-v="date">Date</button><button data-v="feest">Feest</button><button data-v="sport">Sport &amp; vrije tijd</button></div></div>
+          <div class="qgroup"><h3>Wat geef je meestal uit per item?</h3><div class="chipset" data-q="budget"><button data-v="€">Tot €30</button><button data-v="€€">€30–80</button><button data-v="€€€">€80+</button></div></div>
+          <div class="qgroup"><h3>Waar shop je graag?</h3><div class="chipset" data-q="shops" data-multi id="shop-chips"></div></div>
+          <button class="btn" id="to-selfie" disabled>Volgende: selfie</button>
+        </div>
+      </section>
+
+      <section class="scr" data-s="selfie" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Nog ±15 sec</span></div>
+        <ol class="crumbs" data-crumb="2"></ol>
+        <div class="scr-pad">
+          <div class="viewfinder" id="vf"><div class="oval"></div><div class="vf-tips" id="vf-tips"></div></div>
+          <div class="qgroup"><h3>Wat staat je beter?</h3><div class="chipset" data-q="jewel"><button data-v="goud"><i style="background:#D4AF37"></i>Goud</button><button data-v="zilver"><i style="background:#C0C4CC"></i>Zilver</button><button data-v="weetniet">Weet ik niet</button></div></div>
+          <label class="btn" for="photo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Start AI-kleuranalyse</label>
+          <input type="file" id="photo" accept="image/*" capture="user" hidden>
+          <button class="btn ghost" id="demo-face">Probeer met een voorbeeldgezicht</button>
+          <div class="trustline"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je foto wordt nooit bewaard</div>
+        </div>
+      </section>
+
+      <section class="scr" data-s="analyse" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Bijna klaar</span></div>
+        <ol class="crumbs" data-crumb="3"></ol>
+        <div class="scr-pad">
+          <div class="scan">
+            <div class="label">Kleurdoeken passen</div>
+            <div id="scan-face"></div>
+            <div class="drape-verdict" id="drape-verdict" aria-live="polite"></div>
+            <div class="checks" id="checks"><div><span>Ondertoon</span><span>bezig…</span></div><div><span>Contrast</span><span>wacht</span></div><div><span>Diepte</span><span>wacht</span></div></div>
+            <div class="label" id="shop-label" hidden>Kleding zoeken in jouw kleuren bij</div>
+            <div class="shopname" id="shopname" aria-live="polite"></div>
+            <div class="counter" id="itemcount"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scr" data-s="email" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Profiel klaar</span></div>
+        <ol class="crumbs" data-crumb="4"></ol>
+        <div class="scr-pad">
+          <h2 class="disp" style="font-size:40px" id="email-h"></h2>
+          <div class="teaser-mini" id="teaser-mini"></div>
+          <p>Waar sturen we je kleurprofiel naartoe?</p>
+          <form class="field" id="mail-form" novalidate>
+            <input type="email" id="mail" placeholder="jij@voorbeeld.nl" autocomplete="email" aria-label="E-mailadres">
+            <label class="check"><input type="checkbox" id="optin"> Elke maand een outfit en sale-tips in mijn kleuren</label>
+            <button class="btn" type="submit">Stuur en laat zien</button>
+          </form>
+          <button class="link" id="skip-mail">Nu niet</button>
+        </div>
+      </section>
+
+      <section class="scr" data-s="free" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Gratis profiel</span></div>
+        <ol class="crumbs" data-crumb="4"></ol>
+        <div class="scr-pad">
+          <div class="label">Jij bent een</div>
+          <div class="disp it big-season" id="f-season">Zomer</div>
+          <p id="f-desc"></p>
+          <div class="sec"><h3>Zie het verschil</h3><div class="ba" id="ba"></div><input type="range" min="0" max="100" value="50" class="ba-range" id="ba-range" aria-label="Schuif tussen de twee kleuren"></div>
+          <div class="sec"><h3>6 kleuren die je laten stralen</h3><div class="palette" id="f-pal"></div></div>
+          <div class="sec"><h3 id="f-celebs-h">Vaak genoemd als zomertype</h3><p id="f-celebs"></p></div>
+          <div class="sec"><h3>Je eerste outfit, gratis</h3><div id="f-outfit"></div></div>
+          <div class="sec"><h3>Wat je ontgrendelt</h3><div class="lockwrap"><div class="pdf-row" id="f-pdf"></div><div class="lockbadge"><span>Jouw subtype: <span class="blur" id="f-sub">Soft Summer</span></span></div></div></div>
+          <div class="sec" id="why"></div>
+          <div class="sec"><h3>Kies</h3><div class="tiers" id="tiers"></div></div>
+        </div>
+        <div class="sticky-cta"><button class="btn" id="unlock">Ontgrendel</button></div>
+      </section>
+
+      <section class="scr" data-s="confirm" hidden>
+        <div class="scr-pad">
+          <h2 class="disp" style="font-size:42px;padding-top:12px" id="confirm-h"></h2>
+          <div class="sec" id="c-mailer"></div>
+          <p id="c-text"></p>
+          <div class="pdf-row" id="c-pdf"></div>
+          <div class="sec"><h3>Je digitale kleurenpas</h3><div class="flip" id="flip"><div class="card" id="pass"></div></div><span class="small">Tik om om te draaien</span></div>
+          <div class="actions">
+            <button class="btn" data-go="result">Open mijn stijlgids</button>
+            <button class="btn ghost" id="homescreen">Zet op mijn beginscherm</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="scr" data-s="result" hidden>
+        <div class="r-hero" id="r-hero">
+          <div class="label">Jouw kleurtype</div>
+          <div class="disp it" id="r-name">Soft Summer</div>
+          <p id="r-desc"></p>
+          <div class="traits" id="r-traits"></div>
+        </div>
+        <div class="rtabs" role="tablist" id="rtabs"></div>
+        <div class="scr-pad" id="r-body"></div>
+      </section>
+
+      <section class="scr" data-s="coach" hidden>
+        <div class="appbar"><div class="wordmark"><span class="bn">nyanse</span><span class="dots" aria-hidden="true"><i style="background:#F3A27A"></i><i style="background:#8FA3B8"></i><i style="background:#A2462A"></i><i style="background:#1F4FC4"></i></span></div><span class="pill">Proef · binnenkort</span></div>
+        <div class="scr-pad">
+          <h1 class="disp" style="font-size:36px">Staat dit <em>mij?</em></h1>
+          <div class="modes">
+            <label class="mode" for="scan-photo"><b>In de winkel</b><span class="small">Foto van het item of het label</span></label>
+            <input type="file" id="scan-photo" accept="image/*" capture="environment" hidden>
+            <button class="mode" id="paste-link"><b>Online</b><span class="small">Link of screenshot uit de webshop-app</span></button>
+          </div>
+          <div class="products" id="products"></div>
+          <div class="verdict" id="verdict" aria-live="polite"></div>
+          <div class="sec"><h3>Maak je outfit af</h3><div id="combine"></div></div>
+          <div class="offer">
+            <b>De scanner komt eraan</b>
+            <span class="small">Je eerste maand is gratis voor iedereen op de lijst.</span>
+            <button class="btn" id="waitlist">Zet me op de lijst</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="scr" data-s="end" hidden>
+        <div class="scr-pad" style="justify-content:center;text-align:center">
+          <div class="disp it" style="font-size:48px">Klaar.</div>
+          <p id="end-sum"></p>
+          <button class="btn" data-go="feed">Opnieuw vanaf de advertentie</button>
+          <button class="btn ghost" data-tab="money">Bekijk funnel &amp; omzet</button>
+        </div>
+      </section>
+
+      <div class="sheet-back" id="checkout" hidden>
+        <div class="sheet" role="dialog" aria-label="Afrekenen">
+          <div class="grab"></div>
+          <div class="line"><span id="co-name">Stijlgids</span><b id="co-price">€9,99</b></div>
+          <div class="line" style="color:var(--ok)"><span>Korting via Sanne</span><b>−€1,00</b></div>
+          <div class="addr" id="addr"><input id="postcode" placeholder="Postcode" autocomplete="postal-code" aria-label="Postcode"><input id="huisnr" placeholder="Huisnummer" aria-label="Huisnummer"></div>
+          <div class="total"><span>Totaal</span><b id="total">€8,99</b></div>
+          <button class="pay apple" data-pay><svg width="15" height="17" viewBox="0 0 16 18" fill="currentColor" aria-hidden="true"><path d="M13.2 9.6c0-2 1.6-2.9 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7C5 5 3.7 5.8 3 7c-1.5 2.6-.4 6.4 1 8.5.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7 1.8-1 2.5-2.1c.8-1.2 1.1-2.3 1.1-2.4 0 0-2.3-.9-2.4-3.5zM11.3 3.5c.5-.7.9-1.6.8-2.5-.8 0-1.8.5-2.3 1.2-.5.6-1 1.5-.8 2.4.9 0 1.8-.4 2.3-1.1z"/></svg>Pay</button>
+          <div class="pay-grid"><button class="pay google" data-pay>G Pay</button><button class="pay wero" data-pay>iDEAL | <b>wero</b></button></div>
+          <button class="pay paypal" data-pay>PayPal</button>
+          <button class="link" id="close-checkout">Nog even niet</button>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" role="status" hidden></div>
+    </div>
+    <button class="restart" data-go="feed">↺ Opnieuw vanaf de advertentie</button>
+  </div>
+
+  <aside class="notes">
+    <div class="steps" id="steps"></div>
+    <div class="note-card" id="note"></div>
+    <p class="honest">Kies boven de telefoon een huisstijl: de advertentie bepaalt welke iemand ziet. In dit prototype komt de uitslag uit een paar pixels van je foto en de goud/zilver-vraag; je foto blijft in je browser. Sanne, prijzen en webshop-resultaten zijn voorbeelden.</p>
+  </aside>
+</main>
+
+<!-- ================= ONDERZOEK & KEUZES ================= -->
+<main id="view-research" class="mk" hidden>
+  <div class="mk-intro">
+    <div class="label">Onderzoek &amp; keuzes · v0.4</div>
+    <h1>Minder duwen, <em>meer om vast te houden.</em></h1>
+    <p>Je had gelijk: v0.3 vroeg vijf keer om geld in twee minuten, en niets daarvan was getest. Deze versie verkoopt in de flow maar één ding, en geeft iets tastbaars mee naar huis.</p>
+  </div>
+
+  <section>
+    <h2><small>Jouw punten</small>Wat ik deze ronde deed</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Jouw punt</th><th>Besluit</th><th>Hoe</th></tr></thead>
+      <tbody id="decisions"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><small>Waarmaken?</small>Wat klopte er niet aan de kledingkast-check</h2>
+    <div class="grid2">
+      <div class="panel alert"><h3>"Met één knop op Vinted": nee</h3><p>Vinted heeft een API om advertenties te plaatsen, maar alleen voor goedgekeurde partners via het Vinted Pro-programma. Daar kom je als kleine app niet zomaar in.</p><p><b>Wel haalbaar:</b> wij schrijven titel, beschrijving en prijsadvies; jij plakt het in de Vinted-app.</p></div>
+      <div class="panel alert"><h3>"Eén tik, betaalgegevens hergebruikt": deels</h3><p>Bij Mollie kun je later opnieuw afschrijven als de eerste betaling een machtiging aanmaakt. Dat werkt met kaart, PayPal en iDEAL (via een incassomachtiging). Voor Apple Pay vond ik geen bevestiging.</p><p><b>Wel haalbaar:</b> Apple Pay en Google Pay zijn sowieso snel (Face ID). Via de mail hoeft het niet in één tik.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>Tastbaar</small>Wat er in de brievenbus valt</h2>
+    <div class="grid3">
+      <div class="panel"><span class="big-num">€1,40</span><p>Postzegel voor een brief tot 20 gram in 2026. Een kaart in een envelop past daarbinnen.</p><p class="src">Bron: Radar/AVROTROS en NOS over de PostNL-tarieven 2026.</p></div>
+      <div class="panel"><span class="big-num">£1–1,45</span><p>Per stuk voor een full-colour pas op creditcardformaat bij 250 stuks; goedkoper bij grotere oplage. Dik luxe papier is goedkoper.</p><p class="src">Bron: Britse drukkers (Tradeprint, Kall Kwik). Nederlandse offerte nog nodig.</p></div>
+      <div class="panel"><span class="big-num">$40</span><p>Kost een kleurenwaaier van Color Me Beautiful. Analisten geven fans van $80–120 mee.</p><p class="src">Bron: colormebeautiful.com, r/coloranalysis. Onze waaier kan veel goedkoper.</p></div>
+    </div>
+    <p class="lead">Omdat er maar 12 subtypes zijn, hoeft niets gepersonaliseerd te worden. Je drukt per subtype een kleine voorraad en stopt de juiste pas in een envelop. Bij 70 bestellingen per maand is dat ruim een uur werk. Na een GO kan een fulfilmentpartij het overnemen.</p>
+  </section>
+
+  <section>
+    <h2><small>Klantenpanel · gesimuleerd</small>Wat ze zeggen over v0.4</h2>
+    <p class="lead">Gesimuleerd op basis van de doelgroep, geen echt onderzoek. Doe in de testweken 5 echte gesprekken van 15 minuten.</p>
+    <div class="grid2" id="personas"></div>
+  </section>
+</main>
+
+<!-- ================= FUNNEL & OMZET ================= -->
+<main id="view-money" class="mk" hidden>
+  <div class="mk-intro">
+    <div class="label">Funnel &amp; omzet · v0.4</div>
+    <h1>Eén vraag om geld. <em>De rest volgt per mail.</em></h1>
+    <p>In de flow kies je alleen tussen digitaal (€6,99) en digitaal met kleurenpas in de bus (€9,99). Alle andere aanbiedingen komen later, als iemand de stijlgids al gebruikt.</p>
+  </div>
+
+  <section>
+    <h2><small>Eerlijk</small>Wat dit kost ten opzichte van v0.3</h2>
+    <div class="grid3">
+      <div class="panel"><span class="big-num">€8,20</span><p>per koper in v0.3, met vijf aanbiedingen in de flow.</p></div>
+      <div class="panel"><span class="big-num">€6,80</span><p>per koper in v0.4, inclusief aanbiedingen per mail in de eerste 60 dagen.</p></div>
+      <div class="panel alert"><span class="big-num">7,4%</span><p>van de klikkers moet betalen om quitte te spelen bij €0,50 per klik. Bij €0,35 per klik is 5,2% genoeg.</p></div>
+    </div>
+    <p class="lead">We ruilen ongeveer €1,40 per koper in voor vertrouwen, minder afhakers en iets tastbaars waardoor mensen terugkomen. Of dat de moeite waard is, laat de test zien. De goedkoopste hefboom blijft de klikprijs: een advertentie die goed scoort, haalt die flink omlaag.</p>
+  </section>
+
+  <section>
+    <h2><small>Per koper</small>Wat één koper oplevert</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Bron</th><th>Berekening</th><th>Netto</th></tr></thead>
+      <tbody>
+        <tr><td>Digitaal €6,99 (50%)</td><td>€5,78 − €0,32 betaalkosten</td><td class="num">€5,45</td></tr>
+        <tr><td>Met kleurenpas €9,99 (50%)</td><td>€8,26 − €0,32 − €2,15 (pas €0,50, envelop €0,25, zegel €1,40)</td><td class="num">€5,79</td></tr>
+        <tr><td>Gemiddeld in de flow</td><td>Mix 50/50</td><td class="num">€5,62</td></tr>
+        <tr><td>Affiliate</td><td>20% klikt door en koopt €60 bij 6%, de helft gaat retour</td><td class="num">€0,36</td></tr>
+        <tr><td>Per mail, eerste 60 dagen</td><td>Kast-check, kleurenwaaier, cadeau (zie hieronder)</td><td class="num">€0,84</td></tr>
+        <tr><td><b>Totaal per koper</b></td><td>Allemaal aannames, behalve de postzegel</td><td class="num"><b>≈ €6,82</b></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2><small>Funnel</small>Per 1.000 klikken</h2>
+    <div class="panel funnel" id="funnel"></div>
+  </section>
+
+  <section>
+    <h2><small>Later, per mail</small>De aanbiedingen die uit de flow gingen</h2>
+    <div class="grid2">
+      <div class="mail"><span class="when">Direct</span><div><b>Je stijlgids + "je pas is onderweg"</b><span>Geen aanbieding. Alleen bezorgen en verwachting wekken.</span></div></div>
+      <div class="mail"><span class="when">Dag 3</span><div><b>"Wat hangt er al in je kast?"</b><span>Kledingkast-check €4,99. Wij schrijven je Vinted-teksten. Verwachting 4%.</span></div></div>
+      <div class="mail"><span class="when">Dag 7</span><div><b>Outfit van de week</b><span>Gratis, met shoplinks. Bouwt de gewoonte om te openen.</span></div></div>
+      <div class="mail"><span class="when">Dag 14</span><div><b>De kleurenwaaier</b><span>30 stalen om mee te nemen naar de winkel, €24,95. Verwachting 3%, kostprijs ±€7 (offerte nodig).</span></div></div>
+      <div class="mail"><span class="when">18 nov – 5 dec</span><div><b>Geef iemand haar kleuren</b><span>Cadeaubon met kleurenpas in een mooie envelop. Tastbaar cadeau voor Sinterklaas en Kerst. Verwachting 5%.</span></div></div>
+      <div class="mail"><span class="when">Na GO</span><div><b>De scanner is er</b><span>Eerste maand gratis voor de wachtlijst, daarna €3,99 per maand of €29 per jaar.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><small>Beslissen</small>17 november</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Uitkomst</th><th>Opbrengst per klik (30 dagen)</th><th>Wat dan</th></tr></thead>
+      <tbody>
+        <tr><td><span class="state go">GO</span></td><td class="num">≥ klikprijs</td><td>Cadeau-campagne, scanner en waaier, budget naar de winnende huisstijl</td></tr>
+        <tr><td><span class="state pivot">PIVOT</span></td><td class="num">50–100% van klikprijs</td><td>De lekkende stap of de zwakste huisstijl aanpassen, één keer opnieuw testen</td></tr>
+        <tr><td><span class="state kill">KILL</span></td><td class="num">&lt; 50% van klikprijs</td><td>Op het kerkhof; de e-maillijst blijft bruikbaar</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</main>
+
+<!-- ================= HUISSTIJLEN & ADS ================= -->
+<main id="view-mk" class="mk" hidden>
+  <div class="mk-intro">
+    <div class="label">Huisstijlen &amp; advertenties</div>
+    <h1>Twee merken, <em>drie stemmen.</em></h1>
+    <p>Twee voor vrouwen, één voor mannen. De advertentie bepaalt welke huisstijl iemand in de app ziet, zodat de toon van klik tot kleurenpas hetzelfde blijft.</p>
+  </div>
+  <section>
+    <div class="trio">
+      <div class="brandcard" style="background:#FFF4F7;color:#16141C">
+        <div class="label" style="color:#6C687A">NYANSE · Girl Math · vrouwen 18–28 · TikTok</div>
+        <div class="bn" style="font-family:var(--f-girl);font-weight:800;letter-spacing:-.035em">€0,02 per dag. <span style="background:linear-gradient(transparent 55%,#FFE9A6 55%)">Basically gratis.</span></div>
+        <div class="row"><i style="background:#D61F5B"></i><i style="background:#FFE6EE"></i><i style="background:#FFE9A6"></i><i style="background:#16141C"></i></div>
+        <p class="q">Rekent voor je uit waarom het eigenlijk een steal is.</p>
+        <ul><li>"Eén retour minder en hij is terugverdiend."</li><li>"Het is geen uitgave, het is besparen."</li><li>Bonnetjes, markeerstift, ronde knoppen.</li></ul>
+      </div>
+      <div class="brandcard" style="background:#FBF6F7;color:#16141C">
+        <div class="label" style="color:#6C687A">NYANSE · Atelier · vrouwen 28–45 · Instagram</div>
+        <div class="bn" style="font-family:var(--f-display);font-style:italic">Minder kopen, beter kiezen.</div>
+        <div class="row"><i style="background:#C8285A"></i><i style="background:#F7E3EA"></i><i style="background:#D9C7AE"></i><i style="background:#16141C"></i></div>
+        <p class="q">Rustig, zeker, modeblad. Een kast waarin alles samengaat.</p>
+        <ul><li>"Een kleuradviseur kost €100. Dit kost €6,99."</li><li>"Investeer één keer, kies voor altijd met rust."</li><li>Bodoni cursief, flat-lays op parket.</li></ul>
+      </div>
+      <div class="brandcard" style="background:#F3EEE8;color:#1B2433">
+        <div class="label" style="color:#6B6157">KULØRT · mannen 22–40 · Reels</div>
+        <div class="bn" style="font-family:var(--f-men);font-stretch:125%;font-weight:850;text-transform:uppercase">Ze ziet je kleur eerder dan je naam.</div>
+        <div class="row"><i style="background:#8A4A26"></i><i style="background:#F2E6DA"></i><i style="background:#1B2433"></i><i style="background:#5E6A7A"></i></div>
+        <p class="q">Je beste maat die zegt wat je zaterdag aantrekt.</p>
+        <ul><li>"Date zaterdag? Trek de trui aan die je ogen laat spreken."</li><li>Zelfvertrouwen, geen versiertrucs; nooit over vrouwen als doelwit.</li><li>Breed Archivo, cognac, horloge en leer.</li></ul>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2><small>Advertenties</small>Negen video's, drie per huisstijl</h2>
+    <p class="lead">Alles 9:16, 8–15 seconden, AI-label aan, alleen 18+. Format geleend uit je feed: truienstapels, sale-sterren, mix &amp; match.</p>
+    <div class="grid3" id="ads"></div>
+  </section>
+  <section>
+    <h2><small>Budget</small>€150 advertenties + kleurenpassen</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Wanneer</th><th>Wat</th><th>Regel</th><th>Budget</th></tr></thead>
+      <tbody>
+        <tr><td>13 okt – 2 nov</td><td>Webapp, PDF, 9 video's, eerste kleurenpassen (12 subtypes × 10)</td><td>Passen per batch bijdrukken</td><td class="num">€10 + ±€60</td></tr>
+        <tr><td>3 – 9 nov</td><td>9 video's × €8</td><td>Stoppen na €5 bij CTR &lt; 0,8% of klik &gt; €0,80</td><td class="num">€72</td></tr>
+        <tr><td>10 – 16 nov</td><td>Beste video per huisstijl</td><td>Winnaar op opbrengst per klik</td><td class="num">€60</td></tr>
+        <tr><td>Reserve</td><td>Retargeting op wie de checkout opende</td><td>Alleen met pixel-toestemming</td><td class="num">€8</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</main>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+const SEASONS={
+ lightSpring:{name:'Light Spring',season:'Lente',tone:'warm',depth:'licht',traits:['Ondertoon warm','Diepte licht','Chroma helder'],desc:'Licht, warm en fris. Denk aan perzik, koraal en zeewater in de zon.',
+  palette:[['Perzik','#F6CBA8'],['Abrikoos','#F3A27A'],['Koraal','#EE7A67'],['Zalmroze','#F4A3A0'],['Boter','#F4E3A1'],['Lichtgoud','#E8C468'],['Munt','#A8DDBE'],['Aqua','#7FCBC4'],['Hemelsblauw','#98C1E9'],['Lila','#C3B1E1'],['Licht camel','#C9A47E'],['Warm ivoor','#FAF0DC']],
+  avoid:[['Zwart','#111111'],['Bordeaux','#5B1A2B'],['Taupegrijs','#6B6460']],avoidTxt:'Zware, donkere kleuren overstemmen je lichte contrast.',celebs:'Blake Lively, Taylor Swift',seasonCelebs:'Blake Lively, Amy Adams, Taylor Swift',hair:'Honingblond, goudblond of zacht koperblond.'},
+ warmSpring:{name:'Warm Spring',season:'Lente',tone:'warm',depth:'midden',traits:['Ondertoon warm','Diepte licht-midden','Chroma helder'],desc:'Warm en zonnig. Je straalt in mandarijn, goudgeel en turkoois.',
+  palette:[['Mandarijn','#F28C38'],['Tomaat','#E2533A'],['Goudgeel','#F2B632'],['Papaya','#F7A168'],['Grasgroen','#79B94B'],['Turkoois','#2BB3A8'],['Camel','#C79A5E'],['Korenblauw','#4E86C4'],['Warm rood','#D6403A'],['Licht olijf','#A6A04C'],['Karamel','#9A6230'],['Crème','#F6E7C8']],
+  avoid:[['IJsroze','#F2D8E4'],['Zilvergrijs','#A9AFB7'],['Zwart','#111111']],avoidTxt:'Koele, grijze tinten halen de warmte uit je huid.',celebs:'Amy Adams, Jessica Chastain',seasonCelebs:'Blake Lively, Amy Adams, Taylor Swift',hair:'Goudbruin, koper of warm karamel.'},
+ lightSummer:{name:'Light Summer',season:'Zomer',tone:'koel',depth:'licht',traits:['Ondertoon koel','Diepte licht','Chroma zacht'],desc:'Licht, koel en luchtig. Poederblauw, lavendel en zacht roze zijn van jou.',
+  palette:[['Poederblauw','#AFC6E0'],['Lavendel','#BDB3DD'],['Roze','#F0B7C8'],['Koele munt','#A9D8CF'],['Zeeblauw','#7FA8C9'],['Lichtgrijs','#C9CDD4'],['Zachte framboos','#D9789A'],['Pastelpaars','#CFA9D6'],['Duifblauw','#6F82A0'],['IJsgroen','#CFE5DD'],['Licht rozenhout','#CF9DA4'],['Zachtwit','#F4F3F0']],
+  avoid:[['Oranje','#F07A1A'],['Mosterd','#C99A1E'],['Zwart','#111111']],avoidTxt:'Felle warme kleuren en zwart zijn harder dan jouw gezicht.',celebs:'Cate Blanchett, Elle Fanning',seasonCelebs:'Cate Blanchett, Sarah Jessica Parker, Jennifer Aniston',hair:'Asblond, parelblond of koel lichtbruin.'},
+ softSummer:{name:'Soft Summer',season:'Zomer',tone:'koel',depth:'midden',traits:['Ondertoon koel-neutraal','Diepte midden','Chroma zacht'],desc:'Zacht, koel en gedempt. Stoffig blauw, salie en rozenhout laten je stralen.',
+  palette:[['Stoffig blauw','#8FA3B8'],['Rozenhout','#B88A8E'],['Salie','#A3B09A'],['Mauve','#A6879C'],['Leisteen','#5E6A7A'],['Zachte pruim','#6E5468'],['Grijsroze','#C9A9AC'],['Zeegroen','#7FA39B'],['Koel taupe','#9A8F8A'],['Denim','#4F6886'],['Lavendelgrijs','#A9A2BD'],['Gebroken wit','#ECE8E2']],
+  avoid:[['Neonroze','#FF2F92'],['Oranje','#F2711C'],['Zwart','#0A0A0A']],avoidTxt:'Felle kleuren trekken de aandacht weg van je gezicht.',celebs:'Sarah Jessica Parker, Jennifer Aniston',seasonCelebs:'Cate Blanchett, Sarah Jessica Parker, Jennifer Aniston',hair:'Asbruin, donkerblond of zacht moccabruin.'},
+ softAutumn:{name:'Soft Autumn',season:'Herfst',tone:'warm',depth:'midden',traits:['Ondertoon warm-neutraal','Diepte midden','Chroma zacht'],desc:'Warm en gedempt. Kameel, olijf en zachte terracotta voelen als jouw huid.',
+  palette:[['Kameel','#B9926B'],['Olijf','#7A7449'],['Zachte terracotta','#B8735A'],['Mosgroen','#6D7A4C'],['Warme zalm','#D49A82'],['Khaki','#A89A72'],['Zachte petrol','#3F6A6A'],['Karamel','#A8764B'],['Roestroze','#B67C73'],['Chocolademelk','#6B4B38'],['Zand','#D8C3A0'],['Warm wit','#EFE6D6']],
+  avoid:[['Fuchsia','#E0218A'],['IJsblauw','#CFE8F7'],['Zwart','#111111']],avoidTxt:'Koele, felle kleuren maken je huid grauw.',celebs:'Gigi Hadid, Drew Barrymore',seasonCelebs:'Gigi Hadid, Beyoncé, Eva Mendes',hair:'Goudbruin, karamel of warm donkerblond.'},
+ deepAutumn:{name:'Deep Autumn',season:'Herfst',tone:'warm',depth:'diep',traits:['Ondertoon warm','Diepte diep','Chroma rijk'],desc:'Diep, warm en rijk. Chocolade, roest en bosgroen geven je gezicht kracht.',
+  palette:[['Chocolade','#4E3022'],['Roest','#A2462A'],['Mosterd','#C99A1E'],['Bosgroen','#2F4F3A'],['Warme aubergine','#5A2F3F'],['Petrol','#1F5C63'],['Diep tomaat','#B5382C'],['Diep olijf','#5B5A2E'],['Koper','#B5652F'],['Kaneel','#8E5432'],['Warm bordeaux','#6E1F2A'],['Room','#EADCC2']],
+  avoid:[['Pastelroze','#F6C9D6'],['Babyblauw','#BFD9F2'],['Zilvergrijs','#A9AFB7']],avoidTxt:'Pastels vallen weg tegen jouw diepte.',celebs:'Beyoncé, Eva Mendes',seasonCelebs:'Gigi Hadid, Beyoncé, Eva Mendes',hair:'Espresso, chocolade of diep koper.'},
+ coolWinter:{name:'Cool Winter',season:'Winter',tone:'koel',depth:'midden',traits:['Ondertoon koel','Diepte midden-diep','Chroma helder'],desc:'Koel, helder en contrastrijk. Je kunt zwart, wit en juweeltinten hebben.',
+  palette:[['Koningsblauw','#1F4FC4'],['Smaragd','#009B77'],['Fuchsia','#D61A7F'],['IJsroze','#F3D3E3'],['Saffier','#0F3D8C'],['Robijn','#B0103A'],['Antraciet','#3A3D45'],['IJsblauw','#CFE6F5'],['Koel paars','#6A2C91'],['Zilver','#B9BEC6'],['Zwart','#141414'],['Helder wit','#FFFFFF']],
+  avoid:[['Camel','#C79A5E'],['Oranje','#F28C38'],['Mosterd','#C99A1E']],avoidTxt:'Warme aardetinten maken je huid geel.',celebs:'Anne Hathaway, Lucy Liu',seasonCelebs:'Anne Hathaway, Lupita Nyong’o, Zendaya',hair:'Koel donkerbruin, blauwzwart of zilvergrijs.'},
+ deepWinter:{name:'Deep Winter',season:'Winter',tone:'koel',depth:'diep',traits:['Ondertoon koel-neutraal','Diepte diep','Chroma helder'],desc:'Diep en helder. Inktblauw, robijn en smaragd passen bij je sterke contrast.',
+  palette:[['Inktblauw','#1B2A5C'],['Diep smaragd','#0B6B4F'],['Robijn','#9E0F35'],['Aubergine','#3F1A44'],['Kobalt','#1E50B4'],['Fuchsia','#C2177A'],['Koel rood','#C8102E'],['Houtskool','#2C2C30'],['Koel turkoois','#00848C'],['Zwart','#111111'],['IJsgrijs','#D9DDE3'],['Wit','#FFFFFF']],
+  avoid:[['Perzik','#F6CBA8'],['Licht camel','#D9B48F'],['Zachte mosterd','#D8B45A']],avoidTxt:'Lichte warme tinten maken je gezicht flets.',celebs:'Lupita Nyong’o, Zendaya',seasonCelebs:'Anne Hathaway, Lupita Nyong’o, Zendaya',hair:'Diep bruinzwart, zwart of koel espresso.'}
+};
+const MEN_CELEBS={lightSpring:'Chris Hemsworth',warmSpring:'Ed Sheeran',lightSummer:'Owen Wilson',softSummer:'Ryan Gosling',softAutumn:'Ryan Reynolds',deepAutumn:'Jason Momoa',coolWinter:'Henry Cavill',deepWinter:'Idris Elba'};
+
+/* ---------- huisstijl-copy ---------- */
+const COPY={
+ girlmath:{
+  ad:'<div class="adcard receipt"><span class="h">Girl math 🧾</span><div class="r"><span>Kleuranalyse</span><span>€6,99</span></div><div class="r"><span>÷ 365 dagen</span><span>€0,02/dag</span></div><div class="r"><span>1 miskoop minder</span><span>−€39,99</span></div><div class="r tot"><span>Je verdient eraan</span><span>✨</span></div></div>',
+  meta:'Welke kleuren staan jou? Eén selfie, 30 seconden, gratis profiel.',cta:'Reken mee, gratis',
+  start:'Stop met kopen wat je <em>niet staat.</em>',list:['Je kleuren uit één selfie','Outfits binnen je budget','Elke miskoop minder = geld in je zak'],
+  style:'Wat is je <em>vibe?</em>',email:'Oké, je profiel is <em>klaar.</em>',confirm:n=>'Beste aankoop van de maand, <em>'+n+'</em>.',
+  knit:['#F4A3A0','#D9789A','#F3D3E3','#E8C468','#FFE9A6','#B88A8E','#F0B7C8'],ring:['#D61F5B','#FFE9A6','#F4A3A0','#8FA3B8','#F3A27A','#A6879C','#2BB3A8','#FFE6EE','#B9926B','#6E5468']},
+ atelier:{
+  ad:'<div class="adcard"><span class="t">➤ Thuis · 14°C</span><span class="h" style="font-family:var(--f-display);font-style:italic;font-weight:600;font-size:24px">Truienweer. Maar welke kleur is van jou?</span><span class="s">Je kleuren in 30 seconden.</span></div>',
+  meta:'Minder kopen, beter kiezen. Ontdek welke kleuren jou laten stralen.',cta:'Ontdek je kleuren, gratis',
+  start:'Een kast waarin <em>alles samengaat.</em>',list:['Je persoonlijke kleuren, uit één selfie','Outfits bij jouw winkels en budget','Minder miskopen, minder retourneren'],
+  style:'Jouw stijl, <em>jouw budget.</em>',email:'Je profiel is <em>klaar.</em>',confirm:n=>'Goede keuze, <em>'+n+'</em>.',
+  knit:['#8FA3B8','#C9A9AC','#B8735A','#A3B09A','#EDE3CF','#6E5468','#D49A82'],ring:['#C8285A','#C9A9AC','#8FA3B8','#A6879C','#B9926B','#2F4F3A','#A2462A','#1F4FC4','#F4E3A1','#D9C7AE']},
+ wingman:{
+  ad:'<div class="adcard wing"><span class="t">ZATERDAG · 20:00</span><span class="h">Ze ziet je kleur eerder dan je naam.</span><span class="s">Weet welke trui je ogen laat spreken.</span></div>',
+  meta:'Eén selfie. Je kleuren, outfits en accessoires. 30 seconden.',cta:'Check je kleuren',
+  start:'Maak indruk <em>voor je iets zegt.</em>',list:['Jouw kleuren uit één selfie','Outfits voor werk, weekend en date','Horloge, riem en schoenen die kloppen'],
+  style:'Waar wil je <em>indruk maken?</em>',email:'Je profiel is <em>klaar.</em>',confirm:n=>'Goed gekozen, <em>'+n+'</em>.',
+  knit:['#4F6886','#4B3A30','#B88A8E','#7A8A68','#D8CFAE','#2A3346','#A88A62'],ring:['#1B2A5C','#8A4A26','#5E6A7A','#2F4F3A','#B9926B','#6E1F2A','#4F6886','#C99A1E','#3A3D45','#EADCC2']}
+};
+
+const OCC={
+ werk:{label:'Werk',layers:{jacket:'dark2',inner:'light',pants:'mid',shoes:'dark'},acc:'watch'},
+ weekend:{label:'Weekend',layers:{top:'acc2',pants:'mid2',shoes:'light2'},acc:'glasses'},
+ date:{label:'Date',layers:{top:'acc',pants:'dark',shoes:'dark2'},acc:'watch'},
+ feest:{label:'Feest',layers:{jacket:'acc3',inner:'dark',pants:'dark',shoes:'dark'},acc:'glasses'},
+ sport:{label:'Sport & vrije tijd',layers:{top:'light2',pants:'dark2',shoes:'light'},acc:'glasses'}
+};
+const PIECES={dames:{jacket:'Blazer',inner:'Blouse',top:'Fijngebreide top',pants:'Wijde pantalon',shoes:'Loafers'},heren:{jacket:'Overshirt',inner:'T-shirt',top:'Gebreide trui',pants:'Chino',shoes:'Suède loafers'}};
+const BASE={jacket:60,inner:30,top:35,pants:40,shoes:55};
+const TIER_M={'€':.55,'€€':1.3,'€€€':3.2};
+const SHOPS={dames:['Zalando','H&M','Zara','Mango','COS','Arket','ASOS','Vinted','Uniqlo','About You'],heren:['Zalando','OFM','Nolson','Uniqlo','COS','Sissy-Boy','ASOS','Vinted','Profuomo','Les Deux']};
+const PRODUCTS=[['Overshirt','Camel','#C19A6B','jacket'],['Trui','Stoffig blauw','#8FA3B8','top'],['Trui','Fel oranje','#F2711C','top'],['Shirt','Zwart','#141414','top']];
+
+const state={mode:'girlmath',answers:{occ:[],budget:null,shops:[],jewel:null},season:'softSummer',photo:null,photoLab:null,tier:'card',email:'',rtab:'kleuren'};
+const G=()=>state.mode==='wingman'?'heren':'dames';
+const BRAND=()=>state.mode==='wingman'?{name:'KULØRT',lower:'kulørt',av:'k'}:{name:'NYANSE',lower:'nyanse',av:'n'};
+const C=()=>COPY[state.mode];
+
+function rgb(h){h=h.replace('#','');const n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255]}
+function lin(v){v/=255;return v<=0.04045?v/12.92:Math.pow((v+0.055)/1.055,2.4)}
+function lum(h){const[r,g,b]=rgb(h).map(lin);return .2126*r+.7152*g+.0722*b}
+function inkOn(h){return lum(h)>0.4?'#16141C':'#FFFFFF'}
+function labRGB(R,G_,B){let[r,g,b]=[R,G_,B].map(lin);let x=(r*.4124+g*.3576+b*.1805)/.95047,y=r*.2126+g*.7152+b*.0722,z=(r*.0193+g*.1192+b*.9505)/1.08883;const f=t=>t>0.008856?Math.cbrt(t):7.787*t+16/116;x=f(x);y=f(y);z=f(z);return[116*y-16,500*(x-y),200*(y-z)]}
+const lab=h=>labRGB(...rgb(h));
+function dE(a,b){const A=lab(a),B=lab(b);return Math.hypot(A[0]-B[0],A[1]-B[1],A[2]-B[2])}
+function shade(h,k){return '#'+rgb(h).map(v=>Math.max(0,Math.min(255,Math.round(v*k)))).map(v=>v.toString(16).padStart(2,'0')).join('')}
+const eur=n=>'€'+n.toFixed(2).replace('.',',');
+const fmt=n=>n.toLocaleString('nl-NL');
+const S_=()=>SEASONS[state.season];
+function roles(S){
+  const P=S.palette.map(p=>{const l=lab(p[1]);return{n:p[0],h:p[1],L:l[0],C:Math.hypot(l[1],l[2])}});
+  const byL=[...P].sort((a,b)=>b.L-a.L), byC=[...P].sort((a,b)=>b.C-a.C), m=Math.floor(P.length/2);
+  return{light:byL[0],light2:byL[1],mid:byL[m-1],mid2:byL[m+1],dark:byL[P.length-1],dark2:byL[P.length-2],acc:byC[0],acc2:byC[1],acc3:byC[2]};
+}
+function shopsFor(){return state.answers.shops.length?state.answers.shops:SHOPS[G()];}
+
+const DEMO_FACE='<svg class="face" viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="220" fill="#D9D3CC"/><path d="M52 92c-4-46 20-70 48-70s54 22 48 70c-6-20-22-32-48-32s-42 12-48 32z" fill="#6B4A35"/><rect x="86" y="128" width="28" height="34" fill="#E0B596"/><ellipse cx="100" cy="98" rx="40" ry="50" fill="#E6BFA2"/><path d="M60 96c-2-34 16-54 40-54s42 20 40 54c-6-16-20-26-40-26s-34 10-40 26z" fill="#6B4A35"/><ellipse cx="84" cy="100" rx="4" ry="3" fill="#3B2A22"/><ellipse cx="116" cy="100" rx="4" ry="3" fill="#3B2A22"/><path d="M92 128q8 5 16 0" stroke="#B5745F" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+function faceBox(drape,style){
+  const img=state.photo?'<img src="'+state.photo+'" alt="">':DEMO_FACE;
+  return '<div class="fbox" style="'+(style||'')+'">'+img+'<div class="glow" style="background:radial-gradient(ellipse at 50% 85%,'+drape+' 0%,transparent 60%)"></div><svg class="drape" viewBox="0 0 200 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70 L0 34 Q30 6 70 14 L100 54 L130 14 Q170 6 200 34 L200 70 Z" fill="'+drape+'"/><path d="M70 14 L100 54 L130 14" fill="none" stroke="rgba(0,0,0,.15)" stroke-width="2"/></svg></div>';
+}
+
+/* ---------- fysieke pas ---------- */
+function physCard(S,extra){
+  const R=roles(S), bg=R.dark.h, ink=inkOn(bg);
+  return '<div class="pcard" style="background:'+bg+';color:'+ink+';'+(extra||'')+'"><div style="display:flex;justify-content:space-between"><span class="pl">'+BRAND().lower+'</span><span class="pl">kleurenpas</span></div><span class="pn">'+S.name+'</span><div class="ps">'+S.palette.slice(0,8).map(p=>'<i style="background:'+p[1]+'"></i>').join('')+'</div></div>';
+}
+
+let svgId=0;
+function knitStack(colors,w,h,anim){
+  const id='rib'+(svgId++); const rowH=h/colors.length;
+  let s='<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid slice"><defs><pattern id="'+id+'" width="7" height="8" patternUnits="userSpaceOnUse"><rect width="3" height="8" fill="rgba(0,0,0,.13)"/><rect x="3" width="1" height="8" fill="rgba(255,255,255,.08)"/></pattern></defs><rect width="'+w+'" height="'+h+'" fill="#ECEAE6"/>';
+  colors.forEach((c,i)=>{const y=i*rowH-6;
+    s+='<g transform="translate(0,'+y+')"><g class="'+(anim?'knit':'')+'" style="animation-delay:'+(i*0.09)+'s"><rect x="-20" y="0" width="'+(w+40)+'" height="'+(rowH+26)+'" rx="22" fill="'+c+'"/><rect x="-20" y="0" width="'+(w+40)+'" height="'+(rowH+26)+'" rx="22" fill="url(#'+id+')"/><ellipse cx="'+(w*.55)+'" cy="8" rx="'+(w*.2)+'" ry="22" fill="'+shade(c,.82)+'"/><ellipse cx="'+(w*.55)+'" cy="4" rx="'+(w*.15)+'" ry="13" fill="'+shade(c,.55)+'"/><rect x="'+(w*.55-22)+'" y="20" width="44" height="15" rx="2" fill="#F5F0E6"/><text x="'+(w*.55)+'" y="31" font-family="Bodoni Moda,Georgia,serif" font-style="italic" font-size="9" text-anchor="middle" fill="#3A332C">'+BRAND().lower+'</text></g></g>';});
+  return s+'</svg>';
+}
+function flatlay(layers,gender,acc){
+  const id='pq'+(svgId++);
+  const sweater='M90 40 L130 30 Q150 46 170 30 L210 40 L252 122 L229 133 L205 88 L205 196 L95 196 L95 88 L71 133 L48 122 Z';
+  const jl='M90 40 L132 30 L147 196 L95 196 L95 88 L71 133 L48 122 Z', jr='M210 40 L168 30 L153 196 L205 196 L205 88 L229 133 L252 122 Z';
+  const pantsM='M0 0 L66 0 L76 150 L50 150 L35 40 L31 40 L16 150 L-10 150 Z', pantsW='M0 0 L66 0 L90 150 L48 150 L35 46 L31 46 L18 150 L-24 150 Z';
+  let s='<svg viewBox="0 0 300 330" role="img" aria-label="Flat-lay outfit"><defs><pattern id="'+id+'" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="34" height="34" fill="#DCCBB2"/><rect width="17" height="34" fill="#D2BFA4"/><rect width="34" height="1" fill="#C7B394"/></pattern><pattern id="'+id+'k" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="6" fill="rgba(0,0,0,.1)"/></pattern><linearGradient id="'+id+'s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect width="300" height="330" fill="url(#'+id+')"/>';
+  const T='transform="translate(-8,6) scale(.92)"';
+  if(layers.pants) s+='<g transform="translate(150,176) rotate(-9)"><path d="'+(gender==='heren'?pantsM:pantsW)+'" fill="'+layers.pants+'" stroke="rgba(0,0,0,.12)"/><path d="M33 4 L33 34" stroke="rgba(0,0,0,.15)"/></g>';
+  if(layers.jacket){ s+='<g '+T+'><rect x="128" y="28" width="44" height="168" fill="'+(layers.inner||'#F4F3F0')+'" stroke="rgba(0,0,0,.08)"/><path d="M138 30 L150 46 L162 30" fill="none" stroke="rgba(0,0,0,.18)"/><path d="'+jl+'" fill="'+layers.jacket+'" stroke="rgba(0,0,0,.14)"/><path d="'+jr+'" fill="'+layers.jacket+'" stroke="rgba(0,0,0,.14)"/></g>'; }
+  else if(layers.top){ s+='<g '+T+'><path d="'+sweater+'" fill="'+layers.top+'" stroke="rgba(0,0,0,.12)"/><path d="'+sweater+'" fill="url(#'+id+'k)"/><path d="M130 30 Q150 50 170 30" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="4"/><rect x="95" y="184" width="110" height="12" fill="rgba(0,0,0,.1)"/></g>'; }
+  if(layers.shoes){ const d=shade(layers.shoes,.8); s+='<ellipse cx="208" cy="300" rx="27" ry="11" transform="rotate(-28 208 300)" fill="'+layers.shoes+'" stroke="'+d+'" stroke-width="2"/><ellipse cx="246" cy="286" rx="27" ry="11" transform="rotate(-28 246 286)" fill="'+layers.shoes+'" stroke="'+d+'" stroke-width="2"/>'; }
+  if(gender==='dames') s+='<g transform="translate(30,232)"><path d="M14 10 Q30 -12 46 10" fill="none" stroke="'+(layers.shoes?shade(layers.shoes,.85):'#3A3A3A')+'" stroke-width="4"/><rect x="0" y="10" width="60" height="44" rx="7" fill="'+(layers.shoes||'#3A3A3A')+'" stroke="rgba(0,0,0,.2)"/></g>';
+  else s+='<g transform="translate(62,252)"><rect x="-5" y="-26" width="10" height="52" rx="3" fill="'+(layers.shoes?shade(layers.shoes,.9):'#5A4636')+'"/><circle r="13" fill="#F1EFEA" stroke="'+(S_().tone==='warm'?'#C9A24A':'#A7ADB3')+'" stroke-width="4"/></g>';
+  if(acc==='glasses') s+='<g transform="translate(236,62)" fill="#2A2A2A"><circle cx="-14" cy="0" r="11"/><circle cx="14" cy="0" r="11"/><rect x="-4" y="-2" width="8" height="3"/></g>';
+  return s+'<rect width="300" height="330" fill="url(#'+id+'s)"/></svg>';
+}
+function buildOutfit(occKey){
+  const S=S_(), R=roles(S), o=OCC[occKey], g=G(), m=TIER_M[state.answers.budget||'€€'], shops=shopsFor();
+  const layers={}, items=[]; let si=occKey.length;
+  Object.entries(o.layers).forEach(([k,role])=>{const c=R[role]; layers[k]=c.h;
+    items.push({k,piece:PIECES[g][k],color:c.n,hex:c.h,shop:shops[(si++*3)%shops.length],price:Math.round(BASE[k]*m)+(m>1?.95:.99)-1});});
+  return{title:o.label,layers,items,acc:o.acc,g};
+}
+function outfitCard(of){
+  const sum=of.items.reduce((a,b)=>a+b.price,0);
+  return '<div class="outfit"><div class="flat">'+flatlay(of.layers,of.g,of.acc)+'</div><div class="body"><h4>'+of.title+'<span>± '+eur(sum)+'</span></h4><div class="items">'+
+    of.items.map(it=>'<div class="item"><i style="background:'+it.hex+'"></i><span>'+it.piece+' · '+it.color+'<br><small>'+it.shop+' · '+eur(it.price)+'</small></span><button data-aff="'+it.shop+'">Bekijk</button></div>').join('')+
+    '</div><button class="shop-all" data-aff="'+of.items.map(i=>i.shop).filter((v,i,a)=>a.indexOf(v)===i).join(', ')+'">Shop de hele look</button></div></div>';
+}
+function accessories(){
+  const S=S_(), warm=S.tone==='warm', deep=S.depth==='diep', light=S.depth==='licht', R=roles(S);
+  const metal=warm?[['Goud','#C9A24A'],['Rosé','#C99383'],['Koper','#B5652F']]:[['Zilver','#BFC4CB'],['Witgoud','#D9DADC'],['Platina','#A9AEB4']];
+  const leather=warm?(deep?[['Donkerbruin','#4E3022'],['Cognac','#9A5B2E']]:[['Cognac','#9A5B2E'],['Camel','#B88A5A']]):(deep?[['Zwart','#151515'],['Bordeaux','#5B1A2B']]:[['Grijsbruin','#6E6460'],['Navy','#26324A']]);
+  const frame=light?['Licht schildpad of transparant','#C9A27A']:deep?['Donker schildpad of zwart','#2B1E16']:['Zacht schildpad of grijs','#7A6656'];
+  const svgW='<svg viewBox="0 0 120 58"><rect x="54" y="2" width="12" height="54" rx="4" fill="'+leather[0][1]+'"/><circle cx="60" cy="29" r="17" fill="#F1EFEA" stroke="'+metal[0][1]+'" stroke-width="5"/><path d="M60 29 L60 19 M60 29 L67 33" stroke="#333" stroke-width="2"/></svg>';
+  const svgG='<svg viewBox="0 0 120 58"><circle cx="40" cy="30" r="17" fill="none" stroke="'+frame[1]+'" stroke-width="6"/><circle cx="80" cy="30" r="17" fill="none" stroke="'+frame[1]+'" stroke-width="6"/><path d="M57 28 Q60 24 63 28" stroke="'+frame[1]+'" stroke-width="4" fill="none"/></svg>';
+  const svgBelt='<svg viewBox="0 0 120 58"><rect x="4" y="22" width="112" height="14" rx="3" fill="'+leather[0][1]+'"/><rect x="48" y="16" width="22" height="26" rx="3" fill="none" stroke="'+metal[0][1]+'" stroke-width="4"/></svg>';
+  const svgShoe='<svg viewBox="0 0 120 58"><path d="M10 40 Q12 20 40 22 L70 26 Q100 30 110 40 L110 46 L10 46 Z" fill="'+leather[1][1]+'"/><rect x="10" y="44" width="100" height="5" fill="'+shade(leather[1][1],.6)+'"/></svg>';
+  const svgBag='<svg viewBox="0 0 120 58"><path d="M44 18 Q60 0 76 18" fill="none" stroke="'+leather[0][1]+'" stroke-width="4"/><rect x="30" y="18" width="60" height="38" rx="6" fill="'+leather[0][1]+'"/><rect x="56" y="26" width="8" height="6" fill="'+metal[0][1]+'"/></svg>';
+  const svgScarf='<svg viewBox="0 0 120 58"><path d="M20 8 Q60 30 100 8 L96 22 Q60 44 24 22 Z" fill="'+R.acc.h+'"/><path d="M52 30 L44 56 L58 52 L64 30" fill="'+shade(R.acc.h,.85)+'"/></svg>';
+  const svgJewel='<svg viewBox="0 0 120 58"><path d="M30 8 Q60 52 90 8" fill="none" stroke="'+metal[0][1]+'" stroke-width="3"/><circle cx="60" cy="38" r="6" fill="'+metal[0][1]+'"/><circle cx="22" cy="40" r="7" fill="none" stroke="'+metal[1][1]+'" stroke-width="3"/><circle cx="98" cy="40" r="7" fill="none" stroke="'+metal[1][1]+'" stroke-width="3"/></svg>';
+  const sw=a=>'<div class="sw">'+a.map(x=>'<i style="background:'+x[1]+'" title="'+x[0]+'"></i>').join('')+'</div>';
+  const card=(svg,t,txt,cols)=>'<div class="acc">'+svg+'<b>'+t+'</b><span class="small">'+txt+'</span>'+(cols?sw(cols):'')+'</div>';
+  if(G()==='heren') return [card(svgW,'Horloge',metal[0][0]+' kast, '+leather[0][0].toLowerCase()+' band',[metal[0],leather[0]]),card(svgBelt,'Riem',leather[0][0]+' leer, '+metal[0][0].toLowerCase()+' gesp',[leather[0],metal[0]]),card(svgShoe,'Schoenen',leather[1][0]+' suède of leer',leather),card(svgG,'Bril',frame[0],[[frame[0],frame[1]]])];
+  return [card(svgJewel,'Sieraden',metal.map(m=>m[0]).join(', '),metal),card(svgBag,'Tas',leather[0][0]+' of '+leather[1][0].toLowerCase(),leather),card(svgScarf,'Sjaal',R.acc.n+' bij je gezicht',[[R.acc.n,R.acc.h],[R.light.n,R.light.h]]),card(svgG,'Zonnebril',frame[0],[[frame[0],frame[1]]])];
+}
+function faceTab(){
+  const S=S_(), R=roles(S);
+  if(G()==='heren') return '<div class="sec"><h3>Overhemden bij je gezicht</h3><div class="items">'+[R.light,R.light2,R.mid].map(c=>'<div class="item"><i style="background:'+c.h+'"></i><span>'+c.n+'</span></div>').join('')+'</div></div><div class="sec"><h3>Haar &amp; baard</h3><p>'+S.hair+'</p></div><div class="sec"><h3>Das &amp; pochet</h3><div class="items">'+[R.acc,R.dark2].map(c=>'<div class="item"><i style="background:'+c.h+'"></i><span>'+c.n+'</span><button data-aff="Profuomo">Bekijk</button></div>').join('')+'</div></div>';
+  return '<div class="sec"><h3>Make-up</h3><div class="items">'+[['Lippen',R.acc],['Blush',R.light2],['Oogschaduw',R.dark2]].map(m=>'<div class="item"><i style="background:'+m[1].h+'"></i><span><b>'+m[0]+'</b> · '+m[1].n+'</span><button data-aff="Douglas">Bekijk</button></div>').join('')+'</div></div><div class="sec"><h3>Haarkleur</h3><p>'+S.hair+'</p></div>';
+}
+function pdfPages(hide){
+  const S=S_(), P=S.palette, occs=(state.answers.occ.length?state.answers.occ:['werk','weekend']);
+  const nm=hide?'<span class="blur">'+S.name+'</span>':S.name;
+  const pages=['<div class="pdf" style="background:'+P[0][1]+';color:'+inkOn(P[0][1])+'"><span class="pl">'+BRAND().name+' stijlgids</span><span class="pt" style="font-size:17px;margin-top:auto">'+nm+'</span><div class="strip">'+P.slice(1,7).map(p=>'<i style="background:'+p[1]+'"></i>').join('')+'</div><span class="num">1</span></div>',
+    '<div class="pdf"><span class="pl">Jouw 30 kleuren</span><div class="grid">'+P.map(p=>'<i style="background:'+p[1]+'"></i>').join('')+P.slice(0,4).map(p=>'<i style="background:'+shade(p[1],.85)+'"></i>').join('')+'</div><div class="lines"><i></i><i style="width:70%"></i></div><span class="num">2–3</span></div>'];
+  occs.slice(0,3).forEach((k,i)=>{const of=buildOutfit(k); pages.push('<div class="pdf"><span class="pl">'+of.title+'</span>'+flatlay(of.layers,of.g,of.acc)+'<div class="lines"><i></i><i style="width:65%"></i></div><span class="num">'+(4+i)+'</span></div>');});
+  pages.push('<div class="pdf"><span class="pl">Accessoires</span><div class="strip"><i style="background:'+(S.tone==='warm'?'#C9A24A':'#BFC4CB')+'"></i><i style="background:'+(S.tone==='warm'?'#9A5B2E':'#26324A')+'"></i></div><div class="lines"><i></i><i></i><i style="width:60%"></i></div><span class="num">8–9</span></div>');
+  pages.push('<div class="pdf"><span class="pl">Liever niet</span><div class="strip">'+S.avoid.map(p=>'<i style="background:'+p[1]+'"></i>').join('')+'</div><div class="lines"><i></i><i></i><i style="width:50%"></i></div><span class="num">10</span></div>');
+  pages.push('<div class="pdf"><span class="pl">Capsule · 20 items</span><div class="grid">'+P.slice(0,8).map(p=>'<i style="background:'+p[1]+'"></i>').join('')+'</div><div class="lines"><i></i><i style="width:80%"></i></div><span class="num">11–12</span></div>');
+  return pages.join('');
+}
+function qr(seed){
+  let x=seed, s='<svg class="qr" viewBox="0 0 25 25" aria-label="QR-code (voorbeeld)"><rect width="25" height="25" fill="#fff"/>';
+  const rnd=()=>{x=(x*9301+49297)%233280;return x/233280};
+  const finder=(a,b)=>'<rect x="'+a+'" y="'+b+'" width="7" height="7" fill="#111"/><rect x="'+(a+1)+'" y="'+(b+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(a+2)+'" y="'+(b+2)+'" width="3" height="3" fill="#111"/>';
+  for(let i=0;i<25;i++)for(let j=0;j<25;j++){ if((i<8&&j<8)||(i>16&&j<8)||(i<8&&j>16)) continue; if(rnd()>.55) s+='<rect x="'+i+'" y="'+j+'" width="1" height="1" fill="#111"/>'; }
+  return s+finder(0,0)+finder(18,0)+finder(0,18)+'</svg>';
+}
+
+/* ---------- navigatie ---------- */
+const CRUMBS=['Jij','Stijl','Selfie','Analyse','Resultaat'];
+function renderCrumbs(){$$('.crumbs').forEach(ol=>{const n=+ol.dataset.crumb; ol.innerHTML=CRUMBS.map((c,i)=>'<li class="'+(i<n?'done':i===n?'now':'')+'">'+c+'</li>').join(''); ol.setAttribute('aria-label','Stap '+(n+1)+' van 5');});}
+function setMode(m){
+  state.mode=m; $('#phone').dataset.mode=m;
+  $$('.bn').forEach(e=>e.textContent=BRAND().lower); $$('.bn-av').forEach(e=>e.textContent=BRAND().av);
+  $$('#modebar button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m));
+  const c=C(); $('#start-h').innerHTML=c.start; $('#start-list').innerHTML=c.list.map(t=>'<div><i>✓</i><span>'+t+'</span></div>').join('');
+  $('#style-h').innerHTML=c.style; $('#email-h').innerHTML=c.email;
+  $('#ring3d').innerHTML=c.ring.map((col,i)=>'<i style="background:'+col+';transform:rotateY('+(i*36)+'deg) translateZ(130px)"></i>').join('');
+  buildShopChips();
+}
+function go(id){
+  if(id==='checkout'){ openCheckout(); return; }
+  $('#checkout').hidden=true;
+  $$('.scr').forEach(s=>s.hidden=s.dataset.s!==id);
+  const scr=document.querySelector('.scr[data-s="'+id+'"]'); if(scr) scr.scrollTop=0;
+  ({feed:renderFeed,style:syncChips,selfie:enterSelfie,analyse:runAnalyse,email:renderEmail,free:renderFree,confirm:renderConfirm,result:renderResult,coach:renderCoach,end:renderEnd}[id]||(()=>{}))();
+  setNote(id);
+}
+function ensureDefaults(){const a=state.answers; if(!a.occ.length) a.occ=['werk','weekend']; if(!a.budget) a.budget='€€'; if(!a.jewel) a.jewel='weetniet'; state.season=decide();}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-go]'); if(t){e.preventDefault(); go(t.dataset.go);} const tb=e.target.closest('[data-tab]'); if(tb) tab(tb.dataset.tab);
+  const a=e.target.closest('[data-aff]'); if(a) toast('Prototype: hier opent een partnerlink naar '+a.dataset.aff+'.');});
+function toast(msg){const t=$('#toast'); t.textContent=msg; t.hidden=false; clearTimeout(toast.h); toast.h=setTimeout(()=>t.hidden=true,2800);}
+
+function renderFeed(){ $('#feed-art').innerHTML=knitStack(C().knit,370,780,true); $('#adcard').innerHTML=C().ad; $('#feed-meta').textContent=C().meta; $('#feed-cta').textContent=C().cta; }
+$$('.pick button').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.g==='heren') setMode('wingman'); else if(state.mode==='wingman') setMode('girlmath');
+  go('style');}));
+
+function buildShopChips(){ $('#shop-chips').innerHTML=SHOPS[G()].slice(0,8).map(s=>'<button data-v="'+s+'">'+s+'</button>').join(''); state.answers.shops=state.answers.shops.filter(s=>SHOPS[G()].includes(s)); syncChips(); }
+function syncChips(){
+  $$('.chipset').forEach(cs=>{const q=cs.dataset.q, v=state.answers[q]; cs.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',Array.isArray(v)?v.includes(b.dataset.v):v===b.dataset.v));});
+  const a=state.answers; $('#to-selfie').disabled=!(a.occ.length&&a.budget);
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.chipset button'); if(!b) return; const cs=b.parentElement, q=cs.dataset.q;
+  if(cs.hasAttribute('data-multi')){const arr=state.answers[q]; const i=arr.indexOf(b.dataset.v); if(i>=0) arr.splice(i,1); else arr.push(b.dataset.v);} else state.answers[q]=b.dataset.v;
+  syncChips();});
+$('#to-selfie').addEventListener('click',()=>go('selfie'));
+
+function enterSelfie(){
+  const vf=$('#vf'); const old=vf.querySelector('.fbox'); if(old) old.remove();
+  vf.insertAdjacentHTML('afterbegin',faceBox('#9A938C'));
+  $('#vf-tips').innerHTML=state.photo?'<span class="ok">✓ Licht goed</span><span class="ok">✓ Gezicht herkend</span>':'<span>☀︎ Daglicht</span><span>Zonder filter</span><span>Bril af</span>';
+  syncChips();
+}
+function sampleImage(url,region){return new Promise(res=>{const img=new Image(); img.onload=()=>{try{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');x.drawImage(img,0,0,64,64);
+  const [x0,y0,w,h]=region; const d=x.getImageData(x0,y0,w,h).data; let r=0,g=0,b=0,n=0; for(let i=0;i<d.length;i+=4){r+=d[i];g+=d[i+1];b+=d[i+2];n++;} res([r/n,g/n,b/n]);}catch(e){res(null);} }; img.onerror=()=>res(null); img.src=url;});}
+$('#photo').addEventListener('change',async e=>{const f=e.target.files&&e.target.files[0]; if(!f) return;
+  if(state.photo) URL.revokeObjectURL(state.photo); state.photo=URL.createObjectURL(f);
+  const c=await sampleImage(state.photo,[24,22,16,18]); state.photoLab=c?labRGB(...c):null; enterSelfie(); setTimeout(()=>{ensureDefaults(); go('analyse');},900);});
+$('#demo-face').addEventListener('click',()=>{state.photo=null; state.photoLab=null; ensureDefaults(); go('analyse');});
+function decide(){
+  const a=state.answers, L=state.photoLab;
+  let w=a.jewel==='goud'?2:a.jewel==='zilver'?-2:0, depth=1;
+  if(L){ if(L[2]>20) w+=1; else if(L[2]<12) w-=1; depth=L[0]>72?0:L[0]>60?1:L[0]>45?2:3; }
+  if(w>=1) return ['lightSpring','warmSpring','softAutumn','deepAutumn'][depth];
+  if(w<=-1) return ['lightSummer','softSummer','coolWinter','deepWinter'][depth];
+  return ['lightSummer','softSummer','softAutumn','deepWinter'][depth];
+}
+
+let anTimer=null;
+function runAnalyse(){
+  clearTimeout(anTimer);
+  const S=S_(), R=roles(S);
+  const tests=[[S.avoid[0],0],[[R.acc.n,R.acc.h],1],[S.avoid[1],0],[[R.mid.n,R.mid.h],1],[S.avoid[2],0],[[R.light2.n,R.light2.h],1]];
+  $('#scan-face').innerHTML=faceBox(tests[0][0][1]);
+  $('#shop-label').hidden=true; $('#shopname').textContent=''; $('#itemcount').textContent='';
+  $$('#checks div').forEach((d,i)=>{d.className=''; d.lastElementChild.textContent=i===0?'bezig…':'wacht';});
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t=0, count=0; const shops=shopsFor();
+  const show=i=>{const [c,good]=tests[i]; const path=$('#scan-face svg.drape path'); if(path) path.setAttribute('fill',c[1]);
+    const g=$('#scan-face .glow'); if(g) g.style.background='radial-gradient(ellipse at 50% 85%,'+c[1]+' 0%,transparent 60%)';
+    $('#drape-verdict').innerHTML=good?'<b style="color:var(--ok)">✓ '+c[0]+'</b><span>Je ogen lichten op, je huid oogt egaal.</span>':'<b style="color:var(--accent)">✗ '+c[0]+'</b><span>Schaduwen onder je ogen worden sterker.</span>';
+    $$('#checks div').forEach((d,k)=>{ if(k<Math.floor(i/2)){d.className='ok'; d.lastElementChild.textContent='✓';} else if(k===Math.floor(i/2)) d.lastElementChild.textContent='bezig…'; });};
+  show(0);
+  const tick=()=>{
+    if($('.scr[data-s="analyse"]').hidden) return;
+    t++;
+    if(t<tests.length){ show(t); anTimer=setTimeout(tick,reduce?300:900); return; }
+    $$('#checks div').forEach(d=>{d.className='ok'; d.lastElementChild.textContent='✓';});
+    $('#shop-label').hidden=false; count+=Math.round(120+Math.random()*260);
+    $('#shopname').textContent=shops[t%shops.length]; $('#itemcount').textContent=fmt(count)+' items in jouw kleuren';
+    if(t>=tests.length+(reduce?2:9)){ anTimer=setTimeout(()=>go('email'),400); return; }
+    anTimer=setTimeout(tick,reduce?300:260);
+  };
+  anTimer=setTimeout(tick,reduce?300:900);
+}
+
+function renderEmail(){
+  const S=S_(); $('#email-h').innerHTML=C().email;
+  $('#teaser-mini').innerHTML=faceBox(roles(S).acc.h)+'<div style="flex:1;display:grid;gap:6px;min-width:0"><b>'+S.season+'-type</b><div class="strip">'+S.palette.slice(0,6).map(p=>'<i style="background:'+p[1]+'"></i>').join('')+'</div><span class="small">+ 1 outfit · subtype op slot</span></div>';
+}
+$('#mail-form').addEventListener('submit',e=>{e.preventDefault(); const v=$('#mail').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){toast('Vul een geldig e-mailadres in, bijvoorbeeld jij@voorbeeld.nl.');return;}
+  state.email=v; go('free');});
+$('#skip-mail').addEventListener('click',()=>{state.email=''; go('free');});
+
+const TIERS={
+  digital:{n:'Digitaal',p:6.99,f:['Je subtype uit 12 seizoenen','Stijlgids van 12 pagina’s als PDF','Outfits, accessoires en sale bij jouw winkels','Digitale kleurenpas op je telefoon']},
+  card:{n:'Met kleurenpas',p:9.99,tag:'Aanrader',f:['Alles van Digitaal','Een stevige kleurenpas in je brievenbus','Voor in je portemonnee, ook in de winkel','Binnen 3 werkdagen in huis']}
+};
+function whyBlock(){
+  if(state.mode==='girlmath') return '<h3>Waarom dit eigenlijk een steal is</h3><div class="bon"><span class="h">Girl math</span><div class="r"><span>Stijlgids met pas</span><span>€9,99</span></div><div class="r"><span>÷ 365 dagen</span><span>€0,03/dag</span></div><div class="r"><span>1 miskoop minder</span><span>−€39,99</span></div><div class="r"><span>Kleuradviseur niet nodig</span><span>−€100</span></div><div class="r tot"><span>Je houdt over</span><span>€130 ✨</span></div></div>';
+  if(state.mode==='wingman') return '<h3>Waarom het telt</h3><div class="impress"><span class="label" style="color:#C9BBA9">Eerste indruk</span><span class="big">0,1 sec</span><span>Zoveel tijd heeft iemand nodig om een eerste indruk van je gezicht te vormen (Princeton, 2006). De kleur onder je kin doet mee.</span></div><div class="compare"><div class="them"><span>Eén verkeerde trui</span><b>€60</b></div><div class="us"><span>KULØRT</span><b>€6,99</b></div></div>';
+  return '<h3>Eén keer investeren</h3><div class="compare"><div class="them"><span>Kleuradviseur</span><b>€100+</b><span>afspraak, 2 uur</span></div><div class="us"><span>NYANSE</span><b>€6,99</b><span>30 seconden, voor altijd</span></div></div>';
+}
+function renderTiers(){
+  const S=S_();
+  $('#tiers').innerHTML=Object.entries(TIERS).map(([k,t])=>'<button class="tier" data-tier="'+k+'" aria-pressed="'+(state.tier===k)+'">'+(t.tag?'<span class="badge">'+t.tag+'</span>':'')+'<div class="tt"><b>'+t.n+'</b><span>'+eur(t.p)+'</span></div><ul>'+t.f.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+(k==='card'?'<div class="mini-card">'+physCard(S,'font-size:8px;padding:8%')+'</div>':'')+'</button>').join('');
+  $('#unlock').textContent='Ontgrendel '+TIERS[state.tier].n.toLowerCase()+' · '+eur(TIERS[state.tier].p);
+}
+$('#tiers').addEventListener('click',e=>{const b=e.target.closest('.tier'); if(!b) return; state.tier=b.dataset.tier; renderTiers();});
+function renderFree(){
+  const S=S_(), R=roles(S), men=G()==='heren';
+  $('#f-season').textContent=S.season; $('#f-desc').textContent=S.desc; $('#f-sub').textContent=S.name;
+  $('#f-pal').innerHTML=[R.acc,R.acc2,R.mid,R.light,R.dark2,R.acc3].map(p=>'<div class="chip"><i style="background:'+p.h+'"></i><div><b>'+p.n+'</b><code>'+p.h+'</code></div></div>').join('');
+  $('#f-celebs-h').textContent='Vaak genoemd als '+S.season.toLowerCase()+'type';
+  $('#f-celebs').textContent=men?MEN_CELEBS[state.season]:S.seasonCelebs;
+  const occ=state.answers.occ.length?state.answers.occ:['werk'];
+  $('#f-outfit').innerHTML=outfitCard(buildOutfit(occ[0]));
+  $('#f-pdf').innerHTML=pdfPages(true);
+  $('#ba').innerHTML=faceBox(S.avoid[0][1])+'<div class="top-layer" style="position:absolute;inset:0">'+faceBox(R.acc.h,'position:absolute;inset:0')+'</div><div class="divider" id="ba-div"></div><span class="tag l">✗ '+S.avoid[0][0]+'</span><span class="tag r">✓ '+R.acc.n+'</span>';
+  setBA(50); $('#ba-range').value=50;
+  $('#why').innerHTML=whyBlock();
+  renderTiers();
+}
+function setBA(v){const t=$('#ba .top-layer'); if(t) t.style.clipPath='inset(0 0 0 '+v+'%)'; const d=$('#ba-div'); if(d) d.style.left=v+'%';}
+$('#ba-range').addEventListener('input',e=>setBA(+e.target.value));
+$('#unlock').addEventListener('click',()=>go('checkout'));
+
+function openCheckout(){
+  const t=TIERS[state.tier]; $('#co-name').textContent='Stijlgids · '+t.n.toLowerCase(); $('#co-price').textContent=eur(t.p);
+  $('#addr').hidden=state.tier!=='card'; $('#total').textContent=eur(t.p-1);
+  $('#checkout').hidden=false; setNote('checkout');
+}
+$('#close-checkout').addEventListener('click',()=>{$('#checkout').hidden=true; setNote('free');});
+$$('[data-pay]').forEach(b=>b.addEventListener('click',()=>{const html=b.innerHTML; b.textContent='Betaling verwerken…'; setTimeout(()=>{b.innerHTML=html; go('confirm');},800);}));
+
+function renderConfirm(){
+  const S=S_(), P=S.palette, R=roles(S);
+  $('#confirm-h').innerHTML=C().confirm(S.name);
+  $('#c-mailer').innerHTML=state.tier==='card'?'<h3>Onderweg naar je brievenbus</h3><div class="mailer"><div class="env"><span>NL</span></div>'+physCard(S)+'</div>':'';
+  $('#c-text').textContent='Je stijlgids van 12 pagina’s staat in je mail'+(state.email?' ('+state.email+')':'')+'.'+(state.tier==='card'?' Je kleurenpas ligt binnen 3 werkdagen op de mat.':'');
+  $('#c-pdf').innerHTML=pdfPages(false);
+  $('#pass').innerHTML='<div class="side front">'+physCard(S)+'</div><div class="side back"><div class="pcard" style="background:'+R.light.h+';color:'+inkOn(R.light.h)+'"><div style="display:grid;gap:4px;font-size:13px;flex:1"><b>Scan &amp; krijg €1 korting</b><span class="mono">HUE-'+S.name.split(' ').map(w=>w[0]).join('')+'7Q4</span></div>'+qr(S.name.length*97+13)+'</div></div>';
+  $('#flip').classList.remove('flipped');
+}
+$('#flip').addEventListener('click',()=>$('#flip').classList.toggle('flipped'));
+$('#homescreen').addEventListener('click',()=>toast('Prototype: tik op Deel › Zet op beginscherm.'));
+
+const RTABS=[['kleuren','Kleuren'],['outfits','Outfits'],['acc','Accessoires'],['gezicht','Gezicht'],['sale','Sale']];
+function renderResult(){
+  const S=S_(), P=S.palette;
+  const scr=document.querySelector('.scr[data-s="result"]');
+  scr.style.setProperty('--p0',P[0][1]); scr.style.setProperty('--p0ink',inkOn(P[0][1]));
+  $('#r-name').textContent=S.name; $('#r-desc').textContent=S.desc;
+  $('#r-traits').innerHTML=S.traits.map(t=>'<span>'+t+'</span>').join('');
+  $('#rtabs').innerHTML=RTABS.map(([k,l])=>'<button role="tab" data-rt="'+k+'" aria-selected="'+(state.rtab===k)+'">'+l+'</button>').join('');
+  renderRTab();
+}
+function renderRTab(){
+  const S=S_(), P=S.palette, occ=state.answers.occ.length?state.answers.occ:['werk','weekend']; let h='';
+  if(state.rtab==='kleuren') h='<div class="sec"><h3>Jouw kleuren</h3><div class="palette">'+P.map(p=>'<div class="chip"><i style="background:'+p[1]+'"></i><div><b>'+p[0]+'</b><code>'+p[1]+'</code></div></div>').join('')+'</div></div><div class="sec"><h3>Liever niet</h3><div class="avoid">'+S.avoid.map(p=>'<i style="background:'+p[1]+'" title="'+p[0]+'"></i>').join('')+'</div><p class="small">'+S.avoid.map(a=>a[0]).join(', ')+'. '+S.avoidTxt+'</p></div><div class="sec"><h3>Vaak genoemd als '+S.name+'</h3><p>'+(G()==='heren'?MEN_CELEBS[state.season]:S.celebs)+'</p></div>';
+  if(state.rtab==='outfits') h=occ.slice(0,3).map(k=>outfitCard(buildOutfit(k))).join('');
+  if(state.rtab==='acc') h='<div class="sec"><h3>'+(S.tone==='warm'?'Warme':'Koele')+' metalen, passend leer</h3><div class="acc-grid">'+accessories().join('')+'</div><button class="shop-all" data-aff="'+shopsFor().slice(0,3).join(', ')+'">Shop accessoires in jouw kleuren</button></div>';
+  if(state.rtab==='gezicht') h=faceTab();
+  if(state.rtab==='sale'){
+    const R=roles(S), shops=shopsFor(), m=TIER_M[state.answers.budget||'€€'];
+    const its=[[R.acc,'top'],[R.mid,'pants'],[R.dark2,'jacket'],[R.light2,'inner'],[R.dark,'shoes']].map(([c,k],i)=>{const was=Math.round(BASE[k]*m*1.6)+.95, now=Math.round(was*.6)+.95; return '<div class="item"><i style="background:'+c.h+'"></i><span>'+PIECES[G()][k]+' · '+c.n+'<br><small>'+shops[(i*3+1)%shops.length]+' · <s>'+eur(was)+'</s> '+eur(now)+'</small></span><button data-aff="'+shops[(i*3+1)%shops.length]+'">Bekijk</button></div>';}).join('');
+    h='<div class="sec"><h3>Sale, maar alleen wat je staat</h3><div class="items">'+its+'</div></div>';
+  }
+  $('#r-body').innerHTML=h+'<button class="btn" data-go="coach">Staat dit mij? Probeer de scanner ›</button><p class="fine">Partnerlinks</p>';
+}
+$('#rtabs').addEventListener('click',e=>{const b=e.target.closest('[data-rt]'); if(!b) return; state.rtab=b.dataset.rt; $$('#rtabs button').forEach(x=>x.setAttribute('aria-selected',x===b)); renderRTab();});
+
+const TEE='<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 8 8 15l6 12 6-3v32h24V24l6 3 6-12-14-7c-2 5-5.5 7-10 7s-8-2-10-7z" fill="currentColor"/></svg>';
+function renderCoach(){
+  $('#products').innerHTML=PRODUCTS.map((p,i)=>'<button class="prod" data-i="'+i+'" aria-pressed="'+(i===0)+'"><span style="color:'+p[2]+'">'+TEE+'</span>'+p[0]+'<br>'+p[1]+'</button>').join('');
+  check(PRODUCTS[0][2],PRODUCTS[0][0]+' · '+PRODUCTS[0][1],PRODUCTS[0][3],PRODUCTS[0][0]);
+}
+function check(hex,label,kind,piece){
+  const S=S_();
+  let best=null,min=1e9; S.palette.forEach(p=>{const d=dE(hex,p[1]); if(d<min){min=d;best=p;}});
+  let score=Math.round(Math.max(4,Math.min(98,100-(min-6)*2.2)));
+  if(S.avoid.some(a=>dE(hex,a[1])<14)) score=Math.min(score,28);
+  const col=score>=75?'var(--ok)':score>=50?'var(--warn)':'var(--accent)';
+  const v=score>=75?'Staat je.':score>=50?'Kan, als je het goed combineert.':'Liever niet.';
+  const why=score>=75?'Dicht bij '+best[0].toLowerCase()+' uit jouw palet.':score>=50?'Draag het niet direct bij je gezicht.':'Deze kleur trekt de aandacht weg van je gezicht. Kies liever '+best[0].toLowerCase()+'.';
+  $('#verdict').innerHTML='<div class="line"><b>'+label+'</b><b class="mono">'+score+'% match</b></div><div class="meter"><b style="width:'+score+'%;background:'+col+'"></b></div><div><b style="color:'+col+'">'+v+'</b> '+why+'</div>';
+  const R=roles(S), g=G(), useHex=score>=50?hex:best[1], shops=shopsFor();
+  const layers=kind==='jacket'?{jacket:useHex,inner:R.light.h,pants:R.mid.h,shoes:R.dark.h}:{top:useHex,pants:R.dark2.h,shoes:R.light2.h};
+  const m=TIER_M[state.answers.budget||'€€'], mainKey=kind==='jacket'?'jacket':'top';
+  const missing=Object.keys(layers).filter(k=>k!==mainKey).map((k,i)=>{const c=Object.values(R).find(r=>r.h===layers[k])||R.mid; return{piece:PIECES[g][k],color:c.n,hex:layers[k],shop:shops[(i*4+3)%shops.length],price:Math.round(BASE[k]*m)-.01};});
+  $('#combine').innerHTML='<div class="outfit"><div class="flat">'+flatlay(layers,g,'glasses')+'</div><div class="body"><div class="items"><div class="item have"><i style="background:'+useHex+'"></i><span><b>'+(score>=50?'Jouw item':'Beter alternatief')+'</b> · '+(score>=50?piece+' · '+(label.split(' · ')[1]||''):best[0])+'</span></div>'+missing.map(it=>'<div class="item"><i style="background:'+it.hex+'"></i><span>Mist nog: '+it.piece.toLowerCase()+' · '+it.color+'<br><small>'+it.shop+' · '+eur(it.price)+'</small></span><button data-aff="'+it.shop+'">Bekijk</button></div>').join('')+'</div></div></div>';
+}
+$('#products').addEventListener('click',e=>{const b=e.target.closest('.prod'); if(!b) return; const p=PRODUCTS[+b.dataset.i]; $$('.prod').forEach(x=>x.setAttribute('aria-pressed',x===b)); check(p[2],p[0]+' · '+p[1],p[3],p[0]);});
+$('#scan-photo').addEventListener('change',async e=>{const f=e.target.files&&e.target.files[0]; if(!f) return; const url=URL.createObjectURL(f);
+  const c=await sampleImage(url,[22,22,20,20]); URL.revokeObjectURL(url); if(!c){toast('Die foto kon ik niet lezen. Probeer een andere.');return;}
+  const hex='#'+c.map(v=>Math.round(v).toString(16).padStart(2,'0')).join('');
+  $$('.prod').forEach(x=>x.setAttribute('aria-pressed','false')); check(hex,'Jouw foto · '+hex.toUpperCase(),'top','Item');});
+$('#paste-link').addEventListener('click',()=>{toast('Prototype: deel een product vanuit de webshop-app. Hier gebruiken we een voorbeeld.'); const p=PRODUCTS[1]; $$('.prod').forEach((x,i)=>x.setAttribute('aria-pressed',i===1)); check(p[2],p[0]+' · '+p[1],p[3],p[0]);});
+$('#waitlist').addEventListener('click',()=>{toast('Je staat op de lijst.'); setTimeout(()=>go('end'),900);});
+
+function renderEnd(){const t=TIERS[state.tier]; $('#end-sum').innerHTML='Deze klant betaalde <b>'+eur(t.p-1)+'</b> voor '+t.n.toLowerCase()+(state.tier==='card'?' en krijgt een kleurenpas thuis':'')+'. Eén vraag om geld; de rest volgt per mail.';}
+
+const NOTES={
+ feed:{t:'Drie advertenties, <em>drie stemmen</em>',li:['Girl Math: een bonnetje dat uitrekent waarom het een steal is.','Atelier: de truienstapel met weer-widget, rustig en modieus.','Wingman: zaterdagavond, eerste indruk, zelfvertrouwen.','De advertentie bepaalt de huisstijl in de hele app. Wissel boven de telefoon.'],kpi:[['CTR','≥ 1,2%'],['Klikprijs','≤ €0,50']],yours:'Jouw punt: twee huisstijlen voor vrouwen en één voor mannen, ook in tone of voice.'},
+ start:{t:'Eerst <em>één tik</em>',li:['Dames of heren kost niets en geeft commitment. Heren gaat altijd naar Wingman.','Kop en vinkjes komen uit de huisstijl.'],kpi:[['Klik → keuze','≥ 75%']],yours:''},
+ style:{t:'Stijl en <em>budget</em>',li:['Gelegenheid, budget en favoriete winkels. Dat stuurt straks de outfits en partnerlinks.'],kpi:[['Vragen klaar','≥ 90%']],yours:''},
+ selfie:{t:'Selfie <em>zonder kleine letters</em>',li:['De AI-melding zit in de knop: "Start AI-kleuranalyse". Transparant zonder disclaimer.','De leeftijdsgrens regelen we in de advertentie-targeting (18+), niet met tekst.','Privacy blijft, als verkoopargument: "Je foto wordt nooit bewaard".'],kpi:[['Selfie gemaakt','≥ 80%']],yours:'Jouw punt: dit soort teksten moeten eruit.'},
+ analyse:{t:'Het <em>wow-moment</em>',li:['Kleurdoeken wisselen onder je kin: fout, goed, fout, goed.','Daarna de webshop-ticker, alleen met winkels die we echt doorzoeken.'],kpi:[['Kijkt tot einde','≥ 97%']],yours:''},
+ email:{t:'E-mail, <em>kort</em>',li:['Eén zin en één vinkje. Het vinkje blijft verplicht voor marketingmail (AVG), maar de tekst is een voordeel, geen voorwaarde.'],kpi:[['E-mail gelaten','≥ 55%']],yours:''},
+ free:{t:'Gratis, dan <em>één keuze</em>',li:['Bekende namen staan er gewoon als "vaak genoemd als". Geen voetnoot meer nodig.','Het waarom-blok verschilt per huisstijl: een bonnetje, een vergelijking of de eerste-indruk-feit.','Nog maar twee opties: digitaal of met kleurenpas in de bus.'],kpi:[['Gratis → betaald','≥ 13%'],['Kiest kleurenpas','≥ 50%']],yours:'Jouw punten: tastbaar product, minder drijven naar upsell.'},
+ checkout:{t:'Betalen, <em>niets extra</em>',li:['Geen extra’s, geen vinkjes. Alleen adres als je de pas kiest.','Zonder het afstandsvinkje geldt het wettelijke herroepingsrecht van 14 dagen. Voor €6,99–9,99 is dat een klein risico, en het maakt de checkout schoon.'],kpi:[['Checkout → betaald','≥ 70%']],yours:'Jouw punt: herroepingstekst eruit.'},
+ confirm:{t:'Iets om <em>naar uit te kijken</em>',li:['De pas glijdt uit de envelop: je krijgt iets in je hand, niet alleen een PDF.','Op de pas staan je subtype en 8 kleuren, achterop een QR-code met vriendenkorting.','Elke keer dat je je portemonnee opent, zie je het merk. Daarom komen ze terug.'],kpi:[['Deelt de code','≥ 15%']],yours:'Jouw punt: er moet een hoogwaardig tastbaar product uitkomen.'},
+ result:{t:'De stijlgids',li:['Alle tabbladen open, geen upgrade-sloten meer.','Eén woord onderaan, "Partnerlinks", blijft: dat moet volgens de regels voor reclame.'],kpi:[['Klikt een link','≥ 25%']],yours:''},
+ coach:{t:'Scanner <em>op de wachtlijst</em>',li:['Je kunt het uitproberen, maar er is geen proefabonnement meer in de flow.','De wachtlijst meet interesse zonder bouwtijd. De eerste maand is gratis voor wie zich aanmeldt.'],kpi:[['Meldt zich aan','≥ 25%']],yours:''},
+ end:{t:'Einde',li:['Eén vraag om geld in de hele flow.'],kpi:[['Klik → betaald','≥ 7,4%']],yours:''}
+};
+const STEP_ORDER=[['feed','Advertentie'],['start','Start'],['style','Stijl'],['selfie','Selfie'],['analyse','Analyse'],['email','E-mail'],['free','Gratis + keuze'],['checkout','Afrekenen'],['confirm','Bevestiging'],['result','Stijlgids'],['coach','Scanner']];
+function setNote(id){
+  const n=NOTES[id];
+  $('#note').innerHTML='<div class="label">Waarom dit scherm zo werkt</div><h2>'+n.t+'</h2><ul>'+n.li.map(l=>'<li><span>'+l+'</span></li>').join('')+'</ul><div class="kpi">'+n.kpi.map(k=>'<span>'+k[0]+' <b>'+k[1]+'</b></span>').join('')+'</div>'+(n.yours?'<p class="yours">'+n.yours+'</p>':'');
+  $$('#steps button').forEach(b=>b.setAttribute('aria-current',b.dataset.step===id?'true':'false'));
+}
+$('#steps').innerHTML=STEP_ORDER.map(([k,l],i)=>'<button data-step="'+k+'">'+(i+1)+'. '+l+'</button>').join('');
+$('#steps').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; const k=b.dataset.step;
+  if(!['feed','start','style','selfie'].includes(k)) ensureDefaults();
+  if(k==='checkout'){ go('free'); go('checkout'); } else go(k);});
+$('#modebar').addEventListener('click',e=>{const b=e.target.closest('[data-m]'); if(!b) return; setMode(b.dataset.m); const cur=$$('.scr').find(s=>!s.hidden); go(cur?cur.dataset.s:'feed');});
+
+function tab(which){
+  ['proto','research','money','mk'].forEach(k=>{$('#view-'+k).hidden=k!==which; $('#tab-'+k).setAttribute('aria-selected',k===which);});
+  try{window.scrollTo(0,0);}catch(e){}
+}
+['proto','research','money','mk'].forEach(k=>$('#tab-'+k).addEventListener('click',()=>tab(k)));
+
+const DEC=[
+ ['Nieuwe naam (Huefit is bezet door huefit.store)','go','Overgenomen','Twee merken op één motor: NYANSE voor vrouwen (Girl Math en Atelier) en KULØRT voor mannen. Beide .com-domeinen waren vrij op 12 oktober 2026.'],
+ ['Disclaimer-teksten eruit','go','Overgenomen','Voetnoot bij bekende namen weg ("vaak genoemd als" is genoeg). Herroepingsvinkje weg. AI-melding zit in de knop. Alleen "Partnerlinks" blijft, één woord onderaan.'],
+ ['Geen geld terug (eerdere keuze)','pivot','Gevolg','Zonder het vinkje geldt wettelijk 14 dagen herroepingsrecht. Ik vind dat bij €6,99–9,99 een klein risico voor een schonere checkout. Wil je het toch dichtzetten, dan moet het vinkje terug.'],
+ ['Kledingkast-check waarmaken?','pivot','Aangepast','Vinted-plaatsing kan niet met één knop (API alleen voor partners). Wel: wij schrijven je advertentietekst. Eén tik betalen is niet zeker voor alle methodes. Hij verhuist naar de mail op dag 3.'],
+ ['Te veel drijven naar upsell','go','Overgenomen','In de flow nog maar één keuze: digitaal of met kleurenpas. Cadeaubon, kast-check, waaier en scanner komen per mail.'],
+ ['Getest?','kill','Nee','Niets hiervan is getest. De upsell-cijfers kwamen van leveranciers van upsell-apps, uit webshops. De test van november is de eerste echte meting.'],
+ ['Twee huisstijlen voor vrouwen, één voor mannen','go','Overgenomen','Girl Math (bonnetjes, "eigenlijk een steal"), Atelier (rustig, modeblad) en Wingman (eerste indruk, date). Wissel boven de telefoon.'],
+ ['Hoogwaardig tastbaar product','go','Overgenomen','Een stevige kleurenpas per subtype in je brievenbus (€9,99-pakket). Later via mail een kleurenwaaier met 30 stalen.']
+];
+$('#decisions').innerHTML=DEC.map(d=>'<tr><td>'+d[0]+'</td><td><span class="state '+d[1]+'">'+d[2]+'</span></td><td>'+d[3]+'</td></tr>').join('');
+
+const PERSONAS=[
+ {n:'Sanne',a:23,c:'#B9926B',w:'Studente, Utrecht. Girl Math-advertentie.',q:'Dat bonnetje stuur ik door naar mijn groepsapp. En ik wil die pas echt in mijn portemonnee.'},
+ {n:'Mila',a:34,c:'#8FA3B8',w:'Marketeer, Amsterdam. Atelier-advertentie.',q:'Eindelijk geen pop-ups na het betalen. Het voelt als een merk, niet als een funnel.'},
+ {n:'Daan',a:28,c:'#2F4F3A',w:'Rotterdam, single, volgt menswear. Wingman-advertentie.',q:'Date zaterdag, dit is precies het moment waarop ik het zou kopen.'},
+ {n:'Ingrid',a:46,c:'#6E5468',w:'Kritisch, leest kleine letters.',q:'Iets wat in de brievenbus valt geeft vertrouwen. Een bedrijf met een adres stuurt je iets.'}
+];
+$('#personas').innerHTML=PERSONAS.map(p=>'<div class="panel"><div class="persona"><span class="av" style="background:'+p.c+'">'+p.n[0]+'</span><div style="display:grid;gap:6px;min-width:0"><b>'+p.n+', '+p.a+'</b><span class="meta">'+p.w+'</span></div></div><q>'+p.q+'</q></div>').join('');
+
+const FUNNEL=[['Klikken',1000,'',0],['Kiest dames/heren',750,'75%',0],['Stijlvragen klaar',675,'90%',0],['Selfie gemaakt',540,'80%',0],['Resultaat gezien',524,'97%',0],['E-mail gelaten',288,'55%',0],['Betaald',68,'13%',1],['…waarvan met kleurenpas',34,'50%',1],['Later via e-mail',8,'3%',1]];
+$('#funnel').innerHTML=FUNNEL.map(f=>'<div class="frow"><span>'+f[0]+'</span><div class="bar"><b class="'+(f[3]?'money':'')+'" style="width:'+(f[1]/10)+'%"></b></div><span class="n">'+fmt(f[1])+(f[2]?' · '+f[2]:'')+'</span></div>').join('')+'<p class="small">Doelen per stap, allemaal aannames. 76 kopers per 1.000 klikken is 7,6%: net boven de 7,4% om quitte te spelen bij €0,50 per klik. Krap, dus de klikprijs en de huisstijl die het best werkt bepalen het.</p>';
+
+const ADS=[
+ {s:'g',hook:'Girl math: €6,99 ÷ 365 = €0,02 per dag.',beats:['Bonnetje print zichzelf uit','"1 miskoop minder: −€39,99"','"Basically gratis. Check je kleuren"'],fmt:'TikTok'},
+ {s:'g',hook:'Ik kocht 3 beige truien. Ik ben een Winter.',beats:['Zelfspot, stapel beige truien','Kleurdoeken: beige ✗, koningsblauw ✓','"Leer van mijn fouten"'],fmt:'TikTok + Reels'},
+ {s:'g',hook:'Sale −50%? Alleen een koopje als het je staat.',beats:['Sale-sterren zoals Les Deux','Twee items: ✓ en ✗','"Check vóór je koopt"'],fmt:'Stories'},
+ {s:'a',hook:'Truienweer. Maar welke kleur is van jou?',beats:['Truienstapel met weer-widget 14°C','Eén trui licht op','"Ontdek je kleuren"'],fmt:'Stories + Reels'},
+ {s:'a',hook:'Een kast waarin alles samengaat.',beats:['Flat-lay op parket in één palet','Items schuiven in elkaars combinatie','"Minder kopen, beter kiezen"'],fmt:'Reels'},
+ {s:'a',hook:'Je kleuren, in je portemonnee.',beats:['Envelop op de deurmat','Kleurenpas glijdt eruit','Pas naast een rek in de winkel'],fmt:'Stories'},
+ {s:'w',hook:'Ze ziet je kleur eerder dan je naam.',beats:['Zaterdag 20:00, man voor de spiegel','Twee truien, kleurdoek ✗ en ✓','"Check je kleuren"'],fmt:'Reels'},
+ {s:'w',hook:'Cognac of zwart? Je horloge verraadt je.',beats:['Flat-lay horloge, riem, loafers','Warm ✓ cognac, koel ✓ zwart','"Ontdek je leer"'],fmt:'Carrousel'},
+ {s:'w',hook:'Zelfde trui, andere kleur. Welke ben jij?',beats:['Split-screen zoals in je feed','Heren-flat-lays in twee paletten','"30 seconden"'],fmt:'Reels'}
+];
+const SN={g:'Girl Math',a:'Atelier',w:'Wingman'};
+$('#ads').innerHTML=ADS.map((a,i)=>'<div class="ad"><div class="label">'+SN[a.s]+' · video '+(i+1)+'</div><div class="hook '+(a.s==='g'?'g':a.s==='w'?'w':'')+'">'+a.hook+'</div><ol>'+a.beats.map(b=>'<li>'+b+'</li>').join('')+'</ol><div class="meta"><span>'+a.fmt+'</span></div></div>').join('');
+
+renderCrumbs(); setMode('girlmath'); go('feed');
+})();
+</script>

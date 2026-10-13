@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "comment": "Single source of truth for the reference card. Units: mm, origin = top-left of the card. The /lab detector reads this file to find patch centres via the marker homography.",
+  "card": { "width": 85.6, "height": 53.98, "cornerRadius": 3.18 },
+  "marker": {
+    "dictionary": "DICT_4X4_50",
+    "id": 1,
+    "x": 4,
+    "y": 4,
+    "size": 20
+  },
+  "patches": [
+    { "key": "grey18", "label": "18% grijs", "x": 28, "y": 4, "w": 26, "h": 20, "srgb": "#777777", "role": "exposure+whitebalance" },
+    { "key": "white", "label": "wit (papier)", "x": 56.6, "y": 4, "w": 25, "h": 20, "srgb": null, "role": "whitepoint", "note": "unprinted paper; only corner ticks are printed" },
+    { "key": "lightSkin", "label": "lichte huid", "x": 4, "y": 28, "w": 17.9, "h": 15, "srgb": "#C29682", "role": "check" },
+    { "key": "darkSkin", "label": "donkere huid", "x": 23.9, "y": 28, "w": 17.9, "h": 15, "srgb": "#735244", "role": "check" },
+    { "key": "red", "label": "rood (warm)", "x": 43.8, "y": 28, "w": 17.9, "h": 15, "srgb": "#AF363C", "role": "check" },
+    { "key": "blue", "label": "blauw (koel)", "x": 63.7, "y": 28, "w": 17.9, "h": 15, "srgb": "#383D96", "role": "check" }
+  ],
+  "sampleInset": 0.25,
+  "sampleInsetComment": "Sample only the inner area of each patch (fraction trimmed per side) to avoid edges and cutting errors."
+}

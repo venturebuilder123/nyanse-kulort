@@ -1,0 +1,20 @@
+import Link from "next/link";
+import { logout } from "../login/actions";
+
+export default function LabLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <header className="lab-header">
+        <strong>LAB</strong>
+        <nav>
+          <Link href="/lab">Testpersonen</Link>
+          <Link href="/lab/report">Rapport</Link>
+        </nav>
+        <form action={logout}>
+          <button className="secondary" type="submit">Uitloggen</button>
+        </form>
+      </header>
+      <main className="lab-main">{children}</main>
+    </>
+  );
+}
