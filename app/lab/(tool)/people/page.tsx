@@ -32,6 +32,7 @@ export default function PeopleTool() {
             cx: (Math.min(...xs) + Math.max(...xs)) / 2 / canvas.width,
             cy: (Math.min(...ys) + Math.max(...ys)) / 2 / canvas.height,
             w: (Math.max(...xs) - Math.min(...xs)) / canvas.width,
+            h: (Math.max(...ys) - Math.min(...ys)) / canvas.height,
             aspect: canvas.width / canvas.height,
           },
           good: good.hex,

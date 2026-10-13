@@ -147,8 +147,11 @@
 .g-chip i { display: block; height: 70px; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15); }
 
 /* ---------- combos ---------- */
-.g-combos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-.g-combo { display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: start; }
+.g-combos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; }
+.g-combo { display: grid; gap: 10px; align-content: start; }
+.g-flatlay.flatlay { border-radius: 0; background: #EFEAE3; }
+.g-kulort .g-flatlay.flatlay { background: #E7E3DD; }
+.g-combo ul { grid-template-columns: 1fr 1fr; column-gap: 10px; font-size: 12.5px !important; }
 /* an abstract outfit silhouette: top, bottom, shoes */
 .g-look { display: grid; grid-template-rows: 70px 86px 18px; gap: 3px; }
 .g-look i { display: block; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15); }
@@ -167,6 +170,9 @@
 .g-acc { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px 28px; }
 .g-acc-item { display: grid; gap: 8px; padding-top: 14px; border-top: 0.75px solid var(--hair); align-content: start; }
 .g-acc-sw { display: flex; gap: 6px; }
+.g-acc-flat { width: 92px; aspect-ratio: 1; display: grid; place-items: center; }
+.g-acc-flat .flat { filter: drop-shadow(0 2px 3px rgba(0,0,0,.12)); }
+.g-acc-flat + .g-acc-sw i { width: 18px; height: 18px; }
 .g-acc-sw i { width: 40px; height: 40px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2); }
 .g-acc-item b { font-size: 17px; }
 .g-acc-item p { font-size: 14px; color: rgba(18, 18, 18, 0.75); }
@@ -183,7 +189,7 @@
 /* ---------- capsule ---------- */
 .g-capsule { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px 12px; }
 .g-cap-item { display: grid; gap: 4px; font-size: 13px; }
-.g-cap-item i { display: block; height: 92px; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15); }
+.g-cap-item .flat { background: #EFEAE3; padding: 10px; aspect-ratio: 1; box-sizing: border-box; filter: drop-shadow(0 1px 1px rgba(0,0,0,.06)); }
 .g-cap-item b { font-size: 14px; }
 .g-cap-item span { font-size: 11.5px; color: rgba(18, 18, 18, 0.6); }
 
@@ -228,7 +234,11 @@
   .g-chip span { font-size: 7.5pt; }
   .g-group { gap: 2.5mm; }
   .g-group-head span { font-size: 8.5pt; }
-  .g-cap-item i { height: 22mm; }
+  .g-cap-item .flat { padding: 2mm; }
+  .g-combos { gap: 5mm 6mm; }
+  .g-flatlay.flatlay { width: 70mm; justify-self: start; }
+  .g-combo ul { margin: 1mm 0; gap: 0.8mm; font-size: 8pt !important; }
+  .g-acc-flat { width: 22mm; }
   .g-swap-pair i { height: 17mm; }
 }
 .g-cover-top { max-width: 74%; }

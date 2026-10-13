@@ -22,6 +22,9 @@ import { MiniPass } from "../Hero";
 import { PEOPLE } from "@/lib/brand/people";
 import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
+import { loadAnswers } from "@/lib/flow/answers";
+import { buildGuide } from "@/lib/guide/build";
+import { FlatLay } from "../Flats";
 import { AppBar, Footer } from "../ui";
 
 export default function Result() {
@@ -163,6 +166,21 @@ export default function Result() {
           </div>
         </section>
         <div ref={sentinel} aria-hidden="true" />
+
+        {(() => {
+          // one free look, for the occasion picked on the landing; the other three are in the guide
+          const occ = loadAnswers().occasions[0];
+          const combos = buildGuide(p, config.key).combos;
+          const look = combos.find((c) => c.occasion === (occ === "sport" ? "weekend" : occ)) ?? combos[0]!;
+          return (
+            <section className="q">
+              <h2 className="eyebrow-h">Een look voor {look.title.toLowerCase()}, in jouw kleuren</h2>
+              <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" />
+              <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{pc.item} · {pc.color.name}</li>)}</ul>
+              <p className="small muted">{look.tip} Nog drie looks, je capsule-garderobe en je accessoires staan in je stijlgids.</p>
+            </section>
+          );
+        })()}
 
         <section className="q">
           <h2 className="eyebrow-h">{t.avoidTitle}</h2>

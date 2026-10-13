@@ -6,7 +6,7 @@ import type { BrandKey } from "./types";
 
 export type Person = {
   src: string;
-  face: { cx: number; cy: number; w: number; aspect: number };
+  face: { cx: number; cy: number; w: number; h?: number; aspect: number };
   /** colours the engine recommends / advises against for this face */
   good: string;
   bad: string;

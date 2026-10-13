@@ -10,7 +10,8 @@ import type { Profile } from "@/lib/color/profile";
 import { SEASONS } from "@/lib/color/seasons";
 
 export type Swatch = { name: string; hex: string };
-export type Combo = { title: string; occasion: string; pieces: { item: string; color: Swatch }[]; tip: string };
+export type Piece = { item: string; color: Swatch; /** metal or leather of a two-part accessory */ second?: string };
+export type Combo = { title: string; occasion: string; pieces: Piece[]; tip: string; /** accessories in the person's metal and leather */ extras: Piece[] };
 export type Accessory = { title: string; text: string; swatches: Swatch[] };
 
 export type Swap = { avoid: Swatch; instead: Swatch; reason: string };
@@ -72,6 +73,8 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
     0,
   );
   const hasDenim = withL.some((x) => x.L < 50 && x.h > 220 && x.h < 290);
+  // trousers under a jacket must differ from the jacket
+  const trousers = midNeutral !== dark(0) ? midNeutral : dark(1) !== dark(0) ? dark(1) : light(1);
 
   const men = brand === "kulort";
   const items = men
@@ -91,9 +94,10 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
       pieces: [
         { item: items.jacket, color: sw(dark(0)) },
         { item: items.top, color: sw(light(0)) },
-        { item: items.pants, color: sw(midNeutral) },
+        { item: items.pants, color: sw(trousers) },
       ],
       tip: bright ? "Een heldere kleur in je overhemd of das maakt het af." : "Houd het tonaal: één familie van kleuren, verschillende diepten.",
+      extras: [],
     },
     {
       title: "Weekend",
@@ -104,6 +108,7 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
         { item: items.shoes, color: sw(dark(2)) },
       ],
       tip: "De accentkleur zit bij je gezicht, de rest ondersteunt.",
+      extras: [],
     },
     {
       title: "Date",
@@ -114,6 +119,7 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
         { item: items.coat, color: sw(dark(0)) },
       ],
       tip: "Je sterkste kleur onder je gezicht: daar kijkt de ander naar.",
+      extras: [],
     },
     {
       title: "Feest",
@@ -124,6 +130,7 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
         { item: items.scarf, color: sw(accent(3)) },
       ],
       tip: "Diep en rijk, met één kleur die opvalt.",
+      extras: [],
     },
   ];
 
@@ -156,6 +163,18 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
         { title: "Sjaal", text: `Een accentkleur bij je gezicht: ${sw(accent(0)).name.toLowerCase()} of ${sw(accent(1)).name.toLowerCase()}.`, swatches: [sw(accent(0)), sw(accent(1))] },
         { title: "Zonnebril", text: `${frame.name}.`, swatches: [frame] },
       ];
+
+  // every look gets the same metal and leather: one leather colour, held throughout
+  const extras: Piece[] = men
+    ? [
+        { item: "Horloge", color: leather[0]!, second: metal[0]!.hex },
+        { item: "Riem", color: leather[0]!, second: metal[0]!.hex },
+      ]
+    : [
+        { item: "Sieraden", color: metal[0]!, second: metal[0]!.hex },
+        { item: "Tas", color: leather[0]!, second: metal[0]!.hex },
+      ];
+  for (const c of combos) c.extras = extras;
 
   // make-up (NYANSE): lips from the red/pink accents, blush lighter, eyes from the base
   let makeup: Accessory[] | undefined;

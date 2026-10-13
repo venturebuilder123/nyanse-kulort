@@ -11,7 +11,7 @@ export type Jewel = "goud" | "zilver" | "weetniet";
 export type HairAnswer = NonNullable<ProfileContext["hair"]>;
 
 /** Face position in the photo (fractions), for cropping the drape views. */
-export type FaceBox = { cx: number; cy: number; w: number; aspect: number; mirrored: boolean };
+export type FaceBox = { cx: number; cy: number; w: number; h?: number; aspect: number; mirrored: boolean };
 
 export type FlowResult = {
   measurements: Measurements;

@@ -13,7 +13,14 @@ import { track } from "@/lib/analytics";
 import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
+import { Flat, FlatLay, flatFor, type FlatKind } from "../Flats";
 import { Wordmark } from "../ui";
+
+// accessory drawings on the details page (make-up keeps its swatches)
+const ACC_FLAT: Record<string, FlatKind> = {
+  Horloge: "watch", Riem: "belt", Schoenen: "shoe", "Bril en zonnebril": "glasses",
+  Sieraden: "necklace", "Tas en schoenen": "bag", Sjaal: "scarf", Zonnebril: "glasses",
+};
 
 type R = ReturnType<typeof flowSession.result>;
 
@@ -159,14 +166,10 @@ export default function Guide() {
         <div className="g-combos">
           {g.combos.map((c) => (
             <div key={c.title} className="g-combo">
-              <div className="g-look" aria-hidden="true">
-                <i className="g-look-top" style={{ background: c.pieces[0]!.color.hex }} />
-                <i className="g-look-mid" style={{ background: c.pieces[1]!.color.hex }} />
-                <i className="g-look-low" style={{ background: c.pieces[2]!.color.hex }} />
-              </div>
+              <FlatLay pieces={c.pieces} extras={c.extras} className="g-flatlay" />
               <div>
                 <b>{c.title}</b>
-                <ul>{c.pieces.map((pc) => <li key={pc.item + pc.color.hex}><Dot hex={pc.color.hex} />{pc.item} · {pc.color.name}</li>)}</ul>
+                <ul>{[...c.pieces, ...c.extras].map((pc) => <li key={pc.item + pc.color.hex}><Dot hex={pc.color.hex} />{pc.item} · {pc.color.name}</li>)}</ul>
                 <p className="g-tip">{c.tip}</p>
               </div>
             </div>
@@ -179,6 +182,9 @@ export default function Guide() {
         <div className="g-acc">
           {[...g.accessories, ...(g.makeup ?? [])].map((a) => (
             <div key={a.title} className="g-acc-item">
+              {ACC_FLAT[a.title] ? (
+                <div className="g-acc-flat"><Flat kind={ACC_FLAT[a.title]!} color={a.swatches[ACC_FLAT[a.title] === "watch" ? 1 : 0]?.hex ?? a.swatches[0]!.hex} second={a.swatches.find((x) => /goud|zilver|platina|brons|koper/i.test(x.name))?.hex} /></div>
+              ) : null}
               <div className="g-acc-sw">{a.swatches.map((s) => <i key={s.name + s.hex} style={{ background: s.hex }} title={s.name} />)}</div>
               <b>{a.title}</b>
               <p>{a.text}</p>
@@ -209,7 +215,7 @@ export default function Guide() {
       <Page n={next()} kicker="Je garderobe" title="12 stuks die samen werken">
         <div className="g-capsule">
           {g.capsule.map((c, i) => (
-            <div key={i} className="g-cap-item"><i style={{ background: c.color.hex }} /><b>{c.item}</b><span>{c.color.name}</span></div>
+            <div key={i} className="g-cap-item"><Flat kind={flatFor(c.item)} color={c.color.hex} /><b>{c.item}</b><span>{c.color.name}</span></div>
           ))}
         </div>
         <p className="g-body">Alles in jouw kleuren, dus alles combineert. Vervang stuk voor stuk wat je al hebt.</p>

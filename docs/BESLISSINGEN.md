@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — kleurdoek op maat en kleding als tekeningen
+
+- **Het kleurdoek volgt het gezicht:** hals en schouders worden berekend uit de kin en de breedte en hoogte van het gezicht, in plaats van een vaste vorm onderin. Het doek sluit aan bij de hals en bedekt het T-shirt. Voor de selfie meten we nu ook de gezichtshoogte. Controle van alle AI-modellen op `/lab/drapes`.
+- **Kleding als tekeningen van een modeontwerper** (17 stuks: van T-shirt tot colbert, schoen, horloge, riem, bril, ketting en tas), ingekleurd met het eigen palet. Ze staan in de flat-lays per look (met horloge en riem of ketting en tas in het eigen metaal en leer), op de accessoirepagina, in de capsule en als één gratis look op de resultaatpagina, voor de gelegenheid die iemand koos. Kosten: €0. Komen er later Gemini-beelden (AI-FLATLAY.md), dan vervangen die de tekeningen op dezelfde plek. Controle op `/lab/flats`.
+
 ## 13 oktober 2026 — één hoofddomein met een gesplitste homepage
 
 - **Hoofddomein `kulort-nyanse.com`** (besluit van de oprichter). Op 13 oktober vrij volgens whois, net als `nyanse-kulort.com` en `kulortnyanse.com`. Nog niet geregistreerd; dat doet de oprichter.
