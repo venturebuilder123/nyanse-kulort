@@ -11,8 +11,9 @@ const MODELS = [
     url: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
   },
   {
-    file: "public/models/selfie_multiclass_256x256.tflite",
-    url: "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/latest/selfie_multiclass_256x256.tflite",
+    // 0.8 MB instead of the 16 MB multiclass model: matters for visitors on mobile data
+    file: "public/models/hair_segmenter.tflite",
+    url: "https://storage.googleapis.com/mediapipe-models/image_segmenter/hair_segmenter/float32/latest/hair_segmenter.tflite",
   },
 ];
 

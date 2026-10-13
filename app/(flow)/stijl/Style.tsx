@@ -17,6 +17,11 @@ export default function Style() {
   useEffect(() => {
     setA(loadAnswers());
     setReady(true);
+    // Warm up the face models (±8 MB) while people choose, so the selfie step starts fast.
+    // Not on the landing: people who bounce there should not pay for the download.
+    const warm = () => void import("@/lib/analysis/face/mediapipe").then((m) => m.loadVision()).catch(() => {});
+    if ("requestIdleCallback" in window) requestIdleCallback(warm);
+    else setTimeout(warm, 500);
   }, []);
 
   const update = (next: Answers) => {

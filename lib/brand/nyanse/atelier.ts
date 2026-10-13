@@ -1,3 +1,4 @@
+import { SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
 // Atelier: calm and certain. "Minder kopen, beter kiezen."
@@ -26,5 +27,6 @@ export const atelier: VoiceCopy = {
     shopsHint: "Kies er een paar, of sla over.",
     next: "Volgende: selfie",
   },
+  selfie: SELFIE_NL,
   ring: ["#C8285A", "#C9A9AC", "#8FA3B8", "#A6879C", "#B9926B", "#2F4F3A", "#A2462A", "#1F4FC4", "#F4E3A1", "#D9C7AE"],
 };

@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — selfie-stap
+
+- **Haarmodel van 0,8 MB in plaats van het multiclass-model van 16 MB.** Download voor bezoekers: ±22 MB → ±8 MB. Meting op de testfoto: zelfde huid- en haarwaarden (haar L\* 14,5 vs 14,4), analyse 3× sneller (±0,4 s). Huidgebieden komen nu uit de gezichtspunten, zonder haarpixels. Geldt ook voor `/lab`, zodat lab en app hetzelfde meten.
+- **Modellen laden tijdens het stijlscherm**, niet op de landing: wie op de landing afhaakt, betaalt geen 8 MB aan data.
+- **Live camera alleen via https** (regel van iOS en Android). Zonder https valt de stap terug op de camera-app van de telefoon (`capture="user"`). Beide routes gebruiken dezelfde analyse.
+- **Kwaliteitspoort:** bij betrouwbaarheid < 0,5 één extra selfie met een concrete tip. Ook de tweede laag? Dan door met de vlag `lowConfidence`, zodat het resultaat niet stellig wordt gebracht (§5).
+- **AANNAME om te meten:** zonder kaart is de betrouwbaarheid maximaal 0,7, dus vooral licht en resolutie bepalen of iemand een tweede selfie moet maken. Als dat in de praktijk bij veel mensen gebeurt, passen we de drempel aan op basis van de fase A-data.
+
 ## 13 oktober 2026 — fase B parallel aan de fase A-tests
 
 - **Fase B start parallel** (besluit oprichter): terwijl de testpersonen meedoen, bouw ik de klantflow in de echte huisstijl. De echte analyse koppel ik pas na de gate. Waarom: 3 november is anders te krap. Risico: klein, want de schermen staan los van de kleurlogica.

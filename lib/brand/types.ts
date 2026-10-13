@@ -33,6 +33,7 @@ export type VoiceCopy = {
     shopsHint: string;
     next: string;
   };
+  selfie: SelfieCopy;
   /** colours on the 3D ring, chosen per voice */
   ring: readonly string[];
 };
@@ -52,4 +53,26 @@ export type BrandConfig = {
   themeColor: string;
   /** shown on bank statements and in mails (phase B) */
   descriptor: string;
+};
+
+export type SelfieCopy = {
+  pill: string;
+  tips: { face: string; light: string; even: string };
+  hint: string;
+  jewelQuestion: string;
+  jewel: { goud: string; zilver: string; weetniet: string };
+  age: string;
+  ageNeeded: string;
+  /** the AI notice lives in the button (CLAUDE.md §9, EU AI Act) */
+  start: string;
+  busy: string;
+  loading: string;
+  trust: string;
+  takePhoto: string;
+  pickPhoto: string;
+  noCamera: string;
+  retryTitle: string;
+  retryGeneric: string;
+  noFace: string;
+  failed: string;
 };

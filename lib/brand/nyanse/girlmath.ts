@@ -1,3 +1,4 @@
+import { SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
 // Girl Math: playful sums with a wink, never literal money promises.
@@ -26,5 +27,6 @@ export const girlmath: VoiceCopy = {
     shopsHint: "Kies er een paar, of sla over.",
     next: "Volgende: selfie",
   },
+  selfie: SELFIE_NL,
   ring: ["#D61F5B", "#FFE9A6", "#F4A3A0", "#8FA3B8", "#F3A27A", "#A6879C", "#2BB3A8", "#FFE6EE", "#B9926B", "#6E5468"],
 };

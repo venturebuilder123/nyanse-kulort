@@ -21,8 +21,9 @@ export const LM = {
   leftIris: { centre: 473, ring: [474, 475, 476, 477] },
 } as const;
 
-// selfie_multiclass_256x256 categories
-export const SEG = { background: 0, hair: 1, bodySkin: 2, faceSkin: 3, clothes: 4, other: 5 } as const;
+// hair_segmenter categories. Skin regions are defined by landmarks and exclude hair pixels
+// (fringes, beards); the 16 MB multiclass model was dropped for mobile download size.
+export const SEG = { background: 0, hair: 1 } as const;
 
 export type Mask = { width: number; height: number; data: Uint8Array };
 
@@ -86,21 +87,21 @@ export function measureRegions(img: ImageLike, landmarks: Point[], mask: Mask, g
     return out;
   };
 
-  const disc = (centre: Point, r: number, cat: number) =>
+  const skinDisc = (centre: Point, r: number) =>
     collect({ x0: centre.x - r, y0: centre.y - r, x1: centre.x + r, y1: centre.y + r }, (x, y) =>
-      (x - centre.x) ** 2 + (y - centre.y) ** 2 <= r * r && category(x, y) === cat);
+      (x - centre.x) ** 2 + (y - centre.y) ** 2 <= r * r && category(x, y) !== SEG.hair);
 
-  // Cheeks: discs around the cheek landmarks, face-skin pixels only (drops beard, hair, glasses).
+  // Cheeks: discs around the cheek landmarks, without hair pixels (drops beard and loose hair).
   const cheekR = faceWidthPx * 0.075;
   const rightCheekCentre = lerp(L(LM.rightCheek), L(LM.rightEye[3]!), 0.25);
   const leftCheekCentre = lerp(L(LM.leftCheek), L(LM.leftEye[3]!), 0.25);
-  const cheekRight = disc(rightCheekCentre, cheekR, SEG.faceSkin);
-  const cheekLeft = disc(leftCheekCentre, cheekR, SEG.faceSkin);
+  const cheekRight = skinDisc(rightCheekCentre, cheekR);
+  const cheekLeft = skinDisc(leftCheekCentre, cheekR);
 
   // Forehead: between hairline and brows; the mask removes fringes.
   const foreheadCentre = lerp(L(LM.foreheadTop), L(LM.betweenBrows), 0.55);
   const foreheadR = faceWidthPx * 0.09;
-  const forehead = disc(foreheadCentre, foreheadR, SEG.faceSkin);
+  const forehead = skinDisc(foreheadCentre, foreheadR);
 
   // Irises: an annulus that skips the pupil and the dark limbal ring, inside the eye opening.
   const irisDebug: { centre: Point; r: number }[] = [];

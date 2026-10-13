@@ -24,7 +24,7 @@ async function create(): Promise<Vision> {
         numFaces: 2, // 2 so we can warn about a second face instead of silently picking one
       }),
       ImageSegmenter.createFromOptions(fileset, {
-        baseOptions: { modelAssetPath: "/models/selfie_multiclass_256x256.tflite", delegate },
+        baseOptions: { modelAssetPath: "/models/hair_segmenter.tflite", delegate },
         runningMode: "IMAGE",
         outputCategoryMask: true,
         outputConfidenceMasks: false,

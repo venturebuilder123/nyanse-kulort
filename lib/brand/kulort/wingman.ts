@@ -1,3 +1,4 @@
+import { SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
 // Wingman: confidence and first impressions. Always about him, never about women as a target.
@@ -26,5 +27,6 @@ export const wingman: VoiceCopy = {
     shopsHint: "Kies er een paar, of sla over.",
     next: "Volgende: selfie",
   },
+  selfie: SELFIE_NL,
   ring: ["#1B2A5C", "#8A4A26", "#5E6A7A", "#2F4F3A", "#B9926B", "#6E1F2A", "#4F6886", "#C99A1E", "#3A3D45", "#EADCC2"],
 };
