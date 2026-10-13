@@ -558,7 +558,8 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 /* ---------- couture wordmarks (identity v2) ---------- */
 .wm-kulort { font-stretch: 125%; font-weight: 300; letter-spacing: 0.38em; margin-right: -0.38em; font-size: 15px; }
 .wm-o::after { height: 0.06em; margin-top: -0.03em; left: -18%; right: -18%; transform: rotate(-58deg); }
-.wm-nyanse { font-weight: 400; letter-spacing: 0.3em; margin-right: -0.3em; font-size: 17px; font-variation-settings: "opsz" 96; }
+/* readable at small sizes: Bodoni's text cut (sturdier hairlines), a little weight, less tracking */
+.wm-nyanse { font-weight: 500; letter-spacing: 0.2em; margin-right: -0.2em; font-size: 18px; font-variation-settings: "opsz" 11; }
 @media (min-width: 1024px) {
   .topnav .wm-kulort { font-size: 17px; }
   .topnav .wm-nyanse { font-size: 20px; }
@@ -621,3 +622,118 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .r-look-list li { display: flex; align-items: center; gap: 8px; }
 .r-look-list i { width: 14px; height: 14px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.2); }
 [data-brand="kulort"] .r-look-list i { border-radius: 2px; }
+
+/* =========================================================================
+   Result: the unveiling (reveal), the 30-card deck and the wardrobe
+   ========================================================================= */
+.rv {
+  --rv-bg: #111317; --rv-ink: #F5F1EA; --rv-muted: rgba(245, 241, 234, .66);
+  position: relative; overflow: hidden; isolation: isolate;
+  margin: 0 12px; border-radius: 28px; background: var(--rv-bg); color: var(--rv-ink);
+  padding: 8px 20px 26px; display: grid; gap: 4px;
+}
+[data-brand="kulort"] .rv { border-radius: 6px; }
+[data-voice="atelier"] .rv { --rv-bg: #17121A; }
+[data-voice="girlmath"] .rv { --rv-bg: #1A1120; }
+.rv::before { /* their best colour, glowing behind the fan */
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 150px; width: 420px; height: 420px; translate: -50% -50%;
+  background: radial-gradient(circle, var(--glow) 0%, transparent 62%); opacity: 0; filter: blur(8px);
+  transition: opacity 1.6s ease .3s;
+}
+.rv.is-open::before { opacity: .55; }
+.rv::after { /* fine grain, so the dark reads as paper, not as a screen */
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .08; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.6) .5px, transparent .6px); background-size: 3px 3px;
+}
+
+.rv-stage { --rx: 14deg; --ry: 0deg; height: 250px; margin-bottom: 22px; perspective: 900px; display: grid; place-items: end center; }
+.rv-fan { position: relative; width: 60px; height: 210px; transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .4s ease-out; }
+.rv-fan i {
+  position: absolute; left: 0; bottom: 0; width: 60px; height: 210px; border-radius: 8px 8px 6px 6px;
+  transform-origin: 50% 90%; transform: rotate(0deg) translateZ(calc(var(--i) * 1px));
+  box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 24px rgba(0,0,0,.35), -1px 0 0 rgba(0,0,0,.2);
+  transition: transform 1.1s cubic-bezier(.2, .9, .25, 1.15); transition-delay: calc(250ms + var(--i) * 70ms);
+}
+.rv-fan i::after { /* the white label strip of a fan deck */
+  content: ""; position: absolute; left: 6px; right: 6px; bottom: 8px; height: 26px; border-radius: 3px; background: rgba(255,255,255,.88);
+}
+.rv-fan i span {
+  position: absolute; left: 50%; top: 12px; writing-mode: vertical-rl; transform: translateX(-50%) rotate(180deg);
+  font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.9);
+  text-shadow: 0 0 2px rgba(0,0,0,.35); white-space: nowrap; max-height: 150px; overflow: hidden;
+}
+.rv.is-open .rv-fan i { transform: rotate(var(--a)) translateZ(calc(var(--i) * 1px)); }
+.rv-pin { position: absolute; left: 50%; bottom: 14px; width: 12px; height: 12px; translate: -50% 0; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #b9b2a6 60%, #6d665c); transform: translateZ(20px); box-shadow: 0 2px 4px rgba(0,0,0,.4); }
+
+.rv-copy { display: grid; gap: 8px; justify-items: center; text-align: center; position: relative; }
+.rv-kicker { font-size: 11px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--rv-muted); display: flex; gap: 8px; align-items: center; }
+.rv .disp.rv-family { color: var(--rv-ink); font-size: clamp(64px, 21vw, 104px); line-height: .88; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .9s ease .35s, transform 1.1s cubic-bezier(.2,.9,.25,1) .35s; }
+[data-brand="kulort"] .rv .disp.rv-family { font-size: clamp(52px, 17vw, 88px); }
+.rv.is-open .disp.rv-family { opacity: 1; transform: none; }
+.rv-type { display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.rv-type > span { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--rv-muted); }
+.rv-type b { font-family: var(--f-display); font-size: 26px; font-weight: 700; color: var(--glow); }
+[data-brand="kulort"] .rv-type b { font-stretch: 112%; text-transform: uppercase; font-size: 21px; letter-spacing: .02em; }
+[data-voice="atelier"] .rv-type b { font-style: italic; font-weight: 500; font-size: 30px; }
+.rv-type b span { display: inline-block; opacity: 0; transform: translateY(.4em); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.9,.25,1.2); transition-delay: var(--d); }
+.rv.is-open .rv-type b span { opacity: 1; transform: none; }
+.rv-between { font-size: 13.5px; font-weight: 700; color: var(--rv-muted); }
+.rv-traits { list-style: none; padding: 0; margin: 4px 0 2px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.rv-traits li { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(245,241,234,.22); font-size: 12.5px; font-weight: 700; background: rgba(255,255,255,.04); }
+[data-brand="kulort"] .rv-traits li { border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; font-size: 11px; }
+.rv-desc { max-width: 34ch; font-size: 15.5px; color: var(--rv-muted); }
+.rv-cue { margin-top: 6px; font-size: 18px; color: var(--rv-muted); animation: rv-bob 2.4s ease-in-out infinite; }
+@keyframes rv-bob { 50% { transform: translateY(5px); } }
+.rv .tag-soft { background: rgba(255,255,255,.12); color: var(--rv-ink); }
+
+/* the deck: 30 cards, a few open */
+.deck-lede { font-size: 15px; font-weight: 600; line-height: 1.45; }
+.deck { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; perspective: 800px; }
+.dk { position: relative; aspect-ratio: 3 / 4; border: 0; padding: 0; background: none; cursor: default; }
+.dk-in { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(180deg); transition: transform .9s cubic-bezier(.2,.9,.25,1.1); transition-delay: var(--d); }
+.deck.is-in .dk-open .dk-in { transform: rotateY(0deg); }
+.dk-front, .dk-back { position: absolute; inset: 0; border-radius: 8px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+[data-brand="kulort"] .dk-front, [data-brand="kulort"] .dk-back { border-radius: 3px; }
+.dk-front { display: flex; align-items: flex-end; padding: 6px; box-shadow: 0 6px 14px rgba(0,0,0,.18); }
+.dk-front b { font-size: 10px; line-height: 1.15; font-weight: 800; color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.45); }
+.dk-open .dk-back { transform: rotateY(180deg); }
+.dk-back {
+  display: grid; place-items: center; background-color: var(--card); border: 1px solid var(--line);
+  background-image: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--ink) 5%, transparent) 6px 7px);
+}
+.dk-back i { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; filter: blur(.4px); }
+.dk-mark { font-family: var(--f-display); color: var(--muted); opacity: .55; }
+.dk-mark-k { font-stretch: 125%; font-weight: 300; font-size: 18px; }
+.dk-mark-n { font-weight: 400; font-size: 22px; }
+.dk-shut { cursor: pointer; transition: transform .25s ease; }
+.dk-shut:hover, .dk-shut:focus-visible { transform: translateY(-3px) rotate(-1.5deg); }
+.dk-shut:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* the wardrobe */
+.wd-look { margin: 0; display: grid; gap: 10px; }
+.wd-look figcaption b { font-family: var(--f-display); font-size: 22px; }
+[data-brand="kulort"] .wd-look figcaption b { font-stretch: 112%; text-transform: uppercase; font-size: 17px; letter-spacing: .04em; }
+[data-voice="atelier"] .wd-look figcaption b { font-style: italic; font-weight: 400; }
+.wd-more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
+.wd-shut { position: relative; border: 0; padding: 0; background: none; cursor: pointer; display: grid; gap: 6px; text-align: left; font: inherit; color: inherit; }
+.wd-shut .flatlay { filter: blur(5px) saturate(.9); transform: scale(1.02); }
+.wd-shut::after { /* the closed ribbon */
+  content: "In je gids"; position: absolute; left: 50%; top: 42%; translate: -50% -50%; padding: 5px 10px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); font-size: 10.5px; font-weight: 800; letter-spacing: .06em; white-space: nowrap;
+}
+[data-brand="kulort"] .wd-shut::after { border-radius: 2px; text-transform: uppercase; }
+.wd-shut span { font-size: 13px; font-weight: 800; }
+.wd-cap-title { margin-top: 14px; font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wd-capsule { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.wd-capsule span { aspect-ratio: 1; padding: 5px; border-radius: 8px; background: var(--card); border: 1px solid var(--line); display: grid; place-items: center; }
+.wd-capsule span:not(.is-open) .flat { opacity: .55; }
+[data-brand="kulort"] .wd-capsule span { border-radius: 3px; }
+
+@media (min-width: 1024px) {
+  .rv { margin: 0; }
+  .deck { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-fan, .rv-fan i, .rv .disp.rv-family, .rv-type b span, .dk-in, .rv::before { transition: none !important; }
+  .rv-cue { animation: none; }
+}

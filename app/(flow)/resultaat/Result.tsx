@@ -24,7 +24,9 @@ import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { loadAnswers } from "@/lib/flow/answers";
 import { buildGuide } from "@/lib/guide/build";
-import { FlatLay } from "../Flats";
+import { Flat, FlatLay, flatFor } from "../Flats";
+import { Deck } from "./Deck";
+import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
 
 export default function Result() {
@@ -88,6 +90,15 @@ export default function Result() {
   const six = config.key === "kulort" ? [...showcase(pal)].sort((a, b) => chroma(a.hex) - chroma(b.hex)) : showcase(pal);
   const bad = six[0] ? mostDifferent(six[0], pal.avoid) : undefined;
   const name = (c: (typeof six)[number]) => colorName(c, config.key);
+  const g = buildGuide(p, config.key);
+  // the glow and the type name: the most vivid palette colour that is light enough to read on dark
+  const glow =
+    [...g.groups.flatMap((gr) => gr.colors)]
+      .map((c) => ({ c, lab: hexToLab(c.hex) }))
+      .filter((x) => x.lab.L >= 55)
+      .sort((a, b) => labToLch(b.lab).C - labToLch(a.lab).C)[0]?.c.hex ?? "#E9DCC4";
+  const openHex = new Set(r.paid ? g.groups.flatMap((gr) => gr.colors.map((c) => c.hex)) : six.map((c) => c.hex));
+  const toTiers = () => tiersRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   const ctaLabel = !tier ? t.ctaChoose : `${tier === "card" ? t.ctaCard : t.ctaDigital} · ${euro(PRICES[tier])}`;
 
   function onCta() {
@@ -103,15 +114,18 @@ export default function Result() {
   return (
     <main className="screen">
       <AppBar pill={t.pill} />
-      <section className="r-hero">
-        <p className="label-sm">{t.label}{low && <span className="tag-soft">{t.provisional}</span>}</p>
-        <h1 className="disp r-family">{family}</h1>
-        {/* the precise type is free: it is googleable anyway; the guide sells what Google can't */}
-        <p className="r-typename"><span>{t.typeLabel}</span><b>{SEASONS[p.match.season].name}</b></p>
-        {p.match.border && <p className="r-between">{t.between.replace("{b}", SEASONS[p.match.second].name)}</p>}
-        <span className="r-swatches" aria-hidden="true">{six.map((c) => <i key={c.id} style={{ background: c.hex }} />)}</span>
-        <p className="r-desc">{SEASON_TEXT_NL[p.match.season]}</p>
-      </section>
+      <Reveal
+        kicker={t.label}
+        provisional={low ? t.provisional : undefined}
+        family={family}
+        typeLabel={t.typeLabel}
+        season={SEASONS[p.match.season].name}
+        between={p.match.border ? t.between.replace("{b}", SEASONS[p.match.second].name) : undefined}
+        traits={[undertoneWord(p.undertone), depthWord(p.depth), clarityWord(p.clarity)]}
+        text={SEASON_TEXT_NL[p.match.season]}
+        fan={g.summary.core}
+        glow={glow}
+      />
 
       <div className="pad result">
         {low && (
@@ -154,30 +168,55 @@ export default function Result() {
           );
         })()}
 
-        <section className="q">
-          <h2 className="eyebrow-h">{t.colorsTitle}</h2>
-          <div className="palette6">
-            {six.map((c) => (
-              <div key={c.id} className="chip">
-                <i style={{ background: c.hex }} />
-                <b>{name(c)}</b>
-              </div>
-            ))}
-          </div>
+        <section className="q deck-sec">
+          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : `Jouw 30 kleuren · ${six.length} open`}</h2>
+          {!r.paid && <p className="deck-lede">{t.lockedWhy}</p>}
+          <Deck
+            brand={config.key}
+            cards={g.groups.flatMap((gr) => gr.colors).map((c) => ({ hex: c.hex, name: c.name, open: openHex.has(c.hex) }))}
+            onLocked={() => { track("tier_select", ctx, { from: "deck" }); toTiers(); }}
+          />
+          {!r.paid && <p className="small muted">Tik op een dichte kaart: hij staat in je stijlgids, met naam en waar je hem draagt.</p>}
         </section>
         <div ref={sentinel} aria-hidden="true" />
 
         {(() => {
-          // one free look, for the occasion picked on the landing; the other three are in the guide
+          // the wardrobe: one free look, the other looks and the capsule visible but still closed
           const occ = loadAnswers().occasions[0];
-          const combos = buildGuide(p, config.key).combos;
-          const look = combos.find((c) => c.occasion === (occ === "sport" ? "weekend" : occ)) ?? combos[0]!;
+          const look = g.combos.find((c) => c.occasion === (occ === "sport" ? "weekend" : occ)) ?? g.combos[0]!;
+          const others = g.combos.filter((c) => c !== look);
           return (
-            <section className="q">
-              <h2 className="eyebrow-h">Een look voor {look.title.toLowerCase()}, in jouw kleuren</h2>
-              <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" />
-              <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{pc.item} · {pc.color.name}</li>)}</ul>
-              <p className="small muted">{look.tip} Nog drie looks, je capsule-garderobe en je accessoires staan in je stijlgids.</p>
+            <section className="q wardrobe">
+              <h2 className="eyebrow-h">Je kast, in jouw kleuren</h2>
+              <p className="deck-lede">30 kleuren die allemaal met elkaar combineren: alles in je kast past bij alles. Zo ziet dat eruit.</p>
+              <figure className="wd-look">
+                <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" />
+                <figcaption>
+                  <b>{look.title}</b>
+                  <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{pc.item} · {pc.color.name}</li>)}</ul>
+                  <p className="small muted">{look.tip}</p>
+                </figcaption>
+              </figure>
+              {!r.paid && (
+                <>
+                  <div className="wd-more">
+                    {others.map((c) => (
+                      <button key={c.title} className="wd-shut" onClick={toTiers} aria-label={`Look ${c.title}: staat in je stijlgids`}>
+                        <FlatLay pieces={c.pieces} extras={c.extras} />
+                        <span>{c.title}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="wd-cap-title">Je capsule: 12 stuks die samen werken</p>
+                  <div className="wd-capsule">
+                    {g.capsule.map((c, i) => (
+                      <span key={i} className={i < 3 ? "is-open" : ""} title={i < 3 ? `${c.item} · ${c.color.name}` : "In je stijlgids"}>
+                        <Flat kind={flatFor(c.item)} color={i < 3 ? c.color.hex : "#D6D0C7"} />
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
             </section>
           );
         })()}
@@ -194,17 +233,6 @@ export default function Result() {
             <ScaleBar label={copy.analysis.scales.undertone} word={undertoneWord(p.undertone)} value={(p.undertone + 1) / 2} left="koel" right="warm" />
             <ScaleBar label={copy.analysis.scales.depth} word={depthWord(p.depth)} value={p.depth} left="licht" right="diep" />
             <ScaleBar label={copy.analysis.scales.clarity} word={clarityWord(p.clarity)} value={p.clarity} left="zacht" right="helder" />
-          </div>
-        </section>
-
-        <section className="q">
-          <h2 className="eyebrow-h">{t.lockedTitle}</h2>
-          <p className="locked-why">{t.lockedWhy}</p>
-          <div className="locked">
-            <MiniPass />
-            <ul className="locked-list">
-              {t.lockedItems.map((item) => <li key={item}>{item}</li>)}
-            </ul>
           </div>
         </section>
 
