@@ -23,6 +23,11 @@ describe("buildGuide", () => {
         expect(g.avoid.length).toBeGreaterThanOrEqual(3);
         expect(g.pass).toHaveLength(8);
         expect(!!g.makeup).toBe(brand === "nyanse");
+        expect(g.summary.core).toHaveLength(8);
+        expect(g.summary.rules).toHaveLength(3);
+        expect(g.swaps.length).toBe(g.avoid.length);
+        // the alternative is always a colour from the person's own palette
+        g.swaps.forEach((sw) => expect(g.groups.flatMap((gr) => gr.colors).some((c) => c.hex === sw.instead.hex)).toBe(true));
       });
     }
   }

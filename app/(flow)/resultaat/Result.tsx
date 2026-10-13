@@ -17,6 +17,9 @@ import { flowSession, type FaceBox } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { MiniPass } from "../Hero";
+import { PEOPLE } from "@/lib/brand/people";
+import { nameForHex } from "@/lib/color/palette";
+import type { SeasonKey } from "@/lib/color/seasons";
 import { AppBar, Footer } from "../ui";
 
 export default function Result() {
@@ -117,6 +120,29 @@ export default function Result() {
             <Link href="/selfie" className="notice-link">{t.newSelfie} →</Link>
           </div>
         )}
+
+        {(() => {
+          // the effect on someone from the same colour family (AI model, labelled)
+          const model = PEOPLE[config.key].find((m) => familyOf(m.season as SeasonKey) === family);
+          if (!model) return null;
+          return (
+            <section className="q">
+              <h2 className="eyebrow-h">Ook een {family}</h2>
+              <figure className="split">
+                <div className="split-frame">
+                  <Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.good} fit={{ w: 0.4, cy: 0.38 }} />
+                  <div className="split-left"><Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.bad} fit={{ w: 0.4, cy: 0.38 }} /></div>
+                  <span className="split-line" aria-hidden="true" />
+                </div>
+                <figcaption>
+                  <span className="bad">✕ {nameForHex(model.bad, config.key)}</span>
+                  <span className="good">✓ {nameForHex(model.good, config.key)}</span>
+                </figcaption>
+              </figure>
+              <p className="ai-label">Voorbeeld · AI-model uit dezelfde kleurfamilie, kleuren gekozen door onze analyse</p>
+            </section>
+          );
+        })()}
 
         <section className="q">
           <h2 className="eyebrow-h">{t.colorsTitle}</h2>

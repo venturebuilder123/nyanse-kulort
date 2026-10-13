@@ -13,7 +13,13 @@ export type Swatch = { name: string; hex: string };
 export type Combo = { title: string; occasion: string; pieces: { item: string; color: Swatch }[]; tip: string };
 export type Accessory = { title: string; text: string; swatches: Swatch[] };
 
+export type Swap = { avoid: Swatch; instead: Swatch; reason: string };
+
 export type Guide = {
+  /** one-glance summary (page 2) */
+  summary: { core: Swatch[]; avoid: Swatch[]; metal: string; leather: string; rules: string[] };
+  /** "niet dit, maar dit": each colour to avoid with the nearest colour that does work */
+  swaps: Swap[];
   brand: BrandKey;
   season: string;
   family: string;
@@ -194,7 +200,29 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
     contrast.title + ": " + contrast.text.split(".")[0] + ".",
   ];
 
+  // "Niet dit, maar dit": the palette colour closest in hue to each colour to avoid
+  const hueDist = (a: number, b: number) => Math.min(Math.abs(a - b), 360 - Math.abs(a - b));
+  const swaps: Swap[] = avoid.map(({ color, reason }) => {
+    const h = lch(color.hex).h;
+    const best = [...withL].filter((x) => x.C > 15).sort((a, b) => hueDist(a.h, h) - hueDist(b.h, h))[0] ?? withL[0]!;
+    return { avoid: color, instead: sw(best.c), reason };
+  });
+
+  const rules = [
+    bright ? "Contrast mag: licht naast donker." : soft ? "Kies tonaal: kleuren dicht bij elkaar." : "Eén accent per outfit, de rest rustig.",
+    warm ? "Warm boven koel: goud, camel, roest." : cool ? "Koel boven warm: zilver, navy, ijstinten." : "Neutraal: je kunt beide kanten op, kies zacht.",
+    deep ? "Diepe kleuren dragen je; pastel valt weg." : pale ? "Lichte kleuren laten je stralen; zwart is te zwaar." : "Middentinten zijn je basis; extremen spaarzaam.",
+  ];
+
   return {
+    summary: {
+      core: pal.colors.slice(0, 8).map(sw),
+      avoid: avoid.slice(0, 3).map((a) => a.color),
+      metal: metal.slice(0, 2).map((m) => m.name).join(" of "),
+      leather: leather.map((l) => l.name).join(" of "),
+      rules,
+    },
+    swaps,
     brand,
     season: SEASONS[p.match.season].name,
     family: familyOf(p.match.season),

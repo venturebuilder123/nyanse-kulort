@@ -24,6 +24,8 @@ export type FlowResult = {
   paid?: boolean;
   /** name on the guide's cover (CLAUDE.md §9: PDF with name on the cover) */
   name?: string;
+  /** friend code, created on this device the first time the guide opens */
+  refCode?: string;
   pipeline: "A";
   at: number;
 };

@@ -36,6 +36,15 @@ export type VoiceCopy = {
     trust: { title: Headline; items: readonly [title: string, text: string][] };
     final: { title: Headline; cta: string };
   };
+  /** voice lines for the style guide */
+  guide: {
+    tagline: string;
+    summary: string;
+    effect: string;
+    combos: string;
+    swaps: string;
+    closing: Headline;
+  };
   /** the kleurenpas in the hero: the season stays hidden until the selfie */
   pass: { label: string; season: string };
   style: {

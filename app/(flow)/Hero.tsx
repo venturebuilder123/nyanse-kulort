@@ -117,7 +117,7 @@ export function MiniPass() {
   const { config, copy } = useBrand();
   return (
     <div className="minipass">
-      <span className="minipass-brand">{config.key === "kulort" ? "KULØRT" : "nyanse"}</span>
+      <span className="minipass-brand">{config.key === "kulort" ? "KULØRT" : "NYANSE"}</span>
       <span className="minipass-strip">{copy.ring.slice(0, 8).map((c, i) => <i key={i} style={{ background: c }} />)}</span>
     </div>
   );

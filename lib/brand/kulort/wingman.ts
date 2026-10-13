@@ -21,6 +21,14 @@ export const wingman: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Drie stappen.", "Klaar."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Weet welke kleuren", "voor je werken."], accessories: "welk horloge, welke riem en schoenen kloppen", trustTitle: ["Geen gedoe.", "Geen gok."] }),
+  guide: {
+    tagline: "Je eerste indruk, geregeld.",
+    summary: "Alles wat je moet weten, op één pagina. Screenshot hem.",
+    effect: "Dit is waarom het werkt. Zelfde gezicht, zelfde licht. Alleen de kleur onder de kin verschilt.",
+    combos: "Vier looks die altijd kloppen. Geen gedoe, geen gok.",
+    swaps: "Niet dit, maar dit. Zo vervang je wat je niet staat.",
+    closing: ["Trek aan wat", "voor je werkt."],
+  },
   pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Gratis",

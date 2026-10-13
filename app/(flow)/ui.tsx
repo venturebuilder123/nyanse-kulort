@@ -6,9 +6,9 @@ import type { Headline, OccasionKey } from "@/lib/brand/types";
 import { useBrand } from "./BrandProvider";
 
 /**
- * Wordmarks without a symbol (art direction 13 Oct). KULØRT: wide Archivo, generous tracking,
- * the slash of the Ø in cognac is the only accent. NYANSE: one wordmark for both voices,
- * upright Bodoni in lowercase; the voice changes the copy, not the brand.
+ * Couture wordmarks without a symbol. KULØRT: light, extra-wide Archivo with wide tracking and
+ * a hairline cognac slash through the Ø as signature. NYANSE: Didone capitals (Bodoni) with
+ * wide tracking, one mark for both voices; the voice changes the copy, not the brand.
  */
 export function Wordmark() {
   const { config } = useBrand();
@@ -21,7 +21,7 @@ export function Wordmark() {
   }
   return (
     <span className="wordmark wm-nyanse" role="img" aria-label="NYANSE">
-      <span aria-hidden="true">nyanse</span>
+      <span aria-hidden="true">NYANSE</span>
     </span>
   );
 }

@@ -548,3 +548,12 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   .hero-frame .minipass-brand { font-size: 7.5px; }
   .hero-frame .minipass-strip { height: 7px; }
 }
+
+/* ---------- couture wordmarks (identity v2) ---------- */
+.wm-kulort { font-stretch: 125%; font-weight: 300; letter-spacing: 0.38em; margin-right: -0.38em; font-size: 15px; }
+.wm-o::after { height: 0.06em; margin-top: -0.03em; left: -18%; right: -18%; transform: rotate(-58deg); }
+.wm-nyanse { font-weight: 400; letter-spacing: 0.3em; margin-right: -0.3em; font-size: 17px; font-variation-settings: "opsz" 96; }
+@media (min-width: 1024px) {
+  .topnav .wm-kulort { font-size: 17px; }
+  .topnav .wm-nyanse { font-size: 20px; }
+}

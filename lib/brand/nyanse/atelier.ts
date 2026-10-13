@@ -21,6 +21,14 @@ export const atelier: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo werkt", "het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Minder kopen,", "beter kiezen."], accessories: "welke sieraden, tassen en make-uptinten bij je passen", trustTitle: ["Rustig en", "zonder gedoe."] }),
+  guide: {
+    tagline: "Minder kopen, beter kiezen.",
+    summary: "Je kleuren in één oogopslag. Om bij de hand te houden.",
+    effect: "Het verschil zit in één ding: de kleur bij je gezicht.",
+    combos: "Vier combinaties waarin alles samengaat.",
+    swaps: "Niet dit, maar dit. Een rustiger alternatief uit je eigen palet.",
+    closing: ["Een kast waarin", "alles samengaat."],
+  },
   pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Gratis",

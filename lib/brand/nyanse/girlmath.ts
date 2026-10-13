@@ -21,6 +21,14 @@ export const girlmath: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo simpel", "is het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Stop met kopen wat je", "niet staat."], accessories: "welke sieraden en make-uptinten je staan", trustTitle: ["Geen gedoe,", "geen catch."] }),
+  guide: {
+    tagline: "Minder miskopen, meer outfits die werken. ✨",
+    summary: "De cheatsheet. Screenshot en klaar.",
+    effect: "Zelfde gezicht, andere kleur. Dit is het hele geheim.",
+    combos: "Vier outfits die altijd werken. Girl math: dat zijn tig combinaties.",
+    swaps: "Niet dit, maar dit. Zo koop je nooit meer de verkeerde.",
+    closing: ["Stop met kopen wat je", "niet staat."],
+  },
   pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Gratis",

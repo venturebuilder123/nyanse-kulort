@@ -2,23 +2,42 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { PEOPLE } from "@/lib/brand/people";
+import { familyOf } from "@/lib/color/describe";
+import { nameForHex } from "@/lib/color/palette";
+import type { SeasonKey } from "@/lib/color/seasons";
 import { buildGuide, type Swatch } from "@/lib/guide/build";
+import { makeReferralCode, referralUrl } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
+import { Drape } from "../Drape";
 import { Wordmark } from "../ui";
 
 type R = ReturnType<typeof flowSession.result>;
 
-/** The personal style guide: a document on screen, A4 pages when printed or saved as PDF. */
+/** The personal style guide: an editorial document on screen, exact A4 pages as PDF. */
 export default function Guide() {
-  const { config, voice } = useBrand();
+  const { config, voice, copy } = useBrand();
+  const gc = copy.guide;
   const [r, setR] = useState<R>(null);
   const [loaded, setLoaded] = useState(false);
   const [name, setName] = useState("");
+  const [qr, setQr] = useState<string | null>(null);
+  const [site, setSite] = useState("");
+
   useEffect(() => {
     const res = flowSession.result();
-    setR(res);
-    setName(res?.name ?? "");
+    if (res && res.paid && !res.refCode) flowSession.update({ refCode: makeReferralCode(res.name) });
+    const fresh = flowSession.result();
+    setR(fresh);
+    setName(fresh?.name ?? "");
+    setSite(location.host);
+    if (fresh?.refCode) {
+      void import("qrcode")
+        .then((q) => q.toDataURL(referralUrl(location.origin, fresh.refCode!), { margin: 1, width: 360, color: { dark: "#111111", light: "#ffffff" } }))
+        .then(setQr)
+        .catch(() => {});
+    }
     setLoaded(true);
   }, []);
   const g = useMemo(() => (r ? buildGuide(r.profile, config.key) : null), [r, config.key]);
@@ -27,16 +46,25 @@ export default function Guide() {
   if (!r || !g) return <Locked text="Nog geen kleurprofiel op dit apparaat." href="/" cta="Begin je kleuranalyse" />;
   if (!r.paid) return <Locked text="Je stijlgids hoort bij de gids of de gids met kleurenpas." href="/resultaat" cta="Bekijk je opties" />;
 
-  const date = new Date(r.at).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+  const date = new Date(r.at);
+  const month = date.toLocaleDateString("nl-NL", { month: "long", year: "numeric" });
   const saveName = (v: string) => {
     setName(v);
-    flowSession.update({ name: v.trim() || undefined });
+    const nm = v.trim() || undefined;
+    // a code without a name gets the name as soon as it is filled in
+    const code = r.refCode?.startsWith("KLEUR-") && nm ? makeReferralCode(nm) : r.refCode;
+    flowSession.update({ name: nm, refCode: code });
+    if (code !== r.refCode) setR(flowSession.result());
   };
-  const n = (i: number) => String(i).padStart(2, "0");
   const men = config.key === "kulort";
+  // an AI model from the same colour family shows the effect (labelled as an example)
+  const family = familyOf(r.profile.match.season);
+  const model = PEOPLE[config.key].find((p) => familyOf(p.season as SeasonKey) === family) ?? PEOPLE[config.key][0];
+  let page = 1;
+  const next = () => String(++page).padStart(2, "0");
 
   return (
-    <main className={`guide g-${voice}`}>
+    <main className={`guide g-${voice} g-${config.key}`}>
       <div className="g-toolbar">
         <Wordmark />
         <label className="g-name">
@@ -46,57 +74,89 @@ export default function Guide() {
         <button className="btn btn-sm" onClick={() => window.print()}>Opslaan als PDF</button>
       </div>
 
-      {/* 1. cover */}
+      {/* 01 cover */}
       <section className="g-page g-cover">
         <div className="g-cover-top">
           <Wordmark />
-          <span>Stijlgids</span>
+          <span>N°01 · {month}</span>
         </div>
+        <div className="g-cover-bars" aria-hidden="true">{g.pass.map((c) => <i key={c.hex} style={{ background: c.hex }} />)}</div>
         <div className="g-cover-mid">
-          {name && <p className="g-for">Voor {name}</p>}
+          <p className="g-kicker">Stijlgids{name ? ` · voor ${name}` : ""}</p>
           <h1 className="g-season">{g.season}</h1>
           <p className="g-family">{g.family}{g.second ? ` · op de grens met ${g.second}` : ""}</p>
         </div>
-        <Strip colors={g.pass} tall />
-        <p className="g-cover-date">{date}</p>
+        <p className="g-cover-tag">{gc.tagline}</p>
       </section>
 
-      {/* 2. your colouring */}
-      <Page n={n(2)} title="Zo is jouw kleur opgebouwd">
+      {/* 02 summary */}
+      <Page n={next()} kicker="In één oogopslag" title="Jouw kleuren, kort">
+        <p className="g-lede">{gc.summary}</p>
+        <div className="g-sum">
+          <div className="g-sum-type"><span>Type</span><b>{g.season}</b><em>{g.scales.undertone} · {g.scales.depth} · {g.scales.clarity}</em></div>
+          <div className="g-sum-block"><span>Je kernkleuren</span><Strip colors={g.summary.core} named /></div>
+          <div className="g-sum-block"><span>Liever niet</span><Strip colors={g.summary.avoid} named crossed /></div>
+          <div className="g-sum-row">
+            <div><span>Metaal</span><b>{g.summary.metal}</b></div>
+            <div><span>Leer</span><b>{g.summary.leather}</b></div>
+            <div><span>Contrast</span><b>{g.contrast.title.replace("Jij ", "").replace(/^\w/, (c) => c.toUpperCase())}</b></div>
+          </div>
+          <ol className="g-rules">{g.summary.rules.map((rule) => <li key={rule}>{rule}</li>)}</ol>
+        </div>
+      </Page>
+
+      {/* 03 the effect, shown on an AI model of the same family */}
+      {model && (
+        <Page n={next()} kicker="Het effect" title="Zelfde gezicht. Andere kleur.">
+          <p className="g-lede">{gc.effect}</p>
+          <div className="g-effect">
+            <figure>
+              <Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.bad} fit={{ w: 0.42, cy: 0.38 }} />
+              <figcaption><b>✕ {nameForHex(model.bad, config.key) ?? "Valt weg"}</b><span>Deze kleur trekt de aandacht weg van het gezicht.</span></figcaption>
+            </figure>
+            <figure>
+              <Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.good} fit={{ w: 0.42, cy: 0.38 }} />
+              <figcaption><b>✓ {nameForHex(model.good, config.key) ?? "Jouw kleur"}</b><span>Deze kleur sluit aan bij de eigen kleuren van huid, haar en ogen.</span></figcaption>
+            </figure>
+          </div>
+          <p className="g-caption">Voorbeeld met een AI-model uit dezelfde kleurfamilie ({family}). Kleuren gekozen door onze analyse.</p>
+        </Page>
+      )}
+
+      {/* colouring */}
+      <Page n={next()} kicker="Je profiel" title="Zo is jouw kleur opgebouwd">
         <div className="g-scales">
           <Scale label="Ondertoon" word={g.scales.undertone} value={(g.scales.values.undertone + 1) / 2} left="koel" right="warm" />
           <Scale label="Diepte" word={g.scales.depth} value={g.scales.values.depth} left="licht" right="diep" />
           <Scale label="Helderheid" word={g.scales.clarity} value={g.scales.values.clarity} left="zacht" right="helder" />
         </div>
-        <div className="g-callout">
-          <b>{g.contrast.title}</b>
-          <p>{g.contrast.text}</p>
-        </div>
+        <div className="g-callout"><b>{g.contrast.title}</b><p>{g.contrast.text}</p></div>
         <p className="g-body">
-          Je bent een <b>{g.season}</b>. Dat betekent: een {g.scales.undertone} ondertoon, {g.scales.depth} van diepte en {g.scales.clarity} van
-          helderheid. Kleuren die op dezelfde plek liggen, laten je gezicht rustig en helder ogen. Kleuren ver weg trekken de aandacht van je gezicht af.
+          Je bent een <b>{g.season}</b>: een {g.scales.undertone} ondertoon, {g.scales.depth} van diepte en {g.scales.clarity} van helderheid.
+          Kleuren op dezelfde plek laten je gezicht rustig en helder ogen. Kleuren ver weg trekken de aandacht van je gezicht af.
         </p>
       </Page>
 
-      {/* 3. 30 colours */}
-      <Page n={n(3)} title="Je 30 kleuren">
+      {/* 30 colours */}
+      <Page n={next()} kicker="Je palet" title="Je 30 kleuren">
         {g.groups.map((gr) => (
           <div key={gr.title} className="g-group">
             <div className="g-group-head"><b>{gr.title}</b><span>{gr.text}</span></div>
-            <div className="g-swatches">
-              {gr.colors.map((c) => <Chip key={c.hex} c={c} />)}
-            </div>
+            <div className="g-swatches">{gr.colors.map((c) => <Chip key={c.hex} c={c} />)}</div>
           </div>
         ))}
       </Page>
 
-      {/* 4. combinations */}
-      <Page n={n(4)} title="Combinaties die werken">
+      {/* combinations */}
+      <Page n={next()} kicker="Zo draag je het" title="Combinaties die werken">
+        <p className="g-lede">{gc.combos}</p>
         <div className="g-combos">
           {g.combos.map((c) => (
             <div key={c.title} className="g-combo">
-              <div className="g-combo-stack">
-                {c.pieces.map((pc) => <i key={pc.item + pc.color.hex} style={{ background: pc.color.hex }} />)}
+              <div className="g-look" aria-hidden="true">
+                <i className="g-look-top" style={{ background: c.pieces[0]!.color.hex }} />
+                <i className="g-look-mid" style={{ background: c.pieces[1]!.color.hex }} />
+                <i className="g-look-low" style={{ background: c.pieces[2]!.color.hex }} />
               </div>
               <div>
                 <b>{c.title}</b>
@@ -108,8 +168,8 @@ export default function Guide() {
         </div>
       </Page>
 
-      {/* 5. accessories (+ make-up) */}
-      <Page n={n(5)} title={men ? "Horloge, riem, schoenen en bril" : "Sieraden, tas en make-up"}>
+      {/* accessories (+ make-up) */}
+      <Page n={next()} kicker="De details" title={men ? "Horloge, riem, schoenen en bril" : "Sieraden, tas en make-up"}>
         <div className="g-acc">
           {[...g.accessories, ...(g.makeup ?? [])].map((a) => (
             <div key={a.title} className="g-acc-item">
@@ -121,57 +181,91 @@ export default function Guide() {
         </div>
       </Page>
 
-      {/* 6. avoid */}
-      <Page n={n(6)} title="Liever niet bij je gezicht">
-        <div className="g-avoid">
-          {g.avoid.map((a) => (
-            <div key={a.color.hex} className="g-avoid-item">
-              <i style={{ background: a.color.hex }} />
-              <div><b>{a.color.name}</b><p>{a.reason}</p></div>
+      {/* not this, but this */}
+      <Page n={next()} kicker="Wat niet past" title="Niet dit, maar dit">
+        <p className="g-lede">{gc.swaps}</p>
+        <div className="g-swaps">
+          {g.swaps.map((s) => (
+            <div key={s.avoid.hex} className="g-swap">
+              <div className="g-swap-pair">
+                <i className="no" style={{ background: s.avoid.hex }} />
+                <span aria-hidden="true">→</span>
+                <i style={{ background: s.instead.hex }} />
+              </div>
+              <p><b>{s.avoid.name}</b> {s.reason}. Kies <b>{s.instead.name}</b>.</p>
             </div>
           ))}
         </div>
-        <p className="g-body">Je hoeft ze niet weg te gooien. Draag ze onder je middel: als broek, rok of schoenen. Daar kijkt niemand naar je gezicht.</p>
+        <p className="g-body">Je hoeft ze niet weg te gooien. Onder je middel, als broek, rok of schoenen, vallen ze minder op.</p>
       </Page>
 
-      {/* 7. capsule */}
-      <Page n={n(7)} title="Je capsule: 12 stuks die samen werken">
+      {/* capsule */}
+      <Page n={next()} kicker="Je garderobe" title="12 stuks die samen werken">
         <div className="g-capsule">
           {g.capsule.map((c, i) => (
             <div key={i} className="g-cap-item"><i style={{ background: c.color.hex }} /><b>{c.item}</b><span>{c.color.name}</span></div>
           ))}
         </div>
-        <p className="g-body">Met deze 12 stuks maak je tientallen combinaties, omdat alles in jouw kleuren is. Vervang stuk voor stuk wat je al hebt.</p>
+        <p className="g-body">Alles in jouw kleuren, dus alles combineert. Vervang stuk voor stuk wat je al hebt.</p>
       </Page>
 
-      {/* 8. in the shop + pass */}
-      <Page n={n(8)} title="In de winkel">
-        <ul className="g-tips">{g.shopping.map((t) => <li key={t}>{t}</li>)}</ul>
-        <div className="g-pass">
+      {/* shop, home screen, friends */}
+      <Page n={next()} kicker="Altijd bij je" title="In de winkel en op je telefoon">
+        <ul className="g-tips">{g.shopping.slice(0, 4).map((t) => <li key={t}>{t}</li>)}</ul>
+        <div className="g-two">
+          <div className="g-home">
+            <b>Zet je kleuren op je beginscherm</b>
+            <ol>
+              <li><span>iPhone</span> Open {site || "de site"} in Safari · tik op Deel (vierkant met pijl) · kies <em>Zet op beginscherm</em>.</li>
+              <li><span>Android</span> Open in Chrome · tik op ⋮ · kies <em>Toevoegen aan startscherm</em>.</li>
+            </ol>
+          </div>
           <div className="g-pass-card">
             <div className="g-pass-top"><Wordmark /><span>Kleurenpas</span></div>
             <b>{g.season}</b>
             <Strip colors={g.pass} />
           </div>
-          <p className="g-body">Je pas: je 8 kernkleuren. Maak een screenshot, of bewaar de echte pas in je portemonnee.</p>
         </div>
+        {r.refCode && (
+          <div className="g-friend">
+            {qr && <img src={qr} alt={`QR-code naar ${site} met vriendencode ${r.refCode}`} width={120} height={120} />}
+            <div>
+              <span className="g-kicker">Deel je kleuren</span>
+              <b className="g-code">{r.refCode}</b>
+              <p>Je vrienden krijgen €1 korting op hun gids. Scan de code of ga naar <b>{site}</b>.</p>
+            </div>
+          </div>
+        )}
+        <p className="g-closing">{gc.closing[0]} <em>{gc.closing[1]}</em></p>
       </Page>
     </main>
   );
 }
 
-function Page({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+function Page({ n, kicker, title, children }: { n: string; kicker: string; title: string; children: React.ReactNode }) {
   return (
     <section className="g-page">
-      <header className="g-head"><span className="g-n">{n}</span><h2>{title}</h2></header>
+      <header className="g-head">
+        <div><span className="g-kicker">{kicker}</span><h2>{title}</h2></div>
+        <span className="g-n">{n}</span>
+      </header>
       <div className="g-content">{children}</div>
       <footer className="g-foot"><Wordmark /><span>Aanbevolen op kleur, nooit op commissie.</span></footer>
     </section>
   );
 }
 
-function Strip({ colors, tall }: { colors: Swatch[]; tall?: boolean }) {
-  return <div className={`g-strip${tall ? " tall" : ""}`}>{colors.map((c) => <i key={c.hex} style={{ background: c.hex }} />)}</div>;
+function Strip({ colors, named, crossed }: { colors: Swatch[]; named?: boolean; crossed?: boolean }) {
+  return (
+    <div className={`g-strip${named ? " named" : ""}${crossed ? " crossed" : ""}`}>
+      {colors.map((c) => (
+        <div key={c.hex}>
+          <i style={{ background: c.hex }} />
+          {named && <span>{c.name}</span>}
+        </div>
+      ))}
+    </div>
+  );
 }
 function Chip({ c }: { c: Swatch }) {
   return <div className="g-chip"><i style={{ background: c.hex }} /><span>{c.name}</span></div>;
