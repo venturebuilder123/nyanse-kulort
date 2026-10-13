@@ -116,8 +116,9 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
     card: {
       name: "Gids + kleurenpas",
       badge: "Aanrader",
-      line: "Je pas in de brievenbus (NL, BE, DE), verzending inbegrepen, binnen ±1 week",
-      features: ["Alles uit de digitale gids", "Stevige kleurenpas met je 8 kernkleuren, voor in je portemonnee en in de winkel"],
+      line: "Je kleuren altijd bij je, ook in de paskamer",
+      note: "Gratis verzonden naar NL, BE en DE, binnen ±1 week",
+      features: ["Alles uit de digitale gids", "Stevige pas met je 8 kernkleuren, voor in je portemonnee"],
     },
     digital: {
       name: "Digitale gids",
@@ -126,6 +127,11 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
     },
   },
   ctaChoose: "Kies je gids",
+  buyCard: "Kies gids + kleurenpas · {price}",
+  buyDigital: "Kies digitale gids · {price}",
+  ctaFrom: "Bekijk je gids · vanaf {price}",
+  mailLater: "Nog even nadenken? Mail mij mijn profiel",
+  next: "Hieronder: je kleuren, je look en wat je beter laat hangen",
   ctaDigital: "Krijg mijn gids",
   ctaCard: "Krijg mijn gids + pas",
   fine: "Prijzen inclusief btw en verzending.",

@@ -204,9 +204,16 @@ export type ResultCopy = {
   tiersTitle: string;
   tiers: {
     digital: { name: string; line: string; features: readonly string[] };
-    card: { name: string; badge: string; line: string; features: readonly string[] };
+    card: { name: string; badge: string; line: string; note: string; features: readonly string[] };
   };
   ctaChoose: string;
+  /** buy button on each tier card: {price} */
+  buyCard: string;
+  buyDigital: string;
+  /** sticky button: {price} = the lowest price */
+  ctaFrom: string;
+  mailLater: string;
+  next: string;
   ctaDigital: string;
   ctaCard: string;
   fine: string;

@@ -24,7 +24,7 @@ import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { loadAnswers } from "@/lib/flow/answers";
 import { buildGuide } from "@/lib/guide/build";
-import { Flat, FlatLay, flatFor } from "../Flats";
+import { FlatLay } from "../Flats";
 import { Deck } from "./Deck";
 import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
@@ -38,6 +38,8 @@ export default function Result() {
   // no pre-selected tier: the visitor chooses (ACM guidance on default options)
   const [tier, setTier] = useState<Tier | null>(null);
   const [showCta, setShowCta] = useState(false);
+  // the sticky button steps aside while the price cards themselves are on screen
+  const [tiersInView, setTiersInView] = useState(false);
   const sentinel = useRef<HTMLDivElement>(null);
   const tiersRef = useRef<HTMLElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -71,6 +73,13 @@ export default function Result() {
     io.observe(el);
     return () => io.disconnect();
   }, [loaded]);
+  useEffect(() => {
+    const el = tiersRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setTiersInView(!!e?.isIntersecting), { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [loaded, r]);
 
   // friend code from the invite link: €1 off, checked again server-side at payment (CLAUDE.md §2)
   const [ref, setRef] = useState<ReturnType<typeof invite.get>>(null);
@@ -99,21 +108,20 @@ export default function Result() {
       .sort((a, b) => labToLch(b.lab).C - labToLch(a.lab).C)[0]?.c.hex ?? "#E9DCC4";
   const openHex = new Set(r.paid ? g.groups.flatMap((gr) => gr.colors.map((c) => c.hex)) : six.map((c) => c.hex));
   const toTiers = () => tiersRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-  const ctaLabel = !tier ? t.ctaChoose : `${tier === "card" ? t.ctaCard : t.ctaDigital} · ${euro(PRICES[tier])}`;
+  const ctaLabel = t.ctaFrom.replace("{price}", euro(pay("digital")));
 
-  function onCta() {
-    if (!tier) {
-      tiersRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
-    }
-    track("checkout_open", ctx, { tier });
+  // one tap per card straight to checkout; nothing is pre-selected (ACM guidance on defaults)
+  function buy(k: Tier) {
+    setTier(k);
+    track("tier_select", ctx, { tier: k });
+    track("checkout_open", ctx, { tier: k });
     setWaiver(false);
     dialog.current?.showModal();
   }
 
   return (
     <main className="screen">
-      <AppBar pill={t.pill} />
+      <AppBar />
       <Reveal
         kicker={t.label}
         provisional={low ? t.provisional : undefined}
@@ -121,7 +129,7 @@ export default function Result() {
         typeLabel={t.typeLabel}
         season={SEASONS[p.match.season].name}
         between={p.match.border ? t.between.replace("{b}", SEASONS[p.match.second].name) : undefined}
-        traits={[undertoneWord(p.undertone), depthWord(p.depth), clarityWord(p.clarity)]}
+        next={t.next}
         text={SEASON_TEXT_NL[p.match.season]}
         fan={g.summary.core}
         glow={glow}
@@ -169,14 +177,12 @@ export default function Result() {
         })()}
 
         <section className="q deck-sec">
-          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : `Jouw 30 kleuren · ${six.length} open`}</h2>
+          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : `${six.length} van je 30 kleuren`}</h2>
           {!r.paid && <p className="deck-lede">{t.lockedWhy}</p>}
           <Deck
-            brand={config.key}
             cards={g.groups.flatMap((gr) => gr.colors).map((c) => ({ hex: c.hex, name: c.name, open: openHex.has(c.hex) }))}
             onLocked={() => { track("tier_select", ctx, { from: "deck" }); toTiers(); }}
           />
-          {!r.paid && <p className="small muted">Tik op een dichte kaart: hij staat in je stijlgids, met naam en waar je hem draagt.</p>}
         </section>
         <div ref={sentinel} aria-hidden="true" />
 
@@ -199,20 +205,13 @@ export default function Result() {
               </figure>
               {!r.paid && (
                 <>
+                  <p className="wd-more-title">+{others.length} looks voor {others.map((c) => c.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " en $1")}, plus je capsule-garderobe, in je gids</p>
                   <div className="wd-more">
                     {others.map((c) => (
                       <button key={c.title} className="wd-shut" onClick={toTiers} aria-label={`Look ${c.title}: staat in je stijlgids`}>
                         <FlatLay pieces={c.pieces} extras={c.extras} />
                         <span>{c.title}</span>
                       </button>
-                    ))}
-                  </div>
-                  <p className="wd-cap-title">Je capsule: 12 stuks die samen werken</p>
-                  <div className="wd-capsule">
-                    {g.capsule.map((c, i) => (
-                      <span key={i} className={i < 3 ? "is-open" : ""} title={i < 3 ? `${c.item} · ${c.color.name}` : "In je stijlgids"}>
-                        <Flat kind={flatFor(c.item)} color={i < 3 ? c.color.hex : "#D6D0C7"} />
-                      </span>
                     ))}
                   </div>
                 </>
@@ -227,23 +226,51 @@ export default function Result() {
           <p className="small muted">{t.avoidText}</p>
         </section>
 
-        <section className="q">
-          <h2 className="eyebrow-h">{t.scalesTitle}</h2>
-          <div className="r-scales">
-            <ScaleBar label={copy.analysis.scales.undertone} word={undertoneWord(p.undertone)} value={(p.undertone + 1) / 2} left="koel" right="warm" />
-            <ScaleBar label={copy.analysis.scales.depth} word={depthWord(p.depth)} value={p.depth} left="licht" right="diep" />
-            <ScaleBar label={copy.analysis.scales.clarity} word={clarityWord(p.clarity)} value={p.clarity} left="zacht" right="helder" />
+        <Why block={t.why} />
+
+        {r.paid ? (
+          <section className="q">
+            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
+          </section>
+        ) : (
+        <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
+          <h2 id="tiers-h" className="eyebrow-h">{t.tiersTitle}</h2>
+          <div className="tiers">
+            {(["card", "digital"] as const).map((k) => {
+              const tt = t.tiers[k];
+              return (
+                <div key={k} className={`tier${k === "card" ? " is-rec" : ""}`}>
+                  {"badge" in tt && <span className="badge">{tt.badge}</span>}
+                  <span className="tier-head"><b>{tt.name}</b><span className="price">{euro(PRICES[k])}</span></span>
+                  {k === "card" && (
+                    <span className="tier-pass" aria-hidden="true">
+                      <span className="tier-pass-top"><span>{config.name}</span><em>{SEASONS[p.match.season].name}</em></span>
+                      <span className="tier-pass-strip">{g.pass.map((c, i) => <i key={i} style={{ background: c.hex }} />)}</span>
+                    </span>
+                  )}
+                  <span className="tier-line">{tt.line}</span>
+                  {"note" in tt && <span className="tier-note">{tt.note}</span>}
+                  <ul>{tt.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                  <button className={`btn${k === "card" ? "" : " btn-ghost"}`} onClick={() => buy(k)}>
+                    {(k === "card" ? t.buyCard : t.buyDigital).replace("{price}", euro(pay(k)))}
+                  </button>
+                </div>
+              );
+            })}
           </div>
+          {low && <p className="small muted">{t.lowTiersNote}</p>}
+          <p className="fine">{t.fine}</p>
         </section>
+        )}
 
         {!hasEmail && (
           <section className="q">
-            <h2 className="eyebrow-h">{t.mailTitle}</h2>
+            <h2 className="eyebrow-h">{t.mailLater}</h2>
             {mailSaved ? (
               <p className="small">{t.mailDone.replace("{email}", mailSaved)}</p>
             ) : (
               <form
-                className="row-inline"
+                className="row-inline mail-later"
                 noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -258,53 +285,29 @@ export default function Result() {
                 }}
               >
                 <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder={copy.email.placeholder} value={mail} onChange={(e) => setMail(e.target.value)} aria-label={t.mailTitle} />
-                <button className="btn" type="submit">{t.mailCta}</button>
+                <button className="link-btn mail-send" type="submit">{t.mailCta} →</button>
               </form>
             )}
           </section>
         )}
 
-        <Why block={t.why} />
-
-        {r.paid ? (
-          <section className="q">
-            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
-          </section>
-        ) : (
-        <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
-          <h2 id="tiers-h" className="eyebrow-h">{t.tiersTitle}</h2>
-          <div className="tiers" role="radiogroup" aria-labelledby="tiers-h">
-            {(["card", "digital"] as const).map((k) => {
-              const tt = t.tiers[k];
-              return (
-                <button
-                  key={k}
-                  role="radio"
-                  aria-checked={tier === k}
-                  className={`tier${k === "card" ? " is-rec" : ""}`}
-                  onClick={() => { setTier(k); track("tier_select", ctx, { tier: k }); }}
-                >
-                  {"badge" in tt && <span className="badge">{tt.badge}</span>}
-                  <span className="tier-head"><span className="radio" aria-hidden="true" /><b>{tt.name}</b><span className="price">{euro(PRICES[k])}</span></span>
-                  <span className="tier-line">{tt.line}</span>
-                  <ul>{tt.features.map((f) => <li key={f}>{f}</li>)}</ul>
-                </button>
-              );
-            })}
+        <details className="q scales-fold">
+          <summary className="eyebrow-h">{t.scalesTitle}</summary>
+          <div className="r-scales">
+            <ScaleBar label={copy.analysis.scales.undertone} word={undertoneWord(p.undertone)} value={(p.undertone + 1) / 2} left="koel" right="warm" />
+            <ScaleBar label={copy.analysis.scales.depth} word={depthWord(p.depth)} value={p.depth} left="licht" right="diep" />
+            <ScaleBar label={copy.analysis.scales.clarity} word={clarityWord(p.clarity)} value={p.clarity} left="zacht" right="helder" />
           </div>
-          {low && <p className="small muted">{t.lowTiersNote}</p>}
-          <p className="fine">{t.fine}</p>
-        </section>
-        )}
+        </details>
 
-        <button className="link-btn" onClick={() => { void forgetMe().then(() => router.replace("/")); }}>{t.deleteProfile}</button>
+        <button className="link-btn delete-link" onClick={() => { void forgetMe().then(() => router.replace("/")); }}>{t.deleteProfile}</button>
       </div>
       <Footer />
 
       {/* low confidence: the next step is a better selfie, not a purchase */}
       {!low && !r.paid && (
-        <div className={`sticky sticky-float${showCta ? " is-on" : ""}`} aria-hidden={!showCta}>
-          <button className="btn" onClick={onCta} tabIndex={showCta ? 0 : -1}>{ctaLabel}</button>
+        <div className={`sticky sticky-float${showCta && !tiersInView ? " is-on" : ""}`} aria-hidden={!showCta || tiersInView}>
+          <button className="btn" onClick={toTiers} tabIndex={showCta ? 0 : -1}>{ctaLabel}</button>
         </div>
       )}
 
@@ -363,7 +366,23 @@ function ScaleBar({ label, word, value, left, right }: { label: string; word: st
 
 function BeforeAfter(props: { photo: string; face?: FaceBox; bad: string; good: string; badName: string; goodName: string; title: string; hint: string }) {
   const [pos, setPos] = useState(50);
+  const [wiping, setWiping] = useState(false);
   const frame = useRef<HTMLDivElement>(null);
+  // once, when it scrolls into view: show what the slider does (not with reduced motion)
+  useEffect(() => {
+    const el = frame.current;
+    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timers: number[] = [];
+    const io = new IntersectionObserver(([e]) => {
+      if (!e?.isIntersecting) return;
+      io.disconnect();
+      setWiping(true);
+      [[150, 18], [800, 82], [1450, 50]].forEach(([at, to]) => timers.push(window.setTimeout(() => setPos(to!), at)));
+      timers.push(window.setTimeout(() => setWiping(false), 2100));
+    }, { threshold: 0.6 });
+    io.observe(el);
+    return () => { io.disconnect(); timers.forEach(clearTimeout); };
+  }, []);
   const fit = { w: 0.44, cy: 0.36 }; // smaller, higher face: the cloth stays in view
   const move = (clientX: number) => {
     const r = frame.current?.getBoundingClientRect();
@@ -373,7 +392,7 @@ function BeforeAfter(props: { photo: string; face?: FaceBox; bad: string; good: 
     <section className="q">
       <h2 className="eyebrow-h">{props.title}</h2>
       <div
-        className="ba"
+        className={`ba${wiping ? " is-wiping" : ""}`}
         ref={frame}
         onPointerDown={(e) => { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); move(e.clientX); }}
         onPointerMove={(e) => { if (e.buttons) move(e.clientX); }}

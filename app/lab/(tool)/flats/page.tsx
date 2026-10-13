@@ -7,7 +7,7 @@ import { buildGuide } from "@/lib/guide/build";
 import "@/app/(flow)/flow.css";
 
 // Lab check: every drawing, and the four looks of a few seasons per brand.
-const KINDS: FlatKind[] = ["tee", "shirt", "polo", "knit", "blazer", "coat", "pants", "jeans", "skirt", "dress", "shoe", "scarf", "watch", "belt", "glasses", "necklace", "bag"];
+const KINDS: FlatKind[] = ["tee", "shirt", "blouse", "wide", "polo", "knit", "blazer", "coat", "pants", "jeans", "skirt", "dress", "shoe", "scarf", "watch", "belt", "glasses", "necklace", "bag"];
 const base = computeProfile({ skin: { lab: { L: 60, a: 12, b: 16 }, n: 3000, sdL: 3 }, faceWidthPx: 400, calibrated: true } as Measurements);
 const at = (k: SeasonKey) => ({ ...base, ...SEASONS[k].centre, match: nearestSeason(SEASONS[k].centre) });
 

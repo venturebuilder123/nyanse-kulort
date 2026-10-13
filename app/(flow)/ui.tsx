@@ -26,11 +26,11 @@ export function Wordmark() {
   );
 }
 
-export function AppBar({ pill }: { pill: string }) {
+export function AppBar({ pill }: { pill?: string }) {
   return (
     <header className="appbar">
       <Wordmark />
-      <span className="pill">{pill}</span>
+      {pill && <span className="pill">{pill}</span>}
     </header>
   );
 }

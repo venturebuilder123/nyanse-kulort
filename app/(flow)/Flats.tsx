@@ -7,7 +7,7 @@
 import { useId } from "react";
 
 export type FlatKind =
-  | "tee" | "shirt" | "polo" | "knit" | "blazer" | "coat" | "pants" | "jeans" | "skirt" | "dress"
+  | "tee" | "shirt" | "blouse" | "wide" | "polo" | "knit" | "blazer" | "coat" | "pants" | "jeans" | "skirt" | "dress"
   | "shoe" | "scarf" | "watch" | "belt" | "glasses" | "necklace" | "bag";
 
 /** Dutch garment names as used in the guide → drawing. */
@@ -15,11 +15,13 @@ export function flatFor(item: string): FlatKind {
   const k = item.toLowerCase();
   if (k.includes("colbert") || k.includes("blazer")) return "blazer";
   if (k.includes("jas")) return "coat";
-  if (k.includes("overhemd") || k.includes("blouse")) return "shirt";
+  if (k.includes("blouse")) return "blouse";
+  if (k.includes("overhemd")) return "shirt";
   if (k.includes("polo")) return "polo";
   if (k.includes("trui")) return "knit";
   if (k.includes("jeans")) return "jeans";
-  if (k.includes("chino") || k.includes("pantalon") || k.includes("broek")) return "pants";
+  if (k.includes("pantalon")) return "wide";
+  if (k.includes("chino") || k.includes("broek")) return "pants";
   if (k.includes("rok")) return "skirt";
   if (k.includes("jurk")) return "dress";
   if (k.includes("schoen")) return "shoe";
@@ -44,6 +46,17 @@ const SHAPES: Record<FlatKind, Shape> = {
     body: "M38 8 L50 15 L62 8 L76 12 L90 76 L80 80 L72 42 L72 95 L28 95 L28 42 L20 80 L10 76 L24 12 Z",
     details: ["M38 8 L43 21 L50 15 L57 21 L62 8", "M50 15 L50 95", "M12 70 L21 73", "M88 70 L79 73", "M30 24 L40 24 L40 30 L30 30"],
     dots: [[52.5, 30], [52.5, 44], [52.5, 58], [52.5, 72], [52.5, 86]],
+  },
+  blouse: {
+    // soft shoulders, a fluid body, a tie-less soft collar, no pocket
+    body: "M40 9 Q50 16 60 9 L75 13 Q84 40 90 74 L80 78 Q74 56 70 44 Q72 70 76 95 L24 95 Q28 70 30 44 Q26 56 20 78 L10 74 Q16 40 25 13 Z",
+    details: ["M40 9 L45 20 Q50 24 55 20 L60 9", "M50 22 L50 60", "M12 68 Q16 70 21 72", "M88 68 Q84 70 79 72", "M30 44 Q50 48 70 44"],
+    dots: [[50, 30], [50, 42], [50, 54]],
+  },
+  wide: {
+    // high-waisted wide-leg trousers
+    body: "M32 5 L68 5 L84 97 L56 97 L50 30 L44 97 L16 97 Z",
+    details: ["M32 12 L68 12", "M50 12 L50 30", "M40 12 L38 97", "M60 12 L62 97"],
   },
   polo: {
     body: "M37 10 L50 14 L63 10 L80 16 L94 34 L82 42 L74 36 L74 94 L26 94 L26 36 L18 42 L6 34 L20 16 Z",
@@ -165,6 +178,8 @@ const SLOTS: Partial<Record<FlatKind, { x: number; y: number; w: number; r: numb
   blazer: { x: -2, y: 2, w: 56, r: -5, z: 2 },
   coat: { x: -3, y: 0, w: 58, r: -4, z: 1 },
   shirt: { x: 30, y: 3, w: 46, r: 4, z: 3 },
+  blouse: { x: 30, y: 3, w: 46, r: 4, z: 3 },
+  wide: { x: 54, y: 18, w: 46, r: 4, z: 2 },
   tee: { x: 31, y: 5, w: 44, r: 3, z: 3 },
   polo: { x: 31, y: 5, w: 44, r: 3, z: 3 },
   knit: { x: 2, y: 3, w: 54, r: -3, z: 3 },

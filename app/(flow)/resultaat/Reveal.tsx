@@ -12,7 +12,7 @@ export function Reveal(props: {
   typeLabel: string;
   season: string;
   between?: string;
-  traits: string[];
+  next: string;
   text: string;
   fan: Swatch[];
   glow: string;
@@ -57,7 +57,7 @@ export function Reveal(props: {
         <p className="rv-kicker">{props.kicker}{props.provisional && <span className="tag-soft">{props.provisional}</span>}</p>
         <h1 className="disp rv-family">{props.family}</h1>
         <p className="rv-type">
-          <span>{props.typeLabel}</span>
+          <span className="sr-only">{props.typeLabel}: </span>
           <b aria-label={props.season}>
             {[...props.season].map((ch, i) => (
               <span key={i} aria-hidden="true" style={{ "--d": `${600 + i * 45}ms` } as React.CSSProperties}>{ch === " " ? " " : ch}</span>
@@ -65,9 +65,8 @@ export function Reveal(props: {
           </b>
         </p>
         {props.between && <p className="rv-between">{props.between}</p>}
-        <ul className="rv-traits">{props.traits.map((t) => <li key={t}>{t}</li>)}</ul>
         <p className="rv-desc">{props.text}</p>
-        <span className="rv-cue" aria-hidden="true">↓</span>
+        <p className="rv-cue">{props.next} <span aria-hidden="true">↓</span></p>
       </div>
     </section>
   );

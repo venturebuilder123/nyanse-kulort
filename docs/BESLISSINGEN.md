@@ -2,6 +2,20 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — resultaatpagina als onthulling
+
+- **Opbouw:**
+  1. Een donkere onthulling: je kleurenwaaier vouwt in 3D open, je seizoensnaam verschijnt letter voor letter en je meest heldere kleur gloeit erachter.
+  2. De voor/na-schuif, die één keer vanzelf veegt.
+  3. Een AI-model uit dezelfde kleurfamilie.
+  4. 6 open kleurkaarten, plus "+24 kleuren met naam in je gids" (de echte kleuren, vervaagd en zonder naam).
+  5. Je kast: één gratis look en "+3 looks plus je capsule-garderobe in je gids".
+  6. Wat je beter laat hangen, het waarom-blok en de prijzen. Daarna de e-mail, de schalen (uitklapbaar) en "Verwijder mijn profiel".
+- **Prijzen:** elke kaart heeft een eigen koopknop, zonder vooraf gekozen optie. De €9,99-kaart toont je eigen kleurenpas en begint met het voordeel. De vaste knop zegt "Bekijk je gids · vanaf €6,99" en verdwijnt zodra de prijskaarten in beeld zijn.
+- **Bron:** een review door een art director en een conversie- en UX-ontwerper (13 oktober).
+- **Niet overgenomen:** de seizoensnamen in het Nederlands ("Warme Lente"). "Warm Spring" is de term die mensen googelen.
+- **NYANSE-logo leesbaarder:** de tekstvariant van Bodoni (opsz 11), gewicht 500 en minder letterafstand.
+
 ## 13 oktober 2026 — kleurdoek op maat en kleding als tekeningen
 
 - **Het kleurdoek volgt het gezicht:** hals en schouders worden berekend uit de kin en de breedte en hoogte van het gezicht, in plaats van een vaste vorm onderin. Het doek sluit aan bij de hals en bedekt het T-shirt. Voor de selfie meten we nu ook de gezichtshoogte. Controle van alle AI-modellen op `/lab/drapes`.
