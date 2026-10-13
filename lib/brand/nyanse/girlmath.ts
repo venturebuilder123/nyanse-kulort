@@ -10,9 +10,13 @@ export const girlmath: VoiceCopy = {
   landing: {
     pill: "Gratis · 30 sec",
     headline: ["Stop met kopen wat je", "niet staat."],
-    checks: ["Je kleuren uit één selfie", "Outfits binnen je budget", "Minder miskopen, meer outfits die werken"],
+    sub: "Eén selfie = je weet welke kleuren je staan. Dus ook welke je níet hoeft te kopen.",
+    checksTitle: "Wat je krijgt",
+    checks: ["Je kleurprofiel en de kleuren die bij je passen", "Outfits binnen je budget", "Minder miskopen, meer outfits die werken"],
     occasionQuestion: "Waar wil je er goed uitzien?",
+    trust: ["Foto blijft op je telefoon", "Geen account nodig", "Profiel gratis"],
   },
+  pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Nog ±25 sec",
     headline: ["Wat is je", "vibe?"],

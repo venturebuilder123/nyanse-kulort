@@ -10,9 +10,13 @@ export const wingman: VoiceCopy = {
   landing: {
     pill: "Gratis · 30 sec",
     headline: ["Maak indruk", "voor je iets zegt."],
-    checks: ["Jouw kleuren uit één selfie", "Outfits voor werk, weekend en date", "Horloge, riem en schoenen die kloppen"],
+    sub: "Eén selfie. Daarna weet je welke kleuren jou scherp laten ogen, en welke je kunt laten hangen.",
+    checksTitle: "Dit krijg je",
+    checks: ["Je kleurprofiel en de kleuren die bij je passen", "Outfits voor werk, weekend en date", "Horloge, riem en schoenen die kloppen"],
     occasionQuestion: "Waar wil je er goed uitzien?",
+    trust: ["Foto blijft op je telefoon", "Geen account nodig", "Profiel gratis"],
   },
+  pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Nog ±25 sec",
     headline: ["Waar shop", "jij?"],

@@ -48,25 +48,6 @@ export function Display({ text, as: Tag = "h1", small }: { text: Headline; as?: 
   );
 }
 
-/** Fabric swatches on a slowly turning ring (CSS 3D, static with reduced motion). */
-export function ColorRing({ colors }: { colors: readonly string[] }) {
-  const step = 360 / colors.length;
-  // radius so the panels (64px) form a closed ring with small gaps
-  const radius = Math.round(70 / (2 * Math.tan(Math.PI / colors.length)));
-  return (
-    <div className="ring-stage" aria-hidden="true">
-      <div className="ring-shadow" />
-      <div className="ring-tilt">
-        <div className="ring">
-          {colors.map((c, i) => (
-            <i key={`${c}-${i}`} style={{ backgroundColor: c, transform: `rotateY(${i * step}deg) translateZ(${radius}px)` }} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const ICON_PATHS: Record<OccasionKey, React.ReactNode> = {
   werk: (
     <>
@@ -94,6 +75,14 @@ export function OccasionIcon({ k }: { k: OccasionKey }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {ICON_PATHS[k]}
+    </svg>
+  );
+}
+
+export function CheckIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
     </svg>
   );
 }

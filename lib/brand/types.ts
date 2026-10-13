@@ -14,9 +14,16 @@ export type VoiceCopy = {
   landing: {
     pill: string;
     headline: Headline;
+    /** one line under the headline: the problem and the promise */
+    sub: string;
+    checksTitle: string;
     checks: readonly [string, string, string];
     occasionQuestion: string;
+    /** three true trust signals, no numbers we have not measured */
+    trust: readonly [string, string, string];
   };
+  /** the kleurenpas in the hero: the season stays hidden until the selfie */
+  pass: { label: string; season: string };
   style: {
     pill: string;
     headline: Headline;

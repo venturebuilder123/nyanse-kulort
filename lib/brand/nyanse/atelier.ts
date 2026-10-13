@@ -10,9 +10,13 @@ export const atelier: VoiceCopy = {
   landing: {
     pill: "Gratis · 30 sec",
     headline: ["Een kast waarin", "alles samengaat."],
-    checks: ["Je persoonlijke kleuren, uit één selfie", "Outfits bij jouw winkels en budget", "Minder miskopen, minder retourneren"],
+    sub: "Eén selfie, en je weet welke kleuren jou laten stralen. Je kast volgt vanzelf.",
+    checksTitle: "Wat je krijgt",
+    checks: ["Je kleurprofiel en de kleuren die bij je passen", "Outfits bij jouw winkels en budget", "Minder miskopen, minder retourneren"],
     occasionQuestion: "Waar wil je er goed uitzien?",
+    trust: ["Foto blijft op je telefoon", "Geen account nodig", "Profiel gratis"],
   },
+  pass: { label: "Kleurenpas", season: "Jouw seizoen" },
   style: {
     pill: "Nog ±25 sec",
     headline: ["Jouw stijl,", "jouw budget."],
