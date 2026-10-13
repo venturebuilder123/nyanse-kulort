@@ -5,7 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { assessFrame, coverMap, NO_FACE, type LiveChecks } from "@/lib/analysis/live";
 import { LOW_CONFIDENCE } from "@/lib/color/profile";
 import { track } from "@/lib/analytics";
+import { loadAnswers, encodeToken } from "@/lib/flow/answers";
 import { flowSession } from "@/lib/flow/session";
+import type { SelfieCopy } from "@/lib/brand/types";
 import { useBrand } from "../BrandProvider";
 import { AppBar, CheckIcon, Crumbs, LockIcon } from "../ui";
 
@@ -16,6 +18,21 @@ type Retry = { tip: string; attempts: number } | null;
 const LIVE_INTERVAL_MS = 250;
 const PROBE_W = 320; // small frame for live checks: fast on phones
 const HOLD_MS = 1200; // all checks green this long: capture automatically
+const PAUSE_AFTER_RETRY_MS = 3000; // give people time to act on the tip before auto-capturing again
+const LOAD_TIMEOUT_MS = 15000;
+
+/** Analysis issues are written for the lab; customers get one plain tip instead. */
+export function customerTip(issues: string[], t: SelfieCopy): string {
+  const all = issues.join(" ").toLowerCase();
+  if (all.includes("ongelijk licht")) return t.issueTips.uneven;
+  if (all.includes("te donker")) return t.issueTips.dark;
+  if (all.includes("overbelicht")) return t.issueTips.overexposed;
+  if (all.includes("meer dan één gezicht")) return t.issueTips.faces;
+  if (all.includes("klein in beeld")) return t.issueTips.small;
+  if (all.includes("ogen")) return t.issueTips.eyes;
+  if (all.includes("te weinig huid")) return t.issueTips.skin;
+  return t.retryGeneric;
+}
 
 export default function Selfie() {
   const { copy, ctx } = useBrand();
@@ -27,6 +44,10 @@ export default function Selfie() {
   const stream = useRef<MediaStream | null>(null);
   const greenSince = useRef<number | null>(null);
   const capturing = useRef(false);
+  const pauseUntil = useRef(0);
+  const liveSince = useRef(0);
+  const [slow, setSlow] = useState(false);
+  const [qr, setQr] = useState<string | null>(null);
   const done = useRef(false); // set after a successful analysis: no second capture while navigating
   const [mode, setMode] = useState<Mode>("intro");
   const [canLive, setCanLive] = useState(true);
@@ -38,6 +59,12 @@ export default function Selfie() {
 
   useEffect(() => {
     setCanLive(window.isSecureContext && !!navigator.mediaDevices?.getUserMedia);
+    // Desktop without a touch screen: offer the phone instead (answers travel along in the link).
+    const desktop = !window.matchMedia("(pointer: coarse)").matches && window.innerWidth > 900;
+    if (desktop) {
+      const url = `${location.origin}/?brand=${ctx.brand}&t=${encodeToken(loadAnswers())}`;
+      void import("qrcode").then((q) => q.toDataURL(url, { margin: 1, width: 360 })).then(setQr).catch(() => {});
+    }
     // models were prefetched on the style step; make sure the analysis code is ready too
     void import("@/lib/analysis/face/mediapipe").then((m) => m.loadVision()).catch(() => {});
     void import("@/lib/analysis/pipelineA");
@@ -56,6 +83,7 @@ export default function Selfie() {
       const v = video.current!;
       v.srcObject = s;
       await v.play().catch(() => {});
+      liveSince.current = performance.now();
       setMode("live");
     } catch {
       setMode("denied");
@@ -74,12 +102,14 @@ export default function Selfie() {
         const attempts = (retry?.attempts ?? 0) + 1;
         if (!result.ok || !result.measurements || !result.profile) {
           setRetry({ tip: t.noFace, attempts });
+          pauseUntil.current = performance.now() + PAUSE_AFTER_RETRY_MS;
           return;
         }
         const low = result.profile.confidence.overall < LOW_CONFIDENCE;
         // Never a firm result on poor input: ask once more with a concrete tip (CLAUDE.md §5).
         if (low && attempts < 2) {
-          setRetry({ tip: result.quality.issues[0] ?? t.retryGeneric, attempts });
+          setRetry({ tip: customerTip(result.quality.issues, t), attempts });
+          pauseUntil.current = performance.now() + PAUSE_AFTER_RETRY_MS;
           return;
         }
         const oval = debug.regions?.faceOval ?? [];
@@ -142,7 +172,13 @@ export default function Selfie() {
       if (v && b && v.videoWidth && !capturing.current && !done.current) {
         try {
           const { loadLandmarker } = await import("@/lib/analysis/face/mediapipe");
-          const vision = await loadLandmarker();
+          const pending = loadLandmarker();
+          const vision = await Promise.race([pending, new Promise<null>((r) => setTimeout(() => r(null), 400))]);
+          if (!vision) {
+            if (performance.now() - liveSince.current > LOAD_TIMEOUT_MS) setSlow(true);
+            throw new Error("models still loading");
+          }
+          setSlow(false);
           probe.width = PROBE_W;
           probe.height = Math.round((PROBE_W * v.videoHeight) / v.videoWidth);
           pctx.drawImage(v, 0, 0, probe.width, probe.height);
@@ -167,7 +203,7 @@ export default function Selfie() {
             setChecks(c);
             const green = c.face && c.light && c.even;
             const now = performance.now();
-            if (green) {
+            if (green && now >= pauseUntil.current) {
               greenSince.current ??= now;
               const p = Math.min(1, (now - greenSince.current) / HOLD_MS);
               setHold(p);
@@ -199,6 +235,8 @@ export default function Selfie() {
   }
 
   const allGreen = checks.face && checks.light && checks.even;
+  const fixTip =
+    checks.faces > 1 ? t.fixTips.faces : !checks.face ? t.fixTips.face : !checks.light ? t.fixTips.light : t.fixTips.even;
   const live = mode === "live" || mode === "starting";
 
   return (
@@ -211,6 +249,7 @@ export default function Selfie() {
             <div className="intro-oval" aria-hidden="true"><span /></div>
             <h1 className="disp sm">{t.intro}</h1>
             <p className="sub">{t.introText}</p>
+            {t.introExtra && <p className="sub small">{t.introExtra}</p>}
           </section>
         )}
 
@@ -248,6 +287,13 @@ export default function Selfie() {
             <span>{retry.tip}</span>
           </div>
         )}
+        {mode === "live" && !allGreen && !busy && <p className="fix-tip" aria-live="polite">{fixTip}</p>}
+        {slow && (
+          <div className="notice" role="alert">
+            <span>{t.loadSlow}</span>
+            <button className="link-btn left" onClick={() => location.reload()}>{t.retryLoad}</button>
+          </div>
+        )}
         {mode === "denied" && <p className="notice" role="alert">{t.denied}</p>}
         {error && <p className="notice bad" role="alert">{error}</p>}
 
@@ -277,6 +323,13 @@ export default function Selfie() {
           )}
         </div>
 
+        {(mode === "intro" || mode === "denied") && qr && (
+          <section className="qr-card">
+            <img src={qr} alt="QR-code naar deze pagina op je telefoon" width={140} height={140} />
+            <div><b>{t.desktopTitle}</b><p className="small muted">{t.desktopText}</p></div>
+          </section>
+        )}
+        {mode === "intro" && <p className="small muted center">{t.under16}</p>}
         <p className="trust-main"><LockIcon />{t.trust}</p>
       </div>
     </main>

@@ -2,6 +2,18 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — Customer Experience-review en AI-beelden
+
+- **AI-gegenereerde mensen in de hero** (besluit van de oprichter). Voorwaarden: AI-label onder het beeld, één neutrale foto per persoon, en het kleurdoek legt de app er zelf onder op basis van onze eigen analyse (geen apart bewerkte "slechte" versie). Shotlist en prompts: [fase-b/AI-BEELDEN.md](fase-b/AI-BEELDEN.md). Meetscript: `scripts/measure-people.mjs`.
+- **De CX Director raadt AI-gezichten af** ("een gegenereerde voor/na is verzonnen bewijs") en adviseert een kleine echte fotoshoot (AANNAME €150–300). Afweging: AI-beeld met label toont *hoe het werkt*, geen bewijs. Een echte shoot blijft de betere optie voor advertenties en het selfievoorbeeld.
+- **De illustratie maakte de "foute" kant grijzer.** Dat is manipulatie en is verwijderd. Alleen het doek en de weerspiegeling ervan veranderen.
+- **Regels v3:** geen zichtbaar haar (kaal, hoofddoek, pet) geeft nog maar een kleine straf. In v2 kreeg iedereen zonder haar altijd "Voorlopig". Antwoordoptie "Bedekt (hoofddoek, pet)" toegevoegd; "heel kort" telt als naturel haar.
+- **Profiel lokaal bewaard** (alleen getallen, nooit de foto), met "Welkom terug" en één tik op "Verwijder mijn profiel" (§5). Werkt ook als opslag geblokkeerd is: dan valt het terug op het geheugen.
+- **Bij lage betrouwbaarheid eerst een nieuwe selfie**, niet de betaalknop.
+- **Beloftes alleen voor wat er op 3 november is:** geen outfits of producten in de gids-tekst tot de catalogus er is.
+- **Nieuw:** foutpagina, 404, bevestigingspagina `/klaar` (betaald / wacht / mislukt, zonder downsell), adresformulier voor de pas (NL en BE), tip per mislukte check, pauze na een nieuwe poging, laad-timeout, QR-code op desktop, typfoutsuggestie voor e-mail, "Mail mij mijn profiel" op het resultaat.
+- **Open voor de oprichter:** de pas alleen naar NL of ook naar BE (BE-porto nog checken), en de afstand van het herroepingsrecht (jurist).
+
 ## 13 oktober 2026 — overhaul na expertreview
 
 Zie [fase-b/EXPERT-REVIEW-2026-10-13.md](fase-b/EXPERT-REVIEW-2026-10-13.md) voor alle bevindingen. Kort:

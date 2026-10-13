@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { paletteFor, showcase } from "@/lib/color/palette";
 import { track } from "@/lib/analytics";
+import { suggestEmail } from "@/lib/flow/email";
 import { flowSession } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { AppBar, Crumbs, Display } from "../ui";
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+
 
 export default function Email() {
   const { config, copy, ctx } = useBrand();
@@ -33,6 +35,7 @@ export default function Email() {
   if (!r) return <main className="screen"><div className="pad"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div></main>;
 
   const six = showcase(paletteFor(r.profile, config.key));
+  const suggestion = suggestEmail(email);
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -50,7 +53,7 @@ export default function Email() {
   return (
     <main className="screen">
       <AppBar pill={t.pill} />
-      <Crumbs step={4} />
+      <Crumbs step={3} />
       <div className="pad">
         <Display text={t.headline} />
         <div className="teaser">
@@ -76,12 +79,15 @@ export default function Email() {
             />
           </label>
           {error && <p className="small warn-text" role="alert">{error}</p>}
+          {!error && suggestion && (
+            <button type="button" className="link-btn left" onClick={() => setEmail(suggestion)}>Bedoel je {suggestion}?</button>
+          )}
           <label className="check">
             <input type="checkbox" checked={optin} onChange={(e) => setOptin(e.target.checked)} />
             <span>{t.optin}</span>
           </label>
           <button className="btn" type="submit">{t.submit}</button>
-          <p className="small muted center">Je krijgt eerst een mail om je adres te bevestigen. <Link href="/privacy">Privacy</Link></p>
+          <p className="small muted center"><Link href="/privacy">Zo gaan we met je gegevens om</Link></p>
         </form>
         <button className="link-btn" onClick={() => router.push("/resultaat")}>{t.skip}</button>
       </div>

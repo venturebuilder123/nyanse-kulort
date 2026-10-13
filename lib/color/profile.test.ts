@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { hexToLab, type Lab } from "./convert";
 import { estimateMonk, monkGroup } from "./monk";
-import { computeProfile, type Measurements } from "./profile";
+import { computeProfile, LOW_CONFIDENCE, type Measurements } from "./profile";
 import { nearestSeason, SEASONS, type SeasonKey } from "./seasons";
 
 const stat = (lab: Lab, n = 3000) => ({ lab, n, sdL: 3 });
@@ -72,6 +72,13 @@ describe("computeProfile", () => {
     expect(dyed.undertone).toBeCloseTo(noHair.undertone, 6);
     expect(grey.undertone).toBeCloseTo(noHair.undertone, 6);
     expect(grey.depth).toBeCloseTo(natural.depth, 6);
+  });
+
+  it("does not push people without visible hair below the threshold (bald, headscarf)", () => {
+    const bald = computeProfile(measure({ L: 55, a: 13, b: 17 }, undefined, { L: 35, a: 5, b: 14 }, false), { hair: "none" });
+    expect(bald.confidence.overall).toBeGreaterThanOrEqual(LOW_CONFIDENCE);
+    const covered = computeProfile(measure({ L: 40, a: 12, b: 17 }, { L: 20, a: 2, b: 3 }, { L: 30, a: 4, b: 10 }, false), { hair: "covered" });
+    expect(covered.confidence.overall).toBeGreaterThanOrEqual(LOW_CONFIDENCE);
   });
 
   it("keeps all scales within range", () => {

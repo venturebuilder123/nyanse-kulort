@@ -61,7 +61,7 @@ export default function Analyse() {
   const goOn = () => {
     if (leaving.current) return;
     leaving.current = true;
-    router.push("/email");
+    router.replace("/email");
   };
 
   // Both questions answered and the drapes finished: continue without an extra tap.
@@ -76,7 +76,7 @@ export default function Analyse() {
   if (!r) {
     return (
       <main className="screen">
-        <div className="pad"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div>
+        <div className="pad analysis"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div>
       </main>
     );
   }

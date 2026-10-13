@@ -1,5 +1,7 @@
-// The analysis result for this visit. Numbers go to sessionStorage; the photo stays in
-// memory only (for the before/after slider) and is gone when the tab closes.
+// The analysis result. CLAUDE.md §5: the profile stays on the device by default (localStorage,
+// numbers only) and is deleted with one tap. The photo itself lives in memory only, for the
+// before/after slider, and is gone when the tab closes. Storage can be blocked (private mode),
+// so everything falls back to memory instead of failing.
 
 import type { Measurements, Profile, ProfileContext } from "@/lib/color/profile";
 import { computeProfile } from "@/lib/color/profile";
@@ -22,8 +24,46 @@ export type FlowResult = {
   at: number;
 };
 
-const KEY = "nk_result";
+const KEY = "nk_profile";
+let memory: FlowResult | null = null;
 let photo: { blob: Blob; url: string } | null = null;
+
+const store = {
+  get(): FlowResult | null {
+    if (memory) return memory;
+    for (const s of [safe(() => sessionStorage), safe(() => localStorage)]) {
+      const raw = s && safe(() => s.getItem(KEY));
+      if (raw) {
+        try {
+          return (memory = JSON.parse(raw) as FlowResult);
+        } catch {}
+      }
+    }
+    return null;
+  },
+  set(r: FlowResult) {
+    memory = r;
+    const json = JSON.stringify(r);
+    safe(() => sessionStorage.setItem(KEY, json));
+    safe(() => localStorage.setItem(KEY, json));
+  },
+  clear() {
+    memory = null;
+    for (const s of [safe(() => sessionStorage), safe(() => localStorage)]) {
+      safe(() => s?.removeItem(KEY));
+      safe(() => s?.removeItem("nk_answers"));
+      safe(() => s?.removeItem("nk_email"));
+    }
+  },
+};
+
+function safe<T>(fn: () => T): T | undefined {
+  try {
+    return fn();
+  } catch {
+    return undefined;
+  }
+}
 
 export const flowSession = {
   setPhoto(blob: Blob) {
@@ -32,34 +72,23 @@ export const flowSession = {
   },
   photoUrl: () => photo?.url ?? null,
 
-  setResult(r: FlowResult) {
-    try {
-      sessionStorage.setItem(KEY, JSON.stringify(r));
-    } catch {}
-  },
+  setResult: (r: FlowResult) => store.set(r),
   result(): (FlowResult & { profile: Profile }) | null {
-    try {
-      const r = JSON.parse(sessionStorage.getItem(KEY) ?? "null") as FlowResult | null;
-      // always recompute, so the latest rules apply
-      return r ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
-    } catch {
-      return null;
-    }
+    const r = store.get();
+    // always recompute, so the latest rules and answers apply
+    return r ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
   },
 
   /** Merge later answers (analysis questions, e-mail) into the stored result. */
   update(patch: Partial<FlowResult>) {
-    const r = flowSession.result();
-    if (!r) return;
-    const { profile: _p, ...rest } = r;
-    flowSession.setResult({ ...rest, ...patch });
+    const r = store.get();
+    if (r) store.set({ ...r, ...patch });
   },
 
+  /** "Verwijder mijn profiel": everything on this device, in one tap. */
   clear() {
     if (photo) URL.revokeObjectURL(photo.url);
     photo = null;
-    try {
-      sessionStorage.removeItem(KEY);
-    } catch {}
+    store.clear();
   },
 };

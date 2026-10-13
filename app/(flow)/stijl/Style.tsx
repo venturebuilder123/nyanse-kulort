@@ -70,6 +70,9 @@ export default function Style() {
         >
           {copy.style.next}
         </button>
+        <button className="link-btn" onClick={() => { track("style_done", ctx, { skipped: true }); router.push("/selfie"); }}>
+          {copy.style.skip}
+        </button>
       </div>
     </main>
   );

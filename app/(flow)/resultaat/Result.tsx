@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FAMILY_TEXT_NL } from "@/lib/brand/common";
 import type { WhyBlock } from "@/lib/brand/types";
 import { clarityWord, depthWord, familyOf, undertoneWord } from "@/lib/color/describe";
+import { hexToLab, labToLch } from "@/lib/color/convert";
+import { LOW_CONFIDENCE } from "@/lib/color/profile";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
 import { track } from "@/lib/analytics";
 import { euro, PRICES, type Tier } from "@/lib/flow/pricing";
+import { suggestEmail } from "@/lib/flow/email";
 import { flowSession, type FaceBox } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
@@ -27,10 +31,20 @@ export default function Result() {
   const tiersRef = useRef<HTMLElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const [waiver, setWaiver] = useState(false);
+  const [country, setCountry] = useState("NL");
+  const [hasEmail, setHasEmail] = useState(true);
+  const [mail, setMail] = useState("");
+  const [mailSaved, setMailSaved] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setR(flowSession.result());
     setPhoto(flowSession.photoUrl());
+    try {
+      setHasEmail(!!sessionStorage.getItem("nk_email"));
+    } catch {
+      setHasEmail(false);
+    }
     setLoaded(true);
   }, []);
   useEffect(() => {
@@ -54,7 +68,11 @@ export default function Result() {
   const p = r.profile;
   const family = familyOf(p.match.season);
   const secondFamily = familyOf(p.match.second);
-  const six = showcase(pal);
+  // Recomputed with the latest answers (e.g. "Kaal" lifts the hair penalty), not the flag from the selfie.
+  const low = p.confidence.overall < LOW_CONFIDENCE;
+  const chroma = (hex: string) => labToLch(hexToLab(hex)).C;
+  // Wingman: wearable anchors (navy, bordeaux) first, the loud colours last
+  const six = config.key === "kulort" ? [...showcase(pal)].sort((a, b) => chroma(a.hex) - chroma(b.hex)) : showcase(pal);
   const bad = six[0] ? mostDifferent(six[0], pal.avoid) : undefined;
   const name = (c: (typeof six)[number]) => colorName(c, config.key);
   const ctaLabel = !tier ? t.ctaChoose : `${tier === "card" ? t.ctaCard : t.ctaDigital} · ${euro(PRICES[tier])}`;
@@ -73,7 +91,7 @@ export default function Result() {
     <main className="screen">
       <AppBar pill={t.pill} />
       <section className="r-hero">
-        <p className="label-sm">{t.label}{r.lowConfidence && <span className="tag-soft">{t.provisional}</span>}</p>
+        <p className="label-sm">{t.label}{low && <span className="tag-soft">{t.provisional}</span>}</p>
         <h1 className="disp r-family">{family}</h1>
         {p.match.border && secondFamily !== family && <p className="r-between">{t.between.replace("{b}", secondFamily)}</p>}
         <span className="r-swatches" aria-hidden="true">{six.map((c) => <i key={c.id} style={{ background: c.hex }} />)}</span>
@@ -81,15 +99,21 @@ export default function Result() {
       </section>
 
       <div className="pad result">
-        {r.lowConfidence && (
-          <div className="notice">
-            <span>{t.lowConfidence}</span>
-            <Link href="/selfie" className="notice-link">{t.lowConfidenceCta} →</Link>
+        {low && (
+          <div className="stack-md">
+            <p className="notice">{t.lowConfidence}</p>
+            <Link href="/selfie" className="btn">{t.lowCta}</Link>
           </div>
         )}
 
-        {photo && bad && six[0] && (
+        {photo && bad && six[0] ? (
           <BeforeAfter photo={photo} face={r.face} bad={bad.hex} good={six[0].hex} badName={name(bad)} goodName={name(six[0])} title={t.baTitle} hint={t.baHint} />
+        ) : (
+          // after a reload the photo is gone: it is never stored, not even on the phone
+          <div className="notice">
+            <span>{t.noPhoto}</span>
+            <Link href="/selfie" className="notice-link">{t.newSelfie} →</Link>
+          </div>
         )}
 
         <section className="q">
@@ -130,6 +154,34 @@ export default function Result() {
           </div>
         </section>
 
+        {!hasEmail && (
+          <section className="q">
+            <h2 className="eyebrow-h">{t.mailTitle}</h2>
+            {mailSaved ? (
+              <p className="small">{t.mailDone.replace("{email}", mailSaved)}</p>
+            ) : (
+              <form
+                className="row-inline"
+                noValidate
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const v = (suggestEmail(mail) ?? mail).trim();
+                  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v)) return;
+                  // TODO(phase B): Brevo double opt-in. Until then the address stays on this device.
+                  try {
+                    sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin: false }));
+                  } catch {}
+                  track("email_submit", ctx, { from: "result" });
+                  setMailSaved(v);
+                }}
+              >
+                <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder={copy.email.placeholder} value={mail} onChange={(e) => setMail(e.target.value)} aria-label={t.mailTitle} />
+                <button className="btn" type="submit">{t.mailCta}</button>
+              </form>
+            )}
+          </section>
+        )}
+
         <Why block={t.why} />
 
         <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
@@ -153,21 +205,46 @@ export default function Result() {
               );
             })}
           </div>
+          {low && <p className="small muted">{t.lowTiersNote}</p>}
           <p className="fine">{t.fine}</p>
         </section>
+
+        <button className="link-btn" onClick={() => { flowSession.clear(); router.replace("/"); }}>{t.deleteProfile}</button>
       </div>
       <Footer />
 
-      <div className={`sticky sticky-float${showCta ? " is-on" : ""}`} aria-hidden={!showCta}>
-        <button className="btn" onClick={onCta} tabIndex={showCta ? 0 : -1}>{ctaLabel}</button>
-      </div>
+      {/* low confidence: the next step is a better selfie, not a purchase */}
+      {!low && (
+        <div className={`sticky sticky-float${showCta ? " is-on" : ""}`} aria-hidden={!showCta}>
+          <button className="btn" onClick={onCta} tabIndex={showCta ? 0 : -1}>{ctaLabel}</button>
+        </div>
+      )}
 
       <dialog ref={dialog} className="sheet" aria-label="Afrekenen" onClick={(e) => { if (e.target === dialog.current) dialog.current?.close(); }}>
         {tier && (
           <div className="sheet-body">
             <div className="grab" />
             <div className="line"><span>{t.tiers[tier].name}</span><b>{euro(PRICES[tier])}</b></div>
-            {tier === "card" && <div className="line muted"><span>{t.checkout.shipping}</span><span>inbegrepen</span></div>}
+            {tier === "card" && (
+              <>
+                <div className="line muted"><span>{t.checkout.shipping}</span><span>{t.checkout.shippingWhen}</span></div>
+                <fieldset className="address">
+                  <legend>{t.checkout.address}</legend>
+                  <input autoComplete="name" placeholder={t.checkout.name} aria-label={t.checkout.name} />
+                  <input autoComplete="address-line1" placeholder={t.checkout.street} aria-label={t.checkout.street} />
+                  <div className="row-inline">
+                    <input autoComplete="postal-code" placeholder={t.checkout.postcode} aria-label={t.checkout.postcode} />
+                    <input autoComplete="address-level2" placeholder={t.checkout.city} aria-label={t.checkout.city} />
+                  </div>
+                  <select value={country} onChange={(e) => setCountry(e.target.value)} aria-label={t.checkout.country}>
+                    <option value="NL">Nederland</option>
+                    <option value="BE">België</option>
+                    <option value="other">Ander land</option>
+                  </select>
+                  {country === "other" && <p className="small warn-text">{t.checkout.countryNote}</p>}
+                </fieldset>
+              </>
+            )}
             <label className="check">
               <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
               <span>{t.checkout.withdrawal}</span>

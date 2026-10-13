@@ -35,7 +35,7 @@ export type Profile = Scales & {
 };
 
 export const RULES = {
-  version: 2, // v2: hair warmth from chroma (copper/golden vs ash), hair answer, confidence tuned for selfies without card
+  version: 3, // v3: no hair = small penalty only (bald, headscarf); v2: hair warmth from chroma, hair answer, confidence without card
   // AANNAME: starting values from colour science on skin (hue angle ~40–65°, L* ~30–75);
   // to be tuned on phase A data, never on the test set used for the gate.
   // Skin undertone = signed distance (in Lab units) from the neutral hue line, not the hue
@@ -79,7 +79,7 @@ const chromaWeight = (C: number, full: number) => clamp(C / full, 0, 1);
  * What the person told us during the analysis screen. Dyed hair says nothing about natural
  * colouring; grey hair still sets today's contrast but not the undertone; no hair = no hair term.
  */
-export type ProfileContext = { hair?: "natural" | "dyed" | "grey" | "none" };
+export type ProfileContext = { hair?: "natural" | "dyed" | "grey" | "none" | "covered" };
 
 export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profile {
   const R = RULES;
@@ -88,7 +88,7 @@ export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profi
   const irisOk = m.iris && m.iris.n >= R.minPixels.iris;
   const hairStatus = ctx.hair ?? "natural";
   // hair for depth and contrast: anything but dyed or absent
-  const hair = hairOk && hairStatus !== "dyed" && hairStatus !== "none" ? labToLch(m.hair!.lab) : undefined;
+  const hair = hairOk && (hairStatus === "natural" || hairStatus === "grey") ? labToLch(m.hair!.lab) : undefined;
   // hair for undertone: natural colour only
   const hairHue = hairStatus === "natural" ? hair : undefined;
   const iris = irisOk ? labToLch(m.iris!.lab) : undefined;
@@ -129,8 +129,10 @@ export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profi
 
   const confidence = {
     undertone: clamp(base * skinEnough * cheekAgreement, 0, 1),
-    depth: clamp(base * skinEnough * (hair ? 1 : 0.65) * (iris ? 1 : 0.9), 0, 1),
-    clarity: clamp(base * (hair ? 1 : 0.6) * (iris ? 1 : 0.7), 0, 1),
+    // No visible hair (bald, shaved, headscarf, cap) is a normal case, not bad input: a small
+    // penalty only. In v1 it pushed everyone without hair below the threshold (CX review 13 Oct).
+    depth: clamp(base * skinEnough * (hair ? 1 : 0.9) * (iris ? 1 : 0.9), 0, 1),
+    clarity: clamp(base * (hair ? 1 : 0.85) * (iris ? 1 : 0.7), 0, 1),
     overall: 0,
   };
   confidence.overall = Math.min(confidence.undertone, confidence.depth, confidence.clarity);

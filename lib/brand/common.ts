@@ -1,15 +1,36 @@
 import type { AnalysisCopy, EmailCopy, ResultCopy, SelfieCopy } from "./types";
 
 // Shared Dutch copy for steps that sound the same in every voice.
-export const SELFIE_NL: SelfieCopy = {
+const SELFIE_BASE: SelfieCopy = {
   pill: "Gratis",
   intro: "Eén selfie, bij daglicht",
-  introText: "Kijk recht in de camera, zonder filter of bril. De analyse gebeurt op je telefoon.",
+  // auto-capture means many never see the button text, so the AI notice sits here too (AI Act)
+  introText: "De AI-kleuranalyse draait op je telefoon. Kijk recht in de camera, bij daglicht, zonder filter of bril.",
+  under16: "Jonger dan 16? Dan kun je dit nog niet doen.",
   // one tap = the 16+ confirmation and the context for the camera permission prompt
   startCamera: "Ik ben 16+ · camera aan",
-  denied: "Geen toegang tot je camera. Geef toestemming in de instellingen van je browser, of maak een selfie met je camera-app.",
+  denied: "Geen toegang tot je camera. Geef toestemming in de instellingen van je browser (iPhone: Instellingen › Safari › Camera), of maak een selfie met je camera-app.",
   hold: "Blijf zo…",
   tips: { face: "Gezicht in het ovaal", light: "Genoeg licht", even: "Licht gelijkmatig" },
+  fixTips: {
+    faces: "Alleen jij in beeld, graag.",
+    face: "Iets dichterbij en midden in het ovaal.",
+    light: "Draai je naar het raam, niet met je rug ernaar.",
+    even: "Ga recht voor het raam staan, zodat beide wangen licht krijgen.",
+  },
+  issueTips: {
+    dark: "Het is wat donker. Ga met je gezicht naar een raam.",
+    uneven: "Er valt schaduw op één kant. Ga recht voor het raam staan.",
+    overexposed: "Te fel licht. Ga uit direct zonlicht en zet de flitser uit.",
+    small: "Kom iets dichter bij de camera.",
+    faces: "Alleen jij in beeld, graag.",
+    eyes: "Zet je bril even af en kijk recht in de camera.",
+    skin: "Haal je haar even uit je gezicht.",
+  },
+  loadSlow: "Het laden duurt lang. Probeer het op wifi.",
+  retryLoad: "Opnieuw proberen",
+  desktopTitle: "Op je telefoon gaat het beter",
+  desktopText: "Scan de code met je telefooncamera. Je antwoorden gaan mee.",
   hint: "Daglicht, geen filter, bril af",
   age: "Ik ben 16 jaar of ouder",
   start: "Start AI-kleuranalyse",
@@ -17,12 +38,18 @@ export const SELFIE_NL: SelfieCopy = {
   loading: "Camera starten…",
   trust: "Je foto verlaat je telefoon niet",
   takePhoto: "Maak een selfie",
-  pickPhoto: "Liever een foto uit je camerarol?",
+  pickPhoto: "Liever een foto uit je camerarol? Alleen van jezelf, 16+.",
   noCamera: "Tik hier en maak een selfie met je camera.",
   retryTitle: "Nog één selfie?",
   retryGeneric: "Ga bij een raam staan, met je gezicht naar het licht.",
   noFace: "We zien je gezicht niet goed. Kijk recht in de camera.",
   failed: "Dat lukte niet. Probeer het nog een keer.",
+};
+
+export const SELFIE_NL = SELFIE_BASE;
+export const SELFIE_NL_NYANSE: SelfieCopy = {
+  ...SELFIE_BASE,
+  introExtra: "Foundation verandert je huidtint: liefst zonder, of je gewone daglook.",
 };
 
 const ANALYSIS_BASE = {
@@ -33,7 +60,7 @@ const ANALYSIS_BASE = {
   badLines: ["trekt de aandacht weg van je gezicht", "valt weg tegen je huid", "is te veel naast je gezicht"],
   questionsTitle: "Twee snelle vragen, dan wordt je profiel preciezer",
   hairQ: "Is dit je natuurlijke haarkleur?",
-  hair: { natural: "Ja, naturel", dyed: "Nee, geverfd", grey: "Grijs of wit", none: "Kaal of heel kort" },
+  hair: { natural: "Ja, naturel", dyed: "Geverfd", grey: "Grijs of wit", none: "Kaal", covered: "Bedekt (hoofddoek, pet)" },
   jewel: { goud: "Goud", zilver: "Zilver", weetniet: "Geen voorkeur" },
   thanks: "Top, verwerkt.",
   waiting: "Even passen…",
@@ -59,6 +86,18 @@ export const emailNl = (headline: EmailCopy["headline"]): EmailCopy => ({ ...EMA
 
 const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   pill: "Gratis profiel",
+  welcomeBack: "Welkom terug: jij bent {familie}.",
+  seeColors: "Bekijk mijn kleuren",
+  startOver: "Opnieuw doen",
+  noPhoto: "Je foto bewaren we niet, ook niet op je telefoon. Wil je het verschil zien? Maak snel een nieuwe selfie.",
+  newSelfie: "Nieuwe selfie",
+  lowCta: "Nog een selfie bij daglicht",
+  lowTiersNote: "Je gids gebruikt je beste selfie. Nieuwe selfie? Dan past je gids zich gratis aan.",
+  mailTitle: "Mail mij mijn profiel",
+  mailCta: "Stuur",
+  mailDone: "Bewaard. Je profiel komt naar {email}.",
+  deleteProfile: "Verwijder mijn profiel",
+  deleted: "Je profiel is verwijderd van dit apparaat.",
   label: "Jouw kleurtype",
   provisional: "Voorlopig",
   between: "op de grens met {b}",
@@ -76,7 +115,7 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
     card: {
       name: "Gids + kleurenpas",
       badge: "Aanrader",
-      line: "Je pas in de brievenbus, verzending inbegrepen, binnen 7 werkdagen",
+      line: "Je pas in de brievenbus, verzending inbegrepen, binnen 10 werkdagen",
       features: ["Alles uit de digitale gids", "Stevige kleurenpas voor in je portemonnee, ook handig in de winkel"],
     },
     digital: {
@@ -92,6 +131,14 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   checkout: {
     pay: "Betalen",
     shipping: "Verzending",
+    shippingWhen: "inbegrepen · binnen 10 werkdagen",
+    address: "Waar mag je pas heen?",
+    name: "Naam",
+    street: "Straat en huisnummer",
+    postcode: "Postcode",
+    city: "Plaats",
+    country: "Land",
+    countryNote: "De pas versturen we nu alleen in Nederland en België. Kies de digitale gids, of mail ons.",
     withdrawal: "Ik wil de digitale gids direct ontvangen. Daarmee vervalt mijn herroepingsrecht voor de digitale gids.",
     test: "Testversie: betalen staat nog uit. Hier komen Apple Pay, Google Pay, iDEAL | Wero, PayPal en kaart.",
     close: "Sluiten",

@@ -169,6 +169,10 @@ body { margin: 0; }
 .hero2-tag.on { opacity: 1; }
 .hero2-tag.good.on { color: #fff; background: var(--ok); border-color: var(--ok); transform: scale(1.06); }
 .hero2-pass { position: absolute; right: 26px; bottom: 6px; transform: rotate(-7deg); }
+.hero-photo .hero2-stage { display: grid; place-items: center; height: 230px; }
+.hero-portrait { height: 100%; width: auto; aspect-ratio: 4 / 5; border-radius: 120px 120px 14px 14px; box-shadow: 0 18px 36px -22px rgba(16, 20, 27, 0.55); }
+[data-brand="kulort"] .hero-portrait { border-radius: 110px 110px 6px 6px; }
+.ai-label { display: block; margin-top: 4px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: none; color: var(--muted); }
 .hero2-caption { text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 .minipass { width: 104px; aspect-ratio: 85.6 / 54; border-radius: 7px; background: var(--pass-bg); color: var(--pass-ink); padding: 9px 10px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 22px -12px rgba(10, 12, 18, 0.6); }
@@ -384,4 +388,34 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 
 @media (prefers-reduced-motion: reduce) {
   .app *, .app *::before, .app *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- CX review additions ---------- */
+.welcome { display: grid; gap: 10px; padding: 14px 16px; border-radius: var(--radius); background: var(--card); border: 1.5px solid var(--accent); }
+.welcome p { font-weight: 800; }
+.row-2 { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+.row-2 .link-btn { width: auto; }
+.row-inline { display: flex; gap: 8px; }
+.row-inline input { flex: 1; min-width: 0; border: 1.5px solid var(--line-strong); background: var(--card); color: var(--ink); border-radius: var(--radius-btn); padding: 13px 12px; font: inherit; font-size: 16px; }
+.row-inline .btn { width: auto; flex: none; }
+.link-btn.left { text-align: left; padding: 4px 0; }
+.fix-tip { text-align: center; font-weight: 800; font-size: 14.5px; color: var(--ink); margin-top: -6px; }
+.qr-card { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.qr-card img { width: 120px; height: 120px; border-radius: 6px; }
+.analysis { padding-bottom: 96px; }
+.sub.small { font-size: 14px; }
+.address { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.address legend { font-weight: 800; font-size: 15px; margin-bottom: 8px; padding: 0; }
+.address input, .address select { width: 100%; min-width: 0; border: 1.5px solid var(--line-strong); background: var(--card); color: var(--ink); border-radius: var(--radius-btn); padding: 13px 12px; font: inherit; font-size: 16px; }
+.done { text-align: center; justify-content: center; min-height: 60svh; }
+.done .sub { margin: 0 auto; }
+.done-pass { display: grid; place-items: center; }
+.done-pass .minipass { width: 180px; padding: 16px; transform: rotate(-4deg); }
+/* the hero never pushes the first tiles below the fold, not even on an iPhone SE */
+.hero2-stage { height: clamp(140px, 24svh, 172px); }
+.hero-photo .hero2-stage { height: clamp(170px, 30svh, 230px); }
+/* short screens (iPhone SE with Safari bars): first tap before the illustration */
+@media (max-height: 640px) {
+  .landing .hero2 { order: 1; }
+  .landing .gets, .landing .switch { order: 2; }
 }

@@ -16,12 +16,12 @@ declare global {
 
 export function track(name: EventName, ctx: Ctx, props: Record<string, unknown> = {}): void {
   if (typeof window === "undefined") return;
-  const utm_source = new URLSearchParams(location.search).get("utm_source") ?? sessionStorage.getItem("nk_utm") ?? undefined;
-  if (utm_source) {
-    try {
-      sessionStorage.setItem("nk_utm", utm_source);
-    } catch {}
-  }
+  // storage can be blocked (private mode): tracking must never break the flow
+  let utm_source: string | undefined;
+  try {
+    utm_source = new URLSearchParams(location.search).get("utm_source") ?? sessionStorage.getItem("nk_utm") ?? undefined;
+    if (utm_source) sessionStorage.setItem("nk_utm", utm_source);
+  } catch {}
   const event = { name, props: { ...ctx, utm_source, ...props }, at: Date.now() };
   (window.__nkEvents ??= []).push(event);
   if (process.env.NODE_ENV === "development") console.debug("[event]", name, event.props);

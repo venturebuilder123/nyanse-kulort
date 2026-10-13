@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PEOPLE } from "@/lib/brand/people";
 import { useBrand } from "./BrandProvider";
+import { Drape } from "./Drape";
 
 // Three illustrated faces (light, medium, deep skin), each shown in a wrong and a right colour.
 // Illustrations only: no photos of real people (CLAUDE.md §12).
-const PEOPLE = [
+const FACES = [
   { skin: "#E8C3A6", hair: "#5B3B28", bad: "#8E98A3", good: "#C46A45" },
   { skin: "#B07D57", hair: "#22170F", bad: "#E6D7A6", good: "#1F5C63" },
   { skin: "#6B4632", hair: "#120D0A", bad: "#9C7A58", good: "#2F5FD0" },
@@ -14,6 +16,43 @@ const PHASE_MS = 1500;
 
 /** Landing hero: the drape test. Same face, different colour: the problem and the promise in one look. */
 export function Hero() {
+  const { config } = useBrand();
+  // AI-generated photos when they exist (docs/fase-b/AI-BEELDEN.md), the illustration otherwise
+  return PEOPLE[config.key].length ? <PhotoHero /> : <IllustratedHero />;
+}
+
+/**
+ * AI-generated people with the engine's own drape colours on one neutral photo each:
+ * the same technique as on a real selfie, never a separately edited "bad" photo.
+ */
+function PhotoHero() {
+  const { config, copy } = useBrand();
+  const people = PEOPLE[config.key];
+  const [phase, setPhase] = useState(0);
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const r = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReduced(r);
+    if (r) return;
+    const id = setInterval(() => setPhase((p) => (p + 1) % (people.length * 2)), PHASE_MS);
+    return () => clearInterval(id);
+  }, [people.length]);
+  const person = people[Math.floor(phase / 2) % people.length]!;
+  const good = reduced || phase % 2 === 1;
+  return (
+    <figure className="hero2 hero-photo" aria-label={copy.landing.hero.caption}>
+      <div className="hero2-stage">
+        <span className={`hero2-tag bad${!good ? " on" : ""}`}>✕ {copy.landing.hero.bad}</span>
+        <span className={`hero2-tag good${good ? " on" : ""}`}>✓ {copy.landing.hero.good}</span>
+        <Drape photo={person.src} face={{ ...person.face, mirrored: false }} color={good ? person.good : person.bad} fit={{ w: 0.5, cy: 0.4 }} className="hero-portrait" />
+        <div className="hero2-pass"><MiniPass /></div>
+      </div>
+      <figcaption className="hero2-caption">{copy.landing.hero.caption}<span className="ai-label">Voorbeeld · beeld gemaakt met AI, kleurdoek door onze analyse</span></figcaption>
+    </figure>
+  );
+}
+
+function IllustratedHero() {
   const { config, copy } = useBrand();
   const [phase, setPhase] = useState(0);
   const [reduced, setReduced] = useState(false);
@@ -22,11 +61,11 @@ export function Hero() {
     const r = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setReduced(r);
     if (r) return;
-    const id = setInterval(() => setPhase((p) => (p + 1) % (PEOPLE.length * 2)), PHASE_MS);
+    const id = setInterval(() => setPhase((p) => (p + 1) % (FACES.length * 2)), PHASE_MS);
     return () => clearInterval(id);
   }, []);
 
-  const person = PEOPLE[Math.floor(phase / 2)]!;
+  const person = FACES[Math.floor(phase / 2)]!;
   const good = phase % 2 === 1;
   const drape = good ? person.good : person.bad;
   const long = config.key === "nyanse";
@@ -47,9 +86,8 @@ export function Hero() {
           <ellipse cx="121" cy="102" rx="6" ry="10" fill={person.skin} className="t-fill" />
           <ellipse cx="199" cy="102" rx="6" ry="10" fill={person.skin} className="t-fill" />
           <ellipse cx="160" cy="98" rx="40" ry="50" fill={person.skin} className="t-fill" />
-          {/* colour reflected on the face: cool veil for the wrong colour, warm glow for the right one */}
-          <ellipse cx="160" cy="112" rx="40" ry="38" fill={drape} opacity={good ? 0.2 : 0} filter="url(#hero-blur)" className="t-op" />
-          <ellipse cx="160" cy="98" rx="40" ry="50" fill="#7d8794" opacity={good || reduced ? 0 : 0.16} className="t-op" />
+          {/* the cloth's colour reflects on the face; nothing else changes (no greying of the 'wrong' side) */}
+          <ellipse cx="160" cy="112" rx="40" ry="38" fill={drape} opacity={0.18} filter="url(#hero-blur)" className="t-fill" />
           {long ? (
             <path d="M118 98 Q112 40 160 38 Q206 40 204 98 Q196 62 162 60 Q132 62 124 82 Z" fill={person.hair} className="t-fill" />
           ) : (

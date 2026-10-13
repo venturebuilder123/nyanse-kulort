@@ -31,6 +31,7 @@ export type VoiceCopy = {
   pass: { label: string; season: string };
   style: {
     pill: string;
+    skip: string;
     headline: Headline;
     occasionQuestion: string;
     budgetQuestion: string;
@@ -68,6 +69,17 @@ export type SelfieCopy = {
   pill: string;
   intro: string;
   introText: string;
+  /** extra intro line, per brand (NYANSE: foundation changes your skin tone) */
+  introExtra?: string;
+  under16: string;
+  /** one specific tip for the first live check that fails */
+  fixTips: { face: string; light: string; even: string; faces: string };
+  /** customer wording for analysis issues */
+  issueTips: { dark: string; uneven: string; overexposed: string; small: string; faces: string; eyes: string; skin: string };
+  loadSlow: string;
+  retryLoad: string;
+  desktopTitle: string;
+  desktopText: string;
   startCamera: string;
   denied: string;
   hold: string;
@@ -94,7 +106,7 @@ export type AnalysisCopy = {
   scales: { undertone: string; depth: string; clarity: string };
   questionsTitle: string;
   hairQ: string;
-  hair: { natural: string; dyed: string; grey: string; none: string };
+  hair: { natural: string; dyed: string; grey: string; none: string; covered: string };
   jewelQ: string;
   jewel: { goud: string; zilver: string; weetniet: string };
   goodLines: readonly string[];
@@ -124,6 +136,18 @@ export type WhyBlock =
 
 export type ResultCopy = {
   pill: string;
+  welcomeBack: string;
+  seeColors: string;
+  startOver: string;
+  noPhoto: string;
+  newSelfie: string;
+  lowCta: string;
+  lowTiersNote: string;
+  mailTitle: string;
+  mailCta: string;
+  mailDone: string;
+  deleteProfile: string;
+  deleted: string;
   label: string;
   provisional: string;
   between: string;
@@ -148,5 +172,19 @@ export type ResultCopy = {
   ctaDigital: string;
   ctaCard: string;
   fine: string;
-  checkout: { pay: string; shipping: string; withdrawal: string; test: string; close: string };
+  checkout: {
+    pay: string;
+    shipping: string;
+    shippingWhen: string;
+    address: string;
+    name: string;
+    street: string;
+    postcode: string;
+    city: string;
+    country: string;
+    countryNote: string;
+    withdrawal: string;
+    test: string;
+    close: string;
+  };
 };
