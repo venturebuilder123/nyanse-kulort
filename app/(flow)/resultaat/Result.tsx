@@ -187,6 +187,11 @@ export default function Result() {
 
         <Why block={t.why} />
 
+        {r.paid ? (
+          <section className="q">
+            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
+          </section>
+        ) : (
         <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
           <h2 id="tiers-h" className="eyebrow-h">{t.tiersTitle}</h2>
           <div className="tiers" role="radiogroup" aria-labelledby="tiers-h">
@@ -211,13 +216,14 @@ export default function Result() {
           {low && <p className="small muted">{t.lowTiersNote}</p>}
           <p className="fine">{t.fine}</p>
         </section>
+        )}
 
         <button className="link-btn" onClick={() => { flowSession.clear(); router.replace("/"); }}>{t.deleteProfile}</button>
       </div>
       <Footer />
 
       {/* low confidence: the next step is a better selfie, not a purchase */}
-      {!low && (
+      {!low && !r.paid && (
         <div className={`sticky sticky-float${showCta ? " is-on" : ""}`} aria-hidden={!showCta}>
           <button className="btn" onClick={onCta} tabIndex={showCta ? 0 : -1}>{ctaLabel}</button>
         </div>

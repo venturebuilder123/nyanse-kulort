@@ -197,7 +197,13 @@ export function mostDifferent(ref: PaletteColor, list: PaletteColor[]): PaletteC
 /** Showcase colours: diverse, but only from the core of the palette. */
 export const showcase = (p: ProfilePalette, n = 6) => spread(p.colors.slice(0, 15), n);
 
+/** No two colours with the same hex or the same name (e.g. two "Zilver" from neighbouring seasons). */
 function dedupe(list: PaletteColor[]): PaletteColor[] {
   const seen = new Set<string>();
-  return list.filter((c) => (seen.has(c.hex) ? false : (seen.add(c.hex), true)));
+  return list.filter((c) => {
+    const keys = [c.hex.toLowerCase(), `name:${c.name}`];
+    if (keys.some((k) => seen.has(k))) return false;
+    keys.forEach((k) => seen.add(k));
+    return true;
+  });
 }

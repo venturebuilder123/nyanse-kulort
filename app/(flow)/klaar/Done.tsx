@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { flowSession } from "@/lib/flow/session";
 import { MiniPass } from "../Hero";
 import { AppBar, Footer } from "../ui";
 
@@ -21,7 +22,10 @@ export default function Done() {
   const [card, setCard] = useState(false);
   useEffect(() => {
     const q = new URLSearchParams(location.search);
-    setStatus((q.get("status") as Status) ?? "open");
+    const st = (q.get("status") as Status) ?? "open";
+    setStatus(st);
+    // TODO(payments): only after the server has confirmed the order
+    if (st === "paid") flowSession.update({ paid: true });
     setCard(q.get("tier") === "card");
   }, []);
 
@@ -34,7 +38,7 @@ export default function Done() {
             <div className="done-pass"><MiniPass /></div>
             <h1 className="disp sm">Gelukt. Je gids staat klaar.</h1>
             {card && <p className="sub">Je kleurenpas gaat {nextBatch()} op de post. Je krijgt een mail als hij onderweg is.</p>}
-            <Link className="btn" href="/resultaat">Open mijn gids</Link>
+            <Link className="btn" href="/gids">Open mijn gids</Link>
             <p className="small muted">Tip: zet deze pagina op je beginscherm via Delen › Zet op beginscherm.</p>
           </>
         )}

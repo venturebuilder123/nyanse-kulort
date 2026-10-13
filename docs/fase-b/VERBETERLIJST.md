@@ -6,7 +6,7 @@ Wat nog niet gebouwd is, gerangschikt op impact op de lancering (3 november). Pe
 1. **Inschrijving bij de KvK.** Nodig voor elke betaalpartij en voor de verplichte bedrijfsgegevens in de footer (§9). Daarna kies je tussen Mollie of een merchant of record; de checkout is zo gebouwd dat beide kunnen. *Van jou: inschrijving (eenmalige kosten, checken).*
 2. **Btw voor BE en DE (OSS).** Digitale verkopen aan consumenten in andere EU-landen: daar geldt het btw-tarief van dat land, via de OSS-regeling. Een merchant of record regelt dat voor je; met Mollie doe je het zelf (kwartaalaangifte). *Weegt mee in je betaalkeuze.*
 3. **Betaalkoppeling en webhook**, plus de pagina `/klaar` die echte statussen laat zien (de schermen staan klaar).
-4. **De stijlgids als PDF** (uniek per persoon, in de merkstijl), want die beloven we in de gids. Binnen 60 seconden in de mail (DoD §11).
+4. ~~De stijlgids als PDF~~ **Gebouwd (13 okt):** 8 pagina's, uniek per persoon, merkstijl, naam op de cover, opslaan als PDF. **Nog nodig:** server-side PDF om binnen 60 seconden te mailen (DoD §11), na de Brevo-koppeling.
 5. **E-mail via Brevo** met double opt-in: het profiel na het e-mailveld, de gids na betaling, en "je pas is onderweg".
 6. **Printpartner voor de kleurenpas** (bijv. Gelato): 24 ontwerpen (12 seizoenen × 2 merken), een koppeling die bij betaling automatisch print en verstuurt naar NL, BE en DE, en de statussen betaald → in productie → verzonden. *Van jou: account en offerte per pas.*
 
@@ -18,6 +18,8 @@ Wat nog niet gebouwd is, gerangschikt op impact op de lancering (3 november). Pe
 11. **"Doe de test nog eens"** als bewijs van consistentie. Sceptici (persona Youssef) willen zien dat twee selfies hetzelfde zeggen.
 12. **Echte fotoshoot** voor advertenties en het selfievoorbeeld, zodra de eerste verkoop er is (advies van de CX Director). *Van jou: budget (AANNAME €150–300).*
 13. **Opnieuw genereren van kulort-4** met gelijk licht op beide wangen, zodat er weer vier mannen in de hero staan.
+
+13b. **Sfeerbeelden in de gids:** een AI-flat-lay per combinatie (werk, weekend, date, feest) per seizoen en merk, met label, zodat de gids nog rijker oogt. Prompts maak ik zodra je dit wilt.
 
 ## Kwaliteit en vertrouwen
 14. **Fase A-test met echte mensen** (Monk 1–10, mannen met en zonder baard). De AI-beelden gaven 5 van de 9 keer "Lente": mogelijk hellen de regels richting warm. Pas na de test claimen we iets over nauwkeurigheid.
