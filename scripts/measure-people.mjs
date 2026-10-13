@@ -22,7 +22,20 @@ await page.waitForFunction(() => document.querySelector("#out")?.textContent?.tr
 const { result, errors } = JSON.parse(await page.textContent("#out"));
 await browser.close();
 
-const clean = Object.fromEntries(Object.entries(result).map(([k, list]) => [k, list.map(({ note, ...p }) => (console.log(k, p.src, p.season, note), p))]));
+// Only images our engine is confident about become examples: a demo must show a real result.
+const MIN_CONFIDENCE = 0.5;
+const clean = Object.fromEntries(
+  Object.entries(result).map(([k, list]) => [
+    k,
+    list
+      .filter((p) => {
+        const keep = p.confidence >= MIN_CONFIDENCE;
+        console.log(keep ? "use " : "SKIP", k, p.src, p.season, p.note);
+        return keep;
+      })
+      .map(({ note, confidence, ...p }) => p),
+  ]),
+);
 writeFileSync("lib/brand/people.json", JSON.stringify(clean, null, 2) + "\n");
 if (errors.length) console.warn("skipped:", errors);
 console.log("wrote lib/brand/people.json");

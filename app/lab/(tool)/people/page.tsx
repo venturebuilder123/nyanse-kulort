@@ -37,7 +37,8 @@ export default function PeopleTool() {
           good: good.hex,
           bad: bad.hex,
           season: r.profile.match.season,
-          note: `${colorName(good, brand)} / ${colorName(bad, brand)} · conf ${r.profile.confidence.overall.toFixed(2)}`,
+          confidence: r.profile.confidence.overall,
+          note: `${colorName(good, brand)} / ${colorName(bad, brand)} · conf ${r.profile.confidence.overall.toFixed(2)} (u ${r.profile.confidence.undertone.toFixed(2)} d ${r.profile.confidence.depth.toFixed(2)} c ${r.profile.confidence.clarity.toFixed(2)}) · scales ${r.profile.undertone.toFixed(2)}/${r.profile.depth.toFixed(2)}/${r.profile.clarity.toFixed(2)} · skin ${r.measurements!.skin.lab.L.toFixed(0)},${r.measurements!.skin.lab.a.toFixed(1)},${r.measurements!.skin.lab.b.toFixed(1)} · cheeks ${r.measurements!.cheekLeft ? r.measurements!.cheekLeft.lab.L.toFixed(0)+'/'+r.measurements!.cheekRight?.lab.L.toFixed(0) : '-'} · hair ${r.measurements!.hair ? r.measurements!.hair.lab.L.toFixed(0)+','+r.measurements!.hair.lab.a.toFixed(1)+','+r.measurements!.hair.lab.b.toFixed(1) : 'none'} · iris ${r.measurements!.iris ? 'ok' : 'none'} · ${r.quality.issues.join(' | ')}`,
         });
       }
       setOut(JSON.stringify({ result, errors }, null, 2));

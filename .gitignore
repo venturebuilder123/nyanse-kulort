@@ -17,3 +17,6 @@ public/models/
 public/mediapipe/
 next-env.d.ts
 *.tsbuildinfo
+
+# full-size AI originals (provenance), not deployed
+assets/people-originals/

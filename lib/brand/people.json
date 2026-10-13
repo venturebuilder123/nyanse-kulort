@@ -1,1 +1,114 @@
-{ "kulort": [], "nyanse": [] }
+{
+  "kulort": [
+    {
+      "src": "/brand/people/kulort-1.jpg",
+      "face": {
+        "cx": 0.5020004510879517,
+        "cy": 0.42961518466472626,
+        "w": 0.3897969722747803,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#C9A47E",
+      "bad": "#1F4FC4",
+      "season": "lightSpring"
+    },
+    {
+      "src": "/brand/people/kulort-2.jpg",
+      "face": {
+        "cx": 0.5006813555955887,
+        "cy": 0.43474578857421875,
+        "w": 0.4295761287212372,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#23305E",
+      "bad": "#7B3F00",
+      "season": "brightSpring"
+    },
+    {
+      "src": "/brand/people/kulort-3.jpg",
+      "face": {
+        "cx": 0.5003931820392609,
+        "cy": 0.4281035214662552,
+        "w": 0.39487260580062866,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#00848C",
+      "bad": "#9E2A2B",
+      "season": "deepWinter"
+    }
+  ],
+  "nyanse": [
+    {
+      "src": "/brand/people/nyanse-1.jpg",
+      "face": {
+        "cx": 0.5053970813751221,
+        "cy": 0.4272119551897049,
+        "w": 0.41669797897338867,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#00B5CC",
+      "bad": "#C25B86",
+      "season": "brightSpring"
+    },
+    {
+      "src": "/brand/people/nyanse-2.jpg",
+      "face": {
+        "cx": 0.5069304704666138,
+        "cy": 0.4495956748723984,
+        "w": 0.4001476764678955,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#23305E",
+      "bad": "#BDB3DD",
+      "season": "brightSpring"
+    },
+    {
+      "src": "/brand/people/nyanse-3.jpg",
+      "face": {
+        "cx": 0.5032834708690643,
+        "cy": 0.4348129332065582,
+        "w": 0.42355257272720337,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#C2177A",
+      "bad": "#6B8E23",
+      "season": "deepWinter"
+    },
+    {
+      "src": "/brand/people/nyanse-4.jpg",
+      "face": {
+        "cx": 0.5033922642469406,
+        "cy": 0.40502548962831497,
+        "w": 0.4014870226383209,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#23305E",
+      "bad": "#D61A7F",
+      "season": "brightSpring"
+    },
+    {
+      "src": "/brand/people/nyanse-5.jpg",
+      "face": {
+        "cx": 0.5008631497621536,
+        "cy": 0.43160711973905563,
+        "w": 0.44292590022087097,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#00B5CC",
+      "bad": "#C25B86",
+      "season": "brightSpring"
+    },
+    {
+      "src": "/brand/people/nyanse-6.jpg",
+      "face": {
+        "cx": 0.500828891992569,
+        "cy": 0.422555148601532,
+        "w": 0.4131222367286682,
+        "aspect": 0.8062709966405375
+      },
+      "good": "#EE7A67",
+      "bad": "#1F4FC4",
+      "season": "lightSpring"
+    }
+  ]
+}

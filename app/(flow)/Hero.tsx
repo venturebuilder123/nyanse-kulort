@@ -44,7 +44,7 @@ function PhotoHero() {
       <div className="hero2-stage">
         <span className={`hero2-tag bad${!good ? " on" : ""}`}>✕ {copy.landing.hero.bad}</span>
         <span className={`hero2-tag good${good ? " on" : ""}`}>✓ {copy.landing.hero.good}</span>
-        <Drape photo={person.src} face={{ ...person.face, mirrored: false }} color={good ? person.good : person.bad} fit={{ w: 0.5, cy: 0.4 }} className="hero-portrait" />
+        <Drape photo={person.src} face={{ ...person.face, mirrored: false }} color={good ? person.good : person.bad} fit={{ w: 0.4, cy: 0.38 }} className="hero-portrait" />
         <div className="hero2-pass"><MiniPass /></div>
       </div>
       <figcaption className="hero2-caption">{copy.landing.hero.caption}<span className="ai-label">Voorbeeld · beeld gemaakt met AI, kleurdoek door onze analyse</span></figcaption>
