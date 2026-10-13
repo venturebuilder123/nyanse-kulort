@@ -31,6 +31,19 @@ describe("assessFrame", () => {
     expect(assessFrame(face(), 1, box, () => 0.97).light).toBe(false);
     expect(assessFrame(face(), 1, box, (i) => (i === 205 ? 0.7 : 0.35)).even).toBe(false);
   });
+
+  it("does not call deep skin 'too dark' when the light is fine (fairness)", () => {
+    // deep skin (cheek luma ~0.18, Monk 9–10) with well-lit eye whites
+    const lum = (i: number, j?: number) => (j !== undefined ? 0.7 : 0.18);
+    const r = assessFrame(face(), 1, box, lum);
+    expect(r.light).toBe(true);
+    expect(r.even).toBe(true);
+  });
+
+  it("does call it too dark when the eye whites are dark, whatever the skin tone", () => {
+    const lum = (i: number, j?: number) => (j !== undefined ? 0.2 : 0.6);
+    expect(assessFrame(face(), 1, box, lum).light).toBe(false);
+  });
 });
 
 describe("coverMap", () => {

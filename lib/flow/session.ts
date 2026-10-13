@@ -3,10 +3,10 @@
 
 import type { Measurements, Profile, ProfileContext } from "@/lib/color/profile";
 import { computeProfile } from "@/lib/color/profile";
+import { applyJewel } from "./tiebreak";
 
 export type Jewel = "goud" | "zilver" | "weetniet";
 export type HairAnswer = NonNullable<ProfileContext["hair"]>;
-export type SunAnswer = "verbrandt" | "rood-bruin" | "bruin" | "weetniet";
 
 /** Face position in the photo (fractions), for cropping the drape views. */
 export type FaceBox = { cx: number; cy: number; w: number; aspect: number; mirrored: boolean };
@@ -17,8 +17,6 @@ export type FlowResult = {
   lowConfidence: boolean;
   jewel?: Jewel;
   hair?: HairAnswer;
-  /** stored for phase A analysis; not used in the rules until it proves useful */
-  sun?: SunAnswer;
   face?: FaceBox;
   pipeline: "A";
   at: number;
@@ -43,7 +41,7 @@ export const flowSession = {
     try {
       const r = JSON.parse(sessionStorage.getItem(KEY) ?? "null") as FlowResult | null;
       // always recompute, so the latest rules apply
-      return r ? { ...r, profile: computeProfile(r.measurements, { hair: r.hair }) } : null;
+      return r ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
     } catch {
       return null;
     }

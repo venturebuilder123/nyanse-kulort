@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BUDGETS, OCCASIONS } from "@/lib/brand/config";
+import { BUDGETS } from "@/lib/brand/config";
 import { track } from "@/lib/analytics";
 import { EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
 import { useBrand } from "../BrandProvider";
@@ -12,11 +12,9 @@ export default function Style() {
   const { config, copy, ctx } = useBrand();
   const router = useRouter();
   const [a, setA] = useState<Answers>(EMPTY);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     setA(loadAnswers());
-    setReady(true);
     // Warm up the face models (±8 MB) while people choose, so the selfie step starts fast.
     // Not on the landing: people who bounce there should not pay for the download.
     const warm = () => void import("@/lib/analysis/face/mediapipe").then((m) => m.loadVision()).catch(() => {});
@@ -30,25 +28,13 @@ export default function Style() {
   };
   const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
-  const canContinue = a.occasions.length > 0 && !!a.budget;
 
   return (
     <main className="screen">
       <AppBar pill={copy.style.pill} />
       <Crumbs step={1} />
-      <div className="pad" style={{ visibility: ready ? "visible" : "hidden" }}>
+      <div className="pad">
         <Display text={copy.style.headline} as="h1" small />
-
-        <section className="q" aria-labelledby="q-occ">
-          <h2 id="q-occ">{copy.style.occasionQuestion}</h2>
-          <div className="chips">
-            {OCCASIONS.map((o) => (
-              <button key={o.key} aria-pressed={a.occasions.includes(o.key)} onClick={() => update({ ...a, occasions: toggle(a.occasions, o.key) })}>
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </section>
 
         <section className="q" aria-labelledby="q-budget">
           <h2 id="q-budget">{copy.style.budgetQuestion}</h2>
@@ -76,9 +62,9 @@ export default function Style() {
       <div className="sticky">
         <button
           className="btn"
-          disabled={!canContinue}
           onClick={() => {
-            track("style_done", ctx, { occasions: a.occasions, budget: a.budget, shops: a.shops.length });
+            // budget is optional: without an answer we search the middle range
+            track("style_done", ctx, { occasions: a.occasions, budget: a.budget ?? "none", shops: a.shops.length });
             router.push("/selfie");
           }}
         >

@@ -42,20 +42,20 @@ const MASTER: Record<SeasonKey, readonly Entry[]> = {
   ],
   softSummer: [
     ["#8FA3B8", "Stoffig blauw"], ["#B88A8E", "Rozenhout"], ["#A3B09A", "Salie"], ["#A6879C", "Mauve"],
-    ["#5E6A7A", "Leisteen"], ["#6E5468", "Zachte pruim"], ["#C9A9AC", "Grijsroze"], ["#7FA39B", "Zeegroen"],
+    ["#5E6A7A", "Leisteen", { kulort: "Steengrijs" }], ["#6E5468", "Zachte pruim"], ["#C9A9AC", "Grijsroze"], ["#7FA39B", "Zeegroen"],
     ["#9A8F8A", "Koel taupe"], ["#4F6886", "Denim", { kulort: "Washed denim" }], ["#A9A2BD", "Lavendelgrijs"], ["#ECE8E2", "Gebroken wit"],
     ["#7D8471", "Grijsgroen", { kulort: "Steengroen" }],
   ],
   softAutumn: [
     ["#B9926B", "Kameel", { kulort: "Camel" }], ["#7A7449", "Olijf"], ["#B8735A", "Zachte terracotta"], ["#6D7A4C", "Mosgroen"],
-    ["#D49A82", "Warme zalm"], ["#A89A72", "Kaki"], ["#3F6A6A", "Zachte petrol"], ["#A8764B", "Karamel"],
+    ["#D49A82", "Warme zalm"], ["#A89A72", "Kaki", { kulort: "Chino" }], ["#3F6A6A", "Zachte petrol"], ["#A8764B", "Karamel"],
     ["#B67C73", "Roestroze"], ["#6B4B38", "Chocolademelk", { kulort: "Tabak" }], ["#D8C3A0", "Zand"], ["#EFE6D6", "Warm wit"],
     ["#C9A86A", "Honing"],
   ],
   warmAutumn: [
     ["#C1440E", "Pompoen"], ["#D9822B", "Amber"], ["#B8860B", "Oker"], ["#6B8E23", "Olijfgroen"],
     ["#8B4513", "Zadelbruin", { kulort: "Cognac" }], ["#A0522D", "Siena"], ["#C9A227", "Mosterd"], ["#2E6B5E", "Petrolgroen"],
-    ["#7B3F00", "Kastanje"], ["#E0A96D", "Licht kameel"], ["#9E2A2B", "Steenrood"], ["#556B2F", "Legergroen"],
+    ["#7B3F00", "Kastanje"], ["#E0A96D", "Licht kameel"], ["#9E2A2B", "Steenrood"], ["#556B2F", "Legergroen", { kulort: "Olijf" }],
     ["#F2E3C6", "Room"],
   ],
   deepAutumn: [
@@ -65,21 +65,21 @@ const MASTER: Record<SeasonKey, readonly Entry[]> = {
     ["#3B2F2F", "Espresso"],
   ],
   deepWinter: [
-    ["#1B2A5C", "Inktblauw", { kulort: "Navy" }], ["#0B6B4F", "Diep smaragd"], ["#9E0F35", "Robijn"], ["#3F1A44", "Aubergine"],
+    ["#1B2A5C", "Inktblauw", { kulort: "Navy" }], ["#0B6B4F", "Diep smaragd"], ["#9E0F35", "Robijn"], ["#3F1A44", "Aubergine", { kulort: "Pruim" }],
     ["#1E50B4", "Kobalt"], ["#C2177A", "Fuchsia"], ["#C8102E", "Koel rood"], ["#2C2C30", "Houtskool", { kulort: "Antraciet" }],
     ["#00848C", "Koel turkoois"], ["#111111", "Zwart"], ["#D9DDE3", "IJsgrijs"], ["#FFFFFF", "Wit"],
     ["#3A2A6B", "Indigo"],
   ],
   coolWinter: [
     ["#1F4FC4", "Koningsblauw"], ["#009B77", "Smaragd"], ["#D61A7F", "Fuchsia"], ["#F3D3E3", "IJsroze"],
-    ["#0F3D8C", "Saffier"], ["#B0103A", "Robijnrood"], ["#3A3D45", "Antraciet"], ["#CFE6F5", "IJsblauw"],
+    ["#0F3D8C", "Saffier", { kulort: "Kobaltnavy" }], ["#B0103A", "Robijnrood", { kulort: "Wijnrood" }], ["#3A3D45", "Antraciet"], ["#CFE6F5", "IJsblauw"],
     ["#6A2C91", "Koel paars"], ["#B9BEC6", "Zilver"], ["#141414", "Zwart"], ["#FFFFFF", "Helder wit"],
     ["#0E4C92", "Royal navy", { nyanse: "Nachtblauw" }],
   ],
   brightWinter: [
     ["#FF1493", "Felroze", { kulort: "Fuchsia" }], ["#0047AB", "Kobalt"], ["#00A693", "Helder smaragd"], ["#DC143C", "Karmijn"],
     ["#7B2CBF", "Helder paars"], ["#00B7EB", "Helder cyaan"], ["#FFFFFF", "Wit"], ["#111111", "Zwart"],
-    ["#2E3A87", "Ultramarijn"], ["#E0F7FF", "IJsblauw"], ["#F9E000", "Citroengeel"], ["#9B111E", "Diep robijn"],
+    ["#2E3A87", "Ultramarijn", { kulort: "Navy" }], ["#E0F7FF", "IJsblauw"], ["#F9E000", "Citroengeel"], ["#9B111E", "Diep robijn", { kulort: "Bordeaux" }],
     ["#C0C0C8", "Zilver"],
   ],
 };
@@ -117,6 +117,16 @@ const brandNames = new Map<string, Partial<Record<BrandKey, string>> | undefined
   ),
 );
 
+/**
+ * Colours that work in womenswear but are rarely worn by men (CLAUDE.md §5: names and
+ * selection differ per brand). KULØRT palettes skip them; pale pink stays: it is a shirt classic.
+ */
+const NOT_FOR_KULORT = new Set([
+  "Felroze", "Fuchsia", "Warm roze", "Zachte framboos", "Framboos", "Pastelpaars", "Lila", "Koel roze",
+  "Zalmroze", "Mauve", "Grijsroze", "Rozenhout", "Licht rozenhout", "Roestroze", "Citroengeel",
+  "Zonnegeel", "Limoen", "Papaya", "Lavendel", "Lavendelgrijs", "Bessenrood",
+]);
+
 export function colorName(c: PaletteColor, brand: BrandKey): string {
   return brandNames.get(c.id)?.[brand] ?? c.name;
 }
@@ -130,12 +140,13 @@ export type ProfilePalette = {
   avoid: PaletteColor[];
 };
 
-export function paletteFor(p: Scales, size = 30, avoidCount = 4): ProfilePalette {
-  const near = [...ALL].sort((a, b) => profileDistance(p, a.point) - profileDistance(p, b.point));
+export function paletteFor(p: Scales, brand?: BrandKey, size = 30, avoidCount = 4): ProfilePalette {
+  const pool = brand === "kulort" ? ALL.filter((c) => !NOT_FOR_KULORT.has(c.name)) : ALL;
+  const near = [...pool].sort((a, b) => profileDistance(p, a.point) - profileDistance(p, b.point));
   const colors = dedupe(near).slice(0, size);
   // Avoid: opposite undertone and clarity matter most; depth less so (CLAUDE.md §5).
   const clash = (c: PaletteColor) => Math.abs(c.point.undertone - p.undertone) / 2 + Math.abs(c.point.clarity - p.clarity);
-  const candidates = dedupe([...ALL].sort((a, b) => clash(b) - clash(a)))
+  const candidates = dedupe([...pool].sort((a, b) => clash(b) - clash(a)))
     // keep avoid colours recognisable: skip near-neutrals like white and black
     .filter((c) => labToLch(hexToLab(c.hex)).C > 20)
     .slice(0, 15);

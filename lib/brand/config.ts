@@ -10,10 +10,10 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     hosts: ["kulort.com", "kulort.nl", "kulort.app"],
     voices: ["wingman"],
     defaultVoice: "wingman",
-    shops: ["Zalando", "OFM", "Nolson", "Uniqlo", "COS", "Sissy-Boy", "ASOS", "Vinted"],
+    shops: ["Zalando", "OFM", "Nolson", "Uniqlo", "COS", "Sissy-Boy", "ASOS", "Profuomo"],
     other: "nyanse",
     switchLabel: "Voor vrouwen",
-    themeColor: "#1B2433",
+    themeColor: { light: "#F4F0EA", dark: "#10141B" },
     descriptor: "KULORT",
   },
   nyanse: {
@@ -22,10 +22,10 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     hosts: ["nyanse.com", "nyanse.nl", "nyanse.app"],
     voices: ["atelier", "girlmath"],
     defaultVoice: "atelier",
-    shops: ["Zalando", "H&M", "Zara", "Mango", "COS", "Arket", "ASOS", "Vinted"],
+    shops: ["Zalando", "H&M", "Zara", "Mango", "COS", "Arket", "ASOS", "Sissy-Boy"],
     other: "kulort",
     switchLabel: "Voor mannen",
-    themeColor: "#C8285A",
+    themeColor: { light: "#FBF7F6", dark: "#120F14" },
     descriptor: "NYANSE",
   },
 };
@@ -43,7 +43,6 @@ export const OCCASIONS: { key: OccasionKey; label: string }[] = [
   { key: "weekend", label: "Weekend" },
   { key: "date", label: "Date" },
   { key: "feest", label: "Feest" },
-  { key: "sport", label: "Sport & vrije tijd" },
 ];
 
 export const BUDGETS: { key: BudgetKey; label: string }[] = [

@@ -8,7 +8,8 @@ import { calibrate, IDENTITY, type Calibration } from "./card/calibrate";
 import { detectCard } from "./card/detect";
 import { measureRegions, type RegionDebug } from "./face/regions";
 import { loadVision } from "./face/mediapipe";
-import type { Point } from "./image";
+import type { ImageLike, Point } from "./image";
+import { LIGHT, SCLERA } from "./live";
 
 /** Longest image side used for analysis: enough detail for irises, fast on phones. */
 const MAX_SIDE = 1600;
@@ -144,7 +145,8 @@ export async function runPipelineA(file: Blob): Promise<{ result: PipelineAResul
   if (measurements.faceWidthPx < 180) issues.push("Gezicht klein in beeld: kom dichter bij de camera");
   if (regions.skinClipped > 0.05) issues.push("Huid overbelicht: vermijd direct zonlicht en flitser");
   if (measurements.skin.n < 200) issues.push("Te weinig huid zichtbaar (haar, bril of schaduw?)");
-  if (!cardSummary.used && measurements.skin.lab.L < 25) issues.push("Te donker: ga met je gezicht naar een raam");
+  // Too dark? Judged on the whites of the eyes, never on skin brightness (fairness, see live.ts).
+  if (scleraLuma(img, face) < LIGHT.scleraMin) issues.push("Te donker: ga met je gezicht naar een raam");
   if (!measurements.iris) issues.push("Ogen niet goed zichtbaar");
   if (cheekDeltaE(measurements) > UNEVEN_LIGHT_DE) issues.push("Ongelijk licht op je gezicht: ga recht voor het raam staan");
   if (!cardSummary.used && profile.confidence.overall < 0.5 && issues.length === 0) {
@@ -168,4 +170,21 @@ export async function runPipelineA(file: Blob): Promise<{ result: PipelineAResul
     debug,
     canvas,
   };
+}
+
+/** Mean 0..1 sRGB luma on the whites of both eyes (3x3 samples each). */
+function scleraLuma(img: ImageLike, face: Point[]): number {
+  let sum = 0, n = 0;
+  for (const [i, j, t] of SCLERA) {
+    const a = face[i], b = face[j];
+    if (!a || !b) continue;
+    const cx = Math.round(a.x + (b.x - a.x) * t), cy = Math.round(a.y + (b.y - a.y) * t);
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+      const x = Math.min(img.width - 1, Math.max(0, cx + dx)), y = Math.min(img.height - 1, Math.max(0, cy + dy));
+      const k = (y * img.width + x) * 4;
+      sum += (0.2126 * img.data[k]! + 0.7152 * img.data[k + 1]! + 0.0722 * img.data[k + 2]!) / 255;
+      n++;
+    }
+  }
+  return n ? sum / n : 1;
 }

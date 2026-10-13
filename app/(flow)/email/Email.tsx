@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { familyOf } from "@/lib/color/describe";
 import { paletteFor, showcase } from "@/lib/color/palette";
 import { track } from "@/lib/analytics";
 import { flowSession } from "@/lib/flow/session";
@@ -14,7 +13,7 @@ import { AppBar, Crumbs, Display } from "../ui";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
 
 export default function Email() {
-  const { copy, ctx } = useBrand();
+  const { config, copy, ctx } = useBrand();
   const t = copy.email;
   const router = useRouter();
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
@@ -33,7 +32,7 @@ export default function Email() {
   if (!loaded) return <main className="screen" />;
   if (!r) return <main className="screen"><div className="pad"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div></main>;
 
-  const six = showcase(paletteFor(r.profile));
+  const six = showcase(paletteFor(r.profile, config.key));
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -43,7 +42,7 @@ export default function Email() {
     try {
       sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin }));
     } catch {}
-    track("email_submit", ctx, { hair: r?.hair, sun: r?.sun });
+    track("email_submit", ctx, { hair: r?.hair, jewel: r?.jewel });
     if (optin) track("optin_checked", ctx);
     router.push("/resultaat");
   }
@@ -57,9 +56,8 @@ export default function Email() {
         <div className="teaser">
           <Drape photo={photo} face={r.face} color={six[0]?.hex ?? "#888"} className="teaser-face" />
           <div className="teaser-body">
-            <b>{familyOf(r.profile.match.season)}-type</b>
+            <b>{t.teaser}</b>
             <span className="strip">{six.map((c) => <i key={c.id} style={{ background: c.hex }} />)}</span>
-            <span className="small muted">{t.teaser}</span>
           </div>
         </div>
         <form className="stack-md" onSubmit={submit} noValidate>
@@ -69,6 +67,8 @@ export default function Email() {
               type="email"
               inputMode="email"
               autoComplete="email"
+              autoCapitalize="none"
+              enterKeyHint="go"
               placeholder={t.placeholder}
               value={email}
               onChange={(e) => { setEmail(e.target.value); setError(null); }}
@@ -81,6 +81,7 @@ export default function Email() {
             <span>{t.optin}</span>
           </label>
           <button className="btn" type="submit">{t.submit}</button>
+          <p className="small muted center">Je krijgt eerst een mail om je adres te bevestigen. <Link href="/privacy">Privacy</Link></p>
         </form>
         <button className="link-btn" onClick={() => router.push("/resultaat")}>{t.skip}</button>
       </div>

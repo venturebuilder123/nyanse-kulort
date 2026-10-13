@@ -31,8 +31,9 @@ export function proxy(request: NextRequest) {
   const res = NextResponse.next({ request: { headers } });
 
   // Functional cookies: keep brand and voice for the rest of the visit.
-  const opts = { path: "/", sameSite: "lax" as const, maxAge: 60 * 60 * 24 * 30 };
-  if (request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, opts);
+  const opts = { path: "/", sameSite: "lax" as const };
+  if (request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, { ...opts, maxAge: 60 * 60 * 24 * 30 });
+  // the voice comes from the ad: keep it for this visit only, so it is not ad attribution
   if (request.cookies.get(VOICE_COOKIE)?.value !== voice) res.cookies.set(VOICE_COOKIE, voice, opts);
   return res;
 }

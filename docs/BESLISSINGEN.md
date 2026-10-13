@@ -2,6 +2,16 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — overhaul na expertreview
+
+Zie [fase-b/EXPERT-REVIEW-2026-10-13.md](fase-b/EXPERT-REVIEW-2026-10-13.md) voor alle bevindingen. Kort:
+- **Hero:** de kleurdoekentest als illustratie in plaats van de pas (die las als bankpas). Woordmerken zonder beeldmerk.
+- **Kop zegt wat het is:** "Kleuranalyse uit één selfie". Geen ongemeten tijdclaims. Gratis en betaald staan apart op de landing.
+- **Eerlijkheid voor elke huidtint:** de lichtcheck gebeurt op het oogwit, niet op de huid.
+- **Selfie:** één tik "Ik ben 16+ · camera aan" en automatisch vastleggen. **Resultaat:** geen vooraf gekozen tarief, en een geldige herroepingsvraag in de checkout.
+- **Herenpalet voor KULØRT.** De zonvraag is geschrapt; goud/zilver beslist alleen bij twijfel tussen warm en koel.
+- **Social-koppeling om foto's op te halen: nee.** De Instagram-API voor persoonlijke accounts is per december 2024 gestopt, scrapen kan niet (§12), het gaat in tegen de AVG (gezichten van anderen) en gefilterde foto's zijn slechte input. Wel beschikbaar: een foto uit de eigen camerarol.
+
 ## 13 oktober 2026 — analyse, e-mail en gratis resultaat
 
 - **Laadschermen werken twee kanten op** (verzoek oprichter). De bezoeker ziet zijn eigen schalen één voor één verschijnen. Wij stellen twee vragen: natuurlijke haarkleur (gebruikt: geverfd of kaal haar telt niet mee voor de ondertoon, grijs haar wel voor contrast) en zonreactie (alleen bewaard; pas gebruiken als fase A laat zien dat het helpt).

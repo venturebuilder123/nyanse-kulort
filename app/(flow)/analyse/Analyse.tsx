@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { clarityWord, depthWord, undertoneWord } from "@/lib/color/describe";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
-import { flowSession, type HairAnswer, type SunAnswer } from "@/lib/flow/session";
+import { flowSession, type HairAnswer, type Jewel } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { AppBar, CheckIcon, Crumbs } from "../ui";
@@ -24,7 +24,7 @@ export default function Analyse() {
   const [photo, setPhoto] = useState<string | null>(null);
   const [step, setStep] = useState(0);
   const [hair, setHair] = useState<HairAnswer | null>(null);
-  const [sun, setSun] = useState<SunAnswer | null>(null);
+  const [jewel, setJewel] = useState<Jewel | null>(null);
   const leaving = useRef(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function Analyse() {
 
   const drapes = useMemo(() => {
     if (!r) return [];
-    const pal = paletteFor(r.profile);
+    const pal = paletteFor(r.profile, config.key);
     const good = showcase(pal, 2);
     const bad1 = mostDifferent(good[0]!, pal.avoid)!;
     const bad2 = mostDifferent(good[1]!, pal.avoid.filter((c) => c !== bad1)) ?? bad1;
@@ -56,7 +56,7 @@ export default function Analyse() {
   }, [r, drapes.length]);
 
   const done = step >= drapes.length;
-  const answered = !!hair && !!sun;
+  const answered = !!hair && !!jewel;
 
   const goOn = () => {
     if (leaving.current) return;
@@ -94,24 +94,13 @@ export default function Analyse() {
       <AppBar pill={t.pill} />
       <Crumbs step={3} />
       <div className="pad">
-        <section className="scan" aria-live="polite">
+        <section className="scan">
           <p className="label-sm">{t.label}</p>
           <Drape photo={photo} face={r.face} color={current.c.hex} className="scan-face" />
-          <p className={`verdict ${current.ok ? "is-ok" : "is-bad"}`} key={step}>
+          <p className={`verdict ${current.ok ? "is-ok" : "is-bad"}`} key={step} aria-live="polite">
             <b>{current.ok ? "✓" : "✗"} {colorName(current.c, config.key)}</b>
-            <span>{current.ok ? t.good : t.bad}</span>
+            <span>{current.ok ? t.goodLines[Math.floor(step / 2) % t.goodLines.length] : t.badLines[Math.floor(step / 2) % t.badLines.length]}</span>
           </p>
-          <ul className="scan-scales">
-            {scales.map((s, i) => {
-              const shown = step > i;
-              return (
-                <li key={s.label} className={shown ? "is-done" : step === i ? "is-busy" : ""}>
-                  <span>{s.label}</span>
-                  <b>{shown ? <><CheckIcon /> {s.word}</> : step === i ? "bezig…" : "wacht"}</b>
-                </li>
-              );
-            })}
-          </ul>
         </section>
 
         <section className="quiz">
@@ -125,23 +114,34 @@ export default function Analyse() {
                 flowSession.update({ hair: v });
               }}
             />
-          ) : !sun ? (
+          ) : !jewel ? (
             <Question
-              q={t.sunQ}
-              options={t.sun}
+              q={t.jewelQ}
+              options={t.jewel}
               onPick={(v) => {
-                setSun(v);
-                flowSession.update({ sun: v });
+                setJewel(v);
+                flowSession.update({ jewel: v });
               }}
             />
           ) : (
             <p className="quiz-thanks"><CheckIcon /> {t.thanks}</p>
           )}
         </section>
+        <ul className="scan-scales">
+            {scales.map((s, i) => {
+              const shown = step > i;
+              return (
+                <li key={s.label} className={shown ? "is-done" : step === i ? "is-busy" : ""}>
+                  <span>{s.label}</span>
+                  <b>{shown ? <><CheckIcon /> {s.word}</> : step === i ? "…" : ""}</b>
+                </li>
+              );
+            })}
+          </ul>
       </div>
       <div className="sticky">
-        <button className="btn" disabled={!done} onClick={goOn}>
-          {done ? t.cta : "…"}
+        <button className="btn" disabled={!done} aria-busy={!done} onClick={goOn}>
+          {done ? t.cta : t.waiting}
         </button>
       </div>
     </main>

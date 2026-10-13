@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   // Lab pages must never be indexed or cached by intermediaries.
   async headers() {
     return [
+      // Face models and WASM: large and rarely changing. Cache for a week; revalidate in the background.
+      {
+        source: "/:dir(models|mediapipe)/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" }],
+      },
       {
         source: "/lab/:path*",
         headers: [

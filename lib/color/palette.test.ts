@@ -43,6 +43,13 @@ describe("master palette", () => {
     expect(colorName(navy, "nyanse")).toBe("Marine");
   });
 
+  it("keeps KULØRT palettes menswear: no fuchsia or lemon for a bright winter man", () => {
+    const names = paletteFor(SEASONS.brightWinter.centre, "kulort").colors.map((c) => c.name);
+    expect(names).not.toContain("Felroze");
+    expect(names).not.toContain("Citroengeel");
+    expect(paletteFor(SEASONS.brightWinter.centre, "kulort").colors).toHaveLength(30);
+  });
+
   it("spreads the showcase colours instead of picking six near-identical ones", () => {
     const six = spread(paletteFor(SEASONS.deepAutumn.centre).colors, 6);
     expect(six).toHaveLength(6);

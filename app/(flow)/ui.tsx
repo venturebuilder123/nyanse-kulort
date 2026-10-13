@@ -1,18 +1,27 @@
 "use client";
 
+import Link from "next/link";
+
 import type { Headline, OccasionKey } from "@/lib/brand/types";
 import { useBrand } from "./BrandProvider";
 
-const DOTS = ["#F3A27A", "#8FA3B8", "#A2462A", "#1F4FC4"];
-
+/**
+ * Wordmarks without a symbol (art direction 13 Oct). KULØRT: wide Archivo, generous tracking,
+ * the slash of the Ø in cognac is the only accent. NYANSE: one wordmark for both voices,
+ * upright Bodoni in lowercase; the voice changes the copy, not the brand.
+ */
 export function Wordmark() {
   const { config } = useBrand();
-  return (
-    <span className="wordmark" aria-label={config.name}>
-      {config.key === "kulort" ? "kulørt" : "nyanse"}
-      <span className="dots" aria-hidden="true">
-        {DOTS.map((c) => <i key={c} style={{ background: c }} />)}
+  if (config.key === "kulort") {
+    return (
+      <span className="wordmark wm-kulort" role="img" aria-label="KULØRT">
+        <span aria-hidden="true">KUL<span className="wm-o">O</span>RT</span>
       </span>
+    );
+  }
+  return (
+    <span className="wordmark wm-nyanse" role="img" aria-label="NYANSE">
+      <span aria-hidden="true">nyanse</span>
     </span>
   );
 }
@@ -93,5 +102,15 @@ export function LockIcon() {
       <rect x="5" y="11" width="14" height="9" rx="2" />
       <path d="M8 11V8a4 4 0 0 1 8 0v3" />
     </svg>
+  );
+}
+
+/** Legal footer (CLAUDE.md §9): one legal entity behind both brands. Details follow at registration. */
+export function Footer() {
+  return (
+    <footer className="foot">
+      <Link href="/privacy">Privacy</Link>
+      <span>Prijzen inclusief btw</span>
+    </footer>
   );
 }

@@ -7,12 +7,25 @@ import type { FaceBox } from "@/lib/flow/session";
  * reflection of that colour on the face (the classic drape test). Purely local: the photo is
  * an object URL that never leaves the device.
  */
-export function Drape({ photo, face, color, className = "" }: { photo: string | null; face?: FaceBox; color: string; className?: string }) {
-  // Fit the face to ~52% of the frame width, centred at 42% height; frame is 4:5.
+export function Drape({
+  photo,
+  face,
+  color,
+  className = "",
+  fit = { w: 0.52, cy: 0.42 },
+}: {
+  photo: string | null;
+  face?: FaceBox;
+  color: string;
+  className?: string;
+  /** face width (fraction of the frame) and vertical centre; smaller and higher shows more cloth */
+  fit?: { w: number; cy: number };
+}) {
+  // Fit the face into the 4:5 frame.
   const f = face ?? { cx: 0.5, cy: 0.4, w: 0.45, aspect: 0.75, mirrored: false };
-  const s = 0.52 / f.w; // displayed image width in frame widths
+  const s = fit.w / f.w; // displayed image width in frame widths
   const left = 0.5 - (f.mirrored ? 1 - f.cx : f.cx) * s;
-  const top = (0.42 * 1.25 - f.cy * (s / f.aspect)) / 1.25;
+  const top = (fit.cy * 1.25 - f.cy * (s / f.aspect)) / 1.25;
   return (
     <div className={`drape ${className}`}>
       {photo ? (

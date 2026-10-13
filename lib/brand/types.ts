@@ -13,14 +13,19 @@ export type VoiceCopy = {
   meta: { title: string; description: string };
   landing: {
     pill: string;
+    /** says literally what this is, above the headline */
+    eyebrow: string;
     headline: Headline;
     /** one line under the headline: the problem and the promise */
     sub: string;
-    checksTitle: string;
-    checks: readonly [string, string, string];
+    /** the strongest trust claim, right under the sub */
+    trustMain: string;
     occasionQuestion: string;
-    /** three true trust signals, no numbers we have not measured */
-    trust: readonly [string, string, string];
+    trustSmall: readonly [string, string];
+    /** what is free and what is paid, spelled out (no misleading "gratis") */
+    free: { title: string; text: string };
+    paid: { title: string; text: string };
+    hero: { caption: string; bad: string; good: string };
   };
   /** the kleurenpas in the hero: the season stays hidden until the selfie */
   pass: { label: string; season: string };
@@ -53,19 +58,22 @@ export type BrandConfig = {
   other: BrandKey;
   /** the small cross-brand link on the landing */
   switchLabel: string;
-  themeColor: string;
+  /** browser bar colour, light and dark (matches --bg) */
+  themeColor: { light: string; dark: string };
   /** shown on bank statements and in mails (phase B) */
   descriptor: string;
 };
 
 export type SelfieCopy = {
   pill: string;
+  intro: string;
+  introText: string;
+  startCamera: string;
+  denied: string;
+  hold: string;
   tips: { face: string; light: string; even: string };
   hint: string;
-  jewelQuestion: string;
-  jewel: { goud: string; zilver: string; weetniet: string };
   age: string;
-  ageNeeded: string;
   /** the AI notice lives in the button (CLAUDE.md §9, EU AI Act) */
   start: string;
   busy: string;
@@ -84,13 +92,14 @@ export type AnalysisCopy = {
   pill: string;
   label: string;
   scales: { undertone: string; depth: string; clarity: string };
-  good: string;
-  bad: string;
   questionsTitle: string;
   hairQ: string;
   hair: { natural: string; dyed: string; grey: string; none: string };
-  sunQ: string;
-  sun: { verbrandt: string; "rood-bruin": string; bruin: string; weetniet: string };
+  jewelQ: string;
+  jewel: { goud: string; zilver: string; weetniet: string };
+  goodLines: readonly string[];
+  badLines: readonly string[];
+  waiting: string;
   thanks: string;
   cta: string;
   skip: string;
@@ -116,6 +125,7 @@ export type WhyBlock =
 export type ResultCopy = {
   pill: string;
   label: string;
+  provisional: string;
   between: string;
   scalesTitle: string;
   colorsTitle: string;
@@ -127,9 +137,16 @@ export type ResultCopy = {
   lowConfidenceCta: string;
   lockedTitle: string;
   lockedSubtype: string;
+  lockedItems: readonly string[];
   why: WhyBlock;
   tiersTitle: string;
-  tiers: { digital: { name: string; features: string[] }; card: { name: string; badge: string; features: string[] } };
-  cta: string;
+  tiers: {
+    digital: { name: string; line: string; features: readonly string[] };
+    card: { name: string; badge: string; line: string; features: readonly string[] };
+  };
+  ctaChoose: string;
+  ctaDigital: string;
+  ctaCard: string;
   fine: string;
+  checkout: { pay: string; shipping: string; withdrawal: string; test: string; close: string };
 };

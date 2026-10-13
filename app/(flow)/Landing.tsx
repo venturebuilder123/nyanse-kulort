@@ -9,7 +9,7 @@ import { decodeToken, EMPTY, loadAnswers, saveAnswers, type Answers } from "@/li
 import { switchUrl } from "@/lib/flow/switch";
 import { useBrand } from "./BrandProvider";
 import { Hero } from "./Hero";
-import { AppBar, CheckIcon, Display, OccasionIcon } from "./ui";
+import { AppBar, CheckIcon, Display, Footer, LockIcon, OccasionIcon } from "./ui";
 
 export default function Landing() {
   const { config, copy, ctx } = useBrand();
@@ -46,42 +46,32 @@ export default function Landing() {
   return (
     <main className="screen">
       <AppBar pill={copy.landing.pill} />
-      <div className="pad">
-        <Hero />
+      <div className="pad landing">
+        <p className="eyebrow">{copy.landing.eyebrow}</p>
         <Display text={copy.landing.headline} />
-        <p className="sub rise d1">{copy.landing.sub}</p>
+        <p className="sub">{copy.landing.sub}</p>
+        {/* Pipeline A keeps the photo on the device, so this claim is true (CLAUDE.md §5). */}
+        <p className="trust-main"><LockIcon />{copy.landing.trustMain}</p>
+        <Hero />
 
-        <section className="q rise d2" aria-labelledby="occ-q">
+        <section className="q" aria-labelledby="occ-q">
           <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
           <div className="tiles">
-            {OCCASIONS.map((o, i) => (
-              <button
-                key={o.key}
-                className={`tile${i === OCCASIONS.length - 1 ? " wide" : ""}`}
-                aria-pressed={answers.occasions[0] === o.key}
-                onClick={() => pick(o.key)}
-              >
+            {OCCASIONS.map((o) => (
+              <button key={o.key} className="tile" aria-pressed={answers.occasions[0] === o.key} onClick={() => pick(o.key)}>
                 <OccasionIcon k={o.key} />
                 {o.label}
               </button>
             ))}
           </div>
+          <p className="trustrow">
+            {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
+          </p>
         </section>
 
-        {/* Pipeline A keeps the photo on the device, so the first claim is true (CLAUDE.md §5). */}
-        <p className="trustrow rise d3">
-          {copy.landing.trust.map((t) => (
-            <span key={t}><CheckIcon />{t}</span>
-          ))}
-        </p>
-
-        <section className="gets rise d4" aria-labelledby="gets-h">
-          <h2 id="gets-h" className="label-sm">{copy.landing.checksTitle}</h2>
-          <ul className="checklist">
-            {copy.landing.checks.map((c) => (
-              <li key={c}><i aria-hidden="true">✓</i><span>{c}</span></li>
-            ))}
-          </ul>
+        <section className="gets" aria-label="Wat je krijgt">
+          <div><b className="label-sm">{copy.landing.free.title}</b><p>{copy.landing.free.text}</p></div>
+          <div><b className="label-sm">{copy.landing.paid.title}</b><p>{copy.landing.paid.text}</p></div>
         </section>
 
         <p className="switch">
@@ -91,6 +81,7 @@ export default function Landing() {
           </a>
         </p>
       </div>
+      <Footer />
     </main>
   );
 }
