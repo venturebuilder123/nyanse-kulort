@@ -104,12 +104,12 @@ export default function Selfie() {
   }, [mode]);
 
   const analyse = useCallback(
-    async (blob: Blob) => {
+    async (blob: Blob, mirrored = false) => {
       setBusy(true);
       setError(null);
       try {
         const { runPipelineA } = await import("@/lib/analysis/pipelineA");
-        const { result } = await runPipelineA(blob);
+        const { result, debug, canvas } = await runPipelineA(blob);
         if (!result.ok || !result.measurements || !result.profile) {
           setRetry({ tip: t.noFace, attempts: (retry?.attempts ?? 0) + 1 });
           return;
@@ -121,11 +121,23 @@ export default function Selfie() {
           setRetry({ tip: result.quality.issues[0] ?? t.retryGeneric, attempts });
           return;
         }
+        const oval = debug.regions?.faceOval ?? [];
+        const xs = oval.map((q) => q.x), ys = oval.map((q) => q.y);
+        const face = oval.length
+          ? {
+              cx: (Math.min(...xs) + Math.max(...xs)) / 2 / canvas.width,
+              cy: (Math.min(...ys) + Math.max(...ys)) / 2 / canvas.height,
+              w: (Math.max(...xs) - Math.min(...xs)) / canvas.width,
+              aspect: canvas.width / canvas.height,
+              mirrored,
+            }
+          : undefined;
         flowSession.setPhoto(blob);
         flowSession.setResult({
           measurements: result.measurements,
           lowConfidence: low,
           jewel: jewel ?? undefined,
+          face,
           pipeline: "A",
           at: Date.now(),
         });
@@ -163,7 +175,7 @@ export default function Selfie() {
     c.height = v.videoHeight;
     c.getContext("2d")!.drawImage(v, 0, 0);
     const blob = await new Promise<Blob | null>((res) => c.toBlob(res, "image/jpeg", 0.92));
-    if (blob) await analyse(blob);
+    if (blob) await analyse(blob, true);
   }
 
   function onFile(e: React.ChangeEvent<HTMLInputElement>) {

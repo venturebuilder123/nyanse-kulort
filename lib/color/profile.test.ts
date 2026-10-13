@@ -62,6 +62,18 @@ describe("computeProfile", () => {
     expect(Math.max(...u) - Math.min(...u)).toBeLessThan(0.3);
   });
 
+  it("ignores dyed hair and the undertone of grey hair", () => {
+    const m = measure({ L: 65, a: 13, b: 16 }, { L: 40, a: 18, b: 30 }); // vivid copper hair
+    const natural = computeProfile(m);
+    const dyed = computeProfile(m, { hair: "dyed" });
+    const grey = computeProfile(m, { hair: "grey" });
+    const noHair = computeProfile({ ...m, hair: undefined });
+    expect(natural.undertone).toBeGreaterThan(dyed.undertone);
+    expect(dyed.undertone).toBeCloseTo(noHair.undertone, 6);
+    expect(grey.undertone).toBeCloseTo(noHair.undertone, 6);
+    expect(grey.depth).toBeCloseTo(natural.depth, 6);
+  });
+
   it("keeps all scales within range", () => {
     const p = computeProfile(measure({ L: 99, a: 60, b: 90 }, { L: 0, a: 0, b: 0 }));
     expect(p.undertone).toBeGreaterThanOrEqual(-1);

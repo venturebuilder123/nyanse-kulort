@@ -2,6 +2,16 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — analyse, e-mail en gratis resultaat
+
+- **Laadschermen werken twee kanten op** (verzoek oprichter). De bezoeker ziet zijn eigen schalen één voor één verschijnen. Wij stellen twee vragen: natuurlijke haarkleur (gebruikt: geverfd of kaal haar telt niet mee voor de ondertoon, grijs haar wel voor contrast) en zonreactie (alleen bewaard; pas gebruiken als fase A laat zien dat het helpt).
+- **Regels v2.** Haarwarmte komt nu uit de kleurkracht (koper en goud tegenover as), niet uit de tint-hoek; koper telde in v1 als koel. Betrouwbaarheid: tot ΔE 2 verschil tussen de wangen is normaal, zonder kaart maximaal 0,8. Waarom: in v1 moest vrijwel iedereen zonder kaart een tweede selfie maken, terwijl de live check groen gaf.
+- **Masterlijst van 156 kleuren** (13 per seizoen) met merkeigen namen (KULØRT: Navy, Cognac, Antraciet, Bordeaux; NYANSE: Poederroze, Nachtblauw). Per profiel de 30 dichtstbijzijnde kleuren; te vermijden: het verst weg in ondertoon en helderheid, gespreid.
+- **Gratis resultaat toont de familie** (Lente, Zomer, Herfst of Winter), de drie schalen, 6 kleuren en wat je beter vermijdt. **Het precieze type** (bijv. Bright Winter) en alle 30 kleuren zitten achter de betaling. Daar draait het verdienmodel om.
+- **Geen verzonnen prijzen in de waarom-blokken.** Atelier vergelijkt met de tijd van een kleuradviseur, niet met een prijs (nog geen bron). Wingman noemt de eerste indruk in 0,1 seconde, met bron. Girl Math rekent €6,99 ÷ 365, zonder geldbelofte.
+- **Levertijd van de pas: "binnen 10 dagen" in plaats van "3 werkdagen"**, omdat de passen in een wekelijkse batch gaan.
+- **E-mail en betalen zijn nog niet aangesloten** (Brevo en Mollie): het e-mailadres blijft in de sessie, de checkout-sheet zegt "testversie".
+
 ## 13 oktober 2026 — selfie-stap
 
 - **Haarmodel van 0,8 MB in plaats van het multiclass-model van 16 MB.** Download voor bezoekers: ±22 MB → ±8 MB. Meting op de testfoto: zelfde huid- en haarwaarden (haar L\* 14,5 vs 14,4), analyse 3× sneller (±0,4 s). Huidgebieden komen nu uit de gezichtspunten, zonder haarpixels. Geldt ook voor `/lab`, zodat lab en app hetzelfde meten.

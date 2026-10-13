@@ -1,4 +1,4 @@
-import { SELFIE_NL } from "../common";
+import { ANALYSIS_NL, emailNl, resultNl, SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
 // Girl Math: playful sums with a wink, never literal money promises.
@@ -28,5 +28,8 @@ export const girlmath: VoiceCopy = {
     next: "Volgende: selfie",
   },
   selfie: SELFIE_NL,
+  analysis: ANALYSIS_NL,
+  email: emailNl(["Oké, je profiel is", "klaar."]),
+  result: resultNl("6 kleuren die je laten stralen", { kind: "receipt", title: "Waarom dit eigenlijk een steal is", head: "Girl math", lines: [["Stijlgids", "€6,99"], ["÷ 365 dagen", "€0,02 per dag"], ["Eén miskoop minder", "✓"]], total: ["Dus eigenlijk", "basically gratis ✨"] }),
   ring: ["#D61F5B", "#FFE9A6", "#F4A3A0", "#8FA3B8", "#F3A27A", "#A6879C", "#2BB3A8", "#FFE6EE", "#B9926B", "#6E5468"],
 };

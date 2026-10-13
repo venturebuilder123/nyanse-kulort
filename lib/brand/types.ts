@@ -34,6 +34,9 @@ export type VoiceCopy = {
     next: string;
   };
   selfie: SelfieCopy;
+  analysis: AnalysisCopy;
+  email: EmailCopy;
+  result: ResultCopy;
   /** colours on the 3D ring, chosen per voice */
   ring: readonly string[];
 };
@@ -75,4 +78,58 @@ export type SelfieCopy = {
   retryGeneric: string;
   noFace: string;
   failed: string;
+};
+
+export type AnalysisCopy = {
+  pill: string;
+  label: string;
+  scales: { undertone: string; depth: string; clarity: string };
+  good: string;
+  bad: string;
+  questionsTitle: string;
+  hairQ: string;
+  hair: { natural: string; dyed: string; grey: string; none: string };
+  sunQ: string;
+  sun: { verbrandt: string; "rood-bruin": string; bruin: string; weetniet: string };
+  thanks: string;
+  cta: string;
+  skip: string;
+};
+
+export type EmailCopy = {
+  pill: string;
+  headline: Headline;
+  teaser: string;
+  lead: string;
+  placeholder: string;
+  optin: string;
+  submit: string;
+  skip: string;
+  invalid: string;
+};
+
+export type WhyBlock =
+  | { kind: "impression"; title: string; label: string; big: string; text: string; source: string }
+  | { kind: "compare"; title: string; them: [string, string]; us: [string, string] }
+  | { kind: "receipt"; title: string; head: string; lines: [string, string][]; total: [string, string] };
+
+export type ResultCopy = {
+  pill: string;
+  label: string;
+  between: string;
+  scalesTitle: string;
+  colorsTitle: string;
+  avoidTitle: string;
+  avoidText: string;
+  baTitle: string;
+  baHint: string;
+  lowConfidence: string;
+  lowConfidenceCta: string;
+  lockedTitle: string;
+  lockedSubtype: string;
+  why: WhyBlock;
+  tiersTitle: string;
+  tiers: { digital: { name: string; features: string[] }; card: { name: string; badge: string; features: string[] } };
+  cta: string;
+  fine: string;
 };

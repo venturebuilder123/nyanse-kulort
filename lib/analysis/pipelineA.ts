@@ -3,7 +3,7 @@
 
 import type { RGB } from "@/lib/color/convert";
 import { estimateMonk } from "@/lib/color/monk";
-import { computeProfile, type Measurements, type Profile } from "@/lib/color/profile";
+import { cheekDeltaE, computeProfile, UNEVEN_LIGHT_DE, type Measurements, type Profile } from "@/lib/color/profile";
 import { calibrate, IDENTITY, type Calibration } from "./card/calibrate";
 import { detectCard } from "./card/detect";
 import { measureRegions, type RegionDebug } from "./face/regions";
@@ -146,8 +146,9 @@ export async function runPipelineA(file: Blob): Promise<{ result: PipelineAResul
   if (measurements.skin.n < 200) issues.push("Te weinig huid zichtbaar (haar, bril of schaduw?)");
   if (!cardSummary.used && measurements.skin.lab.L < 25) issues.push("Te donker: ga met je gezicht naar een raam");
   if (!measurements.iris) issues.push("Ogen niet goed zichtbaar");
-  if (profile.confidence.undertone < 0.6 && measurements.cheekLeft && measurements.cheekRight) {
-    issues.push("Ongelijk licht op je gezicht: ga recht voor het raam staan");
+  if (cheekDeltaE(measurements) > UNEVEN_LIGHT_DE) issues.push("Ongelijk licht op je gezicht: ga recht voor het raam staan");
+  if (!cardSummary.used && profile.confidence.overall < 0.5 && issues.length === 0) {
+    issues.push("Ga bij een raam staan, met je gezicht naar het licht");
   }
 
   timings.totalMs = performance.now() - t0;

@@ -35,13 +35,13 @@ export type Profile = Scales & {
 };
 
 export const RULES = {
-  version: 1,
+  version: 2, // v2: hair warmth from chroma (copper/golden vs ash), hair answer, confidence tuned for selfies without card
   // AANNAME: starting values from colour science on skin (hue angle ~40–65°, L* ~30–75);
   // to be tuned on phase A data, never on the test set used for the gate.
   // Skin undertone = signed distance (in Lab units) from the neutral hue line, not the hue
   // angle itself: the angle swings wildly when skin chroma is low (pale or overexposed skin),
   // the distance shrinks towards neutral instead. Found in the first end-to-end test.
-  undertone: { skinHueNeutral: 52, skinSpan: 5, hairHueNeutral: 62, hairHueSpan: 20, irisHueNeutral: 60, irisHueSpan: 40 },
+  undertone: { skinHueNeutral: 52, skinSpan: 5, hairChromaNeutral: 9, hairChromaSpan: 8, irisHueNeutral: 60, irisHueSpan: 40 },
   depth: { skinL: [30, 75], hairL: [12, 65], irisL: [20, 60] },
   clarity: { contrastL: [10, 50], irisC: [4, 28], skinC: [14, 28], hairC: [3, 22] },
   weights: {
@@ -75,18 +75,30 @@ export function hueLineDistance({ a, b }: Lab, neutralDeg: number): number {
 /** Hair/iris hue only carries information when the colour is not grey. */
 const chromaWeight = (C: number, full: number) => clamp(C / full, 0, 1);
 
-export function computeProfile(m: Measurements): Profile {
+/**
+ * What the person told us during the analysis screen. Dyed hair says nothing about natural
+ * colouring; grey hair still sets today's contrast but not the undertone; no hair = no hair term.
+ */
+export type ProfileContext = { hair?: "natural" | "dyed" | "grey" | "none" };
+
+export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profile {
   const R = RULES;
   const skin = labToLch(m.skin.lab);
   const hairOk = m.hair && m.hair.n >= R.minPixels.hair;
   const irisOk = m.iris && m.iris.n >= R.minPixels.iris;
-  const hair = hairOk ? labToLch(m.hair!.lab) : undefined;
+  const hairStatus = ctx.hair ?? "natural";
+  // hair for depth and contrast: anything but dyed or absent
+  const hair = hairOk && hairStatus !== "dyed" && hairStatus !== "none" ? labToLch(m.hair!.lab) : undefined;
+  // hair for undertone: natural colour only
+  const hairHue = hairStatus === "natural" ? hair : undefined;
   const iris = irisOk ? labToLch(m.iris!.lab) : undefined;
 
   // Undertone: yellower skin (towards b*) = warmer, pinker (towards a*) = cooler.
   const u = weighted([
     { value: clamp(hueLineDistance(m.skin.lab, R.undertone.skinHueNeutral) / R.undertone.skinSpan, -1, 1), weight: R.weights.undertone.skin },
-    ...(hair ? [{ value: clamp((hair.h - R.undertone.hairHueNeutral) / R.undertone.hairHueSpan, -1, 1), weight: R.weights.undertone.hair * chromaWeight(hair.C, 12) }] : []),
+    // Hair: copper and golden hair are strongly chromatic, ash hair is greyish. Very dark hair
+    // carries little undertone information, so its weight fades with lightness.
+    ...(hairHue ? [{ value: clamp((hairHue.C - R.undertone.hairChromaNeutral) / R.undertone.hairChromaSpan, -1, 1), weight: R.weights.undertone.hair * clamp((hairHue.L - 12) / 25, 0, 1) }] : []),
     ...(iris ? [{ value: clamp((iris.h - R.undertone.irisHueNeutral) / R.undertone.irisHueSpan, -1, 1), weight: R.weights.undertone.iris * chromaWeight(iris.C, 10) }] : []),
   ]);
 
@@ -107,9 +119,11 @@ export function computeProfile(m: Measurements): Profile {
 
   // Confidence per scale: enough pixels, agreement between cheeks, calibration, resolution.
   const skinEnough = clamp(m.skin.n / (R.minPixels.skin * 5), 0.3, 1);
+  // Up to ΔE 2 between the cheeks is normal facial variation, not a lighting problem.
   const cheekAgreement =
-    m.cheekLeft && m.cheekRight ? Math.exp(-deltaE2000(m.cheekLeft.lab, m.cheekRight.lab) / 6) : 0.7;
-  const calib = m.calibrated ? 1 : 0.7;
+    m.cheekLeft && m.cheekRight ? Math.exp(-Math.max(0, cheekDeltaE(m) - 2) / 5) : 0.7;
+  // Without the card we cannot correct the light, but a good selfie must still pass the gate.
+  const calib = m.calibrated ? 1 : 0.8;
   const resolution = clamp(m.faceWidthPx / 300, 0.4, 1);
   const base = calib * resolution;
 
@@ -124,6 +138,14 @@ export function computeProfile(m: Measurements): Profile {
   const scales: Scales = { undertone: u.value, depth: d.value, clarity: c.value };
   return { ...scales, confidence, match: nearestSeason(scales), rulesVersion: R.version };
 }
+
+/** Colour difference between the two cheeks; large = uneven light (side light, shadow). */
+export function cheekDeltaE(m: Measurements): number {
+  return m.cheekLeft && m.cheekRight ? deltaE2000(m.cheekLeft.lab, m.cheekRight.lab) : 0;
+}
+
+/** Above this the flow tells people to face the light. */
+export const UNEVEN_LIGHT_DE = 5;
 
 /** Below this the flow asks for one more selfie with a concrete tip (CLAUDE.md §5). */
 export const LOW_CONFIDENCE = 0.5;

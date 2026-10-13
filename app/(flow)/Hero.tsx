@@ -25,7 +25,7 @@ export function Marker() {
 const PASS_BG: Record<string, string> = { wingman: "#1b2433", atelier: "#2a1f24", girlmath: "#d61f5b" };
 
 /** The kleurenpas, our physical proof. `season` empty = hidden (curiosity on the landing). */
-export function Pass({ season, colors }: { season?: string; colors: readonly string[] }) {
+export function Pass({ season, colors, blurSeason }: { season?: string; colors: readonly string[]; blurSeason?: boolean }) {
   const { config, copy, voice } = useBrand();
   const strip = colors.filter((c) => c.toLowerCase() !== PASS_BG[voice]).slice(0, 8);
   return (
@@ -36,7 +36,7 @@ export function Pass({ season, colors }: { season?: string; colors: readonly str
       </div>
       <div className="pass-mid">
         <span className="pass-label">{copy.pass.season}</span>
-        {season ? <span className="pass-season">{season}</span> : <span className="pass-hidden" aria-label="nog onbekend"><i /><i /><b>?</b></span>}
+        {season ? <span className={`pass-season${blurSeason ? " is-blurred" : ""}`}>{season}</span> : <span className="pass-hidden" aria-label="nog onbekend"><i /><i /><b>?</b></span>}
       </div>
       <div className="pass-bottom">
         <span className="pass-strip">{strip.map((c, i) => <i key={i} style={{ background: c }} />)}</span>

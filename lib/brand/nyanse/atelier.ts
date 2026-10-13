@@ -1,4 +1,4 @@
-import { SELFIE_NL } from "../common";
+import { ANALYSIS_NL, emailNl, resultNl, SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
 // Atelier: calm and certain. "Minder kopen, beter kiezen."
@@ -28,5 +28,8 @@ export const atelier: VoiceCopy = {
     next: "Volgende: selfie",
   },
   selfie: SELFIE_NL,
+  analysis: ANALYSIS_NL,
+  email: emailNl(["Je profiel is", "klaar."]),
+  result: resultNl("6 kleuren die je laten stralen", { kind: "compare", title: "Eén keer goed kiezen", them: ["Kleuradviseur", "een afspraak van 1 à 2 uur"], us: ["NYANSE", "30 seconden, en je gids gaat mee naar elke winkel"] }),
   ring: ["#C8285A", "#C9A9AC", "#8FA3B8", "#A6879C", "#B9926B", "#2F4F3A", "#A2462A", "#1F4FC4", "#F4E3A1", "#D9C7AE"],
 };

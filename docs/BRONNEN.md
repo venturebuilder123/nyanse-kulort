@@ -16,6 +16,10 @@
 - PVC-passen: ±£1–1,45 per stuk bij 250 stuks (Britse drukkers; NL-offerte nodig).
 - Lounge by Zalando affiliate: 6%, cookie 30 dagen (Awin). https://ui.awin.com/merchant-profile/9485
 
+## Wetenschap
+- Eerste indruk van een gezicht binnen ±100 ms: Willis, J. & Todorov, A. (2006). *First impressions: Making up your mind after a 100-ms exposure to a face.* Psychological Science 17(7), 592–598.
+- Monk Skin Tone Scale (Google, CC-BY 4.0). https://skintone.google
+
 ## Techniek en juridisch
 - Mollie recurring/mandaten. https://docs.mollie.com/payments/recurring
 - Vinted Pro API: alleen voor goedgekeurde partners. https://docs.ecosire.com/odoo-modules/vinted
