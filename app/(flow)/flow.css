@@ -89,6 +89,7 @@
 /* ---------- base ---------- */
 body { margin: 0; }
 .app {
+  display: flow-root; /* the card's top margin must not collapse into a white band above it */
   min-height: 100svh;
   background: var(--bg);
   color: var(--ink);
@@ -136,9 +137,11 @@ body { margin: 0; }
 .crumbs { list-style: none; margin: 0; padding: 12px 20px 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
 .crumbs li { display: grid; gap: 5px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; }
 .crumbs li::before { content: ""; height: 4px; border-radius: 4px; background: var(--line); transition: background 0.3s; }
-.crumbs li.done::before { background: var(--ink); }
-.crumbs li.now { color: var(--ink); }
-.crumbs li.now::before { background: var(--accent); }
+.crumbs li.is-done::before { background: var(--ink); }
+.crumbs li.is-now { color: var(--ink); }
+.crumbs li.is-now::before { background: var(--accent); }
+.crumbs a { color: inherit; text-decoration: none; }
+.crumbs a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- display type ---------- */
 .disp { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.015em; line-height: 1.02; font-size: 38px; }
@@ -410,8 +413,8 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .address { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
 .address legend { font-weight: 800; font-size: 15px; margin-bottom: 8px; padding: 0; }
 .address input, .address select { width: 100%; min-width: 0; border: 1.5px solid var(--line-strong); background: var(--card); color: var(--ink); border-radius: var(--radius-btn); padding: 13px 12px; font: inherit; font-size: 16px; }
-.done { text-align: center; justify-content: center; min-height: 60svh; }
-.done .sub { margin: 0 auto; }
+.done-page { text-align: center; justify-content: center; min-height: 60svh; }
+.done-page .sub { margin: 0 auto; }
 .done-pass { display: grid; place-items: center; }
 .done-pass .minipass { width: 180px; padding: 16px; transform: rotate(-4deg); }
 /* the hero never pushes the first tiles below the fold, not even on an iPhone SE */

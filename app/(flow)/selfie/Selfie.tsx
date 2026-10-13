@@ -318,7 +318,7 @@ export default function Selfie() {
           )}
           {!busy && mode !== "starting" && (
             <label className="link-btn">
-              {mode === "live" ? t.pickPhoto : `${t.pickPhoto} (16+)`}
+              {t.pickPhoto}
               <input type="file" accept="image/*" hidden onChange={onFile} disabled={busy} />
             </label>
           )}

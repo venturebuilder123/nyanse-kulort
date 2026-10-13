@@ -96,7 +96,9 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
         { item: items.top, color: sw(light(0)) },
         { item: items.pants, color: sw(trousers) },
       ],
-      tip: bright ? "Een heldere kleur in je overhemd of das maakt het af." : "Houd het tonaal: één familie van kleuren, verschillende diepten.",
+      tip: bright
+        ? men ? "Een das of pochet in een heldere accentkleur maakt het af." : "Een sjaal of sieraad in een heldere accentkleur maakt het af."
+        : "Houd het tonaal: één familie van kleuren, verschillende diepten.",
       extras: [],
     },
     {

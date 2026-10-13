@@ -32,7 +32,7 @@ export default function Done() {
   return (
     <main className="screen">
       <AppBar pill={status === "paid" ? "Betaald" : "Betaling"} />
-      <div className="pad done">
+      <div className="pad done-page">
         {status === "paid" && (
           <>
             <div className="done-pass"><MiniPass /></div>

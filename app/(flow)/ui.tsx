@@ -36,15 +36,20 @@ export function AppBar({ pill }: { pill: string }) {
 }
 
 const STEPS = ["Jij", "Stijl", "Selfie", "Analyse", "Resultaat"];
+// steps you can go back to (the analysis itself is not a place to return to)
+const STEP_HREF: (string | null)[] = ["/", "/stijl", "/selfie", null, null];
 
 export function Crumbs({ step }: { step: number }) {
   return (
     <ol className="crumbs" aria-label={`Stap ${step + 1} van ${STEPS.length}`}>
-      {STEPS.map((s, i) => (
-        <li key={s} className={i < step ? "done" : i === step ? "now" : ""} aria-current={i === step ? "step" : undefined}>
-          {s}
-        </li>
-      ))}
+      {STEPS.map((s, i) => {
+        const href = i < step ? STEP_HREF[i] : null;
+        return (
+          <li key={s} className={i < step ? "is-done" : i === step ? "is-now" : ""} aria-current={i === step ? "step" : undefined}>
+            {href ? <Link href={href}>{s}</Link> : s}
+          </li>
+        );
+      })}
     </ol>
   );
 }
