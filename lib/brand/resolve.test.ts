@@ -32,4 +32,16 @@ describe("resolveBrand", () => {
     expect(resolveBrand({ host: "kulort.nl", voiceParam: "gm" }).voice).toBe("wingman");
     expect(resolveBrand({ host: "kulort.nl", voiceCookie: "atelier" }).voice).toBe("wingman");
   });
+
+  it("is undecided on the shared domain until someone picks a brand", () => {
+    expect(resolveBrand({ host: "kulort-nyanse.com" }).chosen).toBe(false);
+    expect(resolveBrand({ host: "kulort-nyanse.com", brandCookie: "nyanse" })).toMatchObject({ brand: "nyanse", chosen: true });
+    expect(resolveBrand({ host: "kulort.nl" }).chosen).toBe(true);
+  });
+
+  it("lets an ad's voice pick the brand (?s=gm is NYANSE)", () => {
+    expect(resolveBrand({ host: "kulort-nyanse.com", voiceParam: "gm" })).toMatchObject({ brand: "nyanse", voice: "girlmath", chosen: true });
+    // an explicit brand still wins over the voice
+    expect(resolveBrand({ host: "kulort-nyanse.com", brandParam: "kulort", voiceParam: "gm" }).voice).toBe("wingman");
+  });
 });

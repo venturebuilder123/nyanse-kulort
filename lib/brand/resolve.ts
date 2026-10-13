@@ -5,6 +5,7 @@ export const BRAND_COOKIE = "nk_brand";
 export const VOICE_COOKIE = "nk_voice";
 export const BRAND_HEADER = "x-nk-brand";
 export const VOICE_HEADER = "x-nk-voice";
+export const CHOSEN_HEADER = "x-nk-chosen";
 
 const isBrand = (v: string | null | undefined): v is BrandKey => v === "nyanse" || v === "kulort";
 
@@ -15,8 +16,10 @@ export function brandForHost(host: string | null): BrandKey | null {
 }
 
 /**
- * Brand: a production brand domain always wins (CLAUDE.md §2). Elsewhere (localhost,
- * previews) ?brand= decides, then the cookie, then the default.
+ * Brand: a production brand domain always wins (CLAUDE.md §2). Elsewhere (the shared main
+ * domain, previews, localhost) ?brand= decides, then a voice that belongs to one brand
+ * (?s=gm → NYANSE), then the cookie. Nothing of that: not chosen yet, the home page shows
+ * the split choice (decision 13 Oct 2026); other pages fall back to the default.
  * Voice: ?s=gm|at, then the cookie, then the brand's default; never a voice of the other brand.
  */
 export function resolveBrand(input: {
@@ -25,10 +28,13 @@ export function resolveBrand(input: {
   voiceParam?: string | null;
   brandCookie?: string | null;
   voiceCookie?: string | null;
-}): { brand: BrandKey; voice: VoiceKey } {
+}): { brand: BrandKey; voice: VoiceKey; chosen: boolean } {
   const byHost = brandForHost(input.host);
-  const brand: BrandKey =
-    byHost ?? (isBrand(input.brandParam) ? input.brandParam : isBrand(input.brandCookie) ? input.brandCookie : DEFAULT_BRAND);
+  const paramVoice = input.voiceParam ? VOICE_PARAM[input.voiceParam] : undefined;
+  const byVoice = paramVoice ? (Object.values(BRANDS).find((b) => b.voices.includes(paramVoice))?.key ?? null) : null;
+  const picked: BrandKey | null =
+    byHost ?? (isBrand(input.brandParam) ? input.brandParam : byVoice ?? (isBrand(input.brandCookie) ? input.brandCookie : null));
+  const brand: BrandKey = picked ?? DEFAULT_BRAND;
 
   const allowed = BRANDS[brand].voices;
   const fromParam = input.voiceParam ? VOICE_PARAM[input.voiceParam] : undefined;
@@ -39,5 +45,5 @@ export function resolveBrand(input: {
       : fromCookie && allowed.includes(fromCookie)
         ? fromCookie
         : BRANDS[brand].defaultVoice;
-  return { brand, voice };
+  return { brand, voice, chosen: picked !== null };
 }

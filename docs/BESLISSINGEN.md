@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — één hoofddomein met een gesplitste homepage
+
+- **Hoofddomein `kulort-nyanse.com`** (besluit van de oprichter). Op 13 oktober vrij volgens whois, net als `nyanse-kulort.com` en `kulortnyanse.com`. Nog niet geregistreerd; dat doet de oprichter.
+- **De homepage is een keuze:** links KULØRT (voor mannen), rechts NYANSE (voor vrouwen), elk in de eigen huisstijl met een AI-model. Op mobiel staan de twee helften boven elkaar. Eén tik, en je zit in de flow van het merk. Dit vervangt "geen dames/heren-vraag" uit CLAUDE.md §2, maar alleen voor wie zonder advertentie binnenkomt.
+- **Advertenties slaan de keuze over:** `/kulort` en `/nyanse` (met UTM), of `?s=gm` / `?s=at`, die zelf NYANSE kiezen. Zo blijven beide merken los te adverteren en per merk meetbaar.
+- **De keuze wordt onthouden** (functionele cookie, 30 dagen). Wie terugkomt, ziet meteen het eigen merk met "je bent er bijna". De losse merkdomeinen blijven werken en kunnen later doorverwijzen.
+- **"Maak het af"-advertenties (retargeting via Meta- of TikTok-pixel): nog niet.** Dat vraagt een cookiebanner met toestemming en een trackingpixel. Dat botst met "cookieloos" (CLAUDE.md §4) en kost conversie op de landing. Het terughalen loopt nu via "je bent er bijna", de opt-in mail en de kleur van de week. Opnieuw bekijken als de eerste test laat zien hoeveel mensen halverwege afhaken.
+
 ## 13 oktober 2026 — terugkomen en engagement (churn)
 
 - **"Je bent er bijna"** op de landing voor wie halverwege afhaakte, met het echte aantal stappen en seconden. Voortgang en antwoorden staan op het apparaat (geen persoonsgegevens). Na de selfie begint het weer bij de selfie, want de foto bewaren we nooit. Na 30 dagen stopt de melding.

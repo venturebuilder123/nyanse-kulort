@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { BRAND_COOKIE, BRAND_HEADER, resolveBrand, VOICE_COOKIE, VOICE_HEADER } from "@/lib/brand/resolve";
+import { BRAND_COOKIE, BRAND_HEADER, CHOSEN_HEADER, resolveBrand, VOICE_COOKIE, VOICE_HEADER } from "@/lib/brand/resolve";
 import { isValidToken, LAB_COOKIE } from "@/lib/lab/auth";
 
 export function proxy(request: NextRequest) {
@@ -17,8 +17,16 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 2. Customer flow: the domain decides the brand (locally ?brand=), the ad decides the voice (?s=).
-  const { brand, voice } = resolveBrand({
+  // 2. Ad links on the shared domain: /kulort and /nyanse skip the split home page.
+  if (pathname === "/kulort" || pathname === "/nyanse") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    url.searchParams.set("brand", pathname.slice(1));
+    return NextResponse.redirect(url);
+  }
+
+  // 3. Customer flow: the domain decides the brand (locally ?brand=), the ad decides the voice (?s=).
+  const { brand, voice, chosen } = resolveBrand({
     host: request.headers.get("host"),
     brandParam: searchParams.get("brand"),
     voiceParam: searchParams.get("s"),
@@ -28,11 +36,13 @@ export function proxy(request: NextRequest) {
   const headers = new Headers(request.headers);
   headers.set(BRAND_HEADER, brand);
   headers.set(VOICE_HEADER, voice);
+  headers.set(CHOSEN_HEADER, chosen ? "1" : "0");
   const res = NextResponse.next({ request: { headers } });
 
   // Functional cookies: keep brand and voice for the rest of the visit.
   const opts = { path: "/", sameSite: "lax" as const };
-  if (request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, { ...opts, maxAge: 60 * 60 * 24 * 30 });
+  // only remember a brand someone actually picked, so the split stays until then
+  if (chosen && request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, { ...opts, maxAge: 60 * 60 * 24 * 30 });
   // the voice comes from the ad: keep it for this visit only, so it is not ad attribution
   if (request.cookies.get(VOICE_COOKIE)?.value !== voice) res.cookies.set(VOICE_COOKIE, voice, opts);
   return res;
