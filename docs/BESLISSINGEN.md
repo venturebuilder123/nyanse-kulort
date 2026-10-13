@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — fase B parallel aan de fase A-tests
+
+- **Fase B start parallel** (besluit oprichter): terwijl de testpersonen meedoen, bouw ik de klantflow in de echte huisstijl. De echte analyse koppel ik pas na de gate. Waarom: 3 november is anders te krap. Risico: klein, want de schermen staan los van de kleurlogica.
+- **Merk via domein, stem via advertentie:** `proxy.ts` zet merk en stem per request (lokaal `?brand=`, `?s=gm|at`). Op een merkdomein wint altijd het domein. Functionele cookies onthouden de keuze tijdens het bezoek.
+- **Lettertypes via next/font** (self-hosted, geen verzoek naar Google). Alleen Archivo en Manrope worden vooraf geladen (KULØRT is de eerste test).
+- **Merkwissel met antwoorden** via een token in de link (1 uur geldig, alleen gelegenheid, budget en winkels; gefilterd op bekende waarden).
+- **Girl Math-vinkje aangepast** van "Elke miskoop minder = geld in je zak" naar "Minder miskopen, meer outfits die werken": geen letterlijke geldbelofte (§6).
+
 ## 13 oktober 2026 — fase A, week 1 gebouwd
 
 - **Supabase in West EU (Ierland)** in plaats van Frankfurt: ook EU, voldoet. Niet opnieuw aanmaken.

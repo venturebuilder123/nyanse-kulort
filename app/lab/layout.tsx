@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./lab.css";
 
 export const metadata: Metadata = {
   title: "Lab · NYANSE · KULØRT",

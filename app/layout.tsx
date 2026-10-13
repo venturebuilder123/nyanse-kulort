@@ -1,12 +1,7 @@
-import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import type { Viewport } from "next";
 
-export const metadata: Metadata = {
-  title: "NYANSE · KULØRT",
-  description: "Je kleurprofiel dat met je meegaat naar elke winkel.",
-};
-
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+// Minimal shell; the customer flow (app/(flow)) and the lab (app/lab) bring their own styles.
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
