@@ -28,7 +28,8 @@ async function rest(path: string, init: RequestInit & { prefer?: string } = {}) 
     ...init,
     headers: {
       apikey: key,
-      Authorization: `Bearer ${key}`,
+      // legacy service_role keys are JWTs and go in Authorization too; new sb_secret_ keys only in apikey
+      ...(key.startsWith("eyJ") ? { Authorization: `Bearer ${key}` } : {}),
       "Content-Type": "application/json",
       ...(init.prefer ? { Prefer: init.prefer } : {}),
     },
