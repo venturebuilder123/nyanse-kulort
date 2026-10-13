@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { PipelineADebug, PipelineAResult } from "@/lib/analysis/pipelineA";
 import { labToHex } from "@/lib/color/convert";
 import { computeProfile, LOW_CONFIDENCE } from "@/lib/color/profile";
-import { SEASONS } from "@/lib/color/seasons";
+import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import { labDb } from "@/lib/lab/db";
 import { LIGHTS, runId, type Light, type Person, type Run } from "@/lib/lab/types";
 
@@ -35,6 +35,7 @@ export default function PersonLab({ code }: { code: string }) {
         Monk {person.monk} · {{ v: "vrouw", m: "man", x: "anders" }[person.gender]}
         {person.gender === "m" ? ` · ${person.beard ? "baard" : "geen baard"}` : ""} · pijplijn A (op dit apparaat)
       </p>
+      <ExpertLabels person={person} onSaved={reload} />
       {([1, 2, 3] as Light[]).map((light) => (
         <section key={light}>
           <h2>{light}. {LIGHTS[light]}</h2>
@@ -235,5 +236,37 @@ function Chip({ label, lab, n }: { label: string; lab: { L: number; a: number; b
       <span style={{ width: 18, height: 18, borderRadius: 4, background: labToHex(lab), border: "1px solid var(--line)" }} />
       {label}
     </span>
+  );
+}
+
+/** Ground truth: up to two blind expert analyses, entered after the person was analysed in person. */
+function ExpertLabels({ person, onSaved }: { person: Person; onSaved: () => void }) {
+  const [rows, setRows] = useState<{ season: SeasonKey | ""; rater: string }[]>(
+    [0, 1].map((i) => ({ season: person.experts?.[i]?.season ?? "", rater: person.experts?.[i]?.rater ?? "" })),
+  );
+  const [saved, setSaved] = useState(false);
+  const save = async () => {
+    const experts = rows
+      .filter((r): r is { season: SeasonKey; rater: string } => !!r.season && !!r.rater.trim())
+      .map((r, i) => ({ season: r.season, rater: r.rater.trim(), date: person.experts?.[i]?.date ?? new Date().toISOString().slice(0, 10) }));
+    await labDb.savePerson({ ...person, experts });
+    setSaved(true);
+    onSaved();
+  };
+  return (
+    <section>
+      <h2>Expertoordeel (grondwaarheid)</h2>
+      <p className="small muted">Twee consultants, los van elkaar en zonder onze uitslag te zien. Vul pas in na de analyse met doeken.</p>
+      {rows.map((r, i) => (
+        <div key={i} className="row" style={{ display: "flex", gap: 8, marginBottom: 6 }}>
+          <select value={r.season} onChange={(e) => { setSaved(false); setRows(rows.map((x, j) => (j === i ? { ...x, season: e.target.value as SeasonKey } : x))); }}>
+            <option value="">Expert {i + 1}: seizoen…</option>
+            {(Object.keys(SEASONS) as SeasonKey[]).map((k) => <option key={k} value={k}>{SEASONS[k].name}</option>)}
+          </select>
+          <input placeholder="code consultant (geen naam)" value={r.rater} onChange={(e) => { setSaved(false); setRows(rows.map((x, j) => (j === i ? { ...x, rater: e.target.value } : x))); }} />
+        </div>
+      ))}
+      <button onClick={save}>Bewaar</button> {saved && <span className="small muted">Bewaard</span>}
+    </section>
   );
 }

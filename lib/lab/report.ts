@@ -5,6 +5,7 @@
 import { monkGroup } from "@/lib/color/monk";
 import { computeProfile, type Profile } from "@/lib/color/profile";
 import { profileDistance, SEASONS, type SeasonKey } from "@/lib/color/seasons";
+import { cohenKappa, FAMILY, isAdjacent, rates, riskCoverage, thresholdFor, type CoveragePoint, type Rates, type Scored } from "@/lib/eval/agreement";
 import type { Person, Run } from "./types";
 
 export const GATE = {
@@ -16,6 +17,8 @@ export const GATE = {
   maxSeasonShare: 0.3,
   /** below this many people the verdict is provisional */
   minPeople: 20,
+  /** the promise: correct this often (95% lower bound) whenever we give a firm answer */
+  targetAccuracy: 0.8,
 } as const;
 
 export type Condition = "card" | "nocard" | "sameUncorrected";
@@ -83,7 +86,64 @@ export type Report = {
   meanMs: number;
   confidence: { bucket: string; count: number }[];
   gate: { provisional: boolean; checks: { label: string; pass: boolean | null; detail: string }[] };
+  accuracy: Accuracy;
 };
+
+/** Agreement with expert consultants: the question "is it right?", not only "is it stable?". */
+export type Accuracy = {
+  people: number;
+  vsExpert: Rates;
+  /** right according to at least one of two experts */
+  eitherExpert: number;
+  experts: { pairs: number; exact: number; family: number; kappa: number } | null;
+  byMonk: Record<string, Rates>;
+  /** the firm-answer threshold that keeps the promise, per level */
+  firm: { family: CoveragePoint | null; adjacent: CoveragePoint | null; exact: CoveragePoint | null };
+  curve: CoveragePoint[];
+};
+
+/** Our answer per person (modal season, best condition available) against the first expert. */
+export function buildAccuracy(people: Person[], runs: Run[]): Accuracy {
+  const scored: (Scored & { person: Person })[] = [];
+  let either = 0;
+  for (const person of people) {
+    const ex = person.experts ?? [];
+    if (!ex.length) continue;
+    const pr = runs.filter((r) => r.personCode === person.code);
+    const profiles = profilesFor(pr, "card").length ? profilesFor(pr, "card") : profilesFor(pr, "nocard");
+    if (!profiles.length) continue;
+    const counts = new Map<SeasonKey, number>();
+    profiles.forEach((p) => counts.set(p.match.season, (counts.get(p.match.season) ?? 0) + 1));
+    const predicted = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]![0];
+    const confidence = profiles.reduce((s, p) => s + p.confidence.overall, 0) / profiles.length;
+    scored.push({ predicted, truth: ex[0]!.season, confidence, person });
+    if (ex.some((e) => e.season === predicted)) either++;
+  }
+  const twoRaters = people.filter((p) => (p.experts?.length ?? 0) >= 2).map((p) => [p.experts![0]!.season, p.experts![1]!.season] as const);
+  const byMonk: Record<string, Rates> = {};
+  for (const g of [...new Set(scored.map((x) => monkGroup(x.person.monk)))]) byMonk[g] = rates(scored.filter((x) => monkGroup(x.person.monk) === g));
+  const curveOf = (ok: (x: Scored) => boolean) => riskCoverage(scored, ok);
+  return {
+    people: scored.length,
+    vsExpert: rates(scored),
+    eitherExpert: scored.length ? either / scored.length : 0,
+    experts: twoRaters.length
+      ? {
+          pairs: twoRaters.length,
+          exact: twoRaters.filter(([a, b]) => a === b).length / twoRaters.length,
+          family: twoRaters.filter(([a, b]) => FAMILY[a] === FAMILY[b]).length / twoRaters.length,
+          kappa: cohenKappa(twoRaters.map((x) => x[0]), twoRaters.map((x) => x[1])),
+        }
+      : null,
+    byMonk,
+    firm: {
+      family: thresholdFor(curveOf((x) => FAMILY[x.predicted] === FAMILY[x.truth]), GATE.targetAccuracy),
+      adjacent: thresholdFor(curveOf((x) => isAdjacent(x.predicted, x.truth)), GATE.targetAccuracy),
+      exact: thresholdFor(curveOf((x) => x.predicted === x.truth), GATE.targetAccuracy),
+    },
+    curve: curveOf((x) => x.predicted === x.truth),
+  };
+}
 
 const CONDITIONS: Condition[] = ["card", "nocard", "sameUncorrected"];
 
@@ -174,6 +234,7 @@ export function buildReport(people: Person[], runs: Run[]): Report {
     meanMs: ok.length ? ok.reduce((s, r) => s + r.result.timings.totalMs, 0) / ok.length : NaN,
     confidence,
     gate,
+    accuracy: buildAccuracy(people, runs),
   };
 }
 

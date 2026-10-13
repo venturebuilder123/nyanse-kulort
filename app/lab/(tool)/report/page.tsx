@@ -53,6 +53,8 @@ export default function ReportPage() {
         </p>
       </section>
 
+      <Accuracy r={r} />
+
       <section>
         <h2>Consistentie per conditie</h2>
         <ConditionTable rows={{ Totaal: { people: r.people, stats: r.overall } }} />
@@ -182,3 +184,48 @@ function ConditionTable({ rows, compact }: { rows: Breakdown; compact?: boolean 
   );
 }
 
+
+function Accuracy({ r }: { r: ReturnType<typeof buildReport> }) {
+  const a = r.accuracy;
+  const pct = (v: number) => (Number.isFinite(v) ? `${Math.round(v * 100)}%` : "–");
+  const firm = (label: string, p: (typeof a.firm)["family"]) => (
+    <li key={label}>
+      <b>{label}:</b>{" "}
+      {p ? `stellig vanaf zekerheid ${p.threshold.toFixed(2)} · geldt voor ${pct(p.coverage)} van de mensen · ${pct(p.accuracy)} goed (ondergrens ${pct(p.lower)})` : "80% nog niet aantoonbaar (te weinig mensen of te vaak fout)"}
+    </li>
+  );
+  return (
+    <section>
+      <h2>Klopt het? Vergelijking met experts</h2>
+      {a.people === 0 ? (
+        <p className="small muted">Nog geen expertoordelen. Vul ze in per testpersoon (Expertoordeel). Doel: 60 personen, 2 consultants per persoon.</p>
+      ) : (
+        <>
+          <p className="small">
+            {a.people} personen · exact {pct(a.vsExpert.exact)} (ondergrens {pct(a.vsExpert.exactLower)}) · buurseizoen of exact {pct(a.vsExpert.adjacent)} ·
+            familie {pct(a.vsExpert.family)} (ondergrens {pct(a.vsExpert.familyLower)}) · eens met minstens één expert {pct(a.eitherExpert)}
+          </p>
+          {a.experts && (
+            <p className="small">
+              Experts onderling ({a.experts.pairs} personen): exact {pct(a.experts.exact)} · familie {pct(a.experts.family)} · kappa {a.experts.kappa.toFixed(2)}.
+              Dit is het plafond: wij kunnen niet betrouwbaarder zijn dan de experts onderling.
+            </p>
+          )}
+          <ul className="gate">
+            {firm("Familie (4 seizoenen)", a.firm.family)}
+            {firm("Seizoen of buurseizoen", a.firm.adjacent)}
+            {firm("Exact seizoen (12)", a.firm.exact)}
+          </ul>
+          <table>
+            <thead><tr><th>Monk-groep</th><th>n</th><th>Exact</th><th>Buur of exact</th><th>Familie</th></tr></thead>
+            <tbody>
+              {Object.entries(a.byMonk).map(([g, x]) => (
+                <tr key={g}><td>{g}</td><td>{x.n}</td><td>{pct(x.exact)}</td><td>{pct(x.adjacent)}</td><td>{pct(x.family)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+    </section>
+  );
+}

@@ -2,6 +2,20 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 13 oktober 2026 — betrouwbaarheid: "80% goed" meetbaar maken
+
+- **FEIT (onderzoek):** het beste gepubliceerde model haalt 55% op 4 seizoenen en 32% op 12. Ook mensen zijn het vaak oneens (40% in een Thaise studie). Art of Image publiceert geen model en geen nauwkeurigheid. Zie [fase-a/BETROUWBAARHEID.md](fase-a/BETROUWBAARHEID.md).
+- **Besluit:**
+  - "Goed" = zelfde uitkomst als een consultant met doeken.
+  - We zijn alleen stellig boven de zekerheid waarbij de 95%-ondergrens ≥ 80% is (per niveau: familie, buurseizoen, exact). Daaronder: een selfie met de kaart, of "tussen X en Y".
+  - Een percentage komt pas in de app na de meting.
+- **Gebouwd:**
+  - expertoordeel (2 consultants, blind) per testpersoon in `/lab`;
+  - rapport "Klopt het?" (exact, buurseizoen, familie, kappa tussen de experts, per Monk-groep, drempel voor een stellige uitslag);
+  - `lib/eval/agreement.ts` met tests.
+- **Nodig:** 60 testpersonen met 2 consultants (bij ±90% gemeten is de 80% aantoonbaar). De samenwerking met consultants (bijvoorbeeld Art of Image) is een besluit van de oprichter.
+- **Inspiratie:** stijlarchetypen in [inspiratie/README.md](inspiratie/README.md), als idee voor fase C.
+
 ## 13 oktober 2026 — resultaatpagina als onthulling
 
 - **Opbouw:**

@@ -28,3 +28,9 @@
 
 ## Feed-onderzoek (screenshots van de oprichter, 12 okt)
 24 advertenties, bijna allemaal herenkleding: truien in veel kleuren (Hang Eleven, Charles Tyrwhitt, OFM, Nolson), sale (Les Deux, QURC, McGregor), mix & match (Dstrezzed), catalogus-grids (Uniqlo, Armedangels, Profuomo, P&C) en Lookiero als concurrent.
+
+## Betrouwbaarheid van kleuranalyse (13 oktober 2026)
+- Stacchio, Paolanti, Spigarelli, Frontoni. *Deep Armocromia: A Novel Dataset for Face Seasonal Color Analysis and Classification.* ECCV Workshops 2024 (Springer 2025, doi 10.1007/978-3-031-91569-7_22). Overzicht: https://mlanthology.org/eccvw/2024/stacchio2024eccvw-deep — 55,4% (4 seizoenen) en 31,8% (12), volgens Dinh 2026.
+- Dinh, N. *Teaching Machines to See Seasonal Color: An Explainable Approach for Automated Personal Color Analysis.* Bachelorscriptie, LIACS, Universiteit Leiden, juli 2026. https://theses.liacs.nl/pdf/2025-2026-DinhNNatascha.pdf
+- Studie naar overeenstemming bij persoonlijke kleuranalyse, Chulalongkorn-universiteit: 40% overeenstemming tussen waarnemers en onderzoeker. https://cuir.car.chula.ac.th/handle/123456789/78676
+- Art of Image, Persoonlijke kleurenanalyse: https://www.artofimage.nl/kleur-stijladvies/kleurenanalyse (methode beschreven, geen gepubliceerde nauwkeurigheid).

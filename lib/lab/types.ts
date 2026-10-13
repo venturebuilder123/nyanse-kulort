@@ -1,4 +1,5 @@
 import type { PipelineAResult } from "@/lib/analysis/pipelineA";
+import type { SeasonKey } from "@/lib/color/seasons";
 
 export type Gender = "v" | "m" | "x";
 
@@ -13,7 +14,14 @@ export type Person = {
   consentDate: string;
   notes?: string;
   createdAt: string;
+  /**
+   * The ground truth: up to two independent, blind expert analyses (in person, with drapes),
+   * done without seeing our result. See docs/fase-a/BETROUWBAARHEID.md.
+   */
+  experts?: ExpertLabel[];
 };
+
+export type ExpertLabel = { season: SeasonKey; rater: string; date: string };
 
 export type Light = 1 | 2 | 3;
 

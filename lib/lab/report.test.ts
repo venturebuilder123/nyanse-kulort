@@ -94,3 +94,20 @@ describe("runsToCsv", () => {
     expect(csv).not.toMatch(/data:image/);
   });
 });
+
+describe("accuracy against experts", () => {
+  const warm = { L: 65, a: 12, b: 22 };
+  it("compares our season with the expert's and reports expert agreement", () => {
+    const ours = buildReport([person("A1", 4)], [run("A1", 1, true, warm)]).accuracy;
+    expect(ours.people).toBe(0); // no expert label yet
+
+    const p = person("A1", 4);
+    const withExperts: Person = { ...p, experts: [{ season: "warmAutumn", rater: "C1", date: "2026-10-20" }, { season: "warmSpring", rater: "C2", date: "2026-10-20" }] };
+    const a = buildReport([withExperts], [run("A1", 1, true, warm), run("A1", 2, true, warm)]).accuracy;
+    expect(a.people).toBe(1);
+    expect(a.experts?.pairs).toBe(1);
+    expect(a.experts?.exact).toBe(0);
+    // one person is never enough to promise 80%
+    expect(a.firm.family).toBeNull();
+  });
+});

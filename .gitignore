@@ -20,3 +20,6 @@ next-env.d.ts
 
 # full-size AI originals (provenance), not deployed
 assets/people-originals/
+
+# inspiration images from third parties (copyright unknown): reference only, never deployed
+assets/inspiratie/
