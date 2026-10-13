@@ -24,7 +24,9 @@ export function pushConfigured(): boolean {
 
 async function rest(path: string, init: RequestInit & { prefer?: string } = {}) {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  const res = await fetch(`${process.env.SUPABASE_URL}/rest/v1/${path}`, {
+  // accept both the project URL and the "API URL" with /rest/v1 that the dashboard also shows
+  const base = process.env.SUPABASE_URL!.trim().replace(/\/+$/, "").replace(/\/rest\/v1$/, "");
+  const res = await fetch(`${base}/rest/v1/${path}`, {
     ...init,
     headers: {
       apikey: key,
