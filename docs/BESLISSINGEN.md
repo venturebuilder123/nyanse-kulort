@@ -2,6 +2,26 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — Nordic-prototype samengevoegd: ontwerpsysteem en homepage
+
+- **Bron:** het Nordic-prototype van de oprichter (nu in `assets/inspiratie/nordic/`, niet in git), beoordeeld door een art director en een UX-designer. Zij concludeerden: Nordic heeft het betere ontwerpsysteem, wij de betere funnel en motor.
+- **Besloten:**
+  - één lettersysteem (Bodoni en Manrope) voor beide merken, op advies van de art director;
+  - de pas blijft €9,99 (Nordic had €14,99, verzonnen);
+  - knoppen in inkt; het accent alleen op eyebrows, de Ø en het cursieve woord;
+  - een rustige onthulling, zonder gloed of raster;
+  - op desktop een kolom op papier in plaats van een telefoonkaart op een gekleurd vlak;
+  - op de homepage een 3D-waaier in de hero, de atelierfoto als band, en de deurteksten onder de foto (nooit over gezichten);
+  - labels op het doek in plaats van op het gezicht.
+- **Volgende stap** (uit de reviews):
+  - de flow-omlijsting van Nordic (stap n van 5, voortgangslijn, Terug en de knop onderaan; op desktop twee kolommen);
+  - de lichtcheck bij de selfie;
+  - de drapeerspiegel op het profiel;
+  - de envelop met de 3D-pas op de bevestiging;
+  - de winkelmodus op onze 12 typen (demo op de homepage, eerste tab in de gids);
+  - de logo's als echte vector;
+  - three.js actueel en pas laden als het nodig is.
+
 ## 14 oktober 2026 — huisstijl doorgevoerd en eerste beeldenset
 
 - **Logo (keuze van de oprichter):** KULØRT en NYANSE allebei in een Didone-schreef. De Ø van KULØRT heeft een lange, fijne streep. Maison-lock-up: "KULØRT | NYANSE" met "Atelier voor persoonlijke kleur".

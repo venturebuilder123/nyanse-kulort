@@ -79,7 +79,7 @@ export default function Landing() {
 
   return (
     <main className="screen landing-screen">
-      <AppBar pill={copy.landing.pill} />
+      <AppBar />
       {/* large screens: a real top navigation instead of the app bar pill */}
       <nav className="topnav" aria-label="Hoofdmenu">
         <Wordmark />

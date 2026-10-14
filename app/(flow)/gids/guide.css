@@ -58,17 +58,14 @@
 .g-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding-bottom: 18px; border-bottom: 0.75px solid var(--ink-g); }
 .g-kicker { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
 .g-head h2 { font-family: var(--f-display); font-size: clamp(28px, 5vw, 44px); font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
-.g-kulort .g-head h2 { font-stretch: 125%; font-weight: 300; text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(22px, 4vw, 34px); line-height: 1.05; }
 .g-nyanse .g-head h2 { font-style: italic; font-weight: 400; }
 .g-n { font-family: var(--f-display); font-size: clamp(40px, 7vw, 64px); line-height: 0.8; color: var(--ink-g); opacity: 0.9; }
-.g-kulort .g-n { font-stretch: 125%; font-weight: 200; }
 .g-nyanse .g-n { font-style: italic; font-weight: 400; }
 .g-content { display: grid; gap: 28px; flex: 1; align-content: start; }
 .g-foot { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(18, 18, 18, 0.55); border-top: 0.75px solid var(--hair); padding-top: 14px; }
 .g-foot .wm-kulort { font-size: 10px; }
 .g-foot .wm-nyanse { font-size: 11px; }
 .g-lede { font-family: var(--f-display); font-size: 21px; line-height: 1.3; max-width: 30ch; }
-.g-kulort .g-lede { font-stretch: 100%; font-weight: 400; font-size: 18px; }
 .g-nyanse .g-lede { font-style: italic; }
 .g-body { font-size: 15px; line-height: 1.6; max-width: 60ch; }
 .g-caption { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(18, 18, 18, 0.6); }
@@ -86,18 +83,15 @@
 .g-cover-mid { display: grid; gap: 14px; margin-top: auto; position: relative; z-index: 1; max-width: 76%; }
 .g-cover .g-kicker { color: inherit; opacity: 0.75; }
 .g-season { font-family: var(--f-display); font-size: clamp(54px, 12vw, 112px); line-height: 0.9; font-weight: 600; letter-spacing: -0.02em; }
-.g-kulort .g-season { font-stretch: 125%; font-weight: 200; text-transform: uppercase; letter-spacing: 0.01em; font-size: clamp(44px, 10vw, 92px); }
 .g-nyanse .g-season { font-style: italic; font-weight: 400; }
 .g-family { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
 .g-cover-tag { position: relative; z-index: 1; font-family: var(--f-display); font-size: 18px; max-width: 70%; padding-top: 18px; border-top: 0.75px solid currentColor; margin-top: 40px; }
-.g-kulort .g-cover-tag { font-stretch: 112%; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
 .g-nyanse .g-cover-tag { font-style: italic; }
 
 /* ---------- summary ---------- */
 .g-sum { display: grid; gap: 22px; }
 .g-sum span { display: block; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(18, 18, 18, 0.6); margin-bottom: 8px; }
 .g-sum-type b { display: block; font-family: var(--f-display); font-size: 40px; line-height: 1; }
-.g-kulort .g-sum-type b { font-stretch: 125%; font-weight: 300; text-transform: uppercase; font-size: 32px; }
 .g-nyanse .g-sum-type b { font-style: italic; font-weight: 400; }
 .g-sum-type em { font-style: normal; font-size: 14px; color: rgba(18, 18, 18, 0.7); }
 .g-sum-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; border-top: 0.75px solid var(--hair); border-bottom: 0.75px solid var(--hair); padding: 16px 0; }
@@ -133,7 +127,6 @@
 .g-callout { padding: 18px 0 0; border-top: 0.75px solid var(--ink-g); display: grid; gap: 6px; }
 .g-callout b { font-family: var(--f-display); font-size: 22px; }
 .g-nyanse .g-callout b { font-style: italic; font-weight: 400; }
-.g-kulort .g-callout b { font-stretch: 112%; font-weight: 400; text-transform: uppercase; font-size: 16px; letter-spacing: 0.04em; }
 
 /* ---------- colours ---------- */
 .g-group { display: grid; gap: 12px; }
@@ -157,7 +150,6 @@
 .g-look-mid { margin: 0 14px; }
 .g-look-low { margin: 0 6px; border-radius: 10px 10px 2px 2px; }
 .g-combo b { font-family: var(--f-display); font-size: 22px; }
-.g-kulort .g-combo b { font-stretch: 112%; font-weight: 400; text-transform: uppercase; font-size: 16px; letter-spacing: 0.06em; }
 .g-nyanse .g-combo b { font-style: italic; font-weight: 400; }
 .g-combo ul { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 5px; font-size: 14px; }
 .g-combo li { display: flex; align-items: center; gap: 7px; }
@@ -204,7 +196,6 @@
 .g-pass-card .wm-nyanse { font-size: 12px; }
 .g-pass-top { display: flex; justify-content: space-between; align-items: center; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
 .g-pass-card b { font-family: var(--f-display); font-size: 22px; }
-.g-kulort .g-pass-card b { font-stretch: 125%; font-weight: 300; text-transform: uppercase; font-size: 17px; }
 .g-nyanse .g-pass-card b { font-style: italic; font-weight: 400; }
 .g-friend { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; padding: 18px; border: 0.75px solid var(--ink-g); }
 .g-friend img { width: 120px; height: 120px; }
@@ -212,8 +203,6 @@
 .g-friend p { font-size: 13.5px; }
 .g-closing { font-family: var(--f-display); font-size: 30px; line-height: 1.05; margin-top: auto; }
 .g-closing em { font-style: italic; color: var(--accent-text); }
-.g-kulort .g-closing { font-stretch: 125%; font-weight: 300; text-transform: uppercase; font-size: 24px; }
-.g-kulort .g-closing em { font-style: normal; }
 
 /* ---------- print / Save as PDF: exact A4 pages ---------- */
 @page { size: A4; margin: 0; }

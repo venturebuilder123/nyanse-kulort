@@ -129,15 +129,24 @@ Twee merken onder één dak, zoals een modehuis met een herenlijn en een damesco
 - papier wordt `#141312`, inkt wordt `#F3EEE8`, accenten worden lichter (cognac `#D19A6E`, lippenstift `#E07A9A`);
 - **beeldvlakken (foto's) houden altijd hun lichte tekstkleuren** (les van 14 oktober).
 
-### 5.3 Typografie (voorlopig; het nieuwe logo kan dit bijsturen)
+### 5.3 Typografie (vastgesteld 14 oktober, advies van de art director)
 
-| Rol | KULØRT | NYANSE |
-|---|---|---|
-| Logo / display | Archivo Expanded 300–500, hoofdletters, spatiëring +0,12–0,38em | Bodoni Moda, display-optiek voor groot (≥32px) en tekst-optiek voor klein; romein met cursief accent |
-| Koppen | Archivo Expanded 600, hoofdletters | Bodoni Moda 400–500, sentence case |
-| Tekst | Manrope 400/600, 16px, regelhoogte 1,45 | Manrope 400/600, 16px |
-| Kleine labels (eyebrow) | Manrope 700, 11px, hoofdletters, +0,24em | idem |
-| Cijfers en prijzen | Manrope 800, tabulaire cijfers | idem |
+Eén systeem voor het hele maison: **Bodoni Moda** (koppen en logo's) en **Manrope** (tekst en interface).
+
+| Rol | Beide merken |
+|---|---|
+| Logo | Didone-woordmerk in hoofdletters (KULØRT met de lange, fijne Ø-streep) |
+| Koppen | Bodoni Moda 400, sentence case, één accentwoord in cursief (accentkleur van het merk) |
+| Tekst | Manrope 400/600, 16px, regelhoogte 1,45–1,55 |
+| Kleine labels (eyebrow) | Manrope 700, 12px, hoofdletters, +0,2em |
+| Knoppen | Manrope 700, inkt op papier (in donkere modus omgekeerd) |
+| Cijfers en prijzen | Manrope 700–800, tabulaire cijfers |
+
+**Het verschil tussen de merken** zit niet in een tweede letter, maar in:
+- het woordmerk;
+- het accent (cognac of lippenstift);
+- de hoeken (2px of 4px);
+- de toon.
 
 **Regels:**
 - Nooit meer dan twee families op een scherm.
@@ -193,7 +202,7 @@ Alleen als het iets toevoegt. **Drie vaste momenten:**
 
 **Stil bij "minder beweging":** alles staat dan meteen in de eindstand.
 
-## 6. Logo (status: nieuw ontwerp in voorbereiding)
+## 6. Logo (gekozen 14 oktober: Didone-woordmerken; vectorversie volgt)
 - **Briefing en ontwerpronde:** zie het Gemini-handboek, deel 2. Drie richtingen per merk plus het maison; de oprichter kiest.
 - **Eisen:**
   - leesbaar op 16px (favicon) en op 120px;

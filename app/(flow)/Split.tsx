@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 
 const NONE = { brand: "none", voice: "none" };
@@ -29,6 +29,38 @@ const SEASONS = [
   { name: "Herfst", line: "warm en diep", img: "/brand/seasons/family-herfst.jpg" },
   { name: "Winter", line: "koel en contrastrijk", img: "/brand/seasons/family-winter.jpg" },
 ];
+
+// a quiet spread across the seasons: the fan is the gift object of the maison
+const FAN = ["#5E6A7A", "#7FA39B", "#A6879C", "#C29A9E", "#B9926B", "#B67C73", "#8E3B46", "#1F5C63", "#3A2A6B", "#E9DCC4"];
+
+/** The maison's colour fan: opens once, follows pointer or tilt a little; still with reduced motion. */
+function MaisonFan() {
+  const [open, setOpen] = useState(false);
+  const stage = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const t = window.setTimeout(() => setOpen(true), 250);
+    const el = stage.current;
+    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return () => clearTimeout(t);
+    const move = (x: number, y: number) => {
+      el.style.setProperty("--ry", `${(x - 0.5) * 14}deg`);
+      el.style.setProperty("--rx", `${(0.5 - y) * 8 + 12}deg`);
+    };
+    const onPointer = (e: PointerEvent) => move(e.clientX / innerWidth, e.clientY / innerHeight);
+    addEventListener("pointermove", onPointer);
+    return () => { clearTimeout(t); removeEventListener("pointermove", onPointer); };
+  }, []);
+  const n = FAN.length;
+  return (
+    <div className={`ms-fan${open ? " is-open" : ""}`} ref={stage} aria-hidden="true">
+      <div className="ms-fan-deck">
+        {FAN.map((c, i) => (
+          <i key={c} style={{ "--i": i, "--a": `${(i - (n - 1) / 2) * 11}deg`, background: c } as React.CSSProperties} />
+        ))}
+        <b />
+      </div>
+    </div>
+  );
+}
 
 /** KULØRT | NYANSE: the maison lock-up (docs/brand/BRANDBOOK.md §6). */
 export function MaisonMark({ small }: { small?: boolean }) {
@@ -73,10 +105,13 @@ export default function Split() {
             <a className="ms-btn" href="/nyanse" onClick={door("nyanse")}>Voor haar · NYANSE</a>
           </div>
         </div>
-        <figure className="ms-hero-img">
-          <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} fetchPriority="high" />
-        </figure>
+        <MaisonFan />
       </section>
+
+      <figure className="ms-band">
+        <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} />
+        <figcaption>In het atelier: een stofstaal onder je kin laat in één oogopslag zien welke kleur je staat.</figcaption>
+      </figure>
 
       <section className="ms-doors" aria-label="Kies je atelier">
         {DOORS.map((d) => (
