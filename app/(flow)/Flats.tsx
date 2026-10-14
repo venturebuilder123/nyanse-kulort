@@ -5,6 +5,56 @@
 // without a single stock photo. (Later replaceable by recoloured photo sprites, AI-FLATLAY.md.)
 
 import { useId } from "react";
+import garments from "@/lib/brand/garments.json";
+import type { BrandKey } from "@/lib/brand/types";
+
+type Sprite = { src: string; w: number; h: number };
+const GARMENTS = garments as Record<BrandKey, Record<string, Sprite>>;
+
+/** Dutch garment name -> the photo sprite of that garment for this brand (if we have one). */
+export function photoFor(item: string, brand: BrandKey): Sprite | undefined {
+  const k = item.toLowerCase();
+  const key =
+    k.includes("colbert") || k.includes("blazer") ? "blazer"
+    : k.includes("overshirt") ? "overshirt"
+    : k.includes("chino") ? "pants"
+    : k.includes("pantalon") ? "wide"
+    : k.includes("jeans") ? "jeans"
+    : k.includes("overhemd") ? "shirt"
+    : k.includes("blouse") ? "blouse"
+    : k.includes("trui") ? "knit"
+    : k.includes("sneaker") ? "sneaker"
+    : k.includes("schoen") ? "shoe"
+    : k.includes("riem") ? "belt"
+    : k.includes("tas") ? "bag"
+    : k.includes("sjaal") ? "scarf"
+    : k.includes("rok") ? "skirt"
+    : k.includes("longsleeve") ? "top"
+    : k === "top" ? "tee"
+    : "";
+  return key ? GARMENTS[brand]?.[key] : undefined;
+}
+
+/**
+ * A real garment photo in any colour: the colour is masked by the garment's shape and the
+ * normalised grey photo is blended on top (soft-light), so fabric, folds and seams stay.
+ */
+export function Garment({ sprite, color, className = "" }: { sprite: Sprite; color: string; className?: string }) {
+  const mask = `url(${sprite.src})`;
+  return (
+    <span className={`garment ${className}`} style={{ aspectRatio: `${sprite.w} / ${sprite.h}` }} aria-hidden="true">
+      <span className="garment-fill" style={{ background: color, WebkitMaskImage: mask, maskImage: mask }} />
+      <img className="garment-shade" src={sprite.src} alt="" width={sprite.w} height={sprite.h} loading="lazy" />
+      <img className="garment-fold" src={sprite.src} alt="" width={sprite.w} height={sprite.h} loading="lazy" />
+    </span>
+  );
+}
+
+/** Photo when we have one, else the line drawing. */
+export function Piece({ item, color, second, brand }: { item: string; color: string; second?: string; brand?: BrandKey }) {
+  const sprite = brand ? photoFor(item, brand) : undefined;
+  return sprite ? <Garment sprite={sprite} color={color} /> : <Flat kind={flatFor(item)} color={color} second={second} />;
+}
 
 export type FlatKind =
   | "tee" | "shirt" | "blouse" | "wide" | "polo" | "knit" | "blazer" | "coat" | "pants" | "jeans" | "skirt" | "dress"
@@ -13,6 +63,9 @@ export type FlatKind =
 /** Dutch garment names as used in the guide → drawing. */
 export function flatFor(item: string): FlatKind {
   const k = item.toLowerCase();
+  if (k.includes("overshirt")) return "coat";
+  if (k.includes("sneaker")) return "shoe";
+  if (k.includes("longsleeve")) return "tee";
   if (k.includes("colbert") || k.includes("blazer")) return "blazer";
   if (k.includes("jas")) return "coat";
   if (k.includes("blouse")) return "blouse";
@@ -196,7 +249,7 @@ const EXTRA_SLOTS = [
 ];
 
 /** A flat-lay of one look: garments plus accessories, on paper. */
-export function FlatLay({ pieces, extras = [], className = "" }: { pieces: LookPiece[]; extras?: LookPiece[]; className?: string }) {
+export function FlatLay({ pieces, extras = [], className = "", brand }: { pieces: LookPiece[]; extras?: LookPiece[]; className?: string; brand?: BrandKey }) {
   const used = new Set<string>();
   return (
     <div className={`flatlay ${className}`} role="img" aria-label={[...pieces, ...extras].map((p) => `${p.item} in ${p.color.name}`).join(", ")}>
@@ -208,7 +261,7 @@ export function FlatLay({ pieces, extras = [], className = "" }: { pieces: LookP
         used.add(String(slot.x) + slot.y);
         return (
           <div key={i} className="flatlay-item" style={{ left: `${slot.x}%`, top: `${slot.y}%`, width: `${slot.w}%`, transform: `rotate(${slot.r}deg)`, zIndex: slot.z }}>
-            <Flat kind={kind} color={p.color.hex} second={p.second} />
+            <Piece item={p.item} color={p.color.hex} second={p.second} brand={brand} />
           </div>
         );
       })}
@@ -216,7 +269,7 @@ export function FlatLay({ pieces, extras = [], className = "" }: { pieces: LookP
         const s = EXTRA_SLOTS[i]!;
         return (
           <div key={`x${i}`} className="flatlay-item" style={{ left: `${s.x}%`, top: `${s.y}%`, width: `${s.w}%`, transform: `rotate(${s.r}deg)`, zIndex: s.z }}>
-            <Flat kind={flatFor(p.item)} color={p.color.hex} second={p.second} />
+            <Piece item={p.item} color={p.color.hex} second={p.second} brand={brand} />
           </div>
         );
       })}

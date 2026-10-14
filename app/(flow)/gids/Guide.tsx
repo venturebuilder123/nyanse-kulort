@@ -13,7 +13,7 @@ import { track } from "@/lib/analytics";
 import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
-import { Flat, FlatLay, flatFor, type FlatKind } from "../Flats";
+import { Flat, FlatLay, Piece, type FlatKind } from "../Flats";
 import { Wordmark } from "../ui";
 
 // accessory drawings on the details page (make-up keeps its swatches)
@@ -167,7 +167,7 @@ export default function Guide() {
         <div className="g-combos">
           {g.combos.map((c) => (
             <div key={c.title} className="g-combo">
-              <FlatLay pieces={c.pieces} extras={c.extras} className="g-flatlay" />
+              <FlatLay pieces={c.pieces} extras={c.extras} className="g-flatlay" brand={config.key} />
               <div>
                 <b>{c.title}</b>
                 <ul>{[...c.pieces, ...c.extras].map((pc) => <li key={pc.item + pc.color.hex}><Dot hex={pc.color.hex} />{pc.item} · {pc.color.name}</li>)}</ul>
@@ -216,7 +216,7 @@ export default function Guide() {
       <Page n={next()} kicker="Je garderobe" title="12 stuks die samen werken">
         <div className="g-capsule">
           {g.capsule.map((c, i) => (
-            <div key={i} className="g-cap-item"><Flat kind={flatFor(c.item)} color={c.color.hex} /><b>{c.item}</b><span>{c.color.name}</span></div>
+            <div key={i} className="g-cap-item"><span className="g-cap-img"><Piece item={c.item} color={c.color.hex} brand={config.key} /></span><b>{c.item}</b><span>{c.color.name}</span></div>
           ))}
         </div>
         <p className="g-body">Alles in jouw kleuren, dus alles combineert. Vervang stuk voor stuk wat je al hebt.</p>

@@ -28,7 +28,7 @@ describe("buildGuide", () => {
         expect(g.swaps.length).toBe(g.avoid.length);
         // jacket and trousers of the work look are never the same colour
         expect(g.combos[0]!.pieces[0]!.color.hex).not.toBe(g.combos[0]!.pieces[2]!.color.hex);
-        expect(g.combos.every((c) => c.extras.length === 2)).toBe(true);
+        expect(g.combos.every((c) => c.extras.length >= 1)).toBe(true);
         // the alternative is always a colour from the person's own palette
         g.swaps.forEach((sw) => expect(g.groups.flatMap((gr) => gr.colors).some((c) => c.hex === sw.instead.hex)).toBe(true));
       });

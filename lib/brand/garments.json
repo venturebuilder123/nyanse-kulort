@@ -1,0 +1,111 @@
+{
+  "kulort": {
+    "belt": {
+      "src": "/brand/garments/kulort-belt.webp",
+      "w": 718,
+      "h": 720
+    },
+    "blazer": {
+      "src": "/brand/garments/kulort-blazer.webp",
+      "w": 648,
+      "h": 720
+    },
+    "shirt": {
+      "src": "/brand/garments/kulort-blouse.webp",
+      "w": 607,
+      "h": 720
+    },
+    "pants": {
+      "src": "/brand/garments/kulort-chino.webp",
+      "w": 400,
+      "h": 720
+    },
+    "knit": {
+      "src": "/brand/garments/kulort-crewneck.webp",
+      "w": 668,
+      "h": 720
+    },
+    "shoe": {
+      "src": "/brand/garments/kulort-dress-shoes.webp",
+      "w": 542,
+      "h": 720
+    },
+    "jeans": {
+      "src": "/brand/garments/kulort-jeans.webp",
+      "w": 422,
+      "h": 720
+    },
+    "overshirt": {
+      "src": "/brand/garments/kulort-overshirt.webp",
+      "w": 675,
+      "h": 720
+    },
+    "sneaker": {
+      "src": "/brand/garments/kulort-sneakers.webp",
+      "w": 502,
+      "h": 720
+    }
+  },
+  "nyanse": {
+    "bag": {
+      "src": "/brand/garments/nyanse-bag.webp",
+      "w": 629,
+      "h": 720
+    },
+    "blazer": {
+      "src": "/brand/garments/nyanse-blazer.webp",
+      "w": 605,
+      "h": 720
+    },
+    "blouse": {
+      "src": "/brand/garments/nyanse-blouse.webp",
+      "w": 658,
+      "h": 720
+    },
+    "knit": {
+      "src": "/brand/garments/nyanse-crewneck.webp",
+      "w": 670,
+      "h": 720
+    },
+    "jeans": {
+      "src": "/brand/garments/nyanse-jeans.webp",
+      "w": 409,
+      "h": 720
+    },
+    "shoe": {
+      "src": "/brand/garments/nyanse-loafers.webp",
+      "w": 506,
+      "h": 720
+    },
+    "top": {
+      "src": "/brand/garments/nyanse-longsleve.webp",
+      "w": 720,
+      "h": 690
+    },
+    "scarf": {
+      "src": "/brand/garments/nyanse-scarf.webp",
+      "w": 697,
+      "h": 720
+    },
+    "skirt": {
+      "src": "/brand/garments/nyanse-skirt.webp",
+      "w": 595,
+      "h": 720
+    },
+    "sneaker": {
+      "src": "/brand/garments/nyanse-sneakers.webp",
+      "w": 514,
+      "h": 720
+    },
+    "wide": {
+      "src": "/brand/garments/nyanse-trousers.webp",
+      "w": 434,
+      "h": 720
+    },
+    "tee": {
+      "src": "/brand/garments/nyanse-tshirt.webp",
+      "w": 573,
+      "h": 720
+    }
+  }
+}

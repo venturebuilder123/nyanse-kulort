@@ -202,7 +202,7 @@ export default function Result() {
               <h2 className="eyebrow-h">Je kast, in jouw kleuren</h2>
               <p className="deck-lede">30 kleuren die allemaal met elkaar combineren: alles in je kast past bij alles. Zo ziet dat eruit.</p>
               <figure className="wd-look">
-                <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" />
+                <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" brand={config.key} />
                 <figcaption>
                   <b>{look.title}</b>
                   <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{pc.item} · {pc.color.name}</li>)}</ul>
@@ -215,7 +215,7 @@ export default function Result() {
                   <div className="wd-more">
                     {others.map((c) => (
                       <button key={c.title} className="wd-shut" onClick={toTiers} aria-label={`Look ${c.title}: staat in je stijlgids`}>
-                        <FlatLay pieces={c.pieces} extras={c.extras} />
+                        <FlatLay pieces={c.pieces} extras={c.extras} brand={config.key} />
                         <span>{c.title}</span>
                       </button>
                     ))}

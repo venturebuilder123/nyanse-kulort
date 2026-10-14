@@ -27,7 +27,7 @@ export default function FlatsCheck() {
           <section key={b + s} data-brand={b} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10 }}>
             {buildGuide(at(s), b).combos.map((c) => (
               <figure key={c.title} style={{ margin: 0 }}>
-                <FlatLay pieces={c.pieces} extras={c.extras} />
+                <FlatLay pieces={c.pieces} extras={c.extras} brand={b} />
                 <figcaption style={{ fontSize: 10 }}>{b} · {s} · {c.title}: {c.pieces.map((p) => p.item).join(", ")}</figcaption>
               </figure>
             ))}

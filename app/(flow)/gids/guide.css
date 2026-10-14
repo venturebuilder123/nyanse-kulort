@@ -179,7 +179,9 @@
 /* ---------- capsule ---------- */
 .g-capsule { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px 12px; }
 .g-cap-item { display: grid; gap: 4px; font-size: 13px; }
-.g-cap-item .flat { background: #EFEAE3; padding: 10px; aspect-ratio: 1; box-sizing: border-box; filter: drop-shadow(0 1px 1px rgba(0,0,0,.06)); }
+.g-cap-img { display: grid; place-items: center; aspect-ratio: 1; padding: 10px; background: #F3EFE9; }
+.g-cap-img .flat, .g-cap-img .garment { max-height: 100%; width: auto; max-width: 100%; }
+.g-cap-img .garment { height: 100%; }
 .g-cap-item b { font-size: 14px; }
 .g-cap-item span { font-size: 11.5px; color: rgba(18, 18, 18, 0.6); }
 
@@ -221,7 +223,7 @@
   .g-chip span { font-size: 7.5pt; }
   .g-group { gap: 2.5mm; }
   .g-group-head span { font-size: 8.5pt; }
-  .g-cap-item .flat { padding: 2mm; }
+  .g-cap-img { padding: 2mm; }
   .g-combos { gap: 5mm 6mm; }
   .g-flatlay.flatlay { width: 70mm; justify-self: start; }
   .g-combo ul { margin: 1mm 0; gap: 0.8mm; font-size: 8pt !important; }

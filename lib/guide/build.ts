@@ -77,9 +77,10 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
   const trousers = midNeutral !== dark(0) ? midNeutral : dark(1) !== dark(0) ? dark(1) : light(1);
 
   const men = brand === "kulort";
+  // garments we have real photos of (docs/brand/GEMINI-HANDBOEK.md §8), recoloured per person
   const items = men
-    ? { top: "Overhemd", knit: "Trui", jacket: "Colbert", pants: "Chino", jeans: "Jeans", shoes: "Schoenen", tee: "T-shirt", coat: "Jas", scarf: "Sjaal" }
-    : { top: "Blouse", knit: "Trui", jacket: "Blazer", pants: "Pantalon", jeans: "Jeans", shoes: "Schoenen", tee: "Top", coat: "Jas", scarf: "Sjaal" };
+    ? { top: "Overhemd", knit: "Trui", jacket: "Colbert", pants: "Chino", jeans: "Jeans", shoes: "Sneakers", dateTop: "Overhemd", dateBottom: "Chino", outer: "Overshirt", finish: "Schoenen" }
+    : { top: "Blouse", knit: "Trui", jacket: "Blazer", pants: "Pantalon", jeans: "Jeans", shoes: "Schoenen", dateTop: "Top", dateBottom: "Rok", outer: "Blazer", finish: "Sjaal" };
 
   const contrast = bright
     ? { title: "Jij kunt contrast hebben", text: "Licht naast donker en een heldere kleur bij je gezicht staan je sterk. Te veel van hetzelfde maakt je juist vlak." }
@@ -116,9 +117,9 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
       title: "Date",
       occasion: "date",
       pieces: [
-        { item: items.tee, color: sw(accent(0)) },
-        { item: items.pants, color: sw(dark(1)) },
-        { item: items.coat, color: sw(dark(0)) },
+        { item: items.dateTop, color: sw(accent(0)) },
+        { item: items.dateBottom, color: sw(dark(1)) },
+        { item: items.outer, color: sw(dark(0)) },
       ],
       tip: "Je sterkste kleur onder je gezicht: daar kijkt de ander naar.",
       extras: [],
@@ -129,7 +130,7 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
       pieces: [
         { item: items.jacket, color: sw(dark(0)) },
         { item: items.top, color: sw(accent(2)) },
-        { item: items.scarf, color: sw(accent(3)) },
+        { item: items.finish, color: sw(men ? dark(2) : accent(3)) },
       ],
       tip: "Diep en rijk, met één kleur die opvalt.",
       extras: [],
@@ -168,14 +169,8 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
 
   // every look gets the same metal and leather: one leather colour, held throughout
   const extras: Piece[] = men
-    ? [
-        { item: "Horloge", color: leather[0]!, second: metal[0]!.hex },
-        { item: "Riem", color: leather[0]!, second: metal[0]!.hex },
-      ]
-    : [
-        { item: "Sieraden", color: metal[0]!, second: metal[0]!.hex },
-        { item: "Tas", color: leather[0]!, second: metal[0]!.hex },
-      ];
+    ? [{ item: "Riem", color: leather[0]!, second: metal[0]!.hex }]
+    : [{ item: "Tas", color: leather[0]!, second: metal[0]!.hex }];
   for (const c of combos) c.extras = extras;
 
   // make-up (NYANSE): lips from the red/pink accents, blush lighter, eyes from the base
@@ -205,12 +200,12 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
 
   // --- capsule: 12 pieces that combine with each other ---
   const capsuleItems = men
-    ? ["Colbert", "Jas", "Chino", "Jeans", "Overhemd", "Overhemd", "T-shirt", "T-shirt", "Trui", "Trui", "Polo", "Sjaal"]
-    : ["Blazer", "Jas", "Pantalon", "Jeans", "Blouse", "Blouse", "Top", "Top", "Trui", "Jurk", "Rok", "Sjaal"];
+    ? ["Colbert", "Overshirt", "Chino", "Jeans", "Overhemd", "Overhemd", "Trui", "Trui", "Overshirt", "Sneakers", "Schoenen", "Riem"]
+    : ["Blazer", "Longsleeve", "Pantalon", "Jeans", "Blouse", "Blouse", "Top", "Top", "Trui", "Rok", "Sjaal", "Tas"];
   // colour per garment type, so the capsule reads like a real wardrobe
   const capsuleColors = men
-    ? [dark(0), dark(1), midNeutral, hasDenim ? denim : dark(2), light(0), light(1), light(2), accent(0), accent(1), midNeutral, accent(2), accent(3)]
-    : [dark(0), dark(1), midNeutral, hasDenim ? denim : dark(2), light(0), accent(2), light(1), accent(0), accent(1), dark(2), midNeutral, accent(3)];
+    ? [dark(0), dark(1), midNeutral, hasDenim ? denim : dark(2), light(0), light(1), accent(0), accent(1), accent(2), light(2), dark(2), dark(1)]
+    : [dark(0), light(2), midNeutral, hasDenim ? denim : dark(2), light(0), accent(2), light(1), accent(0), accent(1), dark(2), accent(3), dark(1)];
   const capsule = capsuleItems.map((item, i) => ({ item, color: sw(capsuleColors[i]!) }));
 
   const shopping = [
