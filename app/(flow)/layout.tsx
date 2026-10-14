@@ -28,6 +28,11 @@ export default async function FlowLayout({ children }: { children: React.ReactNo
   const { config, voice, copy, segment, chosen } = await currentBrand();
   return (
     <div className={`app ${fontVariables}`} data-brand={chosen ? config.key : "maison"} data-voice={voice} data-segment={segment ?? undefined}>
+      <script
+        type="application/ld+json"
+        // the house and its public profiles, for search engines
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "KULØRT · NYANSE", url: "https://www.kulort-nyanse.com", email: "nyansekulort@gmail.com", sameAs: ["https://www.instagram.com/kulortnyanse/"] }) }}
+      />
       <BrandProvider value={{ config, voice, copy, segment }}>
         <Lifecycle />
         {children}

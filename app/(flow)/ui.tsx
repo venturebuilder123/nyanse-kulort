@@ -127,6 +127,7 @@ export function Footer() {
   return (
     <footer className="foot">
       <Link href="/contact">Contact</Link>
+      <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
       <Link href="/privacy">Privacy</Link>
       <span>Prijzen inclusief btw</span>
     </footer>

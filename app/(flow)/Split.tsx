@@ -205,6 +205,7 @@ export default function Split() {
         <MaisonMark small />
         <span>Prijzen inclusief btw</span>
         <Link href="/contact">Contact</Link>
+        <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
         <Link href="/privacy">Privacy</Link>
       </footer>
     </main>
