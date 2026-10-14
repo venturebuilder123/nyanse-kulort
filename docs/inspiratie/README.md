@@ -48,3 +48,17 @@ Ideeën en beelden van buiten, om later uit te werken. Beelden van derden staan 
   - afspraken plannen via een eenvoudige boekingstool (later kiezen);
   - workshops eerst voor NYANSE, daarna eventueel ook voor mannen (KULØRT).
 - **Status:** later, na de eerste meting en de livegang.
+
+## 2026-10-14 — Cadeau-route (idee van de oprichter)
+
+- **Wat:** een kleurprofiel en stijlgids cadeau geven aan iemand anders, eventueel met korting. Past bij CLAUDE.md §8 (cadeaupas voor Sinterklaas en Kerst, ook tussen de merken: "geef hem zijn kleuren").
+- **Hoe (MENING):**
+  - een eigen pagina **/cadeau**, buiten de flow, want in de flow geldt één vraag om geld;
+  - de koper kiest stijlgids, stijlgids + pas of de sessie en krijgt een **cadeaucode** plus een mooie digitale kaart (PDF of link) om te geven of te mailen;
+  - de ontvanger doet de selfie zelf en verzilvert de code bij het afrekenen. Een pas gaat naar het adres van de ontvanger.
+- **Korting, alleen als die echt is:**
+  - een duo-prijs als je er zelf ook een neemt ("jij en een ander");
+  - een vaste cadeau-actie in een afgebakende periode (Sinterklaas en Kerst) met een echte einddatum;
+  - geen nep-van-voor-prijzen of aftelklokken (CLAUDE.md §12).
+- **Techniek:** een tabel `gift_codes` in Supabase (code, optie, status, betaald via overschrijving zoals de checkout). Het verzilveren vervangt het betalen.
+- **Status:** later. Een logisch moment is de aanloop naar Sinterklaas en Kerst; begin de bouw dan uiterlijk half november.
