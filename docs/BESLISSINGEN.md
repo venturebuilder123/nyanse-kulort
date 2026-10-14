@@ -2,6 +2,23 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — huisstijl: één maison, twee merken
+
+- **Aanleiding:** de gesplitste homepage op desktop miste het atelier-gevoel en de duidelijkheid. In donkere modus was de NYANSE-tekst zelfs onzichtbaar (gerepareerd).
+- **Besluiten van de oprichter:**
+  - **Eén maison, twee merken.** kulort-nyanse.com is het atelier voor persoonlijke kleur. KULØRT (mannen) en NYANSE (vrouwen) zijn er voor alle leeftijden van 18 tot 65.
+  - **Eén look per merk, toon per leeftijd.** De leeftijd (jong, jongvolwassen, volwassen, 45+) verandert woorden, modellen en voorbeelden, niet kleur en letter. Girl Math wordt de jonge toon van NYANSE (zonder markeerstift en Bricolage), Signature de toon voor 45+.
+  - **Maison-homepage:** eerst wat het is (met een cadeaubeeld), dan twee deuren.
+  - **Nieuw logo** via een ontwerpronde.
+- **Vastgelegd in:**
+  - [brand/BRANDBOOK.md](brand/BRANDBOOK.md): maison, gevoel ↔ aanpak, verleiden zonder trucs, toon per merk en leeftijd, kleur, typografie, raster, fotografie, beweging, toepassingen en een on-brand-checklist;
+  - [brand/GEMINI-HANDBOEK.md](brand/GEMINI-HANDBOEK.md): alle prompts (logo, 12 nieuwe kleurportretten, campagne per merk en leeftijd, 4 hoofdseizoenen en 12 kleurtypen met de hexwaarden uit onze motor, waaier, pas en verpakking, advertenties, kleding, stijlgids).
+- **Daarna te bouwen** (na de keuze van logo en beelden):
+  - het logosysteem in vector;
+  - de maison-homepage;
+  - de merken in de nieuwe huisstijl;
+  - de leeftijdssegmenten uitbreiden naar 4 (`jong`, `jv`, `vol`, `40`).
+
 ## 14 oktober 2026 — leeftijdssegmenten en de stem Signature
 
 - **Segmenten:** jong (±18–22) en 40+ (45–55), naast de kern (23–44). Het segment volgt de advertentie: `?g=jong` of `?g=40`, onthouden voor het bezoek. De app vraagt het nooit en leidt het nooit af uit de foto.
