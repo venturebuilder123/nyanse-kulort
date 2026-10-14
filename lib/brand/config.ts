@@ -1,5 +1,6 @@
 import { atelier } from "./nyanse/atelier";
 import { girlmath } from "./nyanse/girlmath";
+import { signature } from "./nyanse/signature";
 import { wingman } from "./kulort/wingman";
 import type { BrandConfig, BrandKey, BudgetKey, OccasionKey, VoiceCopy, VoiceKey } from "./types";
 
@@ -20,7 +21,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     key: "nyanse",
     name: "NYANSE",
     hosts: ["nyanse.com", "nyanse.nl", "nyanse.app"],
-    voices: ["atelier", "girlmath"],
+    voices: ["atelier", "girlmath", "signature"],
     defaultVoice: "atelier",
     shops: ["Zalando", "H&M", "Zara", "Mango", "COS", "Arket", "ASOS", "Sissy-Boy"],
     other: "kulort",
@@ -30,13 +31,13 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
   },
 };
 
-export const VOICES: Record<VoiceKey, VoiceCopy> = { wingman, atelier, girlmath };
+export const VOICES: Record<VoiceKey, VoiceCopy> = { wingman, atelier, girlmath, signature };
 
 /** First test is KULØRT (CLAUDE.md §2), so it is the fallback brand. */
 export const DEFAULT_BRAND: BrandKey = "kulort";
 
 /** UTM shorthand from ads: ?s=gm|at (CLAUDE.md §2). */
-export const VOICE_PARAM: Record<string, VoiceKey> = { gm: "girlmath", at: "atelier", wm: "wingman" };
+export const VOICE_PARAM: Record<string, VoiceKey> = { gm: "girlmath", at: "atelier", sg: "signature", wm: "wingman" };
 
 export const OCCASIONS: { key: OccasionKey; label: string }[] = [
   { key: "werk", label: "Werk" },

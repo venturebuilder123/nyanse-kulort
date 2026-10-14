@@ -1,5 +1,5 @@
 export type BrandKey = "nyanse" | "kulort";
-export type VoiceKey = "girlmath" | "atelier" | "wingman";
+export type VoiceKey = "girlmath" | "atelier" | "signature" | "wingman";
 export type Locale = "nl"; // structure ready for "en" | "de"
 
 export type OccasionKey = "werk" | "weekend" | "date" | "feest" | "sport";

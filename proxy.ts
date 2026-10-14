@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { BRAND_COOKIE, BRAND_HEADER, CHOSEN_HEADER, resolveBrand, VOICE_COOKIE, VOICE_HEADER } from "@/lib/brand/resolve";
+import { resolveSegment, SEGMENT_COOKIE, SEGMENT_HEADER } from "@/lib/brand/segment";
 import { isValidToken, LAB_COOKIE } from "@/lib/lab/auth";
 
 export function proxy(request: NextRequest) {
@@ -37,6 +38,9 @@ export function proxy(request: NextRequest) {
   headers.set(BRAND_HEADER, brand);
   headers.set(VOICE_HEADER, voice);
   headers.set(CHOSEN_HEADER, chosen ? "1" : "0");
+  const gParam = searchParams.get("g");
+  const segment = resolveSegment({ param: gParam, cookie: request.cookies.get(SEGMENT_COOKIE)?.value, voice });
+  if (segment) headers.set(SEGMENT_HEADER, segment);
   const res = NextResponse.next({ request: { headers } });
 
   // Functional cookies: keep brand and voice for the rest of the visit.
@@ -45,6 +49,11 @@ export function proxy(request: NextRequest) {
   if (chosen && request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, { ...opts, maxAge: 60 * 60 * 24 * 30 });
   // the voice comes from the ad: keep it for this visit only, so it is not ad attribution
   if (request.cookies.get(VOICE_COOKIE)?.value !== voice) res.cookies.set(VOICE_COOKIE, voice, opts);
+  // the age segment, like the voice: from the ad, for this visit only
+  if (gParam !== null && segment !== (request.cookies.get(SEGMENT_COOKIE)?.value ?? null)) {
+    if (segment) res.cookies.set(SEGMENT_COOKIE, segment, opts);
+    else res.cookies.delete(SEGMENT_COOKIE);
+  }
   return res;
 }
 

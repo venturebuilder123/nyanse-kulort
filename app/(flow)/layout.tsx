@@ -27,10 +27,10 @@ export async function generateViewport(): Promise<Viewport> {
 }
 
 export default async function FlowLayout({ children }: { children: React.ReactNode }) {
-  const { config, voice, copy } = await currentBrand();
+  const { config, voice, copy, segment } = await currentBrand();
   return (
-    <div className={`app ${fontVariables}`} data-brand={config.key} data-voice={voice}>
-      <BrandProvider value={{ config, voice, copy }}>
+    <div className={`app ${fontVariables}`} data-brand={config.key} data-voice={voice} data-segment={segment ?? undefined}>
+      <BrandProvider value={{ config, voice, copy, segment }}>
         <Lifecycle />
         {children}
       </BrandProvider>

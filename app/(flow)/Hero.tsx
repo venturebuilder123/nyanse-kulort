@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PEOPLE } from "@/lib/brand/people";
+import { PEOPLE, peopleFor } from "@/lib/brand/people";
 import { useBrand } from "./BrandProvider";
 import { Drape } from "./Drape";
 
@@ -26,8 +26,8 @@ export function Hero() {
  * the same technique as on a real selfie, never a separately edited "bad" photo.
  */
 function PhotoHero() {
-  const { config, copy } = useBrand();
-  const people = PEOPLE[config.key];
+  const { config, copy, segment } = useBrand();
+  const people = peopleFor(config.key, segment);
   const [phase, setPhase] = useState(0);
   const [reduced, setReduced] = useState(false);
   useEffect(() => {

@@ -6,7 +6,9 @@ import { chromium } from "@playwright/test";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const base = process.env.BASE_URL ?? "http://localhost:3000";
-const files = readdirSync("public/brand/people").filter((f) => /^(kulort|nyanse)-\d+\.(jpe?g|png|webp)$/i.test(f)).sort();
+// kulort-1.jpg (core set) or kulort-jong-1.jpg / nyanse-40-2.jpg (age segment, docs/fase-b/DOELGROEPEN.md)
+const NAME = /^(kulort|nyanse)-(?:(jong|40)-)?\d+\.(jpe?g|png|webp)$/i;
+const files = readdirSync("public/brand/people").filter((f) => NAME.test(f)).sort();
 if (!files.length) throw new Error("no images in public/brand/people (expected kulort-1.jpg, nyanse-1.jpg, …)");
 const pw = readFileSync(".env", "utf8").match(/^LAB_PASSWORD=(.*)$/m)?.[1]?.trim();
 if (!pw) throw new Error("LAB_PASSWORD missing in .env");
@@ -33,7 +35,10 @@ const clean = Object.fromEntries(
         console.log(keep ? "use " : "SKIP", k, p.src, p.season, p.note);
         return keep;
       })
-      .map(({ note, confidence, ...p }) => p),
+      .map(({ note, confidence, ...p }) => {
+        const seg = NAME.exec(p.src.split("/").pop())?.[2];
+        return seg ? { ...p, segment: seg.toLowerCase() } : p;
+      }),
   ]),
 );
 writeFileSync("lib/brand/people.json", JSON.stringify(clean, null, 2) + "\n");

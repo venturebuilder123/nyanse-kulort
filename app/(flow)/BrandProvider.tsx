@@ -1,9 +1,10 @@
 "use client";
 
 import { createContext, useContext } from "react";
+import type { Segment } from "@/lib/brand/segment";
 import type { BrandConfig, VoiceCopy, VoiceKey } from "@/lib/brand/types";
 
-type BrandCtx = { config: BrandConfig; voice: VoiceKey; copy: VoiceCopy };
+type BrandCtx = { config: BrandConfig; voice: VoiceKey; copy: VoiceCopy; segment: Segment | null };
 
 const Ctx = createContext<BrandCtx | null>(null);
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { PEOPLE } from "@/lib/brand/people";
+import { PEOPLE, peopleFor } from "@/lib/brand/people";
 import { familyOf } from "@/lib/color/describe";
 import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
@@ -26,7 +26,7 @@ type R = ReturnType<typeof flowSession.result>;
 
 /** The personal style guide: an editorial document on screen, exact A4 pages as PDF. */
 export default function Guide() {
-  const { config, voice, copy } = useBrand();
+  const { config, voice, copy, segment } = useBrand();
   const gc = copy.guide;
   const [r, setR] = useState<R>(null);
   const [loaded, setLoaded] = useState(false);
@@ -71,7 +71,7 @@ export default function Guide() {
   const men = config.key === "kulort";
   // an AI model from the same colour family shows the effect (labelled as an example)
   const family = familyOf(r.profile.match.season);
-  const model = PEOPLE[config.key].find((p) => familyOf(p.season as SeasonKey) === family) ?? PEOPLE[config.key][0];
+  const model = [...peopleFor(config.key, segment), ...PEOPLE[config.key]].find((p) => familyOf(p.season as SeasonKey) === family) ?? PEOPLE[config.key][0];
   let page = 1;
   const next = () => String(++page).padStart(2, "0");
 

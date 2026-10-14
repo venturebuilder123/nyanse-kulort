@@ -19,7 +19,7 @@ import { flowSession, type FaceBox } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { MiniPass } from "../Hero";
-import { PEOPLE } from "@/lib/brand/people";
+import { PEOPLE, peopleFor } from "@/lib/brand/people";
 import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { loadAnswers } from "@/lib/flow/answers";
@@ -30,7 +30,7 @@ import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
 
 export default function Result() {
-  const { config, copy, ctx } = useBrand();
+  const { config, copy, ctx, segment } = useBrand();
   const t = copy.result;
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
   const [loaded, setLoaded] = useState(false);
@@ -161,7 +161,7 @@ export default function Result() {
 
         {(() => {
           // the effect on someone from the same colour family (AI model, labelled)
-          const model = PEOPLE[config.key].find((m) => familyOf(m.season as SeasonKey) === family);
+          const model = [...peopleFor(config.key, segment), ...PEOPLE[config.key]].find((m) => familyOf(m.season as SeasonKey) === family);
           if (!model) return null;
           return (
             <section className="q">

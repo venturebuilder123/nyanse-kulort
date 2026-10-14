@@ -44,4 +44,9 @@ describe("resolveBrand", () => {
     // an explicit brand still wins over the voice
     expect(resolveBrand({ host: "kulort-nyanse.com", brandParam: "kulort", voiceParam: "gm" }).voice).toBe("wingman");
   });
+
+  it("knows the Signature voice (?s=sg) as NYANSE", () => {
+    expect(resolveBrand({ host: "kulort-nyanse.com", voiceParam: "sg" })).toMatchObject({ brand: "nyanse", voice: "signature", chosen: true });
+    expect(resolveBrand({ host: "kulort.nl", voiceParam: "sg" }).voice).toBe("wingman");
+  });
 });

@@ -95,3 +95,27 @@ Voor elke volgende persoon in dezelfde chat zet je ervoor: *"Same photoshoot, sa
 - [ ] Lijkt niet op een bekend persoon
 - [ ] Geen zichtbaar watermerk weggeknipt
 - [ ] Programma en datum genoteerd in `bron.txt`
+
+---
+
+## Aanvulling 14 oktober: leeftijdssegmenten (DOELGROEPEN.md)
+
+Zelfde werkwijze: plak eerst de shootbriefing (blok A) in een nieuwe chat per merk, dan één persoon per keer. Elke volgende persoon begint met *"Same photoshoot, same light, background, camera and framing. New person:"*.
+
+**Bestandsnamen bepalen het segment:** `{merk}-jong-{n}.jpg` (±18–22) en `{merk}-40-{n}.jpg` (45–55). De app toont ze automatisch bij advertenties met `?g=jong` of `?g=40`, en bij de NYANSE-stem Signature (`?s=sg`).
+
+**Jong (±19 jaar)**
+- `nyanse-jong-1.jpg`: `Person: a 19-year-old Dutch woman with fair skin, light freckles, straight dark-blonde hair tucked behind the ears, blue-grey eyes, no make-up look. Open, friendly expression.`
+- `nyanse-jong-2.jpg`: `Person: a 20-year-old Surinamese-Dutch woman with medium-deep brown skin rendered with rich detail and correct exposure, natural black curly hair tied back, dark-brown eyes, minimal natural make-up. Bright, relaxed expression.`
+- `kulort-jong-1.jpg`: `Person: a 19-year-old Dutch man with fair skin, short light-brown hair with a natural texture, clean-shaven, green-grey eyes. Easy-going, confident expression.`
+- `kulort-jong-2.jpg`: `Person: a 20-year-old Moroccan-Dutch man with light-medium olive skin, short black hair with a low fade, very light stubble, dark-brown eyes. Friendly, self-assured expression.`
+
+**40+ (45–55 jaar)**
+- `nyanse-40-1.jpg`: `Person: a 49-year-old Dutch woman with fair skin and natural silver-grey shoulder-length hair tucked behind the ears, light blue-grey eyes, fine natural lines around the eyes, minimal natural make-up. Calm, confident expression.`
+- `nyanse-40-2.jpg`: `Person: a 52-year-old Black Dutch woman with deep brown skin rendered with rich detail and correct exposure, short natural grey-black curly hair, dark-brown eyes, minimal natural make-up. Warm, self-assured expression.`
+- `kulort-40-1.jpg`: `Person: a 50-year-old Dutch man with fair-medium skin, short salt-and-pepper hair, a trimmed grey beard, grey-green eyes. Relaxed, trustworthy expression.`
+- `kulort-40-2.jpg`: `Person: a 47-year-old Turkish-Dutch man with medium olive skin, short dark hair greying at the temples, clean-shaven, dark-brown eyes. Friendly, composed expression.`
+
+**Extra controle bij 40+:** echte lijnen en huidstructuur, geen "verjongde" huid. Grijs haar moet neutraal grijs zijn, zonder gele of blauwe zweem (onze analyse meet haarkleur).
+
+**Daarna:** zet de bestanden in `public/brand/people/` en vul `bron.txt` aan. Draai `npm run build`, dan `npm start`, en dan `BASE_URL=http://localhost:3000 node scripts/measure-people.mjs`. Het segment komt vanzelf mee uit de bestandsnaam.

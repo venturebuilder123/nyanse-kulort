@@ -2,6 +2,19 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — leeftijdssegmenten en de stem Signature
+
+- **Segmenten:** jong (±18–22) en 40+ (45–55), naast de kern (23–44). Het segment volgt de advertentie: `?g=jong` of `?g=40`, onthouden voor het bezoek. De app vraagt het nooit en leidt het nooit af uit de foto.
+  - De hero, "Ook een …" en de gids kiezen de AI-modellen van dat segment. Zijn er nog geen beelden, dan valt het terug op de kern.
+- **Stem Signature (NYANSE 40+, `?s=sg`):**
+  - toon: rustig en zeker;
+  - kop: "Kleuren die passen bij wie je nu bent";
+  - grijs haar als kracht; nooit "jonger lijken" of anti-age;
+  - Bodoni rechtop, aubergine, parelkleurige achtergrond, ook in donkere modus;
+  - zet zelf het segment 40+ aan.
+- **8 nieuwe AI-modellen:** prompts in [fase-b/AI-BEELDEN.md](fase-b/AI-BEELDEN.md). Het segment staat in de bestandsnaam (`nyanse-40-1.jpg`) en komt via het meetscript in `people.json`.
+- **Supabase:** migratie `0002_signature_voice.sql` staat klaar. Draai die vóór pushmeldingen voor Signature werken.
+
 ## 14 oktober 2026 — "Ik weet mijn kleurtype al", doelgroepen, extensies
 
 - **Tweede route:** "Ik weet mijn kleurtype al →" op de landing gaat naar `/type`: de 12 seizoenen in 4 families, elk met een strookje kleuren. Na een keuze volgt meteen het resultaat met "eigen opgave" en de gratis check met een selfie. De gids vermeldt "op basis van je eigen opgave".
