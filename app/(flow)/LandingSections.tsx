@@ -1,14 +1,13 @@
 "use client";
 
 import { PEOPLE } from "@/lib/brand/people";
-import { nameForHex } from "@/lib/color/palette";
 import { useBrand } from "./BrandProvider";
-import { Drape } from "./Drape";
+import { DrapeMirror } from "./DrapeMirror";
 import { CheckIcon, Display } from "./ui";
 
 /** Sections under the first tap; on large screens they make the landing a full product page. */
 export function LandingSections({ onStart }: { onStart: () => void }) {
-  const { config, copy } = useBrand();
+  const { config, copy, segment } = useBrand();
   const pg = copy.page;
   const people = PEOPLE[config.key].slice(0, 4);
   return (
@@ -17,24 +16,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
         <section className="l-section" id="verschil">
           <Display text={pg.gallery.title} as="h2" small />
           <p className="sub">{pg.gallery.text}</p>
-          <div className="gallery">
-            {people.map((p) => (
-              <figure key={p.src} className="split">
-                <div className="split-frame">
-                  <Drape photo={p.src} face={{ ...p.face, mirrored: false }} color={p.good} fit={{ w: 0.4, cy: 0.38 }} />
-                  <div className="split-left">
-                    <Drape photo={p.src} face={{ ...p.face, mirrored: false }} color={p.bad} fit={{ w: 0.4, cy: 0.38 }} />
-                  </div>
-                  <span className="split-line" aria-hidden="true" />
-                </div>
-                <figcaption>
-                  <span className="bad">✕ {nameForHex(p.bad, config.key) ?? copy.landing.hero.bad}</span>
-                  <span className="good">✓ {nameForHex(p.good, config.key) ?? copy.landing.hero.good}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <p className="ai-label center">Voorbeelden · beelden gemaakt met AI, kleurdoeken gekozen door onze analyse</p>
+          <DrapeMirror brand={config.key} segment={segment} />
         </section>
       )}
 

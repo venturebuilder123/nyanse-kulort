@@ -19,10 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export async function generateViewport(): Promise<Viewport> {
   const { config } = await currentBrand();
   return {
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: config.themeColor.light },
-      { media: "(prefers-color-scheme: dark)", color: config.themeColor.dark },
-    ],
+    themeColor: "#F6F2EC",
+    colorScheme: "light",
   };
 }
 

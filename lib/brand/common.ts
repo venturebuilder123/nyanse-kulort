@@ -123,7 +123,7 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
     digital: {
       name: "Digitale gids",
       line: "Direct op je telefoon",
-      features: ["Alle 30 kleuren met namen, in basis-, accent- en neutrale kleuren", "Combinaties die werken en wat je beter laat hangen", "Stijlgids als PDF op jouw naam en een digitale pas op je telefoon"],
+      features: ["Alle 30 kleuren met namen, in basis-, accent- en neutrale kleuren", "Combinaties die werken en wat je beter laat hangen", "Je persoonlijke stijlgids als PDF en een digitale pas op je telefoon"],
     },
   },
   ctaChoose: "Kies je gids",
@@ -211,7 +211,7 @@ export const pageNl = (o: { galleryTitle: Page["gallery"]["title"]; howTitle: Pa
       ["Alle 30 kleuren met namen", false, true],
       ["Combinaties die samen werken", false, true],
       [o.accessories.charAt(0).toUpperCase() + o.accessories.slice(1), false, true],
-      ["Stijlgids als PDF op jouw naam", false, true],
+      ["Je persoonlijke stijlgids als PDF", false, true],
       ["Digitale kleurenpas (of een echte in de bus)", false, true],
     ],
   },

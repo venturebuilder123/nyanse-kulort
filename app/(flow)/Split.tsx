@@ -92,12 +92,12 @@ export default function Split() {
           <p className="ms-eyebrow">Kleuranalyse uit één selfie</p>
           <h1 className="ms-h1">Je kleuren.<br /><em>Je kast. Je gids.</em></h1>
           <p className="ms-sub">
-            Ontdek welke kleuren je staan, wat je beter laat hangen, en hoe je daar een kast van maakt die werkt.
-            Met een stijlgids op naam en een kleurenpas voor in je portemonnee.
+            Een kast waarin alles samengaat. Geen miskopen meer. Elke ochtend zeker van wat je aantrekt,
+            en een eerste indruk die klopt. Het begint bij de kleuren die jou staan.
           </p>
           <ul className="ms-facts">
             <li>Kleurprofiel gratis</li>
-            <li>Gids vanaf €6,99</li>
+            <li>Persoonlijke stijlgids vanaf €6,99</li>
             <li>Je foto verlaat je telefoon niet</li>
           </ul>
           <div className="ms-doors-inline">
@@ -112,6 +112,13 @@ export default function Split() {
         <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} />
         <figcaption>In het atelier: een stofstaal onder je kin laat in één oogopslag zien welke kleur je staat.</figcaption>
       </figure>
+
+      <section className="ms-brings" aria-label="Wat het je brengt">
+        <div><b>Geen miskopen meer</b><span>Je weet in de winkel meteen of iets bij je past.</span></div>
+        <div><b>Een kast die samengaat</b><span>Alles combineert met alles, dus meer outfits met minder kleding.</span></div>
+        <div><b>Elke ochtend zeker</b><span>Je kleuren, je looks en je capsule staan klaar op je telefoon.</span></div>
+        <div><b>Een eerste indruk die klopt</b><span>De juiste kleur bij je gezicht: je oogt fris en zeker.</span></div>
+      </section>
 
       <section className="ms-doors" aria-label="Kies je atelier">
         {DOORS.map((d) => (

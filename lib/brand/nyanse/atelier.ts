@@ -73,7 +73,7 @@ export const atelier: VoiceCopy = {
   email: emailNl(["Je kleuren zijn", "klaar."]),
   result: resultNl(
     "6 kleuren die je laten stralen",
-    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, zodat je kast samengaat", "Sieraden, tassen en make-uptinten", "Stijlgids als PDF op jouw naam + digitale pas"],
+    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, zodat je kast samengaat", "Sieraden, tassen en make-uptinten", "Je persoonlijke stijlgids als PDF + digitale pas"],
     { kind: "compare", title: "Eén keer goed kiezen", them: ["Kleuradviseur", "een afspraak van 1 à 2 uur"], us: ["NYANSE", "één selfie, je kleuren altijd bij je"] },
   ),
   ring: ["#C8285A", "#C9A9AC", "#8FA3B8", "#A6879C", "#B9926B", "#2F4F3A", "#A2462A", "#1F4FC4", "#F4E3A1", "#D9C7AE"],

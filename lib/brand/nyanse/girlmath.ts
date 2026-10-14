@@ -73,7 +73,7 @@ export const girlmath: VoiceCopy = {
   email: emailNl(["Oké, je kleuren zijn", "klaar."]),
   result: resultNl(
     "6 kleuren die je laten stralen",
-    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, dus minder miskopen", "Sieraden en make-uptinten", "Stijlgids als PDF op jouw naam + digitale pas"],
+    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, dus minder miskopen", "Sieraden en make-uptinten", "Je persoonlijke stijlgids als PDF + digitale pas"],
     { kind: "receipt", title: "Waarom dit eigenlijk een steal is", head: "Girl math", lines: [["Stijlgids", "€6,99"], ["÷ 365 dagen", "€0,02 per dag"], ["Minder gokken bij het kopen", "✓"]], total: ["Girl math zegt", "worth it ✨"] },
   ),
   ring: ["#D61F5B", "#FFE9A6", "#F4A3A0", "#8FA3B8", "#F3A27A", "#A6879C", "#2BB3A8", "#FFE6EE", "#B9926B", "#6E5468"],

@@ -15,7 +15,7 @@ import { switchUrl } from "@/lib/flow/switch";
 import { useBrand } from "./BrandProvider";
 import { Hero } from "./Hero";
 import { LandingSections } from "./LandingSections";
-import { AppBar, CheckIcon, Display, Footer, LockIcon, OccasionIcon, Wordmark } from "./ui";
+import { AppBar, CheckIcon, Display, Footer, HouseMark, LockIcon, OccasionIcon } from "./ui";
 
 export default function Landing() {
   const { config, copy, ctx } = useBrand();
@@ -82,7 +82,7 @@ export default function Landing() {
       <AppBar />
       {/* large screens: a real top navigation instead of the app bar pill */}
       <nav className="topnav" aria-label="Hoofdmenu">
-        <Wordmark />
+        <HouseMark />
         <div className="topnav-links">
           <a href="#hoe">{copy.page.nav.how}</a>
           <a href="#gids">{copy.page.nav.prices}</a>

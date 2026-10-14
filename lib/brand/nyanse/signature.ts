@@ -74,7 +74,7 @@ export const signature: VoiceCopy = {
   email: emailNl(["Je kleuren zijn", "klaar."]),
   result: resultNl(
     "6 kleuren die je nu het mooist staan",
-    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, zodat je kast samengaat", "Sieraden, tassen en make-uptinten", "Stijlgids als PDF op jouw naam + digitale pas"],
+    ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, zodat je kast samengaat", "Sieraden, tassen en make-uptinten", "Je persoonlijke stijlgids als PDF + digitale pas"],
     { kind: "compare", title: "Je kleuren veranderen mee", them: ["Vroeger", "kleuren gekozen bij je haar van toen"], us: ["Nu", "gemeten op wie je vandaag bent, ook met grijs haar"] },
   ),
   ring: ["#6B2D5C", "#B9A3B0", "#7D8FA6", "#A6879C", "#C2A27E", "#3F5A4C", "#8E3B46", "#2B4A8C", "#E9DCC4", "#CFC3B8"],
