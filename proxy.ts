@@ -18,6 +18,16 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // 2a. /kies: back to the split choice (forgets the brand picked this visit).
+  if (pathname === "/kies") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    url.searchParams.delete("brand");
+    const res = NextResponse.redirect(url);
+    res.cookies.delete(BRAND_COOKIE);
+    return res;
+  }
+
   // 2. Ad links on the shared domain: /kulort and /nyanse skip the split home page.
   if (pathname === "/kulort" || pathname === "/nyanse") {
     const url = request.nextUrl.clone();
@@ -46,7 +56,9 @@ export function proxy(request: NextRequest) {
   // Functional cookies: keep brand and voice for the rest of the visit.
   const opts = { path: "/", sameSite: "lax" as const };
   // only remember a brand someone actually picked, so the split stays until then
-  if (chosen && request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, { ...opts, maxAge: 60 * 60 * 24 * 30 });
+  // the pick lasts for this visit only: a new visit to the shared domain starts at the split choice
+  // (brand domains need no cookie: the host decides)
+  if (chosen && request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, opts);
   // the voice comes from the ad: keep it for this visit only, so it is not ad attribution
   if (request.cookies.get(VOICE_COOKIE)?.value !== voice) res.cookies.set(VOICE_COOKIE, voice, opts);
   // the age segment, like the voice: from the ad, for this visit only
