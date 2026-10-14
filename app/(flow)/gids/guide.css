@@ -232,3 +232,37 @@
 }
 .g-cover-top { max-width: 74%; }
 .g-cover-note { font-size: 11px; letter-spacing: .08em; opacity: .7; }
+
+/* guide v3: cover photo, worn, basics, first buys, audit */
+.g-cover { background: #f6f2ec !important; color: #141414 !important; }
+.g-cover .wordmark, .g-cover .g-kicker { color: #141414; }
+.g-cover .house-mark .wordmark { opacity: 1; }
+.g-cover-photo { position: absolute; right: 22%; top: 0; bottom: 0; width: 40%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.g-cover-mid, .g-cover-tag, .g-cover-top { max-width: 40% !important; }
+.g-worn { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: start; }
+.g-worn img { width: 100%; height: auto; display: block; }
+.g-basics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.g-basic { display: grid; gap: 4px; align-content: start; }
+.g-basic i { display: block; height: 56px; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.15); }
+.g-basic b { font-family: var(--f-display); font-weight: 400; font-size: 18px; margin-top: 4px; }
+.g-basic-name { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(18,18,18,.6); }
+.g-basic p { font-size: 12.5px; color: rgba(18,18,18,.75); }
+.g-buys { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; counter-reset: buy; }
+.g-buys li { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; padding-top: 10px; border-top: .75px solid var(--hair, #ddd); }
+.g-buy-img { display: grid; place-items: center; height: 64px; background: #f3efe9; padding: 4px; }
+.g-buy-img .garment, .g-buy-img .flat { height: 100%; width: auto; max-width: 100%; }
+.g-buys b { font-size: 14px; }
+.g-buys p { font-size: 12.5px; color: rgba(18,18,18,.7); }
+.g-audit { padding-left: 22px; display: grid; gap: 14px; font-size: 15px; line-height: 1.5; max-width: 60ch; }
+@media print {
+  .g-worn { gap: 8mm; }
+  .g-basic i { height: 14mm; }
+  .g-buys li { grid-template-columns: 16mm 1fr; }
+  .g-buy-img { height: 16mm; }
+}
+
+.g-cover-issue { position: absolute; top: 44px; right: calc(22% + 16px); z-index: 2; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.g-audit-piles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.g-audit-piles div { display: grid; gap: 6px; align-content: start; padding-top: 12px; border-top: 1px solid #141414; }
+.g-audit-piles b { font-family: var(--f-display); font-weight: 400; font-size: 20px; }
+.g-audit-piles span { font-size: 12.5px; color: rgba(18,18,18,.7); }

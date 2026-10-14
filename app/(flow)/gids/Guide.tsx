@@ -14,7 +14,7 @@ import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { Flat, FlatLay, Piece, type FlatKind } from "../Flats";
-import { Wordmark } from "../ui";
+import { HouseMark, Wordmark } from "../ui";
 
 // accessory drawings on the details page (make-up keeps its swatches)
 const ACC_FLAT: Record<string, FlatKind> = {
@@ -90,9 +90,10 @@ export default function Guide() {
       {/* 01 cover */}
       <section className="g-page g-cover">
         <div className="g-cover-top">
-          <Wordmark />
-          <span>N°01 · {month}</span>
+          <HouseMark />
         </div>
+        <span className="g-cover-issue">N°01 · {month}</span>
+        <img className="g-cover-photo" src={`/brand/outfits/${r.profile.match.season}-${config.key}.jpg`} alt="" width={800} height={1600} />
         <div className="g-cover-bars" aria-hidden="true">{g.pass.map((c) => <i key={c.hex} style={{ background: c.hex }} />)}</div>
         <div className="g-cover-mid">
           <p className="g-kicker">Stijlgids{name ? ` · voor ${name}` : ""}</p>
@@ -175,6 +176,50 @@ export default function Guide() {
               </div>
             </div>
           ))}
+        </div>
+      </Page>
+
+      {/* the colour type, worn */}
+      <Page n={next()} kicker="Zo ziet het eruit" title={`${g.season}, gedragen`}>
+        <div className="g-worn">
+          <img src={`/brand/outfits/${r.profile.match.season}-both.jpg`} alt={`Twee outfits in de kleuren van ${g.season}`} width={1400} height={1400} />
+          <div>
+            <p className="g-lede">Zo kleden mensen met jouw kleurtype zich: dezelfde kleurfamilie, van top tot schoen.</p>
+            <ol className="g-rules">{g.summary.rules.map((rule) => <li key={rule}>{rule}</li>)}</ol>
+          </div>
+        </div>
+      </Page>
+
+      {/* basics + first five buys */}
+      <Page n={next()} kicker="Waar je begint" title="Jouw basis en je eerste 5 aankopen">
+        <div className="g-basics">
+          {g.basics.map((b) => (
+            <div key={b.title} className="g-basic">
+              <i style={{ background: b.color.hex }} />
+              <b>{b.title}</b>
+              <span className="g-basic-name">{b.color.name}</span>
+              <p>{b.text}</p>
+            </div>
+          ))}
+        </div>
+        <ol className="g-buys">
+          {g.firstBuys.map((b) => (
+            <li key={b.item}>
+              <span className="g-buy-img"><Piece item={b.item} color={b.color.hex} brand={config.key} /></span>
+              <div><b>{b.item} · {b.color.name}</b><p>{b.why}</p></div>
+            </li>
+          ))}
+        </ol>
+      </Page>
+
+      {/* wardrobe check */}
+      <Page n={next()} kicker="Tien minuten" title="Kijk je kast na">
+        <p className="g-lede">Je hoeft niet alles opnieuw te kopen. Begin met wat je al hebt.</p>
+        <ol className="g-audit">{g.audit.map((a) => <li key={a}>{a}</li>)}</ol>
+        <div className="g-audit-piles">
+          <div><b>Houden</b><span>Lijkt op een van je kleuren of laat je gezicht oplichten.</span><Strip colors={g.summary.core.slice(0, 4)} /></div>
+          <div><b>Onder je middel</b><span>Niet jouw kleur, wel geliefd: draag het als broek, rok of schoenen.</span><Strip colors={g.summary.avoid.slice(0, 3)} /></div>
+          <div><b>Weg</b><span>Niet jouw kleur en je draagt het nooit: doorverkopen of weggeven.</span></div>
         </div>
       </Page>
 
@@ -306,7 +351,7 @@ function Page({ n, kicker, title, children }: { n: string; kicker: string; title
         <span className="g-n">{n}</span>
       </header>
       <div className="g-content">{children}</div>
-      <footer className="g-foot"><Wordmark /><span>Aanbevolen op kleur, nooit op commissie.</span></footer>
+      <footer className="g-foot"><HouseMark /><span>Aanbevolen op kleur, nooit op commissie.</span></footer>
     </section>
   );
 }

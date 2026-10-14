@@ -2,6 +2,17 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — stijlgids v3 en outfitfoto's
+
+- **Waardecheck van de gids:** degelijk, maar het voelde als een rapport. Dit ontbrak: je basis, wat je eerst koopt, hoe je je kast nakijkt en een echt beeld van je type.
+- **Toegevoegd:**
+  - een omslag met het huislogo en een outfitfoto van het eigen type en merk;
+  - "{type}, gedragen" (outfitfoto plus je 3 regels);
+  - "Jouw basis en je eerste 5 aankopen": jouw wit, jouw zwart of donker en jouw denim, plus 5 stukken in volgorde van effect, met echte kleding;
+  - "Kijk je kast na": 5 stappen en drie stapels (houden, onder je middel, weg).
+- **De 30 kleuren beter verdeeld:** neutraal is echt rustig (chroma < 32, maximaal 6), basis zijn de 8 donkerste, de rest is accent. Eerder was het 3/2/25.
+- **Outfitfoto's** (13, man en vrouw per type) verwerkt in `public/brand/outfits/`, op de omslag, in de gids en op het resultaat.
+
 ## 14 oktober 2026 — betalen per bankoverschrijving (pilot, NL)
 
 - **Betaling** naar de zakelijke rekening van de oprichter: **Basic Element, NL24 RABO 3152 4583 98**. De oprichter geeft dit op als inkomen uit overig werk.

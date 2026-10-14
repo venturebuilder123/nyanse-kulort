@@ -192,6 +192,10 @@ export default function Result() {
           return (
             <section className="q wardrobe">
               <h2 className="eyebrow-h">Je kast, in jouw kleuren</h2>
+              <figure className="wd-worn">
+                <img src={`/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={`Een outfit in de kleuren van ${SEASONS[p.match.season].name}`} width={800} height={1600} loading="lazy" />
+                <figcaption>{SEASONS[p.match.season].name}, gedragen: zo ziet jouw kleurfamilie eruit van top tot schoen.</figcaption>
+              </figure>
               <p className="deck-lede">30 kleuren die allemaal met elkaar combineren: alles in je kast past bij alles. Zo ziet dat eruit.</p>
               <figure className="wd-look">
                 <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" brand={config.key} />

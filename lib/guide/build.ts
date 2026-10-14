@@ -35,6 +35,12 @@ export type Guide = {
   capsule: { item: string; color: Swatch }[];
   shopping: string[];
   pass: Swatch[];
+  /** your own white, dark and denim: the basics everyone buys most */
+  basics: { title: string; text: string; color: Swatch }[];
+  /** the first five pieces to buy, in order of impact */
+  firstBuys: { item: string; color: Swatch; why: string }[];
+  /** a ten-minute wardrobe check */
+  audit: string[];
 };
 
 const lch = (hex: string) => labToLch(hexToLab(hex));
@@ -48,10 +54,14 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
 
   // --- groups: neutrals, base (dark anchors), accents ---
   const withL = pal.colors.map((c) => ({ c, ...lch(c.hex) }));
-  // neutrals: low chroma; base: dark anchors (dark AND not loud); accents: everything with colour
-  const neutrals = withL.filter((x) => x.C < 18);
-  const base = withL.filter((x) => x.C >= 18 && x.L < 40 && x.C < 50);
-  const accents = withL.filter((x) => x.C >= 18 && !(x.L < 40 && x.C < 50));
+  // a usable wardrobe split, by rank rather than fixed thresholds (fixed ones gave 3/2/25):
+  // 6 neutrals (least chroma), 8 base (darkest of the rest), the remaining 16 are accents
+  const byC = [...withL].sort((a, b) => a.C - b.C);
+  // a neutral is genuinely quiet (low chroma); bright palettes simply have fewer of them
+  const neutrals = byC.filter((x) => x.C < 32).slice(0, 6);
+  const rest = byC.filter((x) => !neutrals.includes(x));
+  const base = [...rest].sort((a, b) => a.L - b.L).slice(0, 8);
+  const accents = rest.filter((x) => !base.includes(x));
   const groups = [
     { title: "Basis", text: "Je donkere ankers: broeken, jassen, colberts en schoenen. Hier begint elke outfit.", colors: base.map((x) => sw(x.c)) },
     { title: "Neutraal", text: "Rustige kleuren die alles verbinden: shirts, truien en lagen onder of over je accenten.", colors: neutrals.map((x) => sw(x.c)) },
@@ -220,13 +230,47 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
   const swaps: Swap[] = avoid.map(({ color, reason }) => {
     const h = lch(color.hex).h;
     const best = [...withL].filter((x) => x.C > 15).sort((a, b) => hueDist(a.h, h) - hueDist(b.h, h))[0] ?? withL[0]!;
-    return { avoid: color, instead: sw(best.c), reason };
+  return { avoid: color, instead: sw(best.c), reason };
   });
 
   const rules = [
     bright ? "Contrast mag: licht naast donker." : soft ? "Kies tonaal: kleuren dicht bij elkaar." : "Eén accent per outfit, de rest rustig.",
     warm ? "Warm boven koel: goud, camel, roest." : cool ? "Koel boven warm: zilver, navy, ijstinten." : "Neutraal: je kunt beide kanten op, kies zacht.",
     deep ? "Diepe kleuren dragen je; pastel valt weg." : pale ? "Lichte kleuren laten je stralen; zwart is te zwaar." : "Middentinten zijn je basis; extremen spaarzaam.",
+  ];
+
+  // --- basics: your white, your dark, your denim ---
+  const lightestNeutral = [...withL].sort((a, b) => b.L - a.L)[0]!;
+  const darkestBase = [...withL].sort((a, b) => a.L - b.L)[0]!;
+  const basics = [
+    { title: "Jouw wit", text: pale || soft ? "Geen helder wit, maar een zachte, gebroken tint. Die oogt frisser bij jouw gezicht." : bright ? "Je kunt helder wit hebben, ook dicht bij je gezicht." : "Een zacht gebroken wit staat je het rustigst.", color: sw(lightestNeutral.c) },
+    { title: men ? "Jouw zwart" : "Jouw donker", text: bright && deep ? "Zwart mag, juist naast een lichte of heldere kleur." : "Liever niet zwart bij je gezicht: deze tint geeft dezelfde diepte zonder je te overstemmen.", color: sw(darkestBase.c) },
+    { title: "Jouw denim", text: hasDenim && denim !== darkestBase.c ? "Kies denim in deze tint: dan combineert je jeans met al je bovenstukken." : "Denim staat je het best donker en egaal, zonder vaal of verwassen effect.", color: sw(hasDenim && denim !== darkestBase.c ? denim : ([...withL].filter((x) => x.h > 200 && x.h < 290 && x.c !== darkestBase.c).sort((a, b) => a.L - b.L)[0]?.c ?? dark(1))) },
+  ];
+
+  // --- first five buys, in order of impact (face first, then the anchors) ---
+  const firstBuys = (men
+    ? [
+        { item: "Overhemd", color: sw(light(0)), why: "Dicht bij je gezicht en elke dag te dragen." },
+        { item: "Trui", color: sw(accent(0)), why: "Je sterkste kleur, daar kijken mensen naar." },
+        { item: "Chino", color: sw(trousers), why: "Een rustige basis onder alles." },
+        { item: "Colbert of overshirt", color: sw(dark(0)), why: "Maakt elke outfit af, van werk tot weekend." },
+        { item: "Schoenen en riem", color: leather[0]!, why: "Eén leerkleur die je steeds herhaalt." },
+      ]
+    : [
+        { item: "Blouse of top", color: sw(accent(0)), why: "Je sterkste kleur dicht bij je gezicht." },
+        { item: "Trui", color: sw(light(0)), why: "Zacht, licht en met alles te combineren." },
+        { item: "Pantalon", color: sw(trousers), why: "Een rustige basis onder al je kleuren." },
+        { item: "Blazer", color: sw(dark(0)), why: "Maakt elke outfit af, van werk tot diner." },
+        { item: "Sjaal", color: sw(accent(1)), why: "De snelste manier om een outfit in je kleuren te brengen." },
+      ]);
+
+  const audit = [
+    "Leg alles wat je bij je gezicht draagt (shirts, truien, sjaals) op bed, bij daglicht.",
+    "Houd je kleurenpas of je 30 kleuren ernaast. Lijkt een stuk op een van je kleuren? Houden.",
+    "Twijfel? Houd het onder je kin voor de spiegel. Licht je gezicht op, dan houden.",
+    "Staat het je niet, maar draag je het graag? Draag het onder je middel: als broek, rok of schoenen.",
+    "Wat overblijft: doorverkopen of weggeven. Zo heb je minder, maar draag je alles.",
   ];
 
   return {
@@ -249,6 +293,9 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
       values: { undertone: p.undertone, depth: p.depth, clarity: p.clarity },
     },
     groups,
+    basics,
+    firstBuys,
+    audit,
     contrast,
     combos,
     accessories,

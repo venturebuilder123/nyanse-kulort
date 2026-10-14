@@ -61,6 +61,15 @@ for name, width in {
 }.items():
     PHOTOS[f"{D1}/Advertisment/kulort-nyanse-{name}.jpg"] = (f"ads/{name}.jpg", width)
 
+# outfit flat-lays: man left, woman right, one image per colour type (GEMINI-HANDBOEK §11)
+OUTFITS = {
+    "kulort-nyanse-1": None, "kulort-nyanse-2-warm-spring": "warmSpring", "kulort-nyanse-3-brightwinter": "brightWinter",
+    "kulort-nyanse-4-light-spring": "lightSpring", "kulort-nyanse-5-cool-summer": "coolSummer", "kulort-nyanse-6-deep-autumn": "deepAutumn",
+    "kulort-nyanse-7-light-summer": "lightSummer", "kulort-nyanse-8-cool-winter": "coolWinter", "kulort-nyanse-9-soft-summer": "softSummer",
+    "kulort-nyanse-10-bright-spring": "brightSpring", "kulort-nyanse-11-deepwinter": "deepWinter", "kulort-nyanse-12-soft-autumn": "softAutumn",
+    "kulort-nyanse-13-warm-autumn": "warmAutumn",
+}
+
 SEASON_FILES = {
     "light_spring": "lightSpring", "Warm_spring": "warmSpring", "bright_spring": "brightSpring",
     "Light_summer": "lightSummer", "Cool_summer": "coolSummer", "soft_summer": "softSummer",
@@ -131,6 +140,19 @@ for src, (target, width) in PHOTOS.items():
         continue
     save(trim_flat_bottom(ImageOps.exif_transpose(Image.open(p)).convert("RGB")), target, width)
     register.setdefault(os.path.dirname(target), []).append(f"{os.path.basename(target)} · Gemini · {date_of(p)}")
+
+for stem, key in OUTFITS.items():
+    p = os.path.join(SRC, D1, "clothes", "outfits", f"{stem}.jpg")
+    if not os.path.exists(p):
+        print("missing", stem)
+        continue
+    im = ImageOps.exif_transpose(Image.open(p)).convert("RGB")
+    name = key or "maison"
+    save(im, f"outfits/{name}-both.jpg", 1400)
+    w, h = im.size
+    save(im.crop((0, 0, w // 2, h)), f"outfits/{name}-kulort.jpg", 800)
+    save(im.crop((w // 2, 0, w, h)), f"outfits/{name}-nyanse.jpg", 800)
+    register.setdefault("outfits", []).append(f"{name}-*.jpg · Gemini · {date_of(p)} · bron {stem}.jpg")
 
 for folder, lines in register.items():
     path = os.path.join(OUT, folder, "bron.txt")
