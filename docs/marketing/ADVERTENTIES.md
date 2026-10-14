@@ -174,3 +174,10 @@ Bij betaalde advertenties: in het begin **niet** inperken op tijd. Laat de algor
 - [TikTok AI content policy (Cinerads)](https://www.cinerads.com/blog/tiktok-ai-content-policy)
 - [TikTok statistieken NL 2026 (Searchlab)](https://searchlab.nl/statistieken/tiktok-statistieken-2026)
 - [TikTok vs Instagram (Metricool)](https://metricool.com/nl/tiktok-vs-instagram/)
+
+## 10. To-do: social accounts (later)
+
+- **Accounts aanmaken** (de oprichter): Instagram en TikTok voor **@kulort** en **@nyanse**, of één account **@kulortnyanse** met twee lijnen. Plus een LinkedIn-bedrijfspagina "KULØRT · NYANSE". Leg de handles vast vóór het eerste advertentiebudget (BRANDBOOK §1, CLAUDE.md §9).
+- **Profiel:** de avatar is het monogram (Ø of N) op papierkleur, de bio is de belofte in één zin, en de link wijst naar `kulort-nyanse.com/kulort` of `/nyanse` met `utm_source=bio`.
+- **Op de site (ik):** iconen in de footer en op de contactpagina, met links per merk; `sameAs` in de metadata voor Google.
+- **Advertentie-accounts:** Meta Business Suite en TikTok Ads Manager koppelen aan deze accounts. Daarna kunnen de advertenties uit §5–§8 live.
