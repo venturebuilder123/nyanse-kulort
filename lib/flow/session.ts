@@ -5,6 +5,8 @@
 
 import type { Measurements, Profile, ProfileContext } from "@/lib/color/profile";
 import { computeProfile } from "@/lib/color/profile";
+import { profileForSeason } from "@/lib/color/declared";
+import type { SeasonKey } from "@/lib/color/seasons";
 import { applyJewel } from "./tiebreak";
 
 export type Jewel = "goud" | "zilver" | "weetniet";
@@ -14,7 +16,10 @@ export type HairAnswer = NonNullable<ProfileContext["hair"]>;
 export type FaceBox = { cx: number; cy: number; w: number; h?: number; aspect: number; mirrored: boolean };
 
 export type FlowResult = {
-  measurements: Measurements;
+  /** from the selfie (pipeline A); absent when the person declared their season */
+  measurements?: Measurements;
+  /** "ik weet mijn kleurtype al": the season the person chose themselves */
+  declared?: SeasonKey;
   /** true when even the retry selfie stayed below the confidence threshold */
   lowConfidence: boolean;
   jewel?: Jewel;
@@ -26,7 +31,7 @@ export type FlowResult = {
   name?: string;
   /** friend code, created on this device the first time the guide opens */
   refCode?: string;
-  pipeline: "A";
+  pipeline: "A" | "declared";
   at: number;
 };
 
@@ -82,7 +87,9 @@ export const flowSession = {
   result(): (FlowResult & { profile: Profile }) | null {
     const r = store.get();
     // always recompute, so the latest rules and answers apply
-    return r ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
+    if (!r) return null;
+    if (r.declared) return { ...r, profile: profileForSeason(r.declared) };
+    return r.measurements ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
   },
 
   /** Merge later answers (analysis questions, e-mail) into the stored result. */

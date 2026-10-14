@@ -2,6 +2,19 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — "Ik weet mijn kleurtype al", doelgroepen, extensies
+
+- **Tweede route:** "Ik weet mijn kleurtype al →" op de landing gaat naar `/type`: de 12 seizoenen in 4 families, elk met een strookje kleuren. Na een keuze volgt meteen het resultaat met "eigen opgave" en de gratis check met een selfie. De gids vermeldt "op basis van je eigen opgave".
+  - **Geen korting.** Het is dezelfde gids, en goedkoper zou de digitale gids in feite verlagen. Een opgegeven type kan ook fout zijn (in de literatuur is 40% overeenstemming tussen mensen gemeten), dus de selfie-check blijft één tik weg.
+  - Event: `type_declared`.
+- **Doelgroepen per leeftijd:** voorstel in [fase-b/DOELGROEPEN.md](fase-b/DOELGROEPEN.md). Er is nog geen publieksdata.
+  - Het segment volgt de advertentie, niet een leeftijdsvraag of de foto.
+  - Kans: 40–55. Daarvoor 4 nieuwe AI-modellen van 45–55 en mogelijk een stem "Signature". Wacht op GO.
+- **Extensies:** zie [SETUP-EXTENSIES.md](SETUP-EXTENSIES.md).
+  - Wel: superpowers, `/security-review`, later Higgsfield.
+  - Niet: caveman en OmniRoute.
+  - Onbekend: AI influencer, Ootto, "Harvey", de cursor tracker en claudecodesetup (eerst de links).
+
 ## 13 oktober 2026 — betrouwbaarheid: "80% goed" meetbaar maken
 
 - **FEIT (onderzoek):** het beste gepubliceerde model haalt 55% op 4 seizoenen en 32% op 12. Ook mensen zijn het vaak oneens (40% in een Thaise studie). Art of Image publiceert geen model en geen nauwkeurigheid. Zie [fase-a/BETROUWBAARHEID.md](fase-a/BETROUWBAARHEID.md).

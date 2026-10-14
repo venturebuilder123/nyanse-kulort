@@ -123,7 +123,7 @@ export default function Result() {
     <main className="screen">
       <AppBar />
       <Reveal
-        kicker={t.label}
+        kicker={r.declared ? `${t.label} · eigen opgave` : t.label}
         provisional={low ? t.provisional : undefined}
         family={family}
         typeLabel={t.typeLabel}
@@ -143,7 +143,13 @@ export default function Result() {
           </div>
         )}
 
-        {photo && bad && six[0] ? (
+        {r.declared ? (
+          // they told us their type: honest about it, and the free check is one tap away
+          <div className="notice">
+            <span>Je koos zelf {SEASONS[r.declared].name}. Zeker weten? Met een selfie checken we het gratis, en je foto verlaat je telefoon niet.</span>
+            <Link href="/selfie" className="notice-link">Check met een selfie →</Link>
+          </div>
+        ) : photo && bad && six[0] ? (
           <BeforeAfter photo={photo} face={r.face} bad={bad.hex} good={six[0].hex} badName={name(bad)} goodName={name(six[0])} title={t.baTitle} hint={t.baHint} />
         ) : (
           // after a reload the photo is gone: it is never stored, not even on the phone

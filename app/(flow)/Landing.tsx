@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { OCCASIONS } from "@/lib/brand/config";
@@ -139,6 +140,7 @@ export default function Landing() {
                 </button>
               ))}
             </div>
+            <Link className="known-link" href="/type">Ik weet mijn kleurtype al →</Link>
             <p className="trustrow">
               {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
             </p>

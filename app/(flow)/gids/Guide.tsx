@@ -100,6 +100,7 @@ export default function Guide() {
           <p className="g-family">{g.family}{g.second ? ` · op de grens met ${g.second}` : ""}</p>
         </div>
         <p className="g-cover-tag">{gc.tagline}</p>
+        {r.declared && <p className="g-cover-note">Op basis van je eigen opgave: {g.season}</p>}
       </section>
 
       {/* 02 summary */}

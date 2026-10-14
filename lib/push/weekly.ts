@@ -4,8 +4,8 @@
 
 import { VOICES, BRANDS } from "@/lib/brand/config";
 import type { BrandKey, VoiceKey } from "@/lib/brand/types";
-import { computeProfile, type Measurements } from "@/lib/color/profile";
-import { nearestSeason, SEASONS, type SeasonKey } from "@/lib/color/seasons";
+import { profileForSeason } from "@/lib/color/declared";
+import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import { buildGuide } from "@/lib/guide/build";
 
 export const MIN_GAP_MS = 6.5 * 24 * 60 * 60 * 1000;
@@ -28,11 +28,8 @@ export function canSend(sub: { lastSentAt: number | null; timeZone: string }, no
 /** Week number since 2026-01-05 (a Monday): the same tip for everyone of a type in a week. */
 export const weekIndex = (now: Date) => Math.floor((now.getTime() - Date.UTC(2026, 0, 5)) / (7 * 24 * 60 * 60 * 1000));
 
-const BASE = computeProfile({ skin: { lab: { L: 60, a: 12, b: 16 }, n: 3000, sdL: 3 }, faceWidthPx: 400, calibrated: true } as Measurements);
-
 export function weeklyMessage(input: { brand: BrandKey; voice: VoiceKey; season: SeasonKey }, now: Date) {
-  const centre = SEASONS[input.season].centre;
-  const guide = buildGuide({ ...BASE, ...centre, match: nearestSeason(centre) }, input.brand);
+  const guide = buildGuide(profileForSeason(input.season), input.brand);
   const w = Math.max(0, weekIndex(now));
   const colour = guide.summary.core[w % guide.summary.core.length]!;
   const copy = (BRANDS[input.brand].voices.includes(input.voice) ? VOICES[input.voice] : VOICES[BRANDS[input.brand].voices[0]!]).retention.weekly;

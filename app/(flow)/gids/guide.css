@@ -242,3 +242,4 @@
   .g-swap-pair i { height: 17mm; }
 }
 .g-cover-top { max-width: 74%; }
+.g-cover-note { font-size: 11px; letter-spacing: .08em; opacity: .7; }
