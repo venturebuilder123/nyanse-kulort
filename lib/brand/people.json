@@ -38,6 +38,90 @@
       "good": "#00848C",
       "bad": "#9E2A2B",
       "season": "deepWinter"
+    },
+    {
+      "src": "/brand/people/kulort-40-1.jpg",
+      "face": {
+        "cx": 0.5028069317340851,
+        "cy": 0.4145752564072609,
+        "w": 0.38281792402267456,
+        "h": 0.3942665308713913,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#7FA8C9",
+      "bad": "#9E2A2B",
+      "season": "lightSummer",
+      "segment": "40"
+    },
+    {
+      "src": "/brand/people/kulort-40-2.jpg",
+      "face": {
+        "cx": 0.5019901841878891,
+        "cy": 0.42035911977291107,
+        "w": 0.390484482049942,
+        "h": 0.3893226683139801,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#23305E",
+      "bad": "#E0A96D",
+      "season": "brightSpring",
+      "segment": "40"
+    },
+    {
+      "src": "/brand/people/kulort-40-3.jpg",
+      "face": {
+        "cx": 0.5023097693920135,
+        "cy": 0.420311875641346,
+        "w": 0.41331857442855835,
+        "h": 0.41731737554073334,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#4F6886",
+      "bad": "#F2B632",
+      "season": "softSummer",
+      "segment": "40"
+    },
+    {
+      "src": "/brand/people/kulort-jong-1.jpg",
+      "face": {
+        "cx": 0.49953335523605347,
+        "cy": 0.4042658060789108,
+        "w": 0.3750725984573364,
+        "h": 0.3608316481113434,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#EE7A67",
+      "bad": "#2E6B5E",
+      "season": "lightSpring",
+      "segment": "jong"
+    },
+    {
+      "src": "/brand/people/kulort-jong-2.jpg",
+      "face": {
+        "cx": 0.5019945502281189,
+        "cy": 0.39623604714870453,
+        "w": 0.3878122568130493,
+        "h": 0.38691213726997375,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#23305E",
+      "bad": "#E0A96D",
+      "season": "brightSpring",
+      "segment": "jong"
+    },
+    {
+      "src": "/brand/people/kulort-jong-3.jpg",
+      "face": {
+        "cx": 0.5008015334606171,
+        "cy": 0.4244289994239807,
+        "w": 0.40811699628829956,
+        "h": 0.40518271923065186,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#00848C",
+      "bad": "#E6194B",
+      "season": "deepWinter",
+      "segment": "jong"
     }
   ],
   "nyanse": [
@@ -94,6 +178,34 @@
       "season": "brightSpring"
     },
     {
+      "src": "/brand/people/nyanse-40-1.jpg",
+      "face": {
+        "cx": 0.5032513439655304,
+        "cy": 0.4322560727596283,
+        "w": 0.37150639295578003,
+        "h": 0.35845786333084106,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#A8DDBE",
+      "bad": "#DC143C",
+      "season": "lightSpring",
+      "segment": "40"
+    },
+    {
+      "src": "/brand/people/nyanse-40-3.jpg",
+      "face": {
+        "cx": 0.5009327232837677,
+        "cy": 0.41947632282972336,
+        "w": 0.36721891164779663,
+        "h": 0.3622652441263199,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#23305E",
+      "bad": "#8B4513",
+      "season": "brightSpring",
+      "segment": "40"
+    },
+    {
       "src": "/brand/people/nyanse-5.jpg",
       "face": {
         "cx": 0.5008631497621536,
@@ -118,6 +230,48 @@
       "good": "#EE7A67",
       "bad": "#1F4FC4",
       "season": "lightSpring"
+    },
+    {
+      "src": "/brand/people/nyanse-jong-1.jpg",
+      "face": {
+        "cx": 0.4996510148048401,
+        "cy": 0.38618461042642593,
+        "w": 0.3443441390991211,
+        "h": 0.3180176466703415,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#EE7A67",
+      "bad": "#1F4FC4",
+      "season": "lightSpring",
+      "segment": "jong"
+    },
+    {
+      "src": "/brand/people/nyanse-jong-2.jpg",
+      "face": {
+        "cx": 0.500321239233017,
+        "cy": 0.42169851064682007,
+        "w": 0.39767712354660034,
+        "h": 0.3906426429748535,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#23305E",
+      "bad": "#D8C3A0",
+      "season": "brightSpring",
+      "segment": "jong"
+    },
+    {
+      "src": "/brand/people/nyanse-jong-3.jpg",
+      "face": {
+        "cx": 0.5019032806158066,
+        "cy": 0.4099605977535248,
+        "w": 0.3840058147907257,
+        "h": 0.36229366064071655,
+        "aspect": 0.8053691275167785
+      },
+      "good": "#00A693",
+      "bad": "#E2533A",
+      "season": "brightWinter",
+      "segment": "jong"
     }
   ]
 }

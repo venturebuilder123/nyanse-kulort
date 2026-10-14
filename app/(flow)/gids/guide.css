@@ -60,7 +60,6 @@
 .g-head h2 { font-family: var(--f-display); font-size: clamp(28px, 5vw, 44px); font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
 .g-kulort .g-head h2 { font-stretch: 125%; font-weight: 300; text-transform: uppercase; letter-spacing: 0.02em; font-size: clamp(22px, 4vw, 34px); line-height: 1.05; }
 .g-nyanse .g-head h2 { font-style: italic; font-weight: 400; }
-.g-girlmath .g-head h2 { font-style: normal; font-weight: 800; letter-spacing: -0.03em; }
 .g-n { font-family: var(--f-display); font-size: clamp(40px, 7vw, 64px); line-height: 0.8; color: var(--ink-g); opacity: 0.9; }
 .g-kulort .g-n { font-stretch: 125%; font-weight: 200; }
 .g-nyanse .g-n { font-style: italic; font-weight: 400; }
@@ -89,7 +88,6 @@
 .g-season { font-family: var(--f-display); font-size: clamp(54px, 12vw, 112px); line-height: 0.9; font-weight: 600; letter-spacing: -0.02em; }
 .g-kulort .g-season { font-stretch: 125%; font-weight: 200; text-transform: uppercase; letter-spacing: 0.01em; font-size: clamp(44px, 10vw, 92px); }
 .g-nyanse .g-season { font-style: italic; font-weight: 400; }
-.g-girlmath .g-season { font-style: normal; font-weight: 800; letter-spacing: -0.04em; }
 .g-family { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
 .g-cover-tag { position: relative; z-index: 1; font-family: var(--f-display); font-size: 18px; max-width: 70%; padding-top: 18px; border-top: 0.75px solid currentColor; margin-top: 40px; }
 .g-kulort .g-cover-tag { font-stretch: 112%; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }

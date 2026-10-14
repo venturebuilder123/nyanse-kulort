@@ -2,6 +2,18 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — huisstijl doorgevoerd en eerste beeldenset
+
+- **Logo (keuze van de oprichter):** KULØRT en NYANSE allebei in een Didone-schreef. De Ø van KULØRT heeft een lange, fijne streep. Maison-lock-up: "KULØRT | NYANSE" met "Atelier voor persoonlijke kleur".
+  - **Niet overgenomen:** "Paris Amsterdam est. 2024" uit het Gemini-concept. Dat is niet waar.
+  - Voorlopig gezet in Bodoni Moda; de vectorversie volgt.
+- **Stijl per merk, niet per stem:** papier `#F6F2EC`, inkt `#141414`, cognac (KULØRT) of lippenstift (NYANSE), hoeken van 2 of 4px, lichtere koppen. Girl Math en Signature zijn nu alleen nog een toon, zonder eigen kleuren of letters.
+- **Maison-homepage gebouwd:** lock-up, wat het is ("Je kleuren. Je kast. Je gids."), beeld van twee klanten in het atelier, twee deuren, hoe het werkt, vier seizoenen, het cadeau, AI-label in de footer. Werkt in licht en donker.
+- **Beelden:** `scripts/prepare-brand-images.py` zet de originelen om naar `public/brand/` (witbalans op het T-shirt, de lege band onderaan weggesneden, verkleind) en schrijft `bron.txt`. In totaal 43 beelden.
+  - Portretten: 20 bruikbaar.
+  - Afgevallen door ongelijk licht: `kulort-4`, het eerste alternatief voor `kulort-jong-2` (vervangen door een ander portret) en `nyanse-40-2` (opnieuw maken).
+- **Observatie (FEIT):** 12 van de 20 bruikbare portretten krijgen een Lente-type, ook de vrouw met zilvergrijs haar. Meenemen in de betrouwbaarheidsmeting.
+
 ## 14 oktober 2026 — huisstijl: één maison, twee merken
 
 - **Aanleiding:** de gesplitste homepage op desktop miste het atelier-gevoel en de duidelijkheid. In donkere modus was de NYANSE-tekst zelfs onzichtbaar (gerepareerd).

@@ -1,115 +1,58 @@
-/* Customer flow design system (CLAUDE.md §6). Brand via data-brand, voice via data-voice.
+/* Customer flow design system (docs/brand/BRANDBOOK.md). Look via data-brand; data-voice = words only.
    Overhaul 13 Oct after expert review: one warm neutral page with white cards, quieter
    hierarchy, accessible borders and contrast, clean wordmarks. Light and dark for every theme. */
 
-/* ---------- tokens ---------- */
+/* ---------- tokens (docs/brand/BRANDBOOK.md §5) ----------
+   One maison, two brands: shared paper, ink and hairlines; one accent per brand, used sparingly.
+   The voice (age register) changes words and models only, never colour or type. */
 .app {
   --f-body: var(--font-manrope), system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: var(--font-mono), ui-monospace, Menlo, monospace;
-  --ok: #1a7350;
-  --radius: 16px;
-  --radius-btn: 14px;
-  --radius-chip: 999px;
-}
-
-/* KULØRT · Wingman: wide Archivo, cognac, ink, angular */
-.app[data-brand="kulort"] {
-  --bg: #f4f0ea;
-  --bg-outer: #e9e3da;
+  --f-logo: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
+  --bg: #f6f2ec;          /* papier */
+  --bg-outer: #ece6de;
   --card: #ffffff;
-  --ink: #1b2433;
-  --muted: #5e554c;
-  --line: #e4ddd3;
-  --line-strong: #9c8e7e;
-  --accent: #8a4a26;
-  --accent-text: #8a4a26;
-  --accent-ink: #ffffff;
-  --soft: #f3e7dc;
-  --f-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
-  --radius: 6px;
-  --radius-btn: 4px;
-  --radius-chip: 4px;
-  --pass-bg: #1b2433;
+  --ink: #141414;         /* inkt */
+  --muted: #6f6862;       /* steen */
+  --line: #e4ded6;        /* haarlijn */
+  --line-strong: #b9b0a6;
+  --night: #121316;       /* the gift moment, the pass */
+  --ok: #1a7350;
+  --pass-bg: #121316;
   --pass-ink: #f3eee8;
 }
 
-/* NYANSE · Atelier: Bodoni, lipstick, powder */
-.app[data-voice="atelier"] {
-  --bg: #fbf7f6;
-  --bg-outer: #f1e8e8;
-  --card: #ffffff;
-  --ink: #18161f;
-  --muted: #5f5a6a;
-  --line: #ece3e5;
-  --line-strong: #a8939b;
-  --accent: #c8285a;
-  --accent-text: #a81e4b;
+/* KULØRT: wide sans headings, cognac, cut corners */
+.app[data-brand="kulort"] {
+  --accent: #8a4a26;
+  --accent-text: #7a3f1f;
   --accent-ink: #ffffff;
-  --soft: #f7e3ea;
-  --f-display: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
-  --pass-bg: #2a1f24;
-  --pass-ink: #f7e3ea;
+  --soft: #efe7de;        /* kalk */
+  --f-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --radius: 2px;
+  --radius-btn: 2px;
+  --radius-chip: 2px;
 }
 
-/* NYANSE · Signature (40+): Bodoni upright, aubergine, pearl, quiet */
-.app[data-voice="signature"] {
-  --bg: #f6f2ee;
-  --bg-outer: #ebe4dd;
-  --card: #fffdfb;
-  --ink: #1e1a1d;
-  --muted: #5d5459;
-  --line: #e6ddd6;
-  --line-strong: #a99aa3;
-  --accent: #6b2d5c;
-  --accent-text: #5c2450;
+/* NYANSE: Bodoni headings, lipstick, crisp but soft corners */
+.app[data-brand="nyanse"] {
+  --accent: #b8234f;
+  --accent-text: #a01e45;
   --accent-ink: #ffffff;
-  --soft: #efe3ec;
+  --soft: #f4e6ea;        /* poeder */
   --f-display: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
-  --pass-bg: #2b2027;
-  --pass-ink: #efe3ec;
-}
-[data-voice="signature"] .disp { font-weight: 500; letter-spacing: -0.01em; }
-[data-voice="signature"] .disp em { font-style: normal; font-weight: 500; color: var(--accent-text); }
-[data-voice="signature"] .rv { --rv-bg: #1b1619; }
-[data-voice="signature"] .rv-type b { font-weight: 500; font-size: 24px; letter-spacing: .02em; }
-
-/* NYANSE · Girl Math: Bricolage, cherry, butter, round */
-.app[data-voice="girlmath"] {
-  --bg: #fff6f8;
-  --bg-outer: #fbe6ec;
-  --card: #ffffff;
-  --ink: #16141c;
-  --muted: #5f5a6a;
-  --line: #f1dde4;
-  --line-strong: #b08f9a;
-  --accent: #d61f5b;
-  --accent-text: #b5164b;
-  --accent-ink: #ffffff;
-  --soft: #ffe6ee;
-  --butter: #ffe9a6;
-  --f-display: var(--font-bricolage), "Avenir Next", system-ui, sans-serif;
-  --radius-btn: 999px;
-  --pass-bg: #d61f5b;
-  --pass-ink: #fff4f7;
+  --radius: 4px;
+  --radius-btn: 4px;
+  --radius-chip: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
-  .app[data-brand="kulort"] {
-    --bg: #10141b; --bg-outer: #0b0e13; --card: #181e27; --ink: #f3eee8; --muted: #b3a89b; --line: #2a323e; --line-strong: #6b7584;
-    --accent: #e39a63; --accent-text: #eaa673; --accent-ink: #1a0f08; --soft: #382a1f; --ok: #53c79a;
+  .app {
+    --bg: #141312; --bg-outer: #0d0c0b; --card: #1d1b19; --ink: #f3eee8; --muted: #b3aaa1;
+    --line: #2d2a27; --line-strong: #5f5850; --ok: #53c79a;
   }
-  .app[data-voice="signature"] {
-    --bg: #161215; --bg-outer: #0f0c0e; --card: #211b1f; --ink: #f3ece8; --muted: #b5a9b0;
-    --line: #342b31; --line-strong: #5e5058; --accent: #c98bb8; --accent-text: #e0a9d0; --accent-ink: #1b1619; --soft: #3a2a35;
-  }
-  .app[data-voice="atelier"] {
-    --bg: #120f14; --bg-outer: #0c0a0e; --card: #1c1820; --ink: #f4eef2; --muted: #b6aebb; --line: #2f2933; --line-strong: #6f6676;
-    --accent: #ff5c8a; --accent-text: #ff7aa0; --accent-ink: #1a0710; --soft: #3a1a27; --ok: #53c79a;
-  }
-  .app[data-voice="girlmath"] {
-    --bg: #140e12; --bg-outer: #0d090c; --card: #1e161b; --ink: #fbeef3; --muted: #bfadb6; --line: #34262d; --line-strong: #74606a;
-    --accent: #ff6b9a; --accent-text: #ff8aaf; --accent-ink: #1a0710; --soft: #3d1626; --butter: #5a4a16; --ok: #53c79a;
-  }
+  .app[data-brand="kulort"] { --accent: #d19a6e; --accent-text: #e0ad84; --accent-ink: #1a0f08; --soft: #33281f; }
+  .app[data-brand="nyanse"] { --accent: #e07a9a; --accent-text: #eb94b0; --accent-ink: #1a0710; --soft: #3a2029; }
 }
 
 /* ---------- base ---------- */
@@ -149,14 +92,14 @@ body { margin: 0; }
 /* ---------- app bar, wordmarks, pill, crumbs ---------- */
 .appbar { display: flex; align-items: center; justify-content: space-between; padding: max(16px, env(safe-area-inset-top)) 20px 0; min-height: 52px; }
 .wordmark { color: var(--ink); line-height: 1; text-decoration: none; white-space: nowrap; }
-.wm-kulort { font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif; font-stretch: 112%; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 15px; }
+.wm-kulort { font-family: var(--f-logo); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; font-size: 21px; font-variation-settings: "opsz" 24; }
 /* the Ø: an ink O with a cognac slash, the only accent in the mark */
 .wm-o { position: relative; display: inline-block; }
 .wm-o::after {
-  content: ""; position: absolute; left: -12%; right: -12%; top: 50%; height: 0.13em; margin-top: -0.065em;
-  background: var(--accent); transform: rotate(-62deg); border-radius: 0.02em;
+  content: ""; position: absolute; left: -18%; right: -18%; top: 50%; height: 0.055em; margin-top: -0.03em;
+  background: currentColor; transform: rotate(-62deg);
 }
-.wm-nyanse { font-family: var(--font-bodoni), "Didot", Georgia, serif; font-weight: 500; font-size: 22px; letter-spacing: 0.02em; }
+.wm-nyanse { font-family: var(--f-logo); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 21px; font-variation-settings: "opsz" 24; }
 
 .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 5px 10px; background: var(--soft); color: var(--accent-text); white-space: nowrap; }
 
@@ -172,10 +115,10 @@ body { margin: 0; }
 /* ---------- display type ---------- */
 .disp { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.015em; line-height: 1.02; font-size: 38px; }
 .disp em { font-style: italic; font-weight: 500; color: var(--accent-text); }
-[data-brand="kulort"] .disp { font-stretch: 112%; font-weight: 800; text-transform: uppercase; letter-spacing: -0.005em; line-height: 0.98; font-size: 32px; }
-[data-brand="kulort"] .disp em { font-style: normal; font-weight: 800; }
-[data-voice="girlmath"] .disp { font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; font-size: 38px; }
-[data-voice="girlmath"] .disp em { font-style: normal; font-weight: 800; color: var(--ink); background: linear-gradient(transparent 58%, var(--butter) 58%); padding: 0 0.06em; }
+[data-brand="kulort"] .disp { font-stretch: 112%; font-weight: 600; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; font-size: 30px; }
+[data-brand="kulort"] .disp em { font-style: normal; font-weight: 600; }
+[data-brand="nyanse"] .disp { font-weight: 400; letter-spacing: -0.01em; }
+[data-brand="nyanse"] .disp em { font-weight: 400; }
 .disp.sm { font-size: 28px; }
 [data-brand="kulort"] .disp.sm { font-size: 24px; }
 
@@ -296,8 +239,7 @@ label.btn { cursor: pointer; }
 .vf-busy span { padding: 8px 14px; border-radius: 999px; background: rgba(10, 12, 18, 0.6); }
 
 /* ---------- drape (photo + cloth under the chin) ---------- */
-.drape { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #d9d3cc; border-radius: 22px; isolation: isolate; }
-[data-brand="kulort"] .drape { border-radius: 8px; }
+.drape { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #d9d3cc; border-radius: var(--radius); isolation: isolate; }
 .drape img { position: absolute; height: auto; max-width: none; display: block; }
 .drape-ph { position: absolute; inset: 0; width: 100%; height: 100%; }
 .drape-glow { position: absolute; inset: 0; mix-blend-mode: soft-light; opacity: 0.4; transition: background 0.5s; }
@@ -461,7 +403,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .r-typename span { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .r-typename b { font-family: var(--f-display); font-size: 24px; font-weight: 700; color: var(--accent-text); }
 [data-brand="kulort"] .r-typename b { font-stretch: 112%; text-transform: uppercase; font-size: 20px; letter-spacing: 0.02em; }
-[data-voice="atelier"] .r-typename b { font-style: italic; font-weight: 500; font-size: 26px; }
+[data-brand="nyanse"] .r-typename b { font-style: italic; font-weight: 500; font-size: 26px; }
 .locked-why { font-size: 16px; font-weight: 700; line-height: 1.4; }
 
 /* ---------- landing as a full product page (all screens) ---------- */
@@ -591,62 +533,86 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 }
 
 /* ---------- couture wordmarks (identity v2) ---------- */
-.wm-kulort { font-stretch: 125%; font-weight: 300; letter-spacing: 0.38em; margin-right: -0.38em; font-size: 15px; }
 .wm-o::after { height: 0.06em; margin-top: -0.03em; left: -18%; right: -18%; transform: rotate(-58deg); }
-/* readable at small sizes: Bodoni's text cut (sturdier hairlines), a little weight, less tracking */
-.wm-nyanse { font-weight: 500; letter-spacing: 0.2em; margin-right: -0.2em; font-size: 18px; font-variation-settings: "opsz" 11; }
 @media (min-width: 1024px) {
   .topnav .wm-kulort { font-size: 17px; }
   .topnav .wm-nyanse { font-size: 20px; }
 }
 [data-brand="kulort"] .welcome .welcome-title { font-stretch: 112%; text-transform: uppercase; font-size: 17px; letter-spacing: .02em; }
-[data-voice="atelier"] .welcome .welcome-title { font-weight: 400; font-style: italic; font-size: 22px; }
+[data-brand="nyanse"] .welcome .welcome-title { font-weight: 400; font-style: italic; font-size: 22px; }
 .line.discount { color: var(--accent-text); font-weight: 600; }
 
-/* ---------- split home (shared domain): half KULØRT, half NYANSE ---------- */
-.split-home { position: relative; display: grid; grid-template-rows: 1fr 1fr auto; min-height: 100svh; background: #111418; }
-.sh-half { position: relative; display: grid; align-items: end; min-height: 0; overflow: hidden; text-decoration: none; color: var(--ink); background: var(--bg); isolation: isolate; }
-.sh-half[data-brand="kulort"] { background: #111418; color: #F4F0EA; }
-.sh-photo { position: absolute; inset: 0; z-index: -1; }
-.sh-photo .drape { width: 100%; height: 100%; border-radius: 0; }
-.sh-photo::after { content: ""; position: absolute; inset: 0; }
-.sh-half[data-brand="kulort"] .sh-photo::after { background: linear-gradient(0deg, rgba(17,20,24,.96) 0%, rgba(17,20,24,.7) 34%, rgba(17,20,24,0) 62%); }
-.sh-half[data-brand="nyanse"] .sh-photo::after { background: linear-gradient(0deg, rgba(251,246,242,.97) 0%, rgba(251,246,242,.72) 34%, rgba(251,246,242,0) 62%); }
-.sh-half[data-brand="kulort"] .sh-head.disp em { color: #D19A6E; }
-.sh-copy { display: grid; gap: 6px; justify-items: start; padding: 16px 16px 18px; max-width: 100%; }
-.sh-half[data-brand="nyanse"] { justify-items: end; }
-.sh-half[data-brand="nyanse"] .sh-copy { justify-items: end; text-align: right; }
-.sh-half[data-brand="kulort"] .wm-kulort { color: #F4F0EA; }
-.sh-label { font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; opacity: .8; }
-.sh-head.disp { font-size: 24px; }
-.sh-half[data-brand="kulort"] .sh-head.disp { font-size: 19px; color: #F4F0EA; }
-.sh-half[data-brand="nyanse"] .sh-head.disp { font-size: 24px; font-weight: 400; }
-.sh-cta.btn { width: auto; padding: 11px 16px; font-size: 14px; margin-top: 4px; }
-.sh-half[data-brand="kulort"] .sh-cta.btn { background: #F4F0EA; color: #111418; }
-.sh-half:focus-visible { outline: 3px solid var(--accent); outline-offset: -6px; }
-.sh-top, .sh-foot { position: absolute; left: 0; right: 0; z-index: 2; display: flex; justify-content: center; gap: 16px; pointer-events: none; }
-.sh-top { top: 0; padding: 12px 16px; }
-.sh-top { mix-blend-mode: difference; }
-.sh-top p { font-family: var(--font-manrope), system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #F4F0EA; }
-.sh-foot { position: static; padding: 12px 16px; font-family: var(--font-manrope), system-ui, sans-serif; font-size: 12px; color: #F4F0EA; background: #111418; justify-content: space-between; }
-.sh-foot a { pointer-events: auto; color: inherit; }
-@media (hover: hover) {
-  .sh-half .sh-photo { transition: transform .6s ease; }
-  .sh-half:hover .sh-photo { transform: scale(1.03); }
-}
+/* ---------- maison home (kulort-nyanse.com): what it is, then two doors ---------- */
+.app[data-brand="maison"] { --accent: #141414; --accent-text: #141414; --accent-ink: #fff; --soft: #ece6de; --f-display: var(--f-logo); --radius: 2px; --radius-btn: 2px; --radius-chip: 2px; }
+.maison { max-width: 1240px; margin: 0 auto; padding: 0 20px 40px; color: var(--ink); background: var(--bg); }
+.maison img { display: block; width: 100%; height: auto; }
+.maison-mark { display: inline-flex; align-items: center; gap: 14px; }
+.maison-mark i { width: 1px; height: 22px; background: currentColor; opacity: .6; }
+.maison-mark .wordmark { font-size: 20px; }
+.maison-mark.sm .wordmark { font-size: 14px; }
+.maison-mark.sm i { height: 14px; }
+.ms-top { display: grid; justify-items: center; gap: 6px; padding: 26px 0 22px; border-bottom: 1px solid var(--line); }
+.ms-top p, .ms-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.ms-hero { display: grid; gap: 22px; padding: 28px 0 40px; }
+.ms-hero-copy { display: grid; gap: 14px; align-content: center; }
+.ms-h1 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(40px, 11vw, 76px); line-height: 1; letter-spacing: -0.015em; }
+.ms-h1 em, .ms-h2 em { font-style: italic; color: var(--ink); }
+.ms-h2 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(28px, 7vw, 44px); line-height: 1.05; }
+.ms-sub { font-size: 16.5px; line-height: 1.55; color: var(--muted); max-width: 46ch; }
+.ms-facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; font-weight: 600; }
+.ms-facts li::before { content: "—"; margin-right: 8px; color: var(--muted); }
+.ms-doors-inline { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.ms-btn { display: grid; place-items: center; min-height: 52px; padding: 0 14px; background: var(--ink); color: var(--bg); text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: .02em; border-radius: 2px; text-align: center; }
+.ms-btn + .ms-btn { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.ms-btn:hover { opacity: .88; }
+.ms-hero-img { margin: 0; overflow: hidden; border-radius: 2px; }
+.ms-hero-img img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 62% 40%; }
+
+.ms-doors { display: grid; gap: 14px; padding: 8px 0 56px; }
+.ms-door { position: relative; display: block; overflow: hidden; color: #f6f2ec; text-decoration: none; border-radius: 2px; isolation: isolate; }
+.ms-door img { aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 20%; transition: transform .8s cubic-bezier(.2,.9,.25,1); }
+.ms-door::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(0deg, rgba(20,18,16,.72) 0%, rgba(20,18,16,.2) 42%, rgba(20,18,16,0) 60%); }
+.ms-door-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: grid; gap: 6px; padding: 22px; }
+.ms-door .wordmark { color: #f6f2ec; font-size: 30px; }
+.ms-door-label { font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; opacity: .9; }
+.ms-door-line { font-size: 15px; opacity: .92; }
+.ms-door-cta { margin-top: 8px; justify-self: start; padding: 12px 16px; background: #f6f2ec; color: #141414; font-size: 13px; font-weight: 700; border-radius: 2px; }
+@media (hover: hover) { .ms-door:hover img { transform: scale(1.03); } }
+
+.ms-how, .ms-seasons { display: grid; gap: 14px; padding: 48px 0; border-top: 1px solid var(--line); }
+.ms-how ol { list-style: none; padding: 0; display: grid; gap: 22px; margin-top: 10px; }
+.ms-how li { display: grid; gap: 8px; }
+.ms-how li img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+.ms-how li b { font-family: var(--f-logo); font-weight: 500; font-size: 22px; }
+.ms-how li span { color: var(--muted); font-size: 15px; }
+.ms-season-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.ms-season-row figure { margin: 0; display: grid; gap: 8px; }
+.ms-season-row img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+.ms-season-row figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ms-season-row b { font-family: var(--f-logo); font-weight: 500; font-size: 20px; }
+.ms-season-row span { font-size: 12.5px; color: var(--muted); }
+.ms-gift { display: grid; gap: 22px; padding: 48px 0; border-top: 1px solid var(--line); align-items: center; }
+.ms-gift > div { display: grid; gap: 12px; }
+.ms-gift img { border-radius: 2px; }
+.ms-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 24px 0 8px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+.ms-foot a { color: inherit; }
+
 @media (min-width: 900px) {
-  .split-home { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
-  .sh-foot { position: absolute; bottom: 0; background: none; mix-blend-mode: difference; }
-  .sh-copy { max-width: 80%; padding: 48px 44px 64px; gap: 12px; }
-  .sh-head.disp { font-size: 40px; }
-  .sh-half[data-brand="kulort"] .sh-head.disp { font-size: 30px; }
-  .sh-half[data-brand="nyanse"] .sh-head.disp { font-size: 44px; }
-  .sh-half[data-brand="kulort"] .sh-photo::after { background: linear-gradient(0deg, rgba(17,20,24,.94) 0%, rgba(17,20,24,.5) 38%, rgba(17,20,24,0) 62%); }
-  .sh-half[data-brand="nyanse"] .sh-photo::after { background: linear-gradient(0deg, rgba(251,246,242,.95) 0%, rgba(251,246,242,.55) 38%, rgba(251,246,242,0) 62%); }
-  .sh-top { padding: 22px; }
-  .sh-foot { padding: 16px 24px; }
+  .maison { padding: 0 48px 56px; }
+  .ms-top { grid-auto-flow: column; justify-content: space-between; padding: 30px 0 24px; }
+  .ms-hero { grid-template-columns: 5fr 7fr; gap: 56px; padding: 56px 0 72px; }
+  .ms-h1 { font-size: clamp(48px, 4.6vw, 66px); }
+  .ms-hero-img img { aspect-ratio: 3 / 2; }
+  .ms-doors-inline { max-width: 460px; }
+  .ms-doors { grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 88px; }
+  .ms-door-copy { padding: 36px; }
+  .ms-door .wordmark { font-size: 38px; }
+  .ms-how, .ms-seasons, .ms-gift { padding: 88px 0; }
+  .ms-how ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .ms-season-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .ms-gift { grid-template-columns: 1fr 1fr; gap: 64px; }
 }
-@media (prefers-reduced-motion: reduce) { .sh-half .sh-photo { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ms-door img { transition: none; } }
 
 /* ---------- flats and flat-lays (garments in the person's colours) ---------- */
 .flat { display: block; width: 100%; height: auto; overflow: visible; }
@@ -668,8 +634,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   padding: 8px 20px 26px; display: grid; gap: 4px;
 }
 [data-brand="kulort"] .rv { border-radius: 6px; }
-[data-voice="atelier"] .rv { --rv-bg: #17121A; }
-[data-voice="girlmath"] .rv { --rv-bg: #1A1120; }
+[data-brand="nyanse"] .rv { --rv-bg: #17121A; }
 .rv::before { /* their best colour, glowing behind the fan */
   content: ""; position: absolute; z-index: -1; left: 50%; top: 150px; width: 420px; height: 420px; translate: -50% -50%;
   background: radial-gradient(circle, var(--glow) 0%, transparent 62%); opacity: 0; filter: blur(8px);
@@ -709,7 +674,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .rv-type > span { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--rv-muted); }
 .rv-type b { font-family: var(--f-display); font-size: 22px; font-weight: 600; color: var(--glow); }
 [data-brand="kulort"] .rv-type b { font-stretch: 112%; text-transform: uppercase; font-size: 17px; letter-spacing: .08em; }
-[data-voice="atelier"] .rv-type b { font-style: italic; font-weight: 500; font-size: 26px; }
+[data-brand="nyanse"] .rv-type b { font-style: italic; font-weight: 500; font-size: 26px; }
 .rv-type b span { display: inline-block; opacity: 0; transform: translateY(.4em); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.9,.25,1.2); transition-delay: var(--d); }
 .rv.is-open .rv-type b span { opacity: 1; transform: none; }
 .rv-between { font-size: 13.5px; font-weight: 700; color: var(--rv-muted); }
@@ -747,7 +712,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .wd-look { margin: 0; display: grid; gap: 10px; }
 .wd-look figcaption b { font-family: var(--f-display); font-size: 22px; }
 [data-brand="kulort"] .wd-look figcaption b { font-stretch: 112%; text-transform: uppercase; font-size: 17px; letter-spacing: .04em; }
-[data-voice="atelier"] .wd-look figcaption b { font-style: italic; font-weight: 400; }
+[data-brand="nyanse"] .wd-look figcaption b { font-style: italic; font-weight: 400; }
 .wd-more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
 .wd-shut { position: relative; border: 0; padding: 0; background: none; cursor: pointer; display: grid; gap: 6px; text-align: left; font: inherit; color: inherit; }
 .wd-shut .flatlay { filter: blur(5px) saturate(.9); transform: scale(1.02); }
@@ -791,9 +756,4 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .known-strip { display: flex; height: 18px; border-radius: 4px; overflow: hidden; }
 .known-strip i { flex: 1; }
 .known-link { display: block; margin-top: 12px; text-align: center; font-weight: 700; font-size: 14px; }
-/* the split halves are photographs on light paper: never switch them to dark-mode text */
-.split-home .sh-half { color-scheme: light; }
-@media (prefers-color-scheme: dark) {
-  .split-home .sh-half[data-brand="nyanse"] { --bg: #fbf7f6; --ink: #18161f; --muted: #5f5a6a; --accent: #c8285a; --accent-text: #a81e4b; --accent-ink: #fff; }
-  .split-home .sh-half[data-brand="kulort"] { --accent: #8a4a26; --accent-text: #d19a6e; --accent-ink: #fff; }
-}
+.app[data-brand="maison"] { background: var(--bg) !important; }
