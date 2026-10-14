@@ -1,6 +1,29 @@
 import { analysisNl, emailNl, pageNl, resultNl, SELFIE_NL_NYANSE } from "../common";
 import type { VoiceCopy } from "../types";
 
+const STORY_GIRLMATH: VoiceCopy["story"] = {
+  image: "/brand/editorial/nyanse-jong-campagne-1.jpg",
+  imageAlt: "Drie vriendinnen in een studentenkamer houden een lila top omhoog",
+  pains: {
+    title: ["Kast vol,", "niks om aan te trekken."],
+    items: [
+      ["Paskamer: ja. Thuis: nee.", "Het lag niet aan jou. Het lag aan de kleur."],
+      ["Nog eentje in het zwart", "Want veilig. Maar is zwart wel jouw kleur?"],
+      ["Retourtje nummer zoveel", "Bestellen, passen, terugsturen. Again."],
+    ],
+  },
+  proof: { title: ["Zelfde gezicht.", "Andere kleur."], text: "Eén doek onder je kin en je ziet het meteen. Precies wat de app met jouw selfie doet." },
+  gets: {
+    title: ["Wat je", "krijgt."],
+    items: [
+      ["Je kleurprofiel", "Gratis: je type, je 6 beste kleuren en wat je kunt laten liggen."],
+      ["Je persoonlijke stijlgids", "30 kleuren, 4 looks, een capsule van 12 stuks: meer outfits uit minder kleding."],
+      ["Je kleurenpas", "In je portemonnee, voor in de paskamer. Geen twijfelaankopen meer."],
+    ],
+  },
+  final: ["Stop met kopen wat je", "niet staat."],
+};
+
 // Girl Math: playful sums with a wink, never literal money promises.
 export const girlmath: VoiceCopy = {
   locale: "nl",
@@ -21,6 +44,7 @@ export const girlmath: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo simpel", "is het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Stop met kopen wat je", "niet staat."], accessories: "welke sieraden en make-uptinten je staan", trustTitle: ["Geen gedoe,", "geen catch."] }),
+  story: STORY_GIRLMATH,
   retention: {
     greet: "Hey {type} ✨",
     resumeTitle: "Je bent er bijna!",

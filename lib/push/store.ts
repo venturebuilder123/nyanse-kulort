@@ -42,7 +42,7 @@ async function rest(path: string, init: RequestInit & { prefer?: string } = {}) 
 }
 
 const BRANDS: BrandKey[] = ["nyanse", "kulort"];
-const VOICES: VoiceKey[] = ["wingman", "atelier", "girlmath", "signature"];
+const VOICES: VoiceKey[] = ["wingman", "director", "bosslady", "girlmath", "signature"];
 
 /** Validates what the browser sends; anything unexpected is rejected, nothing extra is stored. */
 export function parseSubscription(body: unknown): Omit<PushRow, "last_sent_at" | "sent_count"> | null {

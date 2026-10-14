@@ -1,8 +1,31 @@
 import { analysisNl, emailNl, pageNl, resultNl, SELFIE_NL_NYANSE } from "../common";
 import type { VoiceCopy } from "../types";
 
-// Atelier: calm and certain. "Minder kopen, beter kiezen."
-export const atelier: VoiceCopy = {
+const STORY_BOSSLADY: VoiceCopy["story"] = {
+  image: "/brand/editorial/nyanse-jv-campagne-1.jpg",
+  imageAlt: "Een vrouw kiest voor de spiegel tussen een koraalrode en een grijze blouse",
+  pains: {
+    title: ["Mooi gekocht.", "Nooit gedragen."],
+    items: [
+      ["Geen tijd voor twijfel", "Je agenda staat vol. Je kast moet gewoon werken."],
+      ["Mooie stukken, geen outfits", "Alles los gekocht, niets combineert met elkaar."],
+      ["Retourneren als hobby", "Online besteld, thuis blijkt het toch niet jouw kleur."],
+    ],
+  },
+  proof: { title: ["Zelfde gezicht.", "Andere kleur."], text: "Eén doek onder de kin en je ziet het verschil. Precies wat de app met jouw selfie doet." },
+  gets: {
+    title: ["Wat je", "krijgt."],
+    items: [
+      ["Je kleurprofiel", "Gratis: je type, je 6 beste kleuren en wat je laat hangen."],
+      ["Je persoonlijke stijlgids", "Al je 30 kleuren, 4 looks, een capsule van 12 stuks, sieraden, tas en make-up."],
+      ["Je kleurenpas", "In je portemonnee. In de winkel zie je in één blik of het past."],
+    ],
+  },
+  final: ["Minder kopen,", "beter kiezen."],
+};
+
+// Boss Lady (NYANSE 28–44): sure, decisive, short on time. "Minder kopen, beter kiezen."
+export const bosslady: VoiceCopy = {
   locale: "nl",
   meta: {
     title: "NYANSE · Welke kleuren staan jou? Kleuranalyse uit één selfie",
@@ -11,8 +34,8 @@ export const atelier: VoiceCopy = {
   landing: {
     pill: "Gratis kleurprofiel",
     eyebrow: "Kleuranalyse uit één selfie",
-    headline: ["Welke kleuren laten", "jou stralen?"],
-    sub: "Minder kopen, beter kiezen. Je ziet direct welke kleuren bij je passen, en welke niet.",
+    headline: ["Kleuren die", "voor je werken."],
+    sub: "Geen tijd voor miskopen. Eén selfie laat zien welke kleuren je zeker laten ogen, van meeting tot diner.",
     trustMain: "Je foto verlaat je telefoon niet",
     occasionQuestion: "Waar wil je er goed uitzien?",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
@@ -21,6 +44,7 @@ export const atelier: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo werkt", "het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Minder kopen,", "beter kiezen."], accessories: "welke sieraden, tassen en make-uptinten bij je passen", trustTitle: ["Rustig en", "zonder gedoe."] }),
+  story: STORY_BOSSLADY,
   retention: {
     greet: "Welkom terug, {type}.",
     resumeTitle: "Je bent er bijna.",

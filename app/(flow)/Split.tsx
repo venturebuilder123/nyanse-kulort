@@ -98,7 +98,7 @@ export default function Split() {
           <ul className="ms-facts">
             <li>Kleurprofiel gratis</li>
             <li>Persoonlijke stijlgids vanaf €6,99</li>
-            <li>Je foto verlaat je telefoon niet</li>
+            <li>Voor hem en voor haar</li>
           </ul>
           <div className="ms-doors-inline">
             <a className="ms-btn" href="/kulort" onClick={door("kulort")}>Voor hem · KULØRT</a>
@@ -143,7 +143,7 @@ export default function Split() {
         <h2 className="ms-h2">Drie stappen, <em>een leven lang plezier</em></h2>
         <ol>
           <li>
-            <img src="/brand/editorial/nyanse-jv-campagne-1.jpg" alt="" width={1200} height={1490} loading="lazy" />
+            <img src="/brand/ads/note-to-self.jpg" alt="" width={1600} height={873} loading="lazy" />
             <b>1 · Eén selfie</b>
             <span>Bij daglicht, in 30 seconden. De analyse draait op je telefoon.</span>
           </li>

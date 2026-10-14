@@ -1,6 +1,29 @@
 import { analysisNl, emailNl, pageNl, resultNl, SELFIE_NL } from "../common";
 import type { VoiceCopy } from "../types";
 
+const STORY_WINGMAN: VoiceCopy["story"] = {
+  image: "/brand/editorial/kulort-jv-campagne-1.jpg",
+  imageAlt: "Een man in een navy colbert en lichtblauw overhemd op kantoor",
+  pains: {
+    title: ["Kast vol.", "Niks om aan te trekken."],
+    items: [
+      ["Goed in de winkel, thuis niet", "Het ligt zelden aan de pasvorm. Meestal aan de kleur."],
+      ["Losse stukken", "Een hoop shirts die nergens bij passen."],
+      ["Elke ochtend gokken", "En toch weer hetzelfde shirt."],
+    ],
+  },
+  proof: { title: ["Zelfde gezicht.", "Andere kleur."], text: "Eén doek onder de kin en je ziet het verschil. Precies wat de app met jouw selfie doet." },
+  gets: {
+    title: ["Wat je", "krijgt."],
+    items: [
+      ["Je kleurprofiel", "Gratis: je type, je 6 beste kleuren en wat je laat hangen."],
+      ["Je persoonlijke stijlgids", "Al je 30 kleuren, 4 looks voor werk, weekend, date en feest, en een capsule van 12 stuks."],
+      ["Je kleurenpas", "In je portemonnee. In de winkel weet je het in één blik."],
+    ],
+  },
+  final: ["Weet welke kleuren", "voor je werken."],
+};
+
 // Wingman: confidence and first impressions. Always about him, never about women as a target.
 export const wingman: VoiceCopy = {
   locale: "nl",
@@ -21,6 +44,7 @@ export const wingman: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Drie stappen.", "Klaar."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Weet welke kleuren", "voor je werken."], accessories: "welk horloge, welke riem en schoenen kloppen", trustTitle: ["Geen gedoe.", "Geen gok."] }),
+  story: STORY_WINGMAN,
   retention: {
     greet: "{type}. Goed dat je terug bent.",
     resumeTitle: "Je bent er bijna.",

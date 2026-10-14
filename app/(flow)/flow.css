@@ -807,3 +807,63 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .garment-fold { mix-blend-mode: multiply; filter: brightness(1.9) contrast(1.15); opacity: .6; }
 .garment { filter: drop-shadow(0 1px 1px rgba(0,0,0,.08)) drop-shadow(0 8px 12px rgba(40,30,20,.12)); }
 
+
+/* ---------- brand landing v2: photo hero, pains, proof, gets, look, final ---------- */
+.l-photo { margin: 0; position: relative; }
+.l-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius); }
+.l-photo figcaption { margin-top: 6px; font-size: 11.5px; color: var(--muted); }
+.l-section { padding-top: 56px; gap: 18px; }
+.pains { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.pains li { display: grid; grid-template-columns: 44px 1fr; column-gap: 12px; padding: 18px 0; border-top: 1px solid var(--line); }
+.pains li:last-child { border-bottom: 1px solid var(--line); }
+.pain-n { grid-row: span 2; font-family: var(--f-display); font-size: 22px; color: var(--accent-text); }
+.pains b { font-family: var(--f-display); font-weight: 400; font-size: 22px; line-height: 1.15; }
+.pains p { color: var(--muted); font-size: 15.5px; margin-top: 4px; }
+.l-proof-img { margin: 0; display: grid; gap: 8px; }
+.l-proof-img img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.l-proof-img figcaption { font-size: 12.5px; color: var(--muted); }
+.l-try { margin-top: 12px; }
+.gets { display: grid; gap: 22px; }
+.get { display: grid; gap: 6px; }
+.get img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); margin-bottom: 6px; }
+.get-n { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-text); }
+.get b { font-family: var(--f-display); font-weight: 400; font-size: 24px; }
+.get p { color: var(--muted); font-size: 15.5px; }
+.l-look { display: grid; gap: 14px; margin-top: 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+.l-look-text { font-family: var(--f-display); font-size: 21px; line-height: 1.25; margin: 6px 0 10px; }
+.l-final { display: grid; gap: 22px; align-items: center; }
+.l-final > img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.l-final > div { display: grid; gap: 16px; }
+@media (min-width: 900px) {
+  .l-section { padding-top: 112px; }
+  .l-section > .disp { font-size: 46px; }
+  .l-photo img { aspect-ratio: 4 / 5; max-height: 76vh; }
+  .pains { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .pains li, .pains li:last-child { border-bottom: 0; grid-template-columns: 1fr; padding: 22px 0 0; }
+  .pain-n { grid-row: auto; margin-bottom: 10px; }
+  .l-proof { grid-template-columns: 1fr 1fr; column-gap: 56px; align-items: center; }
+  .l-proof-head { grid-column: 1; }
+  .l-proof-img { grid-column: 2; grid-row: 1 / span 2; }
+  .l-try, .l-proof .mirror { grid-column: 1 / -1; }
+  .gets { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .l-look { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .l-final { grid-template-columns: 5fr 6fr; gap: 64px; }
+  .l-final .btn { width: auto; justify-self: start; padding: 0 40px; }
+}
+
+/* landing v2 fixes */
+.l-photo img, .get img, .l-final > img, .l-proof-img img { height: auto; }
+.l-photo img { aspect-ratio: 4 / 3; object-position: 50% 28%; }
+.l-final > img { aspect-ratio: 4 / 3; object-position: 50% 40%; }
+.l-proof .mirror-face.drape { max-width: 440px; }
+/* steps: hairlines and display numerals, no boxes */
+.steps { gap: 0; }
+.steps li { background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 18px 0; grid-template-columns: 44px 1fr; }
+.step-n { width: auto; height: auto; background: none; color: var(--accent-text); font-family: var(--f-display); font-weight: 400; font-size: 22px; border-radius: 0 !important; place-items: start; }
+.steps b { font-family: var(--f-display); font-weight: 400; font-size: 21px; }
+@media (min-width: 900px) {
+  .l-photo img { aspect-ratio: 4 / 5; }
+  .l-final > img { aspect-ratio: 4 / 5; max-height: 80vh; }
+  .steps li { grid-template-columns: 1fr; }
+  .step-n { width: auto; height: auto; font-size: 26px; }
+}

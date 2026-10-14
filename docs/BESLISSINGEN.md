@@ -2,6 +2,25 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — overhaul: stemmen per leeftijd, echte mensen, echte kleding
+
+- **Stemmen:**
+  - KULØRT: **Wingman** (18–29) en **Director** (30+, `?s=dr`).
+  - NYANSE: **Girl Math** (18–27), **Boss Lady** (28–44, `?s=bl`; was Atelier) en **Signature** (45+).
+  - `?g=jong` of `?g=40` in een advertentie kiest zelf de passende stem.
+  - Supabase-migratie `0003_voices_v2.sql`.
+- **Merk-landing opnieuw:**
+  1. Campagnefoto van de eigen stem of leeftijd, kop, eerste tik.
+  2. "Herken je dit?": drie pijnpunten in de eigen toon, over kast en kopen, nooit over uiterlijk.
+  3. Het bewijs (voor/na met stof) plus de drapeerspiegel om zelf te proberen.
+  4. Wat je krijgt (profiel gratis, gids €6,99, pas €9,99) met productbeelden.
+  5. Een look met echte kleding.
+  6. Drie stappen.
+  7. Afsluiter met prijs.
+- **Echte kleding:** de 21 grijze kledingfoto's worden per klant omgekleurd (`scripts/prepare-garments.py`; stof, plooien en naden blijven). Ze staan in looks, de kast, de capsule en de gids.
+- **Weg:** "Je foto verlaat je telefoon niet" van de homepage en de merk-landing (staat nog bij de selfie). Ook de oude hero met het label dat een zwarte balk werd.
+- **Niet gebruikt:** "100% veilig, we delen niets met derden". Een absolute claim mag niet (ACM), en je e-mail gaat naar Brevo.
+
 ## 14 oktober 2026 — één merk, altijd ivoor, de drapeerspiegel
 
 - **Eén merk:** KULØRT · NYANSE is één huis. Bovenaan elke pagina staat "KULØRT | NYANSE", met het actieve merk in inkt; een tik gaat terug naar de keuze.

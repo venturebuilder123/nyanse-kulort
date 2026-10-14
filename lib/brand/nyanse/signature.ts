@@ -1,6 +1,29 @@
 import { analysisNl, emailNl, pageNl, resultNl, SELFIE_NL_NYANSE } from "../common";
 import type { VoiceCopy } from "../types";
 
+const STORY_SIGNATURE: VoiceCopy["story"] = {
+  image: "/brand/editorial/nyanse-40-campagne-1.jpg",
+  imageAlt: "Een vrouw met zilvergrijs haar in een kobaltblauwe blouse aan een cafétafel",
+  pains: {
+    title: ["Je kleuren", "veranderen mee."],
+    items: [
+      ["Wat vroeger stond, staat nu anders", "Grijzer haar, een zachtere huid: je palet schuift mee."],
+      ["Een kast vol oude zekerheden", "Kleuren die je altijd droeg, maar die je nu minder doen."],
+      ["Minder, maar beter", "Je koopt met zorg. Dan moet de kleur kloppen."],
+    ],
+  },
+  proof: { title: ["Zelfde gezicht.", "Andere kleur."], text: "Eén doek onder de kin en je ziet het verschil. Precies wat de app met jouw selfie doet." },
+  gets: {
+    title: ["Wat je", "krijgt."],
+    items: [
+      ["Je kleurprofiel", "Gratis: je type, je 6 beste kleuren en wat je laat hangen."],
+      ["Je persoonlijke stijlgids", "Al je 30 kleuren, 4 looks, een capsule van 12 stuks, sieraden en make-up."],
+      ["Je kleurenpas", "In je portemonnee. In de winkel zie je in één blik of het past."],
+    ],
+  },
+  final: ["Kleuren die passen bij", "wie je nu bent."],
+};
+
 // Signature (NYANSE 40+): calm, assured, grown-up. Colours that fit who you are now; grey hair
 // as a strength. Never "look younger", never anti-ageing, never insecurity (CLAUDE.md §12).
 export const signature: VoiceCopy = {
@@ -22,6 +45,7 @@ export const signature: VoiceCopy = {
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "trekt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo werkt", "het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Kleuren met", "zekerheid."], accessories: "welke sieraden, tassen en make-uptinten bij je passen", trustTitle: ["Rustig, persoonlijk,", "zonder gedoe."] }),
+  story: STORY_SIGNATURE,
   retention: {
     greet: "Welkom terug, {type}.",
     resumeTitle: "Je bent er bijna.",

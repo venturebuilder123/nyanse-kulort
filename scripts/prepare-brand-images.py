@@ -55,6 +55,12 @@ PHOTOS = {
     f"{D1}/Seasons/family_seasons/Autumn_family.jpg": ("seasons/family-herfst.jpg", 1000),
     f"{D1}/Seasons/family_seasons/Winter_family.jpg": ("seasons/family-winter.jpg", 1000),
 }
+for name, width in {
+    "best-fit": 1200, "closet-choices": 1200, "note-to-self": 1600, "personal-shopper": 1600,
+    "proof-men": 1200, "proof-women": 1200, "right-choice": 1200, "workbook": 1600,
+}.items():
+    PHOTOS[f"{D1}/Advertisment/kulort-nyanse-{name}.jpg"] = (f"ads/{name}.jpg", width)
+
 SEASON_FILES = {
     "light_spring": "lightSpring", "Warm_spring": "warmSpring", "bright_spring": "brightSpring",
     "Light_summer": "lightSummer", "Cool_summer": "coolSummer", "soft_summer": "softSummer",
@@ -78,18 +84,24 @@ def neutralise_on_shirt(im: Image.Image) -> Image.Image:
 
 
 def trim_flat_bottom(im: Image.Image) -> Image.Image:
-    """Some Gemini images carry an empty paper band at the bottom: cut it off."""
+    """Some Gemini images carry empty paper bands at the bottom (and top): cut them off."""
     small = im.convert("L").resize((64, 256))
     w, h = small.size
     rows = [[small.getpixel((x, y)) for x in range(w)] for y in range(h)]
-    cut = h
+    flat = lambda r: max(abs(v - sum(r) / w) for v in r) <= 6
+    bottom = h
     for y in range(h - 1, -1, -1):
-        r = rows[y]
-        mean = sum(r) / w
-        if max(abs(v - mean) for v in r) > 6:
+        if not flat(rows[y]):
             break
-        cut = y
-    return im.crop((0, 0, im.width, round(im.height * cut / h))) if cut < h * 0.97 else im
+        bottom = y
+    top = 0
+    for y in range(h):
+        if not flat(rows[y]):
+            break
+        top = y + 1
+    if bottom >= h * 0.97 and top <= h * 0.03:
+        return im
+    return im.crop((0, round(im.height * top / h), im.width, round(im.height * bottom / h)))
 
 
 def save(im: Image.Image, target: str, width: int) -> None:

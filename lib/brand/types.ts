@@ -1,5 +1,5 @@
 export type BrandKey = "nyanse" | "kulort";
-export type VoiceKey = "girlmath" | "atelier" | "signature" | "wingman";
+export type VoiceKey = "girlmath" | "bosslady" | "signature" | "wingman" | "director";
 export type Locale = "nl"; // structure ready for "en" | "de"
 
 export type OccasionKey = "werk" | "weekend" | "date" | "feest" | "sport";
@@ -35,6 +35,16 @@ export type VoiceCopy = {
     compare: { title: Headline; free: string; paid: string; rows: readonly [label: string, free: boolean, paid: boolean][] };
     trust: { title: Headline; items: readonly [title: string, text: string][] };
     final: { title: Headline; cta: string };
+  };
+  /** the brand landing's story (docs/brand/BRANDBOOK.md §2): recognise the problem, see the proof, know what you get */
+  story: {
+    /** campaign photo for this voice, public/brand/... */
+    image: string;
+    imageAlt: string;
+    pains: { title: Headline; items: readonly [title: string, text: string][] };
+    proof: { title: Headline; text: string };
+    gets: { title: Headline; items: readonly [title: string, text: string][] };
+    final: Headline;
   };
   /** coming back: resume, invitation, greeting by colour type, weekly push (all opt-in, all true) */
   retention: {

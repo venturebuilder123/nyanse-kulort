@@ -43,6 +43,7 @@ export function proxy(request: NextRequest) {
     voiceParam: searchParams.get("s"),
     brandCookie: request.cookies.get(BRAND_COOKIE)?.value,
     voiceCookie: request.cookies.get(VOICE_COOKIE)?.value,
+    segmentParam: searchParams.get("g"),
   });
   const headers = new Headers(request.headers);
   headers.set(BRAND_HEADER, brand);

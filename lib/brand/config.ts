@@ -1,6 +1,7 @@
-import { atelier } from "./nyanse/atelier";
+import { bosslady } from "./nyanse/bosslady";
 import { girlmath } from "./nyanse/girlmath";
 import { signature } from "./nyanse/signature";
+import { director } from "./kulort/director";
 import { wingman } from "./kulort/wingman";
 import type { BrandConfig, BrandKey, BudgetKey, OccasionKey, VoiceCopy, VoiceKey } from "./types";
 
@@ -9,7 +10,7 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     key: "kulort",
     name: "KULØRT",
     hosts: ["kulort.com", "kulort.nl", "kulort.app"],
-    voices: ["wingman"],
+    voices: ["wingman", "director"],
     defaultVoice: "wingman",
     shops: ["Zalando", "OFM", "Nolson", "Uniqlo", "COS", "Sissy-Boy", "ASOS", "Profuomo"],
     other: "nyanse",
@@ -21,8 +22,8 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
     key: "nyanse",
     name: "NYANSE",
     hosts: ["nyanse.com", "nyanse.nl", "nyanse.app"],
-    voices: ["atelier", "girlmath", "signature"],
-    defaultVoice: "atelier",
+    voices: ["bosslady", "girlmath", "signature"],
+    defaultVoice: "bosslady",
     shops: ["Zalando", "H&M", "Zara", "Mango", "COS", "Arket", "ASOS", "Sissy-Boy"],
     other: "kulort",
     switchLabel: "Voor mannen",
@@ -31,13 +32,13 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
   },
 };
 
-export const VOICES: Record<VoiceKey, VoiceCopy> = { wingman, atelier, girlmath, signature };
+export const VOICES: Record<VoiceKey, VoiceCopy> = { wingman, director, bosslady, girlmath, signature };
 
 /** First test is KULØRT (CLAUDE.md §2), so it is the fallback brand. */
 export const DEFAULT_BRAND: BrandKey = "kulort";
 
 /** UTM shorthand from ads: ?s=gm|at (CLAUDE.md §2). */
-export const VOICE_PARAM: Record<string, VoiceKey> = { gm: "girlmath", at: "atelier", sg: "signature", wm: "wingman" };
+export const VOICE_PARAM: Record<string, VoiceKey> = { gm: "girlmath", bl: "bosslady", at: "bosslady", sg: "signature", wm: "wingman", dr: "director" };
 
 export const OCCASIONS: { key: OccasionKey; label: string }[] = [
   { key: "werk", label: "Werk" },

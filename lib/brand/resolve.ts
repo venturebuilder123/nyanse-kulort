@@ -20,14 +20,21 @@ export function brandForHost(host: string | null): BrandKey | null {
  * domain, previews, localhost) ?brand= decides, then a voice that belongs to one brand
  * (?s=gm → NYANSE), then the cookie. Nothing of that: not chosen yet, the home page shows
  * the split choice (decision 13 Oct 2026); other pages fall back to the default.
- * Voice: ?s=gm|at, then the cookie, then the brand's default; never a voice of the other brand.
+ * Voice: ?s=, then the age segment of a new link (?g=jong|40), then the cookie, then the brand's
+ * default; never a voice of the other brand.
  */
+const VOICE_BY_SEGMENT: Record<BrandKey, Partial<Record<string, VoiceKey>>> = {
+  kulort: { jong: "wingman", "40": "director" },
+  nyanse: { jong: "girlmath", "40": "signature" },
+};
+
 export function resolveBrand(input: {
   host: string | null;
   brandParam?: string | null;
   voiceParam?: string | null;
   brandCookie?: string | null;
   voiceCookie?: string | null;
+  segmentParam?: string | null;
 }): { brand: BrandKey; voice: VoiceKey; chosen: boolean } {
   const byHost = brandForHost(input.host);
   const paramVoice = input.voiceParam ? VOICE_PARAM[input.voiceParam] : undefined;
@@ -39,10 +46,13 @@ export function resolveBrand(input: {
   const allowed = BRANDS[brand].voices;
   const fromParam = input.voiceParam ? VOICE_PARAM[input.voiceParam] : undefined;
   const fromCookie = input.voiceCookie as VoiceKey | undefined;
+  const fromSegment = input.segmentParam ? VOICE_BY_SEGMENT[brand][input.segmentParam] : undefined;
   const voice =
     fromParam && allowed.includes(fromParam)
       ? fromParam
-      : fromCookie && allowed.includes(fromCookie)
+      : fromSegment
+        ? fromSegment
+        : fromCookie && allowed.includes(fromCookie)
         ? fromCookie
         : BRANDS[brand].defaultVoice;
   return { brand, voice, chosen: picked !== null };

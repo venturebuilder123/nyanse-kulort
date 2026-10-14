@@ -24,13 +24,13 @@ describe("resolveBrand", () => {
 
   it("picks the NYANSE voice from the ad (?s=gm|at), Atelier by default", () => {
     expect(resolveBrand({ host: "nyanse.nl", voiceParam: "gm" }).voice).toBe("girlmath");
-    expect(resolveBrand({ host: "nyanse.nl" }).voice).toBe("atelier");
+    expect(resolveBrand({ host: "nyanse.nl" }).voice).toBe("bosslady");
     expect(resolveBrand({ host: "nyanse.nl", voiceCookie: "girlmath" }).voice).toBe("girlmath");
   });
 
   it("never gives KULØRT a NYANSE voice", () => {
     expect(resolveBrand({ host: "kulort.nl", voiceParam: "gm" }).voice).toBe("wingman");
-    expect(resolveBrand({ host: "kulort.nl", voiceCookie: "atelier" }).voice).toBe("wingman");
+    expect(resolveBrand({ host: "kulort.nl", voiceCookie: "bosslady" }).voice).toBe("wingman");
   });
 
   it("is undecided on the shared domain until someone picks a brand", () => {
@@ -48,5 +48,11 @@ describe("resolveBrand", () => {
   it("knows the Signature voice (?s=sg) as NYANSE", () => {
     expect(resolveBrand({ host: "kulort-nyanse.com", voiceParam: "sg" })).toMatchObject({ brand: "nyanse", voice: "signature", chosen: true });
     expect(resolveBrand({ host: "kulort.nl", voiceParam: "sg" }).voice).toBe("wingman");
+  });
+
+  it("lets the age segment of an ad pick the voice", () => {
+    expect(resolveBrand({ host: "kulort.nl", segmentParam: "40" }).voice).toBe("director");
+    expect(resolveBrand({ host: "nyanse.nl", segmentParam: "jong" }).voice).toBe("girlmath");
+    expect(resolveBrand({ host: "nyanse.nl", segmentParam: "40", voiceParam: "bl" }).voice).toBe("bosslady");
   });
 });

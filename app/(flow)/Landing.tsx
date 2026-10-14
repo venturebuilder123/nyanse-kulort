@@ -13,12 +13,11 @@ import { invite } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
 import { switchUrl } from "@/lib/flow/switch";
 import { useBrand } from "./BrandProvider";
-import { Hero } from "./Hero";
 import { LandingSections } from "./LandingSections";
-import { AppBar, CheckIcon, Display, Footer, HouseMark, LockIcon, OccasionIcon } from "./ui";
+import { AppBar, CheckIcon, Display, Footer, HouseMark, OccasionIcon } from "./ui";
 
 export default function Landing() {
-  const { config, copy, ctx } = useBrand();
+  const { config, copy, ctx, segment } = useBrand();
   const rt = copy.retention;
   const router = useRouter();
   const [answers, setAnswers] = useState<Answers>(EMPTY);
@@ -126,10 +125,17 @@ export default function Landing() {
             <p className="eyebrow">{copy.landing.eyebrow}</p>
             <Display text={copy.landing.headline} />
             <p className="sub">{copy.landing.sub}</p>
-            {/* Pipeline A keeps the photo on the device, so this claim is true (CLAUDE.md §5). */}
-            <p className="trust-main"><LockIcon />{copy.landing.trustMain}</p>
           </div>
-          <div className="l-visual"><Hero /></div>
+          <figure className="l-visual l-photo">
+            <img
+              src={segment ? `/brand/editorial/${config.key}-${segment}-campagne-1.jpg` : copy.story.image}
+              alt={copy.story.imageAlt}
+              width={1200}
+              height={1490}
+              fetchPriority="high"
+            />
+            <figcaption>Beeld gemaakt met AI</figcaption>
+          </figure>
           <section className="l-tap q" aria-labelledby="occ-q">
             <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
             <div className="tiles">
