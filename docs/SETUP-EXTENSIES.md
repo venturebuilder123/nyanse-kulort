@@ -44,3 +44,22 @@ Een plugin, skill of MCP-server draait met **jouw rechten** in deze map. Hij kan
 > 9. Kost iets geld of moet er een account worden aangemaakt (zoals Higgsfield-credits): eerst vragen.
 >
 > Begin met stap 2 voor de eerste extensie en wacht dan op mijn GO.
+
+## SEO, SEA en social advertising (14 oktober)
+
+Alle drie werken als MCP-server: Claude leest dan je campagnecijfers rechtstreeks, in plaats van via geëxporteerde CSV's. Advies voor ons budget en onze fase:
+
+| Wat | Extensie | Officieel? | Kosten | Wanneer | Advies |
+|---|---|---|---|---|---|
+| **Social: Meta** (Instagram, Facebook, Reels) | Meta Ads MCP, gehost (`mcp.facebook.com/ads`), Business-OAuth | ja, open beta sinds 29 april 2026 | gratis (de advertenties zelf kosten geld) | zodra de eerste KULØRT-test draait | ✅ eerste keus: onze eerste test is Reels. Begin met alleen lezen; wijzigingen pas na jouw akkoord per actie |
+| **Social: TikTok** | getmcpads of AdsMCP (community) | nee | gratis, lokaal | later (Girl Math via creators) | ⚠️ eerst de code lezen; liefst de versie met alleen lezen |
+| **SEA: Google Ads** | Google Ads MCP (`googleads/google-ads-mcp`) | ja, alleen lezen | gratis; je hebt een developer-token en een Google Cloud-project nodig | als we gaan zoekadverteren ("kleuranalyse", "welke kleuren staan mij") | ✅ alleen lezen is precies goed. Campagnes zet je zelf in Google Ads |
+| **SEO: eigen data** | Google Search Console MCP (community, bijvoorbeeld `mcp-server-gsc`, met alleen leesrechten) | geen officiële server | gratis | zodra het domein live staat en in Search Console zit | ✅ de beste gratis bron: waarop we gevonden worden |
+| **SEO: zoekwoorden en concurrenten** | DataForSEO MCP (open source) | ja, van de leverancier | betalen per opvraging (centen) | bij het schrijven van landingspagina's en blog | ✅ past bij ons budget |
+| **SEO: alles in één** | Ahrefs- of Semrush-MCP | ja | vanaf ±€100–140 per maand | niet nu | ❌ te duur voor het budget van €1.000 |
+| **Analytics** | Google Analytics MCP (officieel, experimenteel) | ja | gratis | nee | ❌ wij gebruiken PostHog EU zonder cookies. GA4 vraagt een cookiebanner (CLAUDE.md §4) |
+
+**Spelregels voor advertentiekoppelingen (bovenop de masterprompt):**
+1. Eerst **alleen lezen**. Een advertentie aanmaken, het budget wijzigen of een campagne aanzetten gebeurt pas na jouw expliciete akkoord per actie, want dit kost geld.
+2. Elke advertentie krijgt UTM-parameters plus stem en segment (`?s=`, `?g=`), zodat de opbrengst per bezoeker per segment meetbaar is.
+3. Geen claims die niet gemeten zijn, geen onzekerheid als haakje en een AI-label op AI-beeld (CLAUDE.md §9 en §12). Laat Claude elke advertentietekst daarop toetsen.
