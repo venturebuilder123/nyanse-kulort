@@ -791,3 +791,9 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .known-strip { display: flex; height: 18px; border-radius: 4px; overflow: hidden; }
 .known-strip i { flex: 1; }
 .known-link { display: block; margin-top: 12px; text-align: center; font-weight: 700; font-size: 14px; }
+/* the split halves are photographs on light paper: never switch them to dark-mode text */
+.split-home .sh-half { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  .split-home .sh-half[data-brand="nyanse"] { --bg: #fbf7f6; --ink: #18161f; --muted: #5f5a6a; --accent: #c8285a; --accent-text: #a81e4b; --accent-ink: #fff; }
+  .split-home .sh-half[data-brand="kulort"] { --accent: #8a4a26; --accent-text: #d19a6e; --accent-ink: #fff; }
+}
