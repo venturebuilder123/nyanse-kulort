@@ -256,7 +256,6 @@ export default function Result() {
               );
             })}
           </div>
-          {low && <p className="small muted">{t.lowTiersNote}</p>}
           <p className="fine">{t.fine}</p>
         </section>
         )}

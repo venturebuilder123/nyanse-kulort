@@ -259,3 +259,32 @@ De rest plaats ik zelf, in het juiste formaat en gecomprimeerd.
 2. de nieuwe maison-homepage;
 3. de merkpagina's in de nieuwe huisstijl;
 4. de beelden geplaatst.
+
+---
+
+## 11. Outfit-sfeerfoto's per kleurtype (to-do, 14 oktober)
+
+**Doel:** per kleurtype twee complete, hippe outfits, één voor hem (KULØRT) en één voor haar (NYANSE), inclusief accessoires. Voor op het resultaat, in de stijlgids en in advertenties. 12 kleurtypen × 2 = **24 beelden**. Je noemde 9; dat zijn er minder dan we kleurtypen hebben. Wil je beginnen met één familie, neem dan eerst de 6 van Herfst en Winter: die komen in onze tests het meest voor.
+
+**Werkwijze:** een nieuwe chat "Outfits". Plak eerst de Masterbriefing (deel 1), daarna deze briefing, dan één prompt per keer.
+
+> Editorial flat-lay styling photography for a fashion house. One complete, current, stylish outfit laid out from above on warm ivory paper (#F6F2EC) or light oak, styled by a top stylist: garments neatly arranged as if worn (top above bottom, shoes at the foot), with 2–3 accessories. Real fabrics and textures, soft daylight from the top left, gentle shadows, generous negative space. The colours must match the hex values I give as closely as possible; the whole outfit stays within that palette, with neutrals allowed for shoes, belt and bag. No people, no hands, no text, no logos, no brand labels. Square 1:1. Reply "Ready".
+
+**Bestandsnaam:** `outfit-{merk}-{kleurtype}.jpg`, bijvoorbeeld `outfit-kulort-deepAutumn.jpg`. Zet ze in `assets/brand-originals/outfits/`.
+
+| Kleurtype | KULØRT (hem): `Outfit for a man, colours {hex}:` | NYANSE (haar): `Outfit for a woman, colours {hex}:` |
+|---|---|---|
+| **Light Spring** · #F3A27A #F4E3A1 #E8C468 #8FBF6A #A8DDBE | apricot linen shirt, sand chinos, white leather sneakers, light tan woven belt, round tortoiseshell sunglasses | butter-yellow knit top, mint wide linen trousers, peach mules, small gold hoops, raffia bag |
+| **Warm Spring** · #A6A04C #E58A5B #C79A5E #4E86C4 #2BB3A8 | cornflower-blue overshirt, camel trousers, salmon tee underneath, cognac suede loafers, gold watch | turquoise silk blouse, camel tailored trousers, salmon cardigan over the shoulders, tan sandals, gold chain necklace |
+| **Bright Spring** · #2F6FDE #E6194B #FF6F61 #00A86B #FF8C1A | bright blue knit polo, white trousers, jade-green bomber, white sneakers, tortoiseshell sunglasses | coral midi dress, bright blue blazer, white sneakers, poppy-red lipstick-tone clutch, gold earrings |
+| **Light Summer** · #F0B7C8 #AFC6E0 #A9D8CF #7FA8C9 #CFE5DD | powder-blue oxford shirt, light grey chinos, soft rose crewneck knit, white canvas sneakers, silver watch | powder-pink knit, sea-blue slip skirt, mint scarf, silver ballet flats, pearl studs |
+| **Cool Summer** · #5B7DB1 #4F8F8B #3E6E9C #6D6E8C #C25B86 | denim-blue shirt, grey-blue tailored trousers, teal knit tie, navy suede derbies, silver watch | raspberry silk blouse, denim-blue wide trousers, grey-blue trench, silver loafers, silver hoops |
+| **Soft Summer** · #7D8471 #5E6A7A #9A8F8A #A6879C #4F6886 | slate-grey overshirt, sage knit, cool taupe trousers, grey suede chelsea boots, brushed silver watch | mauve cashmere sweater, slate pleated midi skirt, soft taupe coat, grey suede loafers, pewter pendant |
+| **Soft Autumn** · #3F6A6A #6B4B38 #7A7449 #A89A72 #B9926B | soft teal knit, khaki chinos, camel suede jacket, tobacco suede desert boots, brown leather belt | olive wrap blouse, khaki wide trousers, camel coat, warm salmon silk scarf, cognac loafers, gold bangle |
+| **Warm Autumn** · #2E6B5E #556B2F #A0522D #8B4513 #E0A96D | olive field jacket, petrol-green knit, light camel chinos, cognac leather boots, cognac belt | rust-brown knit dress, olive trench, cognac knee boots, light camel bag, gold chain |
+| **Deep Autumn** · #6E1F2A #2F4F3A #4E3022 #1F5C63 #5B5A2E | burgundy knit, forest-green corduroy trousers, chocolate suede jacket, dark brown leather boots, gold watch | burgundy silk blouse, chocolate leather midi skirt, forest-green coat, dark brown boots, gold earrings |
+| **Deep Winter** · #3A2A6B #1B2A5C #0B6B4F #9E0F35 #1E50B4 | navy suit jacket, deep emerald roll-neck, black-navy trousers, black leather derbies, silver watch | deep emerald silk blouse, ink-blue tailored trousers, ruby clutch, black pointed pumps, silver drop earrings |
+| **Cool Winter** · #0E4C92 #009B77 #B0103A #6A2C91 #3A3D45 | royal navy blazer, crisp white shirt, wine-red knit tie, charcoal trousers, black chelsea boots | emerald knit, charcoal pencil skirt, royal navy coat, wine-red bag, silver jewellery |
+| **Bright Winter** · #DC143C #7B2CBF #0047AB #00A693 #2E3A87 | cobalt-blue knit, black slim trousers, white sneakers, crimson scarf, silver watch | crimson blazer, black wide trousers, bright white tee, cobalt bag, silver statement earrings |
+
+**Controle:** houd elk beeld naast de hexwaarden. Een kleur die zichtbaar afwijkt corrigeer je met correctie 9.2. Daarna verwerk ik de beelden met het script en koppel ik ze per kleurtype.
