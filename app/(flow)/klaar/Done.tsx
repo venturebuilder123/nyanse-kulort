@@ -22,7 +22,7 @@ function DeliveryMail() {
   useEffect(() => {
     try {
       const known = JSON.parse(sessionStorage.getItem("nk_email") ?? "null") as { email?: string } | null;
-      if (known?.email) setMail(known.email);
+      if (known?.email) { setMail(known.email); setSaved(true); }
     } catch {}
   }, []);
   return saved ? (
@@ -53,24 +53,31 @@ function DeliveryMail() {
 export default function Done() {
   const [status, setStatus] = useState<Status>("open");
   const [card, setCard] = useState(false);
+  const [tier, setTier] = useState<string | null>(null);
+  const [order, setOrder] = useState<string | null>(null);
   useEffect(() => {
     const q = new URLSearchParams(location.search);
     const st = (q.get("status") as Status) ?? "open";
     setStatus(st);
     // TODO(payments): only after the server has confirmed the order
     if (st === "paid") flowSession.update({ paid: true });
-    setCard(q.get("tier") === "card");
+    setCard(q.get("tier") === "card" || q.get("tier") === "session");
+    setTier(q.get("tier"));
+    const o = q.get("order");
+    setOrder(o && /^KN-[A-Z2-9]{6}$/.test(o) ? o : null);
   }, []);
 
   return (
     <main className="screen">
-      <AppBar pill={status === "paid" ? "Betaald" : "Betaling"} />
+      <AppBar pill={status === "paid" ? (order ? "Besteld" : "Betaald") : "Betaling"} />
       <div className="pad done-page">
         {status === "paid" && (
           <>
             <div className="done-pass"><MiniPass /></div>
-            <h1 className="disp sm">Gelukt. Je gids staat klaar.</h1>
-            {card && <p className="sub">Je kleurenpas gaat {nextBatch()} op de post. Je krijgt een mail als hij onderweg is.</p>}
+            <h1 className="disp sm">{order ? "Dank je wel. Je gids staat klaar." : "Gelukt. Je gids staat klaar."}</h1>
+            {order && <p className="small muted">Bestelnummer {order}</p>}
+            {card && <p className="sub">Zodra je overschrijving binnen is, gaat je kleurenpas op de post (de eerstvolgende is {nextBatch()}). Je krijgt een mail als hij onderweg is.</p>}
+            {tier === "session" && <p className="sub">We mailen je binnen twee werkdagen om je persoonlijke sessie in te plannen.</p>}
             <Link className="btn" href="/gids">Open mijn stijlgids</Link>
             <DeliveryMail />
             <p className="small muted">Tip: zet deze pagina op je beginscherm via Delen › Zet op beginscherm.</p>

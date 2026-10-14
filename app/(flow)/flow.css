@@ -912,3 +912,14 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .contact-list div { padding: 16px 0; border-top: 1px solid var(--line); }
 .contact-list b { font-family: var(--f-display); font-weight: 400; font-size: 20px; }
 .contact-list p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+
+/* bank-transfer checkout */
+.sheet-math { padding: 16px 20px 0; }
+.pay-qr { margin: 0; display: grid; justify-items: center; gap: 6px; }
+.pay-qr img { width: 220px; height: 220px; image-rendering: pixelated; box-shadow: inset 0 0 0 1px var(--line); }
+.pay-qr figcaption { font-size: 12.5px; color: var(--muted); text-align: center; }
+.pay-lines { margin: 0; display: grid; }
+.pay-lines div { display: grid; grid-template-columns: 70px 1fr auto; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.pay-lines dt { font-size: 12px; color: var(--muted); }
+.pay-lines dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 15px; }
+.pay-lines .link-btn { width: auto; font-size: 13px; }

@@ -25,6 +25,7 @@ import type { SeasonKey } from "@/lib/color/seasons";
 import { loadAnswers } from "@/lib/flow/answers";
 import { buildGuide } from "@/lib/guide/build";
 import { FlatLay } from "../Flats";
+import { Checkout } from "./Checkout";
 import { Deck } from "./Deck";
 import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
@@ -306,42 +307,9 @@ export default function Result() {
 
       <dialog ref={dialog} className="sheet" aria-label="Afrekenen" onClick={(e) => { if (e.target === dialog.current) dialog.current?.close(); }}>
         {tier && (
-          <div className="sheet-body">
-            <div className="grab" />
-            <div className="line"><span>{t.tiers[tier].name}</span><b>{euro(PRICES[tier])}</b></div>
-            {ref && (
-              <div className="line discount"><span>{copy.retention.friendLine} · {ref.code}</span><b>−{euro(FRIEND_DISCOUNT)}</b></div>
-            )}
-            {tier !== "digital" && mathLine(tier) && <p className="tier-math">{mathLine(tier)}</p>}
-            {tier !== "digital" && (
-              <>
-                <div className="line muted"><span>{t.checkout.shipping}</span><span>{t.checkout.shippingWhen}</span></div>
-                <fieldset className="address">
-                  <legend>{t.checkout.address}</legend>
-                  <input autoComplete="name" placeholder={t.checkout.name} aria-label={t.checkout.name} />
-                  <input autoComplete="address-line1" placeholder={t.checkout.street} aria-label={t.checkout.street} />
-                  <div className="row-inline">
-                    <input autoComplete="postal-code" placeholder={t.checkout.postcode} aria-label={t.checkout.postcode} />
-                    <input autoComplete="address-level2" placeholder={t.checkout.city} aria-label={t.checkout.city} />
-                  </div>
-                  <select value={country} onChange={(e) => setCountry(e.target.value)} aria-label={t.checkout.country}>
-                    <option value="NL">Nederland</option>
-                    <option value="BE">België</option>
-                    <option value="DE">Duitsland</option>
-                    <option value="other">Ander land</option>
-                  </select>
-                  {country === "other" && <p className="small warn-text">{t.checkout.countryNote}</p>}
-                </fieldset>
-              </>
-            )}
-            <label className="check">
-              <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
-              <span>{t.checkout.withdrawal}</span>
-            </label>
-            <button className="btn" disabled>{t.checkout.pay} · {euro(pay(tier))}</button>
-            <p className="notice">{t.checkout.test}</p>
-            <button className="link-btn" onClick={() => dialog.current?.close()}>{t.checkout.close}</button>
-          </div>
+          <>
+            <Checkout key={tier} tier={tier} season={p.match.season} friendCode={ref?.code} note={mathLine(tier)} onClose={() => dialog.current?.close()} />
+          </>
         )}
       </dialog>
     </main>

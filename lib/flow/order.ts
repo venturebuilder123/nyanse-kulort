@@ -1,0 +1,47 @@
+// Validates an order from the checkout. Only known fields, sane lengths; the amount is computed
+// here, never taken from the browser.
+
+import { BRANDS, VOICES } from "@/lib/brand/config";
+import type { BrandKey, VoiceKey } from "@/lib/brand/types";
+import { SEASONS } from "@/lib/color/seasons";
+import { amountFor } from "./payment";
+import type { Tier } from "./pricing";
+import { parseReferral } from "./referral";
+
+export type OrderRow = {
+  ref: string; tier: Tier; amount_cents: number; brand: BrandKey; voice: VoiceKey | null; season: string | null;
+  email: string; name: string | null; street: string | null; postcode: string | null; city: string | null;
+  country: "NL" | "BE" | "DE" | null; friend_code: string | null; waiver: boolean;
+};
+
+const str = (v: unknown, max: number) => (typeof v === "string" && v.trim().length > 0 && v.trim().length <= max ? v.trim() : null);
+
+export function parseOrder(body: unknown): OrderRow | null {
+  const b = (body ?? {}) as Record<string, unknown>;
+  const ref = str(b.ref, 9);
+  const tier = b.tier as Tier;
+  const brand = b.brand as BrandKey;
+  const email = str(b.email, 200);
+  if (!ref || !/^KN-[A-HJ-NP-Z2-9]{6}$/.test(ref)) return null;
+  if (!["digital", "card", "session"].includes(tier)) return null;
+  if (!(brand in BRANDS) || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return null;
+  const voice = typeof b.voice === "string" && b.voice in VOICES ? (b.voice as VoiceKey) : null;
+  const season = typeof b.season === "string" && b.season in SEASONS ? b.season : null;
+  const friend = parseReferral(typeof b.friendCode === "string" ? b.friendCode : null);
+  const country = ["NL", "BE", "DE"].includes(b.country as string) ? (b.country as "NL" | "BE" | "DE") : null;
+  const physical = tier !== "digital";
+  const row: OrderRow = {
+    ref, tier, brand, voice, season, email,
+    amount_cents: Math.round(amountFor(tier, !!friend) * 100),
+    name: physical ? str(b.name, 120) : null,
+    street: physical ? str(b.street, 160) : null,
+    postcode: physical ? str(b.postcode, 16) : null,
+    city: physical ? str(b.city, 80) : null,
+    country: physical ? country : null,
+    friend_code: friend?.code ?? null,
+    waiver: b.waiver === true,
+  };
+  // the colour card needs a full address in NL, BE or DE
+  if (physical && (!row.name || !row.street || !row.postcode || !row.city || !row.country)) return null;
+  return row;
+}

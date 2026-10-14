@@ -2,6 +2,23 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — betalen per bankoverschrijving (pilot, NL)
+
+- **Betaling** naar de zakelijke rekening van de oprichter: **Basic Element, NL24 RABO 3152 4583 98**. De oprichter geeft dit op als inkomen uit overig werk.
+- **Flow:**
+  1. Je kiest een optie.
+  2. Je vult je e-mail in (plus adres bij pas of sessie) en vinkt het herroepingsrecht aan.
+  3. De bestelling wordt opgeslagen (Supabase `orders`, met een uniek kenmerk `KN-XXXXXX`).
+  4. Je ziet een betaal-QR (EPC/GiroCode, voor bank-apps die die ondersteunen) plus IBAN, bedrag en kenmerk met kopieerknoppen.
+  5. Na "Ik heb betaald" opent de stijlgids meteen. De pas verstuurt de oprichter pas na controle van de betaling; voor de sessie mailt hij binnen twee werkdagen.
+- **Het bedrag rekent de server zelf uit** (inclusief €1 vriendenkorting bij een geldige code).
+- **Grenzen:**
+  - Een site zonder betaaldienst kan in NL de bank-app niet direct openen met het bedrag erin.
+  - De betaling wordt niet automatisch gecontroleerd: de oprichter koppelt overschrijvingen op kenmerk en zet de status in Supabase op `paid` of `shipped`.
+  - Een digitale gids kan zonder betaling worden geopend (op vertrouwen). Dat risico is acceptabel voor de pilot.
+- **Nodig:** migratie `0004_orders.sql` in Supabase.
+- **Nog open:** KvK- of bedrijfsgegevens in de footer en de algemene voorwaarden (webshopverplichting). Later Mollie of Tikkie Zakelijk voor automatische bevestiging.
+
 ## 14 oktober 2026 — feedbackronde: flow, resultaat, drie opties, geen AI-vermelding
 
 - **Flow:**
