@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — één merk, altijd ivoor, de drapeerspiegel
+
+- **Eén merk:** KULØRT · NYANSE is één huis. Bovenaan elke pagina staat "KULØRT | NYANSE", met het actieve merk in inkt; een tik gaat terug naar de keuze.
+- **Altijd ivoor met donkere tekst**, ook als het toestel in donkere modus staat; ook de onthulling.
+- **De boodschap:** het gaat om wat het brengt, niet om "een kleur". De maison kreeg "Een kast waarin alles samengaat. Geen miskopen meer. Elke ochtend zeker. Een eerste indruk die klopt."
+- **De galerij met vier gesneden gezichten is vervangen door de drapeerspiegel:** één model; zes kleuren uit het palet en twee om te laten hangen, waarbij een tik het doek verandert; modellen van het eigen leeftijdssegment.
+- **Geen "op naam" meer in de teksten,** wel "je persoonlijke stijlgids". De fysieke pas wordt per seizoen gedrukt (24 ontwerpen), niet per persoon.
+
 ## 14 oktober 2026 — Nordic-prototype samengevoegd: ontwerpsysteem en homepage
 
 - **Bron:** het Nordic-prototype van de oprichter (nu in `assets/inspiratie/nordic/`, niet in git), beoordeeld door een art director en een UX-designer. Zij concludeerden: Nordic heeft het betere ontwerpsysteem, wij de betere funnel en motor.

@@ -125,9 +125,7 @@ Twee merken onder één dak, zoals een modehuis met een herenlijn en een damesco
 
 **De kleuren van de klant zijn de held.** Onze eigen huisstijl is neutraal, zodat de persoonlijke kleuren (waaier, kaarten, kleding) knallen. Merkaccenten nooit naast persoonlijke kleuren als vlak.
 
-**Donkere modus:**
-- papier wordt `#141312`, inkt wordt `#F3EEE8`, accenten worden lichter (cognac `#D19A6E`, lippenstift `#E07A9A`);
-- **beeldvlakken (foto's) houden altijd hun lichte tekstkleuren** (les van 14 oktober).
+**Altijd ivoor** (besluit 14 oktober): de site volgt de donkere modus van het toestel niet. Papier met donkere tekst en knoppen in inkt, overal; ook de onthulling staat op papier.
 
 ### 5.3 Typografie (vastgesteld 14 oktober, advies van de art director)
 
