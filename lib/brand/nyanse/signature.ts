@@ -38,7 +38,7 @@ export const signature: VoiceCopy = {
     headline: ["Kleuren die passen bij", "wie je nu bent."],
     sub: "Je haar, je huid en je smaak veranderen mee. Eén selfie laat zien welke kleuren je nu het mooist staan.",
     trustMain: "Je foto verlaat je telefoon niet",
-    occasionQuestion: "Waar wil je er goed uitzien?",
+    occasionQuestion: "Waar wil je er goed uitzien? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Soft Summer), 6 kleuren die je laten stralen en wat je beter vermijdt." },
     paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden, tassen en make-uptinten bij je passen." },

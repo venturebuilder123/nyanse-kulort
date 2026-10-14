@@ -331,7 +331,10 @@ export default function Selfie() {
           </section>
         )}
         {mode === "intro" && <p className="small muted center">{t.under16}</p>}
-        <p className="trust-main"><LockIcon />{t.trust}</p>
+        <div className="privacy-note">
+          <p className="trust-main"><LockIcon />{t.trust}</p>
+          <p>De analyse draait op je eigen telefoon. Wij ontvangen je foto niet, bewaren hem niet en delen hem met niemand. Je profiel bestaat alleen uit getallen en verwijder je met één tik. <a href="/privacy">Privacyverklaring</a></p>
+        </div>
       </div>
     </main>
   );

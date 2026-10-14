@@ -2,6 +2,40 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 14 oktober 2026 — feedbackronde: flow, resultaat, drie opties, geen AI-vermelding
+
+- **Flow:**
+  - meerdere gelegenheden kiezen en dan "Verder";
+  - "Ken je je kleurtype al? Kies het en ga direct naar je stijlgids";
+  - bij Stijl is "Sla over" vervangen door "Ik ken mijn kleurprofiel al";
+  - bij de selfie staat een privacytekst met link;
+  - **e-mail pas na het resultaat:** op de resultaatpagina (rustig, met een opt-in die niet vooraf is aangevinkt) en na betaling ("Waar sturen we je stijlgids heen?").
+- **Resultaat:**
+  - seizoen en precies kleurtype elk met een eigen label, een pakkende zin, een langere uitleg en de schalen bovenaan;
+  - "Je eerste 6 kleuren, van ons cadeau"; de tekst met Google is weg;
+  - het tweede voor/na-blok is weg.
+- **Bekende namen ("vaak genoemd als"):** het blok staat klaar in `lib/brand/seasons-copy.ts`, maar is **leeg**. Lijsten per subtype zijn online niet betrouwbaar (er bestaan alleen lijsten per hoofdseizoen, en analisten spreken elkaar tegen). Invullen alleen met namen die een kleurconsultant bevestigt.
+- **Drie opties:**
+  - Stijlgids €6,99;
+  - Stijlgids + kleurenpas €9,99 (aanrader);
+  - **Persoonlijke sessie €89:** gids + pas + 45 minuten online via Teams met een kleurconsultant. Dit is een echt product; de capaciteit bepaalt de oprichter.
+  - "Meest gekozen" is niet gebruikt, want er zijn nog geen kopers.
+- **Girl Math in de NYANSE-checkout:** echte sommen met een knipoog (€0,23 per kleur), geen geldbelofte.
+- **AI-vermelding: nergens meer** (besluit van de oprichter, met het risico bij de oprichter).
+  - De knop heet nu "Start mijn kleuranalyse".
+  - Risico: de EU AI Act (art. 50, transparantie bij realistische gegenereerde beelden) en de ACM (een gegenereerd voor/na-beeld als bewijs).
+  - Beperking: het voor/na-beeld heeft een neutraal onderschrift en claimt niet "zelfde persoon, zelfde licht".
+  - Opnieuw bekijken vóór de livegang en vóór advertenties (Meta/TikTok kunnen een label eisen).
+- **Kleding:**
+  - strakker uitgesneden;
+  - geen accessoire in de KULØRT-looks;
+  - NYANSE-voorbeeld: top, rok, loafers en sjaal.
+- **Maison:**
+  - het huislogo op de muur van de atelierfoto en op de pas;
+  - drie subseizoenen onder elk hoofdseizoen;
+  - de AI-regel in de footer is weg.
+- **Contactpagina** (`/contact`, mail nyansekulort@gmail.com) en een link in elke footer. KvK-gegevens volgen na de inschrijving.
+
 ## 14 oktober 2026 — overhaul: stemmen per leeftijd, echte mensen, echte kleding
 
 - **Stemmen:**

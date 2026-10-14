@@ -61,7 +61,7 @@ export default function Analyse() {
   const goOn = () => {
     if (leaving.current) return;
     leaving.current = true;
-    router.replace("/email");
+    router.replace("/resultaat"); // e-mail comes later: on the result and after payment
   };
 
   // Both questions answered and the drapes finished: continue without an extra tap.

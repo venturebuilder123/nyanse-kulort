@@ -126,6 +126,7 @@ export function LockIcon() {
 export function Footer() {
   return (
     <footer className="foot">
+      <Link href="/contact">Contact</Link>
       <Link href="/privacy">Privacy</Link>
       <span>Prijzen inclusief btw</span>
     </footer>

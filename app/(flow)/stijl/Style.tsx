@@ -70,8 +70,8 @@ export default function Style() {
         >
           {copy.style.next}
         </button>
-        <button className="link-btn" onClick={() => { track("style_done", ctx, { skipped: true }); router.push("/selfie"); }}>
-          {copy.style.skip}
+        <button className="link-btn" onClick={() => router.push("/type")}>
+          Ik ken mijn kleurprofiel al
         </button>
       </div>
     </main>

@@ -7,22 +7,22 @@
     },
     "blazer": {
       "src": "/brand/garments/kulort-blazer.webp",
-      "w": 648,
+      "w": 647,
       "h": 720
     },
     "shirt": {
       "src": "/brand/garments/kulort-blouse.webp",
-      "w": 607,
+      "w": 606,
       "h": 720
     },
     "pants": {
       "src": "/brand/garments/kulort-chino.webp",
-      "w": 400,
+      "w": 398,
       "h": 720
     },
     "knit": {
       "src": "/brand/garments/kulort-crewneck.webp",
-      "w": 668,
+      "w": 669,
       "h": 720
     },
     "shoe": {
@@ -32,29 +32,29 @@
     },
     "jeans": {
       "src": "/brand/garments/kulort-jeans.webp",
-      "w": 422,
+      "w": 421,
       "h": 720
     },
     "overshirt": {
       "src": "/brand/garments/kulort-overshirt.webp",
-      "w": 675,
+      "w": 674,
       "h": 720
     },
     "sneaker": {
       "src": "/brand/garments/kulort-sneakers.webp",
-      "w": 502,
+      "w": 501,
       "h": 720
     }
   },
   "nyanse": {
     "bag": {
       "src": "/brand/garments/nyanse-bag.webp",
-      "w": 629,
+      "w": 630,
       "h": 720
     },
     "blazer": {
       "src": "/brand/garments/nyanse-blazer.webp",
-      "w": 605,
+      "w": 606,
       "h": 720
     },
     "blouse": {
@@ -64,17 +64,17 @@
     },
     "knit": {
       "src": "/brand/garments/nyanse-crewneck.webp",
-      "w": 670,
+      "w": 668,
       "h": 720
     },
     "jeans": {
       "src": "/brand/garments/nyanse-jeans.webp",
-      "w": 409,
+      "w": 408,
       "h": 720
     },
     "shoe": {
       "src": "/brand/garments/nyanse-loafers.webp",
-      "w": 506,
+      "w": 505,
       "h": 720
     },
     "top": {
@@ -89,7 +89,7 @@
     },
     "skirt": {
       "src": "/brand/garments/nyanse-skirt.webp",
-      "w": 595,
+      "w": 594,
       "h": 720
     },
     "sneaker": {
@@ -99,7 +99,7 @@
     },
     "wide": {
       "src": "/brand/garments/nyanse-trousers.webp",
-      "w": 434,
+      "w": 432,
       "h": 720
     },
     "tee": {

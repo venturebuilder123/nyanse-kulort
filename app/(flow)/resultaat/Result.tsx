@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SEASON_TEXT_NL } from "@/lib/brand/common";
+import { OFTEN_NAMED, SEASON_STORY } from "@/lib/brand/seasons-copy";
 import { SEASONS } from "@/lib/color/seasons";
 import type { WhyBlock } from "@/lib/brand/types";
 import { clarityWord, depthWord, familyOf, undertoneWord } from "@/lib/color/describe";
@@ -48,6 +48,7 @@ export default function Result() {
   const [hasEmail, setHasEmail] = useState(true);
   const [mail, setMail] = useState("");
   const [mailSaved, setMailSaved] = useState<string | null>(null);
+  const [mailOptin, setMailOptin] = useState(false); // never pre-checked
   const router = useRouter();
 
   useEffect(() => {
@@ -84,7 +85,13 @@ export default function Result() {
   // friend code from the invite link: €1 off, checked again server-side at payment (CLAUDE.md §2)
   const [ref, setRef] = useState<ReturnType<typeof invite.get>>(null);
   useEffect(() => setRef(invite.get()), []);
-  const pay = (k: "card" | "digital") => PRICES[k] - (ref ? FRIEND_DISCOUNT : 0);
+  const pay = (k: Tier) => PRICES[k] - (ref ? FRIEND_DISCOUNT : 0);
+  // NYANSE checkout speaks Girl Math: true sums with a wink, never a money promise (BRANDBOOK §4)
+  const mathLine = (k: Tier) =>
+    config.key !== "nyanse" ? null
+    : k === "digital" ? `Girl math: ${euro(PRICES.digital)} voor 30 kleuren = ${euro(PRICES.digital / 30)} per kleur.`
+    : k === "card" ? `Girl math: ${euro(PRICES.card - PRICES.digital)} extra voor een pas die altijd mee shopt. Dat telt nauwelijks.`
+    : `Girl math: 45 minuten advies, daarna met zekerheid de paskamer in.`;
 
   const pal = useMemo(() => (r ? paletteFor(r.profile, config.key) : null), [r, config.key]);
   if (!loaded) return <main className="screen" />;
@@ -123,14 +130,21 @@ export default function Result() {
     <main className="screen">
       <AppBar />
       <Reveal
-        kicker={r.declared ? `${t.label} · eigen opgave` : t.label}
+        kicker={r.declared ? "Eigen opgave" : ""}
         provisional={low ? t.provisional : undefined}
         family={family}
         typeLabel={t.typeLabel}
         season={SEASONS[p.match.season].name}
         between={p.match.border ? t.between.replace("{b}", SEASONS[p.match.second].name) : undefined}
         next={t.next}
-        text={SEASON_TEXT_NL[p.match.season]}
+        line={SEASON_STORY[p.match.season].line}
+        text={SEASON_STORY[p.match.season].text}
+        scales={[
+          { label: copy.analysis.scales.undertone, word: undertoneWord(p.undertone), value: (p.undertone + 1) / 2, left: "koel", right: "warm" },
+          { label: copy.analysis.scales.depth, word: depthWord(p.depth), value: p.depth, left: "licht", right: "diep" },
+          { label: copy.analysis.scales.clarity, word: clarityWord(p.clarity), value: p.clarity, left: "zacht", right: "helder" },
+        ]}
+        named={OFTEN_NAMED[p.match.season]}
         fan={g.summary.core}
         glow={glow}
       />
@@ -159,31 +173,8 @@ export default function Result() {
           </div>
         )}
 
-        {(() => {
-          // the effect on someone from the same colour family (AI model, labelled)
-          const model = [...peopleFor(config.key, segment), ...PEOPLE[config.key]].find((m) => familyOf(m.season as SeasonKey) === family);
-          if (!model) return null;
-          return (
-            <section className="q">
-              <h2 className="eyebrow-h">Ook een {family}</h2>
-              <figure className="split">
-                <div className="split-frame">
-                  <Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.good} fit={{ w: 0.4, cy: 0.38 }} />
-                  <div className="split-left"><Drape photo={model.src} face={{ ...model.face, mirrored: false }} color={model.bad} fit={{ w: 0.4, cy: 0.38 }} /></div>
-                  <span className="split-line" aria-hidden="true" />
-                </div>
-                <figcaption>
-                  <span className="bad">✕ {nameForHex(model.bad, config.key)}</span>
-                  <span className="good">✓ {nameForHex(model.good, config.key)}</span>
-                </figcaption>
-              </figure>
-              <p className="ai-label">Voorbeeld · AI-model uit dezelfde kleurfamilie, kleuren gekozen door onze analyse</p>
-            </section>
-          );
-        })()}
-
         <section className="q deck-sec">
-          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : `${six.length} van je 30 kleuren`}</h2>
+          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : "Je eerste 6 kleuren, van ons cadeau"}</h2>
           {!r.paid && <p className="deck-lede">{t.lockedWhy}</p>}
           <Deck
             cards={g.groups.flatMap((gr) => gr.colors).map((c) => ({ hex: c.hex, name: c.name, open: openHex.has(c.hex) }))}
@@ -242,7 +233,7 @@ export default function Result() {
         <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
           <h2 id="tiers-h" className="eyebrow-h">{t.tiersTitle}</h2>
           <div className="tiers">
-            {(["card", "digital"] as const).map((k) => {
+            {(["digital", "card", "session"] as const).map((k) => {
               const tt = t.tiers[k];
               return (
                 <div key={k} className={`tier${k === "card" ? " is-rec" : ""}`}>
@@ -257,8 +248,9 @@ export default function Result() {
                   <span className="tier-line">{tt.line}</span>
                   {"note" in tt && <span className="tier-note">{tt.note}</span>}
                   <ul>{tt.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                  {mathLine(k) && <span className="tier-math">{mathLine(k)}</span>}
                   <button className={`btn${k === "card" ? "" : " btn-ghost"}`} onClick={() => buy(k)}>
-                    {(k === "card" ? t.buyCard : t.buyDigital).replace("{price}", euro(pay(k)))}
+                    {(k === "card" ? t.buyCard : k === "session" ? t.buySession : t.buyDigital).replace("{price}", euro(pay(k)))}
                   </button>
                 </div>
               );
@@ -284,7 +276,7 @@ export default function Result() {
                   if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v)) return;
                   // TODO(phase B): Brevo double opt-in. Until then the address stays on this device.
                   try {
-                    sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin: false }));
+                    sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin: mailOptin }));
                   } catch {}
                   track("email_submit", ctx, { from: "result" });
                   setMailSaved(v);
@@ -292,19 +284,15 @@ export default function Result() {
               >
                 <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder={copy.email.placeholder} value={mail} onChange={(e) => setMail(e.target.value)} aria-label={t.mailTitle} />
                 <button className="link-btn mail-send" type="submit">{t.mailCta} →</button>
+                <label className="check mail-optin">
+                  <input type="checkbox" checked={mailOptin} onChange={(e) => setMailOptin(e.target.checked)} />
+                  <span>{copy.email.optin}</span>
+                </label>
               </form>
             )}
           </section>
         )}
 
-        <details className="q scales-fold">
-          <summary className="eyebrow-h">{t.scalesTitle}</summary>
-          <div className="r-scales">
-            <ScaleBar label={copy.analysis.scales.undertone} word={undertoneWord(p.undertone)} value={(p.undertone + 1) / 2} left="koel" right="warm" />
-            <ScaleBar label={copy.analysis.scales.depth} word={depthWord(p.depth)} value={p.depth} left="licht" right="diep" />
-            <ScaleBar label={copy.analysis.scales.clarity} word={clarityWord(p.clarity)} value={p.clarity} left="zacht" right="helder" />
-          </div>
-        </details>
 
         <button className="link-btn delete-link" onClick={() => { void forgetMe().then(() => router.replace("/")); }}>{t.deleteProfile}</button>
       </div>
@@ -325,7 +313,8 @@ export default function Result() {
             {ref && (
               <div className="line discount"><span>{copy.retention.friendLine} · {ref.code}</span><b>−{euro(FRIEND_DISCOUNT)}</b></div>
             )}
-            {tier === "card" && (
+            {tier !== "digital" && mathLine(tier) && <p className="tier-math">{mathLine(tier)}</p>}
+            {tier !== "digital" && (
               <>
                 <div className="line muted"><span>{t.checkout.shipping}</span><span>{t.checkout.shippingWhen}</span></div>
                 <fieldset className="address">

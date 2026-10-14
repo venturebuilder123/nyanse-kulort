@@ -5,7 +5,7 @@ const SELFIE_BASE: SelfieCopy = {
   pill: "Gratis",
   intro: "Eén selfie, bij daglicht",
   // auto-capture means many never see the button text, so the AI notice sits here too (AI Act)
-  introText: "De AI-kleuranalyse draait op je telefoon. Kijk recht in de camera, bij daglicht, zonder filter of bril.",
+  introText: "De kleuranalyse draait op je telefoon. Kijk recht in de camera, bij daglicht, zonder filter of bril.",
   under16: "Jonger dan 16? Dan kun je dit nog niet doen.",
   // one tap = the 16+ confirmation and the context for the camera permission prompt
   startCamera: "Ik ben 16+ · camera aan",
@@ -33,7 +33,7 @@ const SELFIE_BASE: SelfieCopy = {
   desktopText: "Scan de code met je telefooncamera. Je antwoorden gaan mee.",
   hint: "Daglicht, geen filter, bril af",
   age: "Ik ben 16 jaar of ouder",
-  start: "Start AI-kleuranalyse",
+  start: "Start mijn kleuranalyse",
   busy: "Even kijken…",
   loading: "Camera starten…",
   trust: "Je foto verlaat je telefoon niet",
@@ -110,25 +110,32 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
   lowConfidence: "Je foto was lastig te lezen, dus dit is een voorlopig profiel. Met een selfie bij daglicht wordt het preciezer.",
   lowConfidenceCta: "Nog een selfie",
   lockedTitle: "Wat de gids je extra geeft",
-  lockedWhy: "Je kleurtype vind je ook op Google. Welke 30 kleuren precies bij jóu passen, en hoe je ze combineert, niet.",
-  tiersTitle: "Kies je gids",
+  lockedWhy: "Je volledige palet telt 30 kleuren. De eerste 6 krijg je van ons. De andere 24, met namen en hoe je ze combineert, zitten in je stijlgids.",
+  tiersTitle: "Kies je stijlgids",
   tiers: {
+    digital: {
+      name: "Stijlgids",
+      line: "Direct op je telefoon en als PDF",
+      features: ["Al je 30 kleuren met namen", "4 looks en een capsule van 12 stuks", "Metaal, leer en wat je laat hangen"],
+    },
     card: {
-      name: "Gids + kleurenpas",
+      name: "Stijlgids + kleurenpas",
       badge: "Aanrader",
       line: "Je kleuren altijd bij je, ook in de paskamer",
       note: "Gratis verzonden naar NL, BE en DE, binnen ±1 week",
-      features: ["Alles uit de digitale gids", "Stevige pas met je 8 kernkleuren, voor in je portemonnee"],
+      features: ["Alles uit de stijlgids", "Stevige pas met je 8 kernkleuren, voor in je portemonnee"],
     },
-    digital: {
-      name: "Digitale gids",
-      line: "Direct op je telefoon",
-      features: ["Alle 30 kleuren met namen, in basis-, accent- en neutrale kleuren", "Combinaties die werken en wat je beter laat hangen", "Je persoonlijke stijlgids als PDF en een digitale pas op je telefoon"],
+    session: {
+      name: "Persoonlijke sessie",
+      line: "45 minuten online met een kleurconsultant",
+      note: "Via Teams, op een moment dat jou past",
+      features: ["Alles uit stijlgids + kleurenpas", "Je kleuren samen nagelopen, met doeken", "Advies over je eigen kast en je vragen"],
     },
   },
   ctaChoose: "Kies je gids",
-  buyCard: "Kies gids + kleurenpas · {price}",
-  buyDigital: "Kies digitale gids · {price}",
+  buyCard: "Kies stijlgids + pas · {price}",
+  buyDigital: "Kies stijlgids · {price}",
+  buySession: "Plan mijn sessie · {price}",
   ctaFrom: "Bekijk je gids · vanaf {price}",
   mailLater: "Nog even nadenken? Mail mij mijn profiel",
   next: "Hieronder: je kleuren, je look en wat je beter laat hangen",
@@ -189,12 +196,12 @@ type Page = import("./types").VoiceCopy["page"];
 
 /** Sections shared by all voices; the voice files override titles where their tone differs. */
 export const pageNl = (o: { galleryTitle: Page["gallery"]["title"]; howTitle: Page["how"]["title"]; compareTitle: Page["compare"]["title"]; finalTitle: Page["final"]["title"]; accessories: string; trustTitle: Page["trust"]["title"] }): Page => ({
-  nav: { how: "Hoe het werkt", prices: "Gratis of gids", start: "Begin gratis" },
+  nav: { how: "Hoe het werkt", prices: "De waarde voor jou", start: "Begin gratis" },
   gallery: { title: o.galleryTitle, text: "Dezelfde foto, alleen een ander kleurdoek eronder. Precies wat de app met jouw selfie doet." },
   how: {
     title: o.howTitle,
     steps: [
-      ["Eén selfie", "Bij daglicht, op je telefoon. De AI-kleuranalyse draait op je toestel; je foto gaat nergens heen."],
+      ["Eén selfie", "Bij daglicht, op je telefoon. De analyse draait op je toestel; je foto gaat nergens heen."],
       ["Je kleurprofiel", "Je precieze type, je plek op de schalen ondertoon, diepte en helderheid, en 6 kleuren die werken. Gratis."],
       ["Je gids", "Al je 30 kleuren met namen, combinaties die werken en " + o.accessories + ". Als PDF, met een pas voor in de winkel."],
     ],

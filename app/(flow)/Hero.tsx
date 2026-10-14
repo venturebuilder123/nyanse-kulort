@@ -50,7 +50,7 @@ function PhotoHero() {
           <div className="hero2-pass"><MiniPass /></div>
         </div>
       </div>
-      <figcaption className="hero2-caption">{copy.landing.hero.caption}<span className="ai-label">Voorbeeld · beeld gemaakt met AI, kleurdoek door onze analyse</span></figcaption>
+      <figcaption className="hero2-caption">{copy.landing.hero.caption}</figcaption>
     </figure>
   );
 }

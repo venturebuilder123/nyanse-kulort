@@ -15,6 +15,39 @@ function nextBatch(from = new Date()): string {
   return d.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
 }
 
+/** After payment: where the guide goes. Prefilled when the address is already known. */
+function DeliveryMail() {
+  const [mail, setMail] = useState("");
+  const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    try {
+      const known = JSON.parse(sessionStorage.getItem("nk_email") ?? "null") as { email?: string } | null;
+      if (known?.email) setMail(known.email);
+    } catch {}
+  }, []);
+  return saved ? (
+    <p className="small">Je stijlgids komt naar {mail}.</p>
+  ) : (
+    <form
+      className="row-inline mail-later"
+      noValidate
+      onSubmit={(e) => {
+        e.preventDefault();
+        const v = mail.trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v)) return;
+        try {
+          const prev = JSON.parse(sessionStorage.getItem("nk_email") ?? "{}") as { optin?: boolean };
+          sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin: !!prev.optin }));
+        } catch {}
+        setSaved(true);
+      }}
+    >
+      <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder="Waar sturen we je stijlgids heen?" value={mail} onChange={(e) => setMail(e.target.value)} aria-label="E-mailadres voor je stijlgids" />
+      <button className="link-btn mail-send" type="submit">Stuur →</button>
+    </form>
+  );
+}
+
 // Confirmation after payment. Until Mollie is wired, the status comes from ?status= (paid|open|failed);
 // later the page polls the order. No downsell on failure (CLAUDE.md §12).
 export default function Done() {
@@ -38,7 +71,8 @@ export default function Done() {
             <div className="done-pass"><MiniPass /></div>
             <h1 className="disp sm">Gelukt. Je gids staat klaar.</h1>
             {card && <p className="sub">Je kleurenpas gaat {nextBatch()} op de post. Je krijgt een mail als hij onderweg is.</p>}
-            <Link className="btn" href="/gids">Open mijn gids</Link>
+            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
+            <DeliveryMail />
             <p className="small muted">Tip: zet deze pagina op je beginscherm via Delen › Zet op beginscherm.</p>
           </>
         )}

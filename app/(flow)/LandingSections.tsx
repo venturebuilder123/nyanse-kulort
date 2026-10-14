@@ -21,7 +21,21 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
   const { config, copy, segment } = useBrand();
   const st = copy.story;
   const pg = copy.page;
-  const look = buildGuide(profileForSeason(EXAMPLE[config.key]), config.key).combos[0]!;
+  const guide = buildGuide(profileForSeason(EXAMPLE[config.key]), config.key);
+  // NYANSE: a softer weekend look (top, skirt, loafers, scarf); KULØRT: the work look
+  const cols = guide.groups.flatMap((gr) => gr.colors);
+  const look =
+    config.key === "nyanse"
+      ? {
+          title: "Weekend",
+          pieces: [
+            { item: "Top", color: cols.find((c) => /roze|mauve|rozen/i.test(c.name)) ?? cols[0]! },
+            { item: "Rok", color: guide.capsule.find((c) => c.item === "Pantalon")?.color ?? cols[1]! },
+            { item: "Schoenen", color: guide.accessories.find((a) => a.title.includes("schoenen"))?.swatches[0] ?? cols[3]! },
+          ],
+          extras: [{ item: "Sjaal", color: cols.find((c) => /salie|zeegroen|grijsgroen/i.test(c.name)) ?? cols[2]! }],
+        }
+      : guide.combos[0]!;
   const proof = config.key === "kulort" ? "/brand/ads/proof-men.jpg" : "/brand/ads/proof-women.jpg";
 
   return (
@@ -48,7 +62,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
         </div>
         <figure className="l-proof-img">
           <img src={proof} alt="Hetzelfde gezicht met een grijsblauw en een warm oranje doek" width={1200} height={1201} loading="lazy" />
-          <figcaption>Zelfde persoon, zelfde licht. Alleen de kleur onder de kin verschilt. Beeld gemaakt met AI.</figcaption>
+          <figcaption>Eén doek onder de kin, een heel ander effect.</figcaption>
         </figure>
         <p className="eyebrow-h l-try">Probeer het zelf: tik op een kleur</p>
         <DrapeMirror brand={config.key} segment={segment} />
@@ -93,7 +107,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
 
       {/* 5. the next step */}
       <section className="l-section l-final">
-        <img src="/brand/ads/right-choice.jpg" alt="" width={1200} height={1614} loading="lazy" />
+        <img src={config.key === "kulort" ? "/brand/editorial/maison-door-kulort.jpg" : "/brand/ads/right-choice.jpg"} alt="" width={1200} height={1490} loading="lazy" />
         <div>
           <Display text={st.final} as="h2" />
           <p className="sub">Je kleurprofiel is gratis. Je persoonlijke stijlgids vanaf {euro(PRICES.digital)}, met kleurenpas {euro(PRICES.card)}.</p>

@@ -60,7 +60,9 @@ def background_mask(im: Image.Image, tol: int = 14) -> Image.Image:
         if x < w - 1: q.append((x + 1, y))
         if y > 0: q.append((x, y - 1))
         if y < h - 1: q.append((x, y + 1))
-    return bg.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.2))
+    # pull the edge inwards (no white fringe from the photo's anti-aliasing), then a crisp, thin feather
+    m = bg.filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(0.9))
+    return m.point(lambda v: 0 if v < 90 else 255 if v > 200 else round((v - 90) * 255 / 110))
 
 
 def process(path: str, stem: str) -> dict:

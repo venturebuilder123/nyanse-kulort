@@ -59,12 +59,15 @@ export default function Landing() {
 
   useEffect(() => setSwitchHref(switchUrl(config.key, answers, location)), [answers, config.key]);
 
+  // several occasions can be picked; each one comes back later as a look (BRANDBOOK §3.1)
   function pick(k: OccasionKey) {
-    const next = { ...answers, occasions: [k, ...answers.occasions.filter((o) => o !== k)] };
+    const has = answers.occasions.includes(k);
+    const next = { ...answers, occasions: has ? answers.occasions.filter((o) => o !== k) : [...answers.occasions, k] };
+    setAnswers(next);
     saveAnswers(next);
-    track("occasion_pick", ctx, { occasion: k });
-    router.push("/stijl");
+    if (!has) track("occasion_pick", ctx, { occasion: k });
   }
+  const goOn = () => router.push("/stijl");
 
   const startHere = () => {
     document.getElementById("occ-q")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -134,19 +137,21 @@ export default function Landing() {
               height={1490}
               fetchPriority="high"
             />
-            <figcaption>Beeld gemaakt met AI</figcaption>
           </figure>
           <section className="l-tap q" aria-labelledby="occ-q">
             <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
             <div className="tiles">
               {OCCASIONS.map((o) => (
-                <button key={o.key} className="tile" aria-pressed={answers.occasions[0] === o.key} onClick={() => pick(o.key)}>
+                <button key={o.key} className="tile" aria-pressed={answers.occasions.includes(o.key)} onClick={() => pick(o.key)}>
                   <OccasionIcon k={o.key} />
                   {o.label}
                 </button>
               ))}
             </div>
-            <Link className="known-link" href="/type">Ik weet mijn kleurtype al →</Link>
+            <button className="btn l-next" disabled={!answers.occasions.length} onClick={goOn}>
+              {answers.occasions.length ? "Verder" : "Kies één of meer"}
+            </button>
+            <Link className="known-link" href="/type">Ken je je kleurtype al? Kies het en ga direct naar je stijlgids →</Link>
             <p className="trustrow">
               {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
             </p>

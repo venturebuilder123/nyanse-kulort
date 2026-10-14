@@ -702,7 +702,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 [data-brand="kulort"] .dk-front, [data-brand="kulort"] .dk-back { border-radius: 3px; }
 .dk-front { display: flex; align-items: flex-end; padding: 9px; box-shadow: 0 8px 18px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.18); }
 .dk-front b { font-size: 12.5px; line-height: 1.15; font-weight: 800; color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.5); }
-.dk-back { transform: rotateY(180deg); background: var(--ink); }
+.dk-back { transform: rotateY(180deg); background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
 .deck-shut { width: 100%; margin-top: 10px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; gap: 8px; text-align: left; font: inherit; color: inherit; }
 .deck-shut-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
 .deck-shut-grid i { aspect-ratio: 1; border-radius: 4px; filter: blur(2.5px) saturate(.85); opacity: .85; }
@@ -867,3 +867,48 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   .steps li { grid-template-columns: 1fr; }
   .step-n { width: auto; height: auto; font-size: 26px; }
 }
+
+.l-next { margin-top: 10px; }
+.tile[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.privacy-note { display: grid; gap: 6px; padding: 14px 0; border-top: 1px solid var(--line); }
+.privacy-note p:not(.trust-main) { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.privacy-note a { color: var(--ink); }
+
+/* result v3: levels, catchy line, scales in the reveal, tier maths */
+.rv-level { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--rv-muted); margin-top: 6px; }
+.rv-line { font-family: var(--f-display); font-style: italic; font-size: 24px; line-height: 1.2; margin-top: 10px; }
+.rv-desc { max-width: 46ch; }
+.rv-scales { display: grid; gap: 12px; width: 100%; max-width: 440px; margin-top: 14px; text-align: left; }
+.rv-scale-head { display: flex; justify-content: space-between; font-size: 13px; }
+.rv-scale-head span { color: var(--rv-muted); }
+.rv-scale-track { position: relative; display: block; height: 2px; background: var(--line-strong); margin: 8px 0 4px; }
+.rv-scale-track i { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); translate: -50% -50%; }
+.rv-scale-ends { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--rv-muted); }
+.rv-named { font-size: 14px; margin-top: 10px; }
+.rv-named span { color: var(--rv-muted); }
+.tiers { display: grid; gap: 14px; }
+@media (min-width: 900px) { .screen:has(.result) .tiers { grid-template-columns: 1fr; } }
+.tier-math { display: block; font-size: 13.5px; font-style: italic; color: var(--accent-text); }
+.mail-later { flex-wrap: wrap; }
+.mail-optin { flex-basis: 100%; font-size: 13px; }
+
+/* maison: house mark on the wall, sub-seasons, mark on the pass */
+.ms-band-img { position: relative; }
+.ms-wall { position: absolute; left: 7%; top: 16%; display: grid; gap: 6px; color: #2a2724; mix-blend-mode: multiply; opacity: .78; pointer-events: none; }
+.ms-wall .maison-mark .wordmark { font-size: clamp(16px, 2.6vw, 34px); color: inherit; }
+.ms-wall .maison-mark i { height: clamp(14px, 2.2vw, 30px); }
+.ms-wall small { font-size: clamp(7px, .8vw, 11px); letter-spacing: .3em; text-transform: uppercase; }
+.ms-subs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 4px; }
+.ms-subs span { display: grid; gap: 3px; }
+.ms-subs img { aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+.ms-subs small { font-size: 11px; color: var(--muted); }
+.ms-pass { position: relative; }
+.ms-pass-mark { position: absolute; left: 25%; top: 49%; transform: rotate(-19.5deg); transform-origin: left top; color: #f3eee8; pointer-events: none; }
+.ms-pass-mark .maison-mark .wordmark { color: #f3eee8; font-size: clamp(9px, 1.1vw, 15px); }
+.ms-pass-mark .maison-mark i { height: clamp(8px, 1vw, 13px); background: #f3eee8; }
+.contact .btn { width: auto; justify-self: start; padding: 0 22px; }
+.contact-list { display: grid; gap: 0; margin-top: 10px; }
+.contact-list div { padding: 16px 0; border-top: 1px solid var(--line); }
+.contact-list b { font-family: var(--f-display); font-weight: 400; font-size: 20px; }
+.contact-list p { color: var(--muted); font-size: 15px; margin-top: 4px; }

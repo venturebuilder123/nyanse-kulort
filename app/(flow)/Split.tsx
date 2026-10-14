@@ -24,10 +24,10 @@ const DOORS = [
 ] as const;
 
 const SEASONS = [
-  { name: "Lente", line: "warm en helder", img: "/brand/seasons/family-lente.jpg" },
-  { name: "Zomer", line: "koel en zacht", img: "/brand/seasons/family-zomer.jpg" },
-  { name: "Herfst", line: "warm en diep", img: "/brand/seasons/family-herfst.jpg" },
-  { name: "Winter", line: "koel en contrastrijk", img: "/brand/seasons/family-winter.jpg" },
+  { name: "Lente", line: "warm en helder", img: "/brand/seasons/family-lente.jpg", subs: [["lightSpring", "Light"], ["warmSpring", "Warm"], ["brightSpring", "Bright"]] },
+  { name: "Zomer", line: "koel en zacht", img: "/brand/seasons/family-zomer.jpg", subs: [["lightSummer", "Light"], ["coolSummer", "Cool"], ["softSummer", "Soft"]] },
+  { name: "Herfst", line: "warm en diep", img: "/brand/seasons/family-herfst.jpg", subs: [["softAutumn", "Soft"], ["warmAutumn", "Warm"], ["deepAutumn", "Deep"]] },
+  { name: "Winter", line: "koel en contrastrijk", img: "/brand/seasons/family-winter.jpg", subs: [["brightWinter", "Bright"], ["coolWinter", "Cool"], ["deepWinter", "Deep"]] },
 ];
 
 // a quiet spread across the seasons: the fan is the gift object of the maison
@@ -109,7 +109,11 @@ export default function Split() {
       </section>
 
       <figure className="ms-band">
-        <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} />
+        <div className="ms-band-img">
+          <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} />
+          {/* the house mark, as if painted on the atelier wall */}
+          <span className="ms-wall" aria-hidden="true"><MaisonMark /><small>Atelier voor persoonlijke kleur</small></span>
+        </div>
         <figcaption>In het atelier: een stofstaal onder je kin laat in één oogopslag zien welke kleur je staat.</figcaption>
       </figure>
 
@@ -168,13 +172,24 @@ export default function Split() {
             <figure key={s.name}>
               <img src={s.img} alt="" width={1000} height={1241} loading="lazy" />
               <figcaption><b>{s.name}</b><span>{s.line}</span></figcaption>
+              <div className="ms-subs">
+                {s.subs.map(([key, label]) => (
+                  <span key={key}>
+                    <img src={`/brand/seasons/season-${key}.jpg`} alt="" width={900} height={1117} loading="lazy" />
+                    <small>{label}</small>
+                  </span>
+                ))}
+              </div>
             </figure>
           ))}
         </div>
       </section>
 
       <section className="ms-gift">
-        <img src="/brand/product/pass-front.jpg" alt="De kleurenpas met acht kleuren" width={1200} height={896} loading="lazy" />
+        <div className="ms-pass">
+          <img src="/brand/product/pass-front.jpg" alt="De kleurenpas met acht kleuren" width={1200} height={896} loading="lazy" />
+          <span className="ms-pass-mark" aria-hidden="true"><MaisonMark small /></span>
+        </div>
         <div>
           <p className="ms-eyebrow">Het cadeau aan jezelf</p>
           <h2 className="ms-h2">Je kleuren altijd bij je, <em>ook in de paskamer</em></h2>
@@ -188,8 +203,8 @@ export default function Split() {
 
       <footer className="ms-foot">
         <MaisonMark small />
-        <span>Mensen op deze pagina zijn gemaakt met AI</span>
         <span>Prijzen inclusief btw</span>
+        <Link href="/contact">Contact</Link>
         <Link href="/privacy">Privacy</Link>
       </footer>
     </main>

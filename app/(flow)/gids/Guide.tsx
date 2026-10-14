@@ -133,7 +133,7 @@ export default function Guide() {
               <figcaption><b>✓ {nameForHex(model.good, config.key) ?? "Jouw kleur"}</b><span>Deze kleur sluit aan bij de eigen kleuren van huid, haar en ogen.</span></figcaption>
             </figure>
           </div>
-          <p className="g-caption">Voorbeeld met een AI-model uit dezelfde kleurfamilie ({family}). Kleuren gekozen door onze analyse.</p>
+          <p className="g-caption">Voorbeeld uit dezelfde kleurfamilie ({family}).</p>
         </Page>
       )}
 

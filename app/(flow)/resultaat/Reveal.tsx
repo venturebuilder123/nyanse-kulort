@@ -14,6 +14,9 @@ export function Reveal(props: {
   between?: string;
   next: string;
   text: string;
+  line: string;
+  scales: { label: string; word: string; value: number; left: string; right: string }[];
+  named: string[];
   fan: Swatch[];
   glow: string;
   provisional?: string;
@@ -54,8 +57,10 @@ export function Reveal(props: {
         </div>
       </div>
       <div className="rv-copy">
-        <p className="rv-kicker">{props.kicker}{props.provisional && <span className="tag-soft">{props.provisional}</span>}</p>
+        {(props.kicker || props.provisional) && <p className="rv-kicker">{props.kicker}{props.provisional && <span className="tag-soft">{props.provisional}</span>}</p>}
+        <p className="rv-level">Je seizoen</p>
         <h1 className="disp rv-family">{props.family}</h1>
+        <p className="rv-level">Je precieze kleurtype</p>
         <p className="rv-type">
           <span className="sr-only">{props.typeLabel}: </span>
           <b aria-label={props.season}>
@@ -65,7 +70,20 @@ export function Reveal(props: {
           </b>
         </p>
         {props.between && <p className="rv-between">{props.between}</p>}
+        <p className="rv-line">{props.line}</p>
         <p className="rv-desc">{props.text}</p>
+        <div className="rv-scales" aria-label="Zo ben je opgebouwd">
+          {props.scales.map((s) => (
+            <div key={s.label} className="rv-scale">
+              <span className="rv-scale-head"><span>{s.label}</span><b>{s.word}</b></span>
+              <span className="rv-scale-track"><i style={{ left: `${Math.max(3, Math.min(97, s.value * 100))}%` }} /></span>
+              <span className="rv-scale-ends"><span>{s.left}</span><span>{s.right}</span></span>
+            </div>
+          ))}
+        </div>
+        {props.named.length > 0 && (
+          <p className="rv-named"><span>Vaak genoemd als {props.season}:</span> {props.named.join(" · ")}</p>
+        )}
         <p className="rv-cue">{props.next} <span aria-hidden="true">↓</span></p>
       </div>
     </section>

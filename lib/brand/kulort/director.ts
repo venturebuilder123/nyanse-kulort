@@ -37,7 +37,7 @@ export const director: VoiceCopy = {
     headline: ["Elke dag", "de juiste indruk."],
     sub: "Minder kopen, beter kiezen. Eén selfie laat zien welke kleuren je rustig en zeker laten ogen, in de boardroom en daarbuiten.",
     trustMain: "Je foto verlaat je telefoon niet",
-    occasionQuestion: "Waar moet het kloppen?",
+    occasionQuestion: "Waar moet het kloppen? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Bright Winter), 6 kleuren die werken en wat je beter laat hangen." },
     paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke kleur horloge, riem en schoenen bij je past." },

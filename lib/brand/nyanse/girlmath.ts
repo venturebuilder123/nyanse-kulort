@@ -37,7 +37,7 @@ export const girlmath: VoiceCopy = {
     headline: ["Stop met kopen wat je", "niet staat."],
     sub: "Eén selfie = je weet welke kleuren je staan. Dus ook welke je níet hoeft te kopen.",
     trustMain: "Je foto verlaat je telefoon niet",
-    occasionQuestion: "Waar wil je er goed uitzien?",
+    occasionQuestion: "Waar wil je er goed uitzien? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Bright Spring), 6 kleuren die je staan en wat je kunt laten liggen." },
     paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden en make-uptinten je staan." },

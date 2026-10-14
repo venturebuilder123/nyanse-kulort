@@ -50,7 +50,7 @@ export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segm
             />
           ))}
         </div>
-        <p className="mirror-legend"><span>Zes uit dit palet</span><span>Twee om te laten hangen</span></p>
+        <p className="mirror-legend"><span>Kleuren die je goed staan</span><span>Minder mooi bij je gezicht</span></p>
         {people.length > 1 && (
           <div className="mirror-people" aria-label="Ander voorbeeld">
             {people.slice(0, 6).map((p, i) => (
@@ -60,7 +60,6 @@ export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segm
             ))}
           </div>
         )}
-        <p className="ai-label">Voorbeeld · beelden gemaakt met AI, kleuren gekozen door onze analyse</p>
       </div>
     </div>
   );

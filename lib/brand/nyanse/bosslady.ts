@@ -37,7 +37,7 @@ export const bosslady: VoiceCopy = {
     headline: ["Kleuren die", "voor je werken."],
     sub: "Geen tijd voor miskopen. Eén selfie laat zien welke kleuren je zeker laten ogen, van meeting tot diner.",
     trustMain: "Je foto verlaat je telefoon niet",
-    occasionQuestion: "Waar wil je er goed uitzien?",
+    occasionQuestion: "Waar wil je er goed uitzien? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Soft Summer), 6 kleuren die je laten stralen en wat je beter vermijdt." },
     paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden, tassen en make-uptinten bij je passen." },
@@ -98,7 +98,7 @@ export const bosslady: VoiceCopy = {
   result: resultNl(
     "6 kleuren die je laten stralen",
     ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, zodat je kast samengaat", "Sieraden, tassen en make-uptinten", "Je persoonlijke stijlgids als PDF + digitale pas"],
-    { kind: "compare", title: "Eén keer goed kiezen", them: ["Kleuradviseur", "een afspraak van 1 à 2 uur"], us: ["NYANSE", "één selfie, je kleuren altijd bij je"] },
+    { kind: "compare", title: "Eén keer goed kiezen", them: ["Kleuradviseur", "een afspraak van 1 à 2 uur"], us: ["Met je stijlgids", "één selfie, je kleuren altijd bij je"] },
   ),
   ring: ["#C8285A", "#C9A9AC", "#8FA3B8", "#A6879C", "#B9926B", "#2F4F3A", "#A2462A", "#1F4FC4", "#F4E3A1", "#D9C7AE"],
 };

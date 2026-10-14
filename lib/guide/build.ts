@@ -168,9 +168,8 @@ export function buildGuide(p: Profile, brand: BrandKey): Guide {
       ];
 
   // every look gets the same metal and leather: one leather colour, held throughout
-  const extras: Piece[] = men
-    ? [{ item: "Riem", color: leather[0]!, second: metal[0]!.hex }]
-    : [{ item: "Tas", color: leather[0]!, second: metal[0]!.hex }];
+  // men's looks stay clean (no accessories in the flat-lay); women's get the bag in their leather
+  const extras: Piece[] = men ? [] : [{ item: "Tas", color: leather[0]!, second: metal[0]!.hex }];
   for (const c of combos) c.extras = extras;
 
   // make-up (NYANSE): lips from the red/pink accents, blush lighter, eyes from the base

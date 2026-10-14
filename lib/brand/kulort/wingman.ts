@@ -37,7 +37,7 @@ export const wingman: VoiceCopy = {
     headline: ["Welke kleuren staan", "jou echt?"],
     sub: "Je ziet direct welke kleuren je scherp laten ogen, en welke je kunt laten hangen.",
     trustMain: "Je foto verlaat je telefoon niet",
-    occasionQuestion: "Waar wil je scherp voor de dag komen?",
+    occasionQuestion: "Waar wil je scherp voor de dag komen? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Bright Winter), 6 kleuren die werken en wat je beter laat hangen." },
     paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke kleur horloge, riem en schoenen bij je past." },
