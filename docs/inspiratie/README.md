@@ -62,3 +62,19 @@ Ideeën en beelden van buiten, om later uit te werken. Beelden van derden staan 
   - geen nep-van-voor-prijzen of aftelklokken (CLAUDE.md §12).
 - **Techniek:** een tabel `gift_codes` in Supabase (code, optie, status, betaald via overschrijving zoals de checkout). Het verzilveren vervangt het betalen.
 - **Status:** later. Een logisch moment is de aanloop naar Sinterklaas en Kerst; begin de bouw dan uiterlijk half november.
+
+## 2026-10-15 — Contentsite met aanbevelingen en SEO (idee van de oprichter)
+
+- **Wat:** veel artikelen die gevonden worden in Google, vol concrete aanbevelingen, die lezers naar de gratis kleurcheck sturen. Bijvoorbeeld: "Welke kleuren staan een Soft Autumn?", "Beste witte overhemden voor een Winter", "Navy of zwart?" en "Kleuranalyse: zo werkt het".
+- **Waar (MENING):** liever op het eigen domein (`kulort-nyanse.com/journal`) dan op een aparte site. Google bouwt vertrouwen op per domein, en elk artikel versterkt dan de site waar je verkoopt. Een aparte site begint bij nul en moet je los bijhouden.
+- **Hoe:**
+  - Per seizoen en per merk een vaste pagina. Die maken we deels automatisch uit de kleurmotor: palet, basis, combinaties en "niet dit, maar dit". Dat geeft 24 pagina's die echt van ons zijn.
+  - Aanbevelingen alleen met producten uit officiële feeds (geen scraping, CLAUDE.md §12).
+  - Een affiliate-link maak je zichtbaar bij de link zelf. "Aanbevolen op kleur, nooit op commissie" moet ook hier waar zijn.
+  - Geen bekende mensen met foto's; namen alleen als "vaak genoemd als".
+- **Taal:** besluit nog nemen.
+  - Nederlands voor zoekverkeer uit Nederland, Engels voor de bredere markt (passend bij de advertenties).
+  - De i18n-structuur kan beide.
+  - AANNAME: Engels heeft meer zoekvolume, maar ook veel meer concurrentie.
+- **Afhankelijk van:** affiliate-programma's (KvK) en een catalogus met kleurtags (CLAUDE.md §7).
+- **Status:** later. SEO kost maanden voordat het iets oplevert, dus vroeg beginnen loont. Een logisch moment is na de eerste meting van de advertenties.
