@@ -48,7 +48,7 @@ const MASTER: Record<SeasonKey, readonly Entry[]> = {
   ],
   softAutumn: [
     ["#B9926B", "Kameel", { kulort: "Camel" }], ["#7A7449", "Olijf"], ["#B8735A", "Zachte terracotta"], ["#6D7A4C", "Mosgroen"],
-    ["#D49A82", "Warme zalm"], ["#A89A72", "Kaki", { kulort: "Chino" }], ["#3F6A6A", "Zachte petrol"], ["#A8764B", "Karamel"],
+    ["#D49A82", "Warme zalm"], ["#A89A72", "Kaki"], ["#3F6A6A", "Zachte petrol"], ["#A8764B", "Karamel"],
     ["#B67C73", "Roestroze"], ["#6B4B38", "Chocolademelk", { kulort: "Tabak" }], ["#D8C3A0", "Zand"], ["#EFE6D6", "Warm wit"],
     ["#C9A86A", "Honing"],
   ],
@@ -148,11 +148,26 @@ export type ProfilePalette = {
 
 export function paletteFor(p: Scales, brand?: BrandKey, size = 30, avoidCount = 4): ProfilePalette {
   const pool = brand === "kulort" ? ALL.filter((c) => !NOT_FOR_KULORT.has(c.name)) : ALL;
-  const near = [...pool].sort((a, b) => profileDistance(p, a.point) - profileDistance(p, b.point));
-  const colors = dedupe(near).slice(0, size);
+  // Temperature is never crossed: a clearly cool profile gets no clearly warm colour and vice
+  // versa (found in the guide review of 15 Oct: Deep Winter got cinnamon, rust and mustard from
+  // Deep Autumn, because depth pulled them close). Near-neutrals stay available to everyone.
+  const side = Math.abs(p.undertone) > 0.2 ? Math.sign(p.undertone) : 0;
+  const sameSide = (c: PaletteColor) =>
+    !(side < 0 && /^warm/i.test(c.name)) && !(side > 0 && /^koel/i.test(c.name)) &&
+    (side === 0 || Math.abs(c.point.undertone) <= 0.2 || Math.sign(c.point.undertone) === side || labToLch(hexToLab(c.hex)).C < 12);
+  // optic white needs clarity, true black needs clarity and depth (review: Soft Summer got "Wit",
+  // Cool Summer "Zwart"); everyone else gets the softer white and the deep navy or espresso
+  const softEdge = (c: PaletteColor) => {
+    const l = labToLch(hexToLab(c.hex));
+    if (l.C < 4 && l.L > 96) return p.clarity >= 0.55;
+    if (l.C < 6 && l.L < 14) return p.depth >= 0.8 || (p.undertone < 0 && p.clarity >= 0.55 && p.depth >= 0.45);
+    return true;
+  };
+  const near = [...pool].filter((c) => sameSide(c) && softEdge(c)).sort((a, b) => profileDistance(p, a.point) - profileDistance(p, b.point));
+  const colors = dedupe(near, brand).slice(0, size);
   // Avoid: opposite undertone and clarity matter most; depth less so (CLAUDE.md §5).
   const clash = (c: PaletteColor) => Math.abs(c.point.undertone - p.undertone) / 2 + Math.abs(c.point.clarity - p.clarity);
-  const candidates = dedupe([...pool].sort((a, b) => clash(b) - clash(a)))
+  const candidates = dedupe([...pool].sort((a, b) => clash(b) - clash(a)), brand)
     // keep avoid colours recognisable: skip near-neutrals like white and black
     .filter((c) => labToLch(hexToLab(c.hex)).C > 20)
     .slice(0, 15);
@@ -197,11 +212,11 @@ export function mostDifferent(ref: PaletteColor, list: PaletteColor[]): PaletteC
 /** Showcase colours: diverse, but only from the core of the palette. */
 export const showcase = (p: ProfilePalette, n = 6) => spread(p.colors.slice(0, 15), n);
 
-/** No two colours with the same hex or the same name (e.g. two "Zilver" from neighbouring seasons). */
-function dedupe(list: PaletteColor[]): PaletteColor[] {
+/** No two colours with the same hex or the same shown name (brand names too: KULØRT maps several to "Navy"). */
+function dedupe(list: PaletteColor[], brand?: BrandKey): PaletteColor[] {
   const seen = new Set<string>();
   return list.filter((c) => {
-    const keys = [c.hex.toLowerCase(), `name:${c.name}`];
+    const keys = [c.hex.toLowerCase(), `name:${c.name}`, `shown:${brand ? colorName(c, brand) : c.name}`];
     if (keys.some((k) => seen.has(k))) return false;
     keys.forEach((k) => seen.add(k));
     return true;

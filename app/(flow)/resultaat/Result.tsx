@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { OFTEN_NAMED, SEASON_STORY } from "@/lib/brand/seasons-copy";
+import { oftenNamed, SEASON_STORY } from "@/lib/brand/seasons-copy";
 import { SEASONS } from "@/lib/color/seasons";
 import type { WhyBlock } from "@/lib/brand/types";
 import { clarityWord, depthWord, familyOf, undertoneWord } from "@/lib/color/describe";
@@ -145,7 +145,7 @@ export default function Result() {
           { label: copy.analysis.scales.depth, word: depthWord(p.depth), value: p.depth, left: "licht", right: "diep" },
           { label: copy.analysis.scales.clarity, word: clarityWord(p.clarity), value: p.clarity, left: "zacht", right: "helder" },
         ]}
-        named={OFTEN_NAMED[p.match.season]}
+        named={oftenNamed(p.match.season, config.key)}
         fan={g.summary.core}
         glow={glow}
       />

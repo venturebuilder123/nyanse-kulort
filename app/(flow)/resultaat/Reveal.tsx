@@ -16,7 +16,7 @@ export function Reveal(props: {
   text: string;
   line: string;
   scales: { label: string; word: string; value: number; left: string; right: string }[];
-  named: string[];
+  named: { family: string; names: string[] };
   fan: Swatch[];
   glow: string;
   provisional?: string;
@@ -81,8 +81,8 @@ export function Reveal(props: {
             </div>
           ))}
         </div>
-        {props.named.length > 0 && (
-          <p className="rv-named"><span>Vaak genoemd als {props.season}:</span> {props.named.join(" · ")}</p>
+        {props.named.names.length > 0 && (
+          <p className="rv-named"><span>Vaak genoemd als {props.named.family}:</span> {props.named.names.join(" · ")}</p>
         )}
         <p className="rv-cue">{props.next} <span aria-hidden="true">↓</span></p>
       </div>

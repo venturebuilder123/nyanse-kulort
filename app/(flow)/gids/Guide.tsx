@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { PEOPLE, peopleFor } from "@/lib/brand/people";
 import { familyOf } from "@/lib/color/describe";
+import { oftenNamed } from "@/lib/brand/seasons-copy";
 import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { buildGuide, type Swatch } from "@/lib/guide/build";
@@ -87,6 +88,7 @@ export default function Guide() {
   const men = config.key === "kulort";
   // an AI model from the same colour family shows the effect (labelled as an example)
   const family = familyOf(r.profile.match.season);
+  const named = oftenNamed(r.profile.match.season, config.key);
   const model = [...peopleFor(config.key, segment), ...PEOPLE[config.key]].find((p) => familyOf(p.season as SeasonKey) === family) ?? PEOPLE[config.key][0];
   let page = 1;
   const next = () => String(++page).padStart(2, "0");
@@ -157,11 +159,18 @@ export default function Guide() {
       {/* colouring */}
       <Page n={next()} kicker="Je profiel" title="Zo is jouw kleur opgebouwd">
         <div className="g-scales">
-          <Scale label="Ondertoon" word={g.scales.undertone} value={(g.scales.values.undertone + 1) / 2} left="koel" right="warm" />
-          <Scale label="Diepte" word={g.scales.depth} value={g.scales.values.depth} left="licht" right="diep" />
-          <Scale label="Helderheid" word={g.scales.clarity} value={g.scales.values.clarity} left="zacht" right="helder" />
+          <Scale label="Ondertoon" word={g.scales.undertone} value={(g.scales.values.undertone + 1) / 2} left="koel" right="warm"
+            what="De ondertoon onder je huid: meer roze en blauw (koel) of meer goud en perzik (warm). Die verandert niet als je bruint."
+            mine={g.scales.values.undertone < -0.15 ? "Jij bent koel: zilver, ijswit, navy en blauwrood laten je fris ogen. Goud, oranje en crème maken je grauw." : g.scales.values.undertone > 0.15 ? "Jij bent warm: goud, crème, camel en tomaatrood laten je gloeien. IJswit, zilvergrijs en blauwroze maken je bleek." : "Jij zit in het midden: kies kleuren die niet uitgesproken warm of koel zijn, zoals zacht marine, rozenhout en taupe."} />
+          <Scale label="Diepte" word={g.scales.depth} value={g.scales.values.depth} left="licht" right="diep"
+            what="Hoe licht of donker je haar, ogen en huid samen zijn. Dit bepaalt hoe licht of donker je kleuren mogen zijn."
+            mine={g.scales.values.depth >= 0.6 ? "Jij bent diep: donkere, verzadigde kleuren dragen je. Pastels vallen naast jou weg." : g.scales.values.depth < 0.35 ? "Jij bent licht: lichte en middentinten laten je stralen. Zwart en heel donkere kleuren zijn te zwaar." : "Jij zit in het midden: middentinten zijn je basis. Heel licht en heel donker gebruik je spaarzaam."} />
+          <Scale label="Helderheid" word={g.scales.clarity} value={g.scales.values.clarity} left="zacht" right="helder"
+            what="Hoe helder je ogen en het contrast in je gezicht zijn. Dit bepaalt of je kleuren fel of gedempt moeten zijn."
+            mine={g.scales.values.clarity >= 0.6 ? "Jij bent helder: zuivere, felle kleuren passen bij je ogen. Stoffige, grijzige tinten maken je moe." : g.scales.values.clarity < 0.35 ? "Jij bent zacht: gedempte, iets grijzige kleuren laten je verzorgd ogen. Felle kleuren overstemmen je." : "Jij zit in het midden: kleuren met wat diepte, niet neon en niet stoffig."} />
         </div>
         <div className="g-callout"><b>{g.contrast.title}</b><p>{g.contrast.text}</p></div>
+        {named.names.length > 0 && <p className="g-named"><span>Vaak genoemd als {named.family}</span>{named.names.join(" · ")}</p>}
         <p className="g-body">
           Je bent een <b>{g.season}</b>: een {g.scales.undertone} ondertoon, {g.scales.depth} van diepte en {g.scales.clarity} van helderheid.
           Kleuren op dezelfde plek laten je gezicht rustig en helder ogen. Kleuren ver weg trekken de aandacht van je gezicht af.
@@ -233,9 +242,9 @@ export default function Guide() {
         <p className="g-lede">Je hoeft niet alles opnieuw te kopen. Begin met wat je al hebt.</p>
         <ol className="g-audit">{g.audit.map((a) => <li key={a}>{a}</li>)}</ol>
         <div className="g-audit-piles">
-          <div><b>Houden</b><span>Lijkt op een van je kleuren of laat je gezicht oplichten.</span><Strip colors={g.summary.core.slice(0, 4)} /></div>
-          <div><b>Onder je middel</b><span>Niet jouw kleur, wel geliefd: draag het als broek, rok of schoenen.</span><Strip colors={g.summary.avoid.slice(0, 3)} /></div>
-          <div><b>Weg</b><span>Niet jouw kleur en je draagt het nooit: doorverkopen of weggeven.</span></div>
+          <div><b>Houden</b><span>Lijkt op een van je kleuren of laat je gezicht oplichten.</span><Strip colors={g.summary.core.slice(0, 4)} named /></div>
+          <div><b>Onder je middel</b><span>Niet jouw kleur, wel geliefd: draag het {men ? "als broek of schoenen" : "als broek, rok of schoenen"}, ver van je gezicht.</span><Strip colors={g.summary.avoid.slice(0, 3)} named crossed /></div>
+          <div><b>Weg</b><span>Niet jouw kleur, en je hebt het een jaar niet gedragen. Verkoop het tweedehands of geef het weg; de opbrengst gaat naar je eerste stuk uit je palet.</span></div>
         </div>
       </Page>
 
@@ -270,7 +279,7 @@ export default function Guide() {
             </div>
           ))}
         </div>
-        <p className="g-body">Je hoeft ze niet weg te gooien. Onder je middel, als broek, rok of schoenen, vallen ze minder op.</p>
+        <p className="g-body">Je hoeft ze niet weg te gooien. Onder je middel, {men ? "als broek of schoenen" : "als broek, rok of schoenen"}, vallen ze minder op.</p>
       </Page>
 
       {/* capsule */}
@@ -390,12 +399,14 @@ function Chip({ c }: { c: Swatch }) {
 function Dot({ hex }: { hex: string }) {
   return <i className="g-dot" style={{ background: hex }} />;
 }
-function Scale({ label, word, value, left, right }: { label: string; word: string; value: number; left: string; right: string }) {
+function Scale({ label, word, value, left, right, what, mine }: { label: string; word: string; value: number; left: string; right: string; what: string; mine: string }) {
   return (
     <div className="g-scale">
       <div className="g-scale-head"><span>{label}</span><b>{word}</b></div>
       <div className="g-scale-track"><i style={{ left: `${Math.max(2, Math.min(98, value * 100))}%` }} /></div>
       <div className="g-scale-ends"><span>{left}</span><span>{right}</span></div>
+      <p className="g-scale-what">{what}</p>
+      <p className="g-scale-mine">{mine}</p>
     </div>
   );
 }

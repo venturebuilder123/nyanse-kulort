@@ -2,6 +2,8 @@
 // Written for the result page's reveal; Dutch, no promises, no body judgements.
 
 import type { SeasonKey } from "@/lib/color/seasons";
+import type { BrandKey } from "@/lib/brand/types";
+import { familyOf } from "@/lib/color/describe";
 
 export const SEASON_STORY: Record<SeasonKey, { line: string; text: string }> = {
   lightSpring: {
@@ -56,12 +58,28 @@ export const SEASON_STORY: Record<SeasonKey, { line: string; text: string }> = {
 
 /**
  * "Vaak genoemd als …" (CLAUDE.md §2): names only, no photos, never as endorsement.
- * Deliberately empty: per-subtype lists online are unsourced and contradict each other.
- * Fill per season only with names a colour consultant confirms; the result page hides empty lists.
+ * Per family (Lente, Zomer, Herfst, Winter), not per subtype: at subtype level the published
+ * lists contradict each other (Julia Roberts is "Deep" in one source and "Soft Autumn" in the next),
+ * at family level they mostly agree. Women: named for that family in at least two independent
+ * colour-analysis sources. Men: fewer sources exist; names from men's colour guides, family only.
+ * Sources and the date checked: docs/BESLISSINGEN.md (15 Oct 2026).
  */
-export const OFTEN_NAMED: Record<SeasonKey, string[]> = {
-  lightSpring: [], warmSpring: [], brightSpring: [],
-  lightSummer: [], coolSummer: [], softSummer: [],
-  softAutumn: [], warmAutumn: [], deepAutumn: [],
-  deepWinter: [], coolWinter: [], brightWinter: [],
+const NAMED_BY_FAMILY: Record<BrandKey, Record<string, string[]>> = {
+  nyanse: {
+    Lente: ["Taylor Swift", "Amy Adams", "Cameron Diaz"],
+    Zomer: ["Jennifer Aniston", "Cate Blanchett", "Catherine, prinses van Wales"],
+    Herfst: ["Julia Roberts", "Jessica Chastain"],
+    Winter: ["Anne Hathaway", "Liv Tyler", "Courteney Cox"],
+  },
+  kulort: {
+    Lente: ["Chris Hemsworth", "Eddie Redmayne"],
+    Zomer: ["Daniel Craig", "Alexander Skarsgård", "Mark Ruffalo"],
+    Herfst: ["Ryan Reynolds", "Jude Law", "Kit Harington"],
+    Winter: ["Idris Elba", "Henry Cavill"],
+  },
 };
+
+export function oftenNamed(season: SeasonKey, brand: BrandKey): { family: string; names: string[] } {
+  const family = familyOf(season);
+  return { family, names: NAMED_BY_FAMILY[brand][family] ?? [] };
+}

@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import { computeProfile, type Measurements } from "@/lib/color/profile";
 import { nearestSeason, SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import { buildGuide } from "./build";
+import { profileForSeason } from "@/lib/color/declared";
+import { paletteFor } from "@/lib/color/palette";
+import { hexToLab, labToLch } from "@/lib/color/convert";
 
 const base = computeProfile({ skin: { lab: { L: 60, a: 12, b: 16 }, n: 3000, sdL: 3 }, faceWidthPx: 400, calibrated: true } as Measurements);
 const at = (key: SeasonKey) => {
@@ -43,5 +46,42 @@ describe("buildGuide", () => {
   it("explains why each colour to avoid does not work", () => {
     const g = buildGuide(at("coolWinter"), "nyanse");
     g.avoid.forEach((a) => expect(a.reason).toMatch(/warm|koel|fel|vlak|aandacht/));
+  });
+});
+
+// Guide review 15 Oct 2026: errors a colour consultant would spot at a glance
+describe("guide realism, every season and brand", () => {
+  const all = (Object.keys(SEASONS) as SeasonKey[]).flatMap((k) => (["kulort", "nyanse"] as const).map((b) => ({ k, b, g: buildGuide(profileForSeason(k), b) })));
+  const chroma = (hex: string) => labToLch(hexToLab(hex)).C;
+
+  it("a cool palette has no clearly warm colours, and vice versa", () => {
+    for (const k of Object.keys(SEASONS) as SeasonKey[]) {
+      const p = profileForSeason(k);
+      if (Math.abs(p.undertone) <= 0.2) continue;
+      for (const c of paletteFor(p, "kulort").colors.concat(paletteFor(p, "nyanse").colors)) {
+        const crossed = Math.abs(c.point.undertone) > 0.2 && Math.sign(c.point.undertone) !== Math.sign(p.undertone) && chroma(c.hex) >= 12;
+        expect(crossed, `${k}: ${c.name}`).toBe(false);
+      }
+    }
+  });
+
+  it("no colour name shows twice in one palette", () => {
+    for (const { k, b, g } of all) {
+      const names = g.groups.flatMap((gr) => gr.colors.map((c) => c.name));
+      expect(new Set(names).size, `${b} ${k}: ${names.join(",")}`).toBe(names.length);
+    }
+  });
+
+  it("jackets, trousers and shoes come in wearable, quiet colours", () => {
+    for (const { k, b, g } of all) {
+      for (const c of g.combos) for (const pc of c.pieces) {
+        if (/Colbert|Overshirt|Chino|Pantalon|Schoenen|Sneakers/.test(pc.item)) expect(chroma(pc.color.hex), `${b} ${k} ${c.title}: ${pc.item} ${pc.color.name}`).toBeLessThan(45); // cognac leather is ~41
+        if (pc.item === "Jeans") expect(pc.color.hex).toMatch(/^#/);
+      }
+    }
+  });
+
+  it("Deep Winter is told it carries contrast", () => {
+    expect(buildGuide(profileForSeason("deepWinter"), "kulort").contrast.title).toBe("Jij kunt contrast hebben");
   });
 });

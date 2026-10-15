@@ -2,6 +2,38 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 15 oktober 2026 — stijlgids v4: kritische review van alle gidsen
+
+Vier betaalde gidsen pagina voor pagina nagelopen (KULØRT Deep Winter en Soft Autumn, NYANSE Soft Summer en Light Spring), daarna alle 24 combinaties (12 seizoenen × 2 merken) in tekst. Gevonden en opgelost:
+
+- **Warme kleuren in een koel palet** (Deep Winter kreeg kaneel, roest en diep mosterd, omdat de diepte ze dichtbij trok). Nu wordt de temperatuur nooit gekruist: een duidelijk koel profiel krijgt geen duidelijk warme kleur en omgekeerd. Bijna-neutrale tinten blijven voor iedereen.
+- **Optisch wit en echt zwart alleen waar ze horen.** Wit vraagt helderheid (Soft Summer kreeg "Wit"), zwart vraagt diepte en helderheid (Winter, Deep Autumn). De rest krijgt gebroken wit en navy, antraciet of espresso.
+- **Contrast:** Deep Winter las "Jij zit in het midden". Nu telt diep plus helder ook als contrastrijk.
+- **Dubbele namen** na de KULØRT-hernoeming ("Navy" ×2) en "Chino · Chino" zijn weg.
+- **Kleding in echte kleuren.** Colberts en overshirts komen uit rustige, donkere kleuren (navy, antraciet, espresso, olijf). Broeken zijn rustige middentinten in klassieke tinten; anders steen of grijs. Jeans zijn altijd denim. Schoenen en riem komen uit de leerkleur, sneakers uit je wit. Kleur zit op shirts, truien en sjaals. Zachte typen krijgen hun dichtstbijzijnde accent, niet het felste. Voorheen waren er onder meer een turquoise chino, paarse schoenen en een mosterdgeel overshirt.
+- **Teksten volgen wat je ziet:**
+  - "Jouw wit", "Jouw zwart" en "Jouw denim" passen bij het getoonde vlakje.
+  - Bij "Niet dit, maar dit" klopt de reden: een kobaltblauw is "te fel", geen "te warm".
+  - De vervanging ligt in tint én lichtheid dichtbij en komt niet twee keer voor.
+  - Mannen lezen nergens meer "rok".
+- **Pagina 4** legt nu per schaal uit wat die meet en wat dat voor jou betekent. **Pagina 7** toont de outfitfoto groot. Bij de kast-check staan de kleurnamen nu in de stapels Houden en Onder je middel. De stapel Weg geeft een concreet criterium.
+- **Vaak genoemd als** staat terug, op **familieniveau** (Lente, Zomer, Herfst, Winter) en per merk, op de resultaatpagina en in de gids. Alleen namen, geen foto's.
+  - Waarom familieniveau: op subtypeniveau spreken de bronnen elkaar tegen (Julia Roberts is in de ene bron "Deep Autumn", in de andere "Soft Autumn"; Anne Hathaway wisselt tussen Winter en Cool Summer). Op familieniveau zijn ze het meestal eens.
+  - Vrouwen: genoemd in minstens twee bronnen.
+  - Mannen: er zijn minder bronnen (vooral één mannenstijlgids). AANNAME: acceptabel als "vaak genoemd"; laat je vrouw de lijst nalopen.
+  - Bronnen (gecontroleerd 15 oktober 2026):
+    - [FRANKIE4 Summer](https://frankie4.com/blogs/news/colour-analysis-summer)
+    - [FRANKIE4 Spring](https://frankie4.com/blogs/news/colour-analysing-your-spring-palette)
+    - [Roberta Style Lee Cool Summer](https://robertastylelee.co.uk/cool-summer-colour-analysis-guide)
+    - [Roberta Style Lee Warm Spring](https://robertastylelee.co.uk/warm-spring-colour-analysis-guide/)
+    - [DesignDash Summer](https://designdash.com/design/soft-light-true-what-does-your-summer-color-analysis-mean/)
+    - [Tatler Asia Spring](https://www.tatlerasia.com/style/fashion/colour-analysis-spring)
+    - [The VOU, mannen per seizoen](https://thevou.com/blog/winter-colour-season-complete-mens-guide)
+    - [The VOU, Light Summer mannen](https://thevou.com/blog/light-summer-male-celebrities)
+    - [The VOU, Soft Summer mannen](https://thevou.com/blog/soft-summer-colour-palette-mens-guide)
+    - [The VOU, Spring mannen](https://thevou.com/blog/spring-colour-season-complete-mens-guide/)
+- **Regressietests** in `lib/guide/build.test.ts` voor alle 24 gidsen: geen gekruiste temperatuur, geen dubbele namen, rustige kleuren voor jassen, broeken en schoenen, en contrast voor Deep Winter.
+
 ## 15 oktober 2026 — betaalde gids alleen na bevestigde betaling; PostHog live
 
 - **Lek gedicht:** wie `/klaar?status=paid` typte of na "Ik heb betaald" klikte, kreeg de gids gratis. Nu opent de gids alleen als de server de bestelling als betaald ziet.

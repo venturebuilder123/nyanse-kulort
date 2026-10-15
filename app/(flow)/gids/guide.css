@@ -117,13 +117,15 @@
 .g-effect figcaption b { font-size: 15px; }
 
 /* ---------- scales ---------- */
-.g-scales { display: grid; gap: 18px; }
+.g-scales { display: grid; gap: 28px; }
 .g-scale { display: grid; gap: 8px; }
 .g-scale-head { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
 .g-scale-head b { font-weight: 700; letter-spacing: 0; text-transform: none; font-size: 16px; }
 .g-scale-track { position: relative; height: 1px; background: var(--ink-g); }
 .g-scale-track i { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--accent); }
 .g-scale-ends { display: flex; justify-content: space-between; font-size: 11px; color: rgba(18, 18, 18, 0.6); }
+.g-scale-what { font-size: 13px; line-height: 1.5; color: rgba(18, 18, 18, 0.7); margin: 4px 0 0; }
+.g-scale-mine { font-size: 15px; line-height: 1.5; margin: 0; }
 .g-callout { padding: 18px 0 0; border-top: 0.75px solid var(--ink-g); display: grid; gap: 6px; }
 .g-callout b { font-family: var(--f-display); font-size: 22px; }
 .g-nyanse .g-callout b { font-style: italic; font-weight: 400; }
@@ -239,7 +241,7 @@
 .g-cover .house-mark .wordmark { opacity: 1; }
 .g-cover-photo { position: absolute; right: 22%; top: 0; bottom: 0; width: 40%; height: 100%; object-fit: cover; object-position: 50% 40%; }
 .g-cover-mid, .g-cover-tag, .g-cover-top { max-width: 40% !important; }
-.g-worn { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: start; }
+.g-worn { display: grid; gap: 20px; }
 .g-worn img { width: 100%; height: auto; display: block; }
 .g-basics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .g-basic { display: grid; gap: 4px; align-content: start; }
@@ -256,6 +258,7 @@
 .g-audit { padding-left: 22px; display: grid; gap: 14px; font-size: 15px; line-height: 1.5; max-width: 60ch; }
 @media print {
   .g-worn { gap: 8mm; }
+  .g-worn img { max-height: 165mm; object-fit: contain; }
   .g-basic i { height: 14mm; }
   .g-buys li { grid-template-columns: 16mm 1fr; }
   .g-buy-img { height: 16mm; }
@@ -263,6 +266,10 @@
 
 .g-cover-issue { position: absolute; top: 44px; right: calc(22% + 16px); z-index: 2; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .g-audit-piles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
-.g-audit-piles div { display: grid; gap: 6px; align-content: start; padding-top: 12px; border-top: 1px solid #141414; }
+.g-audit-piles > div { display: grid; gap: 6px; align-content: start; padding-top: 12px; border-top: 1px solid #141414; }
 .g-audit-piles b { font-family: var(--f-display); font-weight: 400; font-size: 20px; }
 .g-audit-piles span { font-size: 12.5px; color: rgba(18,18,18,.7); }
+
+.g-named { display: grid; gap: 4px; font-size: 15px; margin: 0; }
+.g-named span { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(18, 18, 18, 0.6); }
+.g-audit-piles .g-strip.named i { height: 40px; }
