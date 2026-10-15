@@ -12,7 +12,29 @@ export type OrderRow = {
   ref: string; tier: Tier; amount_cents: number; brand: BrandKey; voice: VoiceKey | null; season: string | null;
   email: string; name: string | null; street: string | null; postcode: string | null; city: string | null;
   country: "NL" | "BE" | "DE" | null; friend_code: string | null; waiver: boolean;
+  /** numbers only: enough to rebuild the guide on any device (never a photo) */
+  profile: StoredProfile | null;
 };
+
+export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string };
+
+const num = (v: unknown) => typeof v === "number" && Number.isFinite(v);
+/** Keeps only the known, numeric parts of a profile, capped in size. */
+export function parseProfile(raw: unknown): StoredProfile | null {
+  const p = (raw ?? {}) as Record<string, unknown>;
+  const out: StoredProfile = {};
+  if (typeof p.declared === "string" && p.declared in SEASONS) out.declared = p.declared;
+  if (["natural", "dyed", "grey", "none", "covered"].includes(p.hair as string)) out.hair = p.hair as string;
+  if (["goud", "zilver", "weetniet"].includes(p.jewel as string)) out.jewel = p.jewel as string;
+  const m = p.measurements as Record<string, unknown> | undefined;
+  const skin = (m?.skin as { lab?: Record<string, unknown> } | undefined)?.lab;
+  if (m && skin && num(skin.L) && num(skin.a) && num(skin.b)) {
+    const json = JSON.stringify(m);
+    // a measurement object is a few hundred bytes; anything large is not ours
+    if (json.length < 4000 && !/data:|base64|http/i.test(json)) out.measurements = m;
+  }
+  return out.declared || out.measurements ? out : null;
+}
 
 const str = (v: unknown, max: number) => (typeof v === "string" && v.trim().length > 0 && v.trim().length <= max ? v.trim() : null);
 
@@ -40,6 +62,7 @@ export function parseOrder(body: unknown): OrderRow | null {
     country: physical ? country : null,
     friend_code: friend?.code ?? null,
     waiver: b.waiver === true,
+    profile: parseProfile(b.profile),
   };
   // the colour card needs a full address in NL, BE or DE
   if (physical && (!row.name || !row.street || !row.postcode || !row.city || !row.country)) return null;

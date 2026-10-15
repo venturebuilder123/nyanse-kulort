@@ -18,3 +18,13 @@ describe("parseOrder", () => {
     expect(parseOrder({ ...base, tier: "gold" })).toBeNull();
   });
 });
+
+describe("parseProfile", () => {
+  it("keeps numbers and known answers only", async () => {
+    const { parseProfile } = await import("./order");
+    expect(parseProfile({ declared: "softSummer", evil: "x" })).toEqual({ declared: "softSummer" });
+    expect(parseProfile({ measurements: { skin: { lab: { L: 60, a: 12, b: 16 } } }, hair: "natural" })?.hair).toBe("natural");
+    expect(parseProfile({ measurements: { skin: { lab: { L: 60, a: 12, b: 16 } }, photo: "data:image/png;base64,AAAA" } })).toBeNull();
+    expect(parseProfile(null)).toBeNull();
+  });
+});

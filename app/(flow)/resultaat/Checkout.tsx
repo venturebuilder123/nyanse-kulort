@@ -4,8 +4,16 @@ import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import { amountFor, epcPayload, formatIban, orderRef, PAYEE } from "@/lib/flow/payment";
 import { euro, type Tier } from "@/lib/flow/pricing";
+import { orderKey } from "@/lib/flow/access";
 import { flowSession } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
+
+/** Numbers only: what the guide needs to be rebuilt on another device (never the photo). */
+function profileForOrder() {
+  const r = flowSession.result();
+  if (!r) return null;
+  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, declared: r.declared };
+}
 
 type Props = { tier: Tier; season: string; friendCode?: string; note?: string | null; onClose: () => void };
 
@@ -23,6 +31,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [ref, setRef] = useState("");
+  const [secret, setSecret] = useState("");
   const [qr, setQr] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -49,9 +58,12 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, waiver, ...f }),
+        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, waiver, ...f, profile: profileForOrder() }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      const d = (await res.json()) as { secret: string };
+      setSecret(d.secret);
+      orderKey.set({ ref: r, k: d.secret });
       try {
         sessionStorage.setItem("nk_email", JSON.stringify({ email: f.email.trim(), optin: false }));
       } catch {}
@@ -75,10 +87,10 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
     } catch {}
   };
 
+  // "Ik heb betaald" opens nothing by itself: the guide opens once the transfer is confirmed
   function paid() {
-    flowSession.update({ paid: true });
-    track("paid", ctx, { tier, amount, method: "transfer", ref });
-    location.href = `/klaar?status=paid&tier=${tier}&order=${ref}`;
+    track("transfer_claimed", ctx, { tier, amount });
+    location.href = `/klaar?order=${ref}&k=${encodeURIComponent(secret)}`;
   }
 
   if (step === "pay") {
@@ -110,9 +122,8 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         </dl>
         <button className="btn" onClick={paid}>Ik heb betaald</button>
         <p className="small muted">
-          {physical
-            ? "Je stijlgids opent meteen. Je kleurenpas gaat op de post zodra je betaling binnen is."
-            : "Je stijlgids opent meteen."}
+          Zodra je overschrijving binnen is, krijg je een mail met de link naar je stijlgids.
+          {physical && " Je kleurenpas gaat dan op de post."}
           {tier === "session" && " We mailen je binnen twee werkdagen om je sessie in te plannen."}
         </p>
       </div>

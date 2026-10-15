@@ -2,6 +2,25 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 15 oktober 2026 — betaalde gids alleen na bevestigde betaling; PostHog live
+
+- **Lek gedicht:** wie `/klaar?status=paid` typte of na "Ik heb betaald" klikte, kreeg de gids gratis. Nu opent de gids alleen als de server de bestelling als betaald ziet.
+- **Hoe het nu werkt:**
+  1. De bestelling bewaart een geheime code en het kleurprofiel (alleen getallen).
+  2. "Ik heb betaald" toont "We controleren je betaling".
+  3. De oprichter klikt op **Betaald** in `/lab/orders` (achter het lab-wachtwoord).
+  4. De klant krijgt een mail (Brevo) met de link `…/gids?o=KN-…&k=…`, die op elk apparaat werkt. De open bevestigingspagina kijkt elke 20 seconden zelf.
+  5. De oprichter krijgt een mail bij elke nieuwe bestelling.
+  6. Het event `paid` gaat pas bij bevestiging naar PostHog, vanaf de server.
+- **Nodig:** migratie `0005_order_access.sql`; de SMTP-gegevens van Brevo en een geverifieerd afzenderdomein; `NEXT_PUBLIC_POSTHOG_KEY` in Vercel.
+- **PostHog EU gekoppeld:** zonder cookies (sessionStorage), zonder IP-adres, zonder autocapture of opnames; pagina's zonder query (order-kenmerken kunnen in de URL staan).
+- **De sleutel `phs_…` stond in de chat:** opnieuw aanmaken (Feature flags › Secure API key › Rotate). Die is niet nodig.
+- **KvK (FEIT, volgens de criteria van de KvK):** wie zelfstandig, tegen een commerciële prijs en regelmatig aan anderen verkoopt, moet zich inschrijven (€85,15 eenmalig in 2026).
+  - Een webshop moet naam, adres en contact tonen (ACM, art. 6:230m BW). Daar bestaat geen nette omweg voor.
+  - **Advies:** inschrijven, eventueel met een zakelijk postadres zodat het woonadres niet op de site staat.
+  - Daarna kan Mollie: een echte iDEAL/Wero-betaling met directe bevestiging (op desktop een QR-code, op mobiel direct de bank-app). Dan is de handmatige controle niet meer nodig.
+- **To-do:** affiliate-programma's voor kledingwinkels (Awin, Daisycon, TradeTracker, bol-partnerprogramma). Per programma controleren of een KvK nodig is.
+
 ## 14 oktober 2026 — stijlgids v3 en outfitfoto's
 
 - **Waardecheck van de gids:** degelijk, maar het voelde als een rapport. Dit ontbrak: je basis, wat je eerst koopt, hoe je je kast nakijkt en een echt beeld van je type.

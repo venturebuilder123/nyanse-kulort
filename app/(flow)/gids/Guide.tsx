@@ -8,6 +8,7 @@ import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { buildGuide, type Swatch } from "@/lib/guide/build";
 import { makeReferralCode, referralUrl } from "@/lib/flow/referral";
+import { orderKey, verifyAccess, type Access } from "@/lib/flow/access";
 import { flowSession } from "@/lib/flow/session";
 import { track } from "@/lib/analytics";
 import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
@@ -34,14 +35,28 @@ export default function Guide() {
   const [qr, setQr] = useState<string | null>(null);
   const [site, setSite] = useState("");
 
+  const [access, setAccess] = useState<Access | null>(null);
+
+  // the guide opens only for an order the server confirms as paid (link from the mail: ?o=&k=)
   useEffect(() => {
-    const res = flowSession.result();
-    if (res && res.paid && !res.refCode) flowSession.update({ refCode: makeReferralCode(res.name) });
-    const fresh = flowSession.result();
-    setR(fresh);
-    setName(fresh?.name ?? "");
-    setSite(location.host);
-    setLoaded(true);
+    void (async () => {
+      const q = new URLSearchParams(location.search);
+      const o = q.get("o"), k = q.get("k");
+      const key = o && k ? { ref: o, k } : orderKey.get();
+      let a = await verifyAccess(key);
+      // offline but verified before on this device: let it open (no network in the shop)
+      if (a.state === "offline" && key && flowSession.result()?.paid) a = { state: "paid", tier: "digital" };
+      if (o && k) history.replaceState(null, "", location.pathname);
+      setAccess(a);
+      const res = flowSession.result();
+      if (a.state === "paid" && res && !res.refCode) flowSession.update({ refCode: makeReferralCode(res.name) });
+      const fresh = flowSession.result();
+      setR(fresh);
+      setName(fresh?.name ?? "");
+      setSite(location.host);
+      setLoaded(true);
+      if (a.state === "paid") track("guide_opened", { brand: config.key, voice }, {});
+    })();
   }, []);
   // regenerate when the code changes (it gets the name once a name is filled in)
   const refCode = r?.refCode;
@@ -56,7 +71,8 @@ export default function Guide() {
 
   if (!loaded) return <main className="screen" />;
   if (!r || !g) return <Locked text="Nog geen kleurprofiel op dit apparaat." href="/" cta="Begin je kleuranalyse" />;
-  if (!r.paid) return <Locked text="Je stijlgids hoort bij de gids of de gids met kleurenpas." href="/resultaat" cta="Bekijk je opties" />;
+  if (access?.state === "pending") return <Locked text="We controleren je betaling. Zodra je overschrijving binnen is, krijg je een mail en opent je stijlgids hier." href="/klaar" cta="Bekijk je bestelling" />;
+  if (access?.state !== "paid") return <Locked text="Je stijlgids hoort bij de stijlgids of de stijlgids met kleurenpas." href="/resultaat" cta="Bekijk je opties" />;
 
   const date = new Date(r.at);
   const month = date.toLocaleDateString("nl-NL", { month: "long", year: "numeric" });

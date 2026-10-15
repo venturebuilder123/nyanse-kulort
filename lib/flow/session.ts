@@ -25,7 +25,7 @@ export type FlowResult = {
   jewel?: Jewel;
   hair?: HairAnswer;
   face?: FaceBox;
-  /** set by the confirmation page after payment; until payments are wired: /klaar?status=paid */
+  /** set only after the server confirmed the order as paid (lib/flow/access.ts) */
   paid?: boolean;
   /** name on the guide's cover (CLAUDE.md §9: PDF with name on the cover) */
   name?: string;

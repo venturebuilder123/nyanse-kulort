@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { track } from "@/lib/analytics";
+import { track, trackPage } from "@/lib/analytics";
 import { journey, type JourneyStep } from "@/lib/flow/journey";
 import { invite } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
@@ -37,6 +37,7 @@ export function Lifecycle() {
   useEffect(() => {
     const step = STEP_BY_PATH[path];
     if (step) journey.reach(step);
+    trackPage(path, ctx);
   }, [path]);
 
   return null;
