@@ -23,7 +23,9 @@
 - **Naam:** KULØRT · NYANSE
 - **Gebruikersnaam:** @kulortnyanse
 - **Bio** (maximaal 150 tekens):
-  > Atelier voor persoonlijke kleur ✦ Je kleuren, je kast, je gids ✦ Voor hem (KULØRT) en voor haar (NYANSE) ✦ Gratis kleurcheck ↓
+  > Personal colour, made simple ✦ Your colours, your wardrobe, your guide ✦ For him (KULØRT) and her (NYANSE) ✦ Free colour check ↓
+
+  Engels, net als alle advertenties en campagnes (besluit 15 oktober 2026). Teksten in Engels: zie [ADVERTENTIES.md §5](ADVERTENTIES.md).
 - **Link:** `https://www.kulort-nyanse.com/?utm_source=instagram&utm_medium=bio`
 - **Categorie:** Personal stylist of Beauty, cosmetic & personal care. **Profielfoto:** `avatar-monogram.png` (Ø | N), want die blijft leesbaar in het kleine rondje. Alternatief: `avatar-lockup.png`.
 - **Highlights** (omslagen in `assets/social/highlight-*.png`): Kleuren · Seizoenen · Stijlgids · Pas · Looks · Vragen.

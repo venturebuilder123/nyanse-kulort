@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
-import { amountFor, epcPayload, formatIban, orderRef, PAYEE } from "@/lib/flow/payment";
+import { amountFor, formatIban, orderRef, PAYEE } from "@/lib/flow/payment";
 import { euro, type Tier } from "@/lib/flow/pricing";
 import { orderKey } from "@/lib/flow/access";
 import { flowSession } from "@/lib/flow/session";
@@ -32,7 +32,6 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [ref, setRef] = useState("");
   const [secret, setSecret] = useState("");
-  const [qr, setQr] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
@@ -68,9 +67,6 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         sessionStorage.setItem("nk_email", JSON.stringify({ email: f.email.trim(), optin: false }));
       } catch {}
       setRef(r);
-      const remittance = `${r} ${config.key === "kulort" ? "KULORT" : "NYANSE"}`;
-      const q = await import("qrcode");
-      setQr(await q.toDataURL(epcPayload(amount, remittance), { margin: 1, width: 440, errorCorrectionLevel: "M", color: { dark: "#141414", light: "#ffffff" } }));
       setStep("pay");
       track("checkout_open", ctx, { tier, step: "pay" });
     } catch {
@@ -99,13 +95,8 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       <div className="sheet-body pay">
         <div className="grab" />
         <p className="eyebrow-h">Betaal {euro(amount)} per bankoverschrijving</p>
-        {qr && (
-          <figure className="pay-qr">
-            <img src={qr} alt={`Betaal-QR: ${euro(amount)} aan ${PAYEE.name}, kenmerk ${remittance}`} width={220} height={220} />
-            <figcaption>Scan met je bank-app (als die betaal-QR ondersteunt).</figcaption>
-          </figure>
-        )}
-        <p className="small muted">Of maak het over met deze gegevens. Vermeld het kenmerk, dan koppelen we je betaling direct.</p>
+        {/* no QR: Dutch bank apps (Rabobank, ING, ABN AMRO) do not read the EPC transfer QR */}
+        <p className="small muted">Open je bank-app, kies Overmaken en kopieer deze gegevens. Vermeld het kenmerk, dan koppelen we je betaling direct.</p>
         <dl className="pay-lines">
           {[
             ["Bedrag", euro(amount), amount.toFixed(2).replace(".", ",")],

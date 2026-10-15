@@ -61,42 +61,86 @@
 5. **Variatie wint:** per stem 3 haken × 2 beelden = 6 varianten, en na 3–4 dagen de winnaar opschalen.
 6. **TikTok wil native:** schermopname van de app, een stem die praat, snelle cuts. **Instagram mag strakker:** editorial, de onthulling van de waaier.
 
-## 5. Concepten en teksten per stem
+## 5. Concepten en teksten per stem (Engels)
+
+**Besluit 15 oktober 2026:** alle advertenties en campagnes zijn in het **Engels**, voor een bredere markt. Jonge Nederlanders reageren ook goed op Engels. Uitleg en regie blijven Nederlands; alles wat in beeld of in de advertentie staat, is Engels.
+
+**Spelregels voor de Engelse teksten:**
+- **Wel prikkelen:** nieuwsgierigheid ("What's your season?"), herkenning ("Bought it. Never wore it."), zelfvertrouwen ("Walk in like you belong") en een knipoog (Girl Math).
+- **Geen onzekerheid als haakje:** niet "You look tired" of "Stop looking washed out". Dat schrijf je wel over een kleur, nooit over een persoon: "That grey is draining you" mag niet, "Some colours drain. Yours don't." wel.
+- **Geen geldbeloftes en geen nep-schaarste:** niet "Save $100", "Only today" of "Last spots".
+- **Prijzen in euro's** (€6.99 met een punt in het Engels), want we betalen en verzenden vanuit Nederland.
+- De merknamen blijven KULØRT en NYANSE. In platte tekst (hashtags, url's) schrijf je **KULORT**.
 
 Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → het verschil (5–9 s) → wat je krijgt (9–12 s) → eind (12–15 s)**.
 
 ### KULØRT · Wingman (18–29) · Instagram Reels en TikTok
-- **Haken (tekst in beeld):** "Welke kleuren staan jou écht?" · "Je eerste indruk, geregeld." · "Kast vol. Niks om aan te trekken."
-- **Concept A, "Het doek":** een man kijkt in de camera; onder zijn kin wisselt een grijsblauw doek naar warm oranje. Tekst: "Zelfde gezicht. Andere kleur." Daarna een schermopname van de app (selfie, de waaier vouwt open, "Deep Autumn"). Eind.
-- **Concept B, "De paskamer":** hij houdt twee shirts omhoog, twijfelt, pakt zijn kleurenpas uit de portemonnee en kiest. Tekst: "Weet het in één blik."
-- **Primaire tekst (Meta):** "Eén selfie en je weet welke kleuren je staan, en welke je kunt laten hangen. Je kleurprofiel is gratis, je stijlgids vanaf €6,99."
-- **Kop:** "Doe gratis de kleurcheck" · **CTA-knop:** "Meer informatie"
-- **TikTok-tekst:** "Welke kleuren staan jou? Gratis check, 30 seconden 👇"
+- **Haken (tekst in beeld):**
+  - "What colours actually work on you?"
+  - "First impression: sorted."
+  - "Same face. Different colour."
+  - "Full closet. Nothing to wear."
+- **Concept A, "The drape":** een man kijkt in de camera, en onder zijn kin wisselt een grijsblauw doek naar warm oranje.
+  - Tekst: "Same face. Different colour."
+  - Daarna een schermopname van de app: selfie, de waaier vouwt open, "Deep Autumn".
+  - Eind: "Find your colours. Free."
+- **Concept B, "The fitting room":** hij houdt twee shirts omhoog, twijfelt, pakt zijn kleurenpas uit zijn portemonnee en kiest.
+  - Tekst: "Knows in one look."
+- **Primaire tekst (Meta):** "One selfie. Know which colours make you look sharp, and which ones to leave on the rack. Your colour profile is free. Your style guide from €6.99."
+- **Kop:** "Take the free colour check" · **CTA-knop:** "Learn more"
+- **TikTok-tekst:** "Which colours actually work on you? Free check, 30 seconds 👇 #colouranalysis #mensstyle"
 
 ### KULØRT · Director (30+) · Instagram en Facebook-feed, LinkedIn (organisch)
-- **Haken:** "Duur gekocht. Nooit gedragen." · "Elke dag de juiste indruk." · "Een kast die voor je werkt."
-- **Concept, "De capsule":** het rek met 12 stukken in één palet, een hand die er één pakt; daarna de stijlgids (de workbook-foto). Tekst: "Wat je koopt, combineert."
-- **Primaire tekst:** "Minder kopen, beter kiezen. Eén selfie laat zien welke kleuren je rustig en zeker laten ogen. Met een stijlgids en een kleurenpas voor bij de kleermaker."
-- **Kop:** "Je kleurprofiel, gratis"
+- **Haken:**
+  - "Bought it. Never wore it."
+  - "The right impression, every day."
+  - "A wardrobe that works for you."
+- **Concept, "The capsule":** een rek met 12 stukken in één palet en een hand die er één pakt. Daarna de stijlgids (de workbook-foto).
+  - Tekst: "Everything you buy works together."
+- **Primaire tekst:** "Buy less, choose better. One selfie shows which colours make you look calm and sure of yourself. Comes with a personal style guide and a colour card for your tailor."
+- **Kop:** "Your colour profile, free"
 
 ### NYANSE · Girl Math (18–27) · TikTok
-- **Haken:** "Stop met kopen wat je niet staat." · "Paskamer: ja. Thuis: nee." · "Girl math: €0,23 per kleur."
-- **Concept A, "Het bonnetje"** (native, voice-over): een meisje praat in de camera. Op het scherm verschijnt een bonnetje: "Stijlgids €6,99 ÷ 30 kleuren = €0,23 per kleur. Retourtjes: minder." Daarna de app.
-- **Concept B, "Mijn kleuren"** (trend-format): drie vriendinnen houden kleuren onder hun kin. Tekst: "Wie is Zomer en wie Herfst?" Daarna: "Doe de check gratis."
-- **TikTok-tekst:** "Girl math zegt: worth it ✨ Gratis kleurcheck in 30 sec"
-- **Let op:** geen geldbelofte ("bespaar €100"). Een som met een knipoog mag.
+- **Haken:**
+  - "Stop buying what doesn't suit you."
+  - "Fitting room: yes. At home: no."
+  - "Girl math: €0.23 per colour."
+  - "POV: you finally know your colours."
+- **Concept A, "The receipt"** (native, met voice-over): een meisje praat in de camera. Er verschijnt een bonnetje in beeld:
+  - "Style guide €6.99 ÷ 30 colours = €0.23 per colour. Returns: fewer."
+  - Daarna de app.
+- **Concept B, "My colours"** (trendformat): drie vriendinnen houden kleuren onder hun kin.
+  - Tekst: "Who's Summer and who's Autumn?"
+  - Daarna: "Take the check. Free."
+- **TikTok-tekst:** "Girl math says: worth it ✨ Free colour check in 30 sec #coloranalysis #girlmath"
+- **Let op:** geen geldbelofte ("save €100"). Een som met een knipoog mag.
 
 ### NYANSE · Boss Lady (28–44) · Instagram Reels
-- **Haken:** "Mooi gekocht. Nooit gedragen." · "Kleuren die voor je werken." · "Geen tijd voor twijfel."
-- **Concept, "De ochtend":** een vrouw voor de spiegel om 7:30 uur, twee blouses; ze kiest de koraalkleurige. Tekst: "Zeker, elke ochtend." Daarna de onthulling in de app, de pas uit de envelop, eind.
-- **Primaire tekst:** "Geen tijd voor miskopen. Eén selfie laat zien welke kleuren je zeker laten ogen, van meeting tot diner. Gratis kleurprofiel, stijlgids vanaf €6,99."
-- **Kop:** "Ontdek je kleuren"
+- **Haken:**
+  - "Beautiful. Bought. Never worn."
+  - "Colours that work as hard as you do."
+  - "No time for second-guessing."
+- **Concept, "The morning":** een vrouw om 7:30 uur voor de spiegel, met twee blouses. Ze kiest de koraalkleurige.
+  - Tekst: "Sure of it. Every morning."
+  - Daarna de onthulling in de app, de pas uit de envelop en het eindbeeld.
+- **Primaire tekst:** "No time for bad buys. One selfie shows which colours make you look confident, from meeting to dinner. Free colour profile, style guide from €6.99."
+- **Kop:** "Discover your colours"
 
 ### NYANSE · Signature (45+) · Instagram en Facebook-feed
-- **Haken:** "Je kleuren veranderen mee." · "Kleuren die passen bij wie je nu bent."
-- **Concept, "Zilver":** een vrouw met zilvergrijs haar in een kobaltblauwe blouse aan een cafétafel, rustig, editorial. Tekst: "Grijs haar? Dan verandert je palet." Daarna de app en de persoonlijke sessie.
-- **Primaire tekst:** "Je haar, je huid en je smaak veranderen mee. Eén selfie laat zien welke kleuren je nu het mooist staan. Liever persoonlijk? Plan een sessie met onze kleurconsultant."
-- **Kop:** "Je kleuren van nu"
+- **Haken:**
+  - "Your colours change with you."
+  - "Colours for who you are now."
+- **Concept, "Silver":** een vrouw met zilvergrijs haar in een kobaltblauwe blouse aan een cafétafel, rustig en editorial.
+  - Tekst: "Gone grey? Your palette moves with you."
+  - Daarna de app en de persoonlijke sessie.
+- **Primaire tekst:** "Your hair, your skin and your taste evolve. One selfie shows which colours suit you best today. Prefer it in person? Book a session with our colour consultant."
+- **Kop:** "Your colours, now"
+
+### Campagne voor alle stemmen: "What's your season?"
+- **Sticker en Story-template:** "I'm an Autumn · kulort-nyanse.com"
+- **Poll:** "Which season do you think you are?"
+- **Carrousel:** "3 signs you're a Winter" · "Your 6 best colours as a Soft Summer" · "What to leave on the rack"
+- **Winactie (week 4):** "Share your season in your Story and tag @kulortnyanse for a chance to win a personal colour session (€89)." Deelname is gratis en er gelden actievoorwaarden (zie INSTAGRAM.md §5).
 
 ## 6. Beelden en video maken (Gemini / Veo of Higgsfield)
 

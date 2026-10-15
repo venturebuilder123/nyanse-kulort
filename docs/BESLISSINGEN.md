@@ -2,6 +2,12 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 15 oktober 2026 — advertenties en campagnes in het Engels
+
+- **Alle advertenties, campagnes en de Instagram-bio zijn Engels**, voor een bredere markt (keuze van de oprichter). De teksten staan per stem in [marketing/ADVERTENTIES.md §5](marketing/ADVERTENTIES.md). Prikkelen mag via nieuwsgierigheid, herkenning en zelfvertrouwen, maar nooit via onzekerheid over iemands uiterlijk (CLAUDE.md §12).
+- **Risico (MENING):** een Engelse advertentie die op een Nederlandse site landt, kost conversie. Meta beoordeelt ook de ervaring op de landingspagina. Buiten Nederland passen ook de verzending, de bankoverschrijving en de Nederlandse winkels nog niet. Advies: zolang de site Nederlands is, Engelse advertenties alleen op NL/BE richten, en een Engelse landing (`/en`, de i18n-structuur is er al) bouwen vóór je breder adverteert.
+- **Afzender van de mail:** `hi@kulort-nyanse.com`; het domein is geauthenticeerd in Brevo (DKIM brevo1/brevo2 en DMARC).
+
 ## 15 oktober 2026 — stijlgids v4: kritische review van alle gidsen
 
 Vier betaalde gidsen pagina voor pagina nagelopen (KULØRT Deep Winter en Soft Autumn, NYANSE Soft Summer en Light Spring), daarna alle 24 combinaties (12 seizoenen × 2 merken) in tekst. Gevonden en opgelost:
