@@ -78,3 +78,26 @@ Ideeën en beelden van buiten, om later uit te werken. Beelden van derden staan 
   - AANNAME: Engels heeft meer zoekvolume, maar ook veel meer concurrentie.
 - **Afhankelijk van:** affiliate-programma's (KvK) en een catalogus met kleurtags (CLAUDE.md §7).
 - **Status:** later. SEO kost maanden voordat het iets oplevert, dus vroeg beginnen loont. Een logisch moment is na de eerste meting van de advertenties.
+
+## 2026-10-16 — Alles automatiseren vanaf een Raspberry Pi 5 (idee van de oprichter)
+
+- **Wat:** de dagelijkse bedrijfsvoering draait automatisch. Claude Code draait op een Pi 5 thuis en doet het werk; de oprichter hoeft (bijna) niets meer.
+- **Kan goed automatisch (MENING):**
+  - **Betalingen:** de Mollie-webhook zet een bestelling op betaald en mailt de gids. Het handwerk in /lab/orders verdwijnt dan helemaal.
+  - **Kleurenpassen:** elke week de batch-export plus de adreslijst klaarzetten en "je pas is onderweg" mailen zodra je ze als verzonden markeert.
+  - **Rapport:** elke maandag funnel, opbrengst per bezoeker per merk en stem, en de winnende advertentie. Als mail of als pagina.
+  - **Content:** posts, carrousels en Story-templates klaarzetten uit de kleurmotor, plus een conceptplanning.
+  - **Mails:** de vervolgmails (dag 3 kast-check, dag 7 outfit, sale-alerts) en de catalogus bijwerken uit de feeds.
+  - **Bewaking:** checken of de site, de mail en de betalingen werken, met een pushmelding als iets stuk is.
+- **Blijft bij de oprichter (bewust):**
+  - **Goedkeuren** van alles wat geld kost of publiek wordt: advertentiebudget, posts, mails aan klanten (CLAUDE.md §0). Wel zo licht mogelijk: één tik op "Akkoord" op je telefoon.
+  - **Passen op de post doen** (tot een fulfilmentpartij het overneemt).
+  - **Juridisch:** KvK, voorwaarden, toestemmingen van mensen in beeld.
+- **Techniek (AANNAME, uitzoeken):**
+  - Pi 5 met Linux, Claude Code en geplande taken (cron of systemd-timers).
+  - Geheimen in een afgeschermd `.env`, nooit in git.
+  - Een back-up van de Pi-instellingen.
+  - Instagram en TikTok publiceren via hun officiële API's. Dat vraagt een zakelijk account en goedkeuring van de app; TikTok is daarin strenger.
+  - Kosten: Claude API per taak (meten), stroom ±€1 per maand.
+- **Risico's:** een Pi thuis valt uit bij stroom- of internetstoring. Zet daarom het werk dat de klant raakt (webhook, mail, gids) op Vercel en Supabase, niet op de Pi. De Pi doet alleen het werk dat mag wachten: rapporten, content en batches.
+- **Status:** later. Eerst Mollie live, dan stap voor stap: rapport → batch-export → contentvoorstellen → bewaking.
