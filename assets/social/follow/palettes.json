@@ -1,0 +1,734 @@
+{
+ "lightSpring": {
+  "name": "Light Spring",
+  "nyanse": [
+   {
+    "name": "Abrikoos",
+    "hex": "#F3A27A"
+   },
+   {
+    "name": "Boter",
+    "hex": "#F4E3A1"
+   },
+   {
+    "name": "Lichtgoud",
+    "hex": "#E8C468"
+   },
+   {
+    "name": "Lentegroen",
+    "hex": "#8FBF6A"
+   },
+   {
+    "name": "Zalmroze",
+    "hex": "#F4A3A0"
+   },
+   {
+    "name": "Perzik",
+    "hex": "#F6CBA8"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Abrikoos",
+    "hex": "#F3A27A"
+   },
+   {
+    "name": "Zand",
+    "hex": "#F4E3A1"
+   },
+   {
+    "name": "Lichtgoud",
+    "hex": "#E8C468"
+   },
+   {
+    "name": "Lentegroen",
+    "hex": "#8FBF6A"
+   },
+   {
+    "name": "Perzik",
+    "hex": "#F6CBA8"
+   },
+   {
+    "name": "Munt",
+    "hex": "#A8DDBE"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Blauwgroen",
+    "hex": "#4F8F8B"
+   }
+  ]
+ },
+ "warmSpring": {
+  "name": "Warm Spring",
+  "nyanse": [
+   {
+    "name": "Licht olijf",
+    "hex": "#A6A04C"
+   },
+   {
+    "name": "Zalm",
+    "hex": "#E58A5B"
+   },
+   {
+    "name": "Camel",
+    "hex": "#C79A5E"
+   },
+   {
+    "name": "Korenblauw",
+    "hex": "#4E86C4"
+   },
+   {
+    "name": "Turkoois",
+    "hex": "#2BB3A8"
+   },
+   {
+    "name": "Karamel",
+    "hex": "#9A6230"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Licht olijf",
+    "hex": "#A6A04C"
+   },
+   {
+    "name": "Zalm",
+    "hex": "#E58A5B"
+   },
+   {
+    "name": "Camel",
+    "hex": "#C79A5E"
+   },
+   {
+    "name": "Korenblauw",
+    "hex": "#4E86C4"
+   },
+   {
+    "name": "Turkoois",
+    "hex": "#2BB3A8"
+   },
+   {
+    "name": "Cognac",
+    "hex": "#9A6230"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Blauwgroen",
+    "hex": "#4F8F8B"
+   }
+  ]
+ },
+ "brightSpring": {
+  "name": "Bright Spring",
+  "nyanse": [
+   {
+    "name": "Felblauw",
+    "hex": "#2F6FDE"
+   },
+   {
+    "name": "Warm roze",
+    "hex": "#F75D9E"
+   },
+   {
+    "name": "Paars",
+    "hex": "#8E5BD6"
+   },
+   {
+    "name": "Klaprood",
+    "hex": "#E6194B"
+   },
+   {
+    "name": "Helder koraal",
+    "hex": "#FF6F61"
+   },
+   {
+    "name": "Feloranje",
+    "hex": "#FF8C1A"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Felblauw",
+    "hex": "#2F6FDE"
+   },
+   {
+    "name": "Paars",
+    "hex": "#8E5BD6"
+   },
+   {
+    "name": "Klaprood",
+    "hex": "#E6194B"
+   },
+   {
+    "name": "Helder koraal",
+    "hex": "#FF6F61"
+   },
+   {
+    "name": "Feloranje",
+    "hex": "#FF8C1A"
+   },
+   {
+    "name": "Jadegroen",
+    "hex": "#00A86B"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Blauwgroen",
+    "hex": "#4F8F8B"
+   }
+  ]
+ },
+ "lightSummer": {
+  "name": "Light Summer",
+  "nyanse": [
+   {
+    "name": "Poederroze",
+    "hex": "#F0B7C8"
+   },
+   {
+    "name": "Pastelpaars",
+    "hex": "#CFA9D6"
+   },
+   {
+    "name": "Lavendel",
+    "hex": "#BDB3DD"
+   },
+   {
+    "name": "Koele munt",
+    "hex": "#A9D8CF"
+   },
+   {
+    "name": "Poederblauw",
+    "hex": "#AFC6E0"
+   },
+   {
+    "name": "Licht rozenhout",
+    "hex": "#CF9DA4"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Lichtroze",
+    "hex": "#F0B7C8"
+   },
+   {
+    "name": "Koele munt",
+    "hex": "#A9D8CF"
+   },
+   {
+    "name": "Poederblauw",
+    "hex": "#AFC6E0"
+   },
+   {
+    "name": "Zeeblauw",
+    "hex": "#7FA8C9"
+   },
+   {
+    "name": "Maagdenpalm",
+    "hex": "#9AA9C9"
+   },
+   {
+    "name": "IJsgroen",
+    "hex": "#CFE5DD"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Goudgeel",
+    "hex": "#F2B632"
+   }
+  ]
+ },
+ "coolSummer": {
+  "name": "Cool Summer",
+  "nyanse": [
+   {
+    "name": "Middenblauw",
+    "hex": "#5B7DB1"
+   },
+   {
+    "name": "Blauwgroen",
+    "hex": "#4F8F8B"
+   },
+   {
+    "name": "Koel roze",
+    "hex": "#E3A1B9"
+   },
+   {
+    "name": "Koel hemelsblauw",
+    "hex": "#7E9DB8"
+   },
+   {
+    "name": "Denim",
+    "hex": "#3E6E9C"
+   },
+   {
+    "name": "Grijsblauw",
+    "hex": "#6D6E8C"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Middenblauw",
+    "hex": "#5B7DB1"
+   },
+   {
+    "name": "Blauwgroen",
+    "hex": "#4F8F8B"
+   },
+   {
+    "name": "Koel hemelsblauw",
+    "hex": "#7E9DB8"
+   },
+   {
+    "name": "Denim",
+    "hex": "#3E6E9C"
+   },
+   {
+    "name": "Grijsblauw",
+    "hex": "#6D6E8C"
+   },
+   {
+    "name": "Koel paars",
+    "hex": "#8C6BAE"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Goudgeel",
+    "hex": "#F2B632"
+   }
+  ]
+ },
+ "softSummer": {
+  "name": "Soft Summer",
+  "nyanse": [
+   {
+    "name": "Grijsgroen",
+    "hex": "#7D8471"
+   },
+   {
+    "name": "Leisteen",
+    "hex": "#5E6A7A"
+   },
+   {
+    "name": "Koel taupe",
+    "hex": "#9A8F8A"
+   },
+   {
+    "name": "Mauve",
+    "hex": "#A6879C"
+   },
+   {
+    "name": "Zachte pruim",
+    "hex": "#6E5468"
+   },
+   {
+    "name": "Zeegroen",
+    "hex": "#7FA39B"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Steengroen",
+    "hex": "#7D8471"
+   },
+   {
+    "name": "Steengrijs",
+    "hex": "#5E6A7A"
+   },
+   {
+    "name": "Koel taupe",
+    "hex": "#9A8F8A"
+   },
+   {
+    "name": "Zachte pruim",
+    "hex": "#6E5468"
+   },
+   {
+    "name": "Zeegroen",
+    "hex": "#7FA39B"
+   },
+   {
+    "name": "Washed denim",
+    "hex": "#4F6886"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Goudgeel",
+    "hex": "#F2B632"
+   }
+  ]
+ },
+ "softAutumn": {
+  "name": "Soft Autumn",
+  "nyanse": [
+   {
+    "name": "Zachte petrol",
+    "hex": "#3F6A6A"
+   },
+   {
+    "name": "Chocolademelk",
+    "hex": "#6B4B38"
+   },
+   {
+    "name": "Olijf",
+    "hex": "#7A7449"
+   },
+   {
+    "name": "Kaki",
+    "hex": "#A89A72"
+   },
+   {
+    "name": "Roestroze",
+    "hex": "#B67C73"
+   },
+   {
+    "name": "Mosgroen",
+    "hex": "#6D7A4C"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Zachte petrol",
+    "hex": "#3F6A6A"
+   },
+   {
+    "name": "Tabak",
+    "hex": "#6B4B38"
+   },
+   {
+    "name": "Olijf",
+    "hex": "#7A7449"
+   },
+   {
+    "name": "Kaki",
+    "hex": "#A89A72"
+   },
+   {
+    "name": "Mosgroen",
+    "hex": "#6D7A4C"
+   },
+   {
+    "name": "Camel",
+    "hex": "#B9926B"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Koningsblauw",
+    "hex": "#1F4FC4"
+   }
+  ]
+ },
+ "warmAutumn": {
+  "name": "Warm Autumn",
+  "nyanse": [
+   {
+    "name": "Petrolgroen",
+    "hex": "#2E6B5E"
+   },
+   {
+    "name": "Legergroen",
+    "hex": "#556B2F"
+   },
+   {
+    "name": "Siena",
+    "hex": "#A0522D"
+   },
+   {
+    "name": "Zadelbruin",
+    "hex": "#8B4513"
+   },
+   {
+    "name": "Kastanje",
+    "hex": "#7B3F00"
+   },
+   {
+    "name": "Licht kameel",
+    "hex": "#E0A96D"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Petrolgroen",
+    "hex": "#2E6B5E"
+   },
+   {
+    "name": "Olijf",
+    "hex": "#556B2F"
+   },
+   {
+    "name": "Siena",
+    "hex": "#A0522D"
+   },
+   {
+    "name": "Cognac",
+    "hex": "#8B4513"
+   },
+   {
+    "name": "Kastanje",
+    "hex": "#7B3F00"
+   },
+   {
+    "name": "Licht kameel",
+    "hex": "#E0A96D"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Koningsblauw",
+    "hex": "#1F4FC4"
+   }
+  ]
+ },
+ "deepAutumn": {
+  "name": "Deep Autumn",
+  "nyanse": [
+   {
+    "name": "Warm bordeaux",
+    "hex": "#6E1F2A"
+   },
+   {
+    "name": "Warme aubergine",
+    "hex": "#5A2F3F"
+   },
+   {
+    "name": "Chocolade",
+    "hex": "#4E3022"
+   },
+   {
+    "name": "Bosgroen",
+    "hex": "#2F4F3A"
+   },
+   {
+    "name": "Diep olijf",
+    "hex": "#5B5A2E"
+   },
+   {
+    "name": "Petrol",
+    "hex": "#1F5C63"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Bordeaux",
+    "hex": "#6E1F2A"
+   },
+   {
+    "name": "Warme aubergine",
+    "hex": "#5A2F3F"
+   },
+   {
+    "name": "Chocolade",
+    "hex": "#4E3022"
+   },
+   {
+    "name": "Bosgroen",
+    "hex": "#2F4F3A"
+   },
+   {
+    "name": "Diep olijf",
+    "hex": "#5B5A2E"
+   },
+   {
+    "name": "Petrol",
+    "hex": "#1F5C63"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Koningsblauw",
+    "hex": "#1F4FC4"
+   }
+  ]
+ },
+ "deepWinter": {
+  "name": "Deep Winter",
+  "nyanse": [
+   {
+    "name": "Indigo",
+    "hex": "#3A2A6B"
+   },
+   {
+    "name": "Inktblauw",
+    "hex": "#1B2A5C"
+   },
+   {
+    "name": "Aubergine",
+    "hex": "#3F1A44"
+   },
+   {
+    "name": "Diep smaragd",
+    "hex": "#0B6B4F"
+   },
+   {
+    "name": "Robijn",
+    "hex": "#9E0F35"
+   },
+   {
+    "name": "Kobalt",
+    "hex": "#1E50B4"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Indigo",
+    "hex": "#3A2A6B"
+   },
+   {
+    "name": "Navy",
+    "hex": "#1B2A5C"
+   },
+   {
+    "name": "Pruim",
+    "hex": "#3F1A44"
+   },
+   {
+    "name": "Diep smaragd",
+    "hex": "#0B6B4F"
+   },
+   {
+    "name": "Robijn",
+    "hex": "#9E0F35"
+   },
+   {
+    "name": "Kobalt",
+    "hex": "#1E50B4"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Petrolgroen",
+    "hex": "#2E6B5E"
+   }
+  ]
+ },
+ "coolWinter": {
+  "name": "Cool Winter",
+  "nyanse": [
+   {
+    "name": "Nachtblauw",
+    "hex": "#0E4C92"
+   },
+   {
+    "name": "Saffier",
+    "hex": "#0F3D8C"
+   },
+   {
+    "name": "Smaragd",
+    "hex": "#009B77"
+   },
+   {
+    "name": "Robijnrood",
+    "hex": "#B0103A"
+   },
+   {
+    "name": "Koel paars",
+    "hex": "#6A2C91"
+   },
+   {
+    "name": "Koningsblauw",
+    "hex": "#1F4FC4"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Royal navy",
+    "hex": "#0E4C92"
+   },
+   {
+    "name": "Kobaltnavy",
+    "hex": "#0F3D8C"
+   },
+   {
+    "name": "Smaragd",
+    "hex": "#009B77"
+   },
+   {
+    "name": "Wijnrood",
+    "hex": "#B0103A"
+   },
+   {
+    "name": "Koel paars",
+    "hex": "#6A2C91"
+   },
+   {
+    "name": "Koningsblauw",
+    "hex": "#1F4FC4"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Petrolgroen",
+    "hex": "#2E6B5E"
+   }
+  ]
+ },
+ "brightWinter": {
+  "name": "Bright Winter",
+  "nyanse": [
+   {
+    "name": "Felroze",
+    "hex": "#FF1493"
+   },
+   {
+    "name": "Karmijn",
+    "hex": "#DC143C"
+   },
+   {
+    "name": "Helder paars",
+    "hex": "#7B2CBF"
+   },
+   {
+    "name": "Kobalt",
+    "hex": "#0047AB"
+   },
+   {
+    "name": "Diep robijn",
+    "hex": "#9B111E"
+   },
+   {
+    "name": "Citroengeel",
+    "hex": "#F9E000"
+   }
+  ],
+  "kulort": [
+   {
+    "name": "Karmijn",
+    "hex": "#DC143C"
+   },
+   {
+    "name": "Helder paars",
+    "hex": "#7B2CBF"
+   },
+   {
+    "name": "Kobalt",
+    "hex": "#0047AB"
+   },
+   {
+    "name": "Bordeaux",
+    "hex": "#9B111E"
+   },
+   {
+    "name": "Navy",
+    "hex": "#2E3A87"
+   },
+   {
+    "name": "Helder smaragd",
+    "hex": "#00A693"
+   }
+  ],
+  "avoid": [
+   {
+    "name": "Petrolgroen",
+    "hex": "#2E6B5E"
+   }
+  ]
+ }
+}
