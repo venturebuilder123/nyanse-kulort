@@ -11,6 +11,7 @@ import { buildGuide, type Swatch } from "@/lib/guide/build";
 import { makeReferralCode, referralUrl } from "@/lib/flow/referral";
 import { orderKey, verifyAccess, type Access } from "@/lib/flow/access";
 import { flowSession } from "@/lib/flow/session";
+import { loadAnswers } from "@/lib/flow/answers";
 import { track } from "@/lib/analytics";
 import { pushOff, pushOn, pushState, type PushState } from "@/lib/push/client";
 import { useBrand } from "../BrandProvider";
@@ -299,6 +300,9 @@ export default function Guide() {
       </Page>
 
       {/* shop, home screen, friends */}
+      {/* products in these colours from the catalogue; renders nothing while the catalogue is empty */}
+      <ShopPage brand={config.key} palette={g.groups.flatMap((gr) => gr.colors)} avoid={g.avoid.map((a) => a.color.hex)} />
+
       <Page n={next()} kicker="Altijd bij je" title="In de winkel en op je telefoon">
         <ul className="g-tips">{g.shopping.slice(0, 4).map((t) => <li key={t}>{t}</li>)}</ul>
         <div className="g-two">
@@ -387,6 +391,55 @@ function Page({ n, kicker, title, children }: { n: string; kicker: string; title
   );
 }
 
+type ShopItem = { id: number; shop: string; title: string; image_url: string | null; price: number | null; old_price: number | null; category: string; colour: string; hex: string };
+const SHOP_LABEL: Record<string, string> = {
+  overhemd: "Overhemden", blouse: "Blouses", top: "Tops en shirts", trui: "Truien", vest: "Vesten", colbert: "Colberts en blazers", jas: "Jassen",
+  broek: "Broeken", jeans: "Jeans", rok: "Rokken", jurk: "Jurken", schoenen: "Schoenen", sneakers: "Sneakers", riem: "Riemen",
+  horloge: "Horloges", sieraden: "Sieraden", sjaal: "Sjaals", tas: "Tassen", das: "Dassen",
+};
+const SHOP_ORDER = ["overhemd", "blouse", "top", "trui", "vest", "colbert", "jas", "jurk", "broek", "jeans", "rok", "sjaal", "das", "schoenen", "sneakers", "riem", "tas", "horloge", "sieraden"];
+
+/** "Shop je kleuren": real products whose measured colour matches this palette (CLAUDE.md §7). */
+function ShopPage({ brand, palette, avoid }: { brand: string; palette: Swatch[]; avoid: string[] }) {
+  const [items, setItems] = useState<ShopItem[] | null>(null);
+  useEffect(() => {
+    const a = loadAnswers();
+    fetch("/api/shop", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ brand, palette, avoid, budget: a.budget, shops: a.shops }) })
+      .then((r) => r.json())
+      .then((d: { products?: ShopItem[] }) => setItems(d.products ?? []))
+      .catch(() => setItems([]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [brand]);
+  if (!items?.length) return null;
+  const cats = SHOP_ORDER.filter((c) => items.some((i) => i.category === c));
+  return (
+    <section className="g-page g-shop">
+      <header className="g-head">
+        <div><span className="g-kicker">Shop je kleuren</span><h2>Nu te koop, in jouw kleuren</h2></div>
+      </header>
+      <div className="g-content">
+        <p className="g-lede">Echte producten waarvan we de kleur hebben gemeten. Elk stuk past bij een kleur uit je palet.</p>
+        {cats.map((c) => (
+          <div key={c} className="g-shop-cat">
+            <b>{SHOP_LABEL[c] ?? c}</b>
+            <div className="g-shop-row">
+              {items.filter((i) => i.category === c).map((i) => (
+                <a key={i.id} className="g-shop-item" href={`/go/${i.id}`} target="_blank" rel="sponsored noopener nofollow" onClick={() => track("affiliate_click", { brand: brand as "kulort" | "nyanse", voice: "none" }, { shop: i.shop, category: i.category })}>
+                  {i.image_url && <img src={i.image_url} alt="" loading="lazy" decoding="async" />}
+                  <span className="g-shop-match"><i style={{ background: i.hex }} />{i.colour}</span>
+                  <span className="g-shop-title">{i.title}</span>
+                  <span className="g-shop-meta">{i.shop}{i.price != null && <> · {i.old_price ? <><s>€{i.old_price.toFixed(2).replace(".", ",")}</s> </> : null}€{i.price.toFixed(2).replace(".", ",")}</>}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+        <p className="g-caption">Links naar winkels zijn affiliate-links: wij krijgen een kleine vergoeding, jij betaalt niets extra. Aanbevolen op kleur, nooit op commissie.</p>
+      </div>
+    </section>
+  );
+}
+
 function Strip({ colors, named, crossed }: { colors: Swatch[]; named?: boolean; crossed?: boolean }) {
   return (
     <div className={`g-strip${named ? " named" : ""}${crossed ? " crossed" : ""}`}>
@@ -417,7 +470,8 @@ async function downloadGuidePdf(filename: string): Promise<boolean> {
   try {
     await document.fonts.ready;
     const [{ toJpeg }, { jsPDF }] = await Promise.all([import("html-to-image"), import("jspdf")]);
-    const pages = [...root.querySelectorAll<HTMLElement>(".g-page")];
+    // the shop page is live content with photos from other sites: it stays on screen only
+    const pages = [...root.querySelectorAll<HTMLElement>(".g-page:not(.g-shop)")];
     const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
     for (let i = 0; i < pages.length; i++) {
       const el = pages[i]!;

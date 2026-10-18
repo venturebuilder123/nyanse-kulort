@@ -46,13 +46,53 @@ In het Nederlands, als de adverteerder dat vraagt:
 
 **Bij "media" in Daisycon:** voeg de website toe (kulort-nyanse.com) en Instagram (@kulortnyanse).
 
-## Na goedkeuring
+## Na goedkeuring: zo werkt de catalogus (gebouwd 18 oktober 2026)
 
-1. Zet bij het programma in `lib/catalog/programs.ts` de status op `approved` (of geef het mij door).
-2. Kopieer per programma de **productfeed-URL** uit Daisycon naar `.env` en Vercel (bijvoorbeeld `DAISYCON_FEED_15549=…`). Dat is een sleutel, dus nooit in de code.
-3. Ik bouw dan het importscript: feed → producten → kleur meten van de productfoto → Lab/hex opslaan → outfits matchen op ΔE, gelegenheid, budget en winkel (CLAUDE.md §7).
-4. **Winkelknoppen in /stijl en de ticker bij de analyse:** daar staan nu Zalando, OFM, COS en andere winkels die nog niet in de catalogus zitten. Volgens CLAUDE.md §6 mogen daar alleen winkels staan die echt in de catalogus zitten. Zodra de eerste programma's zijn goedgekeurd, vervang ik die lijst door de goedgekeurde winkels.
-5. Bij elke productlink de vermelding "Affiliate-link: wij krijgen een kleine vergoeding, jij betaalt niets extra", en in de gids blijft "Aanbevolen op kleur, nooit op commissie" staan.
+**Eenmalig instellen**
+1. **Supabase → SQL Editor:** draai `supabase/migrations/0007_catalog.sql`. Dat maakt de tabellen `feeds` en `products`, alleen leesbaar voor de server.
+2. **GitHub → repo → Settings → Secrets and variables → Actions:** voeg `SITE_URL` (`https://www.kulort-nyanse.com`) en `CRON_SECRET` (dezelfde als in Vercel) toe. Dan meet GitHub elk uur gratis de kleur van nieuwe producten.
+
+**Per goedgekeurd programma (±2 minuten)**
+1. Haal in het netwerk de **productfeed-URL** op. Kies bij voorkeur **CSV**, gefilterd op kleding en accessoires voor dames en heren, en **zonder kinderkleding**. Bij Daisycon: Programma → Productfeeds; bij Awin: Toolbox → Create-a-Feed.
+2. Ga naar **/lab/catalog → Feed toevoegen**: winkelnaam, netwerk, de URL, en voor wie (KULØRT, NYANSE of beide).
+3. Klik op **Importeer nu** en daarna op **Meet kleur**. Controleer bij "Laatst gemeten" of de kleurvlakjes bij de foto's passen.
+4. Klaar. Daarna gaat alles vanzelf:
+   - **Elke nacht (Vercel):** alle feeds opnieuw inlezen. Nieuwe producten erbij, verdwenen producten eruit, prijzen en afprijzingen bijgewerkt.
+   - **Elk uur (GitHub):** de kleur meten van nieuwe productfoto's (achtergrond eruit, grootste kleurvlak, Lab-waarde opgeslagen).
+   - **De stijlgids** krijgt de pagina **"Shop je kleuren"**: per categorie producten waarvan de gemeten kleur dicht bij een kleur uit het palet ligt (ΔE ≤ 11), nooit dichter bij een kleur om te vermijden. Gefilterd op heren of dames, het gekozen budget en de favoriete winkels.
+   - **Elke productklik** loopt via `/go/{id}`. Die telt `affiliate_click` per winkel in PostHog, zonder persoonsgegevens, en stuurt dan door naar de trackinglink van het netwerk.
+   - **/stijl** toont automatisch de echte catalogus-winkels zodra er 3 of meer zijn.
+
+**Wat de klant ziet:** bij elk product staat "Links naar winkels zijn affiliate-links: wij krijgen een kleine vergoeding, jij betaalt niets extra. Aanbevolen op kleur, nooit op commissie."
+
+**Bewust zo:**
+- **Alleen echte afprijzingen:** als oude prijs telt alleen een hogere prijs uit de feed, nooit een verzonnen prijs (CLAUDE.md §7).
+- **Kinder-, ondergoed- en sokkenartikelen** worden bij het inlezen overgeslagen.
+- **Maximaal 3.000 producten per feed**, zodat de gratis database klein blijft. In te stellen per feed.
+- **De shoppagina staat niet in de PDF:** die bevat foto's van andere sites en verandert elke dag.
+
+## De grote winkels: welk netwerk? (onderzoek 18 oktober 2026)
+
+**FEIT** waar een bron het bevestigt, **AANNAME** waar alleen verzamelsites het noemen. Check het altijd in het dashboard van het netwerk; programma's openen, sluiten en verhuizen.
+
+| Winkel | Netwerk | Status voor NL | Wat te doen |
+|---|---|---|---|
+| **Mango** | Eigen partnerprogramma via **Rakuten** (shop.mango.com/…/affiliate) | AANNAME: actief (de BE-pagina bestaat) | Aanmelden via Mango's partnerpagina |
+| **Sissy-Boy** | **Daisycon** (NL, 5–10%), ook TradeTracker (BE) | FEIT: NL-campagne op Daisycon (stond niet in je export: zoek op "Sissy-Boy") | Aanmelden op Daisycon |
+| **Suitsupply** | **Awin** (UK/US, 6%) | AANNAME: geen NL-programma gevonden | Awin-account, zoeken op Suitsupply |
+| **Uniqlo** | **Awin** (UK, BE, DE, FR, ES, DK) | AANNAME: geen NL-vermelding gevonden; BE levert wel in het Nederlands | Awin: zoek Uniqlo, kies NL of BE |
+| **Zalando** | Alleen **Zalando Lounge** via **Awin** (outlet) | Geen gewoon Zalando-affiliateprogramma gevonden | Laten liggen, of Lounge bekijken |
+| **ASOS** | Per land, o.a. **Awin** (IT), FlexOffers (US); "alleen op uitnodiging" | AANNAME: geen open NL-programma | Laten liggen |
+| **Wehkamp** | **Partnerize** (eerder eigen programma op TradeDoubler) | AANNAME: actief, 7 dagen cookie | Partnerize-account (iets drempeliger) |
+| **H&M, COS, Arket** | Per regio wisselend; geen NL-programma gevonden | Niet beschikbaar | Laten liggen |
+| **Zara** | Geen open affiliateprogramma (alleen influencers via LTK/Captiv8) | Niet beschikbaar | Laten liggen |
+| **bol** | Eigen partnerprogramma (2,5–7%) | AANNAME: actief, mode is beperkt | Later, vooral voor accessoires |
+
+**Conclusie:**
+- De drie netwerken naast Daisycon die het meeste opleveren voor ons, zijn **Awin** (Uniqlo, Suitsupply, veel internationale merken), **Rakuten** (Mango) en eventueel **Partnerize** (Wehkamp).
+- Zara, H&M, COS, Arket en het gewone Zalando kun je niet als affiliate verkopen. Haal ze daarom op termijn uit de winkellijst in /stijl. Dat gebeurt nu vanzelf zodra er 3 of meer echte catalogus-winkels zijn (zie hieronder).
+
+Bronnen: zie het overzicht in het chatbericht van 18 oktober 2026 (Awin, Daisycon, affi.io, Emerce, Twinkle, Makeinfluence, Mango-partnerpagina).
 
 ## Ontbreekt nog
 

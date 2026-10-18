@@ -2,6 +2,17 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — de catalogus vult zichzelf
+
+- **Feeds beheer je in /lab/catalog**, niet in de code: winkel plus feed-URL, voor KULØRT, NYANSE of beide. Alle formaten werken: CSV, XML, JSON, en ook gzip zoals bij Awin.
+- **Automatisch:**
+  - Vercel-cron elke nacht om 03:00 voor import en daarna kleur meten.
+  - GitHub Actions elk uur (gratis) om de kleur van nieuwe foto's te meten, omdat Vercel Hobby maar één cron per dag toestaat.
+  - De Raspberry Pi is hiervoor niet nodig.
+- **Kleur meten:** de achtergrond wordt geschat uit de rand van de foto, daarna k-means in Lab, en de grootste cluster wint. Een wit kledingstuk op een witte achtergrond valt terug op het midden van de foto. De controle met Claude bij twijfel (CLAUDE.md §7) volgt pas als de vlakjes in /lab/catalog niet blijken te kloppen.
+- **Matchen:** ΔE2000 ≤ 11 tot de dichtstbijzijnde paletkleur, en nooit dichter bij een kleur om te vermijden. Maximaal 4 per categorie en maximaal 2 per winkel per categorie, zodat niet één winkel de pagina vult.
+- **Netwerken:** voor de grote winkels zijn Awin (Uniqlo, Suitsupply), Rakuten (Mango) en Partnerize (Wehkamp) de volgende stappen. Zara, H&M, COS, Arket en het gewone Zalando hebben geen open programma in Nederland (zie fase-b/AFFILIATE.md).
+
 ## 18 oktober 2026 — persoonlijk kleuradvies zonder afspraak, echte PDF, Daisycon
 
 - **De sessie via Teams vervalt.** In de plaats komt **Persoonlijk kleuradvies (€110)**: stijlgids en kleurenpas, plus een persoonlijke video van de kleurconsulent.

@@ -12,6 +12,14 @@ export default function Style() {
   const { config, copy, ctx } = useBrand();
   const router = useRouter();
   const [a, setA] = useState<Answers>(EMPTY);
+  // the shops that really are in the catalogue (CLAUDE.md §6); until then the brand's own list
+  const [shops, setShops] = useState<string[]>([...config.shops]);
+  useEffect(() => {
+    fetch(`/api/shop/shops?brand=${config.key}`)
+      .then((r) => r.json())
+      .then((d: { shops?: string[] }) => { if (d.shops && d.shops.length >= 3) setShops(d.shops); })
+      .catch(() => {});
+  }, [config.key]);
 
   useEffect(() => {
     setA(loadAnswers());
@@ -51,7 +59,7 @@ export default function Style() {
           <h2 id="q-shops">{copy.style.shopsQuestion}</h2>
           <p className="hint">{copy.style.shopsHint}</p>
           <div className="chips">
-            {config.shops.map((s) => (
+            {shops.map((s) => (
               <button key={s} aria-pressed={a.shops.includes(s)} onClick={() => update({ ...a, shops: toggle(a.shops, s) })}>
                 {s}
               </button>

@@ -10,6 +10,7 @@ export default function LabLayout({ children }: { children: React.ReactNode }) {
           <Link href="/lab">Testpersonen</Link>
           <Link href="/lab/report">Rapport</Link>
           <Link href="/lab/orders">Bestellingen</Link>
+          <Link href="/lab/catalog">Catalogus</Link>
         </nav>
         <form action={logout}>
           <button className="secondary" type="submit">Uitloggen</button>
