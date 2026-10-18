@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { supabaseConfigured, supabaseRest } from "@/lib/db/supabase";
 import { parseOrder } from "@/lib/flow/order";
 import { mailConfigured, sendMail } from "@/lib/mail";
+import { mollieConfigured, paymentForOrder } from "@/lib/payments/mollie";
 
 // Stores an order before the customer transfers the money; the founder matches by reference.
 // The secret is the buyer's key to the guide: it never leaves this response and the mail.
@@ -26,5 +27,16 @@ export async function POST(req: Request) {
       `<p><b>${row.ref}</b> · ${row.tier} · €${euro} · ${row.brand}</p><p>Controleer de overschrijving en klik op <b>Betaald</b> in <a href="https://www.kulort-nyanse.com/lab/orders">/lab/orders</a>.</p>`,
     ).catch(() => {});
   }
-  return NextResponse.json({ ok: true, ref: row.ref, secret, amount: row.amount_cents / 100 });
+  // Mollie when configured: the customer goes to Mollie's checkout and comes back on /klaar;
+  // the webhook marks the order paid. Without a key (or if Mollie fails) the bank transfer remains.
+  let checkoutUrl: string | null = null;
+  if (mollieConfigured()) {
+    try {
+      const p = await paymentForOrder({ ...row, secret }, new URL(req.url).origin);
+      checkoutUrl = p._links.checkout?.href ?? null;
+    } catch (e) {
+      console.error("mollie create failed", e);
+    }
+  }
+  return NextResponse.json({ ok: true, ref: row.ref, secret, amount: row.amount_cents / 100, checkoutUrl });
 }

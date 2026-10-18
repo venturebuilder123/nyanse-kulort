@@ -60,13 +60,19 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, waiver, ...f, profile: profileForOrder() }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const d = (await res.json()) as { secret: string };
+      const d = (await res.json()) as { secret: string; checkoutUrl?: string | null };
       setSecret(d.secret);
       orderKey.set({ ref: r, k: d.secret });
       try {
         sessionStorage.setItem("nk_email", JSON.stringify({ email: f.email.trim(), optin: false }));
       } catch {}
       setRef(r);
+      // Mollie (iDEAL | Wero, Apple Pay, card): straight to the payment page; otherwise the transfer details
+      if (d.checkoutUrl) {
+        track("checkout_open", ctx, { tier, step: "mollie" });
+        location.href = d.checkoutUrl;
+        return;
+      }
       setStep("pay");
       track("checkout_open", ctx, { tier, step: "pay" });
     } catch {
@@ -154,7 +160,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
       <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : `Naar betalen · ${euro(amount)}`}</button>
-      <p className="small muted center">Je betaalt per bankoverschrijving aan {PAYEE.name}. Prijzen inclusief btw.</p>
+      <p className="small muted center">Prijzen inclusief btw.</p>
       <button type="button" className="link-btn" onClick={onClose}>{t.checkout.close}</button>
     </form>
   );

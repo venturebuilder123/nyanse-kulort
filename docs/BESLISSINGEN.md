@@ -2,6 +2,15 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — Mollie ingebouwd
+
+- **Met `MOLLIE_API_KEY` betaalt de klant via Mollie:** iDEAL | Wero, Apple Pay, kaart, PayPal; wat in het Mollie-dashboard aan staat. Zonder key blijft de bankoverschrijving werken, ook als Mollie even niet bereikbaar is.
+- **Eén pad naar "betaald"** (`lib/flow/fulfil.ts`), voor de webhook en de knop in /lab/orders. Het zet de bestelling op betaald, mailt de gids en stuurt het "paid"-event, met de methode erbij (`mollie:ideal` of `transfer`). Het is idempotent: Mollie mag de webhook vaker aanroepen zonder dubbele mails of dubbele tellingen.
+- **De webhook vertrouwt het verzoek niet.** Hij haalt de betaling met onze key op bij Mollie en controleert of het bedrag gelijk is aan dat van de opgeslagen bestelling.
+- **Na de betaling** komt de klant terug op /klaar. Die pagina kijkt de eerste 2 minuten elke 3 seconden of de betaling binnen is. Is het niet gelukt, dan staat er een knop "Opnieuw betalen", die een nieuwe Mollie-betaling maakt voor dezelfde bestelling.
+- **Omschrijving op het afschrift**, per merk: "KULØRT stijlgids KN-…", "NYANSE stijlgids + kleurenpas KN-…".
+- Het vinkje voor het herroepingsrecht blijft staan, zoals afgesproken in CLAUDE.md §9.
+
 ## 15 oktober 2026 — advertenties en campagnes in het Engels
 
 - **Alle advertenties, campagnes en de Instagram-bio zijn Engels**, voor een bredere markt (keuze van de oprichter). De teksten staan per stem in [marketing/ADVERTENTIES.md §5](marketing/ADVERTENTIES.md). Prikkelen mag via nieuwsgierigheid, herkenning en zelfvertrouwen, maar nooit via onzekerheid over iemands uiterlijk (CLAUDE.md §12).

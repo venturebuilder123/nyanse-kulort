@@ -28,3 +28,13 @@ describe("parseProfile", () => {
     expect(parseProfile(null)).toBeNull();
   });
 });
+
+describe("mollie amounts", () => {
+  it("formats cents as Mollie's two-decimal string", async () => {
+    const { mollieValue } = await import("@/lib/payments/mollie");
+    expect(mollieValue(699)).toBe("6.99");
+    expect(mollieValue(999)).toBe("9.99");
+    expect(mollieValue(8900)).toBe("89.00");
+    expect(mollieValue(599)).toBe("5.99");
+  });
+});

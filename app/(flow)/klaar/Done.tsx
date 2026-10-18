@@ -21,6 +21,8 @@ function nextBatch(from = new Date()): string {
 export default function Done() {
   const [order, setOrder] = useState<OrderKey | null>(null);
   const [access, setAccess] = useState<Access | null>(null);
+  const [viaMollie, setViaMollie] = useState(false);
+  const [retrying, setRetrying] = useState(false);
   const { ctx } = useBrand();
 
   useEffect(() => {
@@ -28,6 +30,9 @@ export default function Done() {
     const ref = q.get("order");
     const k = q.get("k");
     const key = ref && k ? { ref, k } : orderKey.get();
+    const mollie = q.get("via") === "mollie";
+    setViaMollie(mollie);
+    const started = Date.now();
     if (ref && k) orderKey.set({ ref, k });
     setOrder(key);
     if (!key) return setAccess({ state: "none" });
@@ -37,7 +42,9 @@ export default function Done() {
       if (stop) return;
       setAccess(a);
       if (a.state === "paid") track("guide_opened", ctx, { from: "confirmation" });
-      else setTimeout(check, 20000); // the founder confirms by hand: look again every 20 s while open
+      // Mollie confirms within seconds: look every 3 s for the first two minutes; a bank transfer is
+      // confirmed by hand, so every 20 s is enough
+      else setTimeout(check, mollie && Date.now() - started < 120000 ? 3000 : 20000);
     };
     void check();
     return () => { stop = true; };
@@ -54,8 +61,25 @@ export default function Done() {
           <>
             <h1 className="disp sm">Dank je wel. <em>We controleren je betaling.</em></h1>
             {order && <p className="small muted">Bestelnummer {order.ref}</p>}
-            <p className="sub">Zodra je overschrijving binnen is (meestal dezelfde of de volgende werkdag), krijg je een mail met de link naar je stijlgids. Deze pagina opent hem ook vanzelf.</p>
-            <p className="small muted">Overgemaakt zonder het kenmerk in de omschrijving? Mail ons via de contactpagina, dan zoeken we het op.</p>
+            {viaMollie ? (
+              <>
+                <p className="sub">Dit duurt meestal een paar seconden. Deze pagina opent je stijlgids vanzelf, en je krijgt de link ook per mail.</p>
+                <p className="small muted">Betaling afgebroken of niet gelukt?</p>
+                <button className="btn btn-ghost" disabled={retrying} onClick={async () => {
+                  if (!order) return;
+                  setRetrying(true);
+                  const r = await fetch("/api/order/pay", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(order) }).catch(() => null);
+                  const d = r?.ok ? ((await r.json()) as { checkoutUrl?: string | null }) : null;
+                  if (d?.checkoutUrl) location.href = d.checkoutUrl;
+                  else setRetrying(false);
+                }}>{retrying ? "Even geduld…" : "Opnieuw betalen"}</button>
+              </>
+            ) : (
+              <>
+                <p className="sub">Zodra je overschrijving binnen is (meestal dezelfde of de volgende werkdag), krijg je een mail met de link naar je stijlgids. Deze pagina opent hem ook vanzelf.</p>
+                <p className="small muted">Overgemaakt zonder het kenmerk in de omschrijving? Mail ons via de contactpagina, dan zoeken we het op.</p>
+              </>
+            )}
           </>
         )}
         {paid && (
