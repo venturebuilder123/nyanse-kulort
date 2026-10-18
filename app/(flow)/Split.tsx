@@ -3,61 +3,92 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
+import { euro, PRICES } from "@/lib/flow/pricing";
 
 const NONE = { brand: "none", voice: "none" };
 
+// The two doors are the hero: one tap and you are in the funnel (founder, 18 Oct: "de perfecte
+// toegang tot de funnel"). Each door slowly cycles through its campaign photos, young to 45+.
 const DOORS = [
   {
     key: "kulort",
     label: "Voor hem",
     line: "Je eerste indruk, geregeld.",
-    img: "/brand/editorial/maison-door-kulort.jpg",
-    cta: "Start KULØRT",
+    imgs: ["kulort-40-campagne-1", "kulort-jong-campagne-1", "kulort-vol-campagne-1", "kulort-jv-campagne-1"],
   },
   {
     key: "nyanse",
     label: "Voor haar",
     line: "Minder kopen, beter kiezen.",
-    img: "/brand/editorial/maison-door-nyanse.jpg",
-    cta: "Start NYANSE",
+    imgs: ["nyanse-40-campagne-1", "nyanse-jong-campagne-1", "nyanse-vol-campagne-1", "nyanse-jv-campagne-1"],
   },
 ] as const;
 
 const SEASONS = [
-  { name: "Lente", line: "warm en helder", img: "/brand/seasons/family-lente.jpg", subs: [["lightSpring", "Light"], ["warmSpring", "Warm"], ["brightSpring", "Bright"]] },
-  { name: "Zomer", line: "koel en zacht", img: "/brand/seasons/family-zomer.jpg", subs: [["lightSummer", "Light"], ["coolSummer", "Cool"], ["softSummer", "Soft"]] },
-  { name: "Herfst", line: "warm en diep", img: "/brand/seasons/family-herfst.jpg", subs: [["softAutumn", "Soft"], ["warmAutumn", "Warm"], ["deepAutumn", "Deep"]] },
-  { name: "Winter", line: "koel en contrastrijk", img: "/brand/seasons/family-winter.jpg", subs: [["brightWinter", "Bright"], ["coolWinter", "Cool"], ["deepWinter", "Deep"]] },
+  { name: "Lente", line: "warm en helder", img: "/brand/seasons/family-lente.jpg" },
+  { name: "Zomer", line: "koel en zacht", img: "/brand/seasons/family-zomer.jpg" },
+  { name: "Herfst", line: "warm en diep", img: "/brand/seasons/family-herfst.jpg" },
+  { name: "Winter", line: "koel en contrastrijk", img: "/brand/seasons/family-winter.jpg" },
 ];
 
-// a quiet spread across the seasons: the fan is the gift object of the maison
-const FAN = ["#5E6A7A", "#7FA39B", "#A6879C", "#C29A9E", "#B9926B", "#B67C73", "#8E3B46", "#1F5C63", "#3A2A6B", "#E9DCC4"];
+// the ribbon: real palette colours with their names, two of each season family
+const RIBBON: [string, string][] = [
+  ["#F3A27A", "Abrikoos"], ["#8FBF6A", "Lentegroen"], ["#AFC6E0", "Poederblauw"], ["#B67C73", "Rozenhout"],
+  ["#7A8B6F", "Salie"], ["#A0522D", "Siena"], ["#2F4F3A", "Bosgroen"], ["#C9A24A", "Oker"],
+  ["#1B2A5C", "Navy"], ["#0E7C5A", "Smaragd"], ["#9B1B30", "Robijn"], ["#6E1F2A", "Bordeaux"],
+  ["#E8C468", "Lichtgoud"], ["#3F6A6A", "Petrol"], ["#5E6A7A", "Leisteen"], ["#B9926B", "Camel"],
+];
 
-/** The maison's colour fan: opens once, follows pointer or tilt a little; still with reduced motion. */
-function MaisonFan() {
-  const [open, setOpen] = useState(false);
-  const stage = useRef<HTMLDivElement>(null);
+const FAQ: [string, string][] = [
+  ["Hoe werkt het?", "Je maakt één selfie bij daglicht. De analyse draait op je telefoon en bepaalt je ondertoon, diepte en helderheid. Daaruit volgt je kleurtype, met je beste kleuren. Dat profiel is gratis."],
+  ["Wat krijg ik in de stijlgids?", "Al je 30 kleuren met namen, combinaties voor werk, weekend, date en feest, je basis (wit, donker, denim), je eerste vijf aankopen, een kast-check en de kleuren voor horloge, sieraden en make-up. Als PDF en op je telefoon."],
+  ["Ken ik mijn kleurtype al?", "Dan kies je het zelf en ga je direct naar je kleuren en je stijlgids, zonder selfie."],
+  ["Wat gebeurt er met mijn foto?", "Hij wordt niet naar ons gestuurd en nergens bewaard."],
+];
+
+/** Elements with .mh-reveal fade up once when they scroll into view (still with reduced motion). */
+function useReveal() {
   useEffect(() => {
-    const t = window.setTimeout(() => setOpen(true), 250);
-    const el = stage.current;
-    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return () => clearTimeout(t);
-    const move = (x: number, y: number) => {
-      el.style.setProperty("--ry", `${(x - 0.5) * 14}deg`);
-      el.style.setProperty("--rx", `${(0.5 - y) * 8 + 12}deg`);
-    };
-    const onPointer = (e: PointerEvent) => move(e.clientX / innerWidth, e.clientY / innerHeight);
-    addEventListener("pointermove", onPointer);
-    return () => { clearTimeout(t); removeEventListener("pointermove", onPointer); };
+    const els = [...document.querySelectorAll<HTMLElement>(".mh-reveal")];
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-in"));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
-  const n = FAN.length;
+}
+
+/** A door's photos, cross-fading every few seconds (paused off-screen and with reduced motion). */
+function DoorPhotos({ imgs, priority }: { imgs: readonly string[]; priority?: boolean }) {
+  const [i, setI] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; });
+    if (ref.current) io.observe(ref.current);
+    const t = window.setInterval(() => { if (visible && !document.hidden) setI((n) => (n + 1) % imgs.length); }, 4200);
+    return () => { clearInterval(t); io.disconnect(); };
+  }, [imgs.length]);
   return (
-    <div className={`ms-fan${open ? " is-open" : ""}`} ref={stage} aria-hidden="true">
-      <div className="ms-fan-deck">
-        {FAN.map((c, i) => (
-          <i key={c} style={{ "--i": i, "--a": `${(i - (n - 1) / 2) * 11}deg`, background: c } as React.CSSProperties} />
-        ))}
-        <b />
-      </div>
+    <div className="mh-door-photos" ref={ref}>
+      {imgs.map((src, n) => (
+        <img
+          key={src}
+          src={`/brand/editorial/${src}.jpg`}
+          alt=""
+          width={1200}
+          height={1490}
+          className={n === i ? "is-on" : ""}
+          loading={n === 0 && priority ? "eager" : "lazy"}
+          fetchPriority={n === 0 && priority ? "high" : "auto"}
+          decoding="async"
+        />
+      ))}
     </div>
   );
 }
@@ -73,140 +104,180 @@ export function MaisonMark({ small }: { small?: boolean }) {
   );
 }
 
-// The home page of kulort-nyanse.com (decision 14 Oct 2026): first what it is, in one glance,
-// then two doors. Ads skip this page via /kulort and /nyanse.
+function Doors({ where, priority }: { where: string; priority?: boolean }) {
+  // a full page load (not <Link>), so the layout re-renders with the picked brand
+  const go = (key: string) => () => track("brand_switch", NONE, { to: key, from: `maison-${where}` });
+  return (
+    <div className="mh-doors">
+      {DOORS.map((d) => (
+        <a key={d.key} className={`mh-door mh-door-${d.key}`} href={`/${d.key}`} onClick={go(d.key)}>
+          <DoorPhotos imgs={d.imgs} priority={priority} />
+          <span className="mh-door-shade" aria-hidden="true" />
+          <span className="mh-door-copy">
+            <span className="mh-door-label">{d.label}</span>
+            {d.key === "kulort" ? (
+              <span className="wordmark wm-kulort">KUL<span className="wm-o">O</span>RT</span>
+            ) : (
+              <span className="wordmark wm-nyanse">NYANSE</span>
+            )}
+            <span className="mh-door-line">{d.line}</span>
+            <span className="mh-door-cta">Begin gratis <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+// The home page of kulort-nyanse.com: the doors first, then why, how, what it costs. Ads skip this
+// page via /kulort and /nyanse; this page is for people who arrive by name, search or Instagram.
 export default function Split() {
   useEffect(() => track("landing_view", NONE, { maison: true }), []);
-  // a full page load (not <Link>), so the layout re-renders with the picked brand
-  const door = (key: string) => () => track("brand_switch", NONE, { to: key, from: "maison" });
+  useReveal();
 
   return (
-    <main className="maison">
-      <header className="ms-top">
+    <main className="mh">
+      <header className="mh-top">
         <MaisonMark />
-        <p>Atelier voor persoonlijke kleur</p>
+        <nav aria-label="Menu">
+          <a href="#hoe">Hoe het werkt</a>
+          <a href="#prijzen">Prijzen</a>
+          <Link href="/kleuranalyse">Kleuranalyse</Link>
+          <a className="mh-top-cta" href="#start">Begin gratis</a>
+        </nav>
       </header>
 
-      <section className="ms-hero">
-        <div className="ms-hero-copy">
-          <p className="ms-eyebrow">Kleuranalyse uit één selfie</p>
-          <h1 className="ms-h1">Je kleuren.<br /><em>Je kast. Je gids.</em></h1>
-          <p className="ms-sub">
-            Een kast waarin alles samengaat. Geen miskopen meer. Elke ochtend zeker van wat je aantrekt,
-            en een eerste indruk die klopt. Het begint bij de kleuren die jou staan.
+      <section className="mh-hero" id="start">
+        <div className="mh-hero-copy">
+          <p className="mh-eyebrow">Kleuranalyse uit één selfie</p>
+          <h1 className="mh-h1">Je kleuren. <em>Je kast. Je gids.</em></h1>
+          <p className="mh-sub">Ontdek in een paar minuten welke kleuren jou staan. Gratis, met één selfie. Kies je atelier:</p>
+        </div>
+        <Doors where="hero" priority />
+        <ul className="mh-facts" aria-label="In het kort">
+          <li>Kleurprofiel gratis</li>
+          <li>Je foto wordt nergens bewaard</li>
+          <li>Stijlgids vanaf {euro(PRICES.digital)}</li>
+          <li>Kleurenpas in de brievenbus</li>
+        </ul>
+      </section>
+
+      <div className="mh-ribbon" aria-hidden="true">
+        <div className="mh-ribbon-track">
+          {[...RIBBON, ...RIBBON].map(([hex, name], i) => (
+            <span key={i}><i style={{ background: hex }} />{name}</span>
+          ))}
+        </div>
+      </div>
+
+      <section className="mh-proof mh-reveal">
+        <div className="mh-proof-copy">
+          <p className="mh-eyebrow">Het effect</p>
+          <h2 className="mh-h2">Zelfde gezicht. <em>Andere kleur.</em></h2>
+          <p className="mh-sub">
+            Een kleur die bij je past laat je huid egaal en je ogen helder ogen. Een kleur die niet past trekt de aandacht weg van je gezicht.
+            Dat verschil zie je in één oogopslag, en daarna zie je het overal.
           </p>
-          <ul className="ms-facts">
-            <li>Kleurprofiel gratis</li>
-            <li>Persoonlijke stijlgids vanaf €12,99</li>
-            <li>Voor hem en voor haar</li>
-          </ul>
-          <div className="ms-doors-inline">
-            <a className="ms-btn" href="/kulort" onClick={door("kulort")}>Voor hem · KULØRT</a>
-            <a className="ms-btn" href="/nyanse" onClick={door("nyanse")}>Voor haar · NYANSE</a>
-          </div>
         </div>
-        <MaisonFan />
-      </section>
-
-      <figure className="ms-band">
-        <div className="ms-band-img">
-          <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} />
-          {/* the house mark, as if painted on the atelier wall */}
-          <span className="ms-wall" aria-hidden="true"><MaisonMark /><small>Atelier voor persoonlijke kleur</small></span>
+        <div className="mh-proof-pair">
+          <figure><img src="/brand/ads/proof-women.jpg" alt="Dezelfde vrouw met een grijsblauwe en een warme oranje doek" width={1200} height={1201} loading="lazy" /></figure>
+          <figure><img src="/brand/ads/proof-men.jpg" alt="Dezelfde man met een grijsblauwe en een warme oranje doek" width={1200} height={1201} loading="lazy" /></figure>
         </div>
-        <figcaption>In het atelier: een stofstaal onder je kin laat in één oogopslag zien welke kleur je staat.</figcaption>
-      </figure>
-
-      <section className="ms-brings" aria-label="Wat het je brengt">
-        <div><b>Geen miskopen meer</b><span>Je weet in de winkel meteen of iets bij je past.</span></div>
-        <div><b>Een kast die samengaat</b><span>Alles combineert met alles, dus meer outfits met minder kleding.</span></div>
-        <div><b>Elke ochtend zeker</b><span>Je kleuren, je looks en je capsule staan klaar op je telefoon.</span></div>
-        <div><b>Een eerste indruk die klopt</b><span>De juiste kleur bij je gezicht: je oogt fris en zeker.</span></div>
       </section>
 
-      <section className="ms-doors" aria-label="Kies je atelier">
-        {DOORS.map((d) => (
-          <a key={d.key} className={`ms-door ms-door-${d.key}`} href={`/${d.key}`} onClick={door(d.key)}>
-            <img src={d.img} alt="" width={1200} height={1490} loading="lazy" />
-            <span className="ms-door-copy">
-              <span className="ms-door-label">{d.label}</span>
-              {d.key === "kulort" ? (
-                <span className="wordmark wm-kulort">KUL<span className="wm-o">O</span>RT</span>
-              ) : (
-                <span className="wordmark wm-nyanse">NYANSE</span>
-              )}
-              <span className="ms-door-line">{d.line}</span>
-              <span className="ms-door-cta">{d.cta} →</span>
-            </span>
-          </a>
-        ))}
-      </section>
-
-      <section className="ms-how">
-        <p className="ms-eyebrow">Zo werkt het</p>
-        <h2 className="ms-h2">Drie stappen, <em>een leven lang plezier</em></h2>
+      <section className="mh-how" id="hoe">
+        <div className="mh-head mh-reveal">
+          <p className="mh-eyebrow">Zo werkt het</p>
+          <h2 className="mh-h2">Drie stappen. <em>Een kast die samengaat.</em></h2>
+        </div>
         <ol>
-          <li>
+          <li className="mh-reveal">
             <img src="/brand/ads/note-to-self.jpg" alt="" width={1600} height={873} loading="lazy" />
-            <b>1 · Eén selfie</b>
-            <span>Bij daglicht, in 30 seconden. De analyse draait op je telefoon.</span>
+            <span className="mh-n">01</span>
+            <b>Eén selfie</b>
+            <span>Bij daglicht, zonder filter. Een paar minuten, ook zonder account.</span>
           </li>
-          <li>
+          <li className="mh-reveal">
             <img src="/brand/seasons/season-softAutumn.jpg" alt="" width={900} height={1117} loading="lazy" />
-            <b>2 · Je kleuren</b>
+            <span className="mh-n">02</span>
+            <b>Je kleurprofiel</b>
             <span>Je kleurtype, je beste kleuren en wat je beter laat hangen. Gratis.</span>
           </li>
-          <li>
-            <img src="/brand/product/envelope.jpg" alt="" width={1200} height={1490} loading="lazy" />
-            <b>3 · Je gids en pas</b>
-            <span>30 kleuren met naam, looks, je capsule-garderobe en een pas in de brievenbus.</span>
+          <li className="mh-reveal">
+            <img src="/brand/ads/workbook.jpg" alt="" width={1600} height={893} loading="lazy" />
+            <span className="mh-n">03</span>
+            <b>Je stijlgids</b>
+            <span>30 kleuren met naam, outfits, je eerste vijf aankopen en een kast-check. Als PDF en op je telefoon.</span>
           </li>
         </ol>
       </section>
 
-      <section className="ms-seasons">
-        <p className="ms-eyebrow">Vier seizoenen, twaalf kleurtypen</p>
-        <h2 className="ms-h2">Welk seizoen <em>ben jij?</em></h2>
-        <div className="ms-season-row">
+      <figure className="mh-band mh-reveal">
+        <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} loading="lazy" />
+        <blockquote>
+          <span className="mh-band-mark" aria-hidden="true"><MaisonMark small /></span>
+          Minder kopen. <em>Beter kiezen.</em>
+        </blockquote>
+      </figure>
+
+      <section className="mh-prices" id="prijzen">
+        <div className="mh-head mh-reveal">
+          <p className="mh-eyebrow">Wat het kost</p>
+          <h2 className="mh-h2">Begin gratis. <em>Kies daarna wat bij je past.</em></h2>
+        </div>
+        <div className="mh-price-row">
+          <div className="mh-price mh-reveal"><b>Kleurprofiel</b><span className="mh-amount">Gratis</span><p>Je kleurtype, je plek op de drie schalen en je 6 beste kleuren.</p></div>
+          <div className="mh-price mh-reveal"><b>Stijlgids</b><span className="mh-amount">{euro(PRICES.digital)}</span><p>Al je 30 kleuren, looks per gelegenheid, je capsule en je kast-check. Direct als PDF.</p></div>
+          <div className="mh-price is-rec mh-reveal"><span className="mh-badge">Aanrader</span><b>Stijlgids + kleurenpas</b><span className="mh-amount">{euro(PRICES.card)}</span><p>Plus een stevige pas met je 8 kernkleuren, voor in je portemonnee. Gratis verzonden.</p></div>
+          <div className="mh-price mh-reveal"><b>Persoonlijk kleuradvies</b><span className="mh-amount">{euro(PRICES.session)}</span><p>Een kleurconsulent bekijkt jouw foto&apos;s en stuurt je een persoonlijke video. Zonder afspraak.</p></div>
+        </div>
+        <p className="mh-fine">Prijzen inclusief btw. Je betaalt pas als je je stijlgids kiest, na je gratis profiel.</p>
+      </section>
+
+      <section className="mh-seasons">
+        <div className="mh-head mh-reveal">
+          <p className="mh-eyebrow">Vier seizoenen, twaalf kleurtypen</p>
+          <h2 className="mh-h2">Welk seizoen <em>ben jij?</em></h2>
+        </div>
+        <div className="mh-season-row">
           {SEASONS.map((s) => (
-            <figure key={s.name}>
-              <img src={s.img} alt="" width={1000} height={1241} loading="lazy" />
+            <figure key={s.name} className="mh-reveal">
+              <img src={s.img} alt={`Kleuren van het seizoen ${s.name}`} width={1000} height={1241} loading="lazy" />
               <figcaption><b>{s.name}</b><span>{s.line}</span></figcaption>
-              <div className="ms-subs">
-                {s.subs.map(([key, label]) => (
-                  <span key={key}>
-                    <img src={`/brand/seasons/season-${key}.jpg`} alt="" width={900} height={1117} loading="lazy" />
-                    <small>{label}</small>
-                  </span>
-                ))}
-              </div>
             </figure>
           ))}
         </div>
+        <p className="mh-more"><Link href="/kleuranalyse">Alles over kleuranalyse en de 12 kleurtypen →</Link></p>
       </section>
 
-      <section className="ms-gift">
-        <div className="ms-pass">
-          <img src="/brand/product/pass-front.jpg" alt="De kleurenpas met acht kleuren" width={1200} height={896} loading="lazy" />
-          <span className="ms-pass-mark" aria-hidden="true"><MaisonMark small /></span>
-        </div>
-        <div>
-          <p className="ms-eyebrow">Het cadeau aan jezelf</p>
-          <h2 className="ms-h2">Je kleuren altijd bij je, <em>ook in de paskamer</em></h2>
-          <p className="ms-sub">Een stevige pas met je acht kernkleuren, in de brievenbus in Nederland, België en Duitsland.</p>
-          <div className="ms-doors-inline">
-            <a className="ms-btn" href="/kulort" onClick={door("kulort")}>Voor hem · KULØRT</a>
-            <a className="ms-btn" href="/nyanse" onClick={door("nyanse")}>Voor haar · NYANSE</a>
-          </div>
-        </div>
+      <section className="mh-faq mh-reveal">
+        <h2 className="mh-h2">Vragen</h2>
+        {FAQ.map(([q, a]) => (
+          <details key={q}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
       </section>
 
-      <footer className="ms-foot">
+      <section className="mh-final">
+        <div className="mh-head mh-reveal">
+          <h2 className="mh-h2">Klaar om <em>je kleuren</em> te zien?</h2>
+          <p className="mh-sub">Gratis, met één selfie. Kies je atelier.</p>
+        </div>
+        <Doors where="final" />
+      </section>
+
+      <footer className="mh-foot">
         <MaisonMark small />
+        <nav aria-label="Voettekst">
+          <Link href="/contact">Contact</Link>
+          <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
+          <Link href="/kleuranalyse">Kleuranalyse</Link>
+          <Link href="/voorwaarden">Voorwaarden</Link>
+          <Link href="/privacy">Privacy</Link>
+        </nav>
         <span>Prijzen inclusief btw</span>
-        <Link href="/contact">Contact</Link>
-        <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
-        <Link href="/privacy">Privacy</Link>
       </footer>
     </main>
   );

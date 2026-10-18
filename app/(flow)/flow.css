@@ -533,89 +533,11 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 
 /* ---------- maison home (kulort-nyanse.com): what it is, then two doors ---------- */
 .app[data-brand="maison"] { --accent: #141414; --accent-text: #141414; --accent-ink: #fff; --soft: #ece6de; --f-display: var(--f-logo); --radius: 2px; --radius-btn: 2px; --radius-chip: 2px; }
-.maison { max-width: 1240px; margin: 0 auto; padding: 0 20px 40px; color: var(--ink); background: var(--bg); }
-.maison img { display: block; width: 100%; height: auto; }
 .maison-mark { display: inline-flex; align-items: center; gap: 14px; }
 .maison-mark i { width: 1px; height: 22px; background: currentColor; opacity: .6; }
 .maison-mark .wordmark { font-size: 20px; }
 .maison-mark.sm .wordmark { font-size: 14px; }
 .maison-mark.sm i { height: 14px; }
-.ms-top { display: grid; justify-items: center; gap: 6px; padding: 26px 0 22px; border-bottom: 1px solid var(--line); }
-.ms-top p, .ms-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
-.ms-hero { display: grid; gap: 22px; padding: 28px 0 40px; }
-.ms-hero-copy { display: grid; gap: 14px; align-content: center; }
-.ms-h1 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(40px, 11vw, 76px); line-height: 1; letter-spacing: -0.015em; }
-.ms-h1 em, .ms-h2 em { font-style: italic; color: var(--ink); }
-.ms-h2 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(28px, 7vw, 44px); line-height: 1.05; }
-.ms-sub { font-size: 16.5px; line-height: 1.55; color: var(--muted); max-width: 46ch; }
-.ms-facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; font-weight: 600; }
-.ms-facts li::before { content: "—"; margin-right: 8px; color: var(--muted); }
-.ms-doors-inline { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-.ms-btn { display: grid; place-items: center; min-height: 52px; padding: 0 14px; background: var(--ink); color: var(--bg); text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: .02em; border-radius: 2px; text-align: center; }
-.ms-btn + .ms-btn { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
-.ms-btn:hover { opacity: .88; }
-/* the fan: paper blades with a soft shadow, opening once */
-.ms-fan { --rx: 12deg; --ry: 0deg; height: 230px; overflow: visible; perspective: 1000px; display: grid; place-items: end center; }
-.ms-fan-deck { position: relative; width: 46px; height: 190px; transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .5s cubic-bezier(.2,.9,.25,1); }
-.ms-fan-deck i {
-  position: absolute; left: 0; bottom: 0; width: 46px; height: 190px; border-radius: 3px;
-  transform-origin: 50% 92%; transform: rotate(0deg) translateZ(calc(var(--i) * 1px));
-  box-shadow: -1px 0 0 rgba(0,0,0,.08), 0 14px 26px -12px rgba(40,30,20,.35);
-  transition: transform 1.1s cubic-bezier(.2,.9,.25,1); transition-delay: calc(var(--i) * 60ms);
-}
-.ms-fan-deck i::after { content: ""; position: absolute; left: 5px; right: 5px; bottom: 8px; height: 20px; border-radius: 2px; background: rgba(255,255,255,.9); }
-.ms-fan.is-open .ms-fan-deck i { transform: rotate(var(--a)) translateZ(calc(var(--i) * 1px)); }
-.ms-fan-deck b { position: absolute; left: 50%; bottom: 16px; width: 12px; height: 12px; translate: -50% 0; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #b9b2a6 60%, #6d665c); transform: translateZ(20px); }
-.ms-band { margin: 0 0 56px; display: grid; gap: 10px; }
-.ms-band img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 62% 45%; border-radius: 2px; }
-.ms-band figcaption { font-size: 13.5px; color: var(--muted); }
-
-.ms-doors { display: grid; gap: 14px; padding: 8px 0 56px; }
-.ms-door { display: grid; gap: 14px; color: var(--ink); text-decoration: none; }
-.ms-door img { aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 20%; border-radius: 2px; transition: transform .8s cubic-bezier(.2,.9,.25,1); }
-.ms-door-copy { display: grid; gap: 6px; }
-.ms-door .wordmark { color: var(--ink); font-size: 30px; }
-.ms-door-label { font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
-.ms-door-line { font-family: var(--f-logo); font-style: italic; font-size: 19px; }
-.ms-door-cta { margin-top: 6px; justify-self: start; padding: 13px 18px; background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 700; border-radius: 2px; }
-@media (hover: hover) { .ms-door:hover img { transform: scale(1.015); } }
-
-.ms-how, .ms-seasons { display: grid; gap: 14px; padding: 48px 0; border-top: 1px solid var(--line); }
-.ms-how ol { list-style: none; padding: 0; display: grid; gap: 22px; margin-top: 10px; }
-.ms-how li { display: grid; gap: 8px; }
-.ms-how li img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
-.ms-how li b { font-family: var(--f-logo); font-weight: 500; font-size: 22px; }
-.ms-how li span { color: var(--muted); font-size: 15px; }
-.ms-season-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
-.ms-season-row figure { margin: 0; display: grid; gap: 8px; }
-.ms-season-row img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
-.ms-season-row figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-.ms-season-row b { font-family: var(--f-logo); font-weight: 500; font-size: 20px; }
-.ms-season-row span { font-size: 12.5px; color: var(--muted); }
-.ms-gift { display: grid; gap: 22px; padding: 48px 0; border-top: 1px solid var(--line); align-items: center; }
-.ms-gift > div { display: grid; gap: 12px; }
-.ms-gift img { border-radius: 2px; }
-.ms-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 24px 0 8px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
-.ms-foot a { color: inherit; }
-
-@media (min-width: 900px) {
-  .maison { padding: 0 48px 56px; }
-  .ms-top { grid-auto-flow: column; justify-content: space-between; padding: 30px 0 24px; }
-  .ms-hero { grid-template-columns: 5fr 7fr; gap: 56px; padding: 56px 0 72px; }
-  .ms-h1 { font-size: clamp(48px, 4.6vw, 66px); }
-  .ms-fan { height: 440px; }
-  .ms-fan-deck { width: 84px; height: 340px; }
-  .ms-fan-deck i { width: 84px; height: 340px; }
-  .ms-band { margin-bottom: 96px; }
-  .ms-doors-inline { max-width: 460px; }
-  .ms-doors { grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 88px; }
-  .ms-door .wordmark { font-size: 38px; }
-  .ms-how, .ms-seasons, .ms-gift { padding: 88px 0; }
-  .ms-how ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-  .ms-season-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-  .ms-gift { grid-template-columns: 1fr 1fr; gap: 64px; }
-}
-@media (prefers-reduced-motion: reduce) { .ms-door img, .ms-fan-deck, .ms-fan-deck i { transition: none; } }
 
 /* ---------- flats and flat-lays (garments in the person's colours) ---------- */
 .flat { display: block; width: 100%; height: auto; overflow: visible; }
@@ -789,11 +711,6 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .house-mark i { height: 16px; }
 .house-mark:hover .wordmark { opacity: 1; }
 
-.ms-brings { display: grid; gap: 18px; padding: 8px 0 56px; }
-.ms-brings div { display: grid; gap: 4px; padding-top: 14px; border-top: 1px solid var(--ink); }
-.ms-brings b { font-family: var(--f-logo); font-weight: 400; font-size: 22px; }
-.ms-brings span { color: var(--muted); font-size: 15px; }
-@media (min-width: 900px) { .ms-brings { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; padding-bottom: 96px; } }
 /* hero tags: bottom left on the cloth, clear of the pass in the corner */
 .hero-frame .hero2-tag.good, .hero-frame .hero2-tag.bad { left: 16px; right: auto; }
 .hero-frame .hero2-tag:not(.on) { opacity: 0; }
@@ -893,19 +810,6 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .mail-optin { flex-basis: 100%; font-size: 13px; }
 
 /* maison: house mark on the wall, sub-seasons, mark on the pass */
-.ms-band-img { position: relative; }
-.ms-wall { position: absolute; left: 7%; top: 16%; display: grid; gap: 6px; color: #2a2724; mix-blend-mode: multiply; opacity: .78; pointer-events: none; }
-.ms-wall .maison-mark .wordmark { font-size: clamp(16px, 2.6vw, 34px); color: inherit; }
-.ms-wall .maison-mark i { height: clamp(14px, 2.2vw, 30px); }
-.ms-wall small { font-size: clamp(7px, .8vw, 11px); letter-spacing: .3em; text-transform: uppercase; }
-.ms-subs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 4px; }
-.ms-subs span { display: grid; gap: 3px; }
-.ms-subs img { aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
-.ms-subs small { font-size: 11px; color: var(--muted); }
-.ms-pass { position: relative; }
-.ms-pass-mark { position: absolute; left: 25%; top: 49%; transform: rotate(-19.5deg); transform-origin: left top; color: #f3eee8; pointer-events: none; }
-.ms-pass-mark .maison-mark .wordmark { color: #f3eee8; font-size: clamp(9px, 1.1vw, 15px); }
-.ms-pass-mark .maison-mark i { height: clamp(8px, 1vw, 13px); background: #f3eee8; }
 .contact .btn { width: auto; justify-self: start; padding: 0 22px; }
 .contact-list { display: grid; gap: 0; margin-top: 10px; }
 .contact-list div { padding: 16px 0; border-top: 1px solid var(--line); }
@@ -991,3 +895,139 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 }
 .dk-front.is-light { box-shadow: 0 8px 18px rgba(0,0,0,.12), inset 0 0 0 1px rgba(0,0,0,.08); }
 .dk-front.is-light b { color: #141414; text-shadow: none; }
+
+/* =========================================================================
+   Maison home (v2, 18 Oct 2026): the doors are the hero, editorial and calm
+   ========================================================================= */
+.mh { --mh-pad: 20px; max-width: 1320px; margin: 0 auto; padding: 0 var(--mh-pad) 32px; color: var(--ink); background: var(--bg); }
+.mh img { display: block; width: 100%; height: auto; }
+.mh-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.mh-h1 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(38px, 10vw, 84px); line-height: .98; letter-spacing: -0.02em; }
+.mh-h2 { font-family: var(--f-logo); font-weight: 400; font-size: clamp(30px, 7vw, 52px); line-height: 1.02; letter-spacing: -0.01em; }
+.mh-h1 em, .mh-h2 em { font-style: italic; }
+.mh-sub { font-size: 16.5px; line-height: 1.55; color: var(--muted); max-width: 48ch; }
+.mh-head { display: grid; gap: 12px; margin-bottom: 26px; }
+
+/* top */
+.mh-top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: max(14px, env(safe-area-inset-top)) 0 14px; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); }
+.mh-top nav { display: flex; align-items: center; gap: 22px; font-size: 14px; font-weight: 700; }
+.mh-top nav a { color: var(--ink); text-decoration: none; }
+.mh-top nav a:not(.mh-top-cta) { display: none; }
+.mh-top-cta { padding: 10px 14px; background: var(--ink); color: var(--bg) !important; border-radius: 2px; font-size: 13px; }
+
+/* hero: copy, then the two doors side by side, even on a phone */
+.mh-hero { display: grid; gap: 18px; padding: 14px 0 22px; }
+.mh-hero-copy { display: grid; gap: 12px; }
+.mh-doors { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mh-door { position: relative; display: block; overflow: hidden; border-radius: 2px; color: #fff; text-decoration: none; aspect-ratio: 3 / 4.4; background: #d9d2c8; isolation: isolate; }
+.mh-door-photos, .mh-door-photos img { position: absolute; inset: 0; }
+.mh-door-photos img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0; transform: scale(1.06); transition: opacity 1.4s ease, transform 7s ease-out; }
+.mh-door-photos img.is-on { opacity: 1; transform: scale(1); }
+.mh-door-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.7) 100%); z-index: 1; }
+.mh-door-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: grid; gap: 3px; padding: 12px; }
+.mh-door-label { font-size: 10.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; opacity: .9; }
+.mh-door .wordmark { color: #fff; font-size: 20px; }
+.mh-door .wm-nyanse { font-size: 22px; }
+.mh-door-line { display: none; font-family: var(--f-logo); font-style: italic; font-size: 15px; line-height: 1.2; }
+.mh-door-cta { margin-top: 8px; justify-self: start; padding: 9px 11px; background: #fff; color: #141414; font-size: 13px; font-weight: 700; border-radius: 2px; transition: transform .3s ease; }
+@media (hover: hover) { .mh-door:hover .mh-door-cta { transform: translateX(4px); } .mh-door:hover .mh-door-photos img.is-on { transform: scale(1.03); } }
+.mh-facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; font-weight: 600; }
+.mh-facts li::before { content: "✓"; margin-right: 6px; color: var(--muted); }
+
+/* ribbon: real colours drifting by */
+.mh-ribbon { overflow: hidden; margin: 8px calc(var(--mh-pad) * -1) 0; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mh-ribbon-track { display: flex; gap: 28px; width: max-content; animation: mh-drift 60s linear infinite; }
+.mh-ribbon span { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.mh-ribbon i { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+@keyframes mh-drift { to { transform: translateX(-50%); } }
+
+/* sections */
+.mh-proof, .mh-how, .mh-prices, .mh-seasons, .mh-faq, .mh-final { padding: 56px 0; }
+.mh-proof { display: grid; gap: 24px; }
+.mh-proof-copy { display: grid; gap: 12px; }
+.mh-proof-pair { display: grid; gap: 10px; }
+.mh-proof-pair figure { margin: 0; }
+.mh-proof-pair img { border-radius: 2px; }
+.mh-how ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 30px; }
+.mh-how li { display: grid; gap: 8px; }
+.mh-how li img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; margin-bottom: 6px; }
+.mh-n { font-family: var(--f-logo); font-size: 14px; color: var(--muted); }
+.mh-how li b { font-family: var(--f-logo); font-weight: 400; font-size: 26px; }
+.mh-how li > span:last-child { color: var(--muted); font-size: 15px; line-height: 1.5; }
+.mh-band { position: relative; margin: 8px 0; overflow: hidden; border-radius: 2px; }
+.mh-band img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 62% 45%; }
+.mh-band blockquote { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 28px 22px; display: grid; gap: 12px; color: #fff; font-family: var(--f-logo); font-size: clamp(30px, 7vw, 64px); line-height: 1; background: linear-gradient(180deg, transparent, rgba(0,0,0,.55)); }
+.mh-band blockquote em { font-style: italic; }
+.mh-band-mark .wordmark { color: #fff; }
+.mh-band-mark .maison-mark i { background: #fff; }
+.mh-price-row { display: grid; gap: 10px; }
+.mh-price { position: relative; display: grid; gap: 6px; align-content: start; padding: 18px; border: 1px solid var(--line-strong); background: var(--card); border-radius: 2px; }
+.mh-price.is-rec { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.mh-price b { font-size: 15px; }
+.mh-amount { font-family: var(--f-logo); font-size: 34px; line-height: 1; }
+.mh-price p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.mh-badge { position: absolute; top: -10px; right: 14px; padding: 3px 9px; background: var(--ink); color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .08em; border-radius: 2px; }
+.mh-fine { margin-top: 14px; font-size: 13px; color: var(--muted); }
+.mh-season-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.mh-season-row figure { margin: 0; display: grid; gap: 8px; }
+.mh-season-row img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+.mh-season-row figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.mh-season-row b { font-family: var(--f-logo); font-weight: 400; font-size: 22px; }
+.mh-season-row span { font-size: 12.5px; color: var(--muted); }
+.mh-more { margin-top: 18px; font-weight: 700; font-size: 14px; }
+.mh-more a { color: var(--ink); }
+.mh-faq { display: grid; gap: 0; max-width: 760px; }
+.mh-faq .mh-h2 { margin-bottom: 16px; }
+.mh-faq details { border-top: 1px solid var(--line-strong); padding: 16px 0; }
+.mh-faq details:last-child { border-bottom: 1px solid var(--line-strong); }
+.mh-faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.mh-faq summary::after { content: "+"; font-weight: 400; font-size: 22px; line-height: 1; }
+.mh-faq details[open] summary::after { content: "–"; }
+.mh-faq summary::-webkit-details-marker { display: none; }
+.mh-faq p { margin-top: 10px; color: var(--muted); line-height: 1.55; }
+.mh-final { border-top: 1px solid var(--line); }
+.mh-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 26px 0 8px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.mh-foot nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.mh-foot a { color: inherit; }
+
+/* scroll reveal */
+.mh-reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+.mh-reveal.is-in { opacity: 1; transform: none; }
+.mh-how li.mh-reveal:nth-child(2), .mh-price-row .mh-reveal:nth-child(2), .mh-season-row .mh-reveal:nth-child(2) { transition-delay: .1s; }
+.mh-how li.mh-reveal:nth-child(3), .mh-price-row .mh-reveal:nth-child(3), .mh-season-row .mh-reveal:nth-child(3) { transition-delay: .2s; }
+.mh-price-row .mh-reveal:nth-child(4), .mh-season-row .mh-reveal:nth-child(4) { transition-delay: .3s; }
+
+@media (min-width: 900px) {
+  .mh { --mh-pad: 48px; }
+  .mh-top { padding: 22px 0 18px; }
+  .mh-top nav a:not(.mh-top-cta) { display: inline; }
+  .mh-top nav a:not(.mh-top-cta):hover { text-decoration: underline; text-underline-offset: 4px; }
+  .mh-hero { padding: 28px 0 36px; gap: 26px; }
+  .mh-hero-copy { grid-template-columns: 1.15fr 0.85fr; align-items: end; gap: 10px 48px; }
+  .mh-hero-copy .mh-eyebrow { grid-column: 1 / -1; }
+  .mh-hero-copy .mh-sub { padding-bottom: 8px; }
+  .mh-h1 { font-size: clamp(52px, 5.6vw, 84px); }
+  .mh-doors { gap: 14px; }
+  .mh-door { aspect-ratio: auto; height: clamp(420px, calc(100svh - 330px), 680px); }
+  .mh-door-line { display: block; }
+  .mh-door-copy { padding: 30px; gap: 6px; }
+  .mh-door-label { font-size: 12px; }
+  .mh-door .wordmark { font-size: 42px; }
+  .mh-door .wm-nyanse { font-size: 48px; }
+  .mh-door-line { font-size: 22px; }
+  .mh-door-cta { padding: 13px 18px; font-size: 14px; }
+  .mh-proof, .mh-how, .mh-prices, .mh-seasons, .mh-faq, .mh-final { padding: 96px 0; }
+  .mh-proof { grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; }
+  .mh-proof-pair { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .mh-how ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .mh-band img { aspect-ratio: 21 / 9; }
+  .mh-band blockquote { padding: 48px 56px; }
+  .mh-price-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .mh-season-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .mh-faq { margin: 0 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mh-ribbon-track { animation: none; }
+  .mh-door-photos img { transition: none; transform: none; }
+  .mh-reveal { opacity: 1; transform: none; transition: none; }
+}
