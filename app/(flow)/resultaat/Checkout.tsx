@@ -130,7 +130,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         <p className="small muted">
           Zodra je overschrijving binnen is, krijg je een mail met de link naar je stijlgids.
           {physical && " Je kleurenpas gaat dan op de post."}
-          {tier === "session" && " We mailen je binnen twee werkdagen om je sessie in te plannen."}
+          {tier === "session" && " Daarna vragen we je per mail om 3 foto's voor je persoonlijke advies."}
         </p>
       </div>
     );

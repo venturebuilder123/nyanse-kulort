@@ -88,7 +88,7 @@ export default function Done() {
             <h1 className="disp sm">Je stijlgids <em>staat klaar.</em></h1>
             {order && <p className="small muted">Bestelnummer {order.ref}</p>}
             {physical && <p className="sub">Je kleurenpas gaat {nextBatch()} op de post. Je krijgt een mail als hij onderweg is.</p>}
-            {access.tier === "session" && <p className="sub">We mailen je binnen twee werkdagen om je persoonlijke sessie in te plannen.</p>}
+            {access.tier === "session" && <p className="sub">Voor je persoonlijke advies: beantwoord de mail die je net kreeg met 3 foto&apos;s bij daglicht. Binnen 3 werkdagen krijg je je video.</p>}
             <Link className="btn" href="/gids">Open mijn stijlgids</Link>
             <p className="small muted">We hebben de link ook gemaild, zodat je je gids op elk apparaat opent. Niet gezien? Kijk bij Reclame of Spam.</p>
             <p className="small muted">Tip: zet je gids op je beginscherm via Delen › Zet op beginscherm.</p>

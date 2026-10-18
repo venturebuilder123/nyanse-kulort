@@ -9,7 +9,7 @@ type Order = {
   friend_code: string | null; paid_at: string | null; mailed_at: string | null;
 };
 
-const TIER: Record<string, string> = { digital: "Stijlgids", card: "Gids + pas", session: "Sessie" };
+const TIER: Record<string, string> = { digital: "Stijlgids", card: "Gids + pas", session: "Advies (video)" };
 const seasonName = (k: string | null) => (k && k in SEASONS ? SEASONS[k as SeasonKey].name : "–");
 const BRAND: Record<string, string> = { kulort: "KULØRT", nyanse: "NYANSE" };
 

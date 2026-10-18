@@ -289,3 +289,22 @@
   /* the issue line collided with the house mark on narrow covers */
   .g-cover-issue { display: none; }
 }
+
+/* export mode for "Download PDF": the same A4 layout as print, on any screen size */
+.guide.g-export .g-page {
+  width: 794px !important; height: 1123px !important; min-height: 1123px !important; margin: 0; box-shadow: none;
+  padding: 68px 60px 46px; overflow: hidden; font-size: 14px; flex: none;
+}
+.guide.g-export .g-cover-issue { display: block; }
+.guide.g-export .g-content { gap: 26px; }
+.guide.g-export .g-swatches { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 9px; }
+.guide.g-export .g-chip i { height: 49px; }
+.guide.g-export .g-combos { gap: 19px 22px; }
+.guide.g-export .g-flatlay.flatlay { width: 265px; justify-self: start; }
+.guide.g-export .g-combo ul { font-size: 11px !important; }
+.guide.g-export .g-acc-flat { width: 83px; }
+.guide.g-export .g-swap-pair i { height: 64px; }
+.guide.g-export .g-worn img { max-height: 620px; object-fit: contain; }
+.guide.g-export .g-basic i { height: 53px; }
+.guide.g-export .g-buys li { grid-template-columns: 60px 1fr; }
+.guide.g-export .g-head h2 { font-size: 44px; }

@@ -2,6 +2,17 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — persoonlijk kleuradvies zonder afspraak, echte PDF, Daisycon
+
+- **De sessie via Teams vervalt.** In de plaats komt **Persoonlijk kleuradvies (€110)**: stijlgids en kleurenpas, plus een persoonlijke video van de kleurconsulent.
+  - De klant beantwoordt de bevestigingsmail met 3 foto's bij daglicht: het gezicht zonder make-up, en 2 twijfelstukken onder de kin.
+  - Binnen 3 werkdagen na de foto's volgt de video.
+  - Geen agenda en geen afspraak: dit past bij online verkopen.
+  - Privacy: alleen de consulent bekijkt de foto's, en ze worden binnen 30 dagen na de video verwijderd (staat in de privacyverklaring).
+  - Herroeping: de bedenktijd vervalt zodra de video is geleverd.
+- **"Download PDF" vervangt het printmenu.** Elke pagina wordt in de browser op A4 gezet (html-to-image + jsPDF) en als bestand opgeslagen: Downloads op een computer, "Bewaar in Bestanden" op een iPhone. Ongeveer 3 MB, 13 pagina's, ±5 seconden. Event `guide_pdf`.
+- **Daisycon:** het verificatiebestand `public/002f74fc82d04da.html` voor het affiliate-account.
+
 ## 18 oktober 2026 — voorwaarden, bedrijfsgegevens en de bedenktijd
 
 - **Bedrijfsgegevens** (GUMALE, KvK, btw, postadres in Zaltbommel) staan **niet in de footer**; dat is de keuze van de oprichter. Ze staan op de voorwaardenpagina en onderaan de contactpagina, en de privacyverklaring noemt naam en KvK. De wet (BW 3:15d) vraagt dat ze "gemakkelijk, rechtstreeks en permanent" te vinden zijn. De link "Voorwaarden" in elke footer dekt dat (MENING; laat het meenemen in de juridische check).

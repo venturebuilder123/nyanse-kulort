@@ -49,7 +49,7 @@ function send(name: string, props: Record<string, unknown>) {
 export type EventName =
   | "landing_view" | "occasion_pick" | "style_done" | "brand_switch" | "selfie_start" | "selfie_ok"
   | "analysis_done" | "email_submit" | "optin_checked" | "paywall_view" | "tier_select" | "checkout_open"
-  | "paid" | "transfer_claimed" | "guide_opened" | "reveal_video_created" | "share_clicked" | "affiliate_click" | "referral_used" | "waitlist_join"
+  | "paid" | "transfer_claimed" | "guide_opened" | "guide_pdf" | "reveal_video_created" | "share_clicked" | "affiliate_click" | "referral_used" | "waitlist_join"
   // coming back (retention): visits, resume, invitations, weekly tip
   | "type_declared" | "app_open" | "resume_shown" | "resume_click" | "invite_view" | "push_optin" | "push_optout";
 

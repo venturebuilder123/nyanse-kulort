@@ -5,7 +5,7 @@ import { AppBar, Footer } from "../ui";
 
 export const metadata = {
   title: "Algemene voorwaarden · KULØRT · NYANSE",
-  description: "De voorwaarden voor je kleurprofiel, stijlgids, kleurenpas en persoonlijk consult bij KULØRT en NYANSE.",
+  description: "De voorwaarden voor je kleurprofiel, stijlgids, kleurenpas en persoonlijk kleuradvies bij KULØRT en NYANSE.",
 };
 
 // Terms for both brands (CLAUDE.md §9). Plain Dutch, short; to be checked by a lawyer (docs/BESLISSINGEN.md).
@@ -29,7 +29,7 @@ export default function Terms() {
           <li><b>Kleurprofiel</b>: gratis. Je ondertoon, diepte en helderheid en je kleurtype, op basis van een selfie of je eigen opgave.</li>
           <li><b>Stijlgids (digitaal)</b>: {euro(PRICES.digital)}. Je persoonlijke stijlgids, direct online te openen.</li>
           <li><b>Stijlgids met kleurenpas</b>: {euro(PRICES.card)}. De stijlgids plus een fysieke kleurenpas per post.</li>
-          <li><b>Persoonlijk consult</b>: {euro(PRICES.session)}. Je stijlgids plus een persoonlijk kleuradvies met een kleurconsulent.</li>
+          <li><b>Persoonlijk kleuradvies</b>: {euro(PRICES.session)}. Stijlgids en kleurenpas, plus een persoonlijke video van een kleurconsulent op basis van jouw foto&apos;s.</li>
         </ul>
         <p>Alle prijzen zijn in euro&apos;s en inclusief btw. Verzending van de kleurenpas binnen Nederland, België en Duitsland is inbegrepen.</p>
 
@@ -53,7 +53,7 @@ export default function Terms() {
         <ul>
           <li><b>Stijlgids</b>: direct na betaling, online en per e-mail (een persoonlijke link).</li>
           <li><b>Kleurenpas</b>: we versturen wekelijks. Reken op ongeveer een week. Komt hij niet aan, laat het ons weten.</li>
-          <li><b>Persoonlijk consult</b>: we mailen je binnen twee werkdagen om een moment te plannen.</li>
+          <li><b>Persoonlijk kleuradvies</b>: na je bestelling stuur je ons 3 foto&apos;s door de bevestigingsmail te beantwoorden. Binnen 3 werkdagen na je foto&apos;s krijg je je video per e-mail.</li>
         </ul>
 
         <h2>6. Herroepingsrecht (bedenktijd)</h2>
@@ -68,14 +68,13 @@ export default function Terms() {
             de pas binnen 14 dagen terug.
           </li>
           <li>
-            <b>Persoonlijk consult</b>: je hebt 14 dagen bedenktijd vanaf je bestelling. Vraag je ons het consult binnen die 14 dagen te
-            houden, dan vervalt je bedenktijd zodra het consult heeft plaatsgevonden. Verzetten of annuleren kan kosteloos tot 24 uur van
-            tevoren.
+            <b>Persoonlijk kleuradvies</b>: je hebt 14 dagen bedenktijd vanaf je bestelling. Stuur je ons binnen die 14 dagen je foto&apos;s,
+            dan vraag je ons daarmee om meteen te beginnen. Je bedenktijd voor het advies vervalt zodra je video is geleverd.
           </li>
         </ul>
         <p className="small">
           <b>Modelformulier voor herroeping.</b> Aan {COMPANY.name}, {COMPANY.email}: &quot;Ik herroep hierbij mijn overeenkomst
-          betreffende [de kleurenpas / het consult], besteld op [datum], bestelnummer [KN-…]. Naam: […]. Adres: […]. Datum: […].&quot;
+          betreffende [de kleurenpas / het kleuradvies], besteld op [datum], bestelnummer [KN-…]. Naam: […]. Adres: […]. Datum: […].&quot;
         </p>
 
         <h2>7. Kortingscodes</h2>

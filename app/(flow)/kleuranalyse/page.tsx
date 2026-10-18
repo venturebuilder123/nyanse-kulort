@@ -24,8 +24,8 @@ const FAQ: [string, string][] = [
   ["Hoe weet ik of ik een warme of koele ondertoon heb?", "Kijk bij daglicht: staat zilver je beter dan goud, en ijswit beter dan crème, dan is je ondertoon meestal koel. Is het andersom, dan is hij meestal warm. Je ondertoon verandert niet als je bruint. Onze check meet het op je eigen foto."],
   ["Wat zijn de 12 seizoenen?", "De vier seizoenen (Lente, Zomer, Herfst, Winter) zijn elk in drie typen verdeeld, bijvoorbeeld Light Spring, Warm Spring en Bright Spring. Zo kom je op 12 kleurtypen. Wij tonen ook waar je precies zit op de drie schalen, want veel mensen zitten tussen twee typen in."],
   ["Is kleuranalyse ook iets voor mannen?", "Ja. Voor mannen gaat het vooral om de basis die je elke dag draagt: overhemd, trui, colbert, en de kleur van je horloge, riem en schoenen. KULØRT is daarom speciaal voor mannen; NYANSE voor vrouwen."],
-  ["Hoe betrouwbaar is een kleuranalyse met een selfie?", "Licht en camera beïnvloeden kleur. Daarom geven we tips voor de foto (daglicht, geen filter, geen make-up) en vragen we om een nieuwe selfie als de foto niet goed genoeg is. Twijfel je, dan kun je ook je eigen kleurtype kiezen of een persoonlijk consult boeken."],
-  ["Wat kost het?", `Je kleurprofiel is gratis. Je persoonlijke stijlgids kost ${euro(PRICES.digital)}, met een fysieke kleurenpas ${euro(PRICES.card)}, en een persoonlijk consult ${euro(PRICES.session)}.`],
+  ["Hoe betrouwbaar is een kleuranalyse met een selfie?", "Licht en camera beïnvloeden kleur. Daarom geven we tips voor de foto (daglicht, geen filter, geen make-up) en vragen we om een nieuwe selfie als de foto niet goed genoeg is. Twijfel je, dan kun je ook je eigen kleurtype kiezen of persoonlijk kleuradvies kiezen: een kleurconsulent bekijkt dan je foto's."],
+  ["Wat kost het?", `Je kleurprofiel is gratis. Je persoonlijke stijlgids kost ${euro(PRICES.digital)}, met een fysieke kleurenpas ${euro(PRICES.card)}, en persoonlijk kleuradvies van een kleurconsulent (op video, zonder afspraak) ${euro(PRICES.session)}.`],
   ["Wat gebeurt er met mijn foto?", "De analyse gebeurt op je eigen telefoon. Je foto wordt niet naar ons gestuurd en nergens bewaard. Meer in onze privacyverklaring."],
 ];
 
@@ -119,7 +119,7 @@ export default function ColourAnalysis() {
         <p>
           Traditioneel gebeurt dit met gekleurde doeken onder je kin, bij daglicht, bij een kleurconsulent. Dat werkt nog steeds goed, maar
           het kost tijd en geld. Daarom kun je bij ons eerst gratis online je kleurprofiel bepalen, en daarna kiezen voor een stijlgids, een
-          kleurenpas of een persoonlijk consult.
+          kleurenpas of persoonlijk kleuradvies.
         </p>
 
         <h2 id="schalen">De drie schalen: ondertoon, diepte en helderheid</h2>
@@ -191,8 +191,8 @@ export default function ColourAnalysis() {
           <Fig src="/brand/product/pass-front.jpg" alt="De kleurenpas in creditcardformaat met acht kleuren" caption="De kleurenpas: je kleuren in je portemonnee, voor in de winkel." />
         </div>
         <p>
-          Liever persoonlijk? Bij het consult kijkt een kleurconsulent met je mee, met echte doeken en daglicht. Dat is de meest zekere
-          weg, zeker als je twijfelt tussen twee typen.
+          Liever zeker? Kies persoonlijk kleuradvies: een kleurconsulent bekijkt jouw foto&apos;s en stuurt je een persoonlijke video, zonder
+          afspraak en binnen 3 werkdagen. Handig als je twijfelt tussen twee typen.
         </p>
 
         <h2 id="zelf">Zelf testen: drie snelle checks</h2>

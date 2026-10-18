@@ -29,7 +29,7 @@ export function guideMail(o: { brand: string; tier: string; link: string }) {
     ``,
     `Open je persoonlijke stijlgids: ${o.link}`,
     pass ? `Je kleurenpas gaat binnen ±1 week op de post.` : ``,
-    o.tier === "session" ? `We mailen je binnen twee werkdagen om je persoonlijke sessie in te plannen.` : ``,
+    o.tier === "session" ? `Voor je persoonlijke kleuradvies: beantwoord deze mail met 3 foto's bij daglicht, zonder filter: je gezicht zonder make-up, en 2 kledingstukken waar je over twijfelt (onder je kin). Binnen 3 werkdagen na je foto's krijg je een persoonlijke video van onze kleurconsulent.` : ``,
     ``,
     `Bewaar deze mail: met de link open je je gids op elk apparaat.`,
     ``,
@@ -39,7 +39,7 @@ export function guideMail(o: { brand: string; tier: string; link: string }) {
   <div style="max-width:520px;margin:0 auto;padding:40px 24px">
     <p style="font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;margin:0 0 32px">KULØRT &nbsp;|&nbsp; NYANSE</p>
     <h1 style="font-family:Georgia,serif;font-weight:400;font-size:34px;line-height:1.1;margin:0 0 16px">Je stijlgids <i>staat klaar.</i></h1>
-    <p style="font-size:16px;line-height:1.55;color:#4a4540;margin:0 0 28px">Je betaling is binnen. Dank je wel.${pass ? " Je kleurenpas gaat binnen ±1 week op de post." : ""}${o.tier === "session" ? " We mailen je binnen twee werkdagen om je persoonlijke sessie in te plannen." : ""}</p>
+    <p style="font-size:16px;line-height:1.55;color:#4a4540;margin:0 0 28px">Je betaling is binnen. Dank je wel.${pass ? " Je kleurenpas gaat binnen ±1 week op de post." : ""}${o.tier === "session" ? " Voor je persoonlijke kleuradvies: beantwoord deze mail met 3 foto's bij daglicht, zonder filter: je gezicht zonder make-up, en 2 kledingstukken waar je over twijfelt (onder je kin). Binnen 3 werkdagen na je foto's krijg je een persoonlijke video van onze kleurconsulent." : ""}</p>
     <a href="${esc(o.link)}" style="display:inline-block;background:#141414;color:#F6F2EC;text-decoration:none;padding:16px 26px;font-weight:700">Open mijn stijlgids</a>
     <p style="font-size:13px;color:#6F6862;margin:28px 0 0">Bewaar deze mail: met de link open je je gids op elk apparaat.</p>
     <p style="font-size:12px;color:#6F6862;margin:40px 0 0">${name} · kulort-nyanse.com</p>

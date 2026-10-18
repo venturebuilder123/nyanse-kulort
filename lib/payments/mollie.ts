@@ -47,7 +47,7 @@ export const getPayment = (id: string) => mollie(`/payments/${encodeURIComponent
 /** A payment for a stored order; the description is what the bank statement shows, per brand. */
 export function paymentForOrder(o: { ref: string; secret: string; brand: string; tier: string; amount_cents: number }, origin: string) {
   const brand = o.brand === "kulort" ? "KULØRT" : "NYANSE";
-  const what = o.tier === "session" ? "persoonlijke sessie" : o.tier === "card" ? "stijlgids + kleurenpas" : "stijlgids";
+  const what = o.tier === "session" ? "persoonlijk kleuradvies" : o.tier === "card" ? "stijlgids + kleurenpas" : "stijlgids";
   return createPayment({
     ref: o.ref,
     cents: o.amount_cents,

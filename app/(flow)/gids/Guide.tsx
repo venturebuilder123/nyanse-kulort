@@ -34,6 +34,7 @@ export default function Guide() {
   const [loaded, setLoaded] = useState(false);
   const [name, setName] = useState("");
   const [qr, setQr] = useState<string | null>(null);
+  const [pdf, setPdf] = useState<"idle" | "busy" | "error">("idle");
   const [site, setSite] = useState("");
 
   const [access, setAccess] = useState<Access | null>(null);
@@ -101,7 +102,12 @@ export default function Guide() {
           <span>Naam op je gids</span>
           <input value={name} onChange={(e) => saveName(e.target.value)} placeholder="Je naam" autoComplete="given-name" />
         </label>
-        <button className="btn btn-sm" onClick={() => window.print()}>Opslaan als PDF</button>
+        <button className="btn btn-sm" disabled={pdf === "busy"} onClick={async () => {
+          setPdf("busy");
+          const ok = await downloadGuidePdf(`${config.name}-stijlgids-${g.season.replace(/\s+/g, "-").toLowerCase()}.pdf`);
+          setPdf(ok ? "idle" : "error");
+          if (ok) track("guide_pdf", { brand: config.key, voice }, {});
+        }}>{pdf === "busy" ? "PDF maken…" : "Download PDF"}</button>
       </div>
       <PushToggle season={r.profile.match.season} />
 
@@ -399,6 +405,37 @@ function Chip({ c }: { c: Swatch }) {
 function Dot({ hex }: { hex: string }) {
   return <i className="g-dot" style={{ background: hex }} />;
 }
+/**
+ * A real PDF file (founder, 18 Oct: no print dialog). Every page is drawn at A4 size (794 × 1123 px)
+ * in an export mode, turned into an image and put on an A4 page. The browser then saves the file:
+ * Downloads on a computer, "Save to Files" on an iPhone.
+ */
+async function downloadGuidePdf(filename: string): Promise<boolean> {
+  const root = document.querySelector<HTMLElement>(".guide");
+  if (!root) return false;
+  root.classList.add("g-export");
+  try {
+    await document.fonts.ready;
+    const [{ toJpeg }, { jsPDF }] = await Promise.all([import("html-to-image"), import("jspdf")]);
+    const pages = [...root.querySelectorAll<HTMLElement>(".g-page")];
+    const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
+    for (let i = 0; i < pages.length; i++) {
+      const el = pages[i]!;
+      const bg = getComputedStyle(el).backgroundColor || "#f8f5f0";
+      const data = await toJpeg(el, { quality: 0.88, pixelRatio: 2, backgroundColor: bg, width: 794, height: 1123 });
+      if (i) doc.addPage();
+      doc.addImage(data, "JPEG", 0, 0, 210, 297, undefined, "FAST");
+    }
+    doc.save(filename);
+    return true;
+  } catch (e) {
+    console.error("pdf", e);
+    return false;
+  } finally {
+    root.classList.remove("g-export");
+  }
+}
+
 function Scale({ label, word, value, left, right, what, mine }: { label: string; word: string; value: number; left: string; right: string; what: string; mine: string }) {
   return (
     <div className="g-scale">
