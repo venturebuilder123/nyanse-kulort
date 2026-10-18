@@ -29,6 +29,9 @@ export const PROGRAMS: Program[] = [
   { network: "daisycon", id: 19810, name: "Giglio", brands: ["kulort", "nyanse"], budget: [2], use: "breed designeraanbod in alle kleuren", commissionPct: 7.2, cookieDays: 30, feed: true, status: "to_apply" },
   { network: "daisycon", id: 18357, name: "Lureaux", brands: ["kulort"], budget: [1, 2], use: "schoenen en riemen in kleur (Accessoires)", commissionPct: 8.4, cookieDays: 30, feed: true, status: "to_apply" },
   { network: "daisycon", id: 18346, name: "Theo Grace (Myka)", brands: ["nyanse"], budget: [1], use: "sieraden in goud, zilver of roségoud (Accessoires)", commissionPct: 5.6, cookieDays: 30, feed: true, status: "to_apply" },
+  { network: "daisycon", id: 17518, name: "COS", brands: ["kulort", "nyanse"], budget: [1, 2], use: "rustige basis in effen kleuren", commissionPct: 2, cookieDays: 30, feed: true, status: "to_apply" },
+  { network: "daisycon", id: 18911, name: "OverhemdenOnline.nl", brands: ["kulort"], budget: [1], use: "overhemden in alle kleuren", commissionPct: 0, cookieDays: 30, feed: true, status: "to_apply" },
+  { network: "daisycon", id: 18598, name: "Gentiluomo", brands: ["kulort"], budget: [1, 2], use: "herenmode", commissionPct: 7, cookieDays: 30, feed: true, status: "to_apply" },
   // second wave: premium women, after the first numbers
   { network: "daisycon", id: 18138, name: "Isabel Marant", brands: ["nyanse"], budget: [2], use: "premium dameskleding", commissionPct: 12, cookieDays: 30, feed: true, status: "to_apply" },
   { network: "daisycon", id: 15224, name: "Stella McCartney", brands: ["nyanse", "kulort"], budget: [2], use: "duurzaam premium", commissionPct: 8, cookieDays: 30, feed: true, status: "to_apply" },
