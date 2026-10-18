@@ -17,7 +17,8 @@ export async function POST(req: Request) {
   const genders = b.brand === "kulort" ? "(men,unisex)" : "(women,unisex)";
   const [lo, hi] = BUDGET[b.budget ?? ""] ?? [0, 100000];
   const q = `products?hex=not.is.null&in_stock=is.true&gender=in.${genders}&price=gte.${lo}&price=lte.${hi}&select=id,shop,title,image_url,price,old_price,category,lab_l,lab_a,lab_b&limit=4000`;
-  let rows = (await (await supabaseRest(q)).json()) as Candidate[];
+  // before migration 0007 (or if the database hiccups): no products, never an error page
+  let rows = ((await supabaseRest(q).then((r) => r.json()).catch(() => [])) ?? []) as Candidate[];
   const shops = (b.shops ?? []).filter((s) => typeof s === "string").slice(0, 12);
   // prefer the shops someone chose, but never show an empty page because of it
   if (shops.length) {
