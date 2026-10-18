@@ -1,15 +1,16 @@
 import Link from "next/link";
+import { COMPANY } from "@/lib/company";
 import { AppBar, Footer } from "../ui";
 import DeleteProfile from "./DeleteProfile";
 
-// Privacy statement for both brands (CLAUDE.md §9). Company details are filled in at registration.
+// Privacy statement for both brands (CLAUDE.md §9).
 export default function Privacy() {
   return (
     <main className="screen">
       <AppBar pill="Privacy" />
       <article className="pad prose">
         <h1 className="disp sm">Privacy</h1>
-        <p className="muted small">Versie 13 oktober 2026. Geldt voor NYANSE en KULØRT, twee merken van [bedrijfsnaam], [adres], KvK [nummer].</p>
+        <p className="muted small">Versie 18 oktober 2026. Geldt voor NYANSE en KULØRT, twee merken van {COMPANY.name} (KvK {COMPANY.kvk}). Wij zijn verantwoordelijk voor je gegevens.</p>
 
         <h2>Je foto</h2>
         <p>De kleuranalyse draait op je eigen telefoon. Je foto wordt niet naar ons of naar anderen gestuurd en nergens bewaard, ook niet op je telefoon. Sluit je het tabblad, dan is hij weg.</p>
@@ -36,7 +37,7 @@ export default function Privacy() {
         <p>Alleen functionele cookies: welk merk en welke stijl je ziet, zodat de app tijdens je bezoek hetzelfde blijft. De stijl onthouden we alleen tijdens je bezoek.</p>
 
         <h2>Jouw rechten</h2>
-        <p>Je kunt je gegevens inzien, laten aanpassen of laten verwijderen. Mail naar <a href="mailto:privacy@[domein]">privacy@[domein]</a>. Een klacht kun je indienen bij de Autoriteit Persoonsgegevens.</p>
+        <p>Je kunt je gegevens inzien, laten aanpassen of laten verwijderen. Mail naar <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>. Een klacht kun je indienen bij de Autoriteit Persoonsgegevens.</p>
 
         <p><Link href="/">← Terug</Link></p>
       </article>

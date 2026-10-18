@@ -184,7 +184,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
       <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : amount === 0 ? "Open mijn stijlgids" : `Naar betalen · ${euro(amount)}`}</button>
-      <p className="small muted center">Prijzen inclusief btw.</p>
+      <p className="small muted center">Prijzen inclusief btw. Met je bestelling ga je akkoord met de <a href="/voorwaarden" target="_blank">voorwaarden</a>.</p>
       <button type="button" className="link-btn" onClick={onClose}>{t.checkout.close}</button>
     </form>
   );
