@@ -99,7 +99,7 @@ export default function Guide() {
         <Wordmark />
         <label className="g-name">
           <span>Naam op je gids</span>
-          <input value={name} onChange={(e) => saveName(e.target.value)} placeholder="Je voornaam" autoComplete="given-name" />
+          <input value={name} onChange={(e) => saveName(e.target.value)} placeholder="Je naam" autoComplete="given-name" />
         </label>
         <button className="btn btn-sm" onClick={() => window.print()}>Opslaan als PDF</button>
       </div>

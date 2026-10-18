@@ -10,6 +10,8 @@
   min-height: 100svh;
   padding: 0 0 48px;
   display: grid;
+  /* one column that can never grow past the screen (a long colour name pushed it to 536 px on a phone) */
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   gap: 28px;
   -webkit-print-color-adjust: exact;
@@ -105,7 +107,8 @@
 .g-strip i { display: block; height: 22px; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15); }
 .g-strip.named i { height: 64px; }
 .g-strip.named { gap: 4px; }
-.g-strip span { font-size: 10.5px; line-height: 1.2; }
+.g-strip span { font-size: 10.5px; line-height: 1.2; overflow-wrap: anywhere; }
+.g-strip > div { min-width: 0; }
 .g-strip.crossed i { position: relative; overflow: hidden; }
 .g-strip.crossed i::after { content: ""; position: absolute; left: -10%; top: 50%; width: 120%; height: 1.5px; background: #fff; transform: rotate(-25deg); }
 
@@ -273,3 +276,16 @@
 .g-named { display: grid; gap: 4px; font-size: 15px; margin: 0; }
 .g-named span { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(18, 18, 18, 0.6); }
 .g-audit-piles .g-strip.named i { height: 40px; }
+/* phones: the toolbar on one line (wordmark, name, save) instead of three */
+@media (max-width: 560px) {
+  .g-toolbar { flex-wrap: nowrap; gap: 10px; padding: 10px 14px; }
+  .g-toolbar > :first-child { flex: none; }
+  .g-name { flex: 1; min-width: 0; }
+  .g-name > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .g-name input { width: 100%; min-width: 0; padding: 7px 9px; }
+  .g-toolbar .btn { flex: none; padding: 0 12px; min-height: 40px; font-size: 13px; }
+}
+@media (max-width: 560px) {
+  /* the issue line collided with the house mark on narrow covers */
+  .g-cover-issue { display: none; }
+}

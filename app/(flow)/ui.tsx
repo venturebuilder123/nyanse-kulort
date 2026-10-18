@@ -42,6 +42,11 @@ export function AppBar({ pill }: { pill?: string }) {
   return (
     <header className="appbar">
       <HouseMark />
+      {/* large screens: the same quiet navigation as the landing, so every page sits in one frame */}
+      <nav className="appbar-links" aria-label="Menu">
+        <Link href="/kleuranalyse">Kleuranalyse</Link>
+        <Link href="/contact">Contact</Link>
+      </nav>
       {pill && <span className="pill">{pill}</span>}
     </header>
   );

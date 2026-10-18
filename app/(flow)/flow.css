@@ -888,7 +888,6 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .rv-named { font-size: 14px; margin-top: 10px; }
 .rv-named span { color: var(--rv-muted); }
 .tiers { display: grid; gap: 14px; }
-@media (min-width: 900px) { .screen:has(.result) .tiers { grid-template-columns: 1fr; } }
 .tier-math { display: block; font-size: 13.5px; font-style: italic; color: var(--accent-text); }
 .mail-later { flex-wrap: wrap; }
 .mail-optin { flex-basis: 100%; font-size: 13px; }
@@ -956,3 +955,39 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   .seo-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .seo-cta-doors { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* ---------- large screens: one frame for every page (founder, 18 Oct) ----------
+   The landing and the maison were full width while every other page sat in a 640 px phone box.
+   Now the header and footer span the same 1200 px frame everywhere; the content keeps a reading
+   width that fits the page: steps 640, articles 760, the result 1040 with the options side by side. */
+.appbar-links { display: none; }
+@media (min-width: 1024px) {
+  .screen:not(.landing-screen) { max-width: none; margin: 0; min-height: 100svh; }
+  .screen:not(.landing-screen) > .appbar { width: 100%; max-width: 1200px; margin: 0 auto; padding: 28px 40px 8px; gap: 28px; }
+  .screen:not(.landing-screen) > .appbar .house-mark .wm-kulort { font-size: 18px; }
+  .screen:not(.landing-screen) > .appbar .house-mark .wm-nyanse { font-size: 26px; }
+  .screen:not(.landing-screen) > .appbar .house-mark i { height: 20px; }
+  .appbar-links { display: flex; gap: 28px; margin-left: auto; font-weight: 700; font-size: 15px; }
+  .appbar-links a { text-decoration: none; color: var(--ink); }
+  .appbar-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .screen:not(.landing-screen) > :not(.appbar):not(.foot):not(dialog) { width: 100%; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .screen:not(.landing-screen) > .pad { padding-top: 40px; padding-bottom: 64px; }
+  .screen:not(.landing-screen) > .prose, .screen:not(.landing-screen) > .seo { max-width: 760px; }
+  .screen:not(.landing-screen) > .foot { width: 100%; max-width: 1200px; margin: auto auto 0; padding: 24px 40px 32px; border-top: 1px solid var(--line); justify-content: flex-start; gap: 6px 22px; font-size: 13px; }
+  /* the result: wider, the three options side by side */
+  /* the result reads like a page (860), the options sit side by side, photos stay a sensible size */
+  .screen:has(.tiers) > :not(.appbar):not(.foot):not(dialog) { max-width: 860px; }
+  .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  .tiers .tier { align-content: start; }
+  .tiers .tier > .btn { align-self: end; margin-top: auto; }
+  .screen:has(.tiers) .deck { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .screen:has(.tiers) img { max-height: 620px; object-fit: contain; }
+  .screen:has(.tiers) .r-look { max-width: 560px; margin-left: auto; margin-right: auto; }
+  /* steps: the main button follows the content instead of sinking to the bottom of a tall screen */
+  .screen:not(.landing-screen) > .pad { flex: 0 0 auto; }
+  /* checkout on a desktop: a centred dialog instead of a bottom sheet */
+  dialog.sheet { margin: auto; border-radius: 20px; max-height: 90vh; overflow: auto; }
+}
+.dk-front.is-light { box-shadow: 0 8px 18px rgba(0,0,0,.12), inset 0 0 0 1px rgba(0,0,0,.08); }
+.dk-front.is-light b { color: #141414; text-shadow: none; }

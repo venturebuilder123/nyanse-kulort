@@ -139,10 +139,11 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
   return (
     <form className="sheet-body" onSubmit={submit} noValidate>
       <div className="grab" />
-      <div className="line"><span>{t.tiers[tier].name}</span><b>{euro(amount)}</b></div>
+      <div className="line"><span>{t.tiers[tier].name}</span><b>{percent > 0 ? <><s className="muted">{euro(amountFor(tier, false))}</s> {amount === 0 ? "Gratis" : euro(amount)}</> : euro(amount)}</b></div>
       {friendCode && !percent && <div className="line discount"><span>{copy.retention.friendLine} · {friendCode}</span><b>−€1</b></div>}
-      {percent > 0 && <div className="line discount"><span>Code {code.trim().toUpperCase()} · {percent}%</span><b>{amount === 0 ? "Gratis" : `−${euro(Math.round((amountFor(tier, false) - amount) * 100) / 100)}`}</b></div>}
-      {note && <p className="tier-math">{note}</p>}
+      {percent > 0 && <div className="line discount"><span>Code {code.trim().toUpperCase()} · {percent}%</span><b>{`−${euro(Math.round((amountFor(tier, false) - amount) * 100) / 100)}`}</b></div>}
+      {/* the Girl Math sum is about the full price; with a code it no longer adds up */}
+      {note && !percent && <p className="tier-math">{note}</p>}
       <label className="field">
         <span>Waar sturen we je stijlgids heen?</span>
         <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder="jij@voorbeeld.nl" value={f.email} onChange={set("email")} required />

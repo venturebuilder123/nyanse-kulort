@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/** Relative luminance above ~0.6: the name goes dark (a white tile with a white name was unreadable). */
+const light = (hex: string) => {
+  const n = parseInt(hex.slice(1), 16), [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.6;
+};
+
 export type DeckCard = { hex: string; name: string; open: boolean };
 
 // The colours as cards. The free ones flip open like small presents when they scroll into
@@ -26,7 +32,7 @@ export function Deck({ cards, onLocked }: { cards: DeckCard[]; onLocked: () => v
           <div key={c.hex + i} className="dk" style={{ "--d": `${150 + i * 150}ms` } as React.CSSProperties}>
             <div className="dk-in">
               <div className="dk-back" />
-              <div className="dk-front" style={{ background: c.hex }}><b>{c.name}</b></div>
+              <div className={`dk-front${light(c.hex) ? " is-light" : ""}`} style={{ background: c.hex }}><b>{c.name}</b></div>
             </div>
           </div>
         ))}
