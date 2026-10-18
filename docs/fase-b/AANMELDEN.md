@@ -13,7 +13,7 @@
 | Btw-nummer | NL003921233B98 |
 | Adres | Auke Mollemastraat 16, 5302 VC Zaltbommel |
 | E-mail | nyansekulort@gmail.com |
-| IBAN (uitbetaling) | NL24 RABO 0315 2458 398, t.n.v. GUMALE |
+| IBAN (uitbetaling) | NL24 RABO 3152 4583 98, t.n.v. GUMALE |
 | Land / taal | Nederland / Nederlands |
 | Categorie | Fashion / Content / Comparison (kies "content" of "personal shopping" als die er is) |
 | Promotiemethoden | Website (content), Social media (Instagram), Productfeeds/deeplinks. **Niet** aanvinken: cashback, vouchercodes, e-mail, toolbar, SEA op merknamen |
