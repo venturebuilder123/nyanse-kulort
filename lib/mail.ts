@@ -46,3 +46,26 @@ export function guideMail(o: { brand: string; tier: string; link: string }) {
   </div></body></html>`;
   return { subject: `Je ${name}-stijlgids staat klaar`, text, html };
 }
+
+/** "Je pas is onderweg": when the founder marks the colour card as shipped (CLAUDE.md §7). */
+export function shippedMail(o: { brand: string; link: string }) {
+  const name = o.brand === "kulort" ? "KULØRT" : "NYANSE";
+  const text = [
+    `Je kleurenpas is onderweg. Meestal ligt hij binnen een paar werkdagen in je brievenbus.`,
+    ``,
+    `Je stijlgids blijft hier: ${o.link}`,
+    ``,
+    `Tip: bewaar de pas in je portemonnee en houd hem in de winkel naast een kledingstuk.`,
+    ``,
+    `${name} · kulort-nyanse.com`,
+  ].join("\n");
+  const html = `<!doctype html><html><body style="margin:0;background:#F6F2EC;font-family:Helvetica,Arial,sans-serif;color:#141414">
+  <div style="max-width:520px;margin:0 auto;padding:40px 24px">
+    <p style="font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;margin:0 0 32px">KULØRT &nbsp;|&nbsp; NYANSE</p>
+    <h1 style="font-family:Georgia,serif;font-weight:400;font-size:34px;line-height:1.1;margin:0 0 16px">Je kleurenpas <i>is onderweg.</i></h1>
+    <p style="font-size:16px;line-height:1.55;color:#4a4540;margin:0 0 28px">Meestal ligt hij binnen een paar werkdagen in je brievenbus. Bewaar hem in je portemonnee en houd hem in de winkel naast een kledingstuk.</p>
+    <a href="${esc(o.link)}" style="display:inline-block;background:#141414;color:#F6F2EC;text-decoration:none;padding:16px 26px;font-weight:700">Open mijn stijlgids</a>
+    <p style="font-size:12px;color:#6F6862;margin:40px 0 0">${name} · kulort-nyanse.com</p>
+  </div></body></html>`;
+  return { subject: `Je ${name}-kleurenpas is onderweg`, text, html };
+}

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseConfigured, supabaseRest } from "@/lib/db/supabase";
 import { markPaid } from "@/lib/flow/fulfil";
-import { mailConfigured } from "@/lib/mail";
+import { mailConfigured, sendMail, shippedMail } from "@/lib/mail";
 
 // Founder only (proxy.ts guards /api/lab with the lab password).
 // GET: recent orders. POST {ref, status}: mark paid (sends the guide link) or shipped/cancelled.
@@ -26,12 +26,19 @@ export async function POST(req: Request) {
     if (!r.found) return NextResponse.json({ error: "not_found" }, { status: 404 });
     return NextResponse.json({ ok: true, link: r.link, mailed: r.mailed, mailConfigured: mailConfigured() });
   }
-  const res = await supabaseRest(`orders?ref=eq.${ref}&select=ref,secret`, {
+  const res = await supabaseRest(`orders?ref=eq.${ref}&select=ref,secret,email,brand`, {
     method: "PATCH",
     body: JSON.stringify({ status }),
     prefer: "return=representation",
   });
-  const [o] = (await res.json()) as { ref: string; secret: string }[];
+  const [o] = (await res.json()) as { ref: string; secret: string; email: string; brand: string }[];
   if (!o) return NextResponse.json({ error: "not_found" }, { status: 404 });
-  return NextResponse.json({ ok: true, link: `${origin}/gids?o=${o.ref}&k=${o.secret}`, mailed: false, mailConfigured: mailConfigured() });
+  const link = `${origin}/gids?o=${o.ref}&k=${o.secret}`;
+  // "je pas is onderweg" (CLAUDE.md §7)
+  let mailed = false;
+  if (status === "shipped") {
+    const m = shippedMail({ brand: o.brand, link });
+    mailed = await sendMail(o.email, m.subject, m.text, m.html).catch(() => false);
+  }
+  return NextResponse.json({ ok: true, link, mailed, mailConfigured: mailConfigured() });
 }

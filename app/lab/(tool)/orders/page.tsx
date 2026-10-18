@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 
 type Order = {
   ref: string; created_at: string; status: string; tier: string; amount_cents: number; brand: string; season: string | null;
@@ -9,6 +10,36 @@ type Order = {
 };
 
 const TIER: Record<string, string> = { digital: "Stijlgids", card: "Gids + pas", session: "Sessie" };
+const seasonName = (k: string | null) => (k && k in SEASONS ? SEASONS[k as SeasonKey].name : "–");
+const BRAND: Record<string, string> = { kulort: "KULØRT", nyanse: "NYANSE" };
+
+/** The weekly colour-card batch (CLAUDE.md §7): CSV for the print and a list to address envelopes. */
+function batchCsv(list: Order[]) {
+  const q = (v: string | null) => `"${(v ?? "").replace(/"/g, '""')}"`;
+  const rows = [["kenmerk", "merk", "seizoen", "naam", "straat", "postcode", "plaats", "land", "betaald"].join(";")];
+  for (const o of list) rows.push([o.ref, BRAND[o.brand] ?? o.brand, seasonName(o.season), o.name, o.street, o.postcode, o.city, o.country, o.paid_at?.slice(0, 10) ?? ""].map(q).join(";"));
+  const url = URL.createObjectURL(new Blob(["\uFEFF" + rows.join("\n")], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `passen-batch-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function batchPrint(list: Order[]) {
+  const esc = (v: string | null) => (v ?? "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
+  const w = window.open("", "_blank");
+  if (!w) return;
+  w.document.write(`<!doctype html><meta charset="utf-8"><title>Adreslijst passen</title><style>
+    body{font-family:Helvetica,Arial,sans-serif;margin:12mm}h1{font-size:16px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6mm}
+    .label{border:1px dashed #999;padding:6mm;font-size:14px;line-height:1.45;break-inside:avoid}
+    .label small{display:block;margin-top:3mm;color:#555;font-size:11px}
+  </style><h1>Passen-batch ${new Date().toLocaleDateString("nl-NL")} · ${list.length} stuks</h1><div class="grid">${list
+    .map((o) => `<div class="label"><b>${esc(o.name)}</b><br>${esc(o.street)}<br>${esc(o.postcode)} ${esc(o.city)}<br>${o.country === "NL" ? "" : esc(o.country === "BE" ? "BELGIË" : "DUITSLAND")}<small>${o.ref} · ${BRAND[o.brand] ?? o.brand} · ${seasonName(o.season)}</small></div>`)
+    .join("")}</div><script>print()</script>`);
+  w.document.close();
+}
+
 const euro = (c: number) => `€${(c / 100).toFixed(2).replace(".", ",")}`;
 
 // The founder's order desk: match a transfer by reference, click Betaald → the buyer gets the
@@ -34,6 +65,13 @@ export default function Orders() {
   }
 
   const list = (orders ?? []).filter((o) => filter === "all" || ["awaiting_payment", "paid"].includes(o.status));
+  const batch = (orders ?? []).filter((o) => o.status === "paid" && o.tier !== "digital");
+  async function shipAll() {
+    if (!confirm(`Alle ${batch.length} passen als verzonden markeren? Elke klant krijgt de mail "je pas is onderweg".`)) return;
+    for (const o of batch) await fetch("/api/lab/orders", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ref: o.ref, status: "shipped" }) });
+    setMsg(`${batch.length} passen verzonden en gemaild.`);
+    void load();
+  }
   return (
     <div className="stack">
       <h1>Bestellingen</h1>
@@ -44,6 +82,15 @@ export default function Orders() {
         <button onClick={() => void load()}>Vernieuwen</button>
       </p>
       {msg && <p className="pill">{msg}</p>}
+      <section className="stack" style={{ border: "1px solid #ccc", padding: 12 }}>
+        <b>Weekbatch kleurenpassen: {batch.length} te versturen</b>
+        <p className="muted small">Betaald, met pas, nog niet verzonden. Download de lijst voor het drukken, print de adreslabels, en markeer daarna alles als verzonden.</p>
+        <p className="small">
+          <button disabled={!batch.length} onClick={() => batchCsv(batch)}>Download CSV</button>{" "}
+          <button disabled={!batch.length} onClick={() => batchPrint(batch)}>Print adreslabels</button>{" "}
+          <button disabled={!batch.length} onClick={() => void shipAll()}>Alles verzonden</button>
+        </p>
+      </section>
       {orders === null ? <p className="muted">Laden…</p> : list.length === 0 ? <p className="muted">Geen bestellingen.</p> : (
         <table>
           <thead><tr><th>Kenmerk</th><th>Datum</th><th>Wat</th><th>Bedrag</th><th>Klant</th><th>Adres</th><th>Status</th><th /></tr></thead>
