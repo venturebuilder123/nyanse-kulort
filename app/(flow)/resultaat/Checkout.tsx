@@ -180,11 +180,11 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       {codeMsg && <p className="small warn-text" role="alert">{codeMsg}</p>}
       <label className="check">
         <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
-        <span>{t.checkout.withdrawal}</span>
+        <span>{t.checkout.withdrawal.replace("de voorwaarden", "\u0000").split("\u0000").flatMap((part, i) => (i ? [<a key="t" href="/voorwaarden" target="_blank">de voorwaarden</a>, part] : [part]))}</span>
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
       <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : amount === 0 ? "Open mijn stijlgids" : `Naar betalen · ${euro(amount)}`}</button>
-      <p className="small muted center">Prijzen inclusief btw. Met je bestelling ga je akkoord met de <a href="/voorwaarden" target="_blank">voorwaarden</a>.</p>
+      <p className="small muted center">Prijzen inclusief btw.</p>
       <button type="button" className="link-btn" onClick={onClose}>{t.checkout.close}</button>
     </form>
   );

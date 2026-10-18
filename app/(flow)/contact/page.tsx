@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { COMPANY } from "@/lib/company";
 import { AppBar, Footer } from "../ui";
 
 export const metadata = { title: "Contact · KULØRT · NYANSE" };
 
-// Contact for trust (founder, 14 Oct). Company details follow once registered at the KvK.
+// Contact for trust (founder, 14 Oct); the legal details sit quietly at the bottom (18 Oct).
 export default function Contact() {
   return (
     <main className="screen">
@@ -19,6 +20,7 @@ export default function Contact() {
           <div><b>Je kleurenpas</b><p>Je pas gaat binnen ±1 week op de post (NL, BE, DE). Niet ontvangen? Laat het ons weten.</p></div>
           <div><b>Je gegevens</b><p>Je profiel verwijder je zelf met één tik. Liever dat wij het doen? Mail ons. Meer in de <Link href="/privacy">privacyverklaring</Link>.</p></div>
         </div>
+        <p className="small muted">KULØRT en NYANSE zijn merken van {COMPANY.name} · {COMPANY.address} (postadres, geen bezoekadres) · KvK {COMPANY.kvk} · btw {COMPANY.vat}</p>
       </div>
       <Footer />
     </main>

@@ -20,7 +20,7 @@ export default function Terms() {
         <h2>1. Wie zijn wij</h2>
         <p>
           KULØRT en NYANSE zijn twee merken van {COMPANY.name}
-          {COMPANY.address ? `, ${COMPANY.address}` : ""}. KvK {COMPANY.kvk}, btw {COMPANY.vat}. Je bereikt ons via{" "}
+          {COMPANY.address ? `, ${COMPANY.address} (postadres)` : ""}. KvK {COMPANY.kvk}, btw {COMPANY.vat}. Je bereikt ons via{" "}
           <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> of de <Link href="/contact">contactpagina</Link>.
         </p>
 
@@ -37,6 +37,10 @@ export default function Terms() {
         <p>
           Je kleurprofiel is een advies over kleuren die bij je passen. Het hangt af van het licht en de kwaliteit van je foto of je eigen
           opgave. Het is geen garantie dat elk kledingstuk je bevalt. Smaak blijft van jou.
+        </p>
+        <p>
+          Klopt je uitslag volgens jou niet, bijvoorbeeld door een foto bij slecht licht? Mail ons binnen 14 dagen met je bestelnummer.
+          We kijken mee en zetten je gids zo nodig kosteloos om naar een ander kleurtype.
         </p>
 
         <h2>4. Bestellen en betalen</h2>

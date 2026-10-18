@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { COMPANY } from "@/lib/company";
 
 import type { Headline, OccasionKey } from "@/lib/brand/types";
 import { useBrand } from "./BrandProvider";
@@ -133,8 +132,6 @@ export function Footer() {
       <Link href="/voorwaarden">Voorwaarden</Link>
       <Link href="/privacy">Privacy</Link>
       <span>Prijzen inclusief btw</span>
-      {/* required on a webshop: who sells (KvK) and the VAT number */}
-      <span className="foot-legal">{COMPANY.name} · KvK {COMPANY.kvk} · btw {COMPANY.vat}</span>
     </footer>
   );
 }

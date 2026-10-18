@@ -64,7 +64,7 @@ export function parseOrder(body: unknown): OrderRow | null {
     city: physical ? str(b.city, 80) : null,
     country: physical ? country : null,
     // the code column records whichever code was used (a friend code or a discount code)
-    friend_code: percent ? String(b.discountCode).trim().toUpperCase() : friend?.code ?? null,
+    friend_code: percent ? String(b.discountCode).split(":")[0]!.replace(/\s+/g, "").toUpperCase() : friend?.code ?? null,
     waiver: b.waiver === true,
     profile: parseProfile(b.profile),
   };

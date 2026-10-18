@@ -65,3 +65,11 @@ describe("discount codes", () => {
     delete process.env.DISCOUNT_CODES;
   });
 });
+
+describe("discount code input", () => {
+  it("forgives a pasted ':100' and spaces", async () => {
+    const { discountFor } = await import("./discount");
+    expect(discountFor("FAMILIE-BN26E:100", "FAMILIE-BN26E:100")).toBe(100);
+    expect(discountFor(" familie-bn26e ", "FAMILIE-BN26E:100")).toBe(100);
+  });
+});

@@ -4,7 +4,7 @@
 
 import { PRICES, type Tier } from "./pricing";
 
-export const PAYEE = { name: "Basic Element", iban: "NL24RABO3152458398" } as const;
+export const PAYEE = { name: "GUMALE", iban: "NL24RABO3152458398" } as const;
 
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 export function orderRef(random: () => number = Math.random): string {

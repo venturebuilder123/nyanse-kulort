@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — voorwaarden, bedrijfsgegevens en de bedenktijd
+
+- **Bedrijfsgegevens** (GUMALE, KvK, btw, postadres in Zaltbommel) staan **niet in de footer**; dat is de keuze van de oprichter. Ze staan op de voorwaardenpagina en onderaan de contactpagina, en de privacyverklaring noemt naam en KvK. De wet (BW 3:15d) vraagt dat ze "gemakkelijk, rechtstreeks en permanent" te vinden zijn. De link "Voorwaarden" in elke footer dekt dat (MENING; laat het meenemen in de juridische check).
+- **Eén vinkje bij het afrekenen:** "Ik ga akkoord met de voorwaarden en wil mijn gids meteen ontvangen. Daarna geldt er geen bedenktijd voor de gids." Rustiger dan de oude tekst, maar nog steeds de uitdrukkelijke toestemming die de wet voor digitale inhoud vraagt (BW 6:230p). Zonder die zin blijft de klant 14 dagen bedenktijd houden, ook na het openen van de gids. **Laat de tekst door een jurist checken.**
+- **Een "foute" uitslag:** de voorwaarden beperken de aansprakelijkheid tot het betaalde bedrag. Ze beloven nu ook dat we kosteloos meekijken en de gids zo nodig omzetten als iemand binnen 14 dagen mailt. In de praktijk stuurt de oprichter dan een gratis code, waarmee de klant de gids met het juiste kleurtype opnieuw bestelt. De wettelijke rechten van een consument (een product dat niet doet wat beloofd is) kun je niet uitsluiten. Met deze toezegging is de kans op een geschil klein.
+- **Rekening voor overschrijvingen:** op naam van GUMALE (dezelfde IBAN).
+- **Kortingscodes zijn vergevingsgezind:** "FAMILIE-XXXXX:100" of spaties ervoor of erachter werken ook.
+
 ## 18 oktober 2026 — nieuwe prijzen en kortingscodes
 
 - **Prijzen (keuze van de oprichter):** Digitaal **€12,99**, Met kleurenpas **€39,99**, Persoonlijk consult **€110**. De Girl Math-teksten rekenen mee: €0,43 per kleur, €0,04 per dag, en de pas als €2,70 per keer shoppen.

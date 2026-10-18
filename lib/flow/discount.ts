@@ -16,5 +16,7 @@ export function parseDiscountCodes(raw = process.env.DISCOUNT_CODES ?? ""): Map<
 /** The percentage for a code, or null. Case-insensitive. */
 export function discountFor(code: unknown, raw?: string): number | null {
   if (typeof code !== "string") return null;
-  return parseDiscountCodes(raw).get(code.trim().toUpperCase()) ?? null;
+  // forgiving: a pasted "CODE:100" or stray spaces still match the code itself
+  const clean = code.split(":")[0]!.replace(/\s+/g, "").toUpperCase();
+  return parseDiscountCodes(raw).get(clean) ?? null;
 }

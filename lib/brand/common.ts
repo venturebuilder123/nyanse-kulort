@@ -153,7 +153,7 @@ const RESULT_BASE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
     city: "Plaats",
     country: "Land",
     countryNote: "De pas versturen we nu naar Nederland, België en Duitsland. Kies de digitale gids, of mail ons.",
-    withdrawal: "Ik wil de digitale gids direct ontvangen. Daarmee vervalt mijn herroepingsrecht voor de digitale gids.",
+    withdrawal: "Ik ga akkoord met de voorwaarden en wil mijn gids meteen ontvangen. Daarna geldt er geen bedenktijd voor de gids.",
     test: "Testversie: betalen staat nog uit. Hier komen Apple Pay, Google Pay, iDEAL | Wero, PayPal en kaart.",
     close: "Sluiten",
   },
