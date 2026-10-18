@@ -5,12 +5,12 @@ const base = { ref: "KN-ABC234", tier: "digital", brand: "nyanse", email: "a@b.n
 
 describe("parseOrder", () => {
   it("computes the amount itself", () => {
-    expect(parseOrder({ ...base, amount_cents: 1 })?.amount_cents).toBe(699);
-    expect(parseOrder({ ...base, friendCode: "DANIEL-7K3Q" })?.amount_cents).toBe(599);
+    expect(parseOrder({ ...base, amount_cents: 1 })?.amount_cents).toBe(1299);
+    expect(parseOrder({ ...base, friendCode: "DANIEL-7K3Q" })?.amount_cents).toBe(1199);
   });
   it("requires a full address for the card and the session", () => {
     expect(parseOrder({ ...base, tier: "card" })).toBeNull();
-    expect(parseOrder({ ...base, tier: "card", name: "A", street: "B 1", postcode: "1234AB", city: "C", country: "NL" })?.amount_cents).toBe(999);
+    expect(parseOrder({ ...base, tier: "card", name: "A", street: "B 1", postcode: "1234AB", city: "C", country: "NL" })?.amount_cents).toBe(3999);
   });
   it("rejects bad input", () => {
     expect(parseOrder({ ...base, ref: "x" })).toBeNull();
@@ -36,5 +36,32 @@ describe("mollie amounts", () => {
     expect(mollieValue(999)).toBe("9.99");
     expect(mollieValue(8900)).toBe("89.00");
     expect(mollieValue(599)).toBe("5.99");
+  });
+});
+
+describe("discount codes", () => {
+  it("parses codes from the environment and ignores junk", async () => {
+    const { discountFor } = await import("./discount");
+    const raw = "FAMILIE-K7Q2:100, vrienden-p3x9:25,BAD:0,x:50,OK-CODE:abc";
+    expect(discountFor("familie-k7q2", raw)).toBe(100);
+    expect(discountFor(" VRIENDEN-P3X9 ", raw)).toBe(25);
+    expect(discountFor("BAD", raw)).toBeNull();
+    expect(discountFor("nope", raw)).toBeNull();
+    expect(discountFor(undefined, raw)).toBeNull();
+  });
+  it("applies the percentage, never stacks with a friend code, never goes below zero", async () => {
+    const { amountFor } = await import("./payment");
+    expect(amountFor("digital", false, 25)).toBe(9.74);
+    expect(amountFor("card", true, 25)).toBe(29.99);
+    expect(amountFor("session", false, 100)).toBe(0);
+    expect(amountFor("digital", true)).toBe(11.99);
+  });
+  it("uses the code in an order (reusable: the same code works every time)", () => {
+    process.env.DISCOUNT_CODES = "FAMILIE-K7Q2:100,VRIENDEN-P3X9:25";
+    expect(parseOrder({ ...base, discountCode: "familie-k7q2" })?.amount_cents).toBe(0);
+    expect(parseOrder({ ...base, discountCode: "familie-k7q2" })?.friend_code).toBe("FAMILIE-K7Q2");
+    expect(parseOrder({ ...base, discountCode: "VRIENDEN-P3X9", friendCode: "DANIEL-7K3Q" })?.amount_cents).toBe(974);
+    expect(parseOrder({ ...base, discountCode: "WRONG" })?.amount_cents).toBe(1299);
+    delete process.env.DISCOUNT_CODES;
   });
 });

@@ -91,7 +91,7 @@ export default function Result() {
   const mathLine = (k: Tier) =>
     config.key !== "nyanse" ? null
     : k === "digital" ? `Girl math: ${euro(PRICES.digital)} voor 30 kleuren = ${euro(PRICES.digital / 30)} per kleur.`
-    : k === "card" ? `Girl math: ${euro(PRICES.card - PRICES.digital)} extra voor een pas die altijd mee shopt. Dat telt nauwelijks.`
+    : k === "card" ? `Girl math: ${euro(PRICES.card - PRICES.digital)} extra voor een pas die altijd mee shopt. Tien keer shoppen = ${euro(Math.round((PRICES.card - PRICES.digital) * 10) / 100)} per keer.`
     : `Girl math: 45 minuten advies, daarna met zekerheid de paskamer in.`;
 
   const pal = useMemo(() => (r ? paletteFor(r.profile, config.key) : null), [r, config.key]);

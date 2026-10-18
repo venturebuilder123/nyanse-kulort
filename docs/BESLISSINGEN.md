@@ -2,6 +2,21 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — nieuwe prijzen en kortingscodes
+
+- **Prijzen (keuze van de oprichter):** Digitaal **€12,99**, Met kleurenpas **€39,99**, Persoonlijk consult **€110**. De Girl Math-teksten rekenen mee: €0,43 per kleur, €0,04 per dag, en de pas als €2,70 per keer shoppen.
+- **MENING:**
+  - €12,99 is nog steeds een impulsaankoop.
+  - De stap van €12,99 naar €39,99 (+€27) is groot. Het aandeel kleurenpas daalt waarschijnlijk, maar elke pas levert veel meer op.
+  - Meet in de eerste weken het aandeel per optie (`tier_select`, `paid`) en vergelijk dat met de oude prijzen.
+- **Kortingscodes voor de inner circle:**
+  - Onbeperkt herbruikbaar, met een vast percentage (25% of 100% = gratis).
+  - De codes staan in de env-variabele `DISCOUNT_CODES` (`CODE:PERCENTAGE`, met komma's), niet in de code. Zo pas je ze aan zonder deploy van code, alleen een redeploy.
+  - Een code vervangt de vriendenkorting; ze stapelen niet.
+  - Bij 100% is er niets te betalen: de bestelling gaat direct op betaald (mail en event, methode `code`). Bij de kleurenpas blijft het adres nodig.
+  - De gebruikte code staat in de kolom `friend_code` van de bestelling.
+  - **Risico:** een herbruikbare gratis-code die gedeeld wordt, kost je gidsen en, bij de pas, echte passen en postzegels. Maak de codes lang en niet te raden (bijv. `FAMILIE-K7Q2`) en vervang ze als ze rondgaan.
+
 ## 18 oktober 2026 — Mollie ingebouwd
 
 - **Met `MOLLIE_API_KEY` betaalt de klant via Mollie:** iDEAL | Wero, Apple Pay, kaart, PayPal; wat in het Mollie-dashboard aan staat. Zonder key blijft de bankoverschrijving werken, ook als Mollie even niet bereikbaar is.

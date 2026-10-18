@@ -40,7 +40,7 @@ export const girlmath: VoiceCopy = {
     occasionQuestion: "Waar wil je er goed uitzien? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Bright Spring), 6 kleuren die je staan en wat je kunt laten liggen." },
-    paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden en make-uptinten je staan." },
+    paid: { title: "In je gids, vanaf €12,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden en make-uptinten je staan." },
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo simpel", "is het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Stop met kopen wat je", "niet staat."], accessories: "welke sieraden en make-uptinten je staan", trustTitle: ["Geen gedoe,", "geen catch."] }),
@@ -98,7 +98,7 @@ export const girlmath: VoiceCopy = {
   result: resultNl(
     "6 kleuren die je laten stralen",
     ["Alle 30 kleuren met namen: basis, accent en neutraal", "Combinaties die werken, dus minder miskopen", "Sieraden en make-uptinten", "Je persoonlijke stijlgids als PDF + digitale pas"],
-    { kind: "receipt", title: "Waarom dit eigenlijk een steal is", head: "Girl math", lines: [["Stijlgids", "€6,99"], ["÷ 365 dagen", "€0,02 per dag"], ["Minder gokken bij het kopen", "✓"]], total: ["Girl math zegt", "worth it ✨"] },
+    { kind: "receipt", title: "Waarom dit eigenlijk een steal is", head: "Girl math", lines: [["Stijlgids", "€12,99"], ["÷ 365 dagen", "€0,04 per dag"], ["Minder gokken bij het kopen", "✓"]], total: ["Girl math zegt", "worth it ✨"] },
   ),
   ring: ["#D61F5B", "#FFE9A6", "#F4A3A0", "#8FA3B8", "#F3A27A", "#A6879C", "#2BB3A8", "#FFE6EE", "#B9926B", "#6E5468"],
 };

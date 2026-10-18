@@ -11,9 +11,14 @@ export function orderRef(random: () => number = Math.random): string {
   return "KN-" + Array.from({ length: 6 }, () => ALPHABET[Math.floor(random() * ALPHABET.length)]).join("");
 }
 
-/** Server and client agree on the amount: tier price minus €1 with a valid friend code. */
-export function amountFor(tier: Tier, friend: boolean): number {
-  return Math.round((PRICES[tier] - (friend ? 1 : 0)) * 100) / 100;
+/**
+ * Server and client agree on the amount: the tier price, minus a discount code's percentage, or
+ * else minus €1 with a valid friend code. Never below €0.
+ */
+export function amountFor(tier: Tier, friend: boolean, percent = 0): number {
+  const cents = Math.round(PRICES[tier] * 100);
+  const off = percent > 0 ? Math.round((cents * percent) / 100) : friend ? 100 : 0;
+  return Math.max(0, cents - off) / 100;
 }
 
 /**

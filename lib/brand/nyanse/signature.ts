@@ -41,7 +41,7 @@ export const signature: VoiceCopy = {
     occasionQuestion: "Waar wil je er goed uitzien? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Soft Summer), 6 kleuren die je laten stralen en wat je beter vermijdt." },
-    paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden, tassen en make-uptinten bij je passen." },
+    paid: { title: "In je gids, vanaf €12,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke sieraden, tassen en make-uptinten bij je passen." },
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "trekt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Zo werkt", "het."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Kleuren met", "zekerheid."], accessories: "welke sieraden, tassen en make-uptinten bij je passen", trustTitle: ["Rustig, persoonlijk,", "zonder gedoe."] }),

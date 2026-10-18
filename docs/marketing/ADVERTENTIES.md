@@ -8,9 +8,9 @@
 
 1. **Meten staat nog niet aan.** De events in de app worden nu alleen lokaal gelogd (PostHog is nog niet gekoppeld). Zonder meting kunnen we de gate "opbrengst per bezoeker per merk" (CLAUDE.md §3) niet beoordelen. **Eerst PostHog EU koppelen** (gratis tot 1 miljoen events). Dat is ±1 uur werk voor mij en één account voor jou.
 2. **AI-label op TikTok.** Volgens meerdere bronnen moet een realistisch AI-beeld van een mens in een TikTok-advertentie het label "AI-generated" krijgen. Zonder label kan TikTok de advertentie weigeren of minder tonen. Meta voegt zelf een "AI info"-label toe als het AI-metadata (C2PA) in het beeld vindt. **MENING:** zet bij TikTok gewoon het vinkje "AI-generated content" aan. Dat label staat alleen in de advertentie, niet op de site, en het voorkomt afwijzing.
-3. **LinkedIn past slecht bij een product van €6,99.** Een klik kost daar typisch €4–8 (AANNAME op basis van gangbare benchmarks), dus één klik kost bijna evenveel als je gids. **Advies:**
+3. **LinkedIn past slecht bij een product van €12,99.** Een klik kost daar typisch €4–8 (AANNAME op basis van gangbare benchmarks), dus één klik kost bijna evenveel als je gids. **Advies:**
    - LinkedIn alleen **organisch** (posts van jou of je vrouw);
-   - **betaald** pas voor de **persoonlijke sessie van €89** of later voor de B2B-badge (CLAUDE.md §8).
+   - **betaald** pas voor de **persoonlijke sessie van €110** of later voor de B2B-badge (CLAUDE.md §8).
 4. **Minimaal 18+** in elke advertentieset (CLAUDE.md §2).
 
 ## 1. Waar wie zit en welke stem (AANNAME, te toetsen)
@@ -69,7 +69,7 @@
 - **Wel prikkelen:** nieuwsgierigheid ("What's your season?"), herkenning ("Bought it. Never wore it."), zelfvertrouwen ("Walk in like you belong") en een knipoog (Girl Math).
 - **Geen onzekerheid als haakje:** niet "You look tired" of "Stop looking washed out". Dat schrijf je wel over een kleur, nooit over een persoon: "That grey is draining you" mag niet, "Some colours drain. Yours don't." wel.
 - **Geen geldbeloftes en geen nep-schaarste:** niet "Save $100", "Only today" of "Last spots".
-- **Prijzen in euro's** (€6.99 met een punt in het Engels), want we betalen en verzenden vanuit Nederland.
+- **Prijzen in euro's** (€12.99 met een punt in het Engels), want we betalen en verzenden vanuit Nederland.
 - De merknamen blijven KULØRT en NYANSE. In platte tekst (hashtags, url's) schrijf je **KULORT**.
 
 Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → het verschil (5–9 s) → wat je krijgt (9–12 s) → eind (12–15 s)**.
@@ -86,7 +86,7 @@ Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → h
   - Eind: "Find your colours. Free."
 - **Concept B, "The fitting room":** hij houdt twee shirts omhoog, twijfelt, pakt zijn kleurenpas uit zijn portemonnee en kiest.
   - Tekst: "Knows in one look."
-- **Primaire tekst (Meta):** "One selfie. Know which colours make you look sharp, and which ones to leave on the rack. Your colour profile is free. Your style guide from €6.99."
+- **Primaire tekst (Meta):** "One selfie. Know which colours make you look sharp, and which ones to leave on the rack. Your colour profile is free. Your style guide from €12.99."
 - **Kop:** "Take the free colour check" · **CTA-knop:** "Learn more"
 - **TikTok-tekst:** "Which colours actually work on you? Free check, 30 seconds 👇 #colouranalysis #mensstyle"
 
@@ -104,10 +104,10 @@ Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → h
 - **Haken:**
   - "Stop buying what doesn't suit you."
   - "Fitting room: yes. At home: no."
-  - "Girl math: €0.23 per colour."
+  - "Girl math: €0.43 per colour."
   - "POV: you finally know your colours."
 - **Concept A, "The receipt"** (native, met voice-over): een meisje praat in de camera. Er verschijnt een bonnetje in beeld:
-  - "Style guide €6.99 ÷ 30 colours = €0.23 per colour. Returns: fewer."
+  - "Style guide €12.99 ÷ 30 colours = €0.43 per colour. Returns: fewer."
   - Daarna de app.
 - **Concept B, "My colours"** (trendformat): drie vriendinnen houden kleuren onder hun kin.
   - Tekst: "Who's Summer and who's Autumn?"
@@ -123,7 +123,7 @@ Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → h
 - **Concept, "The morning":** een vrouw om 7:30 uur voor de spiegel, met twee blouses. Ze kiest de koraalkleurige.
   - Tekst: "Sure of it. Every morning."
   - Daarna de onthulling in de app, de pas uit de envelop en het eindbeeld.
-- **Primaire tekst:** "No time for bad buys. One selfie shows which colours make you look confident, from meeting to dinner. Free colour profile, style guide from €6.99."
+- **Primaire tekst:** "No time for bad buys. One selfie shows which colours make you look confident, from meeting to dinner. Free colour profile, style guide from €12.99."
 - **Kop:** "Discover your colours"
 
 ### NYANSE · Signature (45+) · Instagram en Facebook-feed
@@ -140,7 +140,7 @@ Elk concept heeft dezelfde opbouw: **haak (0–2 s) → probleem (2–5 s) → h
 - **Sticker en Story-template:** "I'm an Autumn · kulort-nyanse.com"
 - **Poll:** "Which season do you think you are?"
 - **Carrousel:** "3 signs you're a Winter" · "Your 6 best colours as a Soft Summer" · "What to leave on the rack"
-- **Winactie (week 4):** "Share your season in your Story and tag @kulortnyanse for a chance to win a personal colour session (€89)." Deelname is gratis en er gelden actievoorwaarden (zie INSTAGRAM.md §5).
+- **Winactie (week 4):** "Share your season in your Story and tag @kulortnyanse for a chance to win a personal colour session (€110)." Deelname is gratis en er gelden actievoorwaarden (zie INSTAGRAM.md §5).
 
 ## 6. Beelden en video maken (Gemini / Veo of Higgsfield)
 

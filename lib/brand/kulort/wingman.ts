@@ -40,7 +40,7 @@ export const wingman: VoiceCopy = {
     occasionQuestion: "Waar wil je scherp voor de dag komen? Kies er één of meer.",
     trustSmall: ["Geen account nodig", "Kleurprofiel gratis"],
     free: { title: "Gratis", text: "Je precieze kleurtype (bijv. Bright Winter), 6 kleuren die werken en wat je beter laat hangen." },
-    paid: { title: "In je gids, vanaf €6,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke kleur horloge, riem en schoenen bij je past." },
+    paid: { title: "In je gids, vanaf €12,99", text: "Al je 30 kleuren met namen, combinaties die werken en welke kleur horloge, riem en schoenen bij je past." },
     hero: { caption: "Zelfde gezicht. Andere kleur.", bad: "valt weg", good: "jouw kleur" },
   },
   page: pageNl({ galleryTitle: ["Zelfde gezicht.", "Andere kleur."], howTitle: ["Drie stappen.", "Klaar."], compareTitle: ["Gratis of", "de gids?"], finalTitle: ["Weet welke kleuren", "voor je werken."], accessories: "welk horloge, welke riem en schoenen kloppen", trustTitle: ["Geen gedoe.", "Geen gok."] }),

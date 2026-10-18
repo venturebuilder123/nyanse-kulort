@@ -4,6 +4,7 @@
 import { BRANDS, VOICES } from "@/lib/brand/config";
 import type { BrandKey, VoiceKey } from "@/lib/brand/types";
 import { SEASONS } from "@/lib/color/seasons";
+import { discountFor } from "./discount";
 import { amountFor } from "./payment";
 import type { Tier } from "./pricing";
 import { parseReferral } from "./referral";
@@ -49,18 +50,21 @@ export function parseOrder(body: unknown): OrderRow | null {
   if (!(brand in BRANDS) || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return null;
   const voice = typeof b.voice === "string" && b.voice in VOICES ? (b.voice as VoiceKey) : null;
   const season = typeof b.season === "string" && b.season in SEASONS ? b.season : null;
-  const friend = parseReferral(typeof b.friendCode === "string" ? b.friendCode : null);
+  // a discount code (inner circle) wins over a friend code; they never stack
+  const percent = discountFor(b.discountCode);
+  const friend = percent ? null : parseReferral(typeof b.friendCode === "string" ? b.friendCode : null);
   const country = ["NL", "BE", "DE"].includes(b.country as string) ? (b.country as "NL" | "BE" | "DE") : null;
   const physical = tier !== "digital";
   const row: OrderRow = {
     ref, tier, brand, voice, season, email,
-    amount_cents: Math.round(amountFor(tier, !!friend) * 100),
+    amount_cents: Math.round(amountFor(tier, !!friend, percent ?? 0) * 100),
     name: physical ? str(b.name, 120) : null,
     street: physical ? str(b.street, 160) : null,
     postcode: physical ? str(b.postcode, 16) : null,
     city: physical ? str(b.city, 80) : null,
     country: physical ? country : null,
-    friend_code: friend?.code ?? null,
+    // the code column records whichever code was used (a friend code or a discount code)
+    friend_code: percent ? String(b.discountCode).trim().toUpperCase() : friend?.code ?? null,
     waiver: b.waiver === true,
     profile: parseProfile(b.profile),
   };

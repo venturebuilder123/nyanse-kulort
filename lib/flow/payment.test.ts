@@ -7,9 +7,9 @@ describe("bank-transfer checkout", () => {
     expect(orderRef()).toMatch(/^KN-[A-HJ-NP-Z2-9]{6}$/);
   });
   it("applies the friend discount to the amount", () => {
-    expect(amountFor("card", false)).toBe(9.99);
-    expect(amountFor("card", true)).toBe(8.99);
-    expect(amountFor("session", false)).toBe(89);
+    expect(amountFor("card", false)).toBe(39.99);
+    expect(amountFor("card", true)).toBe(38.99);
+    expect(amountFor("session", false)).toBe(110);
   });
   it("builds a valid EPC QR payload", () => {
     const lines = epcPayload(9.99, "KN-ABC123 KULORT").split("\n");

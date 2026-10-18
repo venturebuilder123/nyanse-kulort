@@ -88,7 +88,7 @@ Twee merken onder één dak, zoals een modehuis met een herenlijn en een damesco
 
 **Regels voor teksten:**
 - Koppen: maximaal 7 woorden.
-- Knoppen: werkwoord plus wat je krijgt ("Krijg mijn gids · €6,99").
+- Knoppen: werkwoord plus wat je krijgt ("Krijg mijn gids · €12,99").
 - Nooit een disclaimer-tekst; juridische zaken zitten in het ontwerp verwerkt.
 - Cijfers alleen als ze gemeten zijn, met bron.
 
@@ -215,7 +215,7 @@ Alleen als het iets toevoegt. **Drie vaste momenten:**
 
 | Uiting | Kern | Let op |
 |---|---|---|
-| **Maison-homepage** | Bovenaan in één zin wat het is, een cadeaubeeld (waaier of pas), dan twee deuren: *Voor hem · KULØRT* en *Voor haar · NYANSE*. Daaronder hoe het werkt in 3 stappen en wat je krijgt. | Binnen één scherm duidelijk: wat, voor wie, wat kost het (gratis profiel, gids vanaf €6,99). |
+| **Maison-homepage** | Bovenaan in één zin wat het is, een cadeaubeeld (waaier of pas), dan twee deuren: *Voor hem · KULØRT* en *Voor haar · NYANSE*. Daaronder hoe het werkt in 3 stappen en wat je krijgt. | Binnen één scherm duidelijk: wat, voor wie, wat kost het (gratis profiel, gids vanaf €12,99). |
 | **Merk-landing** | Kop + voor/na op een model van jouw leeftijd + eerste tik (gelegenheid). | Leeftijdssegment uit de advertentie (`?g=`). |
 | **Configurator** | Eén vraag per scherm, kruimelpad, elke keuze zichtbaar gebruikt. | Geen overbodig veld. |
 | **Resultaat** | Het cadeaumoment → het verschil → je kleuren → je kast → het aanbod. | Eén vraag om geld. |

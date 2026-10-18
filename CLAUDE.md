@@ -54,7 +54,7 @@ Positionering: geen "kleuranalyse-app", maar **je kleurprofiel dat met je meegaa
 | Stemmen | Binnen NYANSE bepaalt de advertentie de stem (UTM `?s=gm|at`, standaard `at`). KULØRT heeft één stem (Wingman). |
 | Wisselen | Geen dames/heren-vraag meer: het merk bepaalt het. Een klein linkje "Voor mannen → KULØRT" (en omgekeerd) neemt de antwoorden mee via een tijdelijk token. |
 | Doelgroep v1 | 16+; advertenties alleen 18+. **Geen kinderen** (zie §12). |
-| Prijs | Gratis profiel → **Digitaal €6,99** of **Met kleurenpas €9,99** (aanrader). Het draait om zichtbaarheid op social en de impulsaankoop. Digitaal **niet** gratis maken. Vriendenkorting €1, pas na betaling van de vriend, maximaal 10 per code. Werkt binnen beide merken. |
+| Prijs | Gratis profiel → **Digitaal €12,99**, **Met kleurenpas €39,99** (aanrader) of **Persoonlijk consult €110** (prijzen per 18 oktober 2026). Kortingscodes voor de inner circle (25% of gratis, onbeperkt herbruikbaar) staan in de env, niet in de code. Het draait om zichtbaarheid op social en de impulsaankoop. Digitaal **niet** gratis maken. Vriendenkorting €1, pas na betaling van de vriend, maximaal 10 per code. Werkt binnen beide merken. |
 | Flow | Advertentie → eerste tik (gelegenheid) → budget en winkels → selfie → kleurdoek-animatie → e-mail (overslaan kan) → gratis resultaat + voor/na-schuif → 2 opties → betalen → bevestiging (pas in de envelop) → stijlgids. |
 | Geen upsells in de flow | Kast-check, kleurenwaaier, cadeaubon en scanner komen per mail of via de wachtlijst. |
 | Eerste test | Primair **KULØRT** (Wingman). NYANSE Girl Math via creators. |

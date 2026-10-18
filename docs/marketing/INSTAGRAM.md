@@ -73,7 +73,7 @@
 - Je vrouw: "Wat ik in 10 jaar kleuradvies zie" (vertrouwen).
 
 **Week 4, actie:**
-- **Echte actie met einddatum:** "Deel je seizoen in je Story, tag @kulortnyanse en maak kans op een persoonlijke sessie (€89)".
+- **Echte actie met einddatum:** "Deel je seizoen in je Story, tag @kulortnyanse en maak kans op een persoonlijke sessie (€110)".
 - Een promotioneel kansspel mag, mits:
   - de prijs onder de **€4.500** blijft (klein promotioneel kansspel);
   - deelname **gratis** is;

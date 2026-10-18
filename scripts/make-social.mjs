@@ -67,7 +67,7 @@ pages["pinned-3-krijg"] = [1080, 1350, `<div style="width:1080px;height:1350px;p
   <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:18px">
     <img src="${img("outfits/softAutumn-both.jpg")}" style="width:100%;height:100%;object-fit:cover">
     <div style="display:grid;gap:18px"><img src="${img("ads/workbook.jpg")}" style="width:100%;height:100%;object-fit:cover"><img src="${img("ads/best-fit.jpg")}" style="width:100%;height:100%;object-fit:cover;object-position:50% 40%"></div></div>
-  <div style="font-size:24px;line-height:1.5"><b>Gratis</b> je kleurprofiel · <b>€6,99</b> je stijlgids · <b>€9,99</b> met kleurenpas</div></div>`];
+  <div style="font-size:24px;line-height:1.5"><b>Gratis</b> je kleurprofiel · <b>€12,99</b> je stijlgids · <b>€39,99</b> met kleurenpas</div></div>`];
 
 const browser = await chromium.launch();
 const page = await browser.newPage();

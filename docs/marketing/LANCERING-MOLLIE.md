@@ -81,13 +81,13 @@ Opbouw: **haak (0–2 s) → probleem (2–5 s) → het verschil (5–9 s) → w
 
 ### C. "The Receipt" (NYANSE · Girl Math)
 - Een bonnetje rolt in beeld: **"Blouse €39.99 · Times worn: 0 · Cost per wear: ∞"**
-- Daaronder: **"Style guide €6.99 ÷ 30 colours = €0.23 per colour."**
+- Daaronder: **"Style guide €12.99 ÷ 30 colours = €0.43 per colour."**
 - Tekst: **"Girl math says: amnesty granted ✨"**
 - Let op: een som met een knipoog mag, een besparingsbelofte niet.
 
 ### D. "The Consultant" (NYANSE · Boss Lady en Signature; vertrouwen)
 - Je vrouw aan een tafel met kleurdoeken. Een klant legt haar "never worn"-stuk neer. Ze houdt er een doek naast: **"See? It's cooler than you are. Not wrong. Just not yours."**
-- Tekst: **"Want it in person? Book a session."** Dat is de sessie van €89, als derde optie.
+- Tekst: **"Want it in person? Book a session."** Dat is de sessie van €110, als derde optie.
 
 ---
 
@@ -96,7 +96,7 @@ Opbouw: **haak (0–2 s) → probleem (2–5 s) → het verschil (5–9 s) → w
 **Meedoen (gratis):**
 1. Post een foto of video van je "never worn"-stuk in je Story of Reel.
 2. Gebruik de sticker **"Wrong Colour Amnesty"** (het template uit §7) en tag **@kulortnyanse**.
-3. Elke inzending maakt kans op **een persoonlijke kleursessie (€89)**. Elke week 1 winnaar, 3 weken lang.
+3. Elke inzending maakt kans op **een persoonlijke kleursessie (€110)**. Elke week 1 winnaar, 3 weken lang.
 
 **Regels voor de winactie (Nederland, Kansspelautoriteit):**
 - Prijzen samen onder **€4.500** (klein promotioneel kansspel): dat zit goed.
@@ -129,7 +129,7 @@ Opbouw: **haak (0–2 s) → probleem (2–5 s) → het verschil (5–9 s) → w
 |---|---|---|
 | Meta-test KULØRT Wingman | €70 (7 dagen × €10) | 3 haken × 2 beelden, na 3–4 dagen de winnaar |
 | Meta/TikTok-test NYANSE | €70 | Girl Math op TikTok of Boss Lady op Reels, wat de eerste week laat zien |
-| Prijzen winactie | 3 sessies (tijd van je vrouw, €0 cash) | Waarde €267 |
+| Prijzen winactie | 3 sessies (tijd van je vrouw, €0 cash) | Waarde €330 |
 | Rekwisieten (bureaulamp, doeken, bonnetjesprinter) | ±€25 | Eenmalig |
 | **Totaal cash** | **±€165** | Opschalen alleen als de opbrengst per bezoeker het kost dekt |
 

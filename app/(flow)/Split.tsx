@@ -97,7 +97,7 @@ export default function Split() {
           </p>
           <ul className="ms-facts">
             <li>Kleurprofiel gratis</li>
-            <li>Persoonlijke stijlgids vanaf €6,99</li>
+            <li>Persoonlijke stijlgids vanaf €12,99</li>
             <li>Voor hem en voor haar</li>
           </ul>
           <div className="ms-doors-inline">

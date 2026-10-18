@@ -24,7 +24,11 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
   const { config, voice, copy, ctx } = useBrand();
   const t = copy.result;
   const physical = tier !== "digital";
-  const amount = amountFor(tier, !!friendCode);
+  const [code, setCode] = useState("");
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const [codeMsg, setCodeMsg] = useState<string | null>(null);
+  const amount = amountFor(tier, !!friendCode, percent);
   const [f, setF] = useState({ email: "", name: "", street: "", postcode: "", city: "", country: "NL" });
   const [waiver, setWaiver] = useState(false);
   const [step, setStep] = useState<"form" | "pay">("form");
@@ -57,16 +61,21 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, waiver, ...f, profile: profileForOrder() }),
+        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, discountCode: percent ? code.trim() : undefined, waiver, ...f, profile: profileForOrder() }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const d = (await res.json()) as { secret: string; checkoutUrl?: string | null };
+      const d = (await res.json()) as { secret: string; checkoutUrl?: string | null; free?: boolean };
       setSecret(d.secret);
       orderKey.set({ ref: r, k: d.secret });
       try {
         sessionStorage.setItem("nk_email", JSON.stringify({ email: f.email.trim(), optin: false }));
       } catch {}
       setRef(r);
+      // a 100% code: nothing to pay, the guide is ready
+      if (d.free) {
+        location.href = `/klaar?order=${r}&k=${encodeURIComponent(d.secret)}`;
+        return;
+      }
       // Mollie (iDEAL | Wero, Apple Pay, card): straight to the payment page; otherwise the transfer details
       if (d.checkoutUrl) {
         track("checkout_open", ctx, { tier, step: "mollie" });
@@ -131,7 +140,8 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
     <form className="sheet-body" onSubmit={submit} noValidate>
       <div className="grab" />
       <div className="line"><span>{t.tiers[tier].name}</span><b>{euro(amount)}</b></div>
-      {friendCode && <div className="line discount"><span>{copy.retention.friendLine} · {friendCode}</span><b>−€1</b></div>}
+      {friendCode && !percent && <div className="line discount"><span>{copy.retention.friendLine} · {friendCode}</span><b>−€1</b></div>}
+      {percent > 0 && <div className="line discount"><span>Code {code.trim().toUpperCase()} · {percent}%</span><b>{amount === 0 ? "Gratis" : `−${euro(Math.round((amountFor(tier, false) - amount) * 100) / 100)}`}</b></div>}
       {note && <p className="tier-math">{note}</p>}
       <label className="field">
         <span>Waar sturen we je stijlgids heen?</span>
@@ -154,12 +164,26 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
           <p className="small muted">{t.checkout.shipping}: {t.checkout.shippingWhen}</p>
         </fieldset>
       )}
+      {!percent && (codeOpen ? (
+        <div className="row-inline">
+          <input value={code} onChange={(e) => { setCode(e.target.value); setCodeMsg(null); }} placeholder="Kortingscode" aria-label="Kortingscode" autoCapitalize="characters" autoComplete="off" />
+          <button type="button" className="btn btn-sm btn-ghost" onClick={async () => {
+            const r = await fetch("/api/order/code", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }) }).catch(() => null);
+            const d = r?.ok ? ((await r.json()) as { ok: boolean; percent?: number }) : null;
+            if (d?.ok && d.percent) setPercent(d.percent);
+            else setCodeMsg("Deze code kennen we niet.");
+          }}>Toepassen</button>
+        </div>
+      ) : (
+        <button type="button" className="link-btn" onClick={() => setCodeOpen(true)}>Heb je een kortingscode?</button>
+      ))}
+      {codeMsg && <p className="small warn-text" role="alert">{codeMsg}</p>}
       <label className="check">
         <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
         <span>{t.checkout.withdrawal}</span>
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
-      <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : `Naar betalen · ${euro(amount)}`}</button>
+      <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : amount === 0 ? "Open mijn stijlgids" : `Naar betalen · ${euro(amount)}`}</button>
       <p className="small muted center">Prijzen inclusief btw.</p>
       <button type="button" className="link-btn" onClick={onClose}>{t.checkout.close}</button>
     </form>
