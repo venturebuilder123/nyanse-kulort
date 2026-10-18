@@ -12,7 +12,9 @@ export async function sendMail(to: string, subject: string, text: string, html: 
     secure: false,
     auth: { user: process.env.BREVO_SMTP_USER!, pass: process.env.BREVO_SMTP_KEY! },
   });
-  await t.sendMail({ from: process.env.MAIL_FROM!, to, subject, text, html });
+  // replies go to the inbox the founder (and later the assistant) reads; hi@ has no mailbox
+  const replyTo = process.env.MAIL_REPLY_TO || process.env.MAIL_TO_FOUNDER || undefined;
+  await t.sendMail({ from: process.env.MAIL_FROM!, to, subject, text, html, ...(replyTo ? { replyTo } : {}) });
   return true;
 }
 
