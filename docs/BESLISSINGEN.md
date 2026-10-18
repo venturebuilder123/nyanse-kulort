@@ -2,6 +2,24 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 18 oktober 2026 — Engels voorbereid, achter een schakelaar
+
+- **Geen vlaggen** (een vlag is een land, geen taal). In plaats daarvan: een rustige tekstknop "NL · EN" in de header (op telefoon in de footer), een eenmalige suggestie "This page in English?" als de browser niet op Nederlands staat (nooit automatisch doorsturen), en echte adressen `/en` met hreflang voor Google. De keuze wordt een jaar onthouden.
+- **Aanzetten:** zet in Vercel `NEXT_PUBLIC_LOCALES=nl,en` en redeploy. Tot dan ziet niemand iets van het Engels, en `/en` bestaat dan niet.
+- **Klaar in het Engels:**
+  - de homepage;
+  - alle vijf stemmen (landing, verhaal, stappen, selfie, analyse, e-mail, resultaatteksten, opties, checkoutteksten);
+  - menu, stappen en footer;
+  - prijzen als €12.99.
+- **Nog Nederlands (fase 2, vóór het aanzetten):**
+  - teksten die direct in de pagina's staan: resultaat, checkout-details, bevestiging, kleurtype kiezen, de stijlgids;
+  - de kleurnamen (±150);
+  - de teksten van de gidsmotor;
+  - /kleuranalyse als Engels artikel;
+  - voorwaarden en privacy in het Engels;
+  - de mails.
+- **Plan:** fase 2 bouwen in november. Engels aanzetten in december als de gate van november gehaald is, eerst voor de digitale gids in de EU (NL-btw tot €10.000 per jaar, daarboven OSS).
+
 ## 18 oktober 2026 — de catalogus vult zichzelf
 
 - **Feeds beheer je in /lab/catalog**, niet in de code: winkel plus feed-URL, voor KULØRT, NYANSE of beide. Alle formaten werken: CSV, XML, JSON, en ook gzip zoals bij Awin.

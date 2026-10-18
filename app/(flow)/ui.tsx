@@ -3,7 +3,8 @@
 import Link from "next/link";
 
 import type { Headline, OccasionKey } from "@/lib/brand/types";
-import { useBrand } from "./BrandProvider";
+import { useBrand, useT } from "./BrandProvider";
+import { LangSwitch } from "./Lang";
 
 /**
  * Couture wordmarks without a symbol. KULØRT: light, extra-wide Archivo with wide tracking and
@@ -39,14 +40,16 @@ export function HouseMark() {
 }
 
 export function AppBar({ pill }: { pill?: string }) {
+  const t = useT();
   return (
     <header className="appbar">
       <HouseMark />
       {/* large screens: the same quiet navigation as the landing, so every page sits in one frame */}
       <nav className="appbar-links" aria-label="Menu">
-        <Link href="/kleuranalyse">Kleuranalyse</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/kleuranalyse">{t.nav.colourAnalysis}</Link>
+        <Link href="/contact">{t.nav.contact}</Link>
       </nav>
+      <LangSwitch />
       {pill && <span className="pill">{pill}</span>}
     </header>
   );
@@ -57,9 +60,10 @@ const STEPS = ["Jij", "Stijl", "Selfie", "Analyse", "Resultaat"];
 const STEP_HREF: (string | null)[] = ["/", "/stijl", "/selfie", null, null];
 
 export function Crumbs({ step }: { step: number }) {
+  const t = useT();
   return (
-    <ol className="crumbs" aria-label={`Stap ${step + 1} van ${STEPS.length}`}>
-      {STEPS.map((s, i) => {
+    <ol className="crumbs" aria-label={t.steps.label(step + 1, STEPS.length)}>
+      {t.steps.names.map((s, i) => {
         const href = i < step ? STEP_HREF[i] : null;
         return (
           <li key={s} className={i < step ? "is-done" : i === step ? "is-now" : ""} aria-current={i === step ? "step" : undefined}>
@@ -129,14 +133,16 @@ export function LockIcon() {
 
 /** Legal footer (CLAUDE.md §9): one legal entity behind both brands. Details follow at registration. */
 export function Footer() {
+  const t = useT();
   return (
     <footer className="foot">
-      <Link href="/contact">Contact</Link>
+      <Link href="/contact">{t.nav.contact}</Link>
       <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
-      <Link href="/kleuranalyse">Kleuranalyse</Link>
-      <Link href="/voorwaarden">Voorwaarden</Link>
-      <Link href="/privacy">Privacy</Link>
-      <span>Prijzen inclusief btw</span>
+      <Link href="/kleuranalyse">{t.nav.colourAnalysis}</Link>
+      <Link href="/voorwaarden">{t.footer.terms}</Link>
+      <Link href="/privacy">{t.footer.privacy}</Link>
+      <span>{t.footer.vat}</span>
+      <LangSwitch />
     </footer>
   );
 }

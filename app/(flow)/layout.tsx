@@ -3,6 +3,8 @@ import { fontVariables } from "../fonts";
 import { currentBrand } from "./brand";
 import { BrandProvider } from "./BrandProvider";
 import { Lifecycle } from "./Lifecycle";
+import { LangHint } from "./Lang";
+import { enabledLocales } from "@/lib/i18n/locale";
 import "./flow.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,6 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: copy.meta.title,
     description: copy.meta.description,
+    // the English home exists once English is switched on; search engines get both
+    ...(enabledLocales().includes("en") ? { alternates: { languages: { nl: "https://www.kulort-nyanse.com/", en: "https://www.kulort-nyanse.com/en", "x-default": "https://www.kulort-nyanse.com/" } } } : {}),
     manifest: "/manifest.webmanifest",
     appleWebApp: { capable: true, title: config.name, statusBarStyle: "default" },
     icons: { apple: `/icons/${config.key}-apple.png`, icon: `/icons/${config.key}-192.png` },
@@ -25,7 +29,7 @@ export async function generateViewport(): Promise<Viewport> {
 }
 
 export default async function FlowLayout({ children }: { children: React.ReactNode }) {
-  const { config, voice, copy, segment, chosen } = await currentBrand();
+  const { config, voice, copy, segment, chosen, locale } = await currentBrand();
   return (
     <div className={`app ${fontVariables}`} data-brand={chosen ? config.key : "maison"} data-voice={voice} data-segment={segment ?? undefined}>
       <script
@@ -33,7 +37,8 @@ export default async function FlowLayout({ children }: { children: React.ReactNo
         // the house and its public profiles, for search engines
         dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "KULØRT · NYANSE", url: "https://www.kulort-nyanse.com", email: "nyansekulort@gmail.com", sameAs: ["https://www.instagram.com/kulortnyanse/"] }) }}
       />
-      <BrandProvider value={{ config, voice, copy, segment }}>
+      <BrandProvider value={{ config, voice, copy, segment, locale }}>
+        <LangHint />
         <Lifecycle />
         {children}
       </BrandProvider>

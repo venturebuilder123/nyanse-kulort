@@ -1,6 +1,7 @@
 export type BrandKey = "nyanse" | "kulort";
 export type VoiceKey = "girlmath" | "bosslady" | "signature" | "wingman" | "director";
-export type Locale = "nl"; // structure ready for "en" | "de"
+export type { Locale } from "@/lib/i18n/locale";
+import type { Locale } from "@/lib/i18n/locale";
 
 export type OccasionKey = "werk" | "weekend" | "date" | "feest" | "sport";
 export type BudgetKey = "low" | "mid" | "high";

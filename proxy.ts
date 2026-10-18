@@ -2,9 +2,14 @@ import { NextResponse, type NextRequest } from "next/server";
 import { BRAND_COOKIE, BRAND_HEADER, CHOSEN_HEADER, resolveBrand, VOICE_COOKIE, VOICE_HEADER } from "@/lib/brand/resolve";
 import { resolveSegment, SEGMENT_COOKIE, SEGMENT_HEADER } from "@/lib/brand/segment";
 import { isValidToken, LAB_COOKIE } from "@/lib/lab/auth";
+import { LOCALE_COOKIE, LOCALE_HEADER, resolveLocale } from "@/lib/i18n/locale";
 
 export function proxy(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
+  const { searchParams } = request.nextUrl;
+  // 0. Language: /en/... is the English URL of the same page (rewritten, not redirected)
+  const lang = resolveLocale({ pathname: request.nextUrl.pathname, param: searchParams.get("lang"), cookie: request.cookies.get(LOCALE_COOKIE)?.value });
+  const pathname = lang.path;
+  const enPrefix = lang.prefixed ? "/en" : "";
 
   // 1. Internal lab: password gate.
   if ((pathname.startsWith("/lab") || pathname.startsWith("/api/lab")) && pathname !== "/lab/login") {
@@ -21,7 +26,7 @@ export function proxy(request: NextRequest) {
   // 2a. /kies: back to the split choice (forgets the brand picked this visit).
   if (pathname === "/kies") {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = enPrefix || "/";
     url.searchParams.delete("brand");
     const res = NextResponse.redirect(url);
     res.cookies.delete(BRAND_COOKIE);
@@ -31,7 +36,7 @@ export function proxy(request: NextRequest) {
   // 2. Ad links on the shared domain: /kulort and /nyanse skip the split home page.
   if (pathname === "/kulort" || pathname === "/nyanse") {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = enPrefix || "/";
     url.searchParams.set("brand", pathname.slice(1));
     return NextResponse.redirect(url);
   }
@@ -52,7 +57,13 @@ export function proxy(request: NextRequest) {
   const gParam = searchParams.get("g");
   const segment = resolveSegment({ param: gParam, cookie: request.cookies.get(SEGMENT_COOKIE)?.value, voice });
   if (segment) headers.set(SEGMENT_HEADER, segment);
-  const res = NextResponse.next({ request: { headers } });
+  headers.set(LOCALE_HEADER, lang.locale);
+  let res: NextResponse;
+  if (lang.prefixed) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname;
+    res = NextResponse.rewrite(url, { request: { headers } });
+  } else res = NextResponse.next({ request: { headers } });
 
   // Functional cookies: keep brand and voice for the rest of the visit.
   const opts = { path: "/", sameSite: "lax" as const };
@@ -62,6 +73,8 @@ export function proxy(request: NextRequest) {
   if (chosen && request.cookies.get(BRAND_COOKIE)?.value !== brand) res.cookies.set(BRAND_COOKIE, brand, opts);
   // the voice comes from the ad: keep it for this visit only, so it is not ad attribution
   if (request.cookies.get(VOICE_COOKIE)?.value !== voice) res.cookies.set(VOICE_COOKIE, voice, opts);
+  // the language choice is remembered (a functional cookie): an English visitor stays English
+  if (request.cookies.get(LOCALE_COOKIE)?.value !== lang.locale && (lang.prefixed || searchParams.get("lang"))) res.cookies.set(LOCALE_COOKIE, lang.locale, { ...opts, maxAge: 60 * 60 * 24 * 365 });
   // the age segment, like the voice: from the ad, for this visit only
   if (gParam !== null && segment !== (request.cookies.get(SEGMENT_COOKIE)?.value ?? null)) {
     if (segment) res.cookies.set(SEGMENT_COOKIE, segment, opts);

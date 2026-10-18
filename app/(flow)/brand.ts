@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
-import { BRANDS, VOICES } from "@/lib/brand/config";
+import { BRANDS, copyFor } from "@/lib/brand/config";
+import { isLocale, LOCALE_HEADER, type Locale } from "@/lib/i18n/locale";
 import { BRAND_HEADER, CHOSEN_HEADER, resolveBrand, VOICE_HEADER } from "@/lib/brand/resolve";
 import { SEGMENT_HEADER, type Segment } from "@/lib/brand/segment";
 import type { BrandKey, VoiceKey } from "@/lib/brand/types";
@@ -14,5 +15,7 @@ export async function currentBrand() {
       : resolveBrand({ host: h.get("host") });
   const seg = h.get(SEGMENT_HEADER);
   const segment: Segment | null = seg === "jong" || seg === "40" ? seg : null;
-  return { brand, voice, chosen, segment, config: BRANDS[brand], copy: VOICES[voice] };
+  const l = h.get(LOCALE_HEADER);
+  const locale: Locale = isLocale(l) ? l : "nl";
+  return { brand, voice, chosen, segment, locale, config: BRANDS[brand], copy: copyFor(voice, locale) };
 }

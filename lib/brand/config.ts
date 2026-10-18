@@ -1,3 +1,6 @@
+import { bossladyEn, girlmathEn, signatureEn } from "./en/nyanse";
+import { directorEn, wingmanEn } from "./en/kulort";
+import type { Locale } from "@/lib/i18n/locale";
 import { bosslady } from "./nyanse/bosslady";
 import { girlmath } from "./nyanse/girlmath";
 import { signature } from "./nyanse/signature";
@@ -33,6 +36,9 @@ export const BRANDS: Record<BrandKey, BrandConfig> = {
 };
 
 export const VOICES: Record<VoiceKey, VoiceCopy> = { wingman, director, bosslady, girlmath, signature };
+export const VOICES_EN: Record<VoiceKey, VoiceCopy> = { wingman: wingmanEn, director: directorEn, bosslady: bossladyEn, girlmath: girlmathEn, signature: signatureEn };
+/** The copy for a voice in a language (Dutch is the source; English is prepared, see lib/i18n). */
+export const copyFor = (voice: VoiceKey, locale: Locale): VoiceCopy => (locale === "en" ? VOICES_EN[voice] : VOICES[voice]);
 
 /** First test is KULØRT (CLAUDE.md §2), so it is the fallback brand. */
 export const DEFAULT_BRAND: BrandKey = "kulort";

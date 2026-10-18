@@ -2,4 +2,5 @@
 export const PRICES = { digital: 12.99, card: 39.99, session: 110 } as const;
 export type Tier = keyof typeof PRICES;
 
-export const euro = (n: number) => (Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2).replace(".", ",")}`);
+/** €12,99 in Dutch, €12.99 in English. */
+export const euro = (n: number, locale: "nl" | "en" = "nl") => (Number.isInteger(n) ? `€${n}` : locale === "en" ? `€${n.toFixed(2)}` : `€${n.toFixed(2).replace(".", ",")}`);

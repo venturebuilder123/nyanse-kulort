@@ -12,12 +12,14 @@ import { journey, resumeFor, type Resume } from "@/lib/flow/journey";
 import { invite } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
 import { switchUrl } from "@/lib/flow/switch";
-import { useBrand } from "./BrandProvider";
+import { useBrand, useT } from "./BrandProvider";
 import { LandingSections } from "./LandingSections";
 import { AppBar, CheckIcon, Display, Footer, HouseMark, OccasionIcon } from "./ui";
+import { LangSwitch } from "./Lang";
 
 export default function Landing() {
   const { config, copy, ctx, segment } = useBrand();
+  const t = useT();
   const rt = copy.retention;
   const router = useRouter();
   const [answers, setAnswers] = useState<Answers>(EMPTY);
@@ -88,7 +90,8 @@ export default function Landing() {
         <div className="topnav-links">
           <a href="#hoe">{copy.page.nav.how}</a>
           <a href="#gids">{copy.page.nav.prices}</a>
-          <span className="muted">{config.switchLabel}? {switchLink}</span>
+          <span className="muted">{t.switchTo[config.key === "kulort" ? "nyanse" : "kulort"]}? {switchLink}</span>
+          <LangSwitch />
           <button className="btn btn-sm" onClick={startHere}>{copy.page.nav.start}</button>
         </div>
       </nav>
@@ -160,7 +163,7 @@ export default function Landing() {
 
         <LandingSections onStart={startHere} />
 
-        <p className="switch">{config.switchLabel}? {switchLink}</p>
+        <p className="switch">{t.switchTo[config.key === "kulort" ? "nyanse" : "kulort"]}? {switchLink}</p>
       </div>
       <Footer />
     </main>
