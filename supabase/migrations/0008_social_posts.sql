@@ -8,3 +8,11 @@ create table if not exists public.social_posts (
   updated_at   timestamptz not null default now()
 );
 alter table public.social_posts enable row level security;
+
+-- The Instagram token renews itself (Instagram Login tokens last 60 days); the newest one lives here.
+create table if not exists public.app_settings (
+  key        text primary key,
+  value      text not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.app_settings enable row level security;

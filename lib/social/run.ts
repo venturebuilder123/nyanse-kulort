@@ -3,7 +3,7 @@
 import { supabaseRest } from "@/lib/db/supabase";
 import { mailConfigured, sendMail } from "@/lib/mail";
 import { calendar, type Slot } from "./calendar";
-import { instagramConfigured, publish } from "./instagram";
+import { instagramConfigured, publish, refreshToken } from "./instagram";
 
 type Row = { slot: string; status: string; media_id: string | null; error: string | null };
 
@@ -27,6 +27,7 @@ export async function postSlot(s: Slot) {
 
 export async function runSocial(now = new Date()) {
   if (!instagramConfigured()) return { skipped: "instagram not configured" };
+  const token = await refreshToken().catch((e) => `refresh error: ${String(e)}`);
   const done = await states();
   const out: unknown[] = [];
   for (const s of calendar()) {
@@ -43,5 +44,5 @@ export async function runSocial(now = new Date()) {
     await sendMail(process.env.MAIL_TO_FOUNDER, "Morgen op Instagram", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
     await save(previewKey, "preview_sent");
   }
-  return { posted: out };
+  return { posted: out, token };
 }
