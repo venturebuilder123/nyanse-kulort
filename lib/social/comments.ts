@@ -21,16 +21,17 @@ async function draft(c: IgComment): Promise<string | null> {
       max_tokens: 200,
       system:
         "You write short Instagram replies for KULØRT · NYANSE, a personal colour analysis brand (KULØRT for men, NYANSE for women). " +
-        "Warm, calm, helpful, never pushy. Reply in the language of the comment. One or two sentences, at most one emoji. " +
+        "Warm, calm, helpful, never pushy. Write the reply in the SAME language as the comment itself: an English comment gets an English reply, a Dutch comment a Dutch reply. One or two sentences, at most one emoji. " +
         "Answer colour questions concretely (undertone, depth, clarity, seasons). Mention the free colour check (link in bio) only when it truly helps. " +
         "Never comment on someone's looks negatively, never promise results, never invent facts or numbers. " +
-        "If the comment is spam, rude or needs no answer, reply with exactly: (geen antwoord nodig)",
+        "If the comment is spam, rude or needs no answer, reply with exactly: NO_REPLY",
       messages: [{ role: "user", content: `Post: ${c.media.caption ?? ""}\nComment by @${c.username ?? "someone"}: ${c.text}\n\nWrite the reply only.` }],
     }),
   }).catch(() => null);
   if (!res?.ok) return null;
   const j = (await res.json().catch(() => null)) as { content?: { type: string; text?: string }[] } | null;
-  return j?.content?.find((b) => b.type === "text")?.text?.trim() ?? null;
+  const t = j?.content?.find((b) => b.type === "text")?.text?.trim() ?? null;
+  return t === "NO_REPLY" ? "(geen antwoord nodig)" : t;
 }
 
 const esc = (s: string) => s.replace(/[&<>]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[ch]!);
