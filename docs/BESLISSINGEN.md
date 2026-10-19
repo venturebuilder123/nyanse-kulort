@@ -2,6 +2,16 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — YouTube Shorts
+
+- **Elke reel gaat ook als YouTube Short online**, dinsdag om 19:00, via de officiële YouTube Data API (`videos.insert`). Een verticale video van maximaal 3 minuten wordt vanzelf een Short.
+- **Waarom:** Shorts zijn via zoeken nog maanden later te vinden. De video bestaat al, dus het kost niets extra (MENING).
+- **Eigen titel en beschrijving** met `#Shorts` en een link met `utm_source=youtube`. Het label voor synthetische content staat aan (`containsSyntheticMedia`).
+- **Kosten:** €0. YouTube geeft standaard 10.000 punten per dag; een upload kost 1.600 punten.
+- **Beperking:** zolang Google het API-project niet heeft gecontroleerd (audit), worden uploads **privé**. De oprichter zet ze dan zelf op openbaar. De audit is aangevraagd via het formulier (docs/marketing/YOUTUBE.md).
+- **Inloggen** gaat één keer via `node scripts/youtube-auth.mjs`; de sleutel komt in `.env`. De app moet "in productie" staan, anders verloopt de sleutel na 7 dagen.
+- **Slots** `w{n}-tue-short`: ze wachten tot YouTube gekoppeld is. Instagram-slots draaien gewoon door.
+
 ## 19 oktober 2026 — de Gemini-beelden in gebruik: reels, effect-posts en de homepage
 
 - **27 effectbeelden** (zelfde gezicht, fout doek tegenover goed doek) staan in `assets/gemini/effect/`. Er zijn 13 dubbele beelden en collages; die staan apart in `_varianten/`. Beide mappen blijven buiten git, net als de andere originelen.

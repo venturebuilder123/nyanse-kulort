@@ -13,7 +13,8 @@ import EFFECTS from "./effect-posts.json";
 
 export const SEASON_ORDER = ["softAutumn", "deepWinter", "softSummer", "lightSpring", "warmAutumn", "coolWinter", "lightSummer", "brightSpring", "deepAutumn", "coolSummer", "warmSpring", "brightWinter"] as const;
 
-export type Slot = { key: string; at: Date; kind: "carousel" | "image" | "reel"; images: string[]; caption: string };
+// "short" = the same reel on YouTube Shorts (title + description instead of a caption)
+export type Slot = { key: string; at: Date; kind: "carousel" | "image" | "reel" | "short"; images: string[]; caption: string; title?: string; tags?: string[] };
 type Effect = { key: string; brand: "nyanse" | "kulort"; n: number; dir: string; bad: string; good: string; season: string };
 
 const TAGS = "#coloranalysis #seasonalcoloranalysis #personalstyle #capsulewardrobe #mensstyle";
@@ -64,6 +65,23 @@ function effectCaption(e: Effect, reel: boolean, teaser = false): string {
     ``,
     `${tag} #coloranalysis #seasonalcoloranalysis #${e.brand === "nyanse" ? "personalstyle" : "mensstyle"} #samefacedifferentcolour`,
   ].join("\n");
+}
+
+function shortMeta(e: Effect, base: string): { title: string; caption: string; tags: string[] } {
+  const slug = e.season.toLowerCase().replace(/\s+/g, "-");
+  return {
+    title: `Same face, different colour: ${e.season}${e.brand === "kulort" ? " (men)" : ""} #Shorts`,
+    caption: [
+      `Same face. Only the colour under the chin changes. This is a ${e.season}: the wrong colour makes the skin look dull, the right one makes the face light up.`,
+      ``,
+      `Find your own season with one selfie, free: ${base}/kleuranalyse?utm_source=youtube&utm_medium=short&utm_content=${slug}`,
+      ``,
+      AI_LINE,
+      ``,
+      `#coloranalysis #seasonalcoloranalysis #${e.season.toLowerCase().replace(/\s+/g, "")} #Shorts`,
+    ].join("\n"),
+    tags: ["color analysis", "colour analysis", "seasonal color analysis", e.season, e.brand === "kulort" ? "mens style" : "personal style", "what colours suit me"],
+  };
 }
 
 /** Per week: the reel (KULØRT and NYANSE in turn) and a second effect image for Thursday, preferring the week's season. */
@@ -122,7 +140,12 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
   });
   // effect posts after the original slots, so the keys and order above never move
   pickEffects().forEach(({ reel, still }, i) => {
-    if (reel) slots.push({ key: `w${i + 1}-tue-reel`, at: day(i * 7 + POST_TIMES.reel.weekday, POST_TIMES.reel), kind: "reel", images: [`${base}${reel.dir}/reel.mp4`, `${base}${reel.dir}/cover.jpg`], caption: effectCaption(reel, true, reel.key === SEASON_ORDER[i]) });
+    if (reel) {
+      const at = day(i * 7 + POST_TIMES.reel.weekday, POST_TIMES.reel);
+      const images = [`${base}${reel.dir}/reel.mp4`, `${base}${reel.dir}/cover.jpg`];
+      slots.push({ key: `w${i + 1}-tue-reel`, at, kind: "reel", images, caption: effectCaption(reel, true, reel.key === SEASON_ORDER[i]) });
+      slots.push({ key: `w${i + 1}-tue-short`, at, kind: "short", images, ...shortMeta(reel, base) });
+    }
     if (still) slots.push({ key: `w${i + 1}-thu-effect`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}${still.dir}/post.jpg`], caption: effectCaption(still, false) });
   });
   return slots;

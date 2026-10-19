@@ -12,7 +12,7 @@ describe("instagram calendar", () => {
     expect(c[0]!.key).toBe("w1-mon-softAutumn"); // keys never change: no double posts
   });
   it("uses public JPEG URLs and a caption under Instagram's limits", () => {
-    for (const s of c.filter((x) => x.kind !== "reel")) {
+    for (const s of c.filter((x) => x.kind !== "reel" && x.kind !== "short")) {
       expect(s.images.every((u) => u.startsWith("https://x/social/") && u.endsWith(".jpg"))).toBe(true);
       expect(s.caption.length).toBeLessThan(2200);
       expect((s.caption.match(/#/g) ?? []).length).toBeLessThanOrEqual(30);
@@ -34,6 +34,17 @@ describe("effect reels and photos", () => {
     expect(reels.every((r) => r.images[0]!.endsWith("/reel.mp4") && r.images[1]!.endsWith("/cover.jpg"))).toBe(true);
     expect(c.filter((s) => s.key.endsWith("-thu-effect"))).toHaveLength(8);
     expect(reels[0]!.caption).toContain("AI-generated");
+  });
+  it("puts every reel on YouTube Shorts too, with a title under 100 characters", () => {
+    const shorts = c.filter((s) => s.kind === "short");
+    expect(shorts).toHaveLength(12);
+    expect(shorts[0]!.key).toBe("w1-tue-short");
+    for (const s of shorts) {
+      expect(s.title!.length).toBeLessThanOrEqual(100);
+      expect(s.title).toContain("#Shorts");
+      expect(s.caption).toContain("utm_source=youtube");
+      expect(s.images[0]).toMatch(/reel\.mp4$/);
+    }
   });
   it("never shows the same image twice and prefers the week's season", () => {
     const urls = c.filter((s) => s.kind === "reel" || s.key.endsWith("-thu-effect")).map((s) => s.images[0]!.replace(/\/[^/]+$/, ""));

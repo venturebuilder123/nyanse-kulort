@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { supabaseConfigured, supabaseRest } from "@/lib/db/supabase";
 import { calendar } from "@/lib/social/calendar";
 import { instagramConfigured, whoami } from "@/lib/social/instagram";
-import { postSlot, states } from "@/lib/social/run";
+import { platformReady, postSlot, states } from "@/lib/social/run";
+import { youtubeChannel, youtubeConfigured } from "@/lib/social/youtube";
 
 // Founder only (proxy guards /api/lab): the calendar with its status, a connection check,
 // "post now" for a test, and "skip" for a slot that should not go out.
@@ -10,10 +11,15 @@ export const maxDuration = 60;
 
 export async function GET() {
   const st = supabaseConfigured() ? await states().catch(() => new Map()) : new Map();
-  const account = instagramConfigured() ? await whoami().catch((e) => ({ error: String(e) })) : null;
+  const [account, youtube] = await Promise.all([
+    instagramConfigured() ? whoami().catch((e) => ({ error: String(e) })) : null,
+    youtubeConfigured() ? youtubeChannel().catch((e) => ({ error: String(e) })) : null,
+  ]);
   return NextResponse.json({
     configured: instagramConfigured(),
     account,
+    youtubeConfigured: youtubeConfigured(),
+    youtube,
     slots: calendar().sort((a, b) => a.at.getTime() - b.at.getTime()).map((s) => ({ ...s, at: s.at.toISOString(), state: st.get(s.key) ?? null })),
   }, { headers: { "Cache-Control": "no-store" } });
 }
@@ -31,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
   if (b.action === "post") {
-    if (!instagramConfigured()) return NextResponse.json({ error: "not_configured" }, { status: 503 });
+    if (!platformReady(s)) return NextResponse.json({ error: "not_configured" }, { status: 503 });
     return NextResponse.json(await postSlot(s));
   }
   return NextResponse.json({ error: "invalid" }, { status: 400 });
