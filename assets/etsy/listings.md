@@ -1,37 +1,185 @@
-# Etsy-listings: 12 seizoensgidsen
+# Etsy-listings: 12 seizoenen × 4 pakketten
 
-*Gemaakt met `node scripts/make-etsy.mjs`. Instructies: docs/marketing/ETSY.md.*
+*Gemaakt met `npx tsx scripts/make-etsy.ts`. Instructies: docs/marketing/ETSY.md. Elk pakket is een eigen listing: Etsy levert bij varianten dezelfde bestanden.*
 
 ## Soft Autumn
 
-**Titel:** Soft Autumn Colour Palette Guide, Seasonal Colour Analysis PDF, Soft Autumn Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Soft Autumn Colour Palette Card, Printable Wallet Swatch Card, Soft Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** soft autumn, soft autumn palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, autumn colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/softAutumn/guide.pdf`, `assets/etsy/softAutumn/wallpaper.png`
+**Tags (13):** soft autumn, soft autumn palette, colour analysis, color analysis, seasonal color, autumn colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/softAutumn/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Soft Autumn colour palette in one beautiful guide. Warm and soft, like an autumn afternoon.
+Your Soft Autumn colours, ready to use. Warm and soft, like an autumn afternoon.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Soft Autumn, with hex codes
-• The 3 signs of a Soft Autumn, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Autumn in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Soft Autumn Colour Guide PDF, Seasonal Colour Analysis, Soft Autumn Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** soft autumn, soft autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Autumn colours, ready to use. Warm and soft, like an autumn afternoon.
+
+WHAT YOU GET (instant digital download)
+• 8-page Soft Autumn colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Soft Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Soft Autumn Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** soft autumn, soft autumn palette, colour analysis, color analysis, seasonal color, autumn colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Autumn colours, ready to use. Warm and soft, like an autumn afternoon.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Soft Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** soft autumn, soft autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Autumn colours, ready to use. Warm and soft, like an autumn afternoon.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -41,34 +189,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Deep Winter
 
-**Titel:** Deep Winter Colour Palette Guide, Seasonal Colour Analysis PDF, Deep Winter Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Deep Winter Colour Palette Card, Printable Wallet Swatch Card, Deep Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** deep winter, deep winter palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, winter colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/deepWinter/guide.pdf`, `assets/etsy/deepWinter/wallpaper.png`
+**Tags (13):** deep winter, deep winter palette, colour analysis, color analysis, seasonal color, winter colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/deepWinter/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Deep Winter colour palette in one beautiful guide. Deep, cool and striking.
+Your Deep Winter colours, ready to use. Deep, cool and striking.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Deep Winter, with hex codes
-• The 3 signs of a Deep Winter, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Winter in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Deep Winter Colour Guide PDF, Seasonal Colour Analysis, Deep Winter Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** deep winter, deep winter palette, colour analysis, color analysis, seasonal color, winter colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Winter colours, ready to use. Deep, cool and striking.
+
+WHAT YOU GET (instant digital download)
+• 8-page Deep Winter colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Deep Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Deep Winter Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** deep winter, deep winter palette, colour analysis, color analysis, seasonal color, winter colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Winter colours, ready to use. Deep, cool and striking.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Deep Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** deep winter, deep winter palette, colour analysis, color analysis, seasonal color, winter colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Winter colours, ready to use. Deep, cool and striking.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -78,34 +374,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Soft Summer
 
-**Titel:** Soft Summer Colour Palette Guide, Seasonal Colour Analysis PDF, Soft Summer Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Soft Summer Colour Palette Card, Printable Wallet Swatch Card, Soft Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** soft summer, soft summer palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, summer colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/softSummer/guide.pdf`, `assets/etsy/softSummer/wallpaper.png`
+**Tags (13):** soft summer, soft summer palette, colour analysis, color analysis, seasonal color, summer colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/softSummer/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Soft Summer colour palette in one beautiful guide. Soft, cool and elegant.
+Your Soft Summer colours, ready to use. Soft, cool and elegant.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Soft Summer, with hex codes
-• The 3 signs of a Soft Summer, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Summer in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Soft Summer Colour Guide PDF, Seasonal Colour Analysis, Soft Summer Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** soft summer, soft summer palette, colour analysis, color analysis, seasonal color, summer colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Summer colours, ready to use. Soft, cool and elegant.
+
+WHAT YOU GET (instant digital download)
+• 8-page Soft Summer colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Soft Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Soft Summer Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** soft summer, soft summer palette, colour analysis, color analysis, seasonal color, summer colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Summer colours, ready to use. Soft, cool and elegant.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Soft Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** soft summer, soft summer palette, colour analysis, color analysis, seasonal color, summer colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Soft Summer colours, ready to use. Soft, cool and elegant.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Soft Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -115,34 +559,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Light Spring
 
-**Titel:** Light Spring Colour Palette Guide, Seasonal Colour Analysis PDF, Light Spring Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Light Spring Colour Palette Card, Printable Wallet Swatch Card, Light Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** light spring, light spring palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, spring colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/lightSpring/guide.pdf`, `assets/etsy/lightSpring/wallpaper.png`
+**Tags (13):** light spring, light spring palette, colour analysis, color analysis, seasonal color, spring colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/lightSpring/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Light Spring colour palette in one beautiful guide. Light as a spring morning.
+Your Light Spring colours, ready to use. Light as a spring morning.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Light Spring, with hex codes
-• The 3 signs of a Light Spring, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Spring in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Light Spring Colour Guide PDF, Seasonal Colour Analysis, Light Spring Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** light spring, light spring palette, colour analysis, color analysis, seasonal color, spring colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Spring colours, ready to use. Light as a spring morning.
+
+WHAT YOU GET (instant digital download)
+• 8-page Light Spring colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Light Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Light Spring Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** light spring, light spring palette, colour analysis, color analysis, seasonal color, spring colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Spring colours, ready to use. Light as a spring morning.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Light Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** light spring, light spring palette, colour analysis, color analysis, seasonal color, spring colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Spring colours, ready to use. Light as a spring morning.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -152,34 +744,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Warm Autumn
 
-**Titel:** Warm Autumn Colour Palette Guide, Seasonal Colour Analysis PDF, Warm Autumn Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Warm Autumn Colour Palette Card, Printable Wallet Swatch Card, Warm Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** warm autumn, warm autumn palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, autumn colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/warmAutumn/guide.pdf`, `assets/etsy/warmAutumn/wallpaper.png`
+**Tags (13):** warm autumn, warm autumn palette, colour analysis, color analysis, seasonal color, autumn colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/warmAutumn/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Warm Autumn colour palette in one beautiful guide. Rich, warm and spiced.
+Your Warm Autumn colours, ready to use. Rich, warm and spiced.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Warm Autumn, with hex codes
-• The 3 signs of a Warm Autumn, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Autumn in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Warm Autumn Colour Guide PDF, Seasonal Colour Analysis, Warm Autumn Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** warm autumn, warm autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Autumn colours, ready to use. Rich, warm and spiced.
+
+WHAT YOU GET (instant digital download)
+• 8-page Warm Autumn colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Warm Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Warm Autumn Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** warm autumn, warm autumn palette, colour analysis, color analysis, seasonal color, autumn colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Autumn colours, ready to use. Rich, warm and spiced.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Warm Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** warm autumn, warm autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Autumn colours, ready to use. Rich, warm and spiced.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -189,34 +929,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Cool Winter
 
-**Titel:** Cool Winter Colour Palette Guide, Seasonal Colour Analysis PDF, Cool Winter Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Cool Winter Colour Palette Card, Printable Wallet Swatch Card, Cool Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** cool winter, cool winter palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, winter colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/coolWinter/guide.pdf`, `assets/etsy/coolWinter/wallpaper.png`
+**Tags (13):** cool winter, cool winter palette, colour analysis, color analysis, seasonal color, winter colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/coolWinter/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Cool Winter colour palette in one beautiful guide. Cool, clear and sharp.
+Your Cool Winter colours, ready to use. Cool, clear and sharp.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Cool Winter, with hex codes
-• The 3 signs of a Cool Winter, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Winter in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Cool Winter Colour Guide PDF, Seasonal Colour Analysis, Cool Winter Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** cool winter, cool winter palette, colour analysis, color analysis, seasonal color, winter colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Winter colours, ready to use. Cool, clear and sharp.
+
+WHAT YOU GET (instant digital download)
+• 8-page Cool Winter colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Cool Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Cool Winter Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** cool winter, cool winter palette, colour analysis, color analysis, seasonal color, winter colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Winter colours, ready to use. Cool, clear and sharp.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Cool Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** cool winter, cool winter palette, colour analysis, color analysis, seasonal color, winter colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Winter colours, ready to use. Cool, clear and sharp.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -226,34 +1114,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Light Summer
 
-**Titel:** Light Summer Colour Palette Guide, Seasonal Colour Analysis PDF, Light Summer Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Light Summer Colour Palette Card, Printable Wallet Swatch Card, Light Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** light summer, light summer palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, summer colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/lightSummer/guide.pdf`, `assets/etsy/lightSummer/wallpaper.png`
+**Tags (13):** light summer, light summer palette, colour analysis, color analysis, seasonal color, summer colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/lightSummer/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Light Summer colour palette in one beautiful guide. Light, cool and effortless.
+Your Light Summer colours, ready to use. Light, cool and effortless.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Light Summer, with hex codes
-• The 3 signs of a Light Summer, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Summer in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Light Summer Colour Guide PDF, Seasonal Colour Analysis, Light Summer Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** light summer, light summer palette, colour analysis, color analysis, seasonal color, summer colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Summer colours, ready to use. Light, cool and effortless.
+
+WHAT YOU GET (instant digital download)
+• 8-page Light Summer colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Light Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Light Summer Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** light summer, light summer palette, colour analysis, color analysis, seasonal color, summer colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Summer colours, ready to use. Light, cool and effortless.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Light Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** light summer, light summer palette, colour analysis, color analysis, seasonal color, summer colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Light Summer colours, ready to use. Light, cool and effortless.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Light Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -263,34 +1299,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Bright Spring
 
-**Titel:** Bright Spring Colour Palette Guide, Seasonal Colour Analysis PDF, Bright Spring Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Bright Spring Colour Palette Card, Printable Wallet Swatch Card, Bright Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** bright spring, bright spring palett, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, spring colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/brightSpring/guide.pdf`, `assets/etsy/brightSpring/wallpaper.png`
+**Tags (13):** bright spring, bright spring palett, colour analysis, color analysis, seasonal color, spring colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/brightSpring/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Bright Spring colour palette in one beautiful guide. Clear, warm and unforgettable.
+Your Bright Spring colours, ready to use. Clear, warm and unforgettable.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Bright Spring, with hex codes
-• The 3 signs of a Bright Spring, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Spring in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Bright Spring Colour Guide PDF, Seasonal Colour Analysis, Bright Spring Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** bright spring, bright spring palett, colour analysis, color analysis, seasonal color, spring colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Spring colours, ready to use. Clear, warm and unforgettable.
+
+WHAT YOU GET (instant digital download)
+• 8-page Bright Spring colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Bright Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Bright Spring Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** bright spring, bright spring palett, colour analysis, color analysis, seasonal color, spring colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Spring colours, ready to use. Clear, warm and unforgettable.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Bright Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** bright spring, bright spring palett, colour analysis, color analysis, seasonal color, spring colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Spring colours, ready to use. Clear, warm and unforgettable.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -300,34 +1484,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Deep Autumn
 
-**Titel:** Deep Autumn Colour Palette Guide, Seasonal Colour Analysis PDF, Deep Autumn Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Deep Autumn Colour Palette Card, Printable Wallet Swatch Card, Deep Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** deep autumn, deep autumn palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, autumn colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/deepAutumn/guide.pdf`, `assets/etsy/deepAutumn/wallpaper.png`
+**Tags (13):** deep autumn, deep autumn palette, colour analysis, color analysis, seasonal color, autumn colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/deepAutumn/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Deep Autumn colour palette in one beautiful guide. Deep, warm and powerful.
+Your Deep Autumn colours, ready to use. Deep, warm and powerful.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Deep Autumn, with hex codes
-• The 3 signs of a Deep Autumn, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Autumn in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Deep Autumn Colour Guide PDF, Seasonal Colour Analysis, Deep Autumn Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** deep autumn, deep autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Autumn colours, ready to use. Deep, warm and powerful.
+
+WHAT YOU GET (instant digital download)
+• 8-page Deep Autumn colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Deep Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Deep Autumn Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** deep autumn, deep autumn palette, colour analysis, color analysis, seasonal color, autumn colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Autumn colours, ready to use. Deep, warm and powerful.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Deep Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** deep autumn, deep autumn palette, colour analysis, color analysis, seasonal color, autumn colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Deep Autumn colours, ready to use. Deep, warm and powerful.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Deep Autumn in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -337,34 +1669,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Cool Summer
 
-**Titel:** Cool Summer Colour Palette Guide, Seasonal Colour Analysis PDF, Cool Summer Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Cool Summer Colour Palette Card, Printable Wallet Swatch Card, Cool Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** cool summer, cool summer palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, summer colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/coolSummer/guide.pdf`, `assets/etsy/coolSummer/wallpaper.png`
+**Tags (13):** cool summer, cool summer palette, colour analysis, color analysis, seasonal color, summer colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/coolSummer/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
 ```
-Your Cool Summer colour palette in one beautiful guide. Cool, calm and refined.
+Your Cool Summer colours, ready to use. Cool, calm and refined.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Cool Summer, with hex codes
-• The 3 signs of a Cool Summer, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Summer in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Cool Summer Colour Guide PDF, Seasonal Colour Analysis, Cool Summer Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** cool summer, cool summer palette, colour analysis, color analysis, seasonal color, summer colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Summer colours, ready to use. Cool, calm and refined.
+
+WHAT YOU GET (instant digital download)
+• 8-page Cool Summer colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Cool Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Cool Summer Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** cool summer, cool summer palette, colour analysis, color analysis, seasonal color, summer colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Summer colours, ready to use. Cool, calm and refined.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Cool Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** cool summer, cool summer palette, colour analysis, color analysis, seasonal color, summer colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Beschrijving:**
+
+```
+Your Cool Summer colours, ready to use. Cool, calm and refined.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Cool Summer in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -374,34 +1854,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Warm Spring
 
-**Titel:** Warm Spring Colour Palette Guide, Seasonal Colour Analysis PDF, Warm Spring Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Warm Spring Colour Palette Card, Printable Wallet Swatch Card, Warm Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** warm spring, warm spring palette, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, spring colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/warmSpring/guide.pdf`, `assets/etsy/warmSpring/wallpaper.png`
+**Tags (13):** warm spring, warm spring palette, colour analysis, color analysis, seasonal color, spring colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/warmSpring/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
 
 **Beschrijving:**
 
 ```
-Your Warm Spring colour palette in one beautiful guide. Warm, sunny, full of life.
+Your Warm Spring colours, ready to use. Warm, sunny, full of life.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Warm Spring, with hex codes
-• The 3 signs of a Warm Spring, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Spring in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Warm Spring Colour Guide PDF, Seasonal Colour Analysis, Warm Spring Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** warm spring, warm spring palette, colour analysis, color analysis, seasonal color, spring colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Spring colours, ready to use. Warm, sunny, full of life.
+
+WHAT YOU GET (instant digital download)
+• 8-page Warm Spring colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Warm Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Warm Spring Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** warm spring, warm spring palette, colour analysis, color analysis, seasonal color, spring colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Spring colours, ready to use. Warm, sunny, full of life.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Warm Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** warm spring, warm spring palette, colour analysis, color analysis, seasonal color, spring colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Warm Spring colours, ready to use. Warm, sunny, full of life.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Warm Spring in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.
@@ -411,34 +2039,182 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 ## Bright Winter
 
-**Titel:** Bright Winter Colour Palette Guide, Seasonal Colour Analysis PDF, Bright Winter Wardrobe & Outfit Guide, Digital Download, Phone Wallpaper
+### 1. Palette Card · €3,95
 
-**Prijs (advies):** €6,95
+**Titel:** Bright Winter Colour Palette Card, Printable Wallet Swatch Card, Bright Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
 
-**Tags (13):** bright winter, bright winter palett, colour analysis, color analysis, seasonal color, colour palette, personal colours, capsule wardrobe, style guide pdf, color palette card, wardrobe guide, digital download, winter colours
+**Prijs (advies):** €3,95
 
-**Bestanden:** `assets/etsy/brightWinter/guide.pdf`, `assets/etsy/brightWinter/wallpaper.png`
+**Tags (13):** bright winter, bright winter palett, colour analysis, color analysis, seasonal color, winter colours, color palette card, swatch card, wallet card, phone wallpaper, hex codes, personal colours, digital download
 
-**Hoofdbeeld:** `assets/etsy/brightWinter/listing-1.jpg`
+**Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
 
 **Beschrijving:**
 
 ```
-Your Bright Winter colour palette in one beautiful guide. Clear, cool and full of contrast.
+Your Bright Winter colours, ready to use. Clear, cool and full of contrast.
 
 WHAT YOU GET (instant digital download)
-• 6-page PDF guide (A4, prints well on Letter too)
-• 20 colours that suit a Bright Winter, with hex codes
-• The 3 signs of a Bright Winter, your metal and what to leave on the rack
-• A head-to-toe outfit in your colour family, for him and for her
-• A phone wallpaper with your palette, so your colours are always with you
+• Palette sheet: 24 colours with names and hex codes
+• Wallet-size cards to cut out (front and back)
+• Phone wallpaper with your palette
+
+FILES: palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+▸ Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Winter in our shop.
 
 HOW TO USE IT
-Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do a quick wardrobe check: keep, wear below the waist, or let go.
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
 
 GOOD TO KNOW
 • This is a digital file: nothing is shipped.
-• Not sure of your season? Look at our other season guides in the shop.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 2. Colour Guide · €7,95
+
+**Titel:** Bright Winter Colour Guide PDF, Seasonal Colour Analysis, Bright Winter Palette with Colour Names, What to Avoid, Digital Download
+
+**Prijs (advies):** €7,95
+
+**Tags (13):** bright winter, bright winter palett, colour analysis, color analysis, seasonal color, winter colours, colour guide pdf, color guide, what colours suit, personal colours, colors to avoid, style guide pdf, digital download
+
+**Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Winter colours, ready to use. Clear, cool and full of contrast.
+
+WHAT YOU GET (instant digital download)
+• 8-page Bright Winter colour guide
+• 24 colours with names and hex codes
+• Your white, your dark, your denim
+• Not this, but this: what to swap
+• Metal, leather and contrast
+• + Palette Card and phone wallpaper
+
+FILES: colour-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+▸ Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 3. Style Guide · €12,95
+
+**Titel:** Bright Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Bright Winter Colour Palette, Digital Download
+
+**Prijs (advies):** €12,95
+
+**Tags (13):** bright winter, bright winter palett, colour analysis, color analysis, seasonal color, winter colours, capsule wardrobe, outfit ideas, style guide pdf, mens style guide, womens style guide, wardrobe guide, personal stylist
+
+**Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Winter colours, ready to use. Clear, cool and full of contrast.
+
+WHAT YOU GET (instant digital download)
+• 21-page style guide for her and for him
+• 8 outfits: work, weekend, date night, evening
+• 2 capsule wardrobes of 12 pieces
+• First 5 buys and accessories
+• + the full colour guide, Palette Card, wallpaper
+
+FILES: style-guide.pdf, palette-card.pdf, wallpaper.png
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+▸ Style Guide: colour guide + outfits, capsule and accessories for her and him
+• Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+```
+
+### 4. Complete Collection · €19,95
+
+**Titel:** Bright Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+
+**Prijs (advies):** €19,95
+
+**Tags (13):** bright winter, bright winter palett, colour analysis, color analysis, seasonal color, winter colours, colour fan, makeup colours, capsule wardrobe, wardrobe planner, style guide pdf, color analysis kit, gift for her
+
+**Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+
+**Beschrijving:**
+
+```
+Your Bright Winter colours, ready to use. Clear, cool and full of contrast.
+
+WHAT YOU GET (instant digital download)
+• 22-page style guide with make-up
+• Printable colour fan to cut out
+• Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker
+• Wallet cards and 3 phone wallpapers
+• Everything in the Style Guide
+
+FILES: complete-guide.pdf, palette-card.pdf, colour-fan.pdf, workbook.pdf, wallpapers.zip
+
+CHOOSE YOUR PACKAGE
+• Palette Card: palette sheet, wallet cards, wallpaper
+• Colour Guide: the colour guide + palette card
+• Style Guide: colour guide + outfits, capsule and accessories for her and him
+▸ Complete Collection: everything + make-up, colour fan, workbook, 3 wallpapers
+You'll find all four for Bright Winter in our shop.
+
+HOW TO USE IT
+Hold a garment under your chin in daylight and compare it with your palette. Shop online with the hex codes. Do the wardrobe check: keep, wear below the waist, or let go.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• Not sure of your season? Our other season guides are in the shop.
 • Colours may look slightly different on screen and in print.
 
 KULØRT · NYANSE: personal colour, made simple.

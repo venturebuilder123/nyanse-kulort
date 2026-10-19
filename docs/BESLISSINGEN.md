@@ -2,6 +2,21 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — Etsy: vier pakketten per seizoen
+
+- **Op voorstel van de oprichter:** per seizoen een klein, middel, groot en compleet pakket, in het Engels en in euro's. Dat zijn 48 listings:
+  - **Palette Card** €3,95;
+  - **Colour Guide** €7,95;
+  - **Style Guide** €12,95;
+  - **Complete Collection** €19,95.
+  - De prijzen zijn een advies (MENING) en worden bijgesteld met Etsy Stats.
+- **Elk pakket is een eigen listing**, omdat Etsy bij varianten dezelfde bestanden levert.
+- **De inhoud komt uit de kleurmotor** (lib/guide/build.ts, op het middelpunt van het seizoen), voor haar en voor hem. Daarbij de ingekleurde kledingfoto's van de site.
+- **Engelse kleurnamen** staan in lib/color/names-en.ts; die zijn later ook bruikbaar voor de Engelse site.
+- **Kwaliteitscontrole in het script:** het aantal pagina's per PDF, een controle of iets in de voettekst loopt, en elk bestand onder de 20 MB. Het eerste ontwerp was 21 MB; de kledingstukken worden nu vooraf als lichte JPEG gemaakt, waardoor het 2 MB is.
+- **De gegenereerde bestanden (±130 MB) staan niet in git**, alleen listings.md. Opnieuw maken: `npx tsx scripts/make-etsy.ts`.
+- **Start:** 16 listings (4 seizoenen). Kosten ±$3,20 per 4 maanden plus transactie- en betaalkosten per verkoop (AANNAME).
+
 ## 19 oktober 2026 — YouTube Shorts
 
 - **Elke reel gaat ook als YouTube Short online**, dinsdag om 19:00, via de officiële YouTube Data API (`videos.insert`). Een verticale video van maximaal 3 minuten wordt vanzelf een Short.
