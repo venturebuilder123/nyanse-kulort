@@ -2,6 +2,17 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — nieuwe beelden via Gemini, met mensen
+
+- **De oprichter kiest voor gegenereerde modellen in editorials en social**, omdat die beter werken. Voorwaarden:
+  - **mooi maar echt**: echte huid, geen plastic;
+  - **elk seizoen op meer dan één huidtint** (Monk-schaal);
+  - **nooit een bekend gezicht of een lookalike**: namen alleen als tekst ("vaak genoemd als …");
+  - **geen tekst in de beelden**: die zetten wij erop.
+- **AI-label:** verplicht op TikTok en bij advertenties; Instagram labelt soms zelf; op Etsy staat het al in de beschrijving. Op de eigen site blijft het besluit "geen AI-vermeldingen" staan. Op platforms die het verplichten, volgen we hun regels.
+- **De prompts** (docs/brand/GEMINI-SOCIAL.md) komen uit de kleurmotor: per seizoen het juiste en het foute doek met exacte hex-codes. Drie reeksen: het effect (24), seizoensportretten (24) en de voordelen (8+).
+- **Aanleveren** in `assets/gemini/`, met vaste bestandsnamen. Daarna zetten wij er tekst op en verdelen we ze over Instagram, Pinterest, de site en de advertenties.
+
 ## 19 oktober 2026 — posttijden, ochtendmail met reacties, Pinterest en Etsy
 
 - **Posttijden:** carrousel op **woensdag 18:30**, volgers-beeld op **donderdag 12:00** (Buffer 2026, 9,6 miljoen posts; Metricool voor carrousels). De sleutels van de posts bleven gelijk, dus er gaat niets dubbel. `SOCIAL_START` is `2026-10-19`.
