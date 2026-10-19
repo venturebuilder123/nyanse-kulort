@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — posttijden, ochtendmail met reacties, Pinterest en Etsy
+
+- **Posttijden:** carrousel op **woensdag 18:30**, volgers-beeld op **donderdag 12:00** (Buffer 2026, 9,6 miljoen posts; Metricool voor carrousels). De sleutels van de posts bleven gelijk, dus er gaat niets dubbel. `SOCIAL_START` is `2026-10-19`.
+- **Ochtendmail met reacties:** elke ochtend na 08:00 een mail met nieuwe Instagram-reacties en per reactie een concept-antwoord (Claude Haiku, instelbaar via `COMMENT_MODEL`). **Nooit automatisch geplaatst.** Op dit moment heeft de Anthropic-sleutel geen tegoed: de mail werkt, maar zonder concepten. Tegoed opwaarderen is een keuze van de oprichter (kosten: centen per maand, AANNAME).
+- **Facebook:** de Instagram-koppeling post niet op Facebook. We testen of "delen naar Facebook" ook werkt voor posts via de API. Zo niet, dan voegen we een paginasleutel toe.
+- **Pinterest:** 24 pins (2:3) plus een CSV voor de bulk-upload, met UTM. Instellen: docs/marketing/PINTEREST.md.
+- **Etsy:** 12 digitale seizoensgidsen à €6,95: PDF, telefoonachtergrond, listingbeeld en teksten. Geen links naar de site. **AI-vermelding in de Etsy-beschrijving**, omdat Etsy dat vraagt; dit is een bewuste uitzondering op "geen AI-vermeldingen" (alleen op Etsy). Instellen: docs/marketing/ETSY.md.
+
 ## 19 oktober 2026 — Instagram plaatst zichzelf
 
 - **De oprichter wil social niet zelf doen. Geen wachtwoorden** (verboden door Instagram/TikTok, en riskant), maar de officiële Graph API met een eigen Meta-app en een paginasleutel die niet verloopt.

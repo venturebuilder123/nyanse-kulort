@@ -92,3 +92,17 @@ export async function whoami(): Promise<{ id: string; username?: string }> {
   const id = await userId();
   return (await call(id, { fields: "id,username" }, "GET")) as { id: string; username?: string };
 }
+
+export type IgComment = { id: string; text: string; username?: string; timestamp: string; media: { id: string; permalink?: string; caption?: string } };
+
+/** Comments on the latest posts since a moment (for the morning digest; read only, never replies). */
+export async function commentsSince(since: Date, posts = 15): Promise<IgComment[]> {
+  const user = await userId();
+  const media = ((await call(`${user}/media`, { fields: "id,caption,permalink,timestamp,comments_count", limit: String(posts) }, "GET")) as { data?: { id: string; caption?: string; permalink?: string; comments_count?: number }[] }).data ?? [];
+  const out: IgComment[] = [];
+  for (const m of media.filter((x) => (x.comments_count ?? 0) > 0)) {
+    const cs = ((await call(`${m.id}/comments`, { fields: "id,text,username,timestamp", limit: "50" }, "GET")) as { data?: { id: string; text: string; username?: string; timestamp: string }[] }).data ?? [];
+    for (const c of cs) if (new Date(c.timestamp) > since) out.push({ ...c, media: { id: m.id, permalink: m.permalink, caption: m.caption?.split("\n")[0] } });
+  }
+  return out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+}

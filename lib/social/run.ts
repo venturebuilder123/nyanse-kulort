@@ -4,6 +4,7 @@ import { supabaseRest } from "@/lib/db/supabase";
 import { mailConfigured, sendMail } from "@/lib/mail";
 import { calendar, type Slot } from "./calendar";
 import { instagramConfigured, publish, refreshToken } from "./instagram";
+import { morningDigest } from "./comments";
 
 type Row = { slot: string; status: string; media_id: string | null; error: string | null };
 
@@ -44,5 +45,6 @@ export async function runSocial(now = new Date()) {
     await sendMail(process.env.MAIL_TO_FOUNDER, "Morgen op Instagram", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
     await save(previewKey, "preview_sent");
   }
-  return { posted: out, token };
+  const digest = mailConfigured() ? await morningDigest(now).catch((e) => `digest error: ${String(e).slice(0, 120)}`) : "mail off";
+  return { posted: out, token, digest };
 }
