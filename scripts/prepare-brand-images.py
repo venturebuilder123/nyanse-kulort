@@ -57,8 +57,8 @@ PHOTOS = {
 }
 for name, width in {
     "best-fit": 1200, "closet-choices": 1200, "note-to-self": 1600, "personal-shopper": 1600,
-    "proof-men": 1200, "proof-women": 1200, "right-choice": 1200, "workbook": 1600,
-}.items():
+    "right-choice": 1200, "workbook": 1600,
+}.items():  # proof-men/-women now come from the Gemini effect diptychs (assets/gemini/effect, 19 Oct 2026)
     PHOTOS[f"{D1}/Advertisment/kulort-nyanse-{name}.jpg"] = (f"ads/{name}.jpg", width)
 
 # outfit flat-lays: man left, woman right, one image per colour type (GEMINI-HANDBOEK §11)

@@ -27,17 +27,17 @@ export default function Social() {
           Koppeling: {!d.configured ? <b>nog niet ingesteld (zie docs/marketing/AUTOPOST.md)</b> : d.account && "username" in d.account ? <b>✓ @{d.account.username}</b> : <b style={{ color: "#b42318" }}>fout: {d.account?.error}</b>}
         </p>
       )}
-      <p className="muted small">Elke maandag en (de eerste weken) donderdag om 19:00 gaat de post vanzelf online. De dag ervoor krijg je een mail. Overslaan kan tot het moment zelf.</p>
+      <p className="muted small">Dinsdag 19:00 een reel, woensdag 18:30 de seizoenscarrousel, donderdag 12:00 een beeld: alles gaat vanzelf online. De dag ervoor krijg je een mail. Overslaan kan tot het moment zelf.</p>
       {msg && <p className="pill small" style={{ wordBreak: "break-all" }}>{msg}</p>}
       <div style={{ display: "grid", gap: 14 }}>
         {d?.slots.map((s) => {
           const st = s.state?.status;
           return (
             <div key={s.key} style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 12, border: "1px solid #ddd", padding: 10, opacity: st === "skipped" ? 0.5 : 1 }}>
-              <img src={s.images[0]} alt="" style={{ width: 110, aspectRatio: "4/5", objectFit: "cover" }} loading="lazy" />
+              <img src={s.kind === "reel" ? s.images[1] : s.images[0]} alt="" style={{ width: 110, aspectRatio: "4/5", objectFit: "cover" }} loading="lazy" />
               <div className="small" style={{ display: "grid", gap: 6, alignContent: "start" }}>
-                <b>{new Date(s.at).toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} · {s.kind === "carousel" ? `carrousel (${s.images.length})` : "beeld"}</b>
-                <span>{st === "published" ? `✓ geplaatst (${s.state?.media_id})` : st === "skipped" ? "overgeslagen" : st === "failed" ? `✗ mislukt: ${s.state?.error}` : new Date(s.at).getTime() < now ? "niet geplaatst" : "gepland"}</span>
+                <b>{new Date(s.at).toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} · {s.kind === "carousel" ? `carrousel (${s.images.length})` : s.kind === "reel" ? <>reel · <a href={s.images[0]} target="_blank" rel="noreferrer">bekijk video</a></> : "beeld"}</b>
+                <span>{st === "published" ? `✓ geplaatst (${s.state?.media_id})` : st === "skipped" ? "overgeslagen" : st === "processing" ? "⏳ Instagram verwerkt de video; het volgende uur gaat hij online" : st === "failed" ? `✗ mislukt: ${s.state?.error}` : new Date(s.at).getTime() < now ? "niet geplaatst" : "gepland"}</span>
                 <details><summary>Bijschrift</summary><pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit" }}>{s.caption}</pre></details>
                 <span>
                   {st !== "published" && st !== "skipped" && <button onClick={() => act("skip", s.key, "Overslaan")}>Overslaan</button>}{" "}

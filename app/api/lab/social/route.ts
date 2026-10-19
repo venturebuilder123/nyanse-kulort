@@ -14,7 +14,7 @@ export async function GET() {
   return NextResponse.json({
     configured: instagramConfigured(),
     account,
-    slots: calendar().map((s) => ({ ...s, at: s.at.toISOString(), state: st.get(s.key) ?? null })),
+    slots: calendar().sort((a, b) => a.at.getTime() - b.at.getTime()).map((s) => ({ ...s, at: s.at.toISOString(), state: st.get(s.key) ?? null })),
   }, { headers: { "Cache-Control": "no-store" } });
 }
 

@@ -48,6 +48,12 @@ Wil je later toch een echte Facebook-pagina, dan werkt de oude route ook: een pa
 
 - **Elk uur** controleert GitHub of er een post klaarstaat; die gaat dan via de officiële API online. Een post die meer dan 2 dagen te laat is, wordt overgeslagen.
 - **De dag ervoor** krijg je de mail "Morgen op Instagram", met het beeld en de eerste regel van het bijschrift.
+- **Het ritme:** dinsdag 19:00 een reel (zelfde gezicht, ander doek), woensdag 18:30 de seizoenscarrousel en donderdag 12:00 een beeld.
+- **Reels:** Instagram verwerkt de video eerst. Is dat na een minuut nog niet klaar, dan staat de post op "⏳ verwerkt" en gaat hij het volgende uur online.
+- **Nieuwe Gemini-beelden:**
+  1. Zet ze in `assets/gemini/effect/`, met de naam `effect-{seizoen}-{nyanse|kulort}-{1|2}.jpg`.
+  2. Draai `node scripts/make-effect-posts.mjs` en push.
+  3. Ze komen dan vanzelf in de kalender.
 - **Overslaan of terugzetten** doe je in /lab/social. Daar zie je ook wat geplaatst is en wat misging.
 - **Wat de API niet doet:** Stories met stickers (polls, "Add Yours"), muziek onder carrousels, en reageren op anderen. Die blijven handwerk en zijn optioneel.
 

@@ -55,6 +55,12 @@ function useReveal() {
 }
 
 /** A door's photos, cross-fading every few seconds (paused off-screen and with reduced motion). */
+// The effect, from the Gemini diptychs (wrong drape left, right drape right; colours from the engine).
+const PROOF = [
+  { src: "/brand/ads/proof-women.jpg", bad: ["#1F4FC4", "Koningsblauw", "Royal blue"], good: ["#3F6A6A", "Zacht petrol", "Soft teal"], alt: ["Dezelfde vrouw met een koningsblauwe en een zacht petrol doek", "The same woman in a royal blue and a soft teal drape"] },
+  { src: "/brand/ads/proof-men.jpg", bad: ["#E2533A", "Tomaat", "Tomato"], good: ["#3A2A6B", "Indigo", "Indigo"], alt: ["Dezelfde man met een tomaatrode en een indigo doek", "The same man in a tomato red and an indigo drape"] },
+] as const;
+
 function DoorPhotos({ imgs, priority }: { imgs: readonly string[]; priority?: boolean }) {
   const [i, setI] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -172,8 +178,15 @@ export default function Split() {
           <p className="mh-sub">{h.proof.text}</p>
         </div>
         <div className="mh-proof-pair">
-          <figure><img src="/brand/ads/proof-women.jpg" alt="Dezelfde vrouw met een grijsblauwe en een warme oranje doek" width={1200} height={1201} loading="lazy" /></figure>
-          <figure><img src="/brand/ads/proof-men.jpg" alt="Dezelfde man met een grijsblauwe en een warme oranje doek" width={1200} height={1201} loading="lazy" /></figure>
+          {PROOF.map((p) => (
+            <figure key={p.src}>
+              <img src={p.src} alt={locale === "en" ? p.alt[1] : p.alt[0]} width={1200} height={1200} loading="lazy" />
+              <figcaption aria-hidden="true">
+                <span><i style={{ background: p.bad[0] }} />✕ {locale === "en" ? p.bad[2] : p.bad[1]}</span>
+                <span className="ok"><i style={{ background: p.good[0] }} />✓ {locale === "en" ? p.good[2] : p.good[1]}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 

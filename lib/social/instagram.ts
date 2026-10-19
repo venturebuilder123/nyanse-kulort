@@ -62,29 +62,41 @@ export async function refreshToken(): Promise<string> {
   return "renewed";
 }
 
-/** Wait until a media container is ready to publish (carousels take a few seconds). */
-async function ready(id: string) {
-  for (let i = 0; i < 20; i++) {
-    const s = (await call(id, { fields: "status_code" }, "GET")) as { status_code?: string };
-    if (s.status_code === "FINISHED") return;
-    if (s.status_code === "ERROR" || s.status_code === "EXPIRED") throw new Error(`instagram: container ${s.status_code}`);
+export type ContainerState = "FINISHED" | "IN_PROGRESS" | "ERROR" | "EXPIRED" | "PUBLISHED";
+export const containerState = async (id: string) => ((await call(id, { fields: "status_code" }, "GET")) as { status_code?: ContainerState }).status_code ?? "IN_PROGRESS";
+
+/** Wait until a media container is ready (carousels take seconds, reels up to minutes): true when ready. */
+async function ready(id: string, tries = 20): Promise<boolean> {
+  for (let i = 0; i < tries; i++) {
+    const s = await containerState(id);
+    if (s === "FINISHED") return true;
+    if (s === "ERROR" || s === "EXPIRED") throw new Error(`instagram: container ${s}`);
     await new Promise((r) => setTimeout(r, 2000));
   }
-  throw new Error("instagram: container not ready in time");
+  return false;
 }
 
-export async function publish(kind: "carousel" | "image", images: string[], caption: string): Promise<string> {
+export const publishContainer = async (creation: string) => (await call(`${await userId()}/media_publish`, { creation_id: creation })).id!;
+
+/** Publishes, or for a reel that is still processing returns { pending: containerId } (the next run publishes it). */
+export async function publish(kind: "carousel" | "image" | "reel", images: string[], caption: string): Promise<{ id: string } | { pending: string }> {
   const user = await userId();
   let creation: string;
   if (kind === "image") {
     creation = (await call(`${user}/media`, { image_url: images[0]!, caption })).id!;
+  } else if (kind === "reel") {
+    // images = [video .mp4, cover .jpg]; share_to_feed shows it in the grid as well
+    creation = (await call(`${user}/media`, { media_type: "REELS", video_url: images[0]!, ...(images[1] ? { cover_url: images[1] } : {}), share_to_feed: "true", caption })).id!;
   } else {
     const children: string[] = [];
     for (const url of images.slice(0, 10)) children.push((await call(`${user}/media`, { image_url: url, is_carousel_item: "true" })).id!);
     creation = (await call(`${user}/media`, { media_type: "CAROUSEL", children: children.join(","), caption })).id!;
   }
-  await ready(creation);
-  return (await call(`${user}/media_publish`, { creation_id: creation })).id!;
+  if (!(await ready(creation, kind === "reel" ? 18 : 20))) {
+    if (kind === "reel") return { pending: creation };
+    throw new Error("instagram: container not ready in time");
+  }
+  return { id: await publishContainer(creation) };
 }
 
 /** For the lab and the setup check: is the token valid, and which account is it? */

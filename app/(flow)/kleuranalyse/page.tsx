@@ -81,7 +81,7 @@ export default function ColourAnalysis() {
           spiegel klopt het ineens niet meer. Het ligt meestal niet aan het model of aan jou. Het ligt aan de kleur. Een kleuranalyse laat
           zien welke kleuren bij jou horen, zodat je minder twijfelt, minder miskoopt en alles in je kast met elkaar combineert.
         </p>
-        <Fig src="/brand/ads/proof-men.jpg" alt="Hetzelfde gezicht met een grijsblauwe en een warme oranje doek onder de kin" caption="Zelfde gezicht, ander doek. Alleen de kleur onder de kin verschilt." wide />
+        <Fig src="/brand/ads/proof-men.jpg" alt="Hetzelfde gezicht met een tomaatrode en een indigo doek onder de kin" caption="Zelfde gezicht, ander doek. Alleen de kleur onder de kin verschilt." wide />
 
         <nav className="seo-toc" aria-label="Inhoud">
           <b>In dit artikel</b>

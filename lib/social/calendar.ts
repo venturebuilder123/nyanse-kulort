@@ -2,14 +2,19 @@
 // SOCIAL_START (a Monday). Wednesday 18:30: that week's season carousel. Thursday 12:00, the first
 // weeks: a follow image. Times from the large 2026 studies (Buffer, 9.6M posts: Wednesday 12:00 and
 // 18:00 and Thursday 09:00 best, Friday and Saturday worst; Metricool: carousels peak on Wednesday).
-// Slot keys stay as they were ("w1-mon-…"), so a post that already went out is never posted again. Only product shots (fabrics, flat-lays, palettes): no generated people,
-// so no AI label is needed (docs/marketing/GUERRILLA.md §8).
+// Slot keys stay as they were ("w1-mon-…"), so a post that already went out is never posted again.
+// Tuesday 19:00: a Reel with the same-face effect (Gemini models), the teaser for Wednesday's season;
+// from week 5 the Thursday slot shows an effect photo. Those keys carry no image name ("w3-tue-reel"),
+// so new Gemini images can change the choice without anything being posted twice. The models are
+// AI-generated: the caption says so (Meta asks for it on photorealistic AI content).
 
 import DATA from "./seasons-data.json";
+import EFFECTS from "./effect-posts.json";
 
 export const SEASON_ORDER = ["softAutumn", "deepWinter", "softSummer", "lightSpring", "warmAutumn", "coolWinter", "lightSummer", "brightSpring", "deepAutumn", "coolSummer", "warmSpring", "brightWinter"] as const;
 
-export type Slot = { key: string; at: Date; kind: "carousel" | "image"; images: string[]; caption: string };
+export type Slot = { key: string; at: Date; kind: "carousel" | "image" | "reel"; images: string[]; caption: string };
+type Effect = { key: string; brand: "nyanse" | "kulort"; n: number; dir: string; bad: string; good: string; season: string };
 
 const TAGS = "#coloranalysis #seasonalcoloranalysis #personalstyle #capsulewardrobe #mensstyle";
 const D = DATA as Record<string, { name: string; scales: { u: number; d: number; c: number } }>;
@@ -43,6 +48,47 @@ function seasonCaption(key: string, no: number): string {
   ].join("\n");
 }
 
+const AI_LINE = "Models are AI-generated; the colours are the real ones from your guide.";
+
+function effectCaption(e: Effect, reel: boolean, teaser = false): string {
+  const tag = "#" + e.season.toLowerCase().replace(/\s+/g, "");
+  return [
+    reel ? `Same face. Different colour. Watch what one colour change does 👀` : `Same face. Different colour. Left or right? 👀`,
+    ``,
+    `This is a ${e.season}${e.brand === "nyanse" ? "" : " (for him)"}: the wrong colour makes the skin look dull, the right one makes the face light up.`,
+    teaser ? `Tomorrow: the full ${e.season} guide with all the colours.` : `Which one do you see first: the drape or the face?`,
+    ``,
+    `Find your season with one selfie. Free colour check, link in bio.`,
+    ``,
+    AI_LINE,
+    ``,
+    `${tag} #coloranalysis #seasonalcoloranalysis #${e.brand === "nyanse" ? "personalstyle" : "mensstyle"} #samefacedifferentcolour`,
+  ].join("\n");
+}
+
+/** Per week: the reel (KULØRT and NYANSE in turn) and a second effect image for Thursday, preferring the week's season. */
+export function pickEffects(effects: Effect[] = EFFECTS as Effect[]): { reel?: Effect; still?: Effect }[] {
+  const used = new Set<string>();
+  // the first wish that still has an unused image wins; the last resort is any unused image
+  const take = (...wants: ((e: Effect) => boolean)[]) => {
+    for (const want of [...wants, () => true]) {
+      const e = effects.find((x) => !used.has(x.dir) && want(x));
+      if (e) return used.add(e.dir), e;
+    }
+  };
+  // first the weeks whose season has images, so a season without images only takes leftovers
+  const weeks = SEASON_ORDER.map((key, i) => ({ key, i, brand: (i % 2 ? "nyanse" : "kulort") as Effect["brand"], has: effects.some((e) => e.key === key) }));
+  const out: { reel?: Effect; still?: Effect }[] = SEASON_ORDER.map(() => ({}));
+  for (const w of [...weeks.filter((w) => w.has), ...weeks.filter((w) => !w.has)]) {
+    out[w.i]!.reel = take((e) => e.key === w.key && e.brand === w.brand, (e) => e.key === w.key, (e) => e.brand === w.brand);
+  }
+  for (const w of [...weeks.filter((w) => w.has), ...weeks.filter((w) => !w.has)]) {
+    if (w.i < FOLLOW.length) continue; // weeks 1–4 have a follow image on Thursday
+    out[w.i]!.still = take((e) => e.key === w.key && e.brand !== out[w.i]!.reel?.brand, (e) => e.key === w.key);
+  }
+  return out;
+}
+
 const FOLLOW: [file: string, caption: string][] = [
   ["feed-1-one-season-a-week", "12 seasons. One every Wednesday. 🎨 Spring, Summer, Autumn or Winter: find yours before we post it.\n\nFree colour check, link in bio. Follow along.\n\n#coloranalysis #seasonalcoloranalysis #personalstyle"],
   ["feed-7-every-week", "What you get every week on our page: 1 season explained, 6 colours that work, 1 outfit head to toe and 1 thing to leave on the rack. For him and for her.\n\n#coloranalysis #capsulewardrobe #mensstyle"],
@@ -59,7 +105,7 @@ function amsterdamAt(y: number, m: number, d: number, hour: number, minute: numb
   }
   return new Date(Date.UTC(y, m - 1, d, hour - 1, minute));
 }
-export const POST_TIMES = { carousel: { weekday: 2, hour: 18, minute: 30 }, image: { weekday: 3, hour: 12, minute: 0 } } as const;
+export const POST_TIMES = { reel: { weekday: 1, hour: 19, minute: 0 }, carousel: { weekday: 2, hour: 18, minute: 30 }, image: { weekday: 3, hour: 12, minute: 0 } } as const;
 
 export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base = "https://www.kulort-nyanse.com"): Slot[] {
   const [y, m, d] = start.split("-").map(Number) as [number, number, number];
@@ -73,6 +119,11 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
     slots.push({ key: `w${i + 1}-mon-${key}`, at: day(i * 7 + POST_TIMES.carousel.weekday, POST_TIMES.carousel), kind: "carousel", images: [1, 2, 3, 4, 5, 6].map((n) => `${base}/social/seasons/${dir}/slide-${n}.jpg`), caption: seasonCaption(key, i + 1) });
     const f = FOLLOW[i];
     if (f) slots.push({ key: `w${i + 1}-thu-${f[0]}`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}/social/follow/${f[0]}.jpg`], caption: f[1] });
+  });
+  // effect posts after the original slots, so the keys and order above never move
+  pickEffects().forEach(({ reel, still }, i) => {
+    if (reel) slots.push({ key: `w${i + 1}-tue-reel`, at: day(i * 7 + POST_TIMES.reel.weekday, POST_TIMES.reel), kind: "reel", images: [`${base}${reel.dir}/reel.mp4`, `${base}${reel.dir}/cover.jpg`], caption: effectCaption(reel, true, reel.key === SEASON_ORDER[i]) });
+    if (still) slots.push({ key: `w${i + 1}-thu-effect`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}${still.dir}/post.jpg`], caption: effectCaption(still, false) });
   });
   return slots;
 }

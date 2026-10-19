@@ -1,0 +1,245 @@
+[
+ {
+  "key": "brightSpring",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/brightSpring-kulort-2",
+  "bad": "#B0103A",
+  "good": "#2F6FDE",
+  "season": "Bright Spring"
+ },
+ {
+  "key": "coolSummer",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/coolSummer-kulort-1",
+  "bad": "#F2B632",
+  "good": "#5B7DB1",
+  "season": "Cool Summer"
+ },
+ {
+  "key": "coolSummer",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/coolSummer-kulort-2",
+  "bad": "#2F6FDE",
+  "good": "#5B7DB1",
+  "season": "Cool Summer"
+ },
+ {
+  "key": "coolWinter",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/coolWinter-kulort-1",
+  "bad": "#2E6B5E",
+  "good": "#0E4C92",
+  "season": "Cool Winter"
+ },
+ {
+  "key": "coolWinter",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/coolWinter-kulort-2",
+  "bad": "#9E2A2B",
+  "good": "#0E4C92",
+  "season": "Cool Winter"
+ },
+ {
+  "key": "deepAutumn",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/deepAutumn-kulort-1",
+  "bad": "#1F4FC4",
+  "good": "#6E1F2A",
+  "season": "Deep Autumn"
+ },
+ {
+  "key": "deepWinter",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/deepWinter-kulort-1",
+  "bad": "#2E6B5E",
+  "good": "#3A2A6B",
+  "season": "Deep Winter"
+ },
+ {
+  "key": "deepWinter",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/deepWinter-kulort-2",
+  "bad": "#E2533A",
+  "good": "#3A2A6B",
+  "season": "Deep Winter"
+ },
+ {
+  "key": "deepWinter",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/deepWinter-nyanse-1",
+  "bad": "#2E6B5E",
+  "good": "#3A2A6B",
+  "season": "Deep Winter"
+ },
+ {
+  "key": "deepWinter",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/deepWinter-nyanse-2",
+  "bad": "#E2533A",
+  "good": "#3A2A6B",
+  "season": "Deep Winter"
+ },
+ {
+  "key": "lightSpring",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/lightSpring-kulort-1",
+  "bad": "#4F8F8B",
+  "good": "#F3A27A",
+  "season": "Light Spring"
+ },
+ {
+  "key": "lightSpring",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/lightSpring-kulort-2",
+  "bad": "#7B2CBF",
+  "good": "#F3A27A",
+  "season": "Light Spring"
+ },
+ {
+  "key": "lightSpring",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/lightSpring-nyanse-1",
+  "bad": "#4F8F8B",
+  "good": "#F3A27A",
+  "season": "Light Spring"
+ },
+ {
+  "key": "lightSpring",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/lightSpring-nyanse-2",
+  "bad": "#7B2CBF",
+  "good": "#F3A27A",
+  "season": "Light Spring"
+ },
+ {
+  "key": "lightSummer",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/lightSummer-kulort-1",
+  "bad": "#F2B632",
+  "good": "#F0B7C8",
+  "season": "Light Summer"
+ },
+ {
+  "key": "lightSummer",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/lightSummer-nyanse-2",
+  "bad": "#2F6FDE",
+  "good": "#F0B7C8",
+  "season": "Light Summer"
+ },
+ {
+  "key": "softAutumn",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/softAutumn-kulort-1",
+  "bad": "#1F4FC4",
+  "good": "#3F6A6A",
+  "season": "Soft Autumn"
+ },
+ {
+  "key": "softAutumn",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/softAutumn-kulort-2",
+  "bad": "#DC143C",
+  "good": "#3F6A6A",
+  "season": "Soft Autumn"
+ },
+ {
+  "key": "softAutumn",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/softAutumn-nyanse-1",
+  "bad": "#1F4FC4",
+  "good": "#3F6A6A",
+  "season": "Soft Autumn"
+ },
+ {
+  "key": "softAutumn",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/softAutumn-nyanse-2",
+  "bad": "#DC143C",
+  "good": "#3F6A6A",
+  "season": "Soft Autumn"
+ },
+ {
+  "key": "softSummer",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/softSummer-kulort-1",
+  "bad": "#F2B632",
+  "good": "#7D8471",
+  "season": "Soft Summer"
+ },
+ {
+  "key": "softSummer",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/softSummer-nyanse-1",
+  "bad": "#F2B632",
+  "good": "#7D8471",
+  "season": "Soft Summer"
+ },
+ {
+  "key": "softSummer",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/softSummer-nyanse-2",
+  "bad": "#2F6FDE",
+  "good": "#7D8471",
+  "season": "Soft Summer"
+ },
+ {
+  "key": "warmAutumn",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/warmAutumn-kulort-1",
+  "bad": "#1F4FC4",
+  "good": "#2E6B5E",
+  "season": "Warm Autumn"
+ },
+ {
+  "key": "warmAutumn",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/warmAutumn-kulort-2",
+  "bad": "#DC143C",
+  "good": "#2E6B5E",
+  "season": "Warm Autumn"
+ },
+ {
+  "key": "warmAutumn",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/warmAutumn-nyanse-1",
+  "bad": "#1F4FC4",
+  "good": "#2E6B5E",
+  "season": "Warm Autumn"
+ },
+ {
+  "key": "warmAutumn",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/warmAutumn-nyanse-2",
+  "bad": "#DC143C",
+  "good": "#2E6B5E",
+  "season": "Warm Autumn"
+ }
+]

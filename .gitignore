@@ -26,3 +26,7 @@ assets/inspiratie/
 
 # brand image originals from Gemini (provenance), not deployed
 assets/brand-originals/
+
+# Gemini originals (large); the generated posts and reels live in public/social/effect
+assets/gemini/effect/
+assets/gemini/_varianten/

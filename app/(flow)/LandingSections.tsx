@@ -61,7 +61,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
           <p className="sub">{st.proof.text}</p>
         </div>
         <figure className="l-proof-img">
-          <img src={proof} alt="Hetzelfde gezicht met een grijsblauw en een warm oranje doek" width={1200} height={1201} loading="lazy" />
+          <img src={proof} alt={config.key === "kulort" ? "Dezelfde man met een tomaatrode en een indigo doek" : "Dezelfde vrouw met een koningsblauwe en een zacht petrol doek"} width={1200} height={1200} loading="lazy" />
           <figcaption>Eén doek onder de kin, een heel ander effect.</figcaption>
         </figure>
         <p className="eyebrow-h l-try">Probeer het zelf: tik op een kleur</p>

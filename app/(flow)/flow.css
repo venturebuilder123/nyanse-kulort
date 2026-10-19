@@ -946,7 +946,11 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .mh-proof { display: grid; gap: 24px; }
 .mh-proof-copy { display: grid; gap: 12px; }
 .mh-proof-pair { display: grid; gap: 10px; }
-.mh-proof-pair figure { margin: 0; }
+.mh-proof-pair figure { margin: 0; position: relative; }
+.mh-proof-pair figcaption { position: absolute; inset: 10px 10px auto; display: grid; grid-template-columns: 1fr 1fr; pointer-events: none; }
+.mh-proof-pair figcaption span { justify-self: start; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 6px; border-radius: 999px; font-size: 12px; font-weight: 700; background: rgba(20, 20, 20, 0.72); color: #F6F2EC; }
+.mh-proof-pair figcaption span.ok { background: rgba(246, 242, 236, 0.92); color: #141414; margin-left: 10px; }
+.mh-proof-pair figcaption i { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.8); }
 .mh-proof-pair img { border-radius: 2px; }
 .mh-how ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 30px; }
 .mh-how li { display: grid; gap: 8px; }

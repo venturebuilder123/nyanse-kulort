@@ -2,6 +2,19 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — de Gemini-beelden in gebruik: reels, effect-posts en de homepage
+
+- **27 effectbeelden** (zelfde gezicht, fout doek tegenover goed doek) staan in `assets/gemini/effect/`. Er zijn 13 dubbele beelden en collages; die staan apart in `_varianten/`. Beide mappen blijven buiten git, net als de andere originelen.
+- **Per beeld drie bestanden:** een feedpost (4:5), een reel van 7 seconden (9:16) en een cover. Fout en goed hebben een label met de kleurnaam. Daarna komt een eindkaart: "Are you a {season}?". Maken: `node scripts/make-effect-posts.mjs` (ffmpeg-static staat alleen lokaal en zit niet in package.json).
+- **Kalender:** elke **dinsdag 19:00 een reel** als teaser voor de seizoenscarrousel van woensdag. Vanaf week 5 komt er op **donderdag 12:00 een effect-post**, op de plek waar de volgers-beelden stonden. Nieuwe sleutels zonder bestandsnaam (`w3-tue-reel`), dus nieuwe beelden leiden nooit tot een dubbele post. Bestaande sleutels zijn ongewijzigd.
+- **AI-regel in het bijschrift** van reels en effect-posts ("Models are AI-generated; the colours are the real ones from your guide."). Meta vraagt dit bij fotorealistische AI-beelden. Carrousels en volgers-beelden blijven zonder deze regel (daar staan geen mensen op).
+- **Homepage, merklanding en /kleuranalyse:** de bewijsfoto's zijn vervangen door twee effectbeelden: Soft Autumn (vrouw) en Deep Winter (man, Monk 9). Ze hebben ✕/✓-labels met de echte kleuren uit de motor. Op de site staat geen AI-vermelding (bestaand besluit).
+- **Reels kunnen even duren:** zolang Instagram de video verwerkt, staat de post op "processing". Het volgende uur gaat hij online. Hiervoor is migratie 0009 nodig.
+- **Nog te maken in Gemini** (prioriteit bovenaan):
+  - Warm Spring en Bright Winter: alle vier, voor weken 11 en 12. Tot die tijd leent de reel een beeld van een ander seizoen.
+  - De vrouwenversies van Cool Winter, Bright Spring, Deep Autumn en Cool Summer.
+  - Daarna de portretten (B) en de voordelen (C).
+
 ## 19 oktober 2026 — nieuwe beelden via Gemini, met mensen
 
 - **De oprichter kiest voor gegenereerde modellen in editorials en social**, omdat die beter werken. Voorwaarden:
