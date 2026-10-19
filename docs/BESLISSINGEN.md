@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 19 oktober 2026 — Instagram plaatst zichzelf
+
+- **De oprichter wil social niet zelf doen. Geen wachtwoorden** (verboden door Instagram/TikTok, en riskant), maar de officiële Graph API met een eigen Meta-app en een paginasleutel die niet verloopt.
+- **De kalender** (`lib/social/calendar.ts`): elke maandag om 19:00 de seizoenscarrousel (12 weken), de eerste 4 donderdagen een volgers-beeld. Alleen productbeelden zonder mensen, dus geen AI-label nodig.
+- **Elk uur** controleert GitHub Actions of er een post klaarstaat. Er gaat nooit iets dubbel online (tabel `social_posts`). Een dag van tevoren krijgt de oprichter een mail; overslaan kan in /lab/social.
+- **De beelden** staan openbaar onder `/social/…` (JPG, 15 MB), want Meta haalt ze op via een URL.
+- **TikTok en Pinterest:** later via een planner. Reageren en DM's blijven handwerk, of vallen weg.
+
 ## 18 oktober 2026 — Engels voorbereid, achter een schakelaar
 
 - **Geen vlaggen** (een vlag is een land, geen taal). In plaats daarvan: een rustige tekstknop "NL · EN" in de header (op telefoon in de footer), een eenmalige suggestie "This page in English?" als de browser niet op Nederlands staat (nooit automatisch doorsturen), en echte adressen `/en` met hreflang voor Google. De keuze wordt een jaar onthouden.
