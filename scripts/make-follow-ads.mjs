@@ -31,7 +31,7 @@ const pages = {};
 
 // 1. the series promise: one season a week
 pages["feed-1-one-season-a-week"] = [1080, 1350, `<div style="width:1080px;height:1350px;padding:70px;display:grid;grid-template-rows:auto 1fr auto;gap:36px">
-  <div style="display:flex;justify-content:space-between;align-items:center">${MARK}<span class="eyebrow">Every Monday</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:center">${MARK}<span class="eyebrow">Every Wednesday</span></div>
   <div style="display:grid;grid-template-rows:auto 1fr;gap:30px">
     <div class="bod" style="font-size:96px;line-height:1">12 seasons.<br><i>One a week.</i></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:380px 380px;gap:14px">${["lente", "zomer", "herfst", "winter"].map((s, i) => `<div style="position:relative;overflow:hidden"><img src="${img(`seasons/family-${s}.jpg`)}" style="width:100%;height:100%;object-fit:cover;display:block"><span class="bod" style="position:absolute;left:14px;bottom:12px;font-size:34px;background:#F6F2EC;padding:2px 12px">${["Spring", "Summer", "Autumn", "Winter"][i]}</span></div>`).join("")}</div></div>
@@ -89,7 +89,7 @@ pages["story-1-whats-your-season"] = [1080, 1920, `<div style="width:1080px;heig
   <img src="${img("seasons/family-winter.jpg")}" style="position:absolute;left:0;right:0;top:0;width:100%;height:1220px;object-fit:cover">
   <div style="position:absolute;left:70px;right:70px;top:1260px;display:grid;gap:30px">
     <div class="bod" style="font-size:100px;line-height:1">What's<br><i>your season?</i></div>
-    <p style="font-size:32px;line-height:1.4">One season every Monday. Find yours.</p>
+    <p style="font-size:32px;line-height:1.4">One season every Wednesday. Find yours.</p>
     <div>${FOLLOW()}</div></div></div>`];
 pages["story-2-same-face"] = [1080, 1920, `<div style="width:1080px;height:1920px;position:relative;overflow:hidden">
   <div style="position:absolute;top:250px;left:70px;right:70px" class="bod"><div style="font-size:96px;line-height:1">Same face.<br><i>Different colour.</i></div></div>

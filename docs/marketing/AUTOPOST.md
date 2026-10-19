@@ -1,6 +1,6 @@
 # Instagram plaatst zichzelf: eenmalige koppeling (±15 minuten)
 
-*19 oktober 2026. Daarna plaatst de site elke maandag om 19:00 de seizoenscarrousel, en de eerste 4 donderdagen een volgers-beeld. Een dag van tevoren krijg je een mail; overslaan kan in **/lab/social**.*
+*19 oktober 2026. Daarna plaatst de site elke woensdag om 18:30 de seizoenscarrousel, en de eerste 4 donderdagen om 12:00 een volgers-beeld. Een dag van tevoren krijg je een mail; overslaan kan in **/lab/social**.*
 
 **Geen wachtwoorden:** je maakt een sleutel aan in je eigen Meta-app. Je Facebook-profiel met professionele modus mag blijven bestaan, maar is hiervoor niet nodig. Intrekken kan altijd: Meta → Instellingen → Bedrijfsintegraties, of de app verwijderen.
 
@@ -33,7 +33,7 @@ Ik controleer de sleutel met `node scripts/ig-check.mjs`. Dat toont alleen je ac
 1. **Supabase → SQL Editor:** run `supabase/migrations/0008_social_posts.sql`.
 2. **Vercel → Environment Variables:**
    - `IG_ACCESS_TOKEN` (**Secret**, uit je `.env`);
-   - `SOCIAL_START` (Config) = de maandag waarop de reeks begint, bijvoorbeeld `2026-10-26`.
+   - `SOCIAL_START` (Config) = de maandag van de week waarin de reeks begint, bijvoorbeeld `2026-10-19`. De carrousel van die week gaat op woensdag online.
 
    Daarna **Redeploy**.
 3. Open **/lab/social**. Bovenaan moet staan: "Koppeling: ✓ @kulortnyanse". Wil je testen? Klik bij de eerste post op **Nu plaatsen**.

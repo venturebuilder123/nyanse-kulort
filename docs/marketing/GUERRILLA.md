@@ -4,7 +4,7 @@
 
 ## 0. In één zin
 
-**"12 seasons. One a week."** Elke maandag één seizoen, op Instagram als carrousel en op TikTok als video. Daartussen korte, herkenbare video's die mensen naar elkaar doorsturen ("dit ben jij!"). Doorsturen en bewaren laten een account groeien, niet likes.
+**"12 seasons. One a week."** Elke woensdag één seizoen, op Instagram als carrousel en op TikTok als video. Daartussen korte, herkenbare video's die mensen naar elkaar doorsturen ("dit ben jij!"). Doorsturen en bewaren laten een account groeien, niet likes.
 
 ## 1. Doelen voor de eerste 4 weken (AANNAME, wekelijks meten)
 
@@ -29,7 +29,7 @@ Zie de mockups: `assets/social/mockup-instagram.png` en `assets/social/mockup-ti
 - **Profielfoto:** `avatar-monogram.png` (Ø | N).
 - **Highlights** (nu Engels): Colours · Seasons · Guide · Card · Looks · FAQ. Bestanden: `assets/social/highlight-*.png`.
 - **Drie vastgezette posts** (nu Engels): `pinned-1-wat.png`, `pinned-2-seizoenen.png`, `pinned-3-krijg.png`.
-- **Rastervolgorde:** elke maandag een seizoenscarrousel; daartussen een volgers-beeld (`assets/social/follow/`) of een Reel.
+- **Rastervolgorde:** elke woensdag een seizoenscarrousel (automatisch, zie AUTOPOST.md); daartussen een volgers-beeld (`assets/social/follow/`) of een Reel.
 
 **TikTok**
 - Maak een **zakelijk account** (gratis). Daarmee mag je een link in je bio zetten zonder eerst 1.000 volgers te hebben (AANNAME: TikTok wijzigt deze regels nogal eens; controleer het bij het aanmaken). Daarnaast krijg je statistieken.
@@ -59,21 +59,25 @@ Zie de mockups: `assets/social/mockup-instagram.png` en `assets/social/mockup-ti
 
 | Dag | Instagram | TikTok | 15 minuten guerrilla |
 |---|---|---|---|
-| **Ma** | Seizoenscarrousel (6 slides) + Story met de poll "Are you a ___?" | Seizoensvideo (zie format A) | Reageer op 10 posts over kleuranalyse |
-| **Di** | Story: "I'm a ___"-template met de "Add Yours"-sticker | Format B of C | Stitch of duet op 1 trending video over colour analysis |
-| **Wo** | Reel (format A of D) | Zelfde video, eigen bijschrift | DM 2 micro-creators (zie §6) |
-| **Do** | Volgers-beeld uit `follow/` | Format E (vragen beantwoorden) | Reageer op 10 posts |
+| **Ma** | Story: poll "Which season are you?" | Format B of C | Reageer op 10 posts over kleuranalyse |
+| **Di** | Reel (format D) | Zelfde video, eigen bijschrift | Stitch of duet op 1 trending video over colour analysis |
+| **Wo** | **18:30 automatisch:** seizoenscarrousel. Jij: Story "I'm a ___" met de "Add Yours"-sticker | Seizoensvideo (format A) | DM 2 micro-creators (zie §6) |
+| **Do** | **12:00 automatisch:** volgers-beeld (de eerste 4 weken) | Format E (vragen beantwoorden) | Reageer op 10 posts |
 | **Vr** | Reel | Format B | Beantwoord alle reacties en DM's |
 | **Za** | Story: kast-tip of achter de schermen | Hergebruik de beste video van de week | |
 | **Zo** | Rust. Kijk in Insights wat werd bewaard en doorgestuurd | | Plan de week in Meta Business Suite en TikTok Studio |
 
-**Beste tijden** (AANNAME, daarna je eigen data): 18:00–21:00 uur, met een piek rond 20:00. Stories verspreid over de dag.
+**Beste tijden** (onderzoek 19 oktober 2026; daarna je eigen data):
+- Midden in de week werkt het best. Buffer (9,6 miljoen posts) zet woensdag 12:00 en 18:00 en donderdag 9:00 bovenaan; vrijdag en zaterdag scoren het slechtst.
+- Metricool ziet bij carrousels de piek op woensdag, rond 14:00, 16:00 en 20:00.
+- Daarom gaat de carrousel automatisch op **woensdag 18:30**, en het volgers-beeld op **donderdag 12:00**.
+- Na 4 weken vergelijken we dit met je eigen Insights (tabblad "Volgers → Meest actieve tijden").
 
 ## 5. Vijf video-formats (TikTok en Reels, 7–20 seconden)
 
 Film bij daglicht aan een raam, met de telefoon verticaal, en praat in de camera of laat tekst in beeld. Echte mensen: jij, je vrouw, vrienden met toestemming.
 
-**A. "Is this your season?"** (maandag)
+**A. "Is this your season?"** (woensdag)
 - 0–2 s: in beeld "Are you a Soft Autumn? 3 signs".
 - 2–12 s: de 3 kenmerken uit slide 2, elk 3 seconden, met het kleurdoek of de waaier in beeld.
 - 12–15 s: "Not sure? Free check, link in bio."

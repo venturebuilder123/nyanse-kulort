@@ -35,7 +35,7 @@ export async function runSocial(now = new Date()) {
     // due, not handled, and not more than 2 days late (a late carousel looks odd; skip it then)
     if (s.at <= now && now.getTime() - s.at.getTime() < 48 * 3600e3 && st !== "published" && st !== "skipped" && st !== "failed") out.push(await postSlot(s));
   }
-  // Sunday after 18:00 Amsterdam: preview of the next 24–48 hours, once
+  // the day before a post: a preview mail to the founder, once per day
   const nextDay = calendar().filter((s) => s.at > now && s.at.getTime() - now.getTime() < 30 * 3600e3);
   const previewKey = `preview-${now.toISOString().slice(0, 10)}`;
   if (nextDay.length && !done.has(previewKey) && mailConfigured() && process.env.MAIL_TO_FOUNDER) {

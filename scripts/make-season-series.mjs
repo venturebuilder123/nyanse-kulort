@@ -99,7 +99,7 @@ function series(key, no) {
       <div style="display:grid;gap:40px;align-content:center">
         <div class="bod" style="font-size:96px;line-height:1">Not a ${s.name}?<br><i>Find yours. Free.</i></div>
         <div style="font-size:32px;line-height:1.5;color:#cfc8bf">One selfie, a few minutes. Your exact type, your best colours and what to leave on the rack.</div>
-        <div style="display:flex;gap:16px"><span style="background:#F6F2EC;color:#141414;padding:24px 34px;font-weight:800;font-size:30px">Link in bio</span><span style="border:2px solid #F6F2EC;padding:22px 32px;font-weight:800;font-size:30px">Follow for next Monday</span></div></div>
+        <div style="display:flex;gap:16px"><span style="background:#F6F2EC;color:#141414;padding:24px 34px;font-weight:800;font-size:30px">Link in bio</span><span style="border:2px solid #F6F2EC;padding:22px 32px;font-weight:800;font-size:30px">Follow for next Wednesday</span></div></div>
       <div class="foot"><span>Save this · Send it to a ${s.name}</span><span class="n" style="color:#cfc8bf">6 / 6</span></div></div>`,
   ];
   // story: "I'm a …" with room for a selfie (people screenshot it, add their photo and share)
