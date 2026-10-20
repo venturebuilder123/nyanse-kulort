@@ -100,7 +100,7 @@ Zet de **Style Guides van de 4 startseizoenen** bovenaan: Soft Autumn, Deep Wint
 
 ## 6. Shop sections
 
-`Spring` · `Summer` · `Autumn` · `Winter`
+`Start here` (de zelftest) · `Spring` · `Summer` · `Autumn` · `Winter`
 
 Wie zijn seizoen kent, zoekt op seizoen, niet op pakket. Een listing kan maar in één sectie staan; de 4 pakketten van een seizoen staan dus samen.
 
@@ -143,11 +143,19 @@ Vragen om een review mag, maar **zonder** iets ervoor terug te bieden (Etsy-rege
 4. Stel het bericht na aankoop en de Thank-you coupon in.
 5. Na 2 weken: de overige 32 listings, verspreid over een paar dagen.
 
-## 11. Volgende product (idee, nog niet gebouwd)
+## 11. De zelftest: "Which season am I?" (€2,95, gebouwd)
 
-**"Which season am I? A self-test workbook"** (€2,95). Op Etsy zoeken veel mensen die hun seizoen nog niet kennen. Een printbare zelftest leidt ze naar een van de 12 seizoenen, en dus naar een pakket.
-
-Dit is de ingang die nu ontbreekt (MENING). Bouwen kan ik in een uur, zeg het maar.
+- **Waar:** in de map `assets/etsy/_self-test/`, met de PDF, 4 foto's, een video en `listing.txt`.
+- **Wat erin zit:** 16 pagina's.
+  - Drie tests met vinkjes: ondertoon, diepte en helderheid. De onbetrouwbare aderentest laten we bewust weg.
+  - Een beslisschema naar een van de 12 seizoenen, met dezelfde regels als de kleurmotor: de sterkste eigenschap geeft het seizoen.
+  - De 12 seizoenen met hun kleuren, en wat je doet als je tussen twee seizoenen zit.
+  - Zes testkleuren van een hele pagina om onder je kin te houden, geprint of op een tablet.
+- **Volgende stap voor de koper:** "zoek je seizoen in onze shop". Er staat geen link naar de site in, omdat Etsy dat niet toestaat.
+- **Eerlijk:** in de PDF en de beschrijving staat dat een zelftest een schatting is en geen professionele draping.
+- **In de shop:**
+  - maak een eigen sectie **"Start here"**;
+  - zet de zelftest als **eerste featured listing**, gevolgd door 3 Style Guides.
 
 ## 12. Campagnefilm met Veo
 

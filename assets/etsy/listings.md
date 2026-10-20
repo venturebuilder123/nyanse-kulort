@@ -2,6 +2,51 @@
 
 *Gemaakt met `npx tsx scripts/make-etsy.ts`. Instructies: docs/marketing/ETSY.md. Elk pakket is een eigen listing: Etsy levert bij varianten dezelfde bestanden.*
 
+## Start here: Which season am I?
+
+### Colour self-test · €2,95
+
+**Titel:** Which Season Am I? Colour Analysis Self Test PDF, Find Your Seasonal Colour Palette, 12 Seasons Quiz, Printable Test Colours
+
+**Prijs (advies):** €2,95
+
+**Tags (13):** what season am i, color analysis test, colour analysis, color analysis, seasonal color quiz, 12 seasons, find your season, color palette quiz, personal colours, self test pdf, skin undertone test, printable drapes, digital download
+
+**Bestanden (Digital files):** `self-test.pdf`
+
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4`
+
+**Map:** `assets/etsy/_self-test/` (met `listing.txt`)
+
+**Beschrijving:**
+
+```
+Not sure which season you are? Find out in fifteen minutes, with a mirror and daylight.
+
+WHAT YOU GET (instant digital download)
+• 16-page PDF self-test, for her and for him
+• 3 quick tests: undertone (warm or cool), depth (light or deep) and clarity (clear or soft)
+• 6 test colours to print or show on a tablet, to hold under your chin
+• A simple chart from your answers to your season, out of all 12
+• The 12 seasons with their colours, and what to do if you're between two
+
+FILES: self-test.pdf
+
+YOUR NEXT STEP
+Every season has four packages in our shop: the Palette Card, the Colour Guide, the Style Guide (our favourite) and the Complete Collection. Search the shop for your season's name.
+
+GOOD TO KNOW
+• This is a digital file: nothing is shipped.
+• A self-test is an estimate, not a professional draping. Dyed hair, a deep tan or make-up can change the result.
+• Colours may look slightly different on screen and in print.
+
+KULØRT · NYANSE: personal colour, made simple.
+
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
+```
+
 ## Soft Autumn
 
 ### 1. Palette Card · €3,95

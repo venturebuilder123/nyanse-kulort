@@ -8,6 +8,8 @@ TIER = {"1": "1-palette-card", "2": "2-colour-guide", "3": "3-style-guide", "4":
 n = 0
 for sec in re.split(r"\n## ", md)[1:]:
     name = sec.split("\n", 1)[0].strip()
+    if name not in SEASON:  # the self-test writes its own listing.txt
+        continue
     for part in re.split(r"\n### ", sec)[1:]:
         get = lambda label: re.search(label + r" ?(.+)", part).group(1).replace("`", "")
         desc = re.search(r"```\n(.*?)\n```", part, re.S).group(1)
