@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import HEROES from "@/lib/brand/heroes.json";
 import { PEOPLE, peopleFor } from "@/lib/brand/people";
 import { familyOf } from "@/lib/color/describe";
 import { oftenNamed } from "@/lib/brand/seasons-copy";
@@ -118,7 +119,7 @@ export default function Guide() {
           <HouseMark />
         </div>
         <span className="g-cover-issue">N°01 · {month}</span>
-        <img className="g-cover-photo" src={`/brand/outfits/${r.profile.match.season}-${config.key}.jpg`} alt="" width={800} height={1600} />
+        <img className="g-cover-photo" src={coverPhoto(r.profile.match.season, config.key)} alt="" width={800} height={1600} />
         <div className="g-cover-bars" aria-hidden="true">{g.pass.map((c) => <i key={c.hex} style={{ background: c.hex }} />)}</div>
         <div className="g-cover-mid">
           <p className="g-kicker">Stijlgids{name ? ` · voor ${name}` : ""}</p>
@@ -511,4 +512,10 @@ function Locked({ text, href, cta }: { text: string; href: string; cta: string }
       </div>
     </main>
   );
+}
+
+/** The cover: a model dressed in this exact season (Gemini portrait) when we have one, else the flat-lay. */
+function coverPhoto(season: SeasonKey, brand: string): string {
+  const key = `${season}-${brand}`;
+  return (HEROES as string[]).includes(key) ? `/brand/heroes/${key}.jpg` : `/brand/outfits/${key}.jpg`;
 }

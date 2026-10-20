@@ -13,6 +13,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { extname, resolve } from "node:path";
 import GARMENTS from "@/lib/brand/garments.json";
+import HEROES from "@/lib/brand/heroes.json";
 import { colorName, paletteFor } from "@/lib/color/palette";
 import { colorNameEn } from "@/lib/color/names-en";
 import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
@@ -191,7 +192,19 @@ const glancePage = (s: Season): P => ({ eb: "At a glance", body: `<h2>${s.name}<
 
 // style pages per side (her / him)
 const who = (b: Brand) => (b === "nyanse" ? "her" : "him");
-const divider = (s: Season, b: Brand): P => ({ raw: (n, total) => `<section class="pg" style="grid-template-rows:1fr auto;padding:0"><div style="position:relative;overflow:hidden"><img src="${img(`outfits/${s.key}-${b}.jpg`)}" style="width:100%;height:100%;object-fit:cover">
+// with a Gemini portrait of this season: the model on the left, the colours of the looks on the right
+const divider = (s: Season, b: Brand): P => (HEROES as string[]).includes(`${s.key}-${b}`) ? heroDivider(s, b) : flatDivider(s, b);
+const heroDivider = (s: Season, b: Brand): P => {
+  const side = b === "nyanse" ? s.her : s.him;
+  const colours = side.looks.flatMap((l) => l.pieces.map((p) => p.color)).filter((c, i, a) => a.findIndex((x) => x.hex === c.hex) === i).slice(0, 8);
+  return { raw: (n, total) => `<section class="pg" style="grid-template-rows:auto 1fr auto"><div class="head">${MARK()}<span class="eb">${s.name} · style</span></div>
+  <div style="display:grid;grid-template-columns:96mm 1fr;gap:9mm;min-height:0"><img src="${A}/brand/heroes/${s.key}-${b}.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%;min-height:0">
+    <div style="display:grid;align-content:end;gap:6mm;padding-bottom:4mm"><div class="eb">${s.name}</div><div class="bod" style="font-size:58pt;line-height:.92">For <i>${who(b)}</i></div>
+      <p class="lead">One colour family from head to toe, with the strongest shade close to the face. On the next pages: four looks, a capsule of twelve pieces, your first five buys and the details that finish it.</p>
+      <div><div class="eb">The colours of these looks</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-top:3mm">${colours.map((c) => `<div><div class="sw" style="height:14mm;background:${c.hex}"></div><div style="font-size:7pt;font-weight:700;margin-top:1mm">${c.name}</div></div>`).join("")}</div></div></div></div>
+  <div class="foot"><span>${s.name} · for ${who(b)}</span><span>${n} / ${total}</span></div></section>` };
+};
+const flatDivider = (s: Season, b: Brand): P => ({ raw: (n, total) => `<section class="pg" style="grid-template-rows:1fr auto;padding:0"><div style="position:relative;overflow:hidden"><img src="${img(`outfits/${s.key}-${b}.jpg`)}" style="width:100%;height:100%;object-fit:cover">
   <div style="position:absolute;left:0;right:0;bottom:0;padding:14mm 16mm;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff"><div class="eb" style="color:#fff">${s.name} · style</div><div class="bod" style="font-size:60pt;line-height:.95">For <i>${who(b)}</i></div></div></div>
   <div class="foot" style="padding:4mm 16mm 9mm"><span>${s.name} · for ${who(b)}</span><span>${n} / ${total}</span></div></section>` });
 const lookBlock = (l: Look, b: Brand) => `<div style="border-top:.5pt solid #141414;padding-top:4mm;display:grid;gap:4mm"><div style="display:grid;grid-template-columns:auto 1fr;gap:8mm;align-items:baseline"><span class="bod" style="font-size:22pt">${l.title}</span><span style="font-size:9pt;color:#4a4540;text-align:right">${l.tip}</span></div>

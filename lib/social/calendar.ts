@@ -10,6 +10,7 @@
 
 import DATA from "./seasons-data.json";
 import EFFECTS from "./effect-posts.json";
+import BENEFITS from "./benefits.json";
 
 export const SEASON_ORDER = ["softAutumn", "deepWinter", "softSummer", "lightSpring", "warmAutumn", "coolWinter", "lightSummer", "brightSpring", "deepAutumn", "coolSummer", "warmSpring", "brightWinter"] as const;
 
@@ -98,11 +99,13 @@ export function pickEffects(effects: Effect[] = EFFECTS as Effect[]): { reel?: E
   const weeks = SEASON_ORDER.map((key, i) => ({ key, i, brand: (i % 2 ? "nyanse" : "kulort") as Effect["brand"], has: effects.some((e) => e.key === key) }));
   const out: { reel?: Effect; still?: Effect }[] = SEASON_ORDER.map(() => ({}));
   for (const w of [...weeks.filter((w) => w.has), ...weeks.filter((w) => !w.has)]) {
-    out[w.i]!.reel = take((e) => e.key === w.key && e.brand === w.brand, (e) => e.key === w.key, (e) => e.brand === w.brand);
+    // no image of this season: borrow one from a season that was already on, never from a coming one
+    const past = (e: Effect) => SEASON_ORDER.indexOf(e.key as (typeof SEASON_ORDER)[number]) < w.i;
+    out[w.i]!.reel = take((e) => e.key === w.key && e.brand === w.brand, (e) => e.key === w.key, (e) => past(e) && e.brand === w.brand, past);
   }
   for (const w of [...weeks.filter((w) => w.has), ...weeks.filter((w) => !w.has)]) {
     if (w.i < FOLLOW.length) continue; // weeks 1–4 have a follow image on Thursday
-    out[w.i]!.still = take((e) => e.key === w.key && e.brand !== out[w.i]!.reel?.brand, (e) => e.key === w.key);
+    out[w.i]!.still = take((e) => e.key === w.key && e.brand !== out[w.i]!.reel?.brand, (e) => e.key === w.key, (e) => SEASON_ORDER.indexOf(e.key as (typeof SEASON_ORDER)[number]) < w.i);
   }
   return out;
 }
@@ -123,7 +126,7 @@ function amsterdamAt(y: number, m: number, d: number, hour: number, minute: numb
   }
   return new Date(Date.UTC(y, m - 1, d, hour - 1, minute));
 }
-export const POST_TIMES = { reel: { weekday: 1, hour: 19, minute: 0 }, carousel: { weekday: 2, hour: 18, minute: 30 }, image: { weekday: 3, hour: 12, minute: 0 } } as const;
+export const POST_TIMES = { benefit: { weekday: 0, hour: 18, minute: 30 }, reel: { weekday: 1, hour: 19, minute: 0 }, carousel: { weekday: 2, hour: 18, minute: 30 }, image: { weekday: 3, hour: 12, minute: 0 } } as const;
 
 export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base = "https://www.kulort-nyanse.com"): Slot[] {
   const [y, m, d] = start.split("-").map(Number) as [number, number, number];
@@ -147,6 +150,15 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
       slots.push({ key: `w${i + 1}-tue-short`, at, kind: "short", images, ...shortMeta(reel, base) });
     }
     if (still) slots.push({ key: `w${i + 1}-thu-effect`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}${still.dir}/post.jpg`], caption: effectCaption(still, false) });
+  });
+  // Monday 18:30, weeks 2–9: the benefit scenes (a moment where your colours make the difference)
+  BENEFITS.forEach((b, i) => {
+    const season = D[b.key.split("-")[1]!]!.name;
+    const tag = "#" + season.toLowerCase().replace(/\s+/g, "");
+    slots.push({
+      key: `w${i + 2}-monday-benefit`, at: day((i + 1) * 7 + POST_TIMES.benefit.weekday, POST_TIMES.benefit), kind: "image", images: [`${base}/social/benefit/${b.key}.jpg`],
+      caption: [`${b.headline.join(" ")} ✨`, ``, `${b.line} This look: ${season}.`, ``, `Which season are you? Find out with one selfie. Free colour check, link in bio.`, ``, AI_LINE, ``, `${tag} #coloranalysis #seasonalcoloranalysis #${b.key.endsWith("kulort") ? "mensstyle" : "personalstyle"} #capsulewardrobe`].join("\n"),
+    });
   });
   return slots;
 }

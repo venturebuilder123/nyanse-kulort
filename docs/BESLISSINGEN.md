@@ -2,6 +2,27 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 20 oktober 2026 — tweede ronde Gemini-beelden: 39 beelden in gebruik
+
+- **8 effectbeelden** (Warm Spring en Bright Winter, telkens alle 4) zitten nu in de reels, Shorts en effect-posts. Daarmee hebben week 11 en 12 hun eigen seizoen.
+  - Heeft een week geen eigen beeld, dan leent hij een beeld van een seizoen dat al geweest is, nooit van een seizoen dat nog moet komen.
+  - Week 1 tot en met 9 zijn ongewijzigd.
+- **23 seizoensportretten** (alles behalve Deep Winter voor hem), in `public/brand/heroes/`:
+  - de **omslag van de betaalde stijlgids** toont nu iemand van jouw seizoen en merk (anders blijft het de flat-lay);
+  - de pagina's **"For her / For him" in de Etsy-gidsen**;
+  - **23 nieuwe Pinterest-pins**, 47 in totaal, twee per dag.
+- **8 voordeel-scènes** als Instagram-posts op **maandag 18:30**, week 2 tot en met 9, met nieuwe sleutels (`w2-monday-benefit`). Elk bijschrift heeft de AI-regel. Elke week heeft nu vier posts: maandag een voordeel, dinsdag een reel en Short, woensdag de carrousel en donderdag een beeld (MENING: goed te doen voor een nieuw account, omdat alles automatisch gaat).
+- **Bewaard:** de originelen staan in `assets/gemini/_originelen/` en blijven buiten git.
+- **Nog open in Gemini:**
+  - het portret Deep Winter voor hem;
+  - effectbeelden voor:
+    - Cool Winter: zij-1 en zij-2;
+    - Bright Spring: hij-1, zij-1 en zij-2;
+    - Deep Autumn: hij-2, zij-1 en zij-2;
+    - Cool Summer: zij-1 en zij-2;
+    - Light Summer: hij-2 en zij-1;
+    - Soft Summer: hij-2.
+
 ## 19 oktober 2026 — Etsy: vier pakketten per seizoen
 
 - **Op voorstel van de oprichter:** per seizoen een klein, middel, groot en compleet pakket, in het Engels en in euro's. Dat zijn 48 listings:

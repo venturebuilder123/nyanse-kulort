@@ -9,6 +9,42 @@
   "season": "Bright Spring"
  },
  {
+  "key": "brightWinter",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/brightWinter-kulort-1",
+  "bad": "#2E6B5E",
+  "good": "#DC143C",
+  "season": "Bright Winter"
+ },
+ {
+  "key": "brightWinter",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/brightWinter-kulort-2",
+  "bad": "#9E2A2B",
+  "good": "#DC143C",
+  "season": "Bright Winter"
+ },
+ {
+  "key": "brightWinter",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/brightWinter-nyanse-1",
+  "bad": "#2E6B5E",
+  "good": "#FF1493",
+  "season": "Bright Winter"
+ },
+ {
+  "key": "brightWinter",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/brightWinter-nyanse-2",
+  "bad": "#9E2A2B",
+  "good": "#FF1493",
+  "season": "Bright Winter"
+ },
+ {
   "key": "coolSummer",
   "brand": "kulort",
   "n": 1,
@@ -241,5 +277,41 @@
   "bad": "#DC143C",
   "good": "#2E6B5E",
   "season": "Warm Autumn"
+ },
+ {
+  "key": "warmSpring",
+  "brand": "kulort",
+  "n": 1,
+  "dir": "/social/effect/warmSpring-kulort-1",
+  "bad": "#4F8F8B",
+  "good": "#A6A04C",
+  "season": "Warm Spring"
+ },
+ {
+  "key": "warmSpring",
+  "brand": "kulort",
+  "n": 2,
+  "dir": "/social/effect/warmSpring-kulort-2",
+  "bad": "#7B2CBF",
+  "good": "#A6A04C",
+  "season": "Warm Spring"
+ },
+ {
+  "key": "warmSpring",
+  "brand": "nyanse",
+  "n": 1,
+  "dir": "/social/effect/warmSpring-nyanse-1",
+  "bad": "#4F8F8B",
+  "good": "#A6A04C",
+  "season": "Warm Spring"
+ },
+ {
+  "key": "warmSpring",
+  "brand": "nyanse",
+  "n": 2,
+  "dir": "/social/effect/warmSpring-nyanse-2",
+  "bad": "#7B2CBF",
+  "good": "#A6A04C",
+  "season": "Warm Spring"
  }
 ]

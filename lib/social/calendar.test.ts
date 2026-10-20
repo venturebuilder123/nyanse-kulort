@@ -5,7 +5,7 @@ describe("instagram calendar", () => {
   const c = calendar("2026-10-26", "https://x");
   it("posts every Wednesday at 18:30 Amsterdam, plus four Thursdays at 12:00", () => {
     expect(c.filter((s) => s.kind === "carousel")).toHaveLength(12);
-    expect(c.filter((s) => s.kind === "image" && !s.key.endsWith("-thu-effect"))).toHaveLength(4);
+    expect(c.filter((s) => s.kind === "image" && !s.key.endsWith("-thu-effect") && !s.key.endsWith("-monday-benefit"))).toHaveLength(4);
     // 28 Oct 2026 is winter time (UTC+1): 18:30 local = 17:30 UTC
     expect(c[0]!.at.toISOString()).toBe("2026-10-28T17:30:00.000Z");
     expect(c[1]!.at.toISOString()).toBe("2026-10-29T11:00:00.000Z");
@@ -51,5 +51,21 @@ describe("effect reels and photos", () => {
     expect(new Set(urls).size).toBe(urls.length);
     expect(c.find((s) => s.key === "w1-tue-reel")!.images[0]).toContain("/softAutumn-kulort-");
     expect(c.find((s) => s.key === "w2-tue-reel")!.images[0]).toContain("/deepWinter-nyanse-");
+  });
+});
+
+describe("benefit posts", () => {
+  const c = calendar("2026-10-19", "https://x");
+  it("posts the 8 scenes on Monday 18:30, weeks 2 to 9, with the AI line", () => {
+    const b = c.filter((s) => s.key.endsWith("-monday-benefit"));
+    expect(b).toHaveLength(8);
+    expect(b[0]!.key).toBe("w2-monday-benefit");
+    // 26 Oct 2026 is winter time: 18:30 local = 17:30 UTC
+    expect(b[0]!.at.toISOString()).toBe("2026-10-26T17:30:00.000Z");
+    expect(b.every((s) => s.caption.includes("AI-generated") && s.images[0]!.startsWith("https://x/social/benefit/"))).toBe(true);
+  });
+  it("never reuses a slot key", () => {
+    const keys = c.map((s) => s.key);
+    expect(new Set(keys).size).toBe(keys.length);
   });
 });

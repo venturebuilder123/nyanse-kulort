@@ -28,8 +28,9 @@ assets/inspiratie/
 assets/brand-originals/
 
 # Gemini originals (large); the generated posts and reels live in public/social/effect
-assets/gemini/effect/
-assets/gemini/_varianten/
+assets/gemini/*/
+assets/gemini/*.jpg
+assets/gemini/*.png
 
 # Etsy packages: generated (npx tsx scripts/make-etsy.ts), large; only the listing texts are tracked
 assets/etsy/*/

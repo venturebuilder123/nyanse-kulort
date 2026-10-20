@@ -1,8 +1,8 @@
-# Pinterest: 24 pins, één keer klaarzetten
+# Pinterest: 47 pins, één keer klaarzetten
 
 *19 oktober 2026. Pins: `public/social/pinterest/` (staan ook online op kulort-nyanse.com/social/pinterest/…). CSV: `assets/social/pinterest/pins.csv`. Opnieuw maken: `node scripts/make-pinterest.mjs`.*
 
-**Wat:** per seizoen 2 pins (het palet en de outfit) in **2:3**, het formaat dat Pinterest het best toont. Elke pin linkt naar /kleuranalyse met een UTM-code (`utm_source=pinterest`), zodat je ziet wat Pinterest oplevert. Het CSV plant **één pin per dag om 20:00**, 24 dagen lang.
+**Wat:** per seizoen 4 pins in **2:3**: het palet, de outfit en een look voor haar en voor hem (de Gemini-portretten; alleen Deep Winter voor hem ontbreekt nog). In de beschrijving van de look-pins staat "Model is AI-generated.", het formaat dat Pinterest het best toont. Elke pin linkt naar /kleuranalyse met een UTM-code (`utm_source=pinterest`), zodat je ziet wat Pinterest oplevert. Het CSV plant **twee pins per dag, om 12:00 en 20:00**, 24 dagen lang. Draai `node scripts/make-pinterest.mjs` vlak voor het uploaden opnieuw, zodat de data vanaf overmorgen lopen.
 
 ## Instellen (jij, ±10 minuten)
 
