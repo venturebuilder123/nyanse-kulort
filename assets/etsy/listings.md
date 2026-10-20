@@ -16,6 +16,8 @@
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
+**Video:** `video.mp4` (onder de foto's, bij "Video")
+
 **Beschrijving:**
 
 ```
@@ -45,7 +47,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -59,6 +61,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -92,7 +96,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -106,6 +110,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -138,7 +144,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -152,6 +158,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -184,7 +192,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Deep Winter
@@ -200,6 +208,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -230,7 +240,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -244,6 +254,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -277,7 +289,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -291,6 +303,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -323,7 +337,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -337,6 +351,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -369,7 +385,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Soft Summer
@@ -385,6 +401,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -415,7 +433,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -429,6 +447,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -462,7 +482,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -476,6 +496,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -508,7 +530,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -522,6 +544,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -554,7 +578,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Light Spring
@@ -570,6 +594,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -600,7 +626,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -614,6 +640,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -647,7 +675,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -661,6 +689,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -693,7 +723,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -707,6 +737,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -739,7 +771,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Warm Autumn
@@ -755,6 +787,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -785,7 +819,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -799,6 +833,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -832,7 +868,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -846,6 +882,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -878,7 +916,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -892,6 +930,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -924,7 +964,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Cool Winter
@@ -940,6 +980,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -970,7 +1012,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -984,6 +1026,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1017,7 +1061,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1031,6 +1075,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1063,7 +1109,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -1077,6 +1123,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1109,7 +1157,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Light Summer
@@ -1125,6 +1173,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1155,7 +1205,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -1169,6 +1219,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1202,7 +1254,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1216,6 +1268,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1248,7 +1302,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -1262,6 +1316,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1294,7 +1350,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Bright Spring
@@ -1310,6 +1366,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1340,7 +1398,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -1354,6 +1412,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1387,7 +1447,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1401,6 +1461,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1433,7 +1495,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -1447,6 +1509,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1479,7 +1543,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Deep Autumn
@@ -1495,6 +1559,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1525,7 +1591,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -1539,6 +1605,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1572,7 +1640,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1586,6 +1654,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1618,7 +1688,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -1632,6 +1702,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1664,7 +1736,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Cool Summer
@@ -1680,6 +1752,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1710,7 +1784,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -1724,6 +1798,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1757,7 +1833,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1771,6 +1847,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1803,7 +1881,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -1817,6 +1895,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1849,7 +1929,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Warm Spring
@@ -1865,6 +1945,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1895,7 +1977,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -1909,6 +1991,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1942,7 +2026,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -1956,6 +2040,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -1988,7 +2074,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -2002,6 +2088,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -2034,7 +2122,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ## Bright Winter
@@ -2050,6 +2138,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -2080,7 +2170,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 2. Colour Guide · €7,95
@@ -2094,6 +2184,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -2127,7 +2219,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 3. Style Guide · €12,95
@@ -2141,6 +2233,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -2173,7 +2267,7 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 
 ### 4. Complete Collection · €19,95
@@ -2187,6 +2281,8 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
 **Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
+
+**Video:** `video.mp4` (onder de foto's, bij "Video")
 
 **Beschrijving:**
 
@@ -2219,6 +2315,6 @@ GOOD TO KNOW
 
 KULØRT · NYANSE: personal colour, made simple.
 
-Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.
+Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.
 ```
 

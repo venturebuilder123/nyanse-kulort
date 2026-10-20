@@ -14,12 +14,17 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
 import { extname, resolve } from "node:path";
 import GARMENTS from "@/lib/brand/garments.json";
 import HEROES from "@/lib/brand/heroes.json";
-import { colorName, paletteFor } from "@/lib/color/palette";
+import { createRequire } from "node:module";
+import { colorName, nameForHex, paletteFor } from "@/lib/color/palette";
 import { colorNameEn } from "@/lib/color/names-en";
 import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import type { Guide, Swatch } from "@/lib/guide/build";
 import { accessoriesEn, item, sw, t } from "./etsy/en";
 import { seasonGuide } from "./etsy/guides";
+import EFFECTS from "@/lib/social/effect-posts.json";
+
+// local ffmpeg for the listing videos (npm install --no-save ffmpeg-static; not in package.json on purpose)
+const FFMPEG: string = createRequire(import.meta.url)("ffmpeg-static");
 
 const OUT = "assets/etsy";
 const ORDER: SeasonKey[] = ["softAutumn", "deepWinter", "softSummer", "lightSpring", "warmAutumn", "coolWinter", "lightSummer", "brightSpring", "deepAutumn", "coolSummer", "warmSpring", "brightWinter"];
@@ -297,6 +302,49 @@ const compareImg = (s: Season) => { const rows: [string, number][] = [["Palette 
     ${rows.map(([label, from]) => `<span style="border-top:1.5px solid #141414;padding:18px 0">${label}</span>${TIERS.map((t) => `<span style="border-top:1.5px solid #141414;padding:18px 0;text-align:center;font-size:34px;${t.no === 3 ? "background:rgba(0,0,0,.04)" : ""}">${t.no >= from ? "✓" : "<span style='color:#c9c2ba'>–</span>"}</span>`).join("")}`).join("")}</div>
   <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:28px;font-weight:700">Instant digital download · for him and for her · in English</span>${MARK("34px")}</div></div>`; };
 
+// ---------- listing video (Etsy: 5–15 s, silent, MP4) ----------
+// The effect, the package, its real pages with one line each, the comparison and the end card.
+// Scenes are stills (1600×1200, like the photos), joined with ffmpeg crossfades and slides.
+type Effect = { key: string; brand: string; n: number; bad: string; good: string };
+const effectFor = (key: SeasonKey) => (EFFECTS as Effect[]).filter((e) => e.key === key).sort((a, b) => Number(a.brand !== "nyanse") - Number(b.brand !== "nyanse") || a.n - b.n)[0];
+const enName = (hex: string) => { const nl = nameForHex(hex, "nyanse"); try { return nl ? colorNameEn(nl) : hex; } catch { return hex; } };
+const vChip = (ok: boolean, hex: string) => `<span style="display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:999px;font-weight:800;font-size:26px;background:${ok ? "#F6F2EC" : "rgba(20,20,20,.8)"};color:${ok ? "#141414" : "#F6F2EC"}"><b>${ok ? "✓" : "✕"}</b><i style="width:26px;height:26px;border-radius:50%;background:${hex};display:block;box-shadow:0 0 0 3px rgba(255,255,255,.9)"></i>${enName(hex)}</span>`;
+const sceneEffect = (s: Season, e: Effect) => `<div style="width:1600px;height:1200px;background:#F6F2EC;display:grid;grid-template-columns:967px 1fr">
+  <div style="position:relative"><img src="${A}/gemini/effect/effect-${e.key}-${e.brand}-${e.n}.jpg" style="width:967px;height:1200px;object-fit:cover;object-position:top">
+    <div style="position:absolute;left:22px;top:22px">${vChip(false, e.bad)}</div><div style="position:absolute;left:505px;top:22px">${vChip(true, e.good)}</div></div>
+  <div style="padding:0 60px;display:grid;align-content:center;gap:30px"><div class="bod" style="font-size:86px;line-height:.95">Same face.<br><i>Different colour.</i></div><div style="font-size:30px;line-height:1.4;color:#4a4540">The right colours make your face light up. These are the ${s.name} ones.</div></div></div>`;
+const sceneTitle = (s: Season, tier: Tier) => `<div style="width:1600px;height:1200px;background:#E9E3DA;display:grid;align-content:center;padding:0 140px;gap:40px">
+  <span style="font-size:28px;font-weight:800;background:#141414;color:#F6F2EC;padding:10px 22px;border-radius:40px;justify-self:start">${tier.no} of 4 · ${tier.name}</span>
+  <div class="bod" style="font-size:150px;line-height:.92">${s.name}<br><i>${tier.name}</i></div>
+  <div style="display:flex;gap:14px">${s.palette.slice(0, 10).map((c) => `<i style="width:84px;height:84px;border-radius:50%;background:${c.hex};display:block"></i>`).join("")}</div>
+  <div style="font-size:32px;font-weight:700">Instant download · for her and for him</div></div>`;
+const scenePage = (src: string, cap: string, n: number) => `<div style="width:1600px;height:1200px;background:#E9E3DA;display:grid;grid-template-columns:860px 1fr;align-items:center">
+  <img src="${src}" style="height:1060px;justify-self:center;box-shadow:0 30px 70px rgba(40,30,20,.28);transform:rotate(${n % 2 ? 1.2 : -1.2}deg)">
+  <div style="padding-right:110px;display:grid;gap:24px"><span class="bod" style="font-size:60px;color:#6F6862">0${n + 1}</span><div class="bod" style="font-size:84px;line-height:1">${cap}</div></div></div>`;
+const sceneEnd = (s: Season, tier: Tier) => `<div style="width:1600px;height:1200px;background:#F6F2EC;display:grid;align-content:center;justify-items:center;gap:44px;text-align:center">
+  ${MARK("40px")}<div class="bod" style="font-size:110px;line-height:.95">Your colours,<br><i>ready to use.</i></div>
+  <div style="font-size:34px;font-weight:700">${s.name} · ${tier.name} · instant download</div>
+  <div style="display:flex;gap:12px">${s.palette.slice(0, 8).map((c) => `<i style="width:64px;height:64px;border-radius:50%;background:${c.hex};display:block"></i>`).join("")}</div></div>`;
+async function listingVideo(d: string, s: Season, tier: Tier, pages: { src: string; cap: string }[]) {
+  const tmp = `${d}/_video`; mkdirSync(tmp, { recursive: true });
+  const scenes: { file: string; dur: number; tr: string }[] = [];
+  const e = effectFor(s.key);
+  if (e && existsSync(`assets/gemini/effect/effect-${e.key}-${e.brand}-${e.n}.jpg`)) { await shot(`${tmp}/0.jpg`, sceneEffect(s, e), 1600, 1200); scenes.push({ file: `${tmp}/0.jpg`, dur: 2.4, tr: "fade" }); }
+  await shot(`${tmp}/1.jpg`, sceneTitle(s, tier), 1600, 1200); scenes.push({ file: `${tmp}/1.jpg`, dur: 1.8, tr: "slideleft" });
+  for (const [i, pg] of pages.entries()) { await shot(`${tmp}/p${i}.jpg`, scenePage(pg.src, pg.cap, i), 1600, 1200); scenes.push({ file: `${tmp}/p${i}.jpg`, dur: 1.6, tr: "slideleft" }); }
+  scenes.push({ file: `${d}/listing-3.jpg`, dur: 2.0, tr: "fade" });
+  await shot(`${tmp}/end.jpg`, sceneEnd(s, tier), 1600, 1200); scenes.push({ file: `${tmp}/end.jpg`, dur: 1.8, tr: "fade" });
+  const X = 0.45; // transition length
+  const args = ["-y", "-loglevel", "error"];
+  for (const sc of scenes) args.push("-loop", "1", "-t", String(sc.dur), "-framerate", "30", "-i", sc.file);
+  let f = scenes.map((_, i) => `[${i}:v]scale=1600:1200,setsar=1,fps=30,format=yuv420p[s${i}]`).join(";");
+  let prev = "s0", t = scenes[0]!.dur;
+  for (let i = 1; i < scenes.length; i++) { const out = `x${i}`; f += `;[${prev}][s${i}]xfade=transition=${scenes[i - 1]!.tr}:duration=${X}:offset=${(t - X).toFixed(2)}[${out}]`; t += scenes[i]!.dur - X; prev = out; }
+  execFileSync(FFMPEG, [...args, "-filter_complex", f, "-map", `[${prev}]`, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-profile:v", "high", "-crf", "21", "-movflags", "+faststart", `${d}/video.mp4`]);
+  rmSync(tmp, { recursive: true });
+  return Math.round(t * 10) / 10;
+}
+
 // ---------- listing text ----------
 function listing(s: Season, tier: Tier, pages: number, files: string[], photos: string[]): string {
   const n = s.name;
@@ -337,9 +385,9 @@ function listing(s: Season, tier: Tier, pages: number, files: string[], photos: 
     `KULØRT · NYANSE: personal colour, made simple.`,
     ``,
     // Etsy's creativity standards ask sellers to disclose AI help; this covers the photos
-    `Designed by KULØRT · NYANSE. Product photos were created with the help of AI tools.`,
+    `Designed by KULØRT · NYANSE. Product photos and videos were created with the help of AI tools.`,
   ].join("\n");
-  return `### ${tier.no}. ${tier.name} · €${tier.price}\n\n**Titel:** ${titles[tier.id]!.slice(0, 140)}\n\n**Prijs (advies):** €${tier.price}\n\n**Tags (13):** ${tags.join(", ")}\n\n**Bestanden (Digital files):** ${files.map((f) => `\`${f}\``).join(", ")}\n\n**Foto's (in deze volgorde):** ${photos.map((f) => `\`${f}\``).join(", ")}\n\n**Beschrijving:**\n\n\`\`\`\n${desc}\n\`\`\`\n`;
+  return `### ${tier.no}. ${tier.name} · €${tier.price}\n\n**Titel:** ${titles[tier.id]!.slice(0, 140)}\n\n**Prijs (advies):** €${tier.price}\n\n**Tags (13):** ${tags.join(", ")}\n\n**Bestanden (Digital files):** ${files.map((f) => `\`${f}\``).join(", ")}\n\n**Foto's (in deze volgorde):** ${photos.map((f) => `\`${f}\``).join(", ")}\n\n**Video:** \`video.mp4\` (onder de foto's, bij "Video")\n\n**Beschrijving:**\n\n\`\`\`\n${desc}\n\`\`\`\n`;
 }
 
 // ---------- render ----------
@@ -348,7 +396,7 @@ const ctx = await b.newContext();
 await ctx.route(`${A}/**`, async (route) => {
   const path = new URL(route.request().url()).pathname;
   if (path === "/") return route.fulfill({ contentType: "text/html", body: "<!doctype html><title>etsy</title>" });
-  const f = resolve("public", "." + decodeURIComponent(path));
+  const f = path.startsWith("/gemini/") ? resolve("assets", "." + decodeURIComponent(path)) : resolve("public", "." + decodeURIComponent(path));
   const type = { ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp" }[extname(f)] ?? "application/octet-stream";
   return existsSync(f) ? route.fulfill({ body: readFileSync(f), contentType: type, headers: { "Access-Control-Allow-Origin": "*" } }) : route.fulfill({ status: 404 });
 });
@@ -394,14 +442,15 @@ for (const key of ONLY ? [ONLY] : ORDER) {
     const d = `${dir}/${tier.id}`;
     mkdirSync(d, { recursive: true });
     const files: string[] = [];
-    let pages = 0, inside: string[] = [];
+    let pages = 0, inside: string[] = [], vid: { src: string; cap: string }[] = [];
     // the palette card and wallpaper come with every package
     const cardPages = await pdf(`${d}/palette-card.pdf`, [sheetPage(s), walletPage(s)], `${s.name} · Palette Card`);
-    if (tier.no === 1) { pages = cardPages; inside = await thumbs([0, 1]); }
+    if (tier.no === 1) { pages = cardPages; inside = await thumbs([0, 1]); vid = [{ src: inside[0]!, cap: `${s.palette.length} colours, <i>names and hex codes</i>` }, { src: inside[1]!, cap: "Wallet cards <i>to cut out</i>" }]; }
     files.push("palette-card.pdf");
     if (tier.no === 2) {
       pages = await pdf(`${d}/colour-guide.pdf`, [cover(s, tier, img(`seasons/season-${key}.jpg`)), ...colourGuide], `${s.name} · Colour Guide`);
       inside = await thumbs([0, 2, 4, 5]);
+      vid = [{ src: inside[1]!, cap: `Your ${s.palette.length} <i>colours</i>` }, { src: inside[2]!, cap: "Your white, your dark, <i>your denim</i>" }, { src: inside[3]!, cap: "Not this, <i>but this</i>" }];
       files.unshift("colour-guide.pdf");
     }
     if (tier.no >= 3) {
@@ -411,6 +460,8 @@ for (const key of ONLY ? [ONLY] : ORDER) {
       pages = await pdf(`${d}/${name}`, doc, `${s.name} · ${tier.name}`);
       const firstLook = doc.findIndex((x, i) => i > 8 && "eb" in x && x.eb.startsWith("Looks"));
       inside = await thumbs([0, 3, firstLook, firstLook + 2, complete ? doc.length - 1 : firstLook + 4]);
+      const [herDivider, himLook] = await thumbs([firstLook - 1, doc.findIndex((x, i) => i > firstLook + 4 && "eb" in x && x.eb === "Looks for him")]);
+      vid = [{ src: herDivider!, cap: "For her <i>and for him</i>" }, { src: inside[2]!, cap: "Four looks, <i>one colour family</i>" }, { src: inside[3]!, cap: "A capsule <i>of twelve</i>" }, { src: himLook!, cap: "His looks, <i>his colours</i>" }];
       files.unshift(name);
       if (complete) {
         await pdf(`${d}/colour-fan.pdf`, fanPages(s), `${s.name} · Colour fan`);
@@ -418,6 +469,7 @@ for (const key of ONLY ? [ONLY] : ORDER) {
         await pdf(`${d}/workbook.pdf`, workbookPages(s), `${s.name} · Workbook`);
         const wbThumb = await thumbs([1]);
         inside = [inside[0]!, inside[2]!, inside[4]!, fanThumb[0]!, wbThumb[0]!];
+        vid = [vid[0]!, vid[1]!, { src: fanThumb[0]!, cap: "A colour fan <i>to print</i>" }, { src: wbThumb[0]!, cap: "A workbook <i>to use it</i>" }];
         files.push("colour-fan.pdf", "workbook.pdf");
       }
     }
@@ -439,8 +491,9 @@ for (const key of ONLY ? [ONLY] : ORDER) {
     const photos = ["listing-1.jpg", "listing-2.jpg", "listing-3.jpg"];
     const effect = ["nyanse-1", "kulort-1", "nyanse-2", "kulort-2"].map((x) => `assets/gemini/effect/effect-${key}-${x}.jpg`).find(existsSync);
     if (effect) { execFileSync("sips", ["-Z", "2000", "-s", "formatOptions", "85", effect, "--out", `${d}/listing-4.jpg`], { stdio: "ignore" }); photos.push("listing-4.jpg"); }
+    const secs = await listingVideo(d, s, tier, vid);
     md += listing(s, tier, pages, files, photos) + "\n";
-    console.log("wrote", d, `(${pages} pages)`);
+    console.log("wrote", d, `(${pages} pages, video ${secs} s)`);
   }
 }
 await b.close();
