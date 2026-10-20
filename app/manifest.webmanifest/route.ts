@@ -7,7 +7,7 @@ export function GET(req: NextRequest) {
   const { brand } = resolveBrand({ host: req.headers.get("host"), brandCookie: req.cookies.get(BRAND_COOKIE)?.value });
   const b = BRANDS[brand];
   const copy = VOICES[b.voices[0]!];
-  const icon = (name: string, size: number, purpose?: string) => ({ src: `/icons/${brand}-${name}.png`, sizes: `${size}x${size}`, type: "image/png", ...(purpose ? { purpose } : {}) });
+  const icon = (name: string, size: number, purpose?: string) => ({ src: `/icons/monogram-${name}.png`, sizes: `${size}x${size}`, type: "image/png", ...(purpose ? { purpose } : {}) });
   return NextResponse.json(
     {
       id: `/?app=${brand}`,

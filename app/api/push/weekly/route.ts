@@ -36,7 +36,7 @@ export async function GET(req: Request) {
     try {
       await webpush.sendNotification(
         { endpoint: row.endpoint, keys: { p256dh: row.p256dh, auth: row.auth } },
-        JSON.stringify({ ...msg, icon: `/icons/${row.brand}-192.png` }),
+        JSON.stringify({ ...msg, icon: "/icons/monogram-192.png" }),
         { TTL: 60 * 60 * 12, urgency: "low" },
       );
       await pushStore.sent(row, now);

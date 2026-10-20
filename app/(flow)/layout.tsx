@@ -16,7 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ...(enabledLocales().includes("en") ? { alternates: { languages: { nl: "https://www.kulort-nyanse.com/", en: "https://www.kulort-nyanse.com/en", "x-default": "https://www.kulort-nyanse.com/" } } } : {}),
     manifest: "/manifest.webmanifest",
     appleWebApp: { capable: true, title: config.name, statusBarStyle: "default" },
-    icons: { apple: `/icons/${config.key}-apple.png`, icon: `/icons/${config.key}-192.png` },
+    // the house monogram Ø|N for both brands; app/favicon.ico (picked up by Next.js) covers the browser tab
+    icons: { apple: "/icons/monogram-apple.png", icon: { url: "/icons/monogram-192.png", type: "image/png" } },
   };
 }
 
