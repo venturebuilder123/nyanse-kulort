@@ -1864,7 +1864,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -1908,7 +1908,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -1955,7 +1955,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -2001,7 +2001,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -2049,7 +2049,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -2093,7 +2093,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `colour-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -2140,7 +2140,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `style-guide.pdf`, `palette-card.pdf`, `wallpaper.png`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
@@ -2186,7 +2186,7 @@ Designed by KULØRT · NYANSE. Product photos were created with the help of AI t
 
 **Bestanden (Digital files):** `complete-guide.pdf`, `palette-card.pdf`, `colour-fan.pdf`, `workbook.pdf`, `wallpapers.zip`
 
-**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`
+**Foto's (in deze volgorde):** `listing-1.jpg`, `listing-2.jpg`, `listing-3.jpg`, `listing-4.jpg`
 
 **Beschrijving:**
 
