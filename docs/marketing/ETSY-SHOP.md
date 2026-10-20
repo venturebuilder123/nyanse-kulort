@@ -149,10 +149,27 @@ Vragen om een review mag, maar **zonder** iets ervoor terug te bieden (Etsy-rege
 
 Dit is de ingang die nu ontbreekt (MENING). Bouwen kan ik in een uur, zeg het maar.
 
-## 12. Optioneel: een campagnefilm met Veo of Gemini
+## 12. Campagnefilm met Veo
 
-Wil je ooit een echte film met beweging, dan is dit de prompt. Gebruik hem alleen met het AI-label waar het platform dat vraagt.
+De shotlijst en de montage staan in **docs/brand/VEO-FILM.md**. Jij maakt 3 tot 5 clips in Gemini (Veo), ik monteer er een Etsy-versie (4:3, zonder geluid) en een social-versie (9:16) van.
 
-```
-8-second vertical video, calm Scandinavian editorial style, soft window light, warm ivory backdrop. A woman in her thirties with light-medium warm skin and soft golden-brown hair, real skin texture, looks into the camera. A dusty royal-blue fabric drape lies around her shoulders; her face looks slightly grey. A hand slowly slides the drape away and a soft teal drape takes its place; her face looks fresh and even, eyes brighter, she smiles slightly. Only the drape colour changes. No text, no logos, no celebrity, no resemblance to any famous person, no beauty filter.
-```
+## 13. Listings plaatsen: met de hand of via de API
+
+**Nu, met de hand (±1 uur voor 16 listings).**
+- Elke pakketmap heeft een **`listing.txt`** met alles om te plakken: de volgorde van de foto's, de video, de bestanden, de prijs, de titel, 13 tags en de beschrijving.
+- Maak de eerste listing helemaal af en gebruik daarna **Copy** in Etsy. Per kopie vervang je de foto's, de video, de bestanden en de tekst.
+
+**Straks automatisch, via de officiële Etsy-API.**
+- Hiervoor heb je een eigen app-sleutel nodig. Etsy keurt die eerst goed, en dat kan enkele dagen duren (AANNAME: zo melden andere ontwikkelaars).
+- Aanvragen:
+  1. Ga naar **etsy.com/developers** → "Create a New App".
+  2. Naam: `KULORT NYANSE listings`.
+  3. Omschrijving: *"Internal tool to create and update listings in our own shop (KulortNyanse). No other users, no data stored."*
+  4. Callback URL: `https://www.kulort-nyanse.com/etsy-callback`.
+  5. Zeg "Etsy-sleutel aangevraagd".
+- Zodra hij is goedgekeurd:
+  - bouw ik het plaatsen;
+  - ik zet alles eerst klaar als **concept**, zodat jij het kunt controleren;
+  - daarna zet ik ze met één opdracht live.
+- Gebruik: de overige 32 listings, prijswijzigingen en nieuwe producten.
+- Kosten: de normale $0,20 per gepubliceerde listing. Concepten kosten niets.
