@@ -43,7 +43,7 @@ function seasonCaption(key: string, no: number): string {
     ``,
     `Your colours for her and for him are on slide 3. What to leave on the rack: slide 5.`,
     ``,
-    `Not a ${s.name}? Find your season with one selfie. Free colour check, link in bio.`,
+    `Not a ${s.name}? Comment SEASON and we'll DM you the free colour check.`,
     `Know you're a ${s.name}? The ${s.name} guides are also on Etsy: KULORTNYANSE.`,
     `Send this to the ${s.name} you know 💌`,
     ``,
@@ -61,7 +61,7 @@ function effectCaption(e: Effect, reel: boolean, teaser = false): string {
     `This is a ${e.season}${e.brand === "nyanse" ? "" : " (for him)"}: the wrong colour makes the skin look dull, the right one makes the face light up.`,
     teaser ? `Tomorrow: the full ${e.season} guide with all the colours.` : `Which one do you see first: the drape or the face?`,
     ``,
-    `Find your season with one selfie. Free colour check, link in bio.`,
+    `Comment SEASON and we'll DM you the free colour check: one selfie, one minute.`,
     ``,
     AI_LINE,
     ``,
@@ -163,7 +163,7 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
     const tag = "#" + season.toLowerCase().replace(/\s+/g, "");
     slots.push({
       key: `w${i + 2}-monday-benefit`, at: day((i + 1) * 7 + POST_TIMES.benefit.weekday, POST_TIMES.benefit), kind: "image", images: [`${base}/social/benefit/${b.key}.jpg`],
-      caption: [`${b.headline.join(" ")} ✨`, ``, `${b.line} This look: ${season}.`, ``, `Which season are you? Find out with one selfie. Free colour check, link in bio.`, ``, AI_LINE, ``, `${tag} #coloranalysis #seasonalcoloranalysis #${b.key.endsWith("kulort") ? "mensstyle" : "personalstyle"} #capsulewardrobe`].join("\n"),
+      caption: [`${b.headline.join(" ")} ✨`, ``, `${b.line} This look: ${season}.`, ``, `Which season are you? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `${tag} #coloranalysis #seasonalcoloranalysis #${b.key.endsWith("kulort") ? "mensstyle" : "personalstyle"} #capsulewardrobe`].join("\n"),
     });
   });
   return slots;

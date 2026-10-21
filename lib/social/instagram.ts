@@ -118,3 +118,15 @@ export async function commentsSince(since: Date, posts = 15): Promise<IgComment[
   }
   return out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
 }
+
+/** A private reply to a comment: lands in the commenter's inbox (or requests). One per comment, within 7 days. */
+export async function privateReply(commentId: string, text: string): Promise<string> {
+  const user = await userId();
+  const r = (await call(`${user}/messages`, { recipient: JSON.stringify({ comment_id: commentId }), message: JSON.stringify({ text }) })) as { message_id?: string };
+  return r.message_id ?? "";
+}
+
+/** A public reply under a comment. */
+export async function replyToComment(commentId: string, message: string): Promise<string> {
+  return (await call(`${commentId}/replies`, { message })).id ?? "";
+}

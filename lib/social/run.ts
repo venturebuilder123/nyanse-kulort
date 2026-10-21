@@ -7,6 +7,7 @@ import { containerState, instagramConfigured, publish, publishContainer, refresh
 import { morningDigest } from "./comments";
 import { uploadShort, youtubeConfigured } from "./youtube";
 import { REMINDERS } from "./reminders";
+import { answerKeywordComments } from "./dm";
 
 /** A slot only runs when its platform is connected; the other platform's slots just wait. */
 export const platformReady = (s: Slot) => (s.kind === "short" ? youtubeConfigured() : instagramConfigured());
@@ -79,6 +80,8 @@ export async function runSocial(now = new Date()) {
     await sendMail(process.env.MAIL_TO_FOUNDER, "Morgen op social", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
     await save(previewKey, "preview_sent");
   }
+  // "Comment SEASON" → a DM with the free check
+  const dms = instagramConfigured() ? await answerKeywordComments(now, (k) => done.has(k), save).catch((e) => `dm error: ${String(e).slice(0, 120)}`) : "instagram off";
   // Meta blocked the API: one warning a day, with what to check (docs/marketing/AUTOPOST.md)
   const blockKey = `blocked-${now.toISOString().slice(0, 10)}`;
   if (out.some((o) => (o as { blocked?: boolean }).blocked) && !done.has(blockKey) && mailConfigured() && process.env.MAIL_TO_FOUNDER) {
@@ -94,5 +97,5 @@ export async function runSocial(now = new Date()) {
     }
   }
   const digest = mailConfigured() && instagramConfigured() ? await morningDigest(now).catch((e) => `digest error: ${String(e).slice(0, 120)}`) : "mail off";
-  return { posted: out, token, digest };
+  return { posted: out, token, digest, dms };
 }
