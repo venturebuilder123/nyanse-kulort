@@ -8,6 +8,8 @@ import { familyOf } from "@/lib/color/describe";
 import { paletteFor, showcase } from "@/lib/color/palette";
 import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import { flowSession } from "@/lib/flow/session";
+import { FLOW } from "@/lib/i18n/flow";
+import { familyName } from "@/lib/i18n/words";
 import { useBrand } from "../BrandProvider";
 import { AppBar, Display, Footer } from "../ui";
 
@@ -21,7 +23,8 @@ const GROUPS: SeasonKey[][] = [
 // "Ik weet mijn kleurtype al": the route for people who already had their colours done.
 // Same guide, same price (no fake discount); the free selfie stays one tap away to check it.
 export default function KnownType() {
-  const { config, ctx } = useBrand();
+  const { config, ctx, locale } = useBrand();
+  const K = FLOW[locale].known;
   const router = useRouter();
 
   function pick(k: SeasonKey) {
@@ -34,11 +37,11 @@ export default function KnownType() {
     <main className="screen">
       <AppBar />
       <div className="pad stack-md">
-        <Display text={["Welk kleurtype", "ben jij?"]} />
-        <p className="sub">Kies je type, dan zie je meteen je kleuren, je look en wat je gids je geeft.</p>
+        <Display text={K.title} />
+        <p className="sub">{K.sub}</p>
         {GROUPS.map((g) => (
           <section key={g[0]} className="q known-group">
-            <h2 className="eyebrow-h">{familyOf(g[0]!)}</h2>
+            <h2 className="eyebrow-h">{familyName(familyOf(g[0]!), locale)}</h2>
             <div className="known-list">
               {g.map((k) => (
                 <button key={k} className="known" onClick={() => pick(k)}>
@@ -52,7 +55,7 @@ export default function KnownType() {
           </section>
         ))}
         <p className="small muted center">
-          Twijfel je? <Link href="/selfie">Doe de gratis selfie</Link>: in 30 seconden weet je het, en je foto verlaat je telefoon niet.
+          {K.doubt} <Link href="/selfie">{K.selfie}</Link>{K.doubtRest}
         </p>
       </div>
       <Footer />

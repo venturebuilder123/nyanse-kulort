@@ -1,5 +1,5 @@
-// Languages (founder, 18 Oct 2026): Dutch first; English is prepared and switched on with
-// NEXT_PUBLIC_LOCALES="nl,en" once the November numbers are in. No flags (a flag is a country,
+// Languages (founder, 18 Oct 2026): Dutch first. English live since 21 Oct 2026 (founder: "the option
+// must be there for customers"); German, Spanish and French later. NEXT_PUBLIC_LOCALES="nl" turns it off. No flags (a flag is a country,
 // not a language): a quiet "NL · EN" switch, a gentle suggestion on the first visit, and real
 // /en URLs so search engines find the English pages.
 
@@ -8,9 +8,9 @@ export const LOCALES: readonly Locale[] = ["nl", "en"];
 export const LOCALE_COOKIE = "nk_lang";
 export const LOCALE_HEADER = "x-nk-locale";
 
-/** Which languages visitors can choose. Until "en" is in the list, the site stays Dutch only. */
+/** Which languages visitors can choose (default Dutch and English). */
 export const enabledLocales = (): Locale[] => {
-  const raw = (process.env.NEXT_PUBLIC_LOCALES ?? "nl").split(",").map((s) => s.trim());
+  const raw = (process.env.NEXT_PUBLIC_LOCALES || "nl,en").split(",").map((s) => s.trim());
   const on = LOCALES.filter((l) => raw.includes(l));
   return on.includes("nl") ? on : ["nl", ...on];
 };

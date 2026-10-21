@@ -3,13 +3,16 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { oftenNamed, SEASON_STORY } from "@/lib/brand/seasons-copy";
+import { oftenNamed, seasonStory } from "@/lib/brand/seasons-copy";
 import { SEASONS } from "@/lib/color/seasons";
 import type { WhyBlock } from "@/lib/brand/types";
 import { clarityWord, depthWord, familyOf, undertoneWord } from "@/lib/color/describe";
 import { hexToLab, labToLch } from "@/lib/color/convert";
 import { LOW_CONFIDENCE } from "@/lib/color/profile";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
+import { FLOW } from "@/lib/i18n/flow";
+import { familyName, colourName, garmentName, scaleWord } from "@/lib/i18n/words";
+import { guideEn } from "@/lib/guide/en";
 import { track } from "@/lib/analytics";
 import { euro, PRICES, type Tier } from "@/lib/flow/pricing";
 import { suggestEmail } from "@/lib/flow/email";
@@ -31,7 +34,8 @@ import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
 
 export default function Result() {
-  const { config, copy, ctx, segment } = useBrand();
+  const { config, copy, ctx, segment, locale } = useBrand();
+  const F = FLOW[locale];
   const t = copy.result;
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
   const [loaded, setLoaded] = useState(false);
@@ -90,13 +94,13 @@ export default function Result() {
   // NYANSE checkout speaks Girl Math: true sums with a wink, never a money promise (BRANDBOOK §4)
   const mathLine = (k: Tier) =>
     config.key !== "nyanse" ? null
-    : k === "digital" ? `Girl math: ${euro(PRICES.digital)} voor 30 kleuren = ${euro(PRICES.digital / 30)} per kleur.`
-    : k === "card" ? `Girl math: ${euro(PRICES.card - PRICES.digital)} extra voor een pas die altijd mee shopt. Tien keer shoppen = ${euro(Math.round((PRICES.card - PRICES.digital) * 10) / 100)} per keer.`
-    : `Girl math: een eigen kleurconsulent, zonder afspraak en zonder reistijd.`;
+    : k === "digital" ? F.result.girlDigital(euro(PRICES.digital, locale), euro(PRICES.digital / 30, locale))
+    : k === "card" ? F.result.girlCard(euro(PRICES.card - PRICES.digital, locale), euro(Math.round((PRICES.card - PRICES.digital) * 10) / 100, locale))
+    : F.result.girlSession;
 
   const pal = useMemo(() => (r ? paletteFor(r.profile, config.key) : null), [r, config.key]);
   if (!loaded) return <main className="screen" />;
-  if (!r || !pal) return <main className="screen"><div className="pad"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div></main>;
+  if (!r || !pal) return <main className="screen"><div className="pad"><p>{F.noAnalysis} <Link href="/selfie">{F.toSelfie}</Link></p></div></main>;
 
   const p = r.profile;
   const family = familyOf(p.match.season);
@@ -106,8 +110,8 @@ export default function Result() {
   // Wingman: wearable anchors (navy, bordeaux) first, the loud colours last
   const six = config.key === "kulort" ? [...showcase(pal)].sort((a, b) => chroma(a.hex) - chroma(b.hex)) : showcase(pal);
   const bad = six[0] ? mostDifferent(six[0], pal.avoid) : undefined;
-  const name = (c: (typeof six)[number]) => colorName(c, config.key);
-  const g = buildGuide(p, config.key);
+  const name = (c: (typeof six)[number]) => colourName(colorName(c, config.key), locale);
+  const g = locale === "en" ? guideEn(buildGuide(p, config.key)) : buildGuide(p, config.key);
   // the glow and the type name: the most vivid palette colour that is light enough to read on dark
   const glow =
     [...g.groups.flatMap((gr) => gr.colors)]
@@ -116,7 +120,7 @@ export default function Result() {
       .sort((a, b) => labToLch(b.lab).C - labToLch(a.lab).C)[0]?.c.hex ?? "#E9DCC4";
   const openHex = new Set(r.paid ? g.groups.flatMap((gr) => gr.colors.map((c) => c.hex)) : six.map((c) => c.hex));
   const toTiers = () => tiersRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-  const ctaLabel = t.ctaFrom.replace("{price}", euro(pay("digital")));
+  const ctaLabel = t.ctaFrom.replace("{price}", euro(pay("digital"), locale));
 
   // one tap per card straight to checkout; nothing is pre-selected (ACM guidance on defaults)
   function buy(k: Tier) {
@@ -131,21 +135,21 @@ export default function Result() {
     <main className="screen">
       <AppBar />
       <Reveal
-        kicker={r.declared ? "Eigen opgave" : ""}
+        kicker={r.declared ? F.result.ownPick : ""}
         provisional={low ? t.provisional : undefined}
-        family={family}
+        family={familyName(family, locale)}
         typeLabel={t.typeLabel}
         season={SEASONS[p.match.season].name}
         between={p.match.border ? t.between.replace("{b}", SEASONS[p.match.second].name) : undefined}
         next={t.next}
-        line={SEASON_STORY[p.match.season].line}
-        text={SEASON_STORY[p.match.season].text}
+        line={seasonStory(p.match.season, locale).line}
+        text={seasonStory(p.match.season, locale).text}
         scales={[
-          { label: copy.analysis.scales.undertone, word: undertoneWord(p.undertone), value: (p.undertone + 1) / 2, left: "koel", right: "warm" },
-          { label: copy.analysis.scales.depth, word: depthWord(p.depth), value: p.depth, left: "licht", right: "diep" },
-          { label: copy.analysis.scales.clarity, word: clarityWord(p.clarity), value: p.clarity, left: "zacht", right: "helder" },
+          { label: copy.analysis.scales.undertone, word: scaleWord(undertoneWord(p.undertone), locale), value: (p.undertone + 1) / 2, left: F.scaleEnds.cool, right: F.scaleEnds.warm },
+          { label: copy.analysis.scales.depth, word: scaleWord(depthWord(p.depth), locale), value: p.depth, left: F.scaleEnds.light, right: F.scaleEnds.deep },
+          { label: copy.analysis.scales.clarity, word: scaleWord(clarityWord(p.clarity), locale), value: p.clarity, left: F.scaleEnds.soft, right: F.scaleEnds.clear },
         ]}
-        named={oftenNamed(p.match.season, config.key)}
+        named={{ ...oftenNamed(p.match.season, config.key, locale), family: familyName(family, locale) }}
         fan={g.summary.core}
         glow={glow}
       />
@@ -161,8 +165,8 @@ export default function Result() {
         {r.declared ? (
           // they told us their type: honest about it, and the free check is one tap away
           <div className="notice">
-            <span>Je koos zelf {SEASONS[r.declared].name}. Zeker weten? Met een selfie checken we het gratis, en je foto verlaat je telefoon niet.</span>
-            <Link href="/selfie" className="notice-link">Check met een selfie →</Link>
+            <span>{F.result.declared(SEASONS[r.declared].name)}</span>
+            <Link href="/selfie" className="notice-link">{F.result.checkSelfie}</Link>
           </div>
         ) : photo && bad && six[0] ? (
           <BeforeAfter photo={photo} face={r.face} bad={bad.hex} good={six[0].hex} badName={name(bad)} goodName={name(six[0])} title={t.baTitle} hint={t.baHint} />
@@ -175,7 +179,7 @@ export default function Result() {
         )}
 
         <section className="q deck-sec">
-          <h2 className="eyebrow-h">{r.paid ? "Jouw 30 kleuren" : "Je eerste 6 kleuren, van ons cadeau"}</h2>
+          <h2 className="eyebrow-h">{r.paid ? F.result.all30 : F.result.first6}</h2>
           {!r.paid && <p className="deck-lede">{t.lockedWhy}</p>}
           <Deck
             cards={g.groups.flatMap((gr) => gr.colors).map((c) => ({ hex: c.hex, name: c.name, open: openHex.has(c.hex) }))}
@@ -191,26 +195,26 @@ export default function Result() {
           const others = g.combos.filter((c) => c !== look);
           return (
             <section className="q wardrobe">
-              <h2 className="eyebrow-h">Je kast, in jouw kleuren</h2>
+              <h2 className="eyebrow-h">{F.result.wardrobe}</h2>
               <figure className="wd-worn">
-                <img src={`/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={`Een outfit in de kleuren van ${SEASONS[p.match.season].name}`} width={800} height={1600} loading="lazy" />
-                <figcaption>{SEASONS[p.match.season].name}, gedragen: zo ziet jouw kleurfamilie eruit van top tot schoen.</figcaption>
+                <img src={`/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={F.result.wornAlt(SEASONS[p.match.season].name)} width={800} height={1600} loading="lazy" />
+                <figcaption>{F.result.worn(SEASONS[p.match.season].name)}</figcaption>
               </figure>
-              <p className="deck-lede">30 kleuren die allemaal met elkaar combineren: alles in je kast past bij alles. Zo ziet dat eruit.</p>
+              <p className="deck-lede">{F.result.combine}</p>
               <figure className="wd-look">
                 <FlatLay pieces={look.pieces} extras={look.extras} className="r-look" brand={config.key} />
                 <figcaption>
                   <b>{look.title}</b>
-                  <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{pc.item} · {pc.color.name}</li>)}</ul>
+                  <ul className="r-look-list">{[...look.pieces, ...look.extras].map((pc) => <li key={pc.item + pc.color.hex}><i style={{ background: pc.color.hex }} />{garmentName(pc.item, locale)} · {pc.color.name}</li>)}</ul>
                   <p className="small muted">{look.tip}</p>
                 </figcaption>
               </figure>
               {!r.paid && (
                 <>
-                  <p className="wd-more-title">+{others.length} looks voor {others.map((c) => c.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " en $1")}, plus je capsule-garderobe, in je gids</p>
+                  <p className="wd-more-title">{F.result.more(others.length, others.map((c) => c.title.toLowerCase()).join(", ").replace(/, ([^,]*)$/, ` ${F.result.and} $1`))}</p>
                   <div className="wd-more">
                     {others.map((c) => (
-                      <button key={c.title} className="wd-shut" onClick={toTiers} aria-label={`Look ${c.title}: staat in je stijlgids`}>
+                      <button key={c.title} className="wd-shut" onClick={toTiers} aria-label={F.result.lookIn(c.title)}>
                         <FlatLay pieces={c.pieces} extras={c.extras} brand={config.key} />
                         <span>{c.title}</span>
                       </button>
@@ -232,7 +236,7 @@ export default function Result() {
 
         {r.paid ? (
           <section className="q">
-            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
+            <Link className="btn" href="/gids">{F.openGuide}</Link>
           </section>
         ) : (
         <section className="q" ref={tiersRef} aria-labelledby="tiers-h">
@@ -243,7 +247,7 @@ export default function Result() {
               return (
                 <div key={k} className={`tier${k === "card" ? " is-rec" : ""}`}>
                   {"badge" in tt && <span className="badge">{tt.badge}</span>}
-                  <span className="tier-head"><b>{tt.name}</b><span className="price">{euro(PRICES[k])}</span></span>
+                  <span className="tier-head"><b>{tt.name}</b><span className="price">{euro(PRICES[k], locale)}</span></span>
                   {k === "card" && (
                     <span className="tier-pass" aria-hidden="true">
                       <span className="tier-pass-top"><span>{config.name}</span><em>{SEASONS[p.match.season].name}</em></span>
@@ -255,7 +259,7 @@ export default function Result() {
                   <ul>{tt.features.map((f) => <li key={f}>{f}</li>)}</ul>
                   {mathLine(k) && <span className="tier-math">{mathLine(k)}</span>}
                   <button className={`btn${k === "card" ? "" : " btn-ghost"}`} onClick={() => buy(k)}>
-                    {(k === "card" ? t.buyCard : k === "session" ? t.buySession : t.buyDigital).replace("{price}", euro(pay(k)))}
+                    {(k === "card" ? t.buyCard : k === "session" ? t.buySession : t.buyDigital).replace("{price}", euro(pay(k), locale))}
                   </button>
                 </div>
               );

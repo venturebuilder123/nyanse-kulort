@@ -8,6 +8,7 @@ import { track } from "@/lib/analytics";
 import { loadAnswers, encodeToken } from "@/lib/flow/answers";
 import { flowSession } from "@/lib/flow/session";
 import type { SelfieCopy } from "@/lib/brand/types";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand } from "../BrandProvider";
 import { AppBar, CheckIcon, Crumbs, LockIcon } from "../ui";
 
@@ -35,7 +36,7 @@ export function customerTip(issues: string[], t: SelfieCopy): string {
 }
 
 export default function Selfie() {
-  const { copy, ctx } = useBrand();
+  const { copy, ctx, locale } = useBrand();
   const t = copy.selfie;
   const router = useRouter();
 
@@ -327,14 +328,14 @@ export default function Selfie() {
 
         {(mode === "intro" || mode === "denied") && qr && (
           <section className="qr-card">
-            <img src={qr} alt="QR-code naar deze pagina op je telefoon" width={140} height={140} />
+            <img src={qr} alt={FLOW[locale].selfie.qrAlt} width={140} height={140} />
             <div><b>{t.desktopTitle}</b><p className="small muted">{t.desktopText}</p></div>
           </section>
         )}
         {mode === "intro" && <p className="small muted center">{t.under16}</p>}
         <div className="privacy-note">
           <p className="trust-main"><LockIcon />{t.trust}</p>
-          <p>De analyse draait op je eigen telefoon. Wij ontvangen je foto niet, bewaren hem niet en delen hem met niemand. Je profiel bestaat alleen uit getallen en verwijder je met één tik. <a href="/privacy">Privacyverklaring</a></p>
+          <p>{FLOW[locale].selfie.privacy} <a href="/privacy">{FLOW[locale].selfie.privacyLink}</a></p>
         </div>
       </div>
     </main>

@@ -12,13 +12,14 @@ import { journey, resumeFor, type Resume } from "@/lib/flow/journey";
 import { invite } from "@/lib/flow/referral";
 import { flowSession } from "@/lib/flow/session";
 import { switchUrl } from "@/lib/flow/switch";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand, useT } from "./BrandProvider";
 import { LandingSections } from "./LandingSections";
 import { AppBar, CheckIcon, Display, Footer, HouseMark, OccasionIcon } from "./ui";
 import { LangSwitch } from "./Lang";
 
 export default function Landing() {
-  const { config, copy, ctx, segment } = useBrand();
+  const { config, copy, ctx, segment, locale } = useBrand();
   const t = useT();
   const rt = copy.retention;
   const router = useRouter();
@@ -147,14 +148,14 @@ export default function Landing() {
               {OCCASIONS.map((o) => (
                 <button key={o.key} className="tile" aria-pressed={answers.occasions.includes(o.key)} onClick={() => pick(o.key)}>
                   <OccasionIcon k={o.key} />
-                  {o.label}
+                  {locale === "en" ? o.en : o.label}
                 </button>
               ))}
             </div>
             <button className="btn l-next" disabled={!answers.occasions.length} onClick={goOn}>
-              {answers.occasions.length ? "Verder" : "Kies één of meer"}
+              {answers.occasions.length ? FLOW[locale].landing.next : FLOW[locale].landing.pick}
             </button>
-            <Link className="known-link" href="/type">Ken je je kleurtype al? Kies het en ga direct naar je stijlgids →</Link>
+            <Link className="known-link" href="/type">{FLOW[locale].landing.known}</Link>
             <p className="trustrow">
               {copy.landing.trustSmall.map((t) => <span key={t}><CheckIcon />{t}</span>)}
             </p>

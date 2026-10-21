@@ -4,16 +4,17 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import { orderKey, verifyAccess, type Access, type OrderKey } from "@/lib/flow/access";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand } from "../BrandProvider";
 import { MiniPass } from "../Hero";
 import { AppBar, Footer } from "../ui";
 
 
 /** Next weekly pass batch (Monday), CLAUDE.md §7. */
-function nextBatch(from = new Date()): string {
+function nextBatch(from = new Date(), dateLocale = "nl-NL"): string {
   const d = new Date(from);
   d.setDate(d.getDate() + ((8 - d.getDay()) % 7 || 7));
-  return d.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
+  return d.toLocaleDateString(dateLocale, { weekday: "long", day: "numeric", month: "long" });
 }
 
 // Confirmation after ordering (decision 15 Oct 2026): the page asks the server whether the
@@ -23,7 +24,8 @@ export default function Done() {
   const [access, setAccess] = useState<Access | null>(null);
   const [viaMollie, setViaMollie] = useState(false);
   const [retrying, setRetrying] = useState(false);
-  const { ctx } = useBrand();
+  const { ctx, locale } = useBrand();
+  const D = FLOW[locale].done;
 
   useEffect(() => {
     const q = new URLSearchParams(location.search);
@@ -54,17 +56,17 @@ export default function Done() {
   const physical = paid && access.tier !== "digital";
   return (
     <main className="screen">
-      <AppBar pill={paid ? "Betaald" : "Besteld"} />
+      <AppBar pill={paid ? D.paid : D.ordered} />
       <div className="pad done-page">
-        {access === null && <p className="muted">Even kijken…</p>}
+        {access === null && <p className="muted">{FLOW[locale].checking}</p>}
         {access && access.state !== "none" && !paid && (
           <>
-            <h1 className="disp sm">Dank je wel. <em>We controleren je betaling.</em></h1>
-            {order && <p className="small muted">Bestelnummer {order.ref}</p>}
+            <h1 className="disp sm">{D.thanks} <em>{D.checkingPay}</em></h1>
+            {order && <p className="small muted">{D.orderNo(order.ref)}</p>}
             {viaMollie ? (
               <>
-                <p className="sub">Dit duurt meestal een paar seconden. Deze pagina opent je stijlgids vanzelf, en je krijgt de link ook per mail.</p>
-                <p className="small muted">Betaling afgebroken of niet gelukt?</p>
+                <p className="sub">{D.seconds}</p>
+                <p className="small muted">{D.failedQ}</p>
                 <button className="btn btn-ghost" disabled={retrying} onClick={async () => {
                   if (!order) return;
                   setRetrying(true);
@@ -72,12 +74,12 @@ export default function Done() {
                   const d = r?.ok ? ((await r.json()) as { checkoutUrl?: string | null }) : null;
                   if (d?.checkoutUrl) location.href = d.checkoutUrl;
                   else setRetrying(false);
-                }}>{retrying ? "Even geduld…" : "Opnieuw betalen"}</button>
+                }}>{retrying ? FLOW[locale].wait : D.retry}</button>
               </>
             ) : (
               <>
-                <p className="sub">Zodra je overschrijving binnen is (meestal dezelfde of de volgende werkdag), krijg je een mail met de link naar je stijlgids. Deze pagina opent hem ook vanzelf.</p>
-                <p className="small muted">Overgemaakt zonder het kenmerk in de omschrijving? Mail ons via de contactpagina, dan zoeken we het op.</p>
+                <p className="sub">{D.transfer}</p>
+                <p className="small muted">{D.noRef}</p>
               </>
             )}
           </>
@@ -85,20 +87,20 @@ export default function Done() {
         {paid && (
           <>
             <div className="done-pass"><MiniPass /></div>
-            <h1 className="disp sm">Je stijlgids <em>staat klaar.</em></h1>
-            {order && <p className="small muted">Bestelnummer {order.ref}</p>}
-            {physical && <p className="sub">Je kleurenpas gaat {nextBatch()} op de post. Je krijgt een mail als hij onderweg is.</p>}
-            {access.tier === "session" && <p className="sub">Voor je persoonlijke advies: beantwoord de mail die je net kreeg met 3 foto&apos;s bij daglicht. Binnen 3 werkdagen krijg je je video.</p>}
-            <Link className="btn" href="/gids">Open mijn stijlgids</Link>
-            <p className="small muted">We hebben de link ook gemaild, zodat je je gids op elk apparaat opent. Niet gezien? Kijk bij Reclame of Spam.</p>
-            <p className="small muted">Tip: zet je gids op je beginscherm via Delen › Zet op beginscherm.</p>
+            <h1 className="disp sm">{D.ready} <em>{D.readyEm}</em></h1>
+            {order && <p className="small muted">{D.orderNo(order.ref)}</p>}
+            {physical && <p className="sub">{D.card(nextBatch(new Date(), D.dateLocale))}</p>}
+            {access.tier === "session" && <p className="sub">{D.session}</p>}
+            <Link className="btn" href="/gids">{FLOW[locale].openGuide}</Link>
+            <p className="small muted">{D.mailed}</p>
+            <p className="small muted">{D.homeTip}</p>
           </>
         )}
         {access?.state === "none" && (
           <>
-            <h1 className="disp sm">Geen bestelling gevonden.</h1>
-            <p className="sub">Open de link uit je bevestigingsmail, of kies je stijlgids op je resultaatpagina.</p>
-            <Link className="btn" href="/resultaat">Naar mijn resultaat</Link>
+            <h1 className="disp sm">{D.none}</h1>
+            <p className="sub">{D.noneText}</p>
+            <Link className="btn" href="/resultaat">{D.toResult}</Link>
           </>
         )}
       </div>

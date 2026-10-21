@@ -74,7 +74,7 @@ export default function Giveaway() {
         <h2 lang="en">In English</h2>
         <p lang="en">
           Free giveaway by {COMPANY.name} (KULØRT · NYANSE), from 2 to 8 November 2026 (Amsterdam time). Follow @kulortnyanse, comment the season you think you are and tag one friend.
-          18+, living in the EU; no purchase needed; one entry per person. Ten winners each get the personal style guide, digital (worth {euro(PRICES.digital)}), with a
+          18+, living in the EU; no purchase needed; one entry per person. Ten winners each get the personal style guide, digital (worth {euro(PRICES.digital, "en")}), with a
           single-use code, drawn at random on 9 November 2026 and contacted only by DM from @kulortnyanse. We never ask for payment or passwords. Not sponsored,
           endorsed or administered by, or associated with Instagram or Meta. The Dutch text above prevails.
         </p>

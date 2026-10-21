@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { labToHex } from "@/lib/color/convert";
+import { FLOW } from "@/lib/i18n/flow";
+import { colourName, scaleWord } from "@/lib/i18n/words";
 import { clarityWord, depthWord, undertoneWord } from "@/lib/color/describe";
 import { shadeLab, type Confirm, type Shade } from "@/lib/color/profile";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
@@ -22,7 +24,7 @@ const STEP_MS_REDUCED = 450;
 // lighter and darker beside it, then eyes and hair. It corrects what the camera got wrong (white
 // balance shifted by bright clothes, shadow on the eyes) before the season is chosen.
 export default function Analyse() {
-  const { config, copy, ctx } = useBrand();
+  const { config, copy, ctx, locale } = useBrand();
   const t = copy.analysis;
   const router = useRouter();
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
@@ -98,7 +100,7 @@ export default function Analyse() {
   if (!r) {
     return (
       <main className="screen">
-        <div className="pad analysis"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div>
+        <div className="pad analysis"><p>{FLOW[locale].noAnalysis} <Link href="/selfie">{FLOW[locale].toSelfie}</Link></p></div>
       </main>
     );
   }
@@ -106,9 +108,9 @@ export default function Analyse() {
   const current = drapes[Math.min(step, drapes.length - 1)]!;
   const p = r.profile;
   const scales = [
-    { label: t.scales.undertone, word: undertoneWord(p.undertone) },
-    { label: t.scales.depth, word: depthWord(p.depth) },
-    { label: t.scales.clarity, word: clarityWord(p.clarity) },
+    { label: t.scales.undertone, word: scaleWord(undertoneWord(p.undertone), locale) },
+    { label: t.scales.depth, word: scaleWord(depthWord(p.depth), locale) },
+    { label: t.scales.clarity, word: scaleWord(clarityWord(p.clarity), locale) },
   ];
 
   return (
@@ -120,7 +122,7 @@ export default function Analyse() {
           <p className="label-sm">{t.label}</p>
           <Drape photo={photo} face={r.face} color={current.c.hex} className="scan-face" />
           <p className={`verdict ${current.ok ? "is-ok" : "is-bad"}`} key={step} aria-live="polite">
-            <b>{current.ok ? "✓" : "✗"} {colorName(current.c, config.key)}</b>
+            <b>{current.ok ? "✓" : "✗"} {colourName(colorName(current.c, config.key), locale)}</b>
             <span>{current.ok ? t.goodLines[Math.floor(step / 2) % t.goodLines.length] : t.badLines[Math.floor(step / 2) % t.badLines.length]}</span>
           </p>
         </section>

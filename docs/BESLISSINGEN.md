@@ -2,6 +2,14 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 21 oktober 2026 — Engels live naast Nederlands
+
+- **Wat:** de hele klantroute is ook in het Engels: landing, kleurcheck, resultaat, checkout, bevestiging, stijlgids, mails, uitlegpagina /en/kleuranalyse, voorwaarden, privacy en contact. Bedragen in Engelse notatie (€12.99). De taal staat in de bestelling, zodat de mails met de link en "je pas is onderweg" in dezelfde taal komen.
+- **Hoe:** /en-URL's en een stille NL · EN-schakelaar. Standaard staan Nederlands en Engels aan; met `NEXT_PUBLIC_LOCALES="nl"` gaat Engels weer uit. Engelse reacties op "SEASON" krijgen de link naar /en/kleuranalyse.
+- **Juridisch:** de Engelse voorwaarden zeggen dat de Nederlandse tekst voorgaat, maar dat dwingend consumentenrecht van het eigen EU-land blijft gelden.
+- **Later:** Duits, Spaans en Frans, op dezelfde manier (één woordenboek per taal).
+- **Kosten:** €0.
+
 ## 21 oktober 2026 — gratis codes alleen voor de digitale gids
 
 - **Vaste regel (oprichter, "dit geldt altijd"):** een code van 100% geldt alleen voor de digitale gids, nooit voor de kleurenpas of het persoonlijke consult.

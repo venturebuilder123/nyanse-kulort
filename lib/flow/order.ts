@@ -17,7 +17,7 @@ export type OrderRow = {
   profile: StoredProfile | null;
 };
 
-export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string> };
+export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string>; locale?: "nl" | "en" };
 
 const num = (v: unknown) => typeof v === "number" && Number.isFinite(v);
 /** Keeps only the known, numeric parts of a profile, capped in size. */
@@ -27,6 +27,7 @@ export function parseProfile(raw: unknown): StoredProfile | null {
   if (typeof p.declared === "string" && p.declared in SEASONS) out.declared = p.declared;
   if (["natural", "dyed", "grey", "none", "covered"].includes(p.hair as string)) out.hair = p.hair as string;
   if (["goud", "zilver", "weetniet"].includes(p.jewel as string)) out.jewel = p.jewel as string;
+  if (p.locale === "en" || p.locale === "nl") out.locale = p.locale;
   const c = p.confirm as Record<string, unknown> | undefined;
   if (c && typeof c === "object") {
     const kept = Object.fromEntries(["skin", "iris", "hair"].filter((k) => ["lighter", "match", "darker"].includes(c[k] as string)).map((k) => [k, c[k] as string]));

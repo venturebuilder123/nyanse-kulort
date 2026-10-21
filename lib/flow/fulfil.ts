@@ -5,11 +5,11 @@
 import { supabaseRest } from "@/lib/db/supabase";
 import { guideMail, sendMail } from "@/lib/mail";
 
-type Paid = { ref: string; email: string; brand: string; tier: string; secret: string; amount_cents: number };
+type Paid = { ref: string; email: string; brand: string; tier: string; secret: string; amount_cents: number; profile: { locale?: string } | null };
 
 export async function markPaid(ref: string, origin: string, method: string, opts: { resend?: boolean } = {}) {
   // only an unpaid order moves to paid; a second call finds nothing to change
-  const res = await supabaseRest(`orders?ref=eq.${ref}&status=eq.awaiting_payment&select=ref,email,brand,tier,secret,amount_cents`, {
+  const res = await supabaseRest(`orders?ref=eq.${ref}&status=eq.awaiting_payment&select=ref,email,brand,tier,secret,amount_cents,profile`, {
     method: "PATCH",
     body: JSON.stringify({ status: "paid", paid_at: new Date().toISOString() }),
     prefer: "return=representation",
@@ -18,13 +18,13 @@ export async function markPaid(ref: string, origin: string, method: string, opts
   const fresh = !!o;
   if (!o && opts.resend) {
     // the founder may press "Betaald" again to resend the mail
-    const r = await supabaseRest(`orders?ref=eq.${ref}&status=in.(paid,shipped,done)&select=ref,email,brand,tier,secret,amount_cents`);
+    const r = await supabaseRest(`orders?ref=eq.${ref}&status=in.(paid,shipped,done)&select=ref,email,brand,tier,secret,amount_cents,profile`);
     [o] = (await r.json()) as Paid[];
   }
   if (!o) return { found: false as const };
 
   const link = `${origin}/gids?o=${o.ref}&k=${o.secret}`;
-  const m = guideMail({ brand: o.brand, tier: o.tier, link });
+  const m = guideMail({ brand: o.brand, tier: o.tier, link, locale: o.profile?.locale === "en" ? "en" : "nl" });
   const mailed = await sendMail(o.email, m.subject, m.text, m.html).catch(() => false);
   if (mailed) await supabaseRest(`orders?ref=eq.${ref}`, { method: "PATCH", body: JSON.stringify({ mailed_at: new Date().toISOString() }) });
 

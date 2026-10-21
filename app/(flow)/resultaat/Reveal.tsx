@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Swatch } from "@/lib/guide/build";
+import { FLOW } from "@/lib/i18n/flow";
+import { useBrand } from "../BrandProvider";
 
 // The unveiling: the person's colour fan opens in 3D, the season name types itself in,
 // their best colour glows behind it. One moment of delight after the effort of the flow.
@@ -21,6 +23,7 @@ export function Reveal(props: {
   glow: string;
   provisional?: string;
 }) {
+  const R = FLOW[useBrand().locale].reveal;
   const [open, setOpen] = useState(false);
   const stage = useRef<HTMLDivElement>(null);
 
@@ -58,9 +61,9 @@ export function Reveal(props: {
       </div>
       <div className="rv-copy">
         {(props.kicker || props.provisional) && <p className="rv-kicker">{props.kicker}{props.provisional && <span className="tag-soft">{props.provisional}</span>}</p>}
-        <p className="rv-level">Je seizoen</p>
+        <p className="rv-level">{R.season}</p>
         <h1 className="disp rv-family">{props.family}</h1>
-        <p className="rv-level">Je precieze kleurtype</p>
+        <p className="rv-level">{R.exactType}</p>
         <p className="rv-type">
           <span className="sr-only">{props.typeLabel}: </span>
           <b aria-label={props.season}>
@@ -72,7 +75,7 @@ export function Reveal(props: {
         {props.between && <p className="rv-between">{props.between}</p>}
         <p className="rv-line">{props.line}</p>
         <p className="rv-desc">{props.text}</p>
-        <div className="rv-scales" aria-label="Zo ben je opgebouwd">
+        <div className="rv-scales" aria-label={R.scales}>
           {props.scales.map((s) => (
             <div key={s.label} className="rv-scale">
               <span className="rv-scale-head"><span>{s.label}</span><b>{s.word}</b></span>
@@ -82,7 +85,7 @@ export function Reveal(props: {
           ))}
         </div>
         {props.named.names.length > 0 && (
-          <p className="rv-named"><span>Vaak genoemd als {props.named.family}:</span> {props.named.names.join(" · ")}</p>
+          <p className="rv-named"><span>{R.named(props.named.family)}</span> {props.named.names.join(" · ")}</p>
         )}
         <p className="rv-cue">{props.next} <span aria-hidden="true">↓</span></p>
       </div>

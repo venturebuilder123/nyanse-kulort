@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { FLOW } from "@/lib/i18n/flow";
+import { useBrand } from "../BrandProvider";
 
 /** Relative luminance above ~0.6: the name goes dark (a white tile with a white name was unreadable). */
 const light = (hex: string) => {
@@ -14,6 +16,7 @@ export type DeckCard = { hex: string; name: string; open: boolean };
 // view; the closed ones are a compact strip of the real colours, blurred and without names.
 // Honest curiosity: every closed tile is a real colour from this person's palette, in the guide.
 export function Deck({ cards, onLocked }: { cards: DeckCard[]; onLocked: () => void }) {
+  const Dk = FLOW[useBrand().locale].deck;
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -38,11 +41,11 @@ export function Deck({ cards, onLocked }: { cards: DeckCard[]; onLocked: () => v
         ))}
       </div>
       {shut.length > 0 && (
-        <button className="deck-shut" onClick={onLocked} aria-label={`Nog ${shut.length} kleuren met naam in je stijlgids`}>
+        <button className="deck-shut" onClick={onLocked} aria-label={Dk.moreAria(shut.length)}>
           <span className="deck-shut-grid" aria-hidden="true">
             {shut.map((c, i) => <i key={c.hex + i} style={{ background: c.hex }} />)}
           </span>
-          <span className="deck-shut-label">+{shut.length} kleuren met naam in je gids <span aria-hidden="true">→</span></span>
+          <span className="deck-shut-label">{Dk.more(shut.length)} <span aria-hidden="true">→</span></span>
         </button>
       )}
     </div>

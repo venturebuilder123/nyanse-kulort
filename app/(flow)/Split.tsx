@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { euro, PRICES } from "@/lib/flow/pricing";
 import { LangSwitch } from "./Lang";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand, useT } from "./BrandProvider";
 
 const NONE = { brand: "none", voice: "none" };
@@ -208,7 +209,7 @@ export default function Split() {
       </section>
 
       <figure className="mh-band mh-reveal">
-        <img src="/brand/editorial/maison-hero-1.jpg" alt="Twee klanten in het atelier houden een stofstaal in hun kleur onder hun kin" width={1800} height={1208} loading="lazy" />
+        <img src="/brand/editorial/maison-hero-1.jpg" alt={FLOW[locale].split.atelierAlt} width={1800} height={1208} loading="lazy" />
         <blockquote>
           <span className="mh-band-mark" aria-hidden="true"><MaisonMark small /></span>
           {h.band[0]} <em>{h.band[1]}</em>

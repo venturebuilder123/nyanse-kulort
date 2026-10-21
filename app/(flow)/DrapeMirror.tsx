@@ -7,12 +7,17 @@ import type { Segment } from "@/lib/brand/segment";
 import { profileForSeason } from "@/lib/color/declared";
 import { colorName, paletteFor, showcase } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
+import { FLOW } from "@/lib/i18n/flow";
+import { colourName } from "@/lib/i18n/words";
+import { useBrand } from "./BrandProvider";
 import { Drape } from "./Drape";
 
 // The drape mirror (from the Nordic prototype): one person, large and calm; tap a colour and the
 // cloth changes. Six from their own palette, two to leave on the rail. Like a session in the atelier,
 // and it shows a whole palette instead of one colour pair.
 export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segment | null }) {
+  const { locale } = useBrand();
+  const M = FLOW[locale].mirror;
   const people = useMemo(() => {
     const own = peopleFor(brand, segment);
     return own.length ? own : PEOPLE[brand];
@@ -22,10 +27,10 @@ export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segm
   const swatches = useMemo(() => {
     const pal = paletteFor(profileForSeason(person.season as SeasonKey), brand);
     return [
-      ...showcase(pal).map((c) => ({ hex: c.hex, name: colorName(c, brand), ok: true })),
-      ...pal.avoid.slice(0, 2).map((c) => ({ hex: c.hex, name: colorName(c, brand), ok: false })),
+      ...showcase(pal).map((c) => ({ hex: c.hex, name: colourName(colorName(c, brand), locale), ok: true })),
+      ...pal.avoid.slice(0, 2).map((c) => ({ hex: c.hex, name: colourName(colorName(c, brand), locale), ok: false })),
     ];
-  }, [person, brand]);
+  }, [person, brand, locale]);
   const [pick, setPick] = useState(0);
   const cur = swatches[Math.min(pick, swatches.length - 1)]!;
 
@@ -35,9 +40,9 @@ export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segm
       <div className="mirror-side">
         <p className="mirror-verdict">
           <b>{cur.name}</b>
-          <span>{cur.ok ? "laat het gezicht oplichten" : "trekt de aandacht weg: laat hangen"}</span>
+          <span>{cur.ok ? M.good : M.bad}</span>
         </p>
-        <div className="mirror-swatches" role="radiogroup" aria-label="Kies een kleur">
+        <div className="mirror-swatches" role="radiogroup" aria-label={M.pick}>
           {swatches.map((s, i) => (
             <button
               key={s.hex}
@@ -50,7 +55,7 @@ export function DrapeMirror({ brand, segment }: { brand: BrandKey; segment: Segm
             />
           ))}
         </div>
-        <p className="mirror-legend"><span>Kleuren die je goed staan</span><span>Minder mooi bij je gezicht</span></p>
+        <p className="mirror-legend"><span>{M.legendGood}</span><span>{M.legendBad}</span></p>
         {people.length > 1 && (
           <div className="mirror-people" aria-label="Ander voorbeeld">
             {people.slice(0, 6).map((p, i) => (

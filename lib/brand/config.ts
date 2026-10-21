@@ -46,15 +46,15 @@ export const DEFAULT_BRAND: BrandKey = "kulort";
 /** UTM shorthand from ads: ?s=gm|at (CLAUDE.md §2). */
 export const VOICE_PARAM: Record<string, VoiceKey> = { gm: "girlmath", bl: "bosslady", at: "bosslady", sg: "signature", wm: "wingman", dr: "director" };
 
-export const OCCASIONS: { key: OccasionKey; label: string }[] = [
-  { key: "werk", label: "Werk" },
-  { key: "weekend", label: "Weekend" },
-  { key: "date", label: "Date" },
-  { key: "feest", label: "Feest" },
+export const OCCASIONS: { key: OccasionKey; label: string; en: string }[] = [
+  { key: "werk", label: "Werk", en: "Work" },
+  { key: "weekend", label: "Weekend", en: "Weekend" },
+  { key: "date", label: "Date", en: "Date" },
+  { key: "feest", label: "Feest", en: "Party" },
 ];
 
-export const BUDGETS: { key: BudgetKey; label: string }[] = [
-  { key: "low", label: "Tot €30" },
-  { key: "mid", label: "€30–80" },
-  { key: "high", label: "€80+" },
+export const BUDGETS: { key: BudgetKey; label: string; en: string }[] = [
+  { key: "low", label: "Tot €30", en: "Up to €30" },
+  { key: "mid", label: "€30–80", en: "€30–80" },
+  { key: "high", label: "€80+", en: "€80+" },
 ];

@@ -4,6 +4,9 @@ import { profileForSeason } from "@/lib/color/declared";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { PRICES, euro } from "@/lib/flow/pricing";
 import { buildGuide } from "@/lib/guide/build";
+import { guideEn } from "@/lib/guide/en";
+import { FLOW } from "@/lib/i18n/flow";
+import { garmentName } from "@/lib/i18n/words";
 import { useBrand } from "./BrandProvider";
 import { DrapeMirror } from "./DrapeMirror";
 import { FlatLay } from "./Flats";
@@ -18,10 +21,11 @@ const GET_IMAGES = ["/brand/ads/note-to-self.jpg", "/brand/ads/workbook.jpg", "/
  * difference, know what you get and what it costs, then one clear next step.
  */
 export function LandingSections({ onStart }: { onStart: () => void }) {
-  const { config, copy, segment } = useBrand();
+  const { config, copy, segment, locale } = useBrand();
+  const L = FLOW[locale].sections;
   const st = copy.story;
   const pg = copy.page;
-  const guide = buildGuide(profileForSeason(EXAMPLE[config.key]), config.key);
+  const guide = locale === "en" ? guideEn(buildGuide(profileForSeason(EXAMPLE[config.key]), config.key)) : buildGuide(profileForSeason(EXAMPLE[config.key]), config.key);
   // NYANSE: a softer weekend look (top, skirt, loafers, scarf); KULØRT: the work look
   const cols = guide.groups.flatMap((gr) => gr.colors);
   const look =
@@ -61,10 +65,10 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
           <p className="sub">{st.proof.text}</p>
         </div>
         <figure className="l-proof-img">
-          <img src={proof} alt={config.key === "kulort" ? "Dezelfde man met een tomaatrode en een indigo doek" : "Dezelfde vrouw met een koningsblauwe en een zacht petrol doek"} width={1200} height={1200} loading="lazy" />
-          <figcaption>Eén doek onder de kin, een heel ander effect.</figcaption>
+          <img src={proof} alt={L.proofAlt(config.key === "kulort")} width={1200} height={1200} loading="lazy" />
+          <figcaption>{L.proofCap}</figcaption>
         </figure>
-        <p className="eyebrow-h l-try">Probeer het zelf: tik op een kleur</p>
+        <p className="eyebrow-h l-try">{L.try}</p>
         <DrapeMirror brand={config.key} segment={segment} />
       </section>
 
@@ -75,7 +79,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
           {st.gets.items.map(([title, text], i) => (
             <article key={title} className="get">
               <img src={GET_IMAGES[i]} alt="" width={1200} height={900} loading="lazy" />
-              <span className="get-n">{i === 0 ? "Gratis" : i === 1 ? `Vanaf ${euro(PRICES.digital)}` : `Met de pas ${euro(PRICES.card)}`}</span>
+              <span className="get-n">{i === 0 ? L.free : i === 1 ? L.from(euro(PRICES.digital, locale)) : L.withCard(euro(PRICES.card, locale))}</span>
               <b>{title}</b>
               <p>{text}</p>
             </article>
@@ -83,9 +87,9 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
         </div>
         <div className="l-look">
           <div>
-            <p className="eyebrow-h">Uit een stijlgids · {look.title.toLowerCase()}</p>
-            <p className="l-look-text">Elke look in je eigen kleuren, met kleding die je echt kunt kopen. Alles combineert met alles.</p>
-            <ul className="r-look-list">{[...look.pieces, ...look.extras].map((p) => <li key={p.item + p.color.hex}><i style={{ background: p.color.hex }} />{p.item} · {p.color.name}</li>)}</ul>
+            <p className="eyebrow-h">{L.fromGuide(look.title.toLowerCase())}</p>
+            <p className="l-look-text">{L.lookText}</p>
+            <ul className="r-look-list">{[...look.pieces, ...look.extras].map((p) => <li key={p.item + p.color.hex}><i style={{ background: p.color.hex }} />{garmentName(p.item, locale)} · {p.color.name}</li>)}</ul>
           </div>
           <FlatLay pieces={look.pieces} extras={look.extras} brand={config.key} className="l-look-lay" />
         </div>
@@ -110,7 +114,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
         <img src={config.key === "kulort" ? "/brand/editorial/maison-door-kulort.jpg" : "/brand/ads/right-choice.jpg"} alt="" width={1200} height={1490} loading="lazy" />
         <div>
           <Display text={st.final} as="h2" />
-          <p className="sub">Je kleurprofiel is gratis. Je persoonlijke stijlgids vanaf {euro(PRICES.digital)}, met kleurenpas {euro(PRICES.card)}.</p>
+          <p className="sub">{L.final(euro(PRICES.digital, locale), euro(PRICES.card, locale))}</p>
           <button className="btn" onClick={onStart}>{pg.final.cta}</button>
         </div>
       </section>

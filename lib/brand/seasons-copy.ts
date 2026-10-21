@@ -4,6 +4,7 @@
 import type { SeasonKey } from "@/lib/color/seasons";
 import type { BrandKey } from "@/lib/brand/types";
 import { familyOf } from "@/lib/color/describe";
+import type { Locale } from "@/lib/i18n/locale";
 
 export const SEASON_STORY: Record<SeasonKey, { line: string; text: string }> = {
   lightSpring: {
@@ -79,7 +80,63 @@ const NAMED_BY_FAMILY: Record<BrandKey, Record<string, string[]>> = {
   },
 };
 
-export function oftenNamed(season: SeasonKey, brand: BrandKey): { family: string; names: string[] } {
+export function oftenNamed(season: SeasonKey, brand: BrandKey, locale: Locale = "nl"): { family: string; names: string[] } {
   const family = familyOf(season);
-  return { family, names: NAMED_BY_FAMILY[brand][family] ?? [] };
+  const names = NAMED_BY_FAMILY[brand][family] ?? [];
+  return { family, names: locale === "en" ? names.map((n) => n.replace("prinses van Wales", "Princess of Wales")) : names };
 }
+
+/** The season story in the visitor's language. */
+export const seasonStory = (season: SeasonKey, locale: Locale) => (locale === "en" ? SEASON_STORY_EN : SEASON_STORY)[season];
+
+// English (21 Oct 2026), same content as the Dutch above.
+export const SEASON_STORY_EN: Record<SeasonKey, { line: string; text: string }> = {
+  lightSpring: {
+    line: "Light as a spring morning.",
+    text: "Your skin, hair and eyes are close together and have a warm, golden undertone. Light, clear colours with some warmth make you glow: peach, light gold, mint. Heavy, dark colours quickly take over.",
+  },
+  warmSpring: {
+    line: "Warm, sunny, full of life.",
+    text: "You have a clearly warm undertone and a fresh look. Gold tones, coral, warm green and turquoise match your natural glow. Cool greys and icy pastels make you look flatter.",
+  },
+  brightSpring: {
+    line: "Clear, warm and unforgettable.",
+    text: "You combine warmth with contrast and clarity. You can wear bright, clean colours without them overpowering you: poppy, jade green, bright blue. Dusty, muted shades don't do you justice.",
+  },
+  lightSummer: {
+    line: "Light, cool and effortless.",
+    text: "Your colours are light and cool, with little contrast. Soft pastels with a blue undertone give you a fresh, calm look: powder pink, lavender, sea blue. Black and bright warm colours are too harsh.",
+  },
+  coolSummer: {
+    line: "Cool, calm and refined.",
+    text: "Your undertone is clearly cool and your colours are medium-bright. Mid-tones with a blue base look fresher on you than anything else: denim, cool pink, grey-blue, raspberry. Orange and golden yellow pull attention away from your face.",
+  },
+  softSummer: {
+    line: "Soft, cool and elegant.",
+    text: "Your colours are muted and cool, with little contrast. Dusty, greyed shades let your face speak: sage, slate, mauve, soft plum. Bright, pure colours are too loud next to you.",
+  },
+  softAutumn: {
+    line: "Warm and soft, like an autumn afternoon.",
+    text: "You have a warm undertone with muted colours. Earthy, soft shades feel like an extension of your skin: camel, olive, soft teal, warm salmon. Cold, bright colours feel disconnected from you.",
+  },
+  warmAutumn: {
+    line: "Rich, warm and spicy.",
+    text: "Your undertone is distinctly warm and your colours are rich. Spicy shades like ochre, olive, rust and teal match your glow. Icy and cool pink colours make you look pale.",
+  },
+  deepAutumn: {
+    line: "Deep, warm and powerful.",
+    text: "You combine depth with warmth. Dark, earthy colours give your face strength: burgundy, forest green, chocolate, teal. Light pastels and icy shades fade away next to you.",
+  },
+  deepWinter: {
+    line: "Deep, cool and striking.",
+    text: "You have depth and contrast on a cool base. Dark jewel tones suit your strong presence: ink blue, emerald, ruby, aubergine. Warm earth tones and soft pastels make you disappear.",
+  },
+  coolWinter: {
+    line: "Cool, clear and sharp.",
+    text: "Your undertone is clearly cool and you can carry a lot of contrast. Jewel tones and clear cool colours suit you: royal navy, emerald, wine red, cool purple. Warm orange and gold are too soft next to you.",
+  },
+  brightWinter: {
+    line: "Clear, cool and full of contrast.",
+    text: "You combine coolness with lots of contrast and clarity. Bright, pure colours and black and white look striking on you: carmine, cobalt, bright emerald. Muted, dusty shades make you look dull.",
+  },
+};

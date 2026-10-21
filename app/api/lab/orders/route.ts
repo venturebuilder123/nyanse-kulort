@@ -26,18 +26,18 @@ export async function POST(req: Request) {
     if (!r.found) return NextResponse.json({ error: "not_found" }, { status: 404 });
     return NextResponse.json({ ok: true, link: r.link, mailed: r.mailed, mailConfigured: mailConfigured() });
   }
-  const res = await supabaseRest(`orders?ref=eq.${ref}&select=ref,secret,email,brand`, {
+  const res = await supabaseRest(`orders?ref=eq.${ref}&select=ref,secret,email,brand,profile`, {
     method: "PATCH",
     body: JSON.stringify({ status }),
     prefer: "return=representation",
   });
-  const [o] = (await res.json()) as { ref: string; secret: string; email: string; brand: string }[];
+  const [o] = (await res.json()) as { ref: string; secret: string; email: string; brand: string; profile: { locale?: string } | null }[];
   if (!o) return NextResponse.json({ error: "not_found" }, { status: 404 });
   const link = `${origin}/gids?o=${o.ref}&k=${o.secret}`;
   // "je pas is onderweg" (CLAUDE.md §7)
   let mailed = false;
   if (status === "shipped") {
-    const m = shippedMail({ brand: o.brand, link });
+    const m = shippedMail({ brand: o.brand, link, locale: o.profile?.locale === "en" ? "en" : "nl" });
     mailed = await sendMail(o.email, m.subject, m.text, m.html).catch(() => false);
   }
   return NextResponse.json({ ok: true, link, mailed, mailConfigured: mailConfigured() });

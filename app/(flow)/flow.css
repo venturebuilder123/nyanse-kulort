@@ -652,6 +652,7 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
   content: "In je gids"; position: absolute; left: 50%; top: 42%; translate: -50% -50%; padding: 5px 10px; border-radius: 999px;
   background: var(--ink); color: var(--bg); font-size: 10.5px; font-weight: 800; letter-spacing: .06em; white-space: nowrap;
 }
+:lang(en) .wd-shut::after { content: "In your guide"; }
 [data-brand="kulort"] .wd-shut::after { border-radius: 2px; text-transform: uppercase; }
 .wd-shut span { font-size: 13px; font-weight: 800; }
 .wd-more-title { margin-top: 8px; font-size: 14.5px; font-weight: 800; }

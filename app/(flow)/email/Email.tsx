@@ -7,6 +7,7 @@ import { paletteFor, showcase } from "@/lib/color/palette";
 import { track } from "@/lib/analytics";
 import { suggestEmail } from "@/lib/flow/email";
 import { flowSession } from "@/lib/flow/session";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand } from "../BrandProvider";
 import { Drape } from "../Drape";
 import { AppBar, Crumbs, Display } from "../ui";
@@ -15,7 +16,7 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
 
 
 export default function Email() {
-  const { config, copy, ctx } = useBrand();
+  const { config, copy, ctx, locale } = useBrand();
   const t = copy.email;
   const router = useRouter();
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
@@ -32,7 +33,7 @@ export default function Email() {
   }, []);
 
   if (!loaded) return <main className="screen" />;
-  if (!r) return <main className="screen"><div className="pad"><p>Nog geen analyse. <Link href="/selfie">Naar de selfie</Link></p></div></main>;
+  if (!r) return <main className="screen"><div className="pad"><p>{FLOW[locale].noAnalysis} <Link href="/selfie">{FLOW[locale].toSelfie}</Link></p></div></main>;
 
   const six = showcase(paletteFor(r.profile, config.key));
   const suggestion = suggestEmail(email);
@@ -80,14 +81,14 @@ export default function Email() {
           </label>
           {error && <p className="small warn-text" role="alert">{error}</p>}
           {!error && suggestion && (
-            <button type="button" className="link-btn left" onClick={() => setEmail(suggestion)}>Bedoel je {suggestion}?</button>
+            <button type="button" className="link-btn left" onClick={() => setEmail(suggestion)}>{FLOW[locale].email.meant(suggestion)}</button>
           )}
           <label className="check">
             <input type="checkbox" checked={optin} onChange={(e) => setOptin(e.target.checked)} />
             <span>{t.optin}</span>
           </label>
           <button className="btn" type="submit">{t.submit}</button>
-          <p className="small muted center"><Link href="/privacy">Zo gaan we met je gegevens om</Link></p>
+          <p className="small muted center"><Link href="/privacy">{FLOW[locale].email.privacy}</Link></p>
         </form>
         <button className="link-btn" onClick={() => router.push("/resultaat")}>{t.skip}</button>
       </div>

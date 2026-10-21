@@ -6,13 +6,15 @@ import { amountFor, formatIban, orderRef, PAYEE } from "@/lib/flow/payment";
 import { euro, type Tier } from "@/lib/flow/pricing";
 import { orderKey } from "@/lib/flow/access";
 import { flowSession } from "@/lib/flow/session";
+import { FLOW } from "@/lib/i18n/flow";
 import { useBrand } from "../BrandProvider";
 
 /** Numbers only: what the guide needs to be rebuilt on another device (never the photo). */
-function profileForOrder() {
+function profileForOrder(locale: string) {
   const r = flowSession.result();
   if (!r) return null;
-  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, confirm: r.confirm, declared: r.declared };
+  // the language goes along so the mails speak it too
+  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, confirm: r.confirm, declared: r.declared, locale };
 }
 
 type Props = { tier: Tier; season: string; friendCode?: string; note?: string | null; onClose: () => void };
@@ -21,7 +23,8 @@ type Props = { tier: Tier; season: string; friendCode?: string; note?: string | 
 // reference → "Ik heb betaald". The digital guide opens straight away; the card ships and the
 // session is planned once the founder has seen the payment.
 export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
-  const { config, voice, copy, ctx } = useBrand();
+  const { config, voice, copy, ctx, locale } = useBrand();
+  const F = FLOW[locale].checkout;
   const t = copy.result;
   const physical = tier !== "digital";
   const [code, setCode] = useState("");
@@ -61,12 +64,12 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, discountCode: percent ? code.trim() : undefined, waiver, ...f, profile: profileForOrder() }),
+        body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, discountCode: percent ? code.trim() : undefined, waiver, ...f, profile: profileForOrder(locale) }),
       });
       // a giveaway code that was used in the meantime: drop it, say so, let them pay or try another
       if (res.status === 409) {
         setPercent(0);
-        setCodeMsg("Deze code is al gebruikt.");
+        setCodeMsg(F.codeUsed);
         setBusy(false);
         return;
       }
@@ -92,7 +95,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       setStep("pay");
       track("checkout_open", ctx, { tier, step: "pay" });
     } catch {
-      setError("Dat lukte nu niet. Probeer het nog eens, of mail ons via de contactpagina.");
+      setError(F.failed);
     }
     setBusy(false);
   }
@@ -116,28 +119,28 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
     return (
       <div className="sheet-body pay">
         <div className="grab" />
-        <p className="eyebrow-h">Betaal {euro(amount)} per bankoverschrijving</p>
+        <p className="eyebrow-h">{F.transferTitle(euro(amount, locale))}</p>
         {/* no QR: Dutch bank apps (Rabobank, ING, ABN AMRO) do not read the EPC transfer QR */}
-        <p className="small muted">Open je bank-app, kies Overmaken en kopieer deze gegevens. Vermeld het kenmerk, dan koppelen we je betaling direct.</p>
+        <p className="small muted">{F.transferText}</p>
         <dl className="pay-lines">
           {[
-            ["Bedrag", euro(amount), amount.toFixed(2).replace(".", ",")],
-            ["Naar", PAYEE.name, PAYEE.name],
+            [F.amount, euro(amount, locale), locale === "en" ? amount.toFixed(2) : amount.toFixed(2).replace(".", ",")],
+            [F.to, PAYEE.name, PAYEE.name],
             ["IBAN", formatIban(PAYEE.iban), PAYEE.iban],
-            ["Kenmerk", remittance, remittance],
+            [F.reference, remittance, remittance],
           ].map(([label, shown, value]) => (
             <div key={label}>
               <dt>{label}</dt>
               <dd>{shown}</dd>
-              <button type="button" className="link-btn" onClick={() => copyText(label!, value!)}>{copied === label ? "Gekopieerd" : "Kopieer"}</button>
+              <button type="button" className="link-btn" onClick={() => copyText(label!, value!)}>{copied === label ? F.copied : F.copy}</button>
             </div>
           ))}
         </dl>
-        <button className="btn" onClick={paid}>Ik heb betaald</button>
+        <button className="btn" onClick={paid}>{F.iPaid}</button>
         <p className="small muted">
-          Zodra je overschrijving binnen is, krijg je een mail met de link naar je stijlgids.
-          {physical && " Je kleurenpas gaat dan op de post."}
-          {tier === "session" && " Daarna vragen we je per mail om 3 foto's voor je persoonlijke advies."}
+          {F.afterTransfer}
+          {physical && F.cardPost}
+          {tier === "session" && F.sessionPhotos}
         </p>
       </div>
     );
@@ -146,13 +149,13 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
   return (
     <form className="sheet-body" onSubmit={submit} noValidate>
       <div className="grab" />
-      <div className="line"><span>{t.tiers[tier].name}</span><b>{percent > 0 ? <><s className="muted">{euro(amountFor(tier, false))}</s> {amount === 0 ? "Gratis" : euro(amount)}</> : euro(amount)}</b></div>
+      <div className="line"><span>{t.tiers[tier].name}</span><b>{percent > 0 ? <><s className="muted">{euro(amountFor(tier, false), locale)}</s> {amount === 0 ? F.free : euro(amount, locale)}</> : euro(amount, locale)}</b></div>
       {friendCode && !percent && <div className="line discount"><span>{copy.retention.friendLine} · {friendCode}</span><b>−€1</b></div>}
-      {percent > 0 && <div className="line discount"><span>Code {code.trim().toUpperCase()} · {percent}%</span><b>{`−${euro(Math.round((amountFor(tier, false) - amount) * 100) / 100)}`}</b></div>}
+      {percent > 0 && <div className="line discount"><span>Code {code.trim().toUpperCase()} · {percent}%</span><b>{`−${euro(Math.round((amountFor(tier, false) - amount) * 100) / 100, locale)}`}</b></div>}
       {/* the Girl Math sum is about the full price; with a code it no longer adds up */}
       {note && !percent && <p className="tier-math">{note}</p>}
       <label className="field">
-        <span>Waar sturen we je stijlgids heen?</span>
+        <span>{F.where}</span>
         <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder="jij@voorbeeld.nl" value={f.email} onChange={set("email")} required />
       </label>
       {physical && (
@@ -174,24 +177,24 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       )}
       {!percent && (codeOpen ? (
         <div className="row-inline">
-          <input value={code} onChange={(e) => { setCode(e.target.value); setCodeMsg(null); }} placeholder="Kortingscode" aria-label="Kortingscode" autoCapitalize="characters" autoComplete="off" />
+          <input value={code} onChange={(e) => { setCode(e.target.value); setCodeMsg(null); }} placeholder={F.codePh} aria-label={F.codePh} autoCapitalize="characters" autoComplete="off" />
           <button type="button" className="btn btn-sm btn-ghost" onClick={async () => {
             const r = await fetch("/api/order/code", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code, tier }) }).catch(() => null);
             const d = r?.ok ? ((await r.json()) as { ok: boolean; percent?: number; reason?: string }) : null;
             if (d?.ok && d.percent) setPercent(d.percent);
-            else setCodeMsg(d?.reason === "digital_only" ? "Deze code geldt alleen voor de digitale gids." : d?.reason === "used" ? "Deze code is al gebruikt." : "Deze code kennen we niet.");
-          }}>Toepassen</button>
+            else setCodeMsg(d?.reason === "digital_only" ? F.codeDigitalOnly : d?.reason === "used" ? F.codeUsed : F.codeUnknown);
+          }}>{F.apply}</button>
         </div>
       ) : (
-        <button type="button" className="link-btn" onClick={() => setCodeOpen(true)}>Heb je een kortingscode?</button>
+        <button type="button" className="link-btn" onClick={() => setCodeOpen(true)}>{F.haveCode}</button>
       ))}
       {codeMsg && <p className="small warn-text" role="alert">{codeMsg}</p>}
       <label className="check">
         <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
-        <span>{t.checkout.withdrawal.replace("de voorwaarden", "\u0000").split("\u0000").flatMap((part, i) => (i ? [<a key="t" href="/voorwaarden" target="_blank">de voorwaarden</a>, part] : [part]))}</span>
+        <span>{(() => { const terms = locale === "en" ? "the terms" : "de voorwaarden"; return t.checkout.withdrawal.replace(terms, "\u0000").split("\u0000").flatMap((part, i) => (i ? [<a key="t" href="/voorwaarden" target="_blank">{terms}</a>, part] : [part])); })()}</span>
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
-      <button className="btn" type="submit" disabled={!valid || busy}>{busy ? "Even geduld…" : amount === 0 ? "Open mijn stijlgids" : `Naar betalen · ${euro(amount)}`}</button>
+      <button className="btn" type="submit" disabled={!valid || busy}>{busy ? FLOW[locale].wait : amount === 0 ? FLOW[locale].openGuide : F.toPay(euro(amount, locale))}</button>
       <p className="small muted center">Prijzen inclusief btw.</p>
       <button type="button" className="link-btn" onClick={onClose}>{t.checkout.close}</button>
     </form>

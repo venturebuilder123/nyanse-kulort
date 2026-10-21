@@ -4,13 +4,13 @@
 import { commentsSince, privateReply, replyToComment, whoami } from "./instagram";
 
 export const KEYWORD = /\b(season|seizoen)\b/i;
-const LINK = "https://www.kulort-nyanse.com/kleuranalyse?utm_source=instagram&utm_medium=dm&utm_campaign=season";
+const LINK = (dutch: boolean) => `https://www.kulort-nyanse.com${dutch ? "" : "/en"}/kleuranalyse?utm_source=instagram&utm_medium=dm&utm_campaign=season`;
 /** Dutch when the comment is: the reply follows the commenter's language. */
 export const isDutch = (text: string) => /\b(seizoen|ik|ben|mijn|graag|wat|welk|jij|hoi)\b/i.test(text);
 export const dmText = (dutch: boolean) =>
   dutch
-    ? `Hoi! 💌 Hier is je gratis kleurcheck: één selfie, en binnen een minuut weet je je seizoen.\n${LINK}`
-    : `Hi! 💌 Here's your free colour check: one selfie, and you know your season in a minute.\n${LINK}`;
+    ? `Hoi! 💌 Hier is je gratis kleurcheck: één selfie, en binnen een minuut weet je je seizoen.\n${LINK(true)}`
+    : `Hi! 💌 Here's your free colour check: one selfie, and you know your season in a minute.\n${LINK(false)}`;
 export const publicText = (dutch: boolean) => (dutch ? "Staat in je DM 💌" : "Sent you a DM 💌");
 
 type Save = (slot: string, status: string, extra?: { error?: string | null; media_id?: string | null }) => Promise<unknown>;

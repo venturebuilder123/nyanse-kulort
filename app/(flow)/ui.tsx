@@ -29,9 +29,9 @@ export function Wordmark() {
 
 /** One maison: KULØRT | NYANSE on every page, the active line in ink; tap = back to the choice. */
 export function HouseMark() {
-  const { config } = useBrand();
+  const { config, locale } = useBrand();
   return (
-    <a className="maison-mark house-mark" href="/kies" aria-label={`KULØRT en NYANSE, nu ${config.name}`}>
+    <a className="maison-mark house-mark" href="/kies" aria-label={locale === "en" ? `KULØRT and NYANSE, now ${config.name}` : `KULØRT en NYANSE, nu ${config.name}`}>
       <span className={`wordmark wm-kulort${config.key === "kulort" ? " is-on" : ""}`} aria-hidden="true">KUL<span className="wm-o">O</span>RT</span>
       <i aria-hidden="true" />
       <span className={`wordmark wm-nyanse${config.key === "nyanse" ? " is-on" : ""}`} aria-hidden="true">NYANSE</span>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { euro, PRICES } from "@/lib/flow/pricing";
+import { currentBrand } from "../brand";
 import { AppBar, Footer } from "../ui";
 
 // Long-form explainer for search (founder, 18 Oct 2026): what colour analysis is, the problem it
@@ -11,12 +12,22 @@ const TITLE = "Kleuranalyse online: ontdek welke kleuren jou staan";
 const DESCRIPTION =
   "Wat is kleuranalyse, welk kleurtype ben jij en hoe stop je met kleding kopen die je nooit draagt? Uitleg over ondertoon, diepte, helderheid en de 12 seizoenen, plus een gratis kleurcheck met één selfie. Voor mannen en vrouwen.";
 
-export const metadata = {
-  title: `${TITLE} · KULØRT · NYANSE`,
-  description: DESCRIPTION,
-  alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, type: "article", images: ["/brand/outfits/softAutumn-both.jpg"] },
-};
+const URL_EN = "https://www.kulort-nyanse.com/en/kleuranalyse";
+const TITLE_EN = "Colour analysis online: find out which colours suit you";
+const DESCRIPTION_EN =
+  "What is colour analysis, which colour type are you and how do you stop buying clothes you never wear? Undertone, depth, clarity and the 12 seasons explained, plus a free colour check with one selfie. For men and women.";
+
+export async function generateMetadata() {
+  const { locale } = await currentBrand();
+  const en = locale === "en";
+  const [title, description, url] = en ? [TITLE_EN, DESCRIPTION_EN, URL_EN] : [TITLE, DESCRIPTION, URL];
+  return {
+    title: `${title} · KULØRT · NYANSE`,
+    description,
+    alternates: { canonical: url, languages: { nl: URL, en: URL_EN, "x-default": URL } },
+    openGraph: { title, description, url, type: "article", images: ["/brand/outfits/softAutumn-both.jpg"] },
+  };
+}
 
 const FAQ: [string, string][] = [
   ["Wat is een kleuranalyse?", "Bij een kleuranalyse bepaal je welke kleuren passen bij de natuurlijke kleuren van je huid, haar en ogen. Kleuren die passen laten je gezicht rustig en helder ogen; kleuren die niet passen trekken de aandacht weg van je gezicht."],
@@ -67,7 +78,9 @@ function Cta() {
   );
 }
 
-export default function ColourAnalysis() {
+export default async function ColourAnalysis() {
+  const { locale } = await currentBrand();
+  if (locale === "en") return <ColourAnalysisEn />;
   return (
     <main className="screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldArticle) }} />
@@ -215,6 +228,183 @@ export default function ColourAnalysis() {
         </div>
 
         <Cta />
+      </article>
+      <Footer />
+    </main>
+  );
+}
+
+// ---------- English (21 Oct 2026) ----------
+const FAQ_EN: [string, string][] = [
+  ["What is colour analysis?", "Colour analysis finds the colours that harmonise with the natural colours of your skin, hair and eyes. Colours that suit you make your face look calm and clear; colours that don't pull attention away from your face."],
+  ["Which colour type am I?", "That depends on three things: your undertone (cool or warm), your depth (light or dark) and your clarity (soft or clear). Together they set your season, for example Soft Summer or Deep Autumn. The free colour check shows you in a few minutes."],
+  ["How do I know if my undertone is warm or cool?", "Look in daylight: if silver suits you better than gold, and icy white better than cream, your undertone is usually cool. The other way round, it is usually warm. Your undertone doesn't change with a tan. Our check measures it on your own photo."],
+  ["What are the 12 seasons?", "The four seasons (Spring, Summer, Autumn, Winter) are each split into three types, for example Light Spring, Warm Spring and Bright Spring. That makes 12 colour types. We also show exactly where you sit on the three scales, because many people sit between two types."],
+  ["Is colour analysis for men too?", "Yes. For men it's mostly about the basics you wear every day: shirt, knit, jacket, and the colour of your watch, belt and shoes. That's why KULØRT is made for men and NYANSE for women."],
+  ["How reliable is colour analysis from a selfie?", "Light and cameras affect colour. That's why we give tips for the photo (daylight, no filter, no make-up), ask for a new selfie if the photo isn't good enough, and let you check our reading of your skin, eyes and hair yourself. Still unsure? Pick your own colour type, or choose personal colour advice: a colour consultant then looks at your photos."],
+  ["What does it cost?", `Your colour profile is free. Your personal style guide costs ${euro(PRICES.digital, "en")}, with a physical colour card ${euro(PRICES.card, "en")}, and personal colour advice from a colour consultant (on video, no appointment) ${euro(PRICES.session, "en")}.`],
+  ["What happens to my photo?", "The analysis runs on your own phone. Your photo is not sent to us and is never stored. More in our privacy statement."],
+];
+
+function CtaEn() {
+  return (
+    <div className="seo-cta">
+      <p>Discover your own colours. Free, with one selfie.</p>
+      <div className="seo-cta-doors">
+        <Link className="btn" href="/kulort">For him · KULØRT</Link>
+        <Link className="btn btn-ghost" href="/nyanse">For her · NYANSE</Link>
+      </div>
+    </div>
+  );
+}
+
+function ColourAnalysisEn() {
+  const article = { ...ldArticle, headline: TITLE_EN, description: DESCRIPTION_EN, url: URL_EN, inLanguage: "en", dateModified: "2026-10-21" };
+  const faq = { ...ldFaq, mainEntity: FAQ_EN.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
+  return (
+    <main className="screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
+      <AppBar pill="Colour analysis" />
+      <article className="pad seo">
+        <p className="eyebrow">Colour analysis, explained</p>
+        <h1 className="disp">A wardrobe full of clothes, <em>and still nothing to wear?</em></h1>
+        <p className="seo-lede">
+          Almost everyone knows it: the shirt that looked perfect in the shop, the knit in the most beautiful colour on the rail. At home in front
+          of the mirror, it suddenly doesn&apos;t work. It&apos;s usually not the cut, and it&apos;s not you. It&apos;s the colour. Colour analysis shows which
+          colours belong to you, so you doubt less, buy fewer mistakes and everything in your wardrobe goes together.
+        </p>
+        <Fig src="/brand/ads/proof-men.jpg" alt="The same face with a tomato red and an indigo drape under the chin" caption="Same face, different drape. Only the colour under the chin changes." wide />
+
+        <nav className="seo-toc" aria-label="Contents">
+          <b>In this article</b>
+          <ol>
+            <li><a href="#problem">The problem: buying what you never wear</a></li>
+            <li><a href="#what">What is colour analysis?</a></li>
+            <li><a href="#scales">The three scales: undertone, depth, clarity</a></li>
+            <li><a href="#seasons">The 4 seasons and 12 colour types</a></li>
+            <li><a href="#men">Colour advice for men</a></li>
+            <li><a href="#women">Colour advice for women</a></li>
+            <li><a href="#how">How our colour check works</a></li>
+            <li><a href="#yourself">Test yourself: three quick checks</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="problem">The problem: buying what you never wear</h2>
+        <p>
+          In a shop you look at the garment. At home you look at yourself. That difference is exactly where it goes wrong. Shop lighting is warm and
+          flattering, product photos are edited, and a colour that is gorgeous on a hanger can turn grey, harsh or flat next to your skin. You know
+          the result: returns, pieces with the price tag still on, and every morning the feeling that you have nothing to wear.
+        </p>
+        <p>
+          The answer isn&apos;t buying more, but <b>choosing better</b>. If you know which colours suit your own colouring, you can decide in seconds:
+          this, not that. Less doubt in the fitting room, and a wardrobe that is smaller and more useful.
+        </p>
+        <Fig src="/brand/ads/closet-choices.jpg" alt="Someone choosing clothes from a rail of garments in different colours" caption="Buy less, choose better: everything in your wardrobe goes together." />
+
+        <h2 id="what">What is colour analysis?</h2>
+        <p>
+          Colour analysis (also called seasonal colour analysis or colour advice) is a way to find the colours that are in harmony with the natural
+          colours of your skin, hair and eyes. A colour that suits you makes your skin look even and your eyes clear. A colour that doesn&apos;t
+          emphasises shadows, redness or tiredness, and pulls attention away from your face.
+        </p>
+        <p>
+          Traditionally this is done with coloured drapes under your chin, in daylight, with a colour consultant. That still works well, but it takes
+          time and money. That&apos;s why you can find your colour profile online with us first, for free, and then choose a style guide, a colour card
+          or personal colour advice.
+        </p>
+
+        <h2 id="scales">The three scales: undertone, depth and clarity</h2>
+        <p>Your colour type isn&apos;t a box but a point on three scales. Together they decide which colours suit you best.</p>
+        <div className="seo-cards">
+          <div><b>Undertone</b><p>Cool (pink and blue beneath the skin) or warm (gold and peach). Cool looks best with silver, icy white and blue-red; warm with gold, cream and tomato red. Your undertone doesn&apos;t change with a tan.</p></div>
+          <div><b>Depth</b><p>How light or dark your hair, eyes and skin are together. Light: light and medium tones. Deep: dark, rich colours; pastels fade away.</p></div>
+          <div><b>Clarity</b><p>How clear your eyes and the contrast in your face are. Clear: pure, bright colours and contrast. Soft: muted, slightly greyed shades that look calm.</p></div>
+        </div>
+        <p>
+          Because they are scales, you can also see when you sit between two types. Your palette then blends both. No more three different results
+          from three different tests.
+        </p>
+
+        <h2 id="seasons">The 4 seasons and 12 colour types</h2>
+        <p>
+          The best-known way to describe colour types is with seasons. Each season has three variants, so there are twelve colour types. You don&apos;t
+          need to learn them by heart; it does help to understand why certain colours suit you.
+        </p>
+        <div className="seo-grid">
+          <Fig src="/brand/seasons/family-lente.jpg" alt="Light, warm and clear colours of the Spring season" caption="Spring: light, warm and fresh. Peach, coral, light gold, fresh green. Light, Warm and Bright Spring." />
+          <Fig src="/brand/seasons/family-zomer.jpg" alt="Soft, cool colours of the Summer season" caption="Summer: cool and soft. Powder blue, rosewood, sage, soft navy. Light, Cool and Soft Summer." />
+          <Fig src="/brand/seasons/family-herfst.jpg" alt="Warm, earthy colours of the Autumn season" caption="Autumn: warm and earthy. Olive, camel, rust, teal. Soft, Warm and Deep Autumn." />
+          <Fig src="/brand/seasons/family-winter.jpg" alt="Cool, deep and clear colours of the Winter season" caption="Winter: cool and high-contrast. Navy, emerald, ruby, pure white. Deep, Cool and Bright Winter." />
+        </div>
+
+        <CtaEn />
+
+        <h2 id="men">Colour advice for men</h2>
+        <p>
+          For men, colour is mostly about the pieces you wear most: your shirts, knitwear and your jacket. Close to your face, the right colour makes
+          the difference between fresh and tired, and between a strong first impression and a flat one. The rest of your outfit (trousers, shoes,
+          belt) can be quieter, as long as it goes together.
+        </p>
+        <ul>
+          <li><b>Your base</b>: navy, anthracite, espresso or olive, depending on your type. Everything builds on it.</li>
+          <li><b>Your white</b>: pure white doesn&apos;t suit everyone. Many men look fresher in off-white or cream.</li>
+          <li><b>Your leather and metal</b>: silver or gold for your watch, and one leather colour for belt and shoes.</li>
+        </ul>
+        <Fig src="/brand/outfits/deepWinter-kulort.jpg" alt="Men's outfit in Deep Winter colours: navy jacket and dark green roll neck" caption="A Deep Winter outfit: navy, deep green and black leather." />
+        <p><Link href="/kulort">KULØRT</Link> is our brand for men: short, practical and focused on what you wear every day.</p>
+
+        <h2 id="women">Colour advice for women</h2>
+        <p>
+          For women, colour plays a part in more places: clothes, but also jewellery, make-up, hair colour and accessories. A palette brings calm:
+          your lipstick, your scarf and your blazer strengthen each other instead of clashing. And you see faster which pieces to leave on the rack.
+        </p>
+        <ul>
+          <li><b>Your colours near your face</b>: blouse, top, scarf. This is where the biggest effect is.</li>
+          <li><b>Make-up and jewellery</b>: lips, blush and eyeshadow in shades that match your undertone; gold, silver or rose gold.</li>
+          <li><b>Your wardrobe</b>: what doesn&apos;t suit you can often still go below the waist: as trousers, a skirt or shoes.</li>
+        </ul>
+        <Fig src="/brand/outfits/softAutumn-nyanse.jpg" alt="Women's outfit in Soft Autumn colours: camel, olive and soft coral" caption="A Soft Autumn outfit: soft, warm colours that go together calmly." />
+        <p><Link href="/nyanse">NYANSE</Link> is our brand for women, with colour advice for clothes, jewellery and make-up.</p>
+
+        <h2 id="how">How our colour check works</h2>
+        <ol className="seo-steps">
+          <li><b>Choose where you want to look good</b>: work, weekend, date or party.</li>
+          <li><b>Take a selfie in daylight</b>: no filter and no make-up. The analysis runs on your own phone; your photo is never stored.</li>
+          <li><b>Check our reading</b>: is that your skin, eye and hair colour, or one tint lighter or darker? Your answer sharpens the result.</li>
+          <li><b>See your colour profile</b>: your place on the three scales, your colour type and your best colours. Free.</li>
+          <li><b>Choose your style guide</b>: all 30 of your colours, combinations per occasion, your basics (white, dark, denim), your first five buys, a wardrobe check and the colours for watch, jewellery and make-up.</li>
+        </ol>
+        <div className="seo-grid two">
+          <Fig src="/brand/ads/workbook.jpg" alt="The personal style guide with colours and outfits" caption="Your personal style guide, online and on any device." />
+          <Fig src="/brand/product/pass-front.jpg" alt="The credit-card-size colour card with eight colours" caption="The colour card: your colours in your wallet, for in the shop." />
+        </div>
+        <p>
+          Want to be sure? Choose personal colour advice: a colour consultant looks at your photos and sends you a personal video, without an
+          appointment and within 3 working days. Handy if you&apos;re torn between two types.
+        </p>
+
+        <h2 id="yourself">Test yourself: three quick checks</h2>
+        <p>No time for a check? These three questions get you a long way. Do them in daylight, without make-up.</p>
+        <ul>
+          <li><b>Gold or silver?</b> Hold a gold and a silver piece of jewellery next to your face. Which makes your skin look more even? Gold points to warm, silver to cool.</li>
+          <li><b>White or cream?</b> Hold a pure white and a cream piece under your chin. If cream looks softer and fresher, you&apos;re probably warm or soft.</li>
+          <li><b>Black or navy?</b> Does black make your face look harsh and tired, while navy or dark brown looks calmer? Then your contrast is probably not high enough for black.</li>
+        </ul>
+        <p>These checks give a direction, not a result. The colour check combines them with your depth and clarity into one profile.</p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        <div className="seo-faq">
+          {FAQ_EN.map(([q, a]) => (
+            <details key={q}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+
+        <CtaEn />
       </article>
       <Footer />
     </main>

@@ -3,13 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BUDGETS } from "@/lib/brand/config";
+import { FLOW } from "@/lib/i18n/flow";
 import { track } from "@/lib/analytics";
 import { EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
 import { useBrand } from "../BrandProvider";
 import { AppBar, Crumbs, Display } from "../ui";
 
 export default function Style() {
-  const { config, copy, ctx } = useBrand();
+  const { config, copy, ctx, locale } = useBrand();
   const router = useRouter();
   const [a, setA] = useState<Answers>(EMPTY);
   // the shops that really are in the catalogue (CLAUDE.md §6); until then the brand's own list
@@ -49,7 +50,7 @@ export default function Style() {
           <div className="chips">
             {BUDGETS.map((b) => (
               <button key={b.key} aria-pressed={a.budget === b.key} onClick={() => update({ ...a, budget: b.key })}>
-                {b.label}
+                {locale === "en" ? b.en : b.label}
               </button>
             ))}
           </div>
@@ -79,7 +80,7 @@ export default function Style() {
           {copy.style.next}
         </button>
         <button className="link-btn" onClick={() => router.push("/type")}>
-          Ik ken mijn kleurprofiel al
+          {FLOW[locale].landing.knownShort}
         </button>
       </div>
     </main>

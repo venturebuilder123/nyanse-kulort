@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { COMPANY } from "@/lib/company";
 import { euro, PRICES } from "@/lib/flow/pricing";
+import { currentBrand } from "../brand";
 import { AppBar, Footer } from "../ui";
 
 export const metadata = {
@@ -9,7 +10,13 @@ export const metadata = {
 };
 
 // Terms for both brands (CLAUDE.md §9). Plain Dutch, short; to be checked by a lawyer (docs/BESLISSINGEN.md).
-export default function Terms() {
+// English translation (21 Oct 2026) for EU customers; the Dutch text prevails.
+export default async function Terms() {
+  const { locale } = await currentBrand();
+  return locale === "en" ? <TermsEn /> : <TermsNl />;
+}
+
+function TermsNl() {
   return (
     <main className="screen">
       <AppBar pill="Voorwaarden" />
@@ -78,7 +85,7 @@ export default function Terms() {
         </p>
 
         <h2>7. Kortingscodes</h2>
-        <p>Een kortingscode is persoonlijk, niet in te wisselen voor geld en niet te combineren met een andere korting.</p>
+        <p>Een kortingscode is persoonlijk, niet in te wisselen voor geld en niet te combineren met een andere korting. Een gratis code (100%) geldt alleen voor de digitale stijlgids.</p>
 
         <h2>8. Klachten</h2>
         <p>
@@ -98,6 +105,77 @@ export default function Terms() {
           Hoe we met je gegevens omgaan, staat in de <Link href="/privacy">privacyverklaring</Link>. Op deze voorwaarden is Nederlands recht
           van toepassing.
         </p>
+      </article>
+      <Footer />
+    </main>
+  );
+}
+
+function TermsEn() {
+  const e = (n: number) => euro(n, "en");
+  return (
+    <main className="screen">
+      <AppBar pill="Terms" />
+      <article className="pad prose">
+        <h1 className="disp sm">Terms and conditions</h1>
+        <p className="muted small">Version 21 October 2026. Applies to all orders at KULØRT and NYANSE. This is a translation; in case of differences, the Dutch text prevails.</p>
+
+        <h2>1. Who we are</h2>
+        <p>
+          KULØRT and NYANSE are two brands of {COMPANY.name}{COMPANY.address ? `, ${COMPANY.address}, the Netherlands (postal address)` : ""}. Chamber of Commerce {COMPANY.kvk}, VAT {COMPANY.vat}. You can reach us at{" "}
+          <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> or via the <Link href="/contact">contact page</Link>.
+        </p>
+
+        <h2>2. What we offer</h2>
+        <ul>
+          <li><b>Colour profile</b>: free. Your undertone, depth and clarity and your colour type, based on a selfie or your own choice.</li>
+          <li><b>Style guide (digital)</b>: {e(PRICES.digital)}. Your personal style guide, online straight away.</li>
+          <li><b>Style guide with colour card</b>: {e(PRICES.card)}. The style guide plus a physical colour card by post.</li>
+          <li><b>Personal colour advice</b>: {e(PRICES.session)}. Style guide and colour card, plus a personal video from a colour consultant based on your photos.</li>
+        </ul>
+        <p>All prices are in euros and include VAT. Shipping of the colour card within the Netherlands, Belgium and Germany is included.</p>
+
+        <h2>3. What you can expect from the advice</h2>
+        <p>
+          Your colour profile is advice on colours that suit you. It depends on the light and the quality of your photo or your own choice. It is no
+          guarantee that you will like every garment. Taste remains yours.
+        </p>
+        <p>
+          Think your result is wrong, for example because of a photo in poor light? E-mail us within 14 days with your order number. We will take a
+          look and, if needed, switch your guide to another colour type free of charge.
+        </p>
+
+        <h2>4. Ordering and payment</h2>
+        <p>Your order is complete once you have paid. You pay via Mollie (for example a card, Apple Pay, PayPal or iDEAL | Wero) or by bank transfer. You receive a confirmation by e-mail.</p>
+
+        <h2>5. Delivery</h2>
+        <ul>
+          <li><b>Style guide</b>: straight after payment, online and by e-mail (a personal link).</li>
+          <li><b>Colour card</b>: we ship weekly. Allow about a week. If it doesn&apos;t arrive, let us know.</li>
+          <li><b>Personal colour advice</b>: after your order, send us 3 photos by replying to the confirmation e-mail. Within 3 working days of your photos you receive your video by e-mail.</li>
+        </ul>
+
+        <h2>6. Right of withdrawal (cooling-off period)</h2>
+        <ul>
+          <li><b>Style guide (digital content)</b>: we deliver it straight away. When ordering, you expressly agree to this and declare that you thereby lose your right of withdrawal for the style guide.</li>
+          <li><b>Colour card</b>: you have 14 days to change your mind from receipt. Tell us within that period (for example with the form below) and return the card within 14 days after that; the return costs are yours. We refund the amount for the card within 14 days.</li>
+          <li><b>Personal colour advice</b>: you have 14 days to change your mind from your order. If you send us your photos within those 14 days, you ask us to start straight away. Your right of withdrawal for the advice ends once your video has been delivered.</li>
+        </ul>
+        <p className="small">
+          <b>Model withdrawal form.</b> To {COMPANY.name}, {COMPANY.email}: &quot;I hereby withdraw from my contract for [the colour card / the colour advice], ordered on [date], order number [KN-…]. Name: […]. Address: […]. Date: […].&quot;
+        </p>
+
+        <h2>7. Discount codes</h2>
+        <p>A discount code is personal, cannot be exchanged for money and cannot be combined with another discount. A free (100%) code is valid for the digital style guide only.</p>
+
+        <h2>8. Complaints</h2>
+        <p>Not happy? E-mail us with your order number. You get a reply within two working days and a solution or a clear answer within 14 days. You can also use the EU&apos;s online dispute resolution platform.</p>
+
+        <h2>9. Liability</h2>
+        <p>We are not liable for purchases you make based on our advice. Our liability is in any case limited to the amount you paid for your order, except in case of intent or gross negligence. Your statutory consumer rights always apply.</p>
+
+        <h2>10. Privacy and law</h2>
+        <p>How we handle your data is in the <Link href="/privacy">privacy statement</Link>. Dutch law applies to these terms, without depriving you of the protection of the mandatory rules of the country where you live.</p>
       </article>
       <Footer />
     </main>
