@@ -170,16 +170,18 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
     });
   });
   // Sunday 19:00, weeks 1–4: "breaking the frame" (colour pours through the post; docs/brand/FRAME-BREAK.md)
-  const FRAMES: [file: string, line: string][] = [
+  // The build-up: 25 Oct a scroll-stopper before the boost (2 Nov), 1 Nov the evening before the
+  // giveaway opens, 8 Nov its real last evening, 15 Nov the product, ahead of the Black Friday offer.
+  const FRAMES: [file: string, line: string, extra?: string][] = [
     ["pour-softAutumn-nyanse", "Soft Autumn, poured straight into the right colour."],
-    ["pour-deepWinter-kulort", "Deep Winter: the colour that makes him look like himself."],
-    ["pour-lightSpring-nyanse", "Light Spring: warm, light and glowing."],
-    ["ribbon-softAutumn-product", "One swatch, one sweater, zero doubt."],
+    ["pour-deepWinter-kulort", "Deep Winter: the colour that makes him look like himself.", "Tomorrow at 12:00 we're giving away 10 personal style guides. Turn on notifications so you don't miss it."],
+    ["pour-lightSpring-nyanse", "Light Spring: warm, light and glowing.", "Last evening of our giveaway: it closes tonight at 23:59 (Amsterdam). How to enter: see our post of 2 November."],
+    ["ribbon-softAutumn-product", "One swatch, one sweater, zero doubt. Your colour card goes shopping with you."],
   ];
-  FRAMES.forEach(([file, line], i) => {
+  FRAMES.forEach(([file, line, extra], i) => {
     slots.push({
       key: `w${i + 1}-sun-framebreak`, at: day(i * 7 + 6, { hour: 19, minute: 0 }), kind: "image", images: [`${base}/social/framebreak/${file}.jpg`],
-      caption: [`Same face. Different colour. 🎨`, ``, line, `Which season are you? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #personalstyle #colourpalette`].join("\n"),
+      caption: [`The right colour changes everything. 🎨`, ``, line, ...(extra ? [extra] : []), `Which season are you? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #personalstyle #colourpalette`].join("\n"),
     });
   });
   // Monday 18:30, weeks 2–9: the benefit scenes (a moment where your colours make the difference)

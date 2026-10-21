@@ -8,7 +8,7 @@
 2. Zet het beeld in **`assets/gemini/framebreak/`**, met de naam `{concept}-{seizoen}-{nyanse|kulort}.png`, bijvoorbeeld `pour-softAutumn-nyanse.png`.
 3. Ik draai `node scripts/make-frame-break.mjs`. Het script:
    - vindt de zwarte balk;
-   - zet er onze Instagram-balk op: iconen, "kulortnyanse", de vraag *"Same face. Different colour. Which season are you?"* en het monogram;
+   - zet er onze Instagram-balk op: iconen, "kulortnyanse", de vraag *"The right colour changes everything. Which season are you?"* (in de breedste strook naast de verf, anders kort: *"Which season are you?"*), een scheidingslijn en de kop van de volgende post met ons echte monogram en ···;
    - legt de verf of de stof die door de balk loopt er weer **vóór**, zodat hij echt "door" de post stroomt.
 4. Het resultaat komt in `public/social/framebreak/` en gaat in de kalender.
 

@@ -5,12 +5,15 @@
 // fabric that crosses the band back on top, so it really flows "through" the post.
 // Run: node scripts/make-frame-break.mjs  →  assets/gemini/framebreak/*.{png,jpg} → public/social/framebreak/*.jpg
 import { chromium } from "@playwright/test";
-import { existsSync, mkdirSync, readdirSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
 import sharp from "sharp";
 
 const SRC = process.argv[2] ?? "assets/gemini/framebreak";
 const OUT = process.argv[3] ?? "public/social/framebreak";
-const QUESTION = { default: "Same face. Different colour. Which season are you?" };
+// one face per image, so no "same face" claim: the colour is the story
+const QUESTION = { default: "The right colour changes everything. Which season are you?", short: "Which season are you?" };
+// our real monogram as the profile picture (public/icons, the same as the Instagram avatar)
+const AVATAR = `data:image/png;base64,${readFileSync("public/icons/monogram-192.png").toString("base64")}`;
 mkdirSync(OUT, { recursive: true });
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Bodoni+Moda:opsz,wght@6..96,400..600&display=block";
@@ -20,14 +23,41 @@ const ICON = {
   send: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M21.5 3 10 13.5M21.5 3l-7 18-4.5-7.5L2.5 9z"/></svg>`,
   save: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M5.5 3.5h13v17L12 15.5l-6.5 5z"/></svg>`,
 };
-const bar = (w, h, question) => {
+const bar = (w, h, question, free) => {
   const u = h / 100; // everything scales with the band height
+  const pad = 4 * w / 100;
+  // the caption sits in the widest stretch the paint leaves free, so it stays readable
+  const [fx0, fx1] = free ?? [0, w];
+  const capLeft = Math.max(pad, fx0 + pad * 0.6), capWidth = Math.min(w - pad, fx1 - pad * 0.6) - capLeft;
+  // a narrow free stretch gets the short question, so the bar never needs a third line
+  if (capWidth < w * 0.62) question = QUESTION.short;
+  const icon = (k) => `<span style="width:${17 * u}px;height:${17 * u}px;display:block">${ICON[k]}</span>`;
   return `<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="${FONTS}"><style>*{box-sizing:border-box;margin:0}body{background:transparent}</style>
-  <div id="b" style="width:${w}px;height:${h}px;background:#0B0B0E;color:#fff;font-family:Manrope,sans-serif;padding:${10 * u}px ${4 * w / 100}px;display:grid;grid-template-rows:auto 1fr auto;gap:${6 * u}px">
-    <div style="display:flex;gap:${7 * u}px;align-items:center">${["heart", "comment", "send"].map((k) => `<span style="width:${17 * u}px;height:${17 * u}px;display:block">${ICON[k]}</span>`).join("")}<span style="flex:1"></span><span style="width:${17 * u}px;height:${17 * u}px;display:block">${ICON.save}</span></div>
-    <div style="font-size:${15 * u}px;line-height:1.25"><b style="font-weight:800">kulortnyanse</b> &nbsp;${question}</div>
-    <div style="display:flex;align-items:center;gap:${5 * u}px"><span style="width:${19 * u}px;height:${19 * u}px;border-radius:50%;background:#F6F2EC;color:#141414;display:grid;place-items:center;font-family:'Bodoni Moda',serif;font-size:${8 * u}px;letter-spacing:.02em">Ø|N</span><b style="font-size:${15 * u}px;font-weight:800">kulortnyanse</b></div></div>`;
+  <div id="b" style="width:${w}px;height:${h}px;background:#0B0B0E;color:#fff;font-family:Manrope,sans-serif;display:grid;grid-template-rows:auto 1fr auto auto;row-gap:${5 * u}px;padding:${9 * u}px 0 ${8 * u}px">
+    <div style="display:flex;gap:${7 * u}px;align-items:center;padding:0 ${pad}px">${icon("heart")}${icon("comment")}${icon("send")}<span style="flex:1"></span>${icon("save")}</div>
+    <div style="margin-left:${capLeft}px;width:${capWidth}px;font-size:${14 * u}px;line-height:1.25;align-self:center"><b style="font-weight:800">kulortnyanse</b> ${question}</div>
+    <div style="height:1px;background:#26262B"></div>
+    <div style="display:flex;align-items:center;gap:${6 * u}px;padding:0 ${pad}px"><img src="${AVATAR}" style="width:${20 * u}px;height:${20 * u}px;border-radius:50%;display:block"><b style="font-size:${14 * u}px;font-weight:800">kulortnyanse</b><span style="flex:1"></span><span style="font-size:${18 * u}px;font-weight:800;letter-spacing:.08em;line-height:0">···</span></div></div>`;
 };
+
+/** The widest run of columns inside the band without paint or fabric crossing it. */
+function freeColumns(data, W, y0, y1) {
+  const hit = new Array(W).fill(false);
+  for (let x = 0; x < W; x++) {
+    let n = 0;
+    for (let y = y0; y < y1; y += 2) { const i = (y * W + x) * 4; if (data[i] > 70 || data[i + 1] > 70 || data[i + 2] > 70) n++; }
+    hit[x] = n > (y1 - y0) / 2 * 0.15;
+  }
+  // a little margin around the paint
+  const grow = Math.round(W * 0.02), blocked = hit.map((_, x) => hit.slice(Math.max(0, x - grow), x + grow + 1).some(Boolean));
+  let best = [0, W], bestLen = -1, start = null;
+  for (let x = 0; x <= W; x++) {
+    if (x < W && !blocked[x]) { if (start === null) start = x; continue; }
+    if (start !== null && x - start > bestLen) { best = [start, x]; bestLen = x - start; }
+    start = null;
+  }
+  return best;
+}
 
 /** The band: the longest run of rows, in the middle half, that are almost entirely near-black. */
 function findBand(data, W, H) {
@@ -60,7 +90,8 @@ for (const f of files) {
   if (!band) { console.warn("no black band found in", f); continue; }
   const [y0, y1] = band, bh = y1 - y0;
   await page.setViewportSize({ width: W, height: bh });
-  await page.setContent(bar(W, bh, QUESTION.default), { waitUntil: "networkidle" });
+  const free = freeColumns(data, W, y0, y1);
+  await page.setContent(bar(W, bh, QUESTION.default, free), { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   const ui = await page.locator("#b").screenshot({ omitBackground: true });
   // what crosses the band (not near-black) goes back on top of the bar
@@ -75,7 +106,7 @@ for (const f of files) {
   await sharp(data, { raw: { width: W, height: H, channels: 4 } })
     .composite([{ input: ui, top: y0, left: 0 }, { input: await sharp(front, { raw: { width: W, height: H, channels: 4 } }).png().toBuffer(), top: 0, left: 0 }])
     .flatten({ background: "#ffffff" }).jpeg({ quality: 90 }).toFile(out);
-  console.log("wrote", out, `(band ${y0}–${y1})`);
+  console.log("wrote", out, `(band ${y0}–${y1}, caption in ${free[0]}–${free[1]})`);
 }
 await browser.close();
 if (!files.length) console.log(`no images in ${SRC} yet`);
