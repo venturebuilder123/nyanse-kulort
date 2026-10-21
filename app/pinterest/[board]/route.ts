@@ -8,6 +8,8 @@ import PINS from "@/lib/social/pins.json";
 type Pin = { title: string; image: string; board: string; description: string; link: string; at: string };
 const BOARDS: Record<string, string> = { spring: "Spring colour palettes", summer: "Summer colour palettes", autumn: "Autumn colour palettes", winter: "Winter colour palettes" };
 
+const START_WITH = 6;
+
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 export async function GET(_req: Request, { params }: { params: Promise<{ board: string }> }) {
@@ -16,9 +18,10 @@ export async function GET(_req: Request, { params }: { params: Promise<{ board: 
   if (!board) return new Response("not found", { status: 404 });
   const now = Date.now();
   const all = (PINS as Pin[]).filter((p) => p.board === board).sort((a, b) => a.at.localeCompare(b.at));
-  // what is due, but never fewer than the first two: Pinterest refuses to connect an empty feed
-  const due = all.filter((p) => new Date(p.at).getTime() <= now);
-  const items = (due.length >= 2 ? due : all.slice(0, 2)).reverse();
+  // the first six of every board at once (founder, 21 Oct 2026: full boards from day one), then the
+  // rest when its time has come, two a day
+  const due = all.filter((p) => new Date(p.at).getTime() <= now).length;
+  const items = all.slice(0, Math.max(START_WITH, due)).reverse();
   const site = "https://www.kulort-nyanse.com";
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
