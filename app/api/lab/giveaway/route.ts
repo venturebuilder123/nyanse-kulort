@@ -4,7 +4,7 @@ import { allComments, whoami } from "@/lib/social/instagram";
 import { states } from "@/lib/social/run";
 
 // Founder only (proxy guards /api/lab): the giveaway draw (terms on /winactie). Every unique account
-// that commented on the giveaway posts before the closing time is one entry; 3 winners and 3 reserves
+// that commented on the giveaway posts before the closing time is one entry; 10 winners and 5 reserves
 // are drawn with a cryptographic random number. Following must be checked by hand (the API has no follower list).
 export const maxDuration = 60;
 const CLOSES = new Date("2026-11-08T22:59:59Z"); // Sunday 8 Nov 2026, 23:59 Amsterdam
@@ -21,6 +21,6 @@ export async function POST() {
   }
   const pool = [...seen.keys()];
   const picked: string[] = [];
-  while (picked.length < Math.min(6, pool.length)) picked.push(pool.splice(randomInt(pool.length), 1)[0]!);
-  return NextResponse.json({ entries: seen.size, winners: picked.slice(0, 3), reserves: picked.slice(3), drawnAt: new Date().toISOString() });
+  while (picked.length < Math.min(15, pool.length)) picked.push(pool.splice(randomInt(pool.length), 1)[0]!);
+  return NextResponse.json({ entries: seen.size, winners: picked.slice(0, 10), reserves: picked.slice(10), drawnAt: new Date().toISOString() });
 }

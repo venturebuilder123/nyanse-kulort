@@ -2,6 +2,17 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 21 oktober 2026 — gratis codes alleen voor de digitale gids
+
+- **Vaste regel (oprichter, "dit geldt altijd"):** een code van 100% geldt alleen voor de digitale gids, nooit voor de kleurenpas of het persoonlijke consult.
+  - Dat geldt ook voor de bestaande familiecodes.
+  - Kortingscodes onder de 100% (bijvoorbeeld 25%) blijven op alles geldig.
+  - De kassa controleert dit en meldt "Deze code geldt alleen voor de digitale gids."
+- **Giveaway-codes (`GIFT_CODES`):** 10 eenmalige codes van 100%, alleen voor de digitale gids.
+  - Een code is verbruikt zodra er één bestelling mee is gedaan.
+  - De codes staan in `.env` en moeten ook in Vercel.
+- **Giveaway aangepast:** 10 winnaars krijgen elk een digitale gids (€12,99), in plaats van 3 winnaars met een kleurenpas. Meer winnaars geeft meer kans, en dat trekt meestal meer deelnemers (MENING). Meedoen kan nu in de hele EU, omdat er niets verstuurd hoeft te worden.
+
 ## 21 oktober 2026 — Instagram-groeisprint
 
 - **Comment SEASON → DM** is live: het officiële privéantwoord van Instagram, één bericht per persoon, binnen 7 dagen, plus een openbaar antwoord.

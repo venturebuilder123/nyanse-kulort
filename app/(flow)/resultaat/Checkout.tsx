@@ -63,6 +63,13 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ref: r, tier, brand: config.key, voice, season, friendCode, discountCode: percent ? code.trim() : undefined, waiver, ...f, profile: profileForOrder() }),
       });
+      // a giveaway code that was used in the meantime: drop it, say so, let them pay or try another
+      if (res.status === 409) {
+        setPercent(0);
+        setCodeMsg("Deze code is al gebruikt.");
+        setBusy(false);
+        return;
+      }
       if (!res.ok) throw new Error(String(res.status));
       const d = (await res.json()) as { secret: string; checkoutUrl?: string | null; free?: boolean };
       setSecret(d.secret);
@@ -169,10 +176,10 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
         <div className="row-inline">
           <input value={code} onChange={(e) => { setCode(e.target.value); setCodeMsg(null); }} placeholder="Kortingscode" aria-label="Kortingscode" autoCapitalize="characters" autoComplete="off" />
           <button type="button" className="btn btn-sm btn-ghost" onClick={async () => {
-            const r = await fetch("/api/order/code", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }) }).catch(() => null);
-            const d = r?.ok ? ((await r.json()) as { ok: boolean; percent?: number }) : null;
+            const r = await fetch("/api/order/code", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code, tier }) }).catch(() => null);
+            const d = r?.ok ? ((await r.json()) as { ok: boolean; percent?: number; reason?: string }) : null;
             if (d?.ok && d.percent) setPercent(d.percent);
-            else setCodeMsg("Deze code kennen we niet.");
+            else setCodeMsg(d?.reason === "digital_only" ? "Deze code geldt alleen voor de digitale gids." : d?.reason === "used" ? "Deze code is al gebruikt." : "Deze code kennen we niet.");
           }}>Toepassen</button>
         </div>
       ) : (

@@ -4,7 +4,7 @@
 import { BRANDS, VOICES } from "@/lib/brand/config";
 import type { BrandKey, VoiceKey } from "@/lib/brand/types";
 import { SEASONS } from "@/lib/color/seasons";
-import { discountFor } from "./discount";
+import { checkCode } from "./discount";
 import { amountFor } from "./payment";
 import type { Tier } from "./pricing";
 import { parseReferral } from "./referral";
@@ -55,8 +55,9 @@ export function parseOrder(body: unknown): OrderRow | null {
   if (!(brand in BRANDS) || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return null;
   const voice = typeof b.voice === "string" && b.voice in VOICES ? (b.voice as VoiceKey) : null;
   const season = typeof b.season === "string" && b.season in SEASONS ? b.season : null;
-  // a discount code (inner circle) wins over a friend code; they never stack
-  const percent = discountFor(b.discountCode);
+  // a discount code wins over a friend code; they never stack. A free code is for the digital guide only.
+  const checked = checkCode(b.discountCode, tier);
+  const percent = checked.ok ? checked.percent : null;
   const friend = percent ? null : parseReferral(typeof b.friendCode === "string" ? b.friendCode : null);
   const country = ["NL", "BE", "DE"].includes(b.country as string) ? (b.country as "NL" | "BE" | "DE") : null;
   const physical = tier !== "digital";
@@ -69,7 +70,7 @@ export function parseOrder(body: unknown): OrderRow | null {
     city: physical ? str(b.city, 80) : null,
     country: physical ? country : null,
     // the code column records whichever code was used (a friend code or a discount code)
-    friend_code: percent ? String(b.discountCode).split(":")[0]!.replace(/\s+/g, "").toUpperCase() : friend?.code ?? null,
+    friend_code: checked.ok ? checked.code : friend?.code ?? null,
     waiver: b.waiver === true,
     profile: parseProfile(b.profile),
   };

@@ -17,7 +17,7 @@ export const REMINDERS: Reminder[] = [
       "4. Budget: €5 per dag, 14 dagen (= €70). Alleen Instagram (niet Facebook), plaatsing Reels en Stories.",
       "5. Vink het AI-label aan (de beelden zijn met AI gemaakt).",
       "",
-      "Vandaag om 12:00 start ook de giveaway: de boost helpt die meteen. Na 7 dagen kijken we samen naar de kosten per nieuwe volger.",
+      "Vandaag om 12:00 start ook de giveaway (10 × de digitale gids): de boost helpt die meteen. Na 7 dagen kijken we samen naar de kosten per nieuwe volger.",
     ].join("\n"),
   },
   {
@@ -27,10 +27,10 @@ export const REMINDERS: Reminder[] = [
     text: [
       "De giveaway sloot zondag om 23:59. Vandaag trekken we de winnaars (voorwaarden: kulort-nyanse.com/winactie).",
       "",
-      "1. Open /lab/giveaway en klik op 'Trek winnaars': 3 winnaars en 3 reserves, willekeurig uit alle unieke deelnemers.",
+      "1. Open /lab/giveaway en klik op 'Trek winnaars': 10 winnaars en 5 reserves, willekeurig uit alle unieke deelnemers.",
       "2. Controleer bij elke winnaar of die @kulortnyanse volgt (anders: de eerste reserve).",
-      "3. Zet een gratis kortingscode in Vercel (DISCOUNT_CODES, bijvoorbeeld WIN-NOV:100) en redeploy.",
-      "4. Stuur elke winnaar een DM: gefeliciteerd, doe de gratis check op kulort-nyanse.com en kies 'met kleurenpas' met code WIN-NOV. Het adres vullen ze zelf in bij de bestelling.",
+      "3. Pak de 10 eenmalige codes uit GIFT_CODES (in .env en in Vercel). Elke code werkt één keer en alleen voor de digitale gids.",
+      "4. Stuur elke winnaar een DM met één eigen code: gefeliciteerd, doe de gratis check op kulort-nyanse.com, kies de digitale gids en vul je code in. Geen adres nodig.",
       "5. Zet de winnaars (alleen hun naam) in een Story.",
       "Reageert iemand niet binnen 7 dagen: de prijs gaat naar de volgende reserve.",
     ].join("\n"),

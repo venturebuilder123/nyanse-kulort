@@ -1,6 +1,8 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
 import { supabaseConfigured, supabaseRest } from "@/lib/db/supabase";
+import { parseGiftCodes } from "@/lib/flow/discount";
+import { giftUsed } from "@/lib/flow/gift";
 import { parseOrder } from "@/lib/flow/order";
 import { markPaid } from "@/lib/flow/fulfil";
 import { mailConfigured, sendMail } from "@/lib/mail";
@@ -12,6 +14,8 @@ export async function POST(req: Request) {
   if (!supabaseConfigured()) return NextResponse.json({ error: "not_configured" }, { status: 503 });
   const row = parseOrder(await req.json().catch(() => null));
   if (!row) return NextResponse.json({ error: "invalid" }, { status: 400 });
+  // a giveaway code works once: any earlier order with it, paid or not, uses it up
+  if (row.friend_code && parseGiftCodes().has(row.friend_code) && (await giftUsed(row.friend_code))) return NextResponse.json({ error: "code_used" }, { status: 409 });
   const secret = randomBytes(18).toString("base64url");
   try {
     await supabaseRest("orders", { method: "POST", body: JSON.stringify({ ...row, secret }), prefer: "return=minimal" });

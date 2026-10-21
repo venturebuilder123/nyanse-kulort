@@ -5,7 +5,7 @@ import { AppBar } from "../ui";
 
 export const metadata = {
   title: "Winactie · KULØRT · NYANSE",
-  description: "Actievoorwaarden van de Instagram-winactie van KULØRT · NYANSE: win je kleuren, 3 × stijlgids met kleurenpas.",
+  description: "Actievoorwaarden van de Instagram-winactie van KULØRT · NYANSE: win je kleuren, 10 × persoonlijke stijlgids.",
 };
 
 // The Instagram giveaway (founder, 21 Oct 2026; docs/marketing/GROEI-SPRINT.md). Free to enter, no
@@ -40,17 +40,18 @@ export default function Giveaway() {
         <p>Meedoen is gratis; je hoeft niets te kopen. Iedereen doet één keer mee, ook met meerdere reacties.</p>
 
         <h2>4. Wie mag meedoen</h2>
-        <p>Je bent 18 jaar of ouder en woont in Nederland, België of Duitsland (daar versturen we de kleurenpas). Medewerkers van {COMPANY.name} en hun gezinsleden doen niet mee.</p>
+        <p>Je bent 18 jaar of ouder en woont in de Europese Unie. Medewerkers van {COMPANY.name} en hun gezinsleden doen niet mee.</p>
 
         <h2>5. De prijs</h2>
         <p>
-          Er zijn <b>3 winnaars</b>. Elke winnaar krijgt de <b>stijlgids met kleurenpas</b> (waarde {euro(PRICES.card)}): een persoonlijke kleuranalyse met één selfie, de
-          persoonlijke stijlgids en een fysieke kleurenpas per post. De prijs is persoonlijk en niet inwisselbaar voor geld.
+          Er zijn <b>10 winnaars</b>. Elke winnaar krijgt de <b>persoonlijke stijlgids (digitaal)</b> (waarde {euro(PRICES.digital)}): een persoonlijke kleuranalyse met één
+          selfie en de persoonlijke stijlgids, direct online. Je krijgt een eenmalige code die je zelf invult bij de bestelling. De prijs is persoonlijk, niet
+          inwisselbaar voor geld en niet geldig voor de kleurenpas of het persoonlijke consult.
         </p>
 
         <h2>6. Trekking en bekendmaking</h2>
         <ul>
-          <li>Op maandag 9 november 2026 trekken we de winnaars willekeurig uit alle geldige deelnemers. We controleren of zij @kulortnyanse volgen.</li>
+          <li>Op maandag 9 november 2026 trekken we 10 winnaars en 5 reserves willekeurig uit alle geldige deelnemers. We controleren of zij @kulortnyanse volgen.</li>
           <li>Winnaars krijgen binnen 2 dagen een DM van <b>@kulortnyanse</b> en maken we bekend in onze Instagram-stories.</li>
           <li>Reageert een winnaar niet binnen 7 dagen, dan gaat de prijs naar een reservewinnaar.</li>
           <li><b>Pas op voor nepaccounts.</b> We sturen alleen berichten vanaf @kulortnyanse en vragen nooit om een betaling, een wachtwoord of je bankgegevens.</li>
@@ -58,8 +59,8 @@ export default function Giveaway() {
 
         <h2>7. Je gegevens</h2>
         <p>
-          We gebruiken je Instagram-naam alleen voor deze winactie. Van winnaars vragen we een e-mailadres en een postadres, alleen om de prijs te leveren; daarna
-          verwijderen we het adres. Meer in onze <Link href="/privacy">privacyverklaring</Link>.
+          We gebruiken je Instagram-naam alleen voor deze winactie. Winnaars krijgen hun code per DM; voor de gids vul je zelf je e-mailadres in bij de bestelling, net
+          als elke klant. Meer in onze <Link href="/privacy">privacyverklaring</Link>.
         </p>
 
         <h2>8. Overige</h2>
@@ -73,8 +74,8 @@ export default function Giveaway() {
         <h2 lang="en">In English</h2>
         <p lang="en">
           Free giveaway by {COMPANY.name} (KULØRT · NYANSE), from 2 to 8 November 2026 (Amsterdam time). Follow @kulortnyanse, comment the season you think you are and tag one friend.
-          18+, living in the Netherlands, Belgium or Germany; no purchase needed; one entry per person. Three winners each get the personal style guide with the physical colour card
-          (worth {euro(PRICES.card)}), drawn at random on 9 November 2026 and contacted only by DM from @kulortnyanse. We never ask for payment or passwords. Not sponsored,
+          18+, living in the EU; no purchase needed; one entry per person. Ten winners each get the personal style guide, digital (worth {euro(PRICES.digital)}), with a
+          single-use code, drawn at random on 9 November 2026 and contacted only by DM from @kulortnyanse. We never ask for payment or passwords. Not sponsored,
           endorsed or administered by, or associated with Instagram or Meta. The Dutch text above prevails.
         </p>
       </article>

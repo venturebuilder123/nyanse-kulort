@@ -17,7 +17,7 @@ export default function GiveawayDraw() {
   return (
     <div className="stack">
       <h1>Giveaway: trekking</h1>
-      <p className="muted small">Alle unieke accounts die vóór zondag 8 november 23:59 reageerden onder de twee giveaway-posts doen één keer mee. Controleer daarna met de hand of de winnaars @kulortnyanse volgen. Maak een screenshot van de uitslag.</p>
+      <p className="muted small">10 winnaars en 5 reserves. Alle unieke accounts die vóór zondag 8 november 23:59 reageerden onder de twee giveaway-posts doen één keer mee. Controleer daarna met de hand of de winnaars @kulortnyanse volgen. Maak een screenshot van de uitslag.</p>
       <button onClick={draw} disabled={busy}>{busy ? "Bezig…" : "Trek winnaars"}</button>
       {d?.error && <p className="pill small">{d.error}</p>}
       {d && !d.error && (

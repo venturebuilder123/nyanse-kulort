@@ -75,3 +75,24 @@ describe("discount code input", () => {
     expect(discountFor(" familie-bn26e ", "FAMILIE-BN26E:100")).toBe(100);
   });
 });
+
+describe("free codes: digital guide only, giveaway codes once (rule of 21 Oct 2026)", () => {
+  it("a 100% code never applies to the colour card or the consult, a 25% code does", async () => {
+    const { checkCode } = await import("./discount");
+    const raw = "FAMILIE-K7Q2:100,VRIENDEN-P3X9:25", gifts = "WIN-AB12CD,WIN-EF34GH";
+    expect(checkCode("familie-k7q2", "digital", raw, gifts)).toMatchObject({ ok: true, percent: 100 });
+    expect(checkCode("familie-k7q2", "card", raw, gifts)).toEqual({ ok: false, reason: "digital_only" });
+    expect(checkCode("familie-k7q2", "session", raw, gifts)).toEqual({ ok: false, reason: "digital_only" });
+    expect(checkCode("VRIENDEN-P3X9", "card", raw, gifts)).toMatchObject({ ok: true, percent: 25 });
+    expect(checkCode("win-ab12cd", "digital", raw, gifts)).toMatchObject({ ok: true, percent: 100, single: true, code: "WIN-AB12CD" });
+    expect(checkCode("WIN-AB12CD", "card", raw, gifts)).toEqual({ ok: false, reason: "digital_only" });
+    expect(checkCode("nope", "digital", raw, gifts)).toEqual({ ok: false, reason: "unknown" });
+  });
+  it("an order for the colour card with a free code pays the full price", () => {
+    process.env.DISCOUNT_CODES = "FAMILIE-K7Q2:100";
+    const card = { ...base, tier: "card", name: "A B", street: "Straat 1", postcode: "1234 AB", city: "Utrecht", country: "NL" };
+    expect(parseOrder({ ...card, discountCode: "FAMILIE-K7Q2" })?.amount_cents).toBe(3999);
+    expect(parseOrder({ ...card, discountCode: "FAMILIE-K7Q2" })?.friend_code).toBeNull();
+    delete process.env.DISCOUNT_CODES;
+  });
+});
