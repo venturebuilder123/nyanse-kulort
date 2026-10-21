@@ -42,7 +42,9 @@ const lookPin = (key, s, brand) => { const cols = (brand === "nyanse" ? s.nyanse
     <div style="display:grid;gap:12px;align-content:center">${cols.map((c) => `<div style="height:74px;background:${c.hex}"></div>`).join("")}</div>
     <div style="display:grid;gap:8px;font-size:25px;font-weight:800"><span>Find your season:<br>free colour check</span><span style="font-weight:700;color:#6F6862">kulort-nyanse.com</span></div></div></div>`; };
 
-const csvEsc = (v) => `"${String(v).replace(/"/g, '""')}"`;
+// standard CSV as Pinterest's template: quotes only where needed, CRLF line ends (21 Oct 2026: a fully
+// quoted file with LF was refused as "not uploaded correctly")
+const csvEsc = (v) => (/[",\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
 const rows = [["Title", "Media URL", "Pinterest board", "Thumbnail", "Description", "Link", "Publish date", "Keywords"]];
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1000, height: 1500 } });
@@ -73,5 +75,7 @@ for (const key of ORDER) {
   }
 }
 await b.close();
-writeFileSync("assets/social/pinterest/pins.csv", rows.map((r) => r.map(csvEsc).join(",")).join("\n") + "\n");
+writeFileSync("assets/social/pinterest/pins.csv", rows.map((r) => r.map(csvEsc).join(",")).join("\r\n") + "\r\n");
+// one pin without a date, to test an upload on its own
+writeFileSync("assets/social/pinterest/pins-test.csv", [rows[0], [...rows[1].slice(0, 6), "", rows[1][7]]].map((r) => r.map(csvEsc).join(",")).join("\r\n") + "\r\n");
 console.log("wrote assets/social/pinterest/pins.csv", rows.length - 1, "pins");
