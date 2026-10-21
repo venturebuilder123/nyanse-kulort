@@ -6,7 +6,7 @@
 
 ### Colour self-test · €2,95
 
-**Titel:** Which Season Am I? Colour Analysis Self Test PDF, Find Your Seasonal Colour Palette, 12 Seasons Quiz, Printable Test Colours
+**Titel:** Which Season Am I? Colour Analysis Self-Test PDF, 12 Seasons
 
 **Prijs (advies):** €2,95
 
@@ -51,7 +51,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Soft Autumn Colour Palette Card, Printable Wallet Swatch Card, Soft Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Soft Autumn Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -97,7 +97,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Soft Autumn Colour Guide PDF, Seasonal Colour Analysis, Soft Autumn Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Soft Autumn Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -146,7 +146,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Soft Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Soft Autumn Colour Palette, Digital Download
+**Titel:** Soft Autumn Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -194,7 +194,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Soft Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Soft Autumn Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -244,7 +244,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Deep Winter Colour Palette Card, Printable Wallet Swatch Card, Deep Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Deep Winter Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -290,7 +290,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Deep Winter Colour Guide PDF, Seasonal Colour Analysis, Deep Winter Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Deep Winter Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -339,7 +339,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Deep Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Deep Winter Colour Palette, Digital Download
+**Titel:** Deep Winter Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -387,7 +387,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Deep Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Deep Winter Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -437,7 +437,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Soft Summer Colour Palette Card, Printable Wallet Swatch Card, Soft Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Soft Summer Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -483,7 +483,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Soft Summer Colour Guide PDF, Seasonal Colour Analysis, Soft Summer Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Soft Summer Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -532,7 +532,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Soft Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Soft Summer Colour Palette, Digital Download
+**Titel:** Soft Summer Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -580,7 +580,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Soft Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Soft Summer Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -630,7 +630,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Light Spring Colour Palette Card, Printable Wallet Swatch Card, Light Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Light Spring Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -676,7 +676,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Light Spring Colour Guide PDF, Seasonal Colour Analysis, Light Spring Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Light Spring Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -725,7 +725,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Light Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Light Spring Colour Palette, Digital Download
+**Titel:** Light Spring Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -773,7 +773,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Light Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Light Spring Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -823,7 +823,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Warm Autumn Colour Palette Card, Printable Wallet Swatch Card, Warm Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Warm Autumn Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -869,7 +869,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Warm Autumn Colour Guide PDF, Seasonal Colour Analysis, Warm Autumn Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Warm Autumn Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -918,7 +918,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Warm Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Warm Autumn Colour Palette, Digital Download
+**Titel:** Warm Autumn Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -966,7 +966,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Warm Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Warm Autumn Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1016,7 +1016,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Cool Winter Colour Palette Card, Printable Wallet Swatch Card, Cool Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Cool Winter Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -1062,7 +1062,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Cool Winter Colour Guide PDF, Seasonal Colour Analysis, Cool Winter Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Cool Winter Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -1111,7 +1111,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Cool Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Cool Winter Colour Palette, Digital Download
+**Titel:** Cool Winter Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -1159,7 +1159,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Cool Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Cool Winter Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1209,7 +1209,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Light Summer Colour Palette Card, Printable Wallet Swatch Card, Light Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Light Summer Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -1255,7 +1255,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Light Summer Colour Guide PDF, Seasonal Colour Analysis, Light Summer Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Light Summer Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -1304,7 +1304,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Light Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Light Summer Colour Palette, Digital Download
+**Titel:** Light Summer Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -1352,7 +1352,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Light Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Light Summer Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1402,7 +1402,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Bright Spring Colour Palette Card, Printable Wallet Swatch Card, Bright Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Bright Spring Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -1448,7 +1448,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Bright Spring Colour Guide PDF, Seasonal Colour Analysis, Bright Spring Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Bright Spring Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -1497,7 +1497,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Bright Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Bright Spring Colour Palette, Digital Download
+**Titel:** Bright Spring Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -1545,7 +1545,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Bright Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Bright Spring Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1595,7 +1595,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Deep Autumn Colour Palette Card, Printable Wallet Swatch Card, Deep Autumn Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Deep Autumn Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -1641,7 +1641,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Deep Autumn Colour Guide PDF, Seasonal Colour Analysis, Deep Autumn Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Deep Autumn Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -1690,7 +1690,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Deep Autumn Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Deep Autumn Colour Palette, Digital Download
+**Titel:** Deep Autumn Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -1738,7 +1738,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Deep Autumn Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Deep Autumn Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1788,7 +1788,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Cool Summer Colour Palette Card, Printable Wallet Swatch Card, Cool Summer Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Cool Summer Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -1834,7 +1834,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Cool Summer Colour Guide PDF, Seasonal Colour Analysis, Cool Summer Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Cool Summer Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -1883,7 +1883,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Cool Summer Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Cool Summer Colour Palette, Digital Download
+**Titel:** Cool Summer Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -1931,7 +1931,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Cool Summer Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Cool Summer Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -1981,7 +1981,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Warm Spring Colour Palette Card, Printable Wallet Swatch Card, Warm Spring Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Warm Spring Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -2027,7 +2027,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Warm Spring Colour Guide PDF, Seasonal Colour Analysis, Warm Spring Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Warm Spring Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -2076,7 +2076,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Warm Spring Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Warm Spring Colour Palette, Digital Download
+**Titel:** Warm Spring Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -2124,7 +2124,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Warm Spring Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Warm Spring Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 
@@ -2174,7 +2174,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 1. Palette Card · €3,95
 
-**Titel:** Bright Winter Colour Palette Card, Printable Wallet Swatch Card, Bright Winter Palette with Hex Codes, Phone Wallpaper, Digital Download
+**Titel:** Bright Winter Colour Palette Card, Printable Swatch Card and Phone Wallpaper
 
 **Prijs (advies):** €3,95
 
@@ -2220,7 +2220,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 2. Colour Guide · €7,95
 
-**Titel:** Bright Winter Colour Guide PDF, Seasonal Colour Analysis, Bright Winter Palette with Colour Names, What to Avoid, Digital Download
+**Titel:** Bright Winter Colour Guide PDF, Seasonal Colour Analysis
 
 **Prijs (advies):** €7,95
 
@@ -2269,7 +2269,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 3. Style Guide · €12,95
 
-**Titel:** Bright Winter Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, Bright Winter Colour Palette, Digital Download
+**Titel:** Bright Winter Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF
 
 **Prijs (advies):** €12,95
 
@@ -2317,7 +2317,7 @@ Designed by KULØRT · NYANSE. Product photos and videos were created with the h
 
 ### 4. Complete Collection · €19,95
 
-**Titel:** Bright Winter Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download
+**Titel:** Bright Winter Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF
 
 **Prijs (advies):** €19,95
 

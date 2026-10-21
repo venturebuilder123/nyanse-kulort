@@ -181,3 +181,45 @@ De shotlijst en de montage staan in **docs/brand/VEO-FILM.md**. Jij maakt 3 tot 
   - daarna zet ik ze met één opdracht live.
 - Gebruik: de overige 32 listings, prijswijzigingen en nieuwe producten.
 - Kosten: de normale $0,20 per gepubliceerde listing. Concepten kosten niets.
+
+## 14. Na de livegang (21 oktober 2026): foto's, titels, advertenties en vindbaarheid
+
+**Foto 1 opnieuw (miniaturen).**
+- Probleem: Etsy snijdt automatisch bij, en dan viel de vrouw (of de man) weg.
+- Nieuw: zij links, de tekst in het midden, hij rechts. De figuren staan naar het midden geschoven, zodat in elke uitsnede (vierkant of 4:3) beiden en de titel zichtbaar blijven.
+
+**Foto 4 opnieuw.**
+- Het effect bij haar én bij hem.
+- Ontbreekt een effectbeeld, dan staat daar het portret van de ander, met "For her" of "For him".
+
+**Kortere titels.** Etsy's eigen handboek (augustus 2025) raadt korte, duidelijke titels aan, omdat lange lijsten met zoekwoorden kopers afschrikken. De zoekwoorden staan al in de 13 tags.
+
+**Per live listing aanpassen (±2 min):** vervang foto 1 en foto 4, plak de nieuwe titel uit `listing.txt` en vul de **ATTRIBUTES** in die daar staan. De kleuren zijn per seizoen berekend uit het palet, in de kleurnamen die Etsy gebruikt.
+
+**Voorraad 999.** Bij een hoge voorraad toont Etsy geen "nog maar 1"-melding. Dat is dus juist de eerlijke instelling: geen kunstmatige haast. Meldingen als "in 3 baskets" maakt Etsy zelf en die kloppen.
+
+**Adverteren (MENING):**
+- **Etsy Ads nog niet.** Het minimum is $1 per dag (FEIT, Etsy). Een nieuwe winkel zonder reviews zet klikken slecht om in verkopen.
+  - Voorstel: na 3 tot 5 reviews, of na 4 weken, een test van 14 dagen à €1 per dag (€14) op de zelftest en de Style Guides.
+  - Ik vraag het eerst, omdat het geld kost.
+- **Offsite Ads laten aanstaan.** Je betaalt alleen bij een verkoop via een advertentie van Etsy buiten Etsy: 15% zolang je onder $10.000 omzet per jaar zit (FEIT, Etsy).
+  - Bij €2,95 houd je dan nog ruim €1,70 over.
+  - Uitzetten kan altijd: Shop Manager → Settings → Advertising.
+
+**Wel meteen doen:**
+1. **Share & Save:** Marketing → Share & Save → Join.
+   - Verkopen via je eigen gedeelde link (Instagram, Pinterest, mail) geven 4% terug op de transactiekosten (FEIT, Etsy-voorwaarden).
+   - Deel daarom altijd die link, niet de gewone.
+2. **Attributen invullen** in elke listing: kleur, gelegenheid, voor wie. Etsy gebruikt ze als extra tags in de zoekfunctie (Etsy-handboek).
+3. **Black Friday (27 november) en Kerst.** Op 18 november komt automatisch een herinneringsmail met de stappen (lib/social/reminders.ts).
+   - Een korting moet uitgaan van de laagste prijs van de 30 dagen ervoor. Onze prijzen staan vast sinds 21 oktober, dus vanaf **20 november** mag een echte korting.
+   - Voorstel: 20% op alles van 27 november tot en met 1 december, met "gift for her" en "gift for him" in de tags.
+4. **Reageer op elk bericht binnen 24 uur** en vraag om een review in het bericht na aankoop. Dat telt mee voor "Star Seller".
+
+**Waar we uniek in zijn, en dat moet op elke foto 1 zichtbaar zijn:**
+- voor haar én hem;
+- het effect (zelfde gezicht, ander doek);
+- echte pagina's;
+- vier duidelijke pakketten per seizoen.
+
+Met de nieuwe foto 1 ziet de hele winkel eruit als één rustig, herkenbaar raster.

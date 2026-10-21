@@ -283,13 +283,28 @@ const INSIDE: Record<string, (s: Season, pages: number) => string[]> = {
   "3-style-guide": (s, n) => [`${n}-page style guide for her and for him`, "8 outfits: work, weekend, date night, evening", "2 capsule wardrobes of 12 pieces", "First 5 buys and accessories", "+ the full colour guide, Palette Card, wallpaper"],
   "4-complete": (s, n) => [`${n}-page style guide with make-up`, "Printable colour fan to cut out", "Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker", "Wallet cards and 3 phone wallpapers", "Everything in the Style Guide"],
 };
-const heroImg = (s: Season, tier: Tier, pages: number) => { const photo = tier.no >= 3 ? img(`outfits/${s.key}-both.jpg`) : img(`seasons/season-${s.key}.jpg`); return `<div style="width:2000px;height:1500px;background:#E9E3DA;position:relative;overflow:hidden">
-  <img src="${photo}" style="position:absolute;right:0;top:0;width:960px;height:1500px;object-fit:cover">
-  <div style="position:absolute;left:100px;top:120px;width:860px;display:grid;gap:34px"><div style="display:flex;gap:16px;align-items:center"><span class="eb" style="font-size:26px">Digital download</span><span style="font-size:24px;font-weight:800;background:#141414;color:#F6F2EC;padding:8px 18px;border-radius:40px">${tier.no} of 4 · ${tier.name}</span></div>
-    <div class="bod" style="font-size:132px;line-height:.92">${s.name}<br><i>${tier.name}</i></div>
-    <div style="display:flex;gap:10px">${s.palette.slice(0, 9).map((c) => `<i style="width:72px;height:72px;border-radius:50%;background:${c.hex};display:block"></i>`).join("")}</div>
-    <ul style="font-size:32px;line-height:1.45;padding-left:36px;display:grid;gap:6px">${INSIDE[tier.id]!(s, pages).map((x) => `<li>${x}</li>`).join("")}</ul></div>
-  <div style="position:absolute;left:100px;bottom:70px">${MARK("34px")}</div></div>`; };
+// Her on the left, the package in the middle, him on the right (founder, 21 Oct 2026: Etsy's automatic
+// crop showed only the men's outfit). Whatever Etsy crops (square on phones, 4:3 on desktop), the
+// title stays whole and both of them stay in view.
+const person = (key: SeasonKey, b: Brand) => ((HEROES as string[]).includes(`${key}-${b}`) ? `${A}/brand/heroes/${key}-${b}.jpg` : img(`outfits/${key}-${b}.jpg`));
+// the people sit towards the middle (object-position 0% / 100%), inside the square crop x 250–1750
+const heroImg = (s: Season, tier: Tier, pages: number) => `<div style="width:2000px;height:1500px;background:#E9E3DA;display:grid;grid-template-columns:560px 1fr 560px">
+  <img src="${person(s.key, "nyanse")}" style="width:560px;height:1500px;object-fit:cover;object-position:0% 40%">
+  <div style="padding:0 60px;display:grid;align-content:center;justify-items:center;gap:30px;text-align:center">
+    <span style="font-size:26px;font-weight:800;background:#141414;color:#F6F2EC;padding:9px 20px;border-radius:40px">${tier.no} of 4 · ${tier.name}</span>
+    <div class="bod" style="font-size:96px;line-height:.92">${s.name}<br><i>${tier.name}</i></div>
+    <div style="display:flex;gap:10px">${s.palette.slice(0, 8).map((c) => `<i style="width:62px;height:62px;border-radius:50%;background:${c.hex};display:block"></i>`).join("")}</div>
+    <ul style="font-size:27px;line-height:1.4;list-style:none;padding:0;display:grid;gap:4px">${INSIDE[tier.id]!(s, pages).map((x) => `<li>${x}</li>`).join("")}</ul>
+    <div style="font-size:24px;font-weight:700;color:#6F6862;letter-spacing:.18em;text-transform:uppercase">For her · for him · instant download</div></div>
+  <img src="${person(s.key, "kulort")}" style="width:560px;height:1500px;object-fit:cover;object-position:100% 40%"></div>`;
+// The effect for her and for him; when one of them has no effect photo yet, their portrait stands in.
+const effectFile = (key: SeasonKey, b: Brand) => ["1", "2"].map((n) => `effect-${key}-${b}-${n}.jpg`).find((f) => existsSync(`assets/gemini/effect/${f}`));
+const effectPairImg = (s: Season) => {
+  const cell = (b: Brand) => { const f = effectFile(s.key, b); return `<div style="position:relative;min-height:0"><img src="${f ? `${A}/gemini/effect/${f}` : person(s.key, b)}" style="width:100%;height:100%;object-fit:cover;object-position:${f ? "top" : "50% 35%"}"><span style="position:absolute;left:20px;bottom:20px;background:#F6F2EC;padding:8px 18px;border-radius:40px;font-size:24px;font-weight:800">${b === "nyanse" ? "For her" : "For him"}</span></div>`; };
+  return `<div style="width:2000px;height:1500px;background:#F6F2EC;display:grid;grid-template-rows:auto 1fr;padding:70px 90px;gap:44px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="bod" style="font-size:88px">Same face. <i>Different colour.</i></div>${MARK("34px")}</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;min-height:0">${cell("nyanse")}${cell("kulort")}</div></div>`;
+};
 // the pages fanned out and overlapping, large enough to read the headings
 const insideImg = (s: Season, tier: Tier, thumbs: string[]) => { const w = thumbs.length <= 2 ? 760 : 600, step = thumbs.length <= 1 ? 0 : (1800 - w) / (thumbs.length - 1); return `<div style="width:2000px;height:1500px;background:#E9E3DA;position:relative;overflow:hidden">
   <div style="position:absolute;left:100px;top:80px;display:flex;justify-content:space-between;right:100px;align-items:baseline"><div class="bod" style="font-size:96px">What's <i>inside</i></div><span class="eb" style="font-size:26px">${s.name} · ${tier.name}</span></div>
@@ -434,10 +449,11 @@ const stSeasons = (all: Season[]) => `<div style="width:2000px;height:1500px;bac
 function listing(s: Season, tier: Tier, pages: number, files: string[], photos: string[]): string {
   const n = s.name;
   const titles: Record<string, string> = {
-    "1-palette-card": `${n} Colour Palette Card, Printable Wallet Swatch Card, ${n} Palette with Hex Codes, Phone Wallpaper, Digital Download`,
-    "2-colour-guide": `${n} Colour Guide PDF, Seasonal Colour Analysis, ${n} Palette with Colour Names, What to Avoid, Digital Download`,
-    "3-style-guide": `${n} Style Guide PDF for Women and Men, Capsule Wardrobe, Outfit Ideas, ${n} Colour Palette, Digital Download`,
-    "4-complete": `${n} Complete Colour Bundle, Style Guide, Make-up Colours, Printable Colour Fan, Wardrobe Workbook, Digital Download`,
+    // short and clear (Etsy Seller Handbook, Aug 2025: long keyword lists put buyers off); the keywords live in the tags
+    "1-palette-card": `${n} Colour Palette Card, Printable Swatch Card and Phone Wallpaper`,
+    "2-colour-guide": `${n} Colour Guide PDF, Seasonal Colour Analysis`,
+    "3-style-guide": `${n} Style Guide for Her and Him, Outfits and Capsule Wardrobe PDF`,
+    "4-complete": `${n} Complete Colour Bundle, Style Guide, Make-up and Colour Fan PDF`,
   };
   const base = [n.toLowerCase(), `${n.toLowerCase()} palette`, "colour analysis", "color analysis", "seasonal color", `${s.family.toLowerCase()} colours`];
   const extra: Record<string, string[]> = {
@@ -539,7 +555,7 @@ async function selfTest(): Promise<string> {
   const secs = joinScenes(`${d}/video.mp4`, scenes);
   rmSync(tmp, { recursive: true });
 
-  const title = "Which Season Am I? Colour Analysis Self Test PDF, Find Your Seasonal Colour Palette, 12 Seasons Quiz, Printable Test Colours".slice(0, 140);
+  const title = "Which Season Am I? Colour Analysis Self-Test PDF, 12 Seasons";
   const tags = ["what season am i", "color analysis test", "colour analysis", "color analysis", "seasonal color quiz", "12 seasons", "find your season", "color palette quiz", "personal colours", "self test pdf", "skin undertone test", "printable drapes", "digital download"];
   const desc = [
     `Not sure which season you are? Find out in fifteen minutes, with a mirror and daylight.`,
@@ -636,8 +652,8 @@ for (const key of ONLY ? (String(ONLY) === "selfTest" ? [] : [ONLY]) : ORDER) {
     await shot(`${d}/listing-2.jpg`, insideImg(s, tier, inside), 2000, 1500);
     await shot(`${d}/listing-3.jpg`, compareImg(s), 2000, 1500);
     const photos = ["listing-1.jpg", "listing-2.jpg", "listing-3.jpg"];
-    const effect = ["nyanse-1", "kulort-1", "nyanse-2", "kulort-2"].map((x) => `assets/gemini/effect/effect-${key}-${x}.jpg`).find(existsSync);
-    if (effect) { execFileSync("sips", ["-Z", "2000", "-s", "formatOptions", "85", effect, "--out", `${d}/listing-4.jpg`], { stdio: "ignore" }); photos.push("listing-4.jpg"); }
+    await shot(`${d}/listing-4.jpg`, effectPairImg(s), 2000, 1500);
+    photos.push("listing-4.jpg");
     const secs = await listingVideo(d, s, tier, vid);
     md += listing(s, tier, pages, files, photos) + "\n";
     console.log("wrote", d, `(${pages} pages, video ${secs} s)`);

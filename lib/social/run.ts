@@ -6,6 +6,7 @@ import { calendar, type Slot } from "./calendar";
 import { containerState, instagramConfigured, publish, publishContainer, refreshToken } from "./instagram";
 import { morningDigest } from "./comments";
 import { uploadShort, youtubeConfigured } from "./youtube";
+import { REMINDERS } from "./reminders";
 
 /** A slot only runs when its platform is connected; the other platform's slots just wait. */
 export const platformReady = (s: Slot) => (s.kind === "short" ? youtubeConfigured() : instagramConfigured());
@@ -69,6 +70,13 @@ export async function runSocial(now = new Date()) {
     const text = `Morgen gaat dit automatisch online:\n\n${list}\n\nNiet goed? Open /lab/social en klik op Overslaan.`;
     await sendMail(process.env.MAIL_TO_FOUNDER, "Morgen op social", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
     await save(previewKey, "preview_sent");
+  }
+  // one-off reminders to the founder (lib/social/reminders.ts), each sent once
+  if (mailConfigured() && process.env.MAIL_TO_FOUNDER) {
+    for (const r of REMINDERS.filter((x) => x.at <= now && !done.has(x.key))) {
+      const ok = await sendMail(process.env.MAIL_TO_FOUNDER, r.subject, r.text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${r.text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
+      if (ok !== false) await save(r.key, "preview_sent");
+    }
   }
   const digest = mailConfigured() && instagramConfigured() ? await morningDigest(now).catch((e) => `digest error: ${String(e).slice(0, 120)}`) : "mail off";
   return { posted: out, token, digest };
