@@ -4,6 +4,38 @@ export type Reminder = { key: string; at: Date; subject: string; text: string };
 
 export const REMINDERS: Reminder[] = [
   {
+    key: "reminder-boost-2026-11-02",
+    // Monday 2 Nov 2026, 09:00 Amsterdam (08:00 UTC): week 2 of the growth sprint
+    at: new Date("2026-11-02T08:00:00Z"),
+    subject: "Herinnering: start de Instagram-boost (€5 per dag, 14 dagen)",
+    text: [
+      "Week 2 van de groeisprint (docs/marketing/GROEI-SPRINT.md): tijd voor de betaalde duw. Budget afgesproken: €70.",
+      "",
+      "1. Instagram-app → Professioneel dashboard → kies de Reel met het meeste bereik bij niet-volgers en de meeste keren doorgestuurd (Insights per Reel).",
+      "2. Tik 'Promoten'. Doel: 'Meer profielbezoeken'.",
+      "3. Doelgroep: zelf maken. Nederland en België, 18–44 jaar, interesses: mode, persoonlijke stijl, kleding.",
+      "4. Budget: €5 per dag, 14 dagen (= €70). Alleen Instagram (niet Facebook), plaatsing Reels en Stories.",
+      "5. Vink het AI-label aan (de beelden zijn met AI gemaakt).",
+      "",
+      "Vandaag om 12:00 start ook de giveaway: de boost helpt die meteen. Na 7 dagen kijken we samen naar de kosten per nieuwe volger.",
+    ].join("\n"),
+  },
+  {
+    key: "reminder-giveaway-draw-2026-11-09",
+    at: new Date("2026-11-09T08:00:00Z"),
+    subject: "Herinnering: trek de winnaars van de giveaway",
+    text: [
+      "De giveaway sloot zondag om 23:59. Vandaag trekken we de winnaars (voorwaarden: kulort-nyanse.com/winactie).",
+      "",
+      "1. Open /lab/giveaway en klik op 'Trek winnaars': 3 winnaars en 3 reserves, willekeurig uit alle unieke deelnemers.",
+      "2. Controleer bij elke winnaar of die @kulortnyanse volgt (anders: de eerste reserve).",
+      "3. Zet een gratis kortingscode in Vercel (DISCOUNT_CODES, bijvoorbeeld WIN-NOV:100) en redeploy.",
+      "4. Stuur elke winnaar een DM: gefeliciteerd, doe de gratis check op kulort-nyanse.com en kies 'met kleurenpas' met code WIN-NOV. Het adres vullen ze zelf in bij de bestelling.",
+      "5. Zet de winnaars (alleen hun naam) in een Story.",
+      "Reageert iemand niet binnen 7 dagen: de prijs gaat naar de volgende reserve.",
+    ].join("\n"),
+  },
+  {
     key: "reminder-etsy-black-friday-2026",
     // Wednesday 18 Nov 2026, 09:00 Amsterdam (08:00 UTC): two days before a discount is allowed
     at: new Date("2026-11-18T08:00:00Z"),

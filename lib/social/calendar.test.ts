@@ -5,7 +5,7 @@ describe("instagram calendar", () => {
   const c = calendar("2026-10-26", "https://x");
   it("posts every Wednesday at 18:30 Amsterdam, plus four Thursdays at 12:00", () => {
     expect(c.filter((s) => s.kind === "carousel")).toHaveLength(12);
-    expect(c.filter((s) => s.kind === "image" && !s.key.endsWith("-thu-effect") && !s.key.endsWith("-monday-benefit") && !s.key.startsWith("etsy-launch"))).toHaveLength(4);
+    expect(c.filter((s) => s.kind === "image" && !s.key.endsWith("-thu-effect") && !s.key.endsWith("-monday-benefit") && !s.key.startsWith("etsy-launch") && !s.key.startsWith("giveaway"))).toHaveLength(4);
     // 28 Oct 2026 is winter time (UTC+1): 18:30 local = 17:30 UTC
     expect(c[0]!.at.toISOString()).toBe("2026-10-28T17:30:00.000Z");
     expect(c[1]!.at.toISOString()).toBe("2026-10-29T11:00:00.000Z");

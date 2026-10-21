@@ -2,6 +2,13 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 21 oktober 2026 — Instagram-groeisprint
+
+- **Comment SEASON → DM** is live: het officiële privéantwoord van Instagram, één bericht per persoon, binnen 7 dagen, plus een openbaar antwoord.
+- **Giveaway** van 2 tot en met 8 november: 3 × stijlgids met kleurenpas. Voorwaarden op /winactie, trekking via /lab/giveaway.
+- **€70 Instagram-boost** vanaf 2 november (herinneringsmail).
+- **Geen drapings door de vrouw van de oprichter:** de oprichter wil er niet van afhankelijk zijn. We werken creatiever met AI (docs/marketing/GROEI-SPRINT.md).
+
 ## 21 oktober 2026 — kleding stuurt de analyse: eigen controle na de selfie
 
 **Probleem (melding van de oprichter):** de uitslag lijkt mee te bewegen met de kleding die mensen dragen.

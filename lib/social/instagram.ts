@@ -130,3 +130,16 @@ export async function privateReply(commentId: string, text: string): Promise<str
 export async function replyToComment(commentId: string, message: string): Promise<string> {
   return (await call(`${commentId}/replies`, { message })).id ?? "";
 }
+
+/** Every comment on one post (all pages), for the giveaway draw. */
+export async function allComments(mediaId: string): Promise<{ id: string; username?: string; timestamp: string; text: string }[]> {
+  const out: { id: string; username?: string; timestamp: string; text: string }[] = [];
+  let after: string | undefined;
+  for (let page = 0; page < 40; page++) {
+    const r = (await call(`${mediaId}/comments`, { fields: "id,text,username,timestamp", limit: "50", ...(after ? { after } : {}) }, "GET")) as { data?: { id: string; username?: string; timestamp: string; text: string }[]; paging?: { cursors?: { after?: string }; next?: string } };
+    out.push(...(r.data ?? []));
+    if (!r.paging?.next || !r.paging.cursors?.after) break;
+    after = r.paging.cursors.after;
+  }
+  return out;
+}

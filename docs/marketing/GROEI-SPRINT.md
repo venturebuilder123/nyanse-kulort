@@ -2,6 +2,31 @@
 
 *Aanleiding (21 oktober): "Met posten en wachten komen we er niet." Klopt. Dit plan vervangt het weekritme in GUERRILLA.md §4. Dat ritme vroeg 30 minuten per dag van de oprichter, en dat gebeurt niet.*
 
+## Besluiten van de oprichter (21 oktober 2026)
+
+1. **"Comment SEASON → DM": GO, gebouwd en live.**
+   - Elk uur krijgt elke reactie met "season" of "seizoen" automatisch een DM met de link (één keer per persoon, binnen 7 dagen) en een openbaar "Sent you a DM 💌".
+   - De bijschriften van nieuwe posts vragen erom.
+   - **Instellen (eenmalig):** Instagram-app → Instellingen → Berichten en antwoorden op verhalen → Berichtinstellingen → **Verbonden hulpmiddelen: "Toegang tot berichten toestaan" aan**.
+2. **Geen drapings door de vrouw van de oprichter.** We werken met AI-beelden en worden creatiever (zie hieronder). De giveaway-prijs wordt daarom ons eigen product.
+3. **Giveaway: GO.**
+   - Maandag 2 november tot en met zondag 8 november.
+   - 3 × de stijlgids met kleurenpas (€39,99).
+   - Voorwaarden staan op /winactie.
+   - Trekking op 9 november via /lab/giveaway, met een herinneringsmail.
+4. **€70 advertentiebudget: GO, vanaf week 2.**
+   - Kanaal: **Instagram** (Reels en Stories), doel "Meer profielbezoeken", Nederland en België, 18–44 jaar.
+   - Op maandag 2 november komt een herinneringsmail met de stappen.
+   - Niet op Facebook: daar zitten onze volgers niet.
+
+## Creatiever met AI (in plaats van echte drapings)
+
+Ideeën om deze sprint te bouwen, op volgorde van verwachte impact (MENING):
+1. **"Guess the season"-quiz.** Een AI-gezicht met drie doeken A, B en C: *"Which one is right? Comment A, B or C."* Het antwoord staat in de eerste reactie. Dat levert veel reacties op.
+2. **"Same outfit, 12 seasons".** Eén outfit, met onze eigen inkleurtechniek in de kleuren van alle 12 seizoenen. *"Find yours, send this to your Soft Autumn."* Mensen sturen zo'n post graag door.
+3. **"Send this to…"-persona's.** "Send this to the friend who always wears black (but shouldn't)". Herkenbaar en doorstuurbaar.
+4. **Veo-clips** (docs/brand/VEO-FILM.md), zodra het genereren lukt.
+
 ## Waarom posten en wachten niet werkt
 
 - **Een nieuw account krijgt zijn bereik van mensen die je nog niet volgen.** Instagram toont een Reel eerst aan een kleine groep, en verspreidt hem verder als die groep lang kijkt, liket en vooral **doorstuurt**. Volgens Mosseri (januari 2025) zijn kijktijd, likes per bereik en doorsturen per bereik de belangrijkste signalen (FEIT, via Social Samosa).
@@ -72,8 +97,5 @@ Volgers kopen, volgen en ontvolgen, bots en "engagement pods". Dat is nep, het k
 
 Week 1 is de nulmeting. Na 4 weken beslissen we wat we houden.
 
-## GO nodig voor
-1. Bouwen van "Reageer SEASON → DM" (en een nieuw token).
-2. Je vrouw: 2 drapings per week filmen, en de giveaway-sessie aanbieden.
-3. De giveaway, met actievoorwaarden op de site.
-4. €70 advertentiebudget (vanaf week 2).
+## GO
+Zie "Besluiten" bovenaan: 1, 3 en 4 gaan door; 2 (drapings) niet.
