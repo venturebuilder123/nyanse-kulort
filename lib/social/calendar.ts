@@ -44,6 +44,7 @@ function seasonCaption(key: string, no: number): string {
     `Your colours for her and for him are on slide 3. What to leave on the rack: slide 5.`,
     ``,
     `Not a ${s.name}? Find your season with one selfie. Free colour check, link in bio.`,
+    `Know you're a ${s.name}? The ${s.name} guides are also on Etsy: KULORTNYANSE.`,
     `Send this to the ${s.name} you know 💌`,
     ``,
     `${tag} ${TAGS}`,
@@ -150,6 +151,11 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
       slots.push({ key: `w${i + 1}-tue-short`, at, kind: "short", images, ...shortMeta(reel, base) });
     }
     if (still) slots.push({ key: `w${i + 1}-thu-effect`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}${still.dir}/post.jpg`], caption: effectCaption(still, false) });
+  });
+  // once: the Etsy shop opened (21 Oct 2026); a fixed date, outside the weekly rhythm
+  slots.push({
+    key: "etsy-launch-2026-10-23", at: amsterdamAt(2026, 10, 23, 12, 0), kind: "image", images: [`${base}/social/etsy/now-on-etsy.jpg`],
+    caption: [`We're on Etsy now 🎉`, ``, `Every season in four packages, from a palette card to the complete collection, for her and for him. Not sure of your season yet? Start with the "Which season am I?" self-test.`, ``, `Find us on Etsy: KULORTNYANSE (second link in bio).`, `Prefer your personal analysis from one selfie? That's the first link in bio, free.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #etsyfinds #capsulewardrobe #personalstyle`].join("\n"),
   });
   // Monday 18:30, weeks 2–9: the benefit scenes (a moment where your colours make the difference)
   BENEFITS.forEach((b, i) => {
