@@ -31,7 +31,8 @@ const bar = (w, h, question) => {
 
 /** The band: the longest run of rows, in the middle half, that are almost entirely near-black. */
 function findBand(data, W, H) {
-  const dark = (i) => data[i] < 32 && data[i + 1] < 32 && data[i + 2] < 32;
+  // Gemini's band is not always one shade: a dark-grey edge counts as band too
+  const dark = (i) => data[i] < 52 && data[i + 1] < 52 && data[i + 2] < 56;
   let best = [0, 0], run = null;
   for (let y = Math.floor(H * 0.2); y < Math.floor(H * 0.8); y++) {
     let n = 0;
@@ -67,7 +68,7 @@ for (const f of files) {
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const i = (y * W + x) * 4;
     const inBand = y >= y0 && y < y1;
-    const object = data[i] > 40 || data[i + 1] > 40 || data[i + 2] > 40;
+    const object = data[i] > 70 || data[i + 1] > 70 || data[i + 2] > 70;
     front[i + 3] = inBand && object ? 255 : 0;
   }
   const out = `${OUT}/${f.replace(/\.(png|jpe?g)$/i, ".jpg")}`;

@@ -169,6 +169,19 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
       caption: [`Which season is ${q.who}? 👀 A, B or C?`, ``, `A: ${q.options[0]}`, `B: ${q.options[1]}`, `C: ${q.options[2]}`, ``, `Comment your answer, then swipe for the answer (no peeking).`, `Want to know your own season? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #whatseasonami #${q.season.toLowerCase().replace(/\s+/g, "")} #quiz`].join("\n"),
     });
   });
+  // Sunday 19:00, weeks 1–4: "breaking the frame" (colour pours through the post; docs/brand/FRAME-BREAK.md)
+  const FRAMES: [file: string, line: string][] = [
+    ["pour-softAutumn-nyanse", "Soft Autumn, poured straight into the right colour."],
+    ["pour-deepWinter-kulort", "Deep Winter: the colour that makes him look like himself."],
+    ["pour-lightSpring-nyanse", "Light Spring: warm, light and glowing."],
+    ["ribbon-softAutumn-product", "One swatch, one sweater, zero doubt."],
+  ];
+  FRAMES.forEach(([file, line], i) => {
+    slots.push({
+      key: `w${i + 1}-sun-framebreak`, at: day(i * 7 + 6, { hour: 19, minute: 0 }), kind: "image", images: [`${base}/social/framebreak/${file}.jpg`],
+      caption: [`Same face. Different colour. 🎨`, ``, line, `Which season are you? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #personalstyle #colourpalette`].join("\n"),
+    });
+  });
   // Monday 18:30, weeks 2–9: the benefit scenes (a moment where your colours make the difference)
   BENEFITS.forEach((b, i) => {
     const season = D[b.key.split("-")[1]!]!.name;

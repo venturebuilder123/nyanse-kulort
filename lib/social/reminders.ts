@@ -11,7 +11,7 @@ export const REMINDERS: Reminder[] = [
     text: [
       "Week 2 van de groeisprint (docs/marketing/GROEI-SPRINT.md): tijd voor de betaalde duw. Budget afgesproken: €70.",
       "",
-      "1. Instagram-app → Professioneel dashboard → kies de Reel met het meeste bereik bij niet-volgers en de meeste keren doorgestuurd (Insights per Reel).",
+      "1. Instagram-app → Professioneel dashboard → kies de post met het meeste bereik bij niet-volgers en de meeste keren doorgestuurd (Insights). Twijfel? Neem de frame-break-post van zondag 25 oktober (verf die door de post stroomt): dat is een scroll-stopper.",
       "2. Tik 'Promoten'. Doel: 'Meer profielbezoeken'.",
       "3. Doelgroep: zelf maken. Nederland en België, 18–44 jaar, interesses: mode, persoonlijke stijl, kleding.",
       "4. Budget: €5 per dag, 14 dagen (= €70). Alleen Instagram (niet Facebook), plaatsing Reels en Stories.",
