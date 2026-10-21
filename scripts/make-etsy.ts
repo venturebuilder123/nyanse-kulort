@@ -17,6 +17,7 @@ import HEROES from "@/lib/brand/heroes.json";
 import { createRequire } from "node:module";
 import { colorName, nameForHex, paletteFor } from "@/lib/color/palette";
 import { colorNameEn } from "@/lib/color/names-en";
+import { hexToLab } from "@/lib/color/convert";
 import { SEASONS, type SeasonKey } from "@/lib/color/seasons";
 import type { Guide, Swatch } from "@/lib/guide/build";
 import { accessoriesEn, item, sw, t } from "./etsy/en";
@@ -283,20 +284,23 @@ const INSIDE: Record<string, (s: Season, pages: number) => string[]> = {
   "3-style-guide": (s, n) => [`${n}-page style guide for her and for him`, "8 outfits: work, weekend, date night, evening", "2 capsule wardrobes of 12 pieces", "First 5 buys and accessories", "+ the full colour guide, Palette Card, wallpaper"],
   "4-complete": (s, n) => [`${n}-page style guide with make-up`, "Printable colour fan to cut out", "Workbook: wardrobe check, capsule checklists, shopping list, 30-day tracker", "Wallet cards and 3 phone wallpapers", "Everything in the Style Guide"],
 };
-// Her on the left, the package in the middle, him on the right (founder, 21 Oct 2026: Etsy's automatic
-// crop showed only the men's outfit). Whatever Etsy crops (square on phones, 4:3 on desktop), the
-// title stays whole and both of them stay in view.
+// Photo 1, portrait 4:5 (founder, 21 Oct 2026, "not popping"): Etsy's search grid shows listings at
+// about 4:5 and cut the old 4:3 photo to its middle. Now nothing is cropped: the season's own colour
+// on top with the name large enough to read on a phone, her and him in the middle, the palette below.
 const person = (key: SeasonKey, b: Brand) => ((HEROES as string[]).includes(`${key}-${b}`) ? `${A}/brand/heroes/${key}-${b}.jpg` : img(`outfits/${key}-${b}.jpg`));
-// the people sit towards the middle (object-position 0% / 100%), inside the square crop x 250–1750
-const heroImg = (s: Season, tier: Tier, pages: number) => `<div style="width:2000px;height:1500px;background:#E9E3DA;display:grid;grid-template-columns:560px 1fr 560px">
-  <img src="${person(s.key, "nyanse")}" style="width:560px;height:1500px;object-fit:cover;object-position:0% 40%">
-  <div style="padding:0 60px;display:grid;align-content:center;justify-items:center;gap:30px;text-align:center">
-    <span style="font-size:26px;font-weight:800;background:#141414;color:#F6F2EC;padding:9px 20px;border-radius:40px">${tier.no} of 4 · ${tier.name}</span>
-    <div class="bod" style="font-size:96px;line-height:.92">${s.name}<br><i>${tier.name}</i></div>
-    <div style="display:flex;gap:10px">${s.palette.slice(0, 8).map((c) => `<i style="width:62px;height:62px;border-radius:50%;background:${c.hex};display:block"></i>`).join("")}</div>
-    <ul style="font-size:27px;line-height:1.4;list-style:none;padding:0;display:grid;gap:4px">${INSIDE[tier.id]!(s, pages).map((x) => `<li>${x}</li>`).join("")}</ul>
-    <div style="font-size:24px;font-weight:700;color:#6F6862;letter-spacing:.18em;text-transform:uppercase">For her · for him · instant download</div></div>
-  <img src="${person(s.key, "kulort")}" style="width:560px;height:1500px;object-fit:cover;object-position:100% 40%"></div>`;
+const inkOn = (hex: string) => (hexToLab(hex).L > 62 ? "#141414" : "#F6F2EC");
+const PILL = (text: string, fg: string) => `<span style="font-size:44px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:3px solid ${fg};color:${fg};padding:12px 30px;border-radius:60px">${text}</span>`;
+const coverTop = (title: string, sub: string, pill: string, bg: string) => { const fg = inkOn(bg); return `<div style="background:${bg};color:${fg};display:grid;align-content:center;justify-items:center;gap:26px;text-align:center;padding:0 60px">
+    ${PILL(pill, fg)}<div class="bod" style="font-size:210px;line-height:.88;text-transform:uppercase;letter-spacing:.01em;font-weight:500">${title}</div><div class="bod" style="font-size:120px;line-height:1;font-style:italic;font-weight:500">${sub}</div></div>`; };
+// the house mark on every photo 1, same place, so the shop is recognisable in the search grid
+const coverBottom = (dots: string[], line: string) => `<div style="background:#F6F2EC;display:grid;align-content:center;justify-items:center;gap:26px">
+    <div style="display:flex;gap:22px">${dots.map((h) => `<i style="width:130px;height:130px;border-radius:50%;background:${h};display:block;box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)"></i>`).join("")}</div>
+    <div style="font-size:52px;font-weight:800;letter-spacing:.02em">${line}</div>
+    ${MARK("76px")}</div>`;
+const heroImg = (s: Season, tier: Tier, pages: number) => `<div style="width:2000px;height:2500px;display:grid;grid-template-rows:820px 1180px 500px">
+  ${coverTop(s.name.replace(" ", "<br>"), tier.name, `${tier.no} of 4 · for her & him`, s.palette[0]!.hex)}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#F6F2EC">${(["nyanse", "kulort"] as Brand[]).map((b) => `<img src="${person(s.key, b)}" style="width:100%;height:1180px;object-fit:cover;object-position:50% 30%">`).join("")}</div>
+  ${coverBottom(s.palette.slice(0, 8).map((c) => c.hex), `${tier.no === 1 ? "Palette card + wallpaper" : `${pages}-page PDF`} · instant download`)}</div>`;
 // The effect for her and for him; when one of them has no effect photo yet, their portrait stands in.
 const effectFile = (key: SeasonKey, b: Brand) => ["1", "2"].map((n) => `effect-${key}-${b}-${n}.jpg`).find((f) => existsSync(`assets/gemini/effect/${f}`));
 const effectPairImg = (s: Season) => {
@@ -434,12 +438,10 @@ function selfTestPages(all: Season[]): P[] {
   ];
 }
 // listing photos for the self-test (2000×1500)
-const stHero = (e?: Effect) => `<div style="width:2000px;height:1500px;background:#E9E3DA;position:relative;overflow:hidden">
-  ${e ? `<img src="${A}/gemini/effect/effect-${e.key}-${e.brand}-${e.n}.jpg" style="position:absolute;right:0;top:0;width:960px;height:1500px;object-fit:cover;object-position:top"><div style="position:absolute;right:500px;top:30px">${vChip(false, e.bad)}</div><div style="position:absolute;right:30px;top:30px">${vChip(true, e.good)}</div>` : ""}
-  <div style="position:absolute;left:100px;top:120px;width:860px;display:grid;gap:34px"><div style="display:flex;gap:16px;align-items:center"><span class="eb" style="font-size:26px">Digital download</span><span style="font-size:24px;font-weight:800;background:#141414;color:#F6F2EC;padding:8px 18px;border-radius:40px">Start here</span></div>
-    <div class="bod" style="font-size:138px;line-height:.92">Which season<br><i>am I?</i></div>
-    <ul style="font-size:32px;line-height:1.45;padding-left:36px;display:grid;gap:6px"><li>3 quick tests: undertone, depth, clarity</li><li>6 test colours to hold under your chin</li><li>A simple chart to your season, out of 12</li><li>For her and for him · 16 pages</li><li>Then: your season's guides in our shop</li></ul></div>
-  <div style="position:absolute;left:100px;bottom:70px">${MARK("34px")}</div></div>`;
+const stHero = (e?: Effect) => `<div style="width:2000px;height:2500px;display:grid;grid-template-rows:820px 1180px 500px">
+  ${coverTop("Which season", "am I?", "Colour self-test", "#141414")}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#F6F2EC">${["softAutumn-nyanse-1", "deepWinter-kulort-2"].map((k) => `<img src="${A}/gemini/effect/effect-${k}.jpg" style="width:100%;height:1180px;object-fit:cover;object-position:top">`).join("")}</div>
+  ${coverBottom(["#3F6A6A", "#1F4FC4", "#E2533A", "#3A2A6B", "#F3A27A", "#7D8471", "#C25B86", "#C9A86A"], "3 tests · 12 seasons · instant PDF")}</div>`;
 const stSeasons = (all: Season[]) => `<div style="width:2000px;height:1500px;background:#F6F2EC;padding:80px 90px;display:grid;grid-template-rows:auto 1fr auto;gap:40px">
   <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="bod" style="font-size:88px">Twelve seasons. <i>Which is yours?</i></div></div>
   <div style="display:grid;gap:12px">${all.map((x) => `<div style="display:grid;grid-template-columns:300px 1fr;align-items:center;gap:20px"><span style="font-size:28px;font-weight:700">${x.name}</span><div style="display:grid;grid-template-columns:repeat(12,1fr);height:62px">${x.palette.slice(0, 12).map((c) => `<i style="background:${c.hex}"></i>`).join("")}</div></div>`).join("")}</div>
@@ -534,7 +536,7 @@ async function selfTest(): Promise<string> {
   const th = await thumbs([0, 2, 5, 6, 10]);
   const e = effectFor("softAutumn");
   const asSeason = { name: ST.name } as Season, asTier = { name: "Colour self-test" } as Tier;
-  await shot(`${d}/listing-1.jpg`, stHero(e), 2000, 1500);
+  await shot(`${d}/listing-1.jpg`, stHero(e), 2000, 2500);
   await shot(`${d}/listing-2.jpg`, insideImg(asSeason, asTier, th), 2000, 1500);
   await shot(`${d}/listing-3.jpg`, stSeasons(all), 2000, 1500);
   const photos = ["listing-1.jpg", "listing-2.jpg", "listing-3.jpg"];
@@ -648,7 +650,7 @@ for (const key of ONLY ? (String(ONLY) === "selfTest" ? [] : [ONLY]) : ORDER) {
       files.push("wallpapers.zip");
     }
     // listing photos: the package, what's inside, the comparison, and the effect photo when there is one
-    await shot(`${d}/listing-1.jpg`, heroImg(s, tier, pages), 2000, 1500);
+    await shot(`${d}/listing-1.jpg`, heroImg(s, tier, pages), 2000, 2500);
     await shot(`${d}/listing-2.jpg`, insideImg(s, tier, inside), 2000, 1500);
     await shot(`${d}/listing-3.jpg`, compareImg(s), 2000, 1500);
     const photos = ["listing-1.jpg", "listing-2.jpg", "listing-3.jpg"];
