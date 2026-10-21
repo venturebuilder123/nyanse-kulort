@@ -11,6 +11,7 @@
 import DATA from "./seasons-data.json";
 import EFFECTS from "./effect-posts.json";
 import BENEFITS from "./benefits.json";
+import QUIZZES from "./quiz-posts.json";
 
 export const SEASON_ORDER = ["softAutumn", "deepWinter", "softSummer", "lightSpring", "warmAutumn", "coolWinter", "lightSummer", "brightSpring", "deepAutumn", "coolSummer", "warmSpring", "brightWinter"] as const;
 
@@ -161,6 +162,13 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
   const giveawayRules = [`How to enter:`, `1. Follow @kulortnyanse`, `2. Comment the season you think you are (a guess is fine)`, `3. Tag one friend`, ``, `Until Sunday 8 November, 23:59 (Amsterdam). 18+, living in the EU. Free to enter. Winners are drawn at random on 9 November and contacted only by DM from @kulortnyanse: we never ask for payment or passwords.`, `Terms: kulort-nyanse.com/winactie`, `This giveaway is not sponsored, endorsed or administered by, or associated with Instagram.`];
   slots.push({ key: "giveaway-2026-11-02", at: amsterdamAt(2026, 11, 2, 12, 0), kind: "image", images: [`${base}/social/giveaway/giveaway.jpg`], caption: [`GIVEAWAY 🎉 Win your colours.`, ``, `10 winners each get their personal colour analysis from one selfie and their personal style guide (worth €12.99).`, ``, ...giveawayRules, ``, AI_LINE, ``, `#giveaway #coloranalysis #seasonalcoloranalysis #winactie`].join("\n") });
   slots.push({ key: "giveaway-last-2026-11-06", at: amsterdamAt(2026, 11, 6, 12, 0), kind: "image", images: [`${base}/social/giveaway/last-call.jpg`], caption: [`Last chance ⏳ The giveaway closes on Sunday at 23:59.`, ``, `10 × personal colour analysis and style guide (worth €12.99).`, ``, ...giveawayRules, ``, AI_LINE, ``, `#giveaway #coloranalysis #seasonalcoloranalysis #winactie`].join("\n") });
+  // Friday 18:00, weeks 2–12: "Which season is she/he?" (two slides: question, answer)
+  QUIZZES.slice(0, SEASON_ORDER.length - 1).forEach((q, i) => {
+    slots.push({
+      key: `w${i + 2}-fri-quiz`, at: day((i + 1) * 7 + 4, { hour: 18, minute: 0 }), kind: "carousel", images: [`${base}${q.dir}/slide-1.jpg`, `${base}${q.dir}/slide-2.jpg`],
+      caption: [`Which season is ${q.who}? 👀 A, B or C?`, ``, `A: ${q.options[0]}`, `B: ${q.options[1]}`, `C: ${q.options[2]}`, ``, `Comment your answer, then swipe for the answer (no peeking).`, `Want to know your own season? Comment SEASON and we'll DM you the free colour check.`, ``, AI_LINE, ``, `#coloranalysis #seasonalcoloranalysis #whatseasonami #${q.season.toLowerCase().replace(/\s+/g, "")} #quiz`].join("\n"),
+    });
+  });
   // Monday 18:30, weeks 2–9: the benefit scenes (a moment where your colours make the difference)
   BENEFITS.forEach((b, i) => {
     const season = D[b.key.split("-")[1]!]!.name;

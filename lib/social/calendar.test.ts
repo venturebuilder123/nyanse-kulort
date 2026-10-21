@@ -4,7 +4,7 @@ import { calendar } from "./calendar";
 describe("instagram calendar", () => {
   const c = calendar("2026-10-26", "https://x");
   it("posts every Wednesday at 18:30 Amsterdam, plus four Thursdays at 12:00", () => {
-    expect(c.filter((s) => s.kind === "carousel")).toHaveLength(12);
+    expect(c.filter((s) => s.kind === "carousel" && !s.key.endsWith("-fri-quiz"))).toHaveLength(12);
     expect(c.filter((s) => s.kind === "image" && !s.key.endsWith("-thu-effect") && !s.key.endsWith("-monday-benefit") && !s.key.startsWith("etsy-launch") && !s.key.startsWith("giveaway"))).toHaveLength(4);
     // 28 Oct 2026 is winter time (UTC+1): 18:30 local = 17:30 UTC
     expect(c[0]!.at.toISOString()).toBe("2026-10-28T17:30:00.000Z");
@@ -67,5 +67,16 @@ describe("benefit posts", () => {
   it("never reuses a slot key", () => {
     const keys = c.map((s) => s.key);
     expect(new Set(keys).size).toBe(keys.length);
+  });
+});
+
+describe("quiz posts", () => {
+  const c = calendar("2026-10-19", "https://x");
+  it("posts a two-slide quiz every Friday 18:00 from week 2, and the answer letter is on slide 2", () => {
+    const q = c.filter((s) => s.key.endsWith("-fri-quiz"));
+    expect(q).toHaveLength(11);
+    expect(q[0]!.key).toBe("w2-fri-quiz");
+    expect(q[0]!.at.toISOString()).toBe("2026-10-30T17:00:00.000Z"); // Fri 30 Oct 18:00, winter time
+    expect(q.every((s) => s.images.length === 2 && s.caption.includes("Comment SEASON") && s.caption.includes("AI-generated"))).toBe(true);
   });
 });

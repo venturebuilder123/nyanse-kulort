@@ -22,7 +22,7 @@
 ## Creatiever met AI (in plaats van echte drapings)
 
 Ideeën om deze sprint te bouwen, op volgorde van verwachte impact (MENING):
-1. **"Guess the season"-quiz.** Een AI-gezicht met drie doeken A, B en C: *"Which one is right? Comment A, B or C."* Het antwoord staat in de eerste reactie. Dat levert veel reacties op.
+1. **"Which season is she/he?"-quiz (gebouwd, 21 oktober).** Elke vrijdag om 18:00, week 2 t/m 12. Slide 1 toont een AI-model in de kleuren van zijn seizoen en drie opties A, B en C; de foute opties lijken op het goede antwoord. Slide 2 toont het antwoord, het palet en "Comment SEASON". Opnieuw maken: `node scripts/make-quiz-posts.mjs`. Oorspronkelijk idee: Een AI-gezicht met drie doeken A, B en C: *"Which one is right? Comment A, B or C."* Het antwoord staat in de eerste reactie. Dat levert veel reacties op.
 2. **"Same outfit, 12 seasons".** Eén outfit, met onze eigen inkleurtechniek in de kleuren van alle 12 seizoenen. *"Find yours, send this to your Soft Autumn."* Mensen sturen zo'n post graag door.
 3. **"Send this to…"-persona's.** "Send this to the friend who always wears black (but shouldn't)". Herkenbaar en doorstuurbaar.
 4. **Veo-clips** (docs/brand/VEO-FILM.md), zodra het genereren lukt.

@@ -1,0 +1,158 @@
+[
+ {
+  "key": "softAutumn",
+  "brand": "nyanse",
+  "dir": "/social/quiz/softAutumn-nyanse",
+  "answer": "A",
+  "options": [
+   "Soft Autumn",
+   "Deep Autumn",
+   "Soft Summer"
+  ],
+  "season": "Soft Autumn",
+  "who": "she"
+ },
+ {
+  "key": "coolWinter",
+  "brand": "kulort",
+  "dir": "/social/quiz/coolWinter-kulort",
+  "answer": "C",
+  "options": [
+   "Bright Winter",
+   "Cool Summer",
+   "Cool Winter"
+  ],
+  "season": "Cool Winter",
+  "who": "he"
+ },
+ {
+  "key": "lightSpring",
+  "brand": "nyanse",
+  "dir": "/social/quiz/lightSpring-nyanse",
+  "answer": "B",
+  "options": [
+   "Light Summer",
+   "Light Spring",
+   "Warm Spring"
+  ],
+  "season": "Light Spring",
+  "who": "she"
+ },
+ {
+  "key": "deepAutumn",
+  "brand": "kulort",
+  "dir": "/social/quiz/deepAutumn-kulort",
+  "answer": "A",
+  "options": [
+   "Deep Autumn",
+   "Soft Autumn",
+   "Deep Winter"
+  ],
+  "season": "Deep Autumn",
+  "who": "he"
+ },
+ {
+  "key": "softSummer",
+  "brand": "nyanse",
+  "dir": "/social/quiz/softSummer-nyanse",
+  "answer": "C",
+  "options": [
+   "Cool Summer",
+   "Soft Autumn",
+   "Soft Summer"
+  ],
+  "season": "Soft Summer",
+  "who": "she"
+ },
+ {
+  "key": "warmSpring",
+  "brand": "kulort",
+  "dir": "/social/quiz/warmSpring-kulort",
+  "answer": "B",
+  "options": [
+   "Warm Autumn",
+   "Warm Spring",
+   "Light Spring"
+  ],
+  "season": "Warm Spring",
+  "who": "he"
+ },
+ {
+  "key": "brightWinter",
+  "brand": "nyanse",
+  "dir": "/social/quiz/brightWinter-nyanse",
+  "answer": "A",
+  "options": [
+   "Bright Winter",
+   "Cool Winter",
+   "Bright Spring"
+  ],
+  "season": "Bright Winter",
+  "who": "she"
+ },
+ {
+  "key": "coolSummer",
+  "brand": "kulort",
+  "dir": "/social/quiz/coolSummer-kulort",
+  "answer": "C",
+  "options": [
+   "Soft Summer",
+   "Cool Winter",
+   "Cool Summer"
+  ],
+  "season": "Cool Summer",
+  "who": "he"
+ },
+ {
+  "key": "warmAutumn",
+  "brand": "nyanse",
+  "dir": "/social/quiz/warmAutumn-nyanse",
+  "answer": "B",
+  "options": [
+   "Warm Spring",
+   "Warm Autumn",
+   "Soft Autumn"
+  ],
+  "season": "Warm Autumn",
+  "who": "she"
+ },
+ {
+  "key": "lightSummer",
+  "brand": "kulort",
+  "dir": "/social/quiz/lightSummer-kulort",
+  "answer": "A",
+  "options": [
+   "Light Summer",
+   "Soft Summer",
+   "Light Spring"
+  ],
+  "season": "Light Summer",
+  "who": "he"
+ },
+ {
+  "key": "brightSpring",
+  "brand": "nyanse",
+  "dir": "/social/quiz/brightSpring-nyanse",
+  "answer": "C",
+  "options": [
+   "Light Spring",
+   "Bright Winter",
+   "Bright Spring"
+  ],
+  "season": "Bright Spring",
+  "who": "she"
+ },
+ {
+  "key": "deepWinter",
+  "brand": "nyanse",
+  "dir": "/social/quiz/deepWinter-nyanse",
+  "answer": "B",
+  "options": [
+   "Deep Autumn",
+   "Deep Winter",
+   "Cool Winter"
+  ],
+  "season": "Deep Winter",
+  "who": "she"
+ }
+]
