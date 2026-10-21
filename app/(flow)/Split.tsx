@@ -147,8 +147,8 @@ export default function Split() {
           <a href="#hoe">{t.nav.how}</a>
           <a href="#prijzen">{t.nav.prices}</a>
           <Link href="/kleuranalyse">{t.nav.colourAnalysis}</Link>
-          <LangSwitch />
           <a className="mh-top-cta" href="#start">{t.nav.start}</a>
+          <LangSwitch className="lang-top" />
         </nav>
       </header>
 

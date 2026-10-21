@@ -49,8 +49,9 @@ export function AppBar({ pill }: { pill?: string }) {
         <Link href="/kleuranalyse">{t.nav.colourAnalysis}</Link>
         <Link href="/contact">{t.nav.contact}</Link>
       </nav>
-      <LangSwitch />
       {pill && <span className="pill">{pill}</span>}
+      {/* founder, 21 Oct 2026: the language choice top right, on phones too */}
+      <LangSwitch className="lang-top" />
     </header>
   );
 }

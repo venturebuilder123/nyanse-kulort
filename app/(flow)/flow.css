@@ -1052,8 +1052,17 @@ dialog.sheet::backdrop { background: rgba(10, 8, 14, 0.5); }
 .lang-hint { position: fixed; z-index: 50; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); translate: -50% 0; display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px; background: var(--ink); color: var(--bg); border-radius: 999px; font-size: 14px; box-shadow: 0 12px 30px -12px rgba(0,0,0,.4); white-space: nowrap; }
 .lang-hint-go { background: var(--bg); color: var(--ink); border: 0; border-radius: 999px; padding: 7px 14px; font: inherit; font-weight: 700; cursor: pointer; }
 .lang-hint-x { background: none; border: 0; color: inherit; font-size: 20px; line-height: 1; padding: 2px 6px; cursor: pointer; opacity: .7; }
-/* phones: the switch lives in the footer, the header keeps room for the main button */
-@media (max-width: 899px) { .mh-top .lang-switch, .appbar .lang-switch { display: none; } }
+/* in the header: always the last item, top right (founder, 21 Oct 2026: clearer than only the footer) */
+.lang-top { flex: none; margin-left: 12px; }
+.appbar .pill + .lang-top { margin-left: 10px; }
+.appbar .house-mark { margin-right: auto; }
+@media (max-width: 899px) {
+  .mh-top nav { gap: 12px; }
+  .mh-top-cta { white-space: nowrap; padding: 9px 11px; }
+  .lang-top { margin-left: 4px; font-size: 12px; gap: 3px; }
+}
+/* small phones: the page label gives way to the language choice */
+@media (max-width: 400px) { .appbar .pill { display: none; } .mh-top .maison-mark { gap: 8px; } .mh-top .maison-mark .wordmark { font-size: 15px; } .mh-top .maison-mark i { height: 16px; } }
 html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 @media (min-width: 900px) { html[lang="en"] .mh-h1 { font-size: clamp(46px, 4.6vw, 68px); } }
 

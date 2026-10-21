@@ -92,8 +92,8 @@ export default function Landing() {
           <a href="#hoe">{copy.page.nav.how}</a>
           <a href="#gids">{copy.page.nav.prices}</a>
           <span className="muted">{t.switchTo[config.key === "kulort" ? "nyanse" : "kulort"]}? {switchLink}</span>
-          <LangSwitch />
           <button className="btn btn-sm" onClick={startHere}>{copy.page.nav.start}</button>
+          <LangSwitch className="lang-top" />
         </div>
       </nav>
 
