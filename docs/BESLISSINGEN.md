@@ -2,6 +2,31 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 21 oktober 2026 — kleding stuurt de analyse: eigen controle na de selfie
+
+**Probleem (melding van de oprichter):** de uitslag lijkt mee te bewegen met de kleding die mensen dragen.
+
+**Oorzaken die ik in de code vond:**
+1. **De haarmeting keek tot onder de kin.** Een donkere kraag, sjaal of capuchon kon als haar meetellen, en dat maakte de uitslag dieper en contrastrijker. *Opgelost:* de haarmeting stopt nu bij de kin.
+2. **De witbalans van de camera reageert op het hele beeld.** Een felle trui verschuift de huidkleur op de foto, vooral de ondertoon. Zonder kalibratiekaart corrigeren we dat niet.
+3. **Felle kleding kaatst licht terug** op de huid.
+
+**Oplossing:**
+- **Eigen controle (voorstel van de oprichter).** Na de selfie zie je drie kleurvlakken: onze meting in het midden ("Klopt"), één tint lichter en één tint donkerder. Dat gebeurt voor de huid ("leg je hand naast het scherm"), de ogen en het haar (alleen bij natuurlijk of grijs haar).
+  - Je keuze verschuift de meting met een vaste stap in L\*: huid 6, ogen 8, haar 8 (AANNAME; afstemmen op de data van fase A).
+  - Daarna wordt het seizoen berekend. De rekenregels zijn nu versie 4.
+- **Goud of zilver telt nu echt mee in de ondertoon** (gewicht 0,2). Bij twijfel beslist het antwoord ook nog steeds tussen twee seizoenen. Het antwoord verandert niet met de witbalans, de foto wel.
+- **Tip bij de selfie:** "Draag iets neutraals of leg een witte handdoek om je schouders."
+- **De controle gaat mee in de bestelling**, zodat de betaalde gids op elk apparaat dezelfde uitslag geeft.
+
+**Meten:**
+- Het nieuwe event `confirm_pick` (onderdeel en keuze) laat zien hoe vaak de meting ernaast zit, per onderdeel. Dat is ons eerste nauwkeurigheidssignaal uit echt gebruik.
+- Kiezen veel mensen "Donkerder" bij de huid, dan stellen we de meting bij (FEIT pas na meting).
+
+**Kosten:** €0. Het kost 2 tot 3 extra tikken in de flow.
+
+**Nog niet gedaan (idee):** de witbalans corrigeren met het wit van de ogen, als een soort gratis kalibratiekaart. Eerst testen in /lab met echte selfies, omdat het oogwit per persoon verschilt.
+
 ## 20 oktober 2026 — tweede ronde Gemini-beelden: 39 beelden in gebruik
 
 - **8 effectbeelden** (Warm Spring en Bright Winter, telkens alle 4) zitten nu in de reels, Shorts en effect-posts. Daarmee hebben week 11 en 12 hun eigen seizoen.

@@ -1,6 +1,6 @@
 # Gemini-handboek: editorials en social posts in de nieuwe stijl
 
-*19 oktober 2026. Gegenereerd met `node scripts/make-gemini-prompts.mjs` uit de kleurmotor: de goede en foute doeken per seizoen zijn de echte kleuren uit de gids.*
+_19 oktober 2026. Gegenereerd met `node scripts/make-gemini-prompts.mjs` uit de kleurmotor: de goede en foute doeken per seizoen zijn de echte kleuren uit de gids._
 
 ## Spelregels (lees dit eerst)
 
@@ -14,20 +14,22 @@
 
 Zet de beelden in **`assets/gemini/`** met deze namen. Dan weet ik wat het is en waar het heen moet:
 
-| Reeks | Bestandsnaam | Formaat | Wordt |
-|---|---|---|---|
-| A. Het effect (doek fout → goed) | `effect-{seizoen}-{nyanse|kulort}-{1|2}.png` | 4:5 | Carrousel-slide 1, Reels-cover, advertentie |
-| B. Seizoensportret | `hero-{seizoen}-{nyanse|kulort}.png` | 4:5 en 9:16 | Website, Pinterest, Stories |
-| C. De voordelen | `benefit-{fitting|morning|date|work}-{seizoen}-{nyanse|kulort}.png` | 4:5 | Volgers-posts, advertenties |
+| Reeks                            | Bestandsnaam              | Formaat      | Wordt       |
+| -------------------------------- | ------------------------- | ------------ | ----------- | --------------------------- | ------------------------------------------- | --- | --------------------------- |
+| A. Het effect (doek fout → goed) | `effect-{seizoen}-{nyanse | kulort}-{1   | 2}.png`     | 4:5                         | Carrousel-slide 1, Reels-cover, advertentie |
+| B. Seizoensportret               | `hero-{seizoen}-{nyanse   | kulort}.png` | 4:5 en 9:16 | Website, Pinterest, Stories |
+| C. De voordelen                  | `benefit-{fitting         | morning      | date        | work}-{seizoen}-{nyanse     | kulort}.png`                                | 4:5 | Volgers-posts, advertenties |
 
 `{seizoen}` = softAutumn, deepWinter, softSummer, lightSpring, warmAutumn, coolWinter, lightSummer, brightSpring, deepAutumn, coolSummer, warmSpring, brightWinter.
 
 **Tip voor Gemini:**
+
 - Plak de prompt in één keer.
-- Is het gezicht in de twee helften van het effectbeeld niet hetzelfde, vraag dan: *"Keep exactly the same person and pose in both halves; change only the drape colour."*
+- Is het gezicht in de twee helften van het effectbeeld niet hetzelfde, vraag dan: _"Keep exactly the same person and pose in both halves; change only the drape colour."_
 - Maak per prompt 2 tot 4 varianten en bewaar de beste.
 
 **Wat ik ermee doe:**
+
 - tekst en het logo erop in de huisstijl: het seizoen, "Same face. Different colour.", de voordelen, "vaak genoemd als …";
 - de beelden verdelen over de Instagram-kalender, de Pinterest-pins, de website en de advertenties.
 
@@ -176,7 +178,7 @@ A diptych photograph, two halves side by side, of the SAME man (medium-deep gold
 **effect-coolWinter-nyanse-1.png**
 
 ```
-A diptych photograph, two halves side by side, of the SAME woman (porcelain cool skin, dark brown-black hair, icy blue eyes, high contrast, age 26), identical pose, identical light, identical framing from the shoulders up, looking straight into the camera. LEFT half: a plain fabric drape in #2E6B5E (rgb 46, 107, 94) wrapped around the shoulders, the colour makes the skin look slightly dull and draws attention away from the face. RIGHT half: a plain fabric drape in #0E4C92 (rgb 14, 76, 146), the same face now looks fresh, even and bright, eyes clearer. Only the drape colour differs between the halves. Editorial fashion photograph, shot on a 50mm lens at f/2.8, soft natural daylight from a large window on the left, warm ivory paper backdrop (#F6F2EC), calm quiet-luxury mood like a Scandinavian fashion house campaign. Attractive model with real skin texture: visible pores, natural freckles where fitting, no airbrushing, no heavy make-up, natural hairline, relaxed confident expression. Colours rendered true to life, neutral white balance. No text, no letters, no logos, no watermark, no celebrity, no resemblance to any famous person, no plastic skin, no beauty filter, no extra fingers, no jewellery unless asked, plain background. Aspect ratio 4:5.
+    A diptych photograph, two halves side by side, of the SAME woman (porcelain cool skin, dark brown-black hair, icy blue eyes, high contrast, age 26), identical pose, identical light, identical framing from the shoulders up, looking straight into the camera. LEFT half: a plain fabric drape in #2E6B5E (rgb 46, 107, 94) wrapped around the shoulders, the colour makes the skin look slightly dull and draws attention away from the face. RIGHT half: a plain fabric drape in #0E4C92 (rgb 14, 76, 146), the same face now looks fresh, even and bright, eyes clearer. Only the drape colour differs between the halves. Editorial fashion photograph, shot on a 50mm lens at f/2.8, soft natural daylight from a large window on the left, warm ivory paper backdrop (#F6F2EC), calm quiet-luxury mood like a Scandinavian fashion house campaign. Attractive model with real skin texture: visible pores, natural freckles where fitting, no airbrushing, no heavy make-up, natural hairline, relaxed confident expression. Colours rendered true to life, neutral white balance. No text, no letters, no logos, no watermark, no celebrity, no resemblance to any famous person, no plastic skin, no beauty filter, no extra fingers, no jewellery unless asked, plain background. Aspect ratio 4:5.
 ```
 
 **effect-coolWinter-nyanse-2.png**
@@ -577,17 +579,17 @@ A woman walking into a light, modern office meeting, poised and at ease, first i
 
 ## Kleuren per seizoen (om zelf te variëren)
 
-| Seizoen | Goede kleuren (dames) | Goede kleuren (heren) | Laat hangen |
-|---|---|---|---|
-| Soft Autumn | #3F6A6A #6B4B38 #7A7449 #A89A72 | #3F6A6A #6B4B38 #7A7449 #A89A72 | #1F4FC4 #DC143C #009B77 |
-| Deep Winter | #3A2A6B #1B2A5C #3F1A44 #0B6B4F | #3A2A6B #1B2A5C #3F1A44 #0B6B4F | #2E6B5E #E2533A #F2B632 |
-| Soft Summer | #7D8471 #5E6A7A #9A8F8A #A6879C | #7D8471 #5E6A7A #9A8F8A #6E5468 | #F2B632 #2F6FDE #E6194B |
-| Light Spring | #F3A27A #F4E3A1 #E8C468 #8FBF6A | #F3A27A #F4E3A1 #E8C468 #8FBF6A | #4F8F8B #7B2CBF #DC143C |
-| Warm Autumn | #2E6B5E #556B2F #A0522D #8B4513 | #2E6B5E #556B2F #A0522D #8B4513 | #1F4FC4 #DC143C #009B77 |
-| Cool Winter | #0E4C92 #0F3D8C #009B77 #B0103A | #0E4C92 #0F3D8C #009B77 #B0103A | #2E6B5E #9E2A2B #B8860B |
-| Light Summer | #F0B7C8 #CFA9D6 #BDB3DD #A9D8CF | #F0B7C8 #A9D8CF #AFC6E0 #7FA8C9 | #F2B632 #2F6FDE #E6194B |
+| Seizoen       | Goede kleuren (dames)           | Goede kleuren (heren)           | Laat hangen             |
+| ------------- | ------------------------------- | ------------------------------- | ----------------------- |
+| Soft Autumn   | #3F6A6A #6B4B38 #7A7449 #A89A72 | #3F6A6A #6B4B38 #7A7449 #A89A72 | #1F4FC4 #DC143C #009B77 |
+| Deep Winter   | #3A2A6B #1B2A5C #3F1A44 #0B6B4F | #3A2A6B #1B2A5C #3F1A44 #0B6B4F | #2E6B5E #E2533A #F2B632 |
+| Soft Summer   | #7D8471 #5E6A7A #9A8F8A #A6879C | #7D8471 #5E6A7A #9A8F8A #6E5468 | #F2B632 #2F6FDE #E6194B |
+| Light Spring  | #F3A27A #F4E3A1 #E8C468 #8FBF6A | #F3A27A #F4E3A1 #E8C468 #8FBF6A | #4F8F8B #7B2CBF #DC143C |
+| Warm Autumn   | #2E6B5E #556B2F #A0522D #8B4513 | #2E6B5E #556B2F #A0522D #8B4513 | #1F4FC4 #DC143C #009B77 |
+| Cool Winter   | #0E4C92 #0F3D8C #009B77 #B0103A | #0E4C92 #0F3D8C #009B77 #B0103A | #2E6B5E #9E2A2B #B8860B |
+| Light Summer  | #F0B7C8 #CFA9D6 #BDB3DD #A9D8CF | #F0B7C8 #A9D8CF #AFC6E0 #7FA8C9 | #F2B632 #2F6FDE #E6194B |
 | Bright Spring | #2F6FDE #F75D9E #8E5BD6 #E6194B | #2F6FDE #8E5BD6 #E6194B #FF6F61 | #4F8F8B #B0103A #1F4FC4 |
-| Deep Autumn | #6E1F2A #5A2F3F #4E3022 #2F4F3A | #6E1F2A #5A2F3F #4E3022 #2F4F3A | #1F4FC4 #DC143C #009B77 |
-| Cool Summer | #5B7DB1 #4F8F8B #E3A1B9 #7E9DB8 | #5B7DB1 #4F8F8B #7E9DB8 #3E6E9C | #F2B632 #2F6FDE #E6194B |
-| Warm Spring | #A6A04C #E58A5B #C79A5E #4E86C4 | #A6A04C #E58A5B #C79A5E #4E86C4 | #4F8F8B #7B2CBF #DC143C |
+| Deep Autumn   | #6E1F2A #5A2F3F #4E3022 #2F4F3A | #6E1F2A #5A2F3F #4E3022 #2F4F3A | #1F4FC4 #DC143C #009B77 |
+| Cool Summer   | #5B7DB1 #4F8F8B #E3A1B9 #7E9DB8 | #5B7DB1 #4F8F8B #7E9DB8 #3E6E9C | #F2B632 #2F6FDE #E6194B |
+| Warm Spring   | #A6A04C #E58A5B #C79A5E #4E86C4 | #A6A04C #E58A5B #C79A5E #4E86C4 | #4F8F8B #7B2CBF #DC143C |
 | Bright Winter | #FF1493 #DC143C #7B2CBF #0047AB | #DC143C #7B2CBF #0047AB #9B111E | #2E6B5E #9E2A2B #B8860B |

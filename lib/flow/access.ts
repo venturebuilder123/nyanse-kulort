@@ -50,6 +50,7 @@ export async function verifyAccess(key: OrderKey | null = orderKey.get()): Promi
         declared: d.profile.declared,
         hair: d.profile.hair,
         jewel: d.profile.jewel,
+        confirm: d.profile.confirm,
         lowConfidence: false,
         pipeline: d.profile.declared ? "declared" : "A",
         at: Date.now(),

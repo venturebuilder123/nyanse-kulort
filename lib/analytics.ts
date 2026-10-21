@@ -51,7 +51,9 @@ export type EventName =
   | "analysis_done" | "email_submit" | "optin_checked" | "paywall_view" | "tier_select" | "checkout_open"
   | "paid" | "transfer_claimed" | "guide_opened" | "guide_pdf" | "reveal_video_created" | "share_clicked" | "affiliate_click" | "referral_used" | "waitlist_join"
   // coming back (retention): visits, resume, invitations, weekly tip
-  | "type_declared" | "app_open" | "resume_shown" | "resume_click" | "invite_view" | "push_optin" | "push_optout";
+  | "type_declared" | "app_open" | "resume_shown" | "resume_click" | "invite_view" | "push_optin" | "push_optout"
+  // accuracy from real use: the own check of skin, eyes and hair after the selfie
+  | "confirm_pick";
 
 type Ctx = { brand: string; voice: string };
 

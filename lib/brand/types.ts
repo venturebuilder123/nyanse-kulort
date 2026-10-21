@@ -118,6 +118,8 @@ export type SelfieCopy = {
   introText: string;
   /** extra intro line, per brand (NYANSE: foundation changes your skin tone) */
   introExtra?: string;
+  /** bright clothes tint the skin on camera: wear something neutral */
+  clothing: string;
   under16: string;
   /** one specific tip for the first live check that fails */
   fixTips: { face: string; light: string; even: string; faces: string };
@@ -152,6 +154,14 @@ export type AnalysisCopy = {
   label: string;
   scales: { undertone: string; depth: string; clarity: string };
   questionsTitle: string;
+  /** the own check: our measured colour in the middle, one tint lighter and darker beside it */
+  skinQ: string;
+  skinHint: string;
+  irisQ: string;
+  irisHint: string;
+  hairShadeQ: string;
+  hairShadeHint: string;
+  shade: { lighter: string; match: string; darker: string };
   hairQ: string;
   hair: { natural: string; dyed: string; grey: string; none: string; covered: string };
   jewelQ: string;

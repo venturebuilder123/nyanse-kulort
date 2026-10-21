@@ -3,7 +3,7 @@
 // before/after slider, and is gone when the tab closes. Storage can be blocked (private mode),
 // so everything falls back to memory instead of failing.
 
-import type { Measurements, Profile, ProfileContext } from "@/lib/color/profile";
+import type { Confirm, Measurements, Profile, ProfileContext } from "@/lib/color/profile";
 import { computeProfile } from "@/lib/color/profile";
 import { profileForSeason } from "@/lib/color/declared";
 import type { SeasonKey } from "@/lib/color/seasons";
@@ -24,6 +24,8 @@ export type FlowResult = {
   lowConfidence: boolean;
   jewel?: Jewel;
   hair?: HairAnswer;
+  /** the person's own check of skin, eyes and hair after the selfie */
+  confirm?: Confirm;
   face?: FaceBox;
   /** set only after the server confirmed the order as paid (lib/flow/access.ts) */
   paid?: boolean;
@@ -89,7 +91,7 @@ export const flowSession = {
     // always recompute, so the latest rules and answers apply
     if (!r) return null;
     if (r.declared) return { ...r, profile: profileForSeason(r.declared) };
-    return r.measurements ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair }), r.jewel) } : null;
+    return r.measurements ? { ...r, profile: applyJewel(computeProfile(r.measurements, { hair: r.hair, jewel: r.jewel, confirm: r.confirm }), r.jewel) } : null;
   },
 
   /** Merge later answers (analysis questions, e-mail) into the stored result. */

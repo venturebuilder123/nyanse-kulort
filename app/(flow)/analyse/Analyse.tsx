@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { track } from "@/lib/analytics";
+import { labToHex } from "@/lib/color/convert";
 import { clarityWord, depthWord, undertoneWord } from "@/lib/color/describe";
+import { shadeLab, type Confirm, type Shade } from "@/lib/color/profile";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
 import { flowSession, type HairAnswer, type Jewel } from "@/lib/flow/session";
 import { useBrand } from "../BrandProvider";
@@ -14,9 +17,12 @@ const STEP_MS = 1150;
 const STEP_MS_REDUCED = 450;
 
 // The analysis itself is done (it ran on the selfie screen). This screen turns the wait into
-// value both ways: the person sees their own scales appear, and two taps sharpen the result.
+// value both ways: the person sees their own scales appear, and a few taps sharpen the result.
+// The own check (founder, 21 Oct 2026): "we think this is your skin colour, right?" with one tint
+// lighter and darker beside it, then eyes and hair. It corrects what the camera got wrong (white
+// balance shifted by bright clothes, shadow on the eyes) before the season is chosen.
 export default function Analyse() {
-  const { config, copy } = useBrand();
+  const { config, copy, ctx } = useBrand();
   const t = copy.analysis;
   const router = useRouter();
   const [r, setR] = useState<ReturnType<typeof flowSession.result>>(null);
@@ -25,6 +31,7 @@ export default function Analyse() {
   const [step, setStep] = useState(0);
   const [hair, setHair] = useState<HairAnswer | null>(null);
   const [jewel, setJewel] = useState<Jewel | null>(null);
+  const [confirm, setConfirm] = useState<Confirm>({});
   const leaving = useRef(false);
 
   useEffect(() => {
@@ -56,7 +63,22 @@ export default function Analyse() {
   }, [r, drapes.length]);
 
   const done = step >= drapes.length;
-  const answered = !!hair && !!jewel;
+  const m = r?.measurements;
+  // which own-check questions apply: eyes only when they were measured, hair only when natural or grey
+  const asks = {
+    skin: !!m?.skin && Number.isFinite(m.skin.lab.L),
+    iris: !!m?.iris,
+    hair: !!m?.hair && (hair === "natural" || hair === "grey"),
+  };
+  const pick = (part: keyof Confirm, s: Shade) => {
+    const next = { ...confirm, [part]: s };
+    setConfirm(next);
+    flowSession.update({ confirm: next });
+    // how often the measurement was off, per part: the accuracy signal from real use
+    track("confirm_pick", ctx, { part, pick: s });
+  };
+  const needHairShade = asks.hair && !confirm.hair;
+  const answered = (!asks.skin || !!confirm.skin) && (!asks.iris || !!confirm.iris) && !!hair && !needHairShade && !!jewel;
 
   const goOn = () => {
     if (leaving.current) return;
@@ -105,7 +127,11 @@ export default function Analyse() {
 
         <section className="quiz">
           <p className="quiz-title">{t.questionsTitle}</p>
-          {!hair ? (
+          {asks.skin && !confirm.skin ? (
+            <ShadeQuestion q={t.skinQ} hint={t.skinHint} labels={t.shade} swatch={(s) => labToHex(shadeLab(m!.skin.lab, "skin", s))} onPick={(s) => pick("skin", s)} />
+          ) : asks.iris && !confirm.iris ? (
+            <ShadeQuestion q={t.irisQ} hint={t.irisHint} labels={t.shade} round swatch={(s) => labToHex(shadeLab(m!.iris!.lab, "iris", s))} onPick={(s) => pick("iris", s)} />
+          ) : !hair ? (
             <Question
               q={t.hairQ}
               options={t.hair}
@@ -114,6 +140,8 @@ export default function Analyse() {
                 flowSession.update({ hair: v });
               }}
             />
+          ) : needHairShade ? (
+            <ShadeQuestion q={t.hairShadeQ} hint={t.hairShadeHint} labels={t.shade} swatch={(s) => labToHex(shadeLab(m!.hair!.lab, "hair", s))} onPick={(s) => pick("hair", s)} />
           ) : !jewel ? (
             <Question
               q={t.jewelQ}
@@ -155,6 +183,25 @@ function Question<K extends string>({ q, options, onPick }: { q: string; options
       <div className="chips">
         {(Object.keys(options) as K[]).map((k) => (
           <button key={k} onClick={() => onPick(k)}>{options[k]}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Our measured colour in the middle, one tint lighter and one darker beside it. */
+function ShadeQuestion({ q, hint, labels, swatch, onPick, round }: { q: string; hint: string; labels: Record<Shade, string>; swatch: (s: Shade) => string; onPick: (s: Shade) => void; round?: boolean }) {
+  const order: Shade[] = ["lighter", "match", "darker"];
+  return (
+    <div className="q rise">
+      <h2>{q}</h2>
+      <p className="q-hint">{hint}</p>
+      <div className={`shades${round ? " is-round" : ""}`}>
+        {order.map((s) => (
+          <button key={s} className={s === "match" ? "is-ours" : ""} onClick={() => onPick(s)}>
+            <i style={{ background: swatch(s) }} aria-hidden="true" />
+            <span>{labels[s]}</span>
+          </button>
         ))}
       </div>
     </div>

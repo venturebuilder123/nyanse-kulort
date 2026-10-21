@@ -35,7 +35,7 @@ export type Profile = Scales & {
 };
 
 export const RULES = {
-  version: 3, // v3: no hair = small penalty only (bald, headscarf); v2: hair warmth from chroma, hair answer, confidence without card
+  version: 4, // v4: own check of skin, eyes and hair (one tint lighter or darker), gold/silver counts in the undertone; v3: no hair = small penalty only (bald, headscarf); v2: hair warmth from chroma, hair answer, confidence without card
   // AANNAME: starting values from colour science on skin (hue angle ~40–65°, L* ~30–75);
   // to be tuned on phase A data, never on the test set used for the gate.
   // Skin undertone = signed distance (in Lab units) from the neutral hue line, not the hue
@@ -45,7 +45,9 @@ export const RULES = {
   depth: { skinL: [30, 75], hairL: [12, 65], irisL: [20, 60] },
   clarity: { contrastL: [10, 50], irisC: [4, 28], skinC: [14, 28], hairC: [3, 22] },
   weights: {
-    undertone: { skin: 0.65, hair: 0.2, iris: 0.15 },
+    // jewel: the gold-or-silver answer. A camera's white balance shifts with bright clothes, the
+    // answer does not, so it may move the undertone a little (it no longer only breaks ties).
+    undertone: { skin: 0.65, hair: 0.2, iris: 0.15, jewel: 0.2 },
     depth: { skin: 0.5, hair: 0.35, iris: 0.15 },
     clarity: { contrast: 0.45, iris: 0.25, skin: 0.15, hair: 0.15 },
   },
@@ -79,10 +81,32 @@ const chromaWeight = (C: number, full: number) => clamp(C / full, 0, 1);
  * What the person told us during the analysis screen. Dyed hair says nothing about natural
  * colouring; grey hair still sets today's contrast but not the undertone; no hair = no hair term.
  */
-export type ProfileContext = { hair?: "natural" | "dyed" | "grey" | "none" | "covered" };
+export type ProfileContext = { hair?: "natural" | "dyed" | "grey" | "none" | "covered"; jewel?: "goud" | "zilver" | "weetniet"; confirm?: Confirm };
 
-export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profile {
+/**
+ * The person's own check after the selfie: "we think this is your skin colour, right?", with one
+ * tint lighter and one darker next to it; the same for eyes and hair. Their pick moves the
+ * measurement before the rules run, so a camera or clothing error is corrected by the person.
+ */
+export type Shade = "lighter" | "match" | "darker";
+export type Confirm = { skin?: Shade; iris?: Shade; hair?: Shade };
+/** One tint in L*: a step people can still tell apart on a phone screen (AANNAME, tune on phase A data). */
+export const SHADE_STEP = { skin: 6, iris: 8, hair: 8 } as const;
+
+export function shadeLab(lab: Lab, part: keyof Confirm, s: Shade): Lab {
+  const dir = s === "lighter" ? 1 : s === "darker" ? -1 : 0;
+  return { ...lab, L: clamp(lab.L + dir * SHADE_STEP[part], 2, 98) };
+}
+
+export function applyConfirm(m: Measurements, c?: Confirm): Measurements {
+  if (!c) return m;
+  const adj = <T extends RegionStat | undefined>(st: T, part: keyof Confirm): T => (st && c[part] ? { ...st, lab: shadeLab(st.lab, part, c[part]!) } : st);
+  return { ...m, skin: adj(m.skin, "skin"), iris: adj(m.iris, "iris"), hair: adj(m.hair, "hair") };
+}
+
+export function computeProfile(measured: Measurements, ctx: ProfileContext = {}): Profile {
   const R = RULES;
+  const m = applyConfirm(measured, ctx.confirm);
   const skin = labToLch(m.skin.lab);
   const hairOk = m.hair && m.hair.n >= R.minPixels.hair;
   const irisOk = m.iris && m.iris.n >= R.minPixels.iris;
@@ -100,6 +124,7 @@ export function computeProfile(m: Measurements, ctx: ProfileContext = {}): Profi
     // carries little undertone information, so its weight fades with lightness.
     ...(hairHue ? [{ value: clamp((hairHue.C - R.undertone.hairChromaNeutral) / R.undertone.hairChromaSpan, -1, 1), weight: R.weights.undertone.hair * clamp((hairHue.L - 12) / 25, 0, 1) }] : []),
     ...(iris ? [{ value: clamp((iris.h - R.undertone.irisHueNeutral) / R.undertone.irisHueSpan, -1, 1), weight: R.weights.undertone.iris * chromaWeight(iris.C, 10) }] : []),
+    ...(ctx.jewel === "goud" || ctx.jewel === "zilver" ? [{ value: ctx.jewel === "goud" ? 1 : -1, weight: R.weights.undertone.jewel }] : []),
   ]);
 
   // Depth: darker skin, hair and eyes = deeper.

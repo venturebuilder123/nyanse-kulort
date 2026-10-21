@@ -12,7 +12,7 @@ import { useBrand } from "../BrandProvider";
 function profileForOrder() {
   const r = flowSession.result();
   if (!r) return null;
-  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, declared: r.declared };
+  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, confirm: r.confirm, declared: r.declared };
 }
 
 type Props = { tier: Tier; season: string; friendCode?: string; note?: string | null; onClose: () => void };

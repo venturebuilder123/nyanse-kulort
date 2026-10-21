@@ -254,6 +254,14 @@ label.btn { cursor: pointer; }
 .quiz { display: grid; gap: 12px; padding: 16px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
 .quiz-title { font-size: 13px; font-weight: 700; color: var(--muted); }
 .quiz .q h2 { font-size: 16px; }
+/* the own check: three swatches, ours in the middle */
+.q-hint { font-size: 13px; color: var(--muted); margin-top: -4px; }
+.shades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.shades button { display: grid; gap: 6px; justify-items: center; padding: 10px 6px; border-radius: var(--radius); background: transparent; border: 1px solid var(--line); font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); cursor: pointer; }
+.shades button.is-ours { border-color: var(--ink); }
+.shades button:active { transform: scale(0.98); }
+.shades i { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: calc(var(--radius) * 0.6); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
+.shades.is-round i { width: 64%; aspect-ratio: 1; border-radius: 50%; }
 .quiz-thanks { display: flex; align-items: center; gap: 6px; font-weight: 800; color: var(--ok); }
 
 /* ---------- e-mail ---------- */

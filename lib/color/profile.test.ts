@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { hexToLab, type Lab } from "./convert";
 import { estimateMonk, monkGroup } from "./monk";
-import { computeProfile, LOW_CONFIDENCE, type Measurements } from "./profile";
+import { applyConfirm, computeProfile, LOW_CONFIDENCE, shadeLab, type Measurements } from "./profile";
 import { nearestSeason, SEASONS, type SeasonKey } from "./seasons";
 
 const stat = (lab: Lab, n = 3000) => ({ lab, n, sdL: 3 });
@@ -116,5 +116,26 @@ describe("Monk", () => {
     expect(monkGroup(1)).toBe("1–2");
     expect(monkGroup(2)).toBe("1–2");
     expect(monkGroup(10)).toBe("9–10");
+  });
+});
+
+describe("own check and gold/silver (rules v4)", () => {
+  const m = { skin: { lab: { L: 62, a: 13, b: 17 }, n: 3000, sdL: 3 }, iris: { lab: { L: 40, a: 4, b: 12 }, n: 80, sdL: 4 }, hair: { lab: { L: 35, a: 6, b: 14 }, n: 2000, sdL: 5 }, faceWidthPx: 400, calibrated: false } as Measurements;
+  it("a darker pick makes the profile deeper, a lighter one lighter, 'right' changes nothing", () => {
+    const base = computeProfile(m);
+    expect(computeProfile(m, { confirm: { skin: "darker" } }).depth).toBeGreaterThan(base.depth);
+    expect(computeProfile(m, { confirm: { skin: "lighter", hair: "lighter", iris: "lighter" } }).depth).toBeLessThan(base.depth);
+    expect(computeProfile(m, { confirm: { skin: "match", iris: "match", hair: "match" } })).toEqual(base);
+  });
+  it("one tint is a fixed step in L*, clamped to the scale", () => {
+    expect(shadeLab({ L: 62, a: 1, b: 2 }, "skin", "lighter").L).toBe(68);
+    expect(shadeLab({ L: 97, a: 1, b: 2 }, "hair", "lighter").L).toBe(98);
+    expect(applyConfirm(m, { iris: "darker" }).iris!.lab.L).toBe(32);
+  });
+  it("gold and silver move the undertone, but do not flip a clear measurement on their own", () => {
+    const base = computeProfile(m);
+    expect(computeProfile(m, { jewel: "goud" }).undertone).toBeGreaterThan(base.undertone);
+    expect(computeProfile(m, { jewel: "zilver" }).undertone).toBeLessThan(base.undertone);
+    expect(computeProfile(m, { jewel: "weetniet" }).undertone).toBe(base.undertone);
   });
 });

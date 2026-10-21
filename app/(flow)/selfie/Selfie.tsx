@@ -251,6 +251,7 @@ export default function Selfie() {
             <h1 className="disp sm">{t.intro}</h1>
             <p className="sub">{t.introText}</p>
             {t.introExtra && <p className="sub small">{t.introExtra}</p>}
+            <p className="sub small">{t.clothing}</p>
           </section>
         )}
 

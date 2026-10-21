@@ -127,8 +127,10 @@ export function measureRegions(img: ImageLike, landmarks: Point[], mask: Mask, g
   const noseY = L(LM.noseTip).y;
   const eyeY = (L(LM.rightIris.centre).y + L(LM.leftIris.centre).y) / 2;
 
+  // Hair stops at the chin: below it, a dark collar, scarf or hood was read as hair (founder, 21 Oct
+  // 2026: "the clothes steer the result"). Long hair still shows plenty beside the face.
   const hair = collect(
-    { x0: left - faceWidthPx * 0.5, y0: top - faceH * 0.7, x1: right + faceWidthPx * 0.5, y1: bottom + faceH * 0.3 },
+    { x0: left - faceWidthPx * 0.5, y0: top - faceH * 0.7, x1: right + faceWidthPx * 0.5, y1: bottom },
     (x, y) => category(x, y) === SEG.hair && !(y > eyeY && pointInPolygon({ x, y }, faceOval)),
   );
   let lowerFace = 0;

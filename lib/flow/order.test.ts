@@ -26,6 +26,8 @@ describe("parseProfile", () => {
     expect(parseProfile({ measurements: { skin: { lab: { L: 60, a: 12, b: 16 } } }, hair: "natural" })?.hair).toBe("natural");
     expect(parseProfile({ measurements: { skin: { lab: { L: 60, a: 12, b: 16 } }, photo: "data:image/png;base64,AAAA" } })).toBeNull();
     expect(parseProfile(null)).toBeNull();
+    // the own check travels with the order, unknown values are dropped
+    expect(parseProfile({ measurements: { skin: { lab: { L: 60, a: 12, b: 16 } } }, confirm: { skin: "darker", iris: "evil", hair: "match" } })?.confirm).toEqual({ skin: "darker", hair: "match" });
   });
 });
 
