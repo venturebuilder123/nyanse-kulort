@@ -20,6 +20,13 @@ export async function states(): Promise<Map<string, Row>> {
 const save = (slot: string, status: string, extra: Partial<Row> = {}) =>
   supabaseRest("social_posts?on_conflict=slot", { method: "POST", body: JSON.stringify({ slot, status, ...extra, updated_at: new Date().toISOString() }), prefer: "resolution=merge-duplicates,return=minimal" });
 
+/**
+ * Meta can block an app's API access as a whole ("API access blocked", code 200; 20 Oct 2026). That
+ * is not this post's fault: the slot stays open and is retried every hour within its 48 hours, so it
+ * still goes out once the block is lifted. The founder gets one warning mail a day meanwhile.
+ */
+export const isPlatformBlock = (e: unknown) => /API access blocked/i.test(String(e));
+
 export async function postSlot(s: Slot) {
   try {
     if (s.kind === "short") {
@@ -36,6 +43,7 @@ export async function postSlot(s: Slot) {
     await save(s.key, "published", { media_id: r.id, error: null });
     return { slot: s.key, ok: true, id: r.id };
   } catch (e) {
+    if (isPlatformBlock(e)) return { slot: s.key, ok: false, blocked: true, error: String(e) };
     await save(s.key, "failed", { error: String(e).slice(0, 300) });
     return { slot: s.key, ok: false, error: String(e) };
   }
@@ -70,6 +78,13 @@ export async function runSocial(now = new Date()) {
     const text = `Morgen gaat dit automatisch online:\n\n${list}\n\nNiet goed? Open /lab/social en klik op Overslaan.`;
     await sendMail(process.env.MAIL_TO_FOUNDER, "Morgen op social", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`).catch(() => false);
     await save(previewKey, "preview_sent");
+  }
+  // Meta blocked the API: one warning a day, with what to check (docs/marketing/AUTOPOST.md)
+  const blockKey = `blocked-${now.toISOString().slice(0, 10)}`;
+  if (out.some((o) => (o as { blocked?: boolean }).blocked) && !done.has(blockKey) && mailConfigured() && process.env.MAIL_TO_FOUNDER) {
+    const text = "Instagram weigert onze posts: 'API access blocked'. Dat is een blokkade door Meta, geen fout in de site.\n\nWat te doen (zie docs/marketing/AUTOPOST.md, 'Geblokkeerd'):\n1. Open de Instagram-app: staat er een melding of 'bevestig dat jij het bent'? Volg die.\n2. Instagram → Instellingen → Accountstatus: is er iets beperkt?\n3. developers.facebook.com → jouw app: staat er een melding (beperkt, Data Use Checkup, verificatie)?\n\nDe geplande posts blijven klaarstaan en gaan vanzelf online zodra de blokkade weg is (tot 2 dagen na het geplande moment).";
+    await sendMail(process.env.MAIL_TO_FOUNDER, "Instagram: Meta blokkeert de API", text, `<pre style="font-family:Helvetica,Arial,sans-serif;white-space:pre-wrap">${text}</pre>`).catch(() => false);
+    await save(blockKey, "preview_sent");
   }
   // one-off reminders to the founder (lib/social/reminders.ts), each sent once
   if (mailConfigured() && process.env.MAIL_TO_FOUNDER) {

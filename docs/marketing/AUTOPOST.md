@@ -57,6 +57,26 @@ Wil je later toch een echte Facebook-pagina, dan werkt de oude route ook: een pa
 - **Overslaan of terugzetten** doe je in /lab/social. Daar zie je ook wat geplaatst is en wat misging.
 - **Wat de API niet doet:** Stories met stickers (polls, "Add Yours"), muziek onder carrousels, en reageren op anderen. Die blijven handwerk en zijn optioneel.
 
+## Geblokkeerd: "API access blocked"
+
+**Wat het is.** Meta blokkeert de API-toegang van de app of van het account. Zelfs alleen je accountnaam opvragen lukt dan niet meer. Het token is niet het probleem: een verlopen token geeft foutcode 190, dit is code 200.
+
+**Wat de site doet:**
+- De geplande posts blijven klaarstaan.
+- Elk uur probeert de site het opnieuw, tot 2 dagen na het geplande moment.
+- Je krijgt één waarschuwingsmail per dag.
+
+**Wat jij nagaat, in deze volgorde:**
+1. **De Instagram-app op je telefoon.** Staat er een melding als "Bevestig dat jij het bent", "We hebben bepaalde activiteit beperkt" of een vraag om je e-mail of telefoon te bevestigen? Volg die.
+2. **Instagram → Instellingen → Accountstatus.** Staat daar een beperking of een overtreding?
+3. **developers.facebook.com → My Apps → jouw app.** Kijk naar meldingen bovenaan en onder het belletje: "App restricted", "Data Use Checkup", "Verify" of "Complete…". Rond af wat er staat.
+4. **Je Facebook-profiel**, waarmee de app is gemaakt. Staat daar een melding over je account (accountkwaliteit, identiteit bevestigen)? Een beperkt ontwikkelaarsaccount blokkeert ook de app.
+5. **Instagram → Instellingen → Website-machtigingen → Apps en websites.** Staat de app er nog als actief?
+
+**Is de app zelf geblokkeerd ("App restricted" zonder te herstellen stap)?**
+- Dien in het app-dashboard een bezwaar in ("Request review" of "Appeal").
+- Lukt dat niet, dan maken we een nieuwe app aan (stappen 2 t/m 5 hierboven, ±10 minuten). Ik zet het token dan opnieuw.
+
 ## TikTok en Pinterest (later)
 
 TikTok laat nieuwe apps pas na een beoordeling openbaar posten. Daarvoor zetten we een planner in die je koppelt met "inloggen met TikTok" (zie GUERRILLA.md §7). De beelden staan al klaar: `public/social/seasons/*/tiktok-cover.jpg` en de slides.
