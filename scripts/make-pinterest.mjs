@@ -48,8 +48,8 @@ const csvEsc = (v) => (/[",\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, 
 const rows = [["Title", "Media URL", "Pinterest board", "Thumbnail", "Description", "Link", "Publish date", "Keywords"]];
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1000, height: 1500 } });
-// two pins a day, 12:00 and 20:00 Amsterdam, from the day after tomorrow (Pinterest plans up to ±30 days ahead)
-const start = new Date(); start.setUTCDate(start.getUTCDate() + 2);
+// two pins a day, 12:00 and 20:00 Amsterdam, from today; the RSS feeds release them on time
+const start = new Date();
 let n = 0;
 for (const key of ORDER) {
   const s = D[key];
@@ -75,6 +75,8 @@ for (const key of ORDER) {
   }
 }
 await b.close();
+// the same pins as data, for the RSS feeds Pinterest reads (app/pinterest/[board]/route.ts)
+writeFileSync("lib/social/pins.json", JSON.stringify(rows.slice(1).map(([title, image, board, , description, link, at]) => ({ title, image, board, description, link, at: `${at}Z` })), null, 1));
 writeFileSync("assets/social/pinterest/pins.csv", rows.map((r) => r.map(csvEsc).join(",")).join("\r\n") + "\r\n");
 // one pin without a date, to test an upload on its own
 writeFileSync("assets/social/pinterest/pins-test.csv", [rows[0], [...rows[1].slice(0, 6), "", rows[1][7]]].map((r) => r.map(csvEsc).join(",")).join("\r\n") + "\r\n");
