@@ -32,6 +32,11 @@ export async function POST(req: Request) {
     await supabaseRest("social_posts?on_conflict=slot", { method: "POST", body: JSON.stringify({ slot: s.key, status: "skipped", updated_at: new Date().toISOString() }), prefer: "resolution=merge-duplicates,return=minimal" });
     return NextResponse.json({ ok: true });
   }
+  // posted by hand (Meta blocked the API, 22 Oct 2026): marked as published so the cron never posts it twice
+  if (b.action === "manual") {
+    await supabaseRest("social_posts?on_conflict=slot", { method: "POST", body: JSON.stringify({ slot: s.key, status: "published", media_id: "manual", error: null, updated_at: new Date().toISOString() }), prefer: "resolution=merge-duplicates,return=minimal" });
+    return NextResponse.json({ ok: true });
+  }
   if (b.action === "unskip") {
     await supabaseRest(`social_posts?slot=eq.${encodeURIComponent(s.key)}`, { method: "DELETE" });
     return NextResponse.json({ ok: true });

@@ -1,6 +1,6 @@
 import { randomInt } from "node:crypto";
 import { NextResponse } from "next/server";
-import { allComments, whoami } from "@/lib/social/instagram";
+import { allComments, recentMedia, whoami } from "@/lib/social/instagram";
 import { states } from "@/lib/social/run";
 
 // Founder only (proxy guards /api/lab): the giveaway draw (terms on /winactie). Every unique account
@@ -11,7 +11,14 @@ const CLOSES = new Date("2026-11-08T22:59:59Z"); // Sunday 8 Nov 2026, 23:59 Ams
 
 export async function POST() {
   const st = await states();
-  const media = ["giveaway-2026-11-02", "giveaway-last-2026-11-06"].map((k) => st.get(k)?.media_id).filter((x): x is string => !!x);
+  const keys = ["giveaway-2026-11-02", "giveaway-last-2026-11-06"];
+  const media = keys.map((k) => st.get(k)?.media_id).filter((x): x is string => !!x && x !== "manual");
+  // placed by hand (Meta blocked the API): find them by their caption among the latest posts
+  if (keys.some((k) => st.get(k)?.media_id === "manual")) {
+    for (const m of await recentMedia(40)) {
+      if (new Date(m.timestamp) >= new Date("2026-11-01") && /^(GIVEAWAY|Last chance)/i.test(m.caption ?? "") && !media.includes(m.id)) media.push(m.id);
+    }
+  }
   if (!media.length) return NextResponse.json({ error: "giveaway posts not published yet" }, { status: 404 });
   const me = (await whoami()).username;
   const seen = new Map<string, string>();

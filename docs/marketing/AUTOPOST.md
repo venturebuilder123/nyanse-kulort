@@ -73,6 +73,10 @@ Wil je later toch een echte Facebook-pagina, dan werkt de oude route ook: een pa
 4. **Je Facebook-profiel**, waarmee de app is gemaakt. Staat daar een melding over je account (accountkwaliteit, identiteit bevestigen)? Een beperkt ontwikkelaarsaccount blokkeert ook de app.
 5. **Instagram → Instellingen → Website-machtigingen → Apps en websites.** Staat de app er nog als actief?
 
+**Niet wachten (22 oktober 2026):** in /lab/social staan per post **Download beelden**, **Kopieer bijschrift** en **Met de hand geplaatst**. Plaats hem zelf in de app of plan hem in Meta Business Suite, en klik daarna op die knop. Dan zet het systeem hem op "geplaatst" en post het hem nooit dubbel. De trekking van de giveaway vindt met de hand geplaatste giveaway-posts terug aan hun bijschrift.
+
+**Blijft het terugkomen?** Overstappen op een officiële planner (Meta Business Suite gratis, of Metricool/Buffer) en ManyChat voor de SEASON-DM's. Die gebruiken hun eigen goedgekeurde Meta-app, dus onze app kan niet geblokkeerd raken. Wij blijven de beelden en bijschriften maken; jij plant één keer per week.
+
 **Is de app zelf geblokkeerd ("App restricted" zonder te herstellen stap)?**
 - Dien in het app-dashboard een bezwaar in ("Request review" of "Appeal").
 - Lukt dat niet, dan maken we een nieuwe app aan (stappen 2 t/m 5 hierboven, ±10 minuten). Ik zet het token dan opnieuw.

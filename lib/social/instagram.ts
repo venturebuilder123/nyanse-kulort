@@ -105,6 +105,12 @@ export async function whoami(): Promise<{ id: string; username?: string }> {
   return (await call(id, { fields: "id,username" }, "GET")) as { id: string; username?: string };
 }
 
+/** The latest posts with caption and time (to find a post that was placed by hand). */
+export async function recentMedia(posts = 25): Promise<{ id: string; caption?: string; timestamp: string }[]> {
+  const user = await userId();
+  return ((await call(`${user}/media`, { fields: "id,caption,timestamp", limit: String(posts) }, "GET")) as { data?: { id: string; caption?: string; timestamp: string }[] }).data ?? [];
+}
+
 export type IgComment = { id: string; text: string; username?: string; timestamp: string; media: { id: string; permalink?: string; caption?: string } };
 
 /** Comments on the latest posts since a moment (for the morning digest; read only, never replies). */
