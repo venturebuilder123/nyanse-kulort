@@ -103,6 +103,8 @@ export type BrandConfig = {
   defaultVoice: VoiceKey;
   /** 8 favourite shops offered in the style step (CLAUDE.md §6.2) */
   shops: readonly string[];
+  /** premium and A-brands, a second group in the style step (founder, 22 Oct 2026) */
+  premium: readonly string[];
   other: BrandKey;
   /** the small cross-brand link on the landing */
   switchLabel: string;

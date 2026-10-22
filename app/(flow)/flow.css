@@ -1077,3 +1077,10 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 .links-list span { font-size: 13px; opacity: .75; }
 .links-foot { text-align: center; font-size: 13px; color: var(--muted); }
 .links-foot a { color: inherit; }
+
+/* style step: the A-brands and a brand of your own (22 Oct 2026) */
+.q-sub { margin: 18px 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--muted); }
+.own-shop { margin-top: 14px; display: grid; gap: 6px; font-size: 14px; }
+.own-shop label { font-weight: 700; }
+.own-shop > div { display: flex; gap: 8px; }
+.own-shop input { flex: 1; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: var(--radius-chip, 10px); background: var(--bg); color: var(--ink); font: inherit; }

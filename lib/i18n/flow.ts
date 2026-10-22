@@ -43,6 +43,7 @@ const nl = {
   reveal: { scales: "Zo ben je opgebouwd", season: "Je seizoen", exactType: "Je precieze kleurtype", named: (f: string) => `Vaak genoemd als ${f}:` },
   deck: { more: (n: number) => `+${n} kleuren met naam in je gids`, moreAria: (n: number) => `Nog ${n} kleuren met naam in je stijlgids` },
   email: { meant: (s: string) => `Bedoel je ${s}?`, privacy: "Zo gaan we met je gegevens om" },
+  style: { premium: "A-merken", other: "Ander merk?", otherPh: "Bijv. Weekday", add: "Toevoegen" },
   landing: { knownShort: "Ik ken mijn kleurprofiel al", next: "Verder", pick: "Kies één of meer", known: "Ken je je kleurtype al? Kies het en ga direct naar je stijlgids →" },
   sections: {
     proofAlt: (men: boolean): string => (men ? "Dezelfde man met een tomaatrode en een indigo doek" : "Dezelfde vrouw met een koningsblauwe en een zacht petrol doek"),
@@ -96,6 +97,7 @@ const en: FlowText = {
   reveal: { scales: "How you're built", season: "Your season", exactType: "Your exact colour type", named: (f) => `Often named as ${f}:` },
   deck: { more: (n) => `+${n} named colours in your guide`, moreAria: (n) => `${n} more named colours in your style guide` },
   email: { meant: (s) => `Did you mean ${s}?`, privacy: "How we handle your data" },
+  style: { premium: "Premium brands", other: "Another brand?", otherPh: "E.g. Weekday", add: "Add" },
   landing: { knownShort: "I already know my colour profile", next: "Next", pick: "Choose one or more", known: "Already know your colour type? Pick it and go straight to your style guide →" },
   sections: {
     proofAlt: (men) => (men ? "The same man in a tomato red and an indigo drape" : "The same woman in a royal blue and a soft teal drape"),

@@ -27,7 +27,7 @@ function PrivacyNl() {
 
         <h2>Wat we wel verwerken</h2>
         <ul>
-          <li><b>Je kleurprofiel</b> (getallen voor ondertoon, diepte en helderheid) en je antwoorden (gelegenheid, budget, winkels, haar, goud of zilver). Om je profiel en gids te maken.</li>
+          <li><b>Je kleurprofiel</b> (getallen voor ondertoon, diepte en helderheid) en je antwoorden (gelegenheid, budget, winkels, haar, goud of zilver). Om je profiel en gids te maken, en om te leren welke winkels en merken we moeten toevoegen.</li>
           <li><b>Je e-mailadres</b>, alleen als je het geeft. Om je profiel en gids te sturen. Maandmails alleen als je dat apart aanvinkt; afmelden kan in elke mail. Zonder bestelling bewaren we je adres maximaal 2 jaar na je laatste contact.</li>
           <li><b>Bestelgegevens</b> en, bij de kleurenpas, je adres. Om te leveren en voor de boekhouding (7 jaar bewaarplicht).</li>
           <li><b>Kleur van de week</b>, alleen als je die aanzet: het pushadres van je browser, je merk, je kleurtype en je tijdzone. Maximaal één melding per week, overdag. Uitzetten kan in je gids; met &quot;Verwijder mijn profiel&quot; verdwijnt het ook van onze server.</li>
@@ -70,7 +70,7 @@ function PrivacyEn() {
 
         <h2>What we do process</h2>
         <ul>
-          <li><b>Your colour profile</b> (numbers for undertone, depth and clarity) and your answers (occasion, budget, shops, hair, gold or silver, your own check of skin, eyes and hair). To make your profile and guide.</li>
+          <li><b>Your colour profile</b> (numbers for undertone, depth and clarity) and your answers (occasion, budget, shops, hair, gold or silver, your own check of skin, eyes and hair). To make your profile and guide, and to learn which shops and brands to add.</li>
           <li><b>Your e-mail address</b>, only if you give it. To send your profile and guide. Monthly e-mails only if you tick that box separately; you can unsubscribe in every e-mail. Without an order we keep your address for at most 2 years after your last contact.</li>
           <li><b>Order details</b> and, for the colour card, your address. To deliver and for our accounts (7-year legal retention).</li>
           <li><b>Colour of the week</b>, only if you switch it on: your browser&apos;s push address, your brand, your colour type and your time zone. At most one notification a week, during the day. Switch it off in your guide; &quot;Delete my profile&quot; also removes it from our server.</li>

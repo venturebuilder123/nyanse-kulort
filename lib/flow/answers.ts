@@ -16,6 +16,9 @@ const TOKEN_TTL_MS = 60 * 60 * 1000;
 const OCCASION_KEYS: OccasionKey[] = ["werk", "weekend", "date", "feest", "sport"];
 const BUDGET_KEYS: BudgetKey[] = ["low", "mid", "high"];
 
+/** A shop name as typed: trimmed, at most 40 characters, no markup. */
+export const cleanShop = (s: string) => s.replace(/[^\p{L}\p{N} &'.+\-]/gu, "").replace(/\s+/g, " ").trim().slice(0, 40);
+
 /** Keep only known values, so a tampered token or old storage can't inject anything. */
 export function sanitize(raw: unknown): Answers {
   const r = (raw ?? {}) as Partial<Record<keyof Answers, unknown>>;
@@ -23,8 +26,9 @@ export function sanitize(raw: unknown): Answers {
     ? r.occasions.filter((o): o is OccasionKey => OCCASION_KEYS.includes(o as OccasionKey))
     : [];
   const budget = BUDGET_KEYS.includes(r.budget as BudgetKey) ? (r.budget as BudgetKey) : undefined;
+  // shop names, including ones people type themselves: letters, digits and a few signs only
   const shops = Array.isArray(r.shops)
-    ? r.shops.filter((s): s is string => typeof s === "string" && s.length <= 40).slice(0, 12)
+    ? r.shops.filter((s): s is string => typeof s === "string").map(cleanShop).filter(Boolean).slice(0, 30)
     : [];
   return { occasions: [...new Set(occasions)], budget, shops: [...new Set(shops)] };
 }

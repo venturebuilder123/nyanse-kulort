@@ -2,6 +2,20 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 22 oktober 2026 — A-merken in de winkelkeuze, antwoorden bij de bestelling, passen in twee talen
+
+- **Winkels:** in de stijlstap staat nu onder de gewone winkels een tweede groep **A-merken**: 18 per merk, zoals Suitsupply, Hugo Boss en Ralph Lauren (KULØRT) en Massimo Dutti, Fabienne Chapot en Sandro (NYANSE). Er is ook een veld **"Ander merk?"**: wat mensen zelf typen, is waardevolle data voor latere partners.
+- **Data:**
+  - de antwoorden (gelegenheid, budget, winkels) gaan mee in het profiel van de **bestelling**;
+  - **zonder bestelling** gaan de namen anoniem mee in het PostHog-event `style_done` (`shop_names`, `premium`, `own`). Zo zien we welke merken bezoekers én kopers kiezen.
+  - De privacyverklaring noemt dit doel.
+- **Kleurenpassen:**
+  - één pdf per ontwerp (voor- en achterkant), in het Nederlands en het Engels;
+  - de kleuren komen uit de motor;
+  - de weekbatch toont de taal per bestelling.
+  - Drukadvies: PeterPrint (digitaal, meerdere ontwerpen zonder opstartkosten), met Drukwerkdeal als alternatief; 350–450 g mat; eerst een proef. Zie `docs/fase-b/KLEURENPAS.md`.
+- **Kosten:** €0 in code. De drukproef kost de prijs bij de drukker (nog te bekijken).
+
 ## 21 oktober 2026 — Engels live naast Nederlands
 
 - **Wat:** de hele klantroute is ook in het Engels: landing, kleurcheck, resultaat, checkout, bevestiging, stijlgids, mails, uitlegpagina /en/kleuranalyse, voorwaarden, privacy en contact. Bedragen in Engelse notatie (€12.99). De taal staat in de bestelling, zodat de mails met de link en "je pas is onderweg" in dezelfde taal komen.

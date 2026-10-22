@@ -5,6 +5,7 @@ import { track } from "@/lib/analytics";
 import { amountFor, formatIban, orderRef, PAYEE } from "@/lib/flow/payment";
 import { euro, type Tier } from "@/lib/flow/pricing";
 import { orderKey } from "@/lib/flow/access";
+import { loadAnswers } from "@/lib/flow/answers";
 import { flowSession } from "@/lib/flow/session";
 import { FLOW } from "@/lib/i18n/flow";
 import { useBrand } from "../BrandProvider";
@@ -13,8 +14,9 @@ import { useBrand } from "../BrandProvider";
 function profileForOrder(locale: string) {
   const r = flowSession.result();
   if (!r) return null;
-  // the language goes along so the mails speak it too
-  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, confirm: r.confirm, declared: r.declared, locale };
+  // the language goes along so the mails speak it too; the answers (occasion, budget, shops) so we learn
+  // what buyers like (founder, 22 Oct 2026)
+  return { measurements: r.measurements, hair: r.hair, jewel: r.jewel, confirm: r.confirm, declared: r.declared, locale, answers: loadAnswers() };
 }
 
 type Props = { tier: Tier; season: string; friendCode?: string; note?: string | null; onClose: () => void };

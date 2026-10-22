@@ -4,6 +4,7 @@
 import { BRANDS, VOICES } from "@/lib/brand/config";
 import type { BrandKey, VoiceKey } from "@/lib/brand/types";
 import { SEASONS } from "@/lib/color/seasons";
+import { sanitize, type Answers } from "./answers";
 import { checkCode } from "./discount";
 import { amountFor } from "./payment";
 import type { Tier } from "./pricing";
@@ -17,7 +18,7 @@ export type OrderRow = {
   profile: StoredProfile | null;
 };
 
-export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string>; locale?: "nl" | "en" };
+export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string>; locale?: "nl" | "en"; answers?: Answers };
 
 const num = (v: unknown) => typeof v === "number" && Number.isFinite(v);
 /** Keeps only the known, numeric parts of a profile, capped in size. */
@@ -28,6 +29,10 @@ export function parseProfile(raw: unknown): StoredProfile | null {
   if (["natural", "dyed", "grey", "none", "covered"].includes(p.hair as string)) out.hair = p.hair as string;
   if (["goud", "zilver", "weetniet"].includes(p.jewel as string)) out.jewel = p.jewel as string;
   if (p.locale === "en" || p.locale === "nl") out.locale = p.locale;
+  if (p.answers) {
+    const a = sanitize(p.answers);
+    if (a.occasions.length || a.budget || a.shops.length) out.answers = a;
+  }
   const c = p.confirm as Record<string, unknown> | undefined;
   if (c && typeof c === "object") {
     const kept = Object.fromEntries(["skin", "iris", "hair"].filter((k) => ["lighter", "match", "darker"].includes(c[k] as string)).map((k) => [k, c[k] as string]));

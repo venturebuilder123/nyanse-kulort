@@ -7,7 +7,10 @@ type Order = {
   ref: string; created_at: string; status: string; tier: string; amount_cents: number; brand: string; season: string | null;
   email: string; name: string | null; street: string | null; postcode: string | null; city: string | null; country: string | null;
   friend_code: string | null; paid_at: string | null; mailed_at: string | null;
+  /** the card language to pack (assets/passes/print/{nl,en}) */
+  locale?: string | null;
 };
+const lang = (o: Order) => (o.locale === "en" ? "EN" : "NL");
 
 const TIER: Record<string, string> = { digital: "Stijlgids", card: "Gids + pas", session: "Advies (video)" };
 const seasonName = (k: string | null) => (k && k in SEASONS ? SEASONS[k as SeasonKey].name : "–");
@@ -16,8 +19,8 @@ const BRAND: Record<string, string> = { kulort: "KULØRT", nyanse: "NYANSE" };
 /** The weekly colour-card batch (CLAUDE.md §7): CSV for the print and a list to address envelopes. */
 function batchCsv(list: Order[]) {
   const q = (v: string | null) => `"${(v ?? "").replace(/"/g, '""')}"`;
-  const rows = [["kenmerk", "merk", "seizoen", "naam", "straat", "postcode", "plaats", "land", "betaald"].join(";")];
-  for (const o of list) rows.push([o.ref, BRAND[o.brand] ?? o.brand, seasonName(o.season), o.name, o.street, o.postcode, o.city, o.country, o.paid_at?.slice(0, 10) ?? ""].map(q).join(";"));
+  const rows = [["kenmerk", "merk", "seizoen", "taal pas", "naam", "straat", "postcode", "plaats", "land", "betaald"].join(";")];
+  for (const o of list) rows.push([o.ref, BRAND[o.brand] ?? o.brand, seasonName(o.season), lang(o), o.name, o.street, o.postcode, o.city, o.country, o.paid_at?.slice(0, 10) ?? ""].map(q).join(";"));
   const url = URL.createObjectURL(new Blob(["\uFEFF" + rows.join("\n")], { type: "text/csv;charset=utf-8" }));
   const a = document.createElement("a");
   a.href = url;
@@ -35,7 +38,7 @@ function batchPrint(list: Order[]) {
     .label{border:1px dashed #999;padding:6mm;font-size:14px;line-height:1.45;break-inside:avoid}
     .label small{display:block;margin-top:3mm;color:#555;font-size:11px}
   </style><h1>Passen-batch ${new Date().toLocaleDateString("nl-NL")} · ${list.length} stuks</h1><div class="grid">${list
-    .map((o) => `<div class="label"><b>${esc(o.name)}</b><br>${esc(o.street)}<br>${esc(o.postcode)} ${esc(o.city)}<br>${o.country === "NL" ? "" : esc(o.country === "BE" ? "BELGIË" : "DUITSLAND")}<small>${o.ref} · ${BRAND[o.brand] ?? o.brand} · ${seasonName(o.season)}</small></div>`)
+    .map((o) => `<div class="label"><b>${esc(o.name)}</b><br>${esc(o.street)}<br>${esc(o.postcode)} ${esc(o.city)}<br>${o.country === "NL" ? "" : esc(o.country === "BE" ? "BELGIË" : "DUITSLAND")}<small>${o.ref} · ${BRAND[o.brand] ?? o.brand} · ${seasonName(o.season)} · pas ${lang(o)}</small></div>`)
     .join("")}</div><script>print()</script>`);
   w.document.close();
 }

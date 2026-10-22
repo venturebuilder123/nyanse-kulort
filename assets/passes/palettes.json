@@ -4,983 +4,1223 @@
   "season": "lightSpring",
   "name": "Light Spring",
   "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Abrikoos",
+    "nameEn": "Apricot",
     "hex": "#F3A27A"
    },
    {
     "name": "Zand",
+    "nameEn": "Sand",
     "hex": "#F4E3A1"
    },
    {
     "name": "Lichtgoud",
+    "nameEn": "Light gold",
     "hex": "#E8C468"
    },
    {
     "name": "Lentegroen",
+    "nameEn": "Spring green",
     "hex": "#8FBF6A"
    },
    {
     "name": "Perzik",
+    "nameEn": "Peach",
     "hex": "#F6CBA8"
    },
    {
     "name": "Munt",
+    "nameEn": "Mint",
     "hex": "#A8DDBE"
    },
    {
     "name": "Aqua",
+    "nameEn": "Aqua",
     "hex": "#7FCBC4"
    },
    {
     "name": "Koraal",
+    "nameEn": "Coral",
     "hex": "#EE7A67"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-lightSpring": {
-  "brand": "nyanse",
-  "season": "lightSpring",
-  "name": "Light Spring",
-  "family": "Lente",
-  "pass": [
-   {
-    "name": "Abrikoos",
-    "hex": "#F3A27A"
-   },
-   {
-    "name": "Boter",
-    "hex": "#F4E3A1"
-   },
-   {
-    "name": "Lichtgoud",
-    "hex": "#E8C468"
-   },
-   {
-    "name": "Lentegroen",
-    "hex": "#8FBF6A"
-   },
-   {
-    "name": "Zalmroze",
-    "hex": "#F4A3A0"
-   },
-   {
-    "name": "Perzik",
-    "hex": "#F6CBA8"
-   },
-   {
-    "name": "Lila",
-    "hex": "#C3B1E1"
-   },
-   {
-    "name": "Munt",
-    "hex": "#A8DDBE"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-warmSpring": {
   "brand": "kulort",
   "season": "warmSpring",
   "name": "Warm Spring",
   "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Licht olijf",
+    "nameEn": "Light olive",
     "hex": "#A6A04C"
    },
    {
     "name": "Zalm",
+    "nameEn": "Salmon",
     "hex": "#E58A5B"
    },
    {
     "name": "Camel",
+    "nameEn": "Camel",
     "hex": "#C79A5E"
    },
    {
     "name": "Korenblauw",
+    "nameEn": "Cornflower blue",
     "hex": "#4E86C4"
    },
    {
     "name": "Turkoois",
+    "nameEn": "Turquoise",
     "hex": "#2BB3A8"
    },
    {
     "name": "Cognac",
+    "nameEn": "Cognac",
     "hex": "#9A6230"
    },
    {
     "name": "Grasgroen",
+    "nameEn": "Grass green",
     "hex": "#79B94B"
    },
    {
     "name": "Mandarijn",
+    "nameEn": "Tangerine",
     "hex": "#F28C38"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-warmSpring": {
-  "brand": "nyanse",
-  "season": "warmSpring",
-  "name": "Warm Spring",
-  "family": "Lente",
-  "pass": [
-   {
-    "name": "Licht olijf",
-    "hex": "#A6A04C"
-   },
-   {
-    "name": "Zalm",
-    "hex": "#E58A5B"
-   },
-   {
-    "name": "Camel",
-    "hex": "#C79A5E"
-   },
-   {
-    "name": "Korenblauw",
-    "hex": "#4E86C4"
-   },
-   {
-    "name": "Turkoois",
-    "hex": "#2BB3A8"
-   },
-   {
-    "name": "Karamel",
-    "hex": "#9A6230"
-   },
-   {
-    "name": "Papaya",
-    "hex": "#F7A168"
-   },
-   {
-    "name": "Grasgroen",
-    "hex": "#79B94B"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-brightSpring": {
   "brand": "kulort",
   "season": "brightSpring",
   "name": "Bright Spring",
   "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Felblauw",
+    "nameEn": "Bright blue",
     "hex": "#2F6FDE"
    },
    {
     "name": "Paars",
+    "nameEn": "Purple",
     "hex": "#8E5BD6"
    },
    {
     "name": "Klaprood",
+    "nameEn": "Poppy red",
     "hex": "#E6194B"
    },
    {
     "name": "Helder koraal",
+    "nameEn": "Bright coral",
     "hex": "#FF6F61"
    },
    {
     "name": "Feloranje",
+    "nameEn": "Bright orange",
     "hex": "#FF8C1A"
    },
    {
     "name": "Jadegroen",
+    "nameEn": "Jade green",
     "hex": "#00A86B"
    },
    {
     "name": "Goudbruin",
+    "nameEn": "Golden brown",
     "hex": "#C68E4E"
    },
    {
     "name": "Helder turkoois",
+    "nameEn": "Bright turquoise",
     "hex": "#00B5CC"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-brightSpring": {
-  "brand": "nyanse",
-  "season": "brightSpring",
-  "name": "Bright Spring",
-  "family": "Lente",
-  "pass": [
-   {
-    "name": "Felblauw",
-    "hex": "#2F6FDE"
-   },
-   {
-    "name": "Warm roze",
-    "hex": "#F75D9E"
-   },
-   {
-    "name": "Paars",
-    "hex": "#8E5BD6"
-   },
-   {
-    "name": "Klaprood",
-    "hex": "#E6194B"
-   },
-   {
-    "name": "Helder koraal",
-    "hex": "#FF6F61"
-   },
-   {
-    "name": "Feloranje",
-    "hex": "#FF8C1A"
-   },
-   {
-    "name": "Jadegroen",
-    "hex": "#00A86B"
-   },
-   {
-    "name": "Limoen",
-    "hex": "#8FD14F"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-lightSummer": {
   "brand": "kulort",
   "season": "lightSummer",
   "name": "Light Summer",
   "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Lichtroze",
+    "nameEn": "Light pink",
     "hex": "#F0B7C8"
    },
    {
     "name": "Koele munt",
+    "nameEn": "Cool mint",
     "hex": "#A9D8CF"
    },
    {
     "name": "Poederblauw",
+    "nameEn": "Powder blue",
     "hex": "#AFC6E0"
    },
    {
     "name": "Zeeblauw",
+    "nameEn": "Sea blue",
     "hex": "#7FA8C9"
    },
    {
     "name": "Maagdenpalm",
+    "nameEn": "Periwinkle",
     "hex": "#9AA9C9"
    },
    {
     "name": "IJsgroen",
+    "nameEn": "Icy green",
     "hex": "#CFE5DD"
    },
    {
     "name": "Duifblauw",
+    "nameEn": "Dove blue",
     "hex": "#6F82A0"
    },
    {
     "name": "Lichtgrijs",
+    "nameEn": "Light grey",
     "hex": "#C9CDD4"
    }
-  ],
-  "metal": "Zilver of Witgoud"
- },
- "nyanse-lightSummer": {
-  "brand": "nyanse",
-  "season": "lightSummer",
-  "name": "Light Summer",
-  "family": "Zomer",
-  "pass": [
-   {
-    "name": "Poederroze",
-    "hex": "#F0B7C8"
-   },
-   {
-    "name": "Pastelpaars",
-    "hex": "#CFA9D6"
-   },
-   {
-    "name": "Lavendel",
-    "hex": "#BDB3DD"
-   },
-   {
-    "name": "Koele munt",
-    "hex": "#A9D8CF"
-   },
-   {
-    "name": "Poederblauw",
-    "hex": "#AFC6E0"
-   },
-   {
-    "name": "Licht rozenhout",
-    "hex": "#CF9DA4"
-   },
-   {
-    "name": "Zeeblauw",
-    "hex": "#7FA8C9"
-   },
-   {
-    "name": "Maagdenpalm",
-    "hex": "#9AA9C9"
-   }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  },
  "kulort-coolSummer": {
   "brand": "kulort",
   "season": "coolSummer",
   "name": "Cool Summer",
   "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Middenblauw",
+    "nameEn": "Mid blue",
     "hex": "#5B7DB1"
    },
    {
     "name": "Blauwgroen",
+    "nameEn": "Blue-green",
     "hex": "#4F8F8B"
    },
    {
     "name": "Koel hemelsblauw",
+    "nameEn": "Cool sky blue",
     "hex": "#7E9DB8"
    },
    {
     "name": "Denim",
+    "nameEn": "Denim",
     "hex": "#3E6E9C"
    },
    {
     "name": "Grijsblauw",
+    "nameEn": "Grey-blue",
     "hex": "#6D6E8C"
    },
    {
     "name": "Koel paars",
+    "nameEn": "Cool purple",
     "hex": "#8C6BAE"
    },
    {
     "name": "Staalgrijs",
+    "nameEn": "Steel grey",
     "hex": "#A7B3C2"
    },
    {
     "name": "Navy",
+    "nameEn": "Navy",
     "hex": "#2F4A6D"
    }
-  ],
-  "metal": "Zilver of Witgoud"
- },
- "nyanse-coolSummer": {
-  "brand": "nyanse",
-  "season": "coolSummer",
-  "name": "Cool Summer",
-  "family": "Zomer",
-  "pass": [
-   {
-    "name": "Middenblauw",
-    "hex": "#5B7DB1"
-   },
-   {
-    "name": "Blauwgroen",
-    "hex": "#4F8F8B"
-   },
-   {
-    "name": "Koel roze",
-    "hex": "#E3A1B9"
-   },
-   {
-    "name": "Koel hemelsblauw",
-    "hex": "#7E9DB8"
-   },
-   {
-    "name": "Denim",
-    "hex": "#3E6E9C"
-   },
-   {
-    "name": "Grijsblauw",
-    "hex": "#6D6E8C"
-   },
-   {
-    "name": "Koel paars",
-    "hex": "#8C6BAE"
-   },
-   {
-    "name": "Framboos",
-    "hex": "#C25B86"
-   }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  },
  "kulort-softSummer": {
   "brand": "kulort",
   "season": "softSummer",
   "name": "Soft Summer",
   "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Steengroen",
+    "nameEn": "Stone green",
     "hex": "#7D8471"
    },
    {
     "name": "Steengrijs",
+    "nameEn": "Stone grey",
     "hex": "#5E6A7A"
    },
    {
     "name": "Koel taupe",
+    "nameEn": "Cool taupe",
     "hex": "#9A8F8A"
    },
    {
     "name": "Zachte pruim",
+    "nameEn": "Soft plum",
     "hex": "#6E5468"
    },
    {
     "name": "Zeegroen",
+    "nameEn": "Sea green",
     "hex": "#7FA39B"
    },
    {
     "name": "Washed denim",
+    "nameEn": "Washed denim",
     "hex": "#4F6886"
    },
    {
     "name": "Stoffig blauw",
+    "nameEn": "Dusty blue",
     "hex": "#8FA3B8"
    },
    {
     "name": "Salie",
+    "nameEn": "Sage",
     "hex": "#A3B09A"
    }
-  ],
-  "metal": "Zilver of Witgoud"
- },
- "nyanse-softSummer": {
-  "brand": "nyanse",
-  "season": "softSummer",
-  "name": "Soft Summer",
-  "family": "Zomer",
-  "pass": [
-   {
-    "name": "Grijsgroen",
-    "hex": "#7D8471"
-   },
-   {
-    "name": "Leisteen",
-    "hex": "#5E6A7A"
-   },
-   {
-    "name": "Koel taupe",
-    "hex": "#9A8F8A"
-   },
-   {
-    "name": "Mauve",
-    "hex": "#A6879C"
-   },
-   {
-    "name": "Zachte pruim",
-    "hex": "#6E5468"
-   },
-   {
-    "name": "Zeegroen",
-    "hex": "#7FA39B"
-   },
-   {
-    "name": "Denim",
-    "hex": "#4F6886"
-   },
-   {
-    "name": "Stoffig blauw",
-    "hex": "#8FA3B8"
-   }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  },
  "kulort-softAutumn": {
   "brand": "kulort",
   "season": "softAutumn",
   "name": "Soft Autumn",
   "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Zachte petrol",
+    "nameEn": "Soft teal",
     "hex": "#3F6A6A"
    },
    {
     "name": "Tabak",
+    "nameEn": "Tobacco",
     "hex": "#6B4B38"
    },
    {
     "name": "Olijf",
+    "nameEn": "Olive",
     "hex": "#7A7449"
    },
    {
     "name": "Kaki",
+    "nameEn": "Khaki",
     "hex": "#A89A72"
    },
    {
     "name": "Mosgroen",
+    "nameEn": "Moss green",
     "hex": "#6D7A4C"
    },
    {
     "name": "Camel",
+    "nameEn": "Camel",
     "hex": "#B9926B"
    },
    {
     "name": "Warme zalm",
+    "nameEn": "Warm salmon",
     "hex": "#D49A82"
    },
    {
     "name": "Zand",
+    "nameEn": "Sand",
     "hex": "#D8C3A0"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-softAutumn": {
-  "brand": "nyanse",
-  "season": "softAutumn",
-  "name": "Soft Autumn",
-  "family": "Herfst",
-  "pass": [
-   {
-    "name": "Zachte petrol",
-    "hex": "#3F6A6A"
-   },
-   {
-    "name": "Chocolademelk",
-    "hex": "#6B4B38"
-   },
-   {
-    "name": "Olijf",
-    "hex": "#7A7449"
-   },
-   {
-    "name": "Kaki",
-    "hex": "#A89A72"
-   },
-   {
-    "name": "Roestroze",
-    "hex": "#B67C73"
-   },
-   {
-    "name": "Mosgroen",
-    "hex": "#6D7A4C"
-   },
-   {
-    "name": "Kameel",
-    "hex": "#B9926B"
-   },
-   {
-    "name": "Warme zalm",
-    "hex": "#D49A82"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-warmAutumn": {
   "brand": "kulort",
   "season": "warmAutumn",
   "name": "Warm Autumn",
   "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Petrolgroen",
+    "nameEn": "Deep teal",
     "hex": "#2E6B5E"
    },
    {
     "name": "Olijf",
+    "nameEn": "Olive",
     "hex": "#556B2F"
    },
    {
     "name": "Siena",
+    "nameEn": "Sienna",
     "hex": "#A0522D"
    },
    {
     "name": "Cognac",
+    "nameEn": "Cognac",
     "hex": "#8B4513"
    },
    {
     "name": "Kastanje",
+    "nameEn": "Chestnut",
     "hex": "#7B3F00"
    },
    {
     "name": "Licht kameel",
+    "nameEn": "Light camel",
     "hex": "#E0A96D"
    },
    {
     "name": "Steenrood",
+    "nameEn": "Brick red",
     "hex": "#9E2A2B"
    },
    {
     "name": "Olijfgroen",
+    "nameEn": "Olive green",
     "hex": "#6B8E23"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-warmAutumn": {
-  "brand": "nyanse",
-  "season": "warmAutumn",
-  "name": "Warm Autumn",
-  "family": "Herfst",
-  "pass": [
-   {
-    "name": "Petrolgroen",
-    "hex": "#2E6B5E"
-   },
-   {
-    "name": "Legergroen",
-    "hex": "#556B2F"
-   },
-   {
-    "name": "Siena",
-    "hex": "#A0522D"
-   },
-   {
-    "name": "Zadelbruin",
-    "hex": "#8B4513"
-   },
-   {
-    "name": "Kastanje",
-    "hex": "#7B3F00"
-   },
-   {
-    "name": "Licht kameel",
-    "hex": "#E0A96D"
-   },
-   {
-    "name": "Steenrood",
-    "hex": "#9E2A2B"
-   },
-   {
-    "name": "Olijfgroen",
-    "hex": "#6B8E23"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-deepAutumn": {
   "brand": "kulort",
   "season": "deepAutumn",
   "name": "Deep Autumn",
   "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
   "pass": [
    {
     "name": "Bordeaux",
+    "nameEn": "Burgundy",
     "hex": "#6E1F2A"
    },
    {
     "name": "Warme aubergine",
+    "nameEn": "Warm aubergine",
     "hex": "#5A2F3F"
    },
    {
     "name": "Chocolade",
+    "nameEn": "Chocolate",
     "hex": "#4E3022"
    },
    {
     "name": "Bosgroen",
+    "nameEn": "Forest green",
     "hex": "#2F4F3A"
    },
    {
     "name": "Diep olijf",
+    "nameEn": "Deep olive",
     "hex": "#5B5A2E"
    },
    {
     "name": "Petrol",
+    "nameEn": "Petrol blue",
     "hex": "#1F5C63"
    },
    {
     "name": "Kaneel",
+    "nameEn": "Cinnamon",
     "hex": "#8E5432"
    },
    {
     "name": "Espresso",
+    "nameEn": "Espresso",
     "hex": "#3B2F2F"
    }
-  ],
-  "metal": "Goud of Brons"
- },
- "nyanse-deepAutumn": {
-  "brand": "nyanse",
-  "season": "deepAutumn",
-  "name": "Deep Autumn",
-  "family": "Herfst",
-  "pass": [
-   {
-    "name": "Warm bordeaux",
-    "hex": "#6E1F2A"
-   },
-   {
-    "name": "Warme aubergine",
-    "hex": "#5A2F3F"
-   },
-   {
-    "name": "Chocolade",
-    "hex": "#4E3022"
-   },
-   {
-    "name": "Bosgroen",
-    "hex": "#2F4F3A"
-   },
-   {
-    "name": "Diep olijf",
-    "hex": "#5B5A2E"
-   },
-   {
-    "name": "Petrol",
-    "hex": "#1F5C63"
-   },
-   {
-    "name": "Kaneel",
-    "hex": "#8E5432"
-   },
-   {
-    "name": "Espresso",
-    "hex": "#3B2F2F"
-   }
-  ],
-  "metal": "Goud of Brons"
+  ]
  },
  "kulort-deepWinter": {
   "brand": "kulort",
   "season": "deepWinter",
   "name": "Deep Winter",
   "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Indigo",
+    "nameEn": "Indigo",
     "hex": "#3A2A6B"
    },
    {
     "name": "Navy",
+    "nameEn": "Navy",
     "hex": "#1B2A5C"
    },
    {
     "name": "Pruim",
+    "nameEn": "Plum",
     "hex": "#3F1A44"
    },
    {
     "name": "Diep smaragd",
+    "nameEn": "Deep emerald",
     "hex": "#0B6B4F"
    },
    {
     "name": "Robijn",
+    "nameEn": "Ruby",
     "hex": "#9E0F35"
    },
    {
     "name": "Kobalt",
+    "nameEn": "Cobalt",
     "hex": "#1E50B4"
    },
    {
     "name": "Koel turkoois",
+    "nameEn": "Cool turquoise",
     "hex": "#00848C"
    },
    {
     "name": "Koel rood",
+    "nameEn": "Cool red",
     "hex": "#C8102E"
    }
-  ],
-  "metal": "Zilver of Witgoud"
- },
- "nyanse-deepWinter": {
-  "brand": "nyanse",
-  "season": "deepWinter",
-  "name": "Deep Winter",
-  "family": "Winter",
-  "pass": [
-   {
-    "name": "Indigo",
-    "hex": "#3A2A6B"
-   },
-   {
-    "name": "Inktblauw",
-    "hex": "#1B2A5C"
-   },
-   {
-    "name": "Aubergine",
-    "hex": "#3F1A44"
-   },
-   {
-    "name": "Diep smaragd",
-    "hex": "#0B6B4F"
-   },
-   {
-    "name": "Robijn",
-    "hex": "#9E0F35"
-   },
-   {
-    "name": "Kobalt",
-    "hex": "#1E50B4"
-   },
-   {
-    "name": "Koel turkoois",
-    "hex": "#00848C"
-   },
-   {
-    "name": "Fuchsia",
-    "hex": "#C2177A"
-   }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  },
  "kulort-coolWinter": {
   "brand": "kulort",
   "season": "coolWinter",
   "name": "Cool Winter",
   "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Royal navy",
+    "nameEn": "Royal navy",
     "hex": "#0E4C92"
    },
    {
     "name": "Kobaltnavy",
+    "nameEn": "Cobalt navy",
     "hex": "#0F3D8C"
    },
    {
     "name": "Smaragd",
+    "nameEn": "Emerald",
     "hex": "#009B77"
    },
    {
     "name": "Wijnrood",
+    "nameEn": "Wine red",
     "hex": "#B0103A"
    },
    {
     "name": "Koel paars",
+    "nameEn": "Cool purple",
     "hex": "#6A2C91"
    },
    {
     "name": "Koningsblauw",
+    "nameEn": "Royal blue",
     "hex": "#1F4FC4"
    },
    {
     "name": "Antraciet",
+    "nameEn": "Anthracite",
     "hex": "#3A3D45"
    },
    {
     "name": "IJsroze",
+    "nameEn": "Icy pink",
     "hex": "#F3D3E3"
    }
-  ],
-  "metal": "Zilver of Witgoud"
- },
- "nyanse-coolWinter": {
-  "brand": "nyanse",
-  "season": "coolWinter",
-  "name": "Cool Winter",
-  "family": "Winter",
-  "pass": [
-   {
-    "name": "Nachtblauw",
-    "hex": "#0E4C92"
-   },
-   {
-    "name": "Saffier",
-    "hex": "#0F3D8C"
-   },
-   {
-    "name": "Smaragd",
-    "hex": "#009B77"
-   },
-   {
-    "name": "Robijnrood",
-    "hex": "#B0103A"
-   },
-   {
-    "name": "Koel paars",
-    "hex": "#6A2C91"
-   },
-   {
-    "name": "Koningsblauw",
-    "hex": "#1F4FC4"
-   },
-   {
-    "name": "Fuchsia",
-    "hex": "#D61A7F"
-   },
-   {
-    "name": "Antraciet",
-    "hex": "#3A3D45"
-   }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  },
  "kulort-brightWinter": {
   "brand": "kulort",
   "season": "brightWinter",
   "name": "Bright Winter",
   "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Karmijn",
+    "nameEn": "Carmine",
     "hex": "#DC143C"
    },
    {
     "name": "Helder paars",
+    "nameEn": "Bright purple",
     "hex": "#7B2CBF"
    },
    {
     "name": "Kobalt",
+    "nameEn": "Cobalt",
     "hex": "#0047AB"
    },
    {
     "name": "Bordeaux",
+    "nameEn": "Burgundy",
     "hex": "#9B111E"
    },
    {
     "name": "Navy",
+    "nameEn": "Navy",
     "hex": "#2E3A87"
    },
    {
     "name": "Helder smaragd",
+    "nameEn": "Bright emerald",
     "hex": "#00A693"
    },
    {
     "name": "Helder cyaan",
+    "nameEn": "Bright cyan",
     "hex": "#00B7EB"
    },
    {
     "name": "Zilver",
+    "nameEn": "Silver",
     "hex": "#C0C0C8"
    }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
+ },
+ "nyanse-lightSpring": {
+  "brand": "nyanse",
+  "season": "lightSpring",
+  "name": "Light Spring",
+  "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Abrikoos",
+    "nameEn": "Apricot",
+    "hex": "#F3A27A"
+   },
+   {
+    "name": "Boter",
+    "nameEn": "Butter",
+    "hex": "#F4E3A1"
+   },
+   {
+    "name": "Lichtgoud",
+    "nameEn": "Light gold",
+    "hex": "#E8C468"
+   },
+   {
+    "name": "Lentegroen",
+    "nameEn": "Spring green",
+    "hex": "#8FBF6A"
+   },
+   {
+    "name": "Zalmroze",
+    "nameEn": "Salmon pink",
+    "hex": "#F4A3A0"
+   },
+   {
+    "name": "Perzik",
+    "nameEn": "Peach",
+    "hex": "#F6CBA8"
+   },
+   {
+    "name": "Lila",
+    "nameEn": "Lilac",
+    "hex": "#C3B1E1"
+   },
+   {
+    "name": "Munt",
+    "nameEn": "Mint",
+    "hex": "#A8DDBE"
+   }
+  ]
+ },
+ "nyanse-warmSpring": {
+  "brand": "nyanse",
+  "season": "warmSpring",
+  "name": "Warm Spring",
+  "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Licht olijf",
+    "nameEn": "Light olive",
+    "hex": "#A6A04C"
+   },
+   {
+    "name": "Zalm",
+    "nameEn": "Salmon",
+    "hex": "#E58A5B"
+   },
+   {
+    "name": "Camel",
+    "nameEn": "Camel",
+    "hex": "#C79A5E"
+   },
+   {
+    "name": "Korenblauw",
+    "nameEn": "Cornflower blue",
+    "hex": "#4E86C4"
+   },
+   {
+    "name": "Turkoois",
+    "nameEn": "Turquoise",
+    "hex": "#2BB3A8"
+   },
+   {
+    "name": "Karamel",
+    "nameEn": "Caramel",
+    "hex": "#9A6230"
+   },
+   {
+    "name": "Papaya",
+    "nameEn": "Papaya",
+    "hex": "#F7A168"
+   },
+   {
+    "name": "Grasgroen",
+    "nameEn": "Grass green",
+    "hex": "#79B94B"
+   }
+  ]
+ },
+ "nyanse-brightSpring": {
+  "brand": "nyanse",
+  "season": "brightSpring",
+  "name": "Bright Spring",
+  "family": "Lente",
+  "familyEn": "Spring",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Felblauw",
+    "nameEn": "Bright blue",
+    "hex": "#2F6FDE"
+   },
+   {
+    "name": "Warm roze",
+    "nameEn": "Warm pink",
+    "hex": "#F75D9E"
+   },
+   {
+    "name": "Paars",
+    "nameEn": "Purple",
+    "hex": "#8E5BD6"
+   },
+   {
+    "name": "Klaprood",
+    "nameEn": "Poppy red",
+    "hex": "#E6194B"
+   },
+   {
+    "name": "Helder koraal",
+    "nameEn": "Bright coral",
+    "hex": "#FF6F61"
+   },
+   {
+    "name": "Feloranje",
+    "nameEn": "Bright orange",
+    "hex": "#FF8C1A"
+   },
+   {
+    "name": "Jadegroen",
+    "nameEn": "Jade green",
+    "hex": "#00A86B"
+   },
+   {
+    "name": "Limoen",
+    "nameEn": "Lime",
+    "hex": "#8FD14F"
+   }
+  ]
+ },
+ "nyanse-lightSummer": {
+  "brand": "nyanse",
+  "season": "lightSummer",
+  "name": "Light Summer",
+  "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
+  "pass": [
+   {
+    "name": "Poederroze",
+    "nameEn": "Powder pink",
+    "hex": "#F0B7C8"
+   },
+   {
+    "name": "Pastelpaars",
+    "nameEn": "Pastel purple",
+    "hex": "#CFA9D6"
+   },
+   {
+    "name": "Lavendel",
+    "nameEn": "Lavender",
+    "hex": "#BDB3DD"
+   },
+   {
+    "name": "Koele munt",
+    "nameEn": "Cool mint",
+    "hex": "#A9D8CF"
+   },
+   {
+    "name": "Poederblauw",
+    "nameEn": "Powder blue",
+    "hex": "#AFC6E0"
+   },
+   {
+    "name": "Licht rozenhout",
+    "nameEn": "Light rosewood",
+    "hex": "#CF9DA4"
+   },
+   {
+    "name": "Zeeblauw",
+    "nameEn": "Sea blue",
+    "hex": "#7FA8C9"
+   },
+   {
+    "name": "Maagdenpalm",
+    "nameEn": "Periwinkle",
+    "hex": "#9AA9C9"
+   }
+  ]
+ },
+ "nyanse-coolSummer": {
+  "brand": "nyanse",
+  "season": "coolSummer",
+  "name": "Cool Summer",
+  "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
+  "pass": [
+   {
+    "name": "Middenblauw",
+    "nameEn": "Mid blue",
+    "hex": "#5B7DB1"
+   },
+   {
+    "name": "Blauwgroen",
+    "nameEn": "Blue-green",
+    "hex": "#4F8F8B"
+   },
+   {
+    "name": "Koel roze",
+    "nameEn": "Cool pink",
+    "hex": "#E3A1B9"
+   },
+   {
+    "name": "Koel hemelsblauw",
+    "nameEn": "Cool sky blue",
+    "hex": "#7E9DB8"
+   },
+   {
+    "name": "Denim",
+    "nameEn": "Denim",
+    "hex": "#3E6E9C"
+   },
+   {
+    "name": "Grijsblauw",
+    "nameEn": "Grey-blue",
+    "hex": "#6D6E8C"
+   },
+   {
+    "name": "Koel paars",
+    "nameEn": "Cool purple",
+    "hex": "#8C6BAE"
+   },
+   {
+    "name": "Framboos",
+    "nameEn": "Raspberry",
+    "hex": "#C25B86"
+   }
+  ]
+ },
+ "nyanse-softSummer": {
+  "brand": "nyanse",
+  "season": "softSummer",
+  "name": "Soft Summer",
+  "family": "Zomer",
+  "familyEn": "Summer",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
+  "pass": [
+   {
+    "name": "Grijsgroen",
+    "nameEn": "Grey-green",
+    "hex": "#7D8471"
+   },
+   {
+    "name": "Leisteen",
+    "nameEn": "Slate",
+    "hex": "#5E6A7A"
+   },
+   {
+    "name": "Koel taupe",
+    "nameEn": "Cool taupe",
+    "hex": "#9A8F8A"
+   },
+   {
+    "name": "Mauve",
+    "nameEn": "Mauve",
+    "hex": "#A6879C"
+   },
+   {
+    "name": "Zachte pruim",
+    "nameEn": "Soft plum",
+    "hex": "#6E5468"
+   },
+   {
+    "name": "Zeegroen",
+    "nameEn": "Sea green",
+    "hex": "#7FA39B"
+   },
+   {
+    "name": "Denim",
+    "nameEn": "Denim",
+    "hex": "#4F6886"
+   },
+   {
+    "name": "Stoffig blauw",
+    "nameEn": "Dusty blue",
+    "hex": "#8FA3B8"
+   }
+  ]
+ },
+ "nyanse-softAutumn": {
+  "brand": "nyanse",
+  "season": "softAutumn",
+  "name": "Soft Autumn",
+  "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Zachte petrol",
+    "nameEn": "Soft teal",
+    "hex": "#3F6A6A"
+   },
+   {
+    "name": "Chocolademelk",
+    "nameEn": "Milk chocolate",
+    "hex": "#6B4B38"
+   },
+   {
+    "name": "Olijf",
+    "nameEn": "Olive",
+    "hex": "#7A7449"
+   },
+   {
+    "name": "Kaki",
+    "nameEn": "Khaki",
+    "hex": "#A89A72"
+   },
+   {
+    "name": "Roestroze",
+    "nameEn": "Rust pink",
+    "hex": "#B67C73"
+   },
+   {
+    "name": "Mosgroen",
+    "nameEn": "Moss green",
+    "hex": "#6D7A4C"
+   },
+   {
+    "name": "Kameel",
+    "nameEn": "Camel",
+    "hex": "#B9926B"
+   },
+   {
+    "name": "Warme zalm",
+    "nameEn": "Warm salmon",
+    "hex": "#D49A82"
+   }
+  ]
+ },
+ "nyanse-warmAutumn": {
+  "brand": "nyanse",
+  "season": "warmAutumn",
+  "name": "Warm Autumn",
+  "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Petrolgroen",
+    "nameEn": "Deep teal",
+    "hex": "#2E6B5E"
+   },
+   {
+    "name": "Legergroen",
+    "nameEn": "Army green",
+    "hex": "#556B2F"
+   },
+   {
+    "name": "Siena",
+    "nameEn": "Sienna",
+    "hex": "#A0522D"
+   },
+   {
+    "name": "Zadelbruin",
+    "nameEn": "Saddle brown",
+    "hex": "#8B4513"
+   },
+   {
+    "name": "Kastanje",
+    "nameEn": "Chestnut",
+    "hex": "#7B3F00"
+   },
+   {
+    "name": "Licht kameel",
+    "nameEn": "Light camel",
+    "hex": "#E0A96D"
+   },
+   {
+    "name": "Steenrood",
+    "nameEn": "Brick red",
+    "hex": "#9E2A2B"
+   },
+   {
+    "name": "Olijfgroen",
+    "nameEn": "Olive green",
+    "hex": "#6B8E23"
+   }
+  ]
+ },
+ "nyanse-deepAutumn": {
+  "brand": "nyanse",
+  "season": "deepAutumn",
+  "name": "Deep Autumn",
+  "family": "Herfst",
+  "familyEn": "Autumn",
+  "metal": "Goud of Brons",
+  "metalEn": "Gold or Bronze",
+  "pass": [
+   {
+    "name": "Warm bordeaux",
+    "nameEn": "Warm burgundy",
+    "hex": "#6E1F2A"
+   },
+   {
+    "name": "Warme aubergine",
+    "nameEn": "Warm aubergine",
+    "hex": "#5A2F3F"
+   },
+   {
+    "name": "Chocolade",
+    "nameEn": "Chocolate",
+    "hex": "#4E3022"
+   },
+   {
+    "name": "Bosgroen",
+    "nameEn": "Forest green",
+    "hex": "#2F4F3A"
+   },
+   {
+    "name": "Diep olijf",
+    "nameEn": "Deep olive",
+    "hex": "#5B5A2E"
+   },
+   {
+    "name": "Petrol",
+    "nameEn": "Petrol blue",
+    "hex": "#1F5C63"
+   },
+   {
+    "name": "Kaneel",
+    "nameEn": "Cinnamon",
+    "hex": "#8E5432"
+   },
+   {
+    "name": "Espresso",
+    "nameEn": "Espresso",
+    "hex": "#3B2F2F"
+   }
+  ]
+ },
+ "nyanse-deepWinter": {
+  "brand": "nyanse",
+  "season": "deepWinter",
+  "name": "Deep Winter",
+  "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
+  "pass": [
+   {
+    "name": "Indigo",
+    "nameEn": "Indigo",
+    "hex": "#3A2A6B"
+   },
+   {
+    "name": "Inktblauw",
+    "nameEn": "Ink blue",
+    "hex": "#1B2A5C"
+   },
+   {
+    "name": "Aubergine",
+    "nameEn": "Aubergine",
+    "hex": "#3F1A44"
+   },
+   {
+    "name": "Diep smaragd",
+    "nameEn": "Deep emerald",
+    "hex": "#0B6B4F"
+   },
+   {
+    "name": "Robijn",
+    "nameEn": "Ruby",
+    "hex": "#9E0F35"
+   },
+   {
+    "name": "Kobalt",
+    "nameEn": "Cobalt",
+    "hex": "#1E50B4"
+   },
+   {
+    "name": "Koel turkoois",
+    "nameEn": "Cool turquoise",
+    "hex": "#00848C"
+   },
+   {
+    "name": "Fuchsia",
+    "nameEn": "Fuchsia",
+    "hex": "#C2177A"
+   }
+  ]
+ },
+ "nyanse-coolWinter": {
+  "brand": "nyanse",
+  "season": "coolWinter",
+  "name": "Cool Winter",
+  "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
+  "pass": [
+   {
+    "name": "Nachtblauw",
+    "nameEn": "Midnight blue",
+    "hex": "#0E4C92"
+   },
+   {
+    "name": "Saffier",
+    "nameEn": "Sapphire",
+    "hex": "#0F3D8C"
+   },
+   {
+    "name": "Smaragd",
+    "nameEn": "Emerald",
+    "hex": "#009B77"
+   },
+   {
+    "name": "Robijnrood",
+    "nameEn": "Ruby red",
+    "hex": "#B0103A"
+   },
+   {
+    "name": "Koel paars",
+    "nameEn": "Cool purple",
+    "hex": "#6A2C91"
+   },
+   {
+    "name": "Koningsblauw",
+    "nameEn": "Royal blue",
+    "hex": "#1F4FC4"
+   },
+   {
+    "name": "Fuchsia",
+    "nameEn": "Fuchsia",
+    "hex": "#D61A7F"
+   },
+   {
+    "name": "Antraciet",
+    "nameEn": "Anthracite",
+    "hex": "#3A3D45"
+   }
+  ]
  },
  "nyanse-brightWinter": {
   "brand": "nyanse",
   "season": "brightWinter",
   "name": "Bright Winter",
   "family": "Winter",
+  "familyEn": "Winter",
+  "metal": "Zilver of Witgoud",
+  "metalEn": "Silver or White gold",
   "pass": [
    {
     "name": "Felroze",
+    "nameEn": "Hot pink",
     "hex": "#FF1493"
    },
    {
     "name": "Karmijn",
+    "nameEn": "Carmine",
     "hex": "#DC143C"
    },
    {
     "name": "Helder paars",
+    "nameEn": "Bright purple",
     "hex": "#7B2CBF"
    },
    {
     "name": "Kobalt",
+    "nameEn": "Cobalt",
     "hex": "#0047AB"
    },
    {
     "name": "Diep robijn",
+    "nameEn": "Deep ruby",
     "hex": "#9B111E"
    },
    {
     "name": "Citroengeel",
+    "nameEn": "Lemon yellow",
     "hex": "#F9E000"
    },
    {
     "name": "Ultramarijn",
+    "nameEn": "Ultramarine",
     "hex": "#2E3A87"
    },
    {
     "name": "Helder smaragd",
+    "nameEn": "Bright emerald",
     "hex": "#00A693"
    }
-  ],
-  "metal": "Zilver of Witgoud"
+  ]
  }
 }

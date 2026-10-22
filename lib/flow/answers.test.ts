@@ -28,3 +28,14 @@ describe("sanitize", () => {
     });
   });
 });
+
+describe("own shop names (22 Oct 2026)", () => {
+  it("keeps typed brands, strips markup, caps length and count", () => {
+    const a = sanitize({ shops: ["Ba&sh", "  Weekday  ", "<script>x</script>", "A".repeat(60), ...Array.from({ length: 40 }, (_, i) => `S${i}`)] });
+    expect(a.shops[0]).toBe("Ba&sh");
+    expect(a.shops[1]).toBe("Weekday");
+    expect(a.shops[2]).toBe("scriptxscript");
+    expect(a.shops[3]).toHaveLength(40);
+    expect(a.shops.length).toBe(30);
+  });
+});

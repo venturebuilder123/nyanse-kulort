@@ -8,7 +8,7 @@ import { mailConfigured, sendMail, shippedMail } from "@/lib/mail";
 
 export async function GET() {
   if (!supabaseConfigured()) return NextResponse.json({ error: "not_configured" }, { status: 503 });
-  const res = await supabaseRest("orders?select=ref,created_at,status,tier,amount_cents,brand,season,email,name,street,postcode,city,country,friend_code,paid_at,mailed_at&order=created_at.desc&limit=200");
+  const res = await supabaseRest("orders?select=ref,created_at,status,tier,amount_cents,brand,season,email,name,street,postcode,city,country,friend_code,paid_at,mailed_at,locale:profile->>locale&order=created_at.desc&limit=200");
   return NextResponse.json(await res.json(), { headers: { "Cache-Control": "no-store" } });
 }
 

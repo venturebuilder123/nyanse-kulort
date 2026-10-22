@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { BUDGETS } from "@/lib/brand/config";
 import { FLOW } from "@/lib/i18n/flow";
 import { track } from "@/lib/analytics";
-import { EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
+import { cleanShop, EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
 import { useBrand } from "../BrandProvider";
 import { AppBar, Crumbs, Display } from "../ui";
 
@@ -13,6 +13,8 @@ export default function Style() {
   const { config, copy, ctx, locale } = useBrand();
   const router = useRouter();
   const [a, setA] = useState<Answers>(EMPTY);
+  const [own, setOwn] = useState("");
+  const S = FLOW[locale].style;
   // the shops that really are in the catalogue (CLAUDE.md §6); until then the brand's own list
   const [shops, setShops] = useState<string[]>([...config.shops]);
   useEffect(() => {
@@ -66,6 +68,32 @@ export default function Style() {
               </button>
             ))}
           </div>
+          <h3 className="q-sub">{S.premium}</h3>
+          <div className="chips">
+            {/* the A-brands, plus whatever people typed themselves (that is data we want) */}
+            {[...config.premium.filter((p) => !shops.includes(p)), ...a.shops.filter((s) => !shops.includes(s) && !config.premium.includes(s))].map((s) => (
+              <button key={s} aria-pressed={a.shops.includes(s)} onClick={() => update({ ...a, shops: toggle(a.shops, s) })}>
+                {s}
+              </button>
+            ))}
+          </div>
+          <form
+            className="own-shop"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const name = cleanShop(own);
+              if (!name) return;
+              const known = [...shops, ...config.premium].find((x) => x.toLowerCase() === name.toLowerCase()) ?? name;
+              if (!a.shops.includes(known)) update({ ...a, shops: [...a.shops, known] });
+              setOwn("");
+            }}
+          >
+            <label htmlFor="own-shop">{S.other}</label>
+            <div>
+              <input id="own-shop" value={own} maxLength={40} placeholder={S.otherPh} autoComplete="off" onChange={(e) => setOwn(e.target.value)} />
+              <button type="submit" className="btn btn-ghost btn-sm" disabled={!cleanShop(own)}>{S.add}</button>
+            </div>
+          </form>
         </section>
       </div>
       <div className="sticky">
@@ -73,7 +101,8 @@ export default function Style() {
           className="btn"
           onClick={() => {
             // budget is optional: without an answer we search the middle range
-            track("style_done", ctx, { occasions: a.occasions, budget: a.budget ?? "none", shops: a.shops.length });
+            // the names too (no personal data): which shops and brands our people like, to choose partners
+            track("style_done", ctx, { occasions: a.occasions, budget: a.budget ?? "none", shops: a.shops.length, shop_names: a.shops, premium: a.shops.filter((s) => config.premium.includes(s)).length, own: a.shops.filter((s) => !shops.includes(s) && !config.premium.includes(s)) });
             router.push("/selfie");
           }}
         >
