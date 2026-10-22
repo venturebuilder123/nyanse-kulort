@@ -12,6 +12,10 @@ export const dmText = (dutch: boolean) =>
     ? `Hoi! 💌 Hier is je gratis kleurcheck: één selfie, en binnen een minuut weet je je seizoen.\n${LINK(true)}`
     : `Hi! 💌 Here's your free colour check: one selfie, and you know your season in a minute.\n${LINK(false)}`;
 export const publicText = (dutch: boolean) => (dutch ? "Staat in je DM 💌" : "Sent you a DM 💌");
+/** While DMs are switched off in the app: point to the bio publicly, and send the DM once they work. */
+export const bioText = (dutch: boolean) => (dutch ? "De gratis kleurcheck is de eerste link in onze bio 💌" : "The free colour check is the first link in our bio 💌");
+/** Instagram's answer when "Allow access to messages" is off: not this comment's fault, so retry later. */
+export const isDmSwitchedOff = (e: unknown) => /disabled access to Instagram Direct/i.test(String(e));
 
 type Save = (slot: string, status: string, extra?: { error?: string | null; media_id?: string | null }) => Promise<unknown>;
 
@@ -23,13 +27,20 @@ export async function answerKeywordComments(now: Date, handled: (key: string) =>
   for (const c of await commentsSince(since, 25)) {
     if (!KEYWORD.test(c.text) || c.username === me || handled(`dm-${c.id}`)) continue;
     const dutch = isDutch(c.text);
+    const pointed = handled(`bio-${c.id}`);
     try {
       const id = await privateReply(c.id, dmText(dutch));
-      // the public "sent you a DM" also shows others that the word works
-      await replyToComment(c.id, publicText(dutch)).catch(() => "");
+      // the public "sent you a DM" also shows others that the word works (not twice after the bio reply)
+      if (!pointed) await replyToComment(c.id, publicText(dutch)).catch(() => "");
       await save(`dm-${c.id}`, "published", { media_id: id });
       out.push({ comment: c.id, ok: true });
     } catch (e) {
+      if (isDmSwitchedOff(e)) {
+        // DMs off in the app: answer publicly once, leave the DM open (retried every hour within 7 days)
+        if (!pointed && (await replyToComment(c.id, bioText(dutch)).then(() => true).catch(() => false))) await save(`bio-${c.id}`, "published");
+        out.push({ comment: c.id, ok: false, error: "dm switched off in the Instagram app" });
+        continue;
+      }
       await save(`dm-${c.id}`, "failed", { error: String(e).slice(0, 300) });
       out.push({ comment: c.id, ok: false, error: String(e) });
     }
