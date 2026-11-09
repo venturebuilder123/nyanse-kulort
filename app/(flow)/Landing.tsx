@@ -18,10 +18,12 @@ import { LandingSections } from "./LandingSections";
 import { AppBar, CheckIcon, Display, Footer, HouseMark, OccasionIcon } from "./ui";
 import { LangSwitch } from "./Lang";
 import { PaletteStage, tint } from "./home/Studio";
+import { StickyStart, useOvReveal } from "./Overhaul";
 
 export default function Landing() {
   const { config, copy, ctx, segment, locale } = useBrand();
   const [stageHex, setStageHex] = useState("#EE7A67");
+  useOvReveal(".l-section");
   const t = useT();
   const rt = copy.retention;
   const router = useRouter();
@@ -160,6 +162,8 @@ export default function Landing() {
         </div>
 
         <LandingSections onStart={startHere} />
+
+        <StickyStart label={copy.page.final.cta} onStart={startHere} watch=".l-tap" until=".l-final" />
 
         <p className="switch">{t.switchTo[config.key === "kulort" ? "nyanse" : "kulort"]}? {switchLink}</p>
       </div>

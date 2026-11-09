@@ -9,7 +9,7 @@ const nl = {
   home: {
     eyebrow: "Kleuranalyse uit één selfie",
     h1: ["Je kleuren.", "Je kast. Je gids."],
-    sub: "Ontdek in een paar minuten welke kleuren jou staan. Gratis, met één selfie. Kies je atelier:",
+    sub: "Ontdek in een paar minuten welke kleuren jou staan. Gratis, met één selfie.",
     doors: { kulort: ["Voor hem", "Je eerste indruk, geregeld."], nyanse: ["Voor haar", "Minder kopen, beter kiezen."] },
     begin: "Begin gratis",
     facts: (price: string) => ["Kleurprofiel gratis", "Je foto wordt nergens bewaard", `Stijlgids vanaf ${price}`, "Kleurenpas in de brievenbus"],
@@ -24,7 +24,7 @@ const nl = {
     seasons: { eyebrow: "Vier seizoenen, twaalf kleurtypen", h2: ["Welk seizoen", "ben jij?"], names: [["Lente", "warm en helder"], ["Zomer", "koel en zacht"], ["Herfst", "warm en diep"], ["Winter", "koel en contrastrijk"]], more: "Alles over kleuranalyse en de 12 kleurtypen →" },
     faqTitle: "Vragen",
     faq: [["Hoe werkt het?", "Je maakt één selfie bij daglicht. De analyse draait op je telefoon en bepaalt je ondertoon, diepte en helderheid. Daaruit volgt je kleurtype, met je beste kleuren. Dat profiel is gratis."], ["Wat krijg ik in de stijlgids?", "Al je 30 kleuren met namen, combinaties voor werk, weekend, date en feest, je basis (wit, donker, denim), je eerste vijf aankopen, een kast-check en de kleuren voor horloge, sieraden en make-up. Als PDF en op je telefoon."], ["Ken ik mijn kleurtype al?", "Dan kies je het zelf en ga je direct naar je kleuren en je stijlgids, zonder selfie."], ["Wat gebeurt er met mijn foto?", "Hij wordt niet naar ons gestuurd en nergens bewaard."]],
-    final: { h2: ["Klaar om", "je kleuren", "te zien?"], sub: "Gratis, met één selfie. Kies je atelier." },
+    final: { h2: ["Klaar om", "je kleuren", "te zien?"], sub: "Gratis, met één selfie. Voor haar of voor hem?" },
   },
 };
 
@@ -37,7 +37,7 @@ const en: Dict = {
   home: {
     eyebrow: "Colour analysis from one selfie",
     h1: ["Your colours.", "Your wardrobe. Your guide."],
-    sub: "Find out in a few minutes which colours suit you. Free, with one selfie. Choose your atelier:",
+    sub: "Find out in a few minutes which colours suit you. Free, with one selfie.",
     doors: { kulort: ["For him", "First impression: sorted."], nyanse: ["For her", "Buy less, choose better."] },
     begin: "Start free",
     facts: (price) => ["Free colour profile", "Your photo is never stored", `Style guide from ${price}`, "Colour card in the post"],
@@ -52,7 +52,7 @@ const en: Dict = {
     seasons: { eyebrow: "Four seasons, twelve colour types", h2: ["Which season", "are you?"], names: [["Spring", "warm and clear"], ["Summer", "cool and soft"], ["Autumn", "warm and deep"], ["Winter", "cool and high-contrast"]], more: "All about colour analysis and the 12 colour types →" },
     faqTitle: "Questions",
     faq: [["How does it work?", "You take one selfie in daylight. The analysis runs on your phone and measures your undertone, depth and clarity. That gives your colour type, with your best colours. The profile is free."], ["What's in the style guide?", "All 30 of your colours with names, combinations for work, weekend, dates and parties, your basics (white, dark, denim), your first five buys, a wardrobe check and the colours for watch, jewellery and make-up. As a PDF and on your phone."], ["I already know my colour type?", "Then pick it yourself and go straight to your colours and your style guide, no selfie needed."], ["What happens to my photo?", "It's not sent to us and it's never stored."]],
-    final: { h2: ["Ready to see", "your colours", "?"], sub: "Free, with one selfie. Choose your atelier." },
+    final: { h2: ["Ready to see", "your colours", "?"], sub: "Free, with one selfie. For her or for him?" },
   },
 };
 
