@@ -34,3 +34,8 @@ assets/gemini/*.png
 
 # Etsy packages: generated (npx tsx scripts/make-etsy.ts), large; only the listing texts are tracked
 assets/etsy/*/
+
+# third-party agent skills (sources and commits in .claude/skills/SOURCES.txt); our own skills are committed
+.claude/skills/*
+!.claude/skills/session-closing/
+!.claude/skills/SOURCES.txt
