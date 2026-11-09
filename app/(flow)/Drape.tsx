@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useId, useState } from "react";
 
 import type { FaceBox } from "@/lib/flow/session";
 
@@ -23,8 +23,12 @@ export function Drape({
   /** face width (fraction of the frame) and vertical centre; smaller and higher shows more cloth */
   fit?: { w: number; cy: number };
 }) {
-  // Fit the face into the 4:5 frame.
-  const f = face ?? { cx: 0.5, cy: 0.4, w: 0.45, aspect: 0.75, mirrored: false };
+  // Fit the face into the 4:5 frame. The real shape of the photo wins over the one measured during the
+  // analysis: Safari on a Mac hands the camera frame over in another shape than the canvas had
+  // (9 Nov 2026: the face sat high and the cloth far below it).
+  const [real, setReal] = useState<number | null>(null);
+  const f0 = face ?? { cx: 0.5, cy: 0.4, w: 0.45, aspect: 0.75, mirrored: false };
+  const f = real && Math.abs(real - f0.aspect) > 0.02 ? { ...f0, aspect: real } : f0;
   const s = fit.w / f.w; // displayed image width in frame widths
   const left = 0.5 - (f.mirrored ? 1 - f.cx : f.cx) * s;
   const top = (fit.cy * 1.25 - f.cy * (s / f.aspect)) / 1.25;
@@ -37,6 +41,7 @@ export function Drape({
         <img
           src={photo}
           alt=""
+          onLoad={(e) => { const i = e.currentTarget; if (i.naturalWidth && i.naturalHeight) setReal(i.naturalWidth / i.naturalHeight); }}
           style={{ width: `${s * 100}%`, left: `${left * 100}%`, top: `${top * 100}%`, transform: f.mirrored ? "scaleX(-1)" : undefined }}
         />
       ) : (

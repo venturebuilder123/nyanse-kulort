@@ -15,7 +15,6 @@ import { FLOW } from "@/lib/i18n/flow";
 import { familyName, colourName, garmentName, scaleWord } from "@/lib/i18n/words";
 import { track } from "@/lib/analytics";
 import { euro, PRICES, type Tier } from "@/lib/flow/pricing";
-import { suggestEmail } from "@/lib/flow/email";
 import { forgetMe } from "@/lib/flow/forget";
 import { FRIEND_DISCOUNT, invite } from "@/lib/flow/referral";
 import { flowSession, type FaceBox } from "@/lib/flow/session";
@@ -52,20 +51,11 @@ export default function Result() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [waiver, setWaiver] = useState(false);
   const [country, setCountry] = useState("NL");
-  const [hasEmail, setHasEmail] = useState(true);
-  const [mail, setMail] = useState("");
-  const [mailSaved, setMailSaved] = useState<string | null>(null);
-  const [mailOptin, setMailOptin] = useState(false); // never pre-checked
   const router = useRouter();
 
   useEffect(() => {
     setR(flowSession.result());
     setPhoto(flowSession.photoUrl());
-    try {
-      setHasEmail(!!sessionStorage.getItem("nk_email"));
-    } catch {
-      setHasEmail(false);
-    }
     setLoaded(true);
   }, []);
   useEffect(() => {
@@ -283,37 +273,7 @@ export default function Result() {
         </section>
         )}
 
-        {!hasEmail && (
-          <section className="q">
-            <h2 className="eyebrow-h">{t.mailLater}</h2>
-            {mailSaved ? (
-              <p className="small">{t.mailDone.replace("{email}", mailSaved)}</p>
-            ) : (
-              <form
-                className="row-inline mail-later"
-                noValidate
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const v = (suggestEmail(mail) ?? mail).trim();
-                  if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v)) return;
-                  // TODO(phase B): Brevo double opt-in. Until then the address stays on this device.
-                  try {
-                    sessionStorage.setItem("nk_email", JSON.stringify({ email: v, optin: mailOptin }));
-                  } catch {}
-                  track("email_submit", ctx, { from: "result" });
-                  setMailSaved(v);
-                }}
-              >
-                <input type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder={copy.email.placeholder} value={mail} onChange={(e) => setMail(e.target.value)} aria-label={t.mailTitle} />
-                <button className="link-btn mail-send" type="submit">{t.mailCta} →</button>
-                <label className="check mail-optin">
-                  <input type="checkbox" checked={mailOptin} onChange={(e) => setMailOptin(e.target.checked)} />
-                  <span>{copy.email.optin}</span>
-                </label>
-              </form>
-            )}
-          </section>
-        )}
+        {/* no "mail me my profile" here (9 Nov 2026): nothing was sent, so the promise was not true */}
 
 
         <button className="link-btn delete-link" onClick={() => { void forgetMe().then(() => router.replace("/")); }}>{t.deleteProfile}</button>
