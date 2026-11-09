@@ -9,3 +9,13 @@ nyanse-40-campagne-1.jpg · Gemini · 14-10-2026
 nyanse-jong-campagne-1.jpg · Gemini · 14-10-2026
 nyanse-jv-campagne-1.jpg · Gemini · 14-10-2026
 nyanse-vol-campagne-1.jpg · Gemini · 14-10-2026
+
+v2/nyanse-warmAutumn-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_i5d3y9i5d3y9i5d3.jpg
+v2/nyanse-warmAutumn-2.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_9zpgwe9zpgwe9zpg.jpg
+v2/nyanse-deepAutumn-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_nespvnespvnespvn.jpg
+v2/nyanse-lightSummer-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_s0aq5as0aq5as0aq.jpg
+v2/nyanse-warmSpring-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_k8789rk8789rk878.jpg
+v2/nyanse-brightWinter-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_nfr327nfr327nfr3.jpg
+v2/kulort-deepWinter-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_cvr4j8cvr4j8cvr4.jpg
+v2/kulort-deepAutumn-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_6dwziq6dwziq6dwz.jpg
+v2/kulort-coolWinter-1.jpg: Gemini, 9 Nov 2026, campaign v2, original Gemini_Generated_Image_bgjrgkbgjrgkbgjr.jpg

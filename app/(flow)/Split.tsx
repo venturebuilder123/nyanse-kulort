@@ -18,11 +18,11 @@ const NONE = { brand: "none", voice: "none" };
 const DOORS = [
   {
     key: "kulort",
-    imgs: ["kulort-jong-campagne-1", "kulort-jv-campagne-1", "kulort-vol-campagne-1", "kulort-40-campagne-1"],
+    imgs: ["v2/kulort-deepWinter-1", "v2/kulort-coolWinter-1", "v2/kulort-deepAutumn-1", "kulort-jong-campagne-1"],
   },
   {
     key: "nyanse",
-    imgs: ["nyanse-jong-campagne-1", "nyanse-jv-campagne-1", "nyanse-vol-campagne-1", "nyanse-40-campagne-1"],
+    imgs: ["v2/nyanse-lightSummer-1", "v2/nyanse-warmAutumn-1", "v2/nyanse-deepAutumn-1", "v2/nyanse-warmSpring-1", "v2/nyanse-brightWinter-1"],
   },
 ] as const;
 

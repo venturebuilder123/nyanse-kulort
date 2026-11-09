@@ -1,0 +1,56 @@
+[
+  {
+    "src": "/brand/editorial/v2/nyanse-warmAutumn-1.jpg",
+    "brand": "nyanse",
+    "season": "warmAutumn",
+    "alt": "A young woman in a rust coat, olive knit and camel scarf on an Amsterdam street"
+  },
+  {
+    "src": "/brand/editorial/v2/nyanse-warmAutumn-2.jpg",
+    "brand": "nyanse",
+    "season": "warmAutumn",
+    "alt": "A young woman in a rust coat and camel scarf by an Amsterdam canal"
+  },
+  {
+    "src": "/brand/editorial/v2/nyanse-deepAutumn-1.jpg",
+    "brand": "nyanse",
+    "season": "deepAutumn",
+    "alt": "A young woman in a burgundy velvet jacket with a teal top at the mirror"
+  },
+  {
+    "src": "/brand/editorial/v2/nyanse-lightSummer-1.jpg",
+    "brand": "nyanse",
+    "season": "lightSummer",
+    "alt": "A young woman in a sage coat and powder pink scarf with a coffee on a caf\u00e9 terrace"
+  },
+  {
+    "src": "/brand/editorial/v2/nyanse-warmSpring-1.jpg",
+    "brand": "nyanse",
+    "season": "warmSpring",
+    "alt": "A young woman in a camel coat and light denim laughing at a flower market"
+  },
+  {
+    "src": "/brand/editorial/v2/nyanse-brightWinter-1.jpg",
+    "brand": "nyanse",
+    "season": "brightWinter",
+    "alt": "A young woman in a black coat, cobalt top and white scarf in a gallery"
+  },
+  {
+    "src": "/brand/editorial/v2/kulort-deepWinter-1.jpg",
+    "brand": "kulort",
+    "season": "deepWinter",
+    "alt": "A young man in an emerald coat, navy knit and white scarf on a rooftop at dusk"
+  },
+  {
+    "src": "/brand/editorial/v2/kulort-deepAutumn-1.jpg",
+    "brand": "kulort",
+    "season": "deepAutumn",
+    "alt": "A young man in an olive overshirt with a cognac jacket over his shoulder outside an office"
+  },
+  {
+    "src": "/brand/editorial/v2/kulort-coolWinter-1.jpg",
+    "brand": "kulort",
+    "season": "coolWinter",
+    "alt": "A young man in a navy coat, charcoal knit and white scarf on a city street at night"
+  }
+]

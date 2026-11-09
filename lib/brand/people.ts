@@ -22,5 +22,8 @@ export const PEOPLE = data as Record<BrandKey, Person[]>;
 export function peopleFor(brand: BrandKey, segment: Segment | null): Person[] {
   const all = PEOPLE[brand];
   const own = segment ? all.filter((p) => p.segment === segment) : [];
-  return own.length ? own : all.filter((p) => !p.segment);
+  if (own.length) return own;
+  // since 9 Nov 2026 the young models (mid-twenties) are the default for everyone
+  const young = all.filter((p) => p.segment === "jong");
+  return young.length ? young : all.filter((p) => !p.segment);
 }

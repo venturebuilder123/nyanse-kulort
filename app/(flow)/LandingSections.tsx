@@ -109,7 +109,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
 
       {/* 5. the next step */}
       <section className="l-section l-final">
-        <img src={config.key === "kulort" ? "/brand/editorial/maison-door-kulort.jpg" : "/brand/ads/right-choice.jpg"} alt="" width={1200} height={1490} loading="lazy" />
+        <img src={config.key === "kulort" ? "/brand/editorial/v2/kulort-coolWinter-1.jpg" : "/brand/editorial/v2/nyanse-lightSummer-1.jpg"} alt="" width={1200} height={1490} loading="lazy" />
         <div>
           <Display text={st.final} as="h2" />
           <p className="sub">{L.final(euro(PRICES.digital, locale), euro(PRICES.card, locale))}</p>

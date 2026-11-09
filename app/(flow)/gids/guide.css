@@ -339,3 +339,6 @@
 /* "not this, but this" stacks on phones, so long German and Spanish words never push the page wider */
 .guide .g-swap > * { min-width: 0; }
 @media (max-width: 700px) { .guide .g-swap { grid-template-columns: 1fr; gap: 10px; } }
+/* the bold heading face is wider than the old serif: the season name stays inside its column on the cover */
+.guide .g-cover .g-season { font-size: clamp(28px, 7.4vw, 104px); line-height: .92; }
+@media (max-width: 700px) { .guide .g-cover-photo { width: 35%; } }

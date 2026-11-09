@@ -1,5 +1,6 @@
 "use client";
 
+import { campaignFor } from "@/lib/brand/campaign";
 import { guideFor } from "@/lib/guide/lang";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -201,7 +202,7 @@ export default function Result() {
                 </Link>
               )}
               <figure className="wd-worn">
-                <img src={`/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={F.result.wornAlt(SEASONS[p.match.season].name)} width={800} height={1600} loading="lazy" />
+                <img src={campaignFor(config.key, p.match.season, true)?.src ?? `/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={F.result.wornAlt(SEASONS[p.match.season].name)} width={800} height={1600} loading="lazy" />
                 <figcaption>{F.result.worn(SEASONS[p.match.season].name)}</figcaption>
               </figure>
               <p className="deck-lede">{F.result.combine}</p>

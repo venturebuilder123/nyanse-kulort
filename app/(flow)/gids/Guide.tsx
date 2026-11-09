@@ -1,5 +1,6 @@
 "use client";
 
+import { campaignFor } from "@/lib/brand/campaign";
 import { guideFor } from "@/lib/guide/lang";
 import { INTL } from "@/lib/i18n/locale";
 import Link from "next/link";
@@ -668,6 +669,9 @@ function Locked({ title, text, href, cta }: { title: string; text: string; href:
 
 /** The cover: a model dressed in this exact season (Gemini portrait) when we have one, else the flat-lay. */
 function coverPhoto(season: SeasonKey, brand: string): string {
+  // the young campaign photos first (9 Nov 2026): same season, else same family
+  const young = campaignFor(brand as "kulort" | "nyanse", season);
+  if (young) return young.src;
   const key = `${season}-${brand}`;
   return (HEROES as string[]).includes(key) ? `/brand/heroes/${key}.jpg` : `/brand/outfits/${key}.jpg`;
 }
