@@ -139,6 +139,7 @@ export function Footer() {
     <footer className="foot">
       <Link href="/contact">{t.nav.contact}</Link>
       <a href="https://www.instagram.com/kulortnyanse/" rel="me noopener" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@kulortnyanse" rel="me noopener" target="_blank">TikTok</a>
       <Link href="/kleuranalyse">{t.nav.colourAnalysis}</Link>
       <Link href="/voorwaarden">{t.footer.terms}</Link>
       <Link href="/privacy">{t.footer.privacy}</Link>

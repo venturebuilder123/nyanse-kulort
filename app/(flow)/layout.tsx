@@ -36,7 +36,7 @@ export default async function FlowLayout({ children }: { children: React.ReactNo
       <script
         type="application/ld+json"
         // the house and its public profiles, for search engines
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "KULØRT · NYANSE", url: "https://www.kulort-nyanse.com", email: "nyansekulort@gmail.com", sameAs: ["https://www.instagram.com/kulortnyanse/"] }) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "KULØRT · NYANSE", url: "https://www.kulort-nyanse.com", email: "nyansekulort@gmail.com", sameAs: ["https://www.instagram.com/kulortnyanse/", "https://www.tiktok.com/@kulortnyanse"] }) }}
       />
       <BrandProvider value={{ config, voice, copy, segment, locale }}>
         <LangHint />
