@@ -48,8 +48,8 @@ const nl = {
     },
   },
   share: {
-    title: "Deel je seizoen", lede: "Een story met je seizoen en je kleuren. Je vrienden zien meteen welke kleuren jou staan, en vragen zich af welke van hen.",
-    withPhoto: "Met mijn foto (alleen op je telefoon gemaakt)", btn: "Deel je seizoen", im: "IK BEN", ask: "Wat is jouw seizoen?", sub: "Gratis kleurcheck met één selfie",
+    title: "Deel je kleur-aura", lede: "Een story met je seizoen en je kleuren. Je vrienden zien meteen welke kleuren jou staan, en vragen zich af welke van hen.",
+    withPhoto: "Met mijn foto (alleen op je telefoon gemaakt)", btn: "Deel je kleur-aura", aura: "mijn kleur-aura", ask: "Wat is jouw seizoen?", sub: "Gratis kleurcheck met één selfie",
     text: (s: string) => `Ik ben een ${s}! Wat is jouw seizoen? Gratis kleurcheck met één selfie:`, saved: "Opgeslagen. Zet hem in je story of stuur hem door.", failed: "Dat lukte niet. Probeer het nog eens.",
   },
   mirror: { good: "laat het gezicht oplichten", bad: "trekt de aandacht weg: laat hangen", pick: "Kies een kleur", legendGood: "Kleuren die je goed staan", legendBad: "Minder mooi bij je gezicht" },
@@ -118,8 +118,8 @@ const en: FlowText = {
     },
   },
   share: {
-    title: "Share your season", lede: "A story with your season and your colours. Your friends see at once what suits you, and wonder what suits them.",
-    withPhoto: "With my photo (made on your phone only)", btn: "Share your season", im: "I'M A", ask: "What's your season?", sub: "Free colour check with one selfie",
+    title: "Share your colour aura", lede: "A story with your season and your colours. Your friends see at once what suits you, and wonder what suits them.",
+    withPhoto: "With my photo (made on your phone only)", btn: "Share your colour aura", aura: "my colour aura", ask: "What's your season?", sub: "Free colour check with one selfie",
     text: (s) => `I'm a ${s}! What's your season? Free colour check with one selfie:`, saved: "Saved. Put it in your story or send it on.", failed: "That didn't work. Please try again.",
   },
   mirror: { good: "makes the face light up", bad: "pulls attention away: leave it", pick: "Choose a colour", legendGood: "Colours that suit you", legendBad: "Less flattering near your face" },
@@ -187,8 +187,8 @@ const de: FlowText = {
     },
   },
   share: {
-    title: "Teile deine Jahreszeit", lede: "Eine Story mit deiner Jahreszeit und deinen Farben. Deine Freunde sehen sofort, was dir steht, und fragen sich, was ihnen steht.",
-    withPhoto: "Mit meinem Foto (nur auf deinem Handy erstellt)", btn: "Jahreszeit teilen", im: "ICH BIN", ask: "Welche Jahreszeit bist du?", sub: "Kostenloser Farbcheck mit einem Selfie",
+    title: "Teile deine Farbaura", lede: "Eine Story mit deiner Jahreszeit und deinen Farben. Deine Freunde sehen sofort, was dir steht, und fragen sich, was ihnen steht.",
+    withPhoto: "Mit meinem Foto (nur auf deinem Handy erstellt)", btn: "Farbaura teilen", aura: "meine Farbaura", ask: "Welche Jahreszeit bist du?", sub: "Kostenloser Farbcheck mit einem Selfie",
     text: (s) => `Ich bin ${s}! Welche Jahreszeit bist du? Kostenloser Farbcheck mit einem Selfie:`, saved: "Gespeichert. Teile es in deiner Story oder schick es weiter.", failed: "Das hat nicht geklappt. Versuch es noch einmal.",
   },
   mirror: { good: "lässt das Gesicht strahlen", bad: "lenkt ab: lieber hängen lassen", pick: "Wähle eine Farbe", legendGood: "Farben, die dir stehen", legendBad: "Weniger schön am Gesicht" },
@@ -255,8 +255,8 @@ const es: FlowText = {
     },
   },
   share: {
-    title: "Comparte tu estación", lede: "Una story con tu estación y tus colores. Tus amigos ven enseguida lo que te queda bien, y se preguntan qué les queda a ellos.",
-    withPhoto: "Con mi foto (creada solo en tu móvil)", btn: "Comparte tu estación", im: "SOY", ask: "¿Qué estación eres tú?", sub: "Análisis de color gratis con un selfie",
+    title: "Comparte tu aura de color", lede: "Una story con tu estación y tus colores. Tus amigos ven enseguida lo que te queda bien, y se preguntan qué les queda a ellos.",
+    withPhoto: "Con mi foto (creada solo en tu móvil)", btn: "Comparte tu aura", aura: "mi aura de color", ask: "¿Qué estación eres tú?", sub: "Análisis de color gratis con un selfie",
     text: (s) => `¡Soy ${s}! ¿Qué estación eres tú? Análisis de color gratis con un selfie:`, saved: "Guardado. Súbelo a tu story o envíalo.", failed: "No ha funcionado. Inténtalo de nuevo.",
   },
   mirror: { good: "ilumina la cara", bad: "aparta la atención: déjalo", pick: "Elige un color", legendGood: "Colores que te favorecen", legendBad: "Menos favorecedores cerca de la cara" },

@@ -2,6 +2,13 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 9 november 2026 — campagne "Colour Aura" voor 18–25
+
+- **Wat:** een campagne op de aura-trend (aura-polaroids, verlopen van kleur). Elk jong model krijgt een aura in de kleuren van het eigen seizoen, gemeten door onze motor. De reel loopt van "aura check" via een grijze aura in de verkeerde kleuren en een kleurverloop over het scherm naar de eigen kleur, waarna de aura opbloeit. Daarnaast komen er feedposts, een "which aura are you?"-raster per merk, en een aura-deelkaart op de resultaatpagina. Uitleg: `docs/marketing/AURA.md`.
+- **Waarom:** de oprichter wil een jongere, creatievere uitstraling. Aura's leven bij Gen Z, en wij kunnen iets wat een aura-lezing niet kan: "not a vibe, a measurement." Daarmee kunnen we de trend gebruiken zonder iets te beweren wat niet klopt.
+- **Doelgroep:** 18–25 in advertenties (CLAUDE.md: advertenties alleen 18+, het product 16+).
+- **Kosten:** €0. Alles wordt lokaal gerenderd met `npx tsx scripts/make-aura.ts`.
+
 ## 9 november 2026 — Duits en Spaans live; stijlgids in de nieuwe stijl
 
 - **Talen:** NL, EN, DE en ES. Adressen /de en /es. Het talenmenu toont op desktop alle vier en is op telefoons een compact menu ("NL ▾"). De taalsuggestie volgt de browsertaal. Bedragen in de lokale notatie (12,99 €).

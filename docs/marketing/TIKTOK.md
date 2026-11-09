@@ -19,6 +19,8 @@
 - Na 10 posts kijken we samen welke 3 het meeste bereik hadden en maak ik er meer van in die stijl.
 - Werkt een format, dan maak ik er "Rate my season"-video's van: jij zet een vraag uit, wij antwoorden met een video.
 
+> **Update 9 november:** vanaf 10 november komen eerst de 12 video's van de **Colour Aura**-campagne (`AURA.md`). De lijst hieronder schuift daardoor 12 dagen op. De juiste datums staan in /lab/tiktok.
+
 ## De 35 posts (één per dag)
 
 | Dag | Video | Seizoen | Tekst (kopiëren) |
