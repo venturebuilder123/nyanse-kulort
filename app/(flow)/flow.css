@@ -1265,3 +1265,10 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 /* result reveal in the season's own tint, rounded like the rest (9 Nov 2026) */
 .app .rv { border-radius: 28px; box-shadow: none; transition: background-color .8s cubic-bezier(.22, 1, .36, 1); }
 .app .rv-type b { font-family: var(--f-logo); }
+@media (min-width: 900px) {
+  .l-stage .st-stage { min-height: 560px; }
+  .l-stage .st-face { width: 320px; margin-top: 80px; }
+  .l-stage .st-fan { top: 56px; }
+  .l-stage .st-fan i { height: 200px; width: 50px; left: -25px; transform-origin: 25px 300px; }
+  .l-stage .st-label b { font-size: 28px; }
+}
