@@ -2,6 +2,20 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 9 november 2026 — koerswijziging: bereik en een jonger design
+
+- **FEIT:** 7 betaalde bestellingen, allemaal van 14 tot 23 oktober. Sindsdien geen. Meta blokkeert de Instagram-API sinds 23 oktober elke dag. Nog geen SEASON-reacties.
+- **Oordeel van de oprichter:** het design is "ouwelullen", en dat ligt ook aan de persona's. Het logo blijft.
+- **Wat er verandert:**
+  1. **Design:** drie richtingen als tikbare mockups (Kleurbom, Swipe-test, Paletstudio). De oprichter kiest; daarna gaat de hele site om. Nu al: de startpagina opent met de jonge campagnebeelden.
+  2. **Deelkaart** op de resultaatpagina, voor iedereen, ook gratis: een story (9:16) met je seizoen en kleuren, op de telefoon gemaakt, en je eigen foto alleen als je dat aanvinkt.
+  3. **Pinterest:** 66 extra pins, gericht op zoekwoorden (vermijden, capsule, make-up, heren, 3 tekens, X vs Y), drie per dag in de bestaande feeds.
+  4. **TikTok:** startpakket met 35 dagposts (`docs/marketing/TIKTOK.md`). De oprichter maakt het account aan en post.
+  5. **Creators:** draaiboek voor de eerste 15, met eigen codes en €3 commissie, en maximaal €300 vast (`docs/marketing/CREATORS.md`).
+  6. **Facebook:** de oprichter zet automatisch delen van Instagram naar Facebook aan.
+- **Skills** voor design en werkwijze staan lokaal in `.claude/skills` (bronnen in SOURCES.txt).
+- **Kosten:** €0 in code. Creators maximaal €300 (nog te besteden).
+
 ## 22 oktober 2026 — A-merken in de winkelkeuze, antwoorden bij de bestelling, passen in twee talen
 
 - **Winkels:** in de stijlstap staat nu onder de gewone winkels een tweede groep **A-merken**: 18 per merk, zoals Suitsupply, Hugo Boss en Ralph Lauren (KULØRT) en Massimo Dutti, Fabienne Chapot en Sandro (NYANSE). Er is ook een veld **"Ander merk?"**: wat mensen zelf typen, is waardevolle data voor latere partners.
