@@ -1261,3 +1261,7 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 .tips3 svg { color: var(--accent-text); margin-bottom: 2px; }
 .tips3 b { font-family: var(--font-bricolage), var(--f-body); font-weight: 800; font-size: 15px; letter-spacing: -0.02em; line-height: 1.1; }
 .tips3 span { font-size: 12px; color: var(--muted); line-height: 1.25; }
+
+/* result reveal in the season's own tint, rounded like the rest (9 Nov 2026) */
+.app .rv { border-radius: 28px; box-shadow: none; transition: background-color .8s cubic-bezier(.22, 1, .36, 1); }
+.app .rv-type b { font-family: var(--f-logo); }

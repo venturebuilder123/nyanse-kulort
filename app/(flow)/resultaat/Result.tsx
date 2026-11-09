@@ -31,6 +31,7 @@ import { FlatLay } from "../Flats";
 import { Checkout } from "./Checkout";
 import { Deck } from "./Deck";
 import { ShareCard } from "./ShareCard";
+import { tint } from "../home/Studio";
 import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
 
@@ -153,6 +154,7 @@ export default function Result() {
         named={{ ...oftenNamed(p.match.season, config.key, locale), family: familyName(family, locale) }}
         fan={g.summary.core}
         glow={glow}
+        tint={tint(glow, 0.82)}
       />
 
       <div className="pad result">

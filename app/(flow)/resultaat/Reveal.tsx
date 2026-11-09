@@ -21,6 +21,8 @@ export function Reveal(props: {
   named: { family: string; names: string[] };
   fan: Swatch[];
   glow: string;
+  /** the page tint from the season's own colour (direction C, 9 Nov 2026) */
+  tint?: string;
   provisional?: string;
 }) {
   const R = FLOW[useBrand().locale].reveal;
@@ -48,7 +50,7 @@ export function Reveal(props: {
 
   const n = props.fan.length;
   return (
-    <section className={`rv${open ? " is-open" : ""}`} style={{ "--glow": props.glow } as React.CSSProperties}>
+    <section className={`rv${open ? " is-open" : ""}`} style={{ "--glow": props.glow, ...(props.tint ? { "--rv-bg": props.tint } : {}) } as React.CSSProperties}>
       <div className="rv-stage" ref={stage} aria-hidden="true">
         <div className="rv-fan">
           {props.fan.map((c, i) => (
