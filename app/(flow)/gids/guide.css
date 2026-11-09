@@ -321,3 +321,18 @@
 .g-shop-meta { font-size: 12px; color: rgba(18, 18, 18, .65); }
 @media (min-width: 640px) { .g-shop-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media print { .g-shop { display: none !important; } }
+
+/* ---------- guide in the site's language (9 Nov 2026): bold Bricolage headings, Bodoni italics stay
+   for the editorial lines; names never break letter by letter on narrow screens ---------- */
+.guide .g-head h2, .guide .g-n, .guide .g-season, .guide .g-sum-type b, .guide .g-rules li::before,
+.guide .g-callout b, .guide .g-combo b, .guide .g-pass-card b, .guide .g-basic b, .guide .g-audit-piles b {
+  font-family: var(--font-bricolage), var(--f-body); font-weight: 800; letter-spacing: -0.035em; font-style: normal;
+}
+.guide .g-head h2 em, .guide .g-season em { font-family: var(--f-logo); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+.guide .g-strip span { overflow-wrap: normal; word-break: normal; hyphens: auto; }
+@media (max-width: 700px) {
+  .guide .g-strip.named { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 4px; }
+  .guide .g-strip.named i { height: 46px; border-radius: 6px; }
+  .guide .g-strip.named span { font-size: 11px; }
+  .guide .g-audit-piles { grid-template-columns: 1fr; gap: 14px; }
+}
