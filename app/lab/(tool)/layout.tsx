@@ -11,6 +11,7 @@ export default function LabLayout({ children }: { children: React.ReactNode }) {
           <Link href="/lab/report">Rapport</Link>
           <Link href="/lab/orders">Bestellingen</Link>
           <Link href="/lab/catalog">Catalogus</Link>
+          <Link href="/lab/aura">✦ Colour Aura</Link>
           <Link href="/lab/social">Instagram</Link>
           <Link href="/lab/tiktok">TikTok</Link>
         </nav>
