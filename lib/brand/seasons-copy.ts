@@ -83,11 +83,12 @@ const NAMED_BY_FAMILY: Record<BrandKey, Record<string, string[]>> = {
 export function oftenNamed(season: SeasonKey, brand: BrandKey, locale: Locale = "nl"): { family: string; names: string[] } {
   const family = familyOf(season);
   const names = NAMED_BY_FAMILY[brand][family] ?? [];
-  return { family, names: locale === "en" ? names.map((n) => n.replace("prinses van Wales", "Princess of Wales")) : names };
+  const princess = { nl: "prinses van Wales", en: "Princess of Wales", de: "Prinzessin von Wales", es: "princesa de Gales" }[locale];
+  return { family, names: names.map((n) => n.replace("prinses van Wales", princess)) };
 }
 
 /** The season story in the visitor's language. */
-export const seasonStory = (season: SeasonKey, locale: Locale) => (locale === "en" ? SEASON_STORY_EN : SEASON_STORY)[season];
+export const seasonStory = (season: SeasonKey, locale: Locale) => ({ nl: SEASON_STORY, en: SEASON_STORY_EN, de: SEASON_STORY_DE, es: SEASON_STORY_ES })[locale][season];
 
 // English (21 Oct 2026), same content as the Dutch above.
 export const SEASON_STORY_EN: Record<SeasonKey, { line: string; text: string }> = {
@@ -139,4 +140,35 @@ export const SEASON_STORY_EN: Record<SeasonKey, { line: string; text: string }> 
     line: "Clear, cool and full of contrast.",
     text: "You combine coolness with lots of contrast and clarity. Bright, pure colours and black and white look striking on you: carmine, cobalt, bright emerald. Muted, dusty shades make you look dull.",
   },
+};
+
+// German and Spanish (9 Nov 2026), same content as the Dutch above.
+export const SEASON_STORY_DE: Record<SeasonKey, { line: string; text: string }> = {
+  lightSpring: { line: "Hell wie ein Frühlingsmorgen.", text: "Haut, Haar und Augen liegen nah beieinander und haben einen warmen, goldenen Unterton. Helle, klare Farben mit etwas Wärme lassen dich strahlen: Pfirsich, Hellgold, Mint. Schwere, dunkle Farben übernehmen schnell." },
+  warmSpring: { line: "Warm, sonnig, voller Leben.", text: "Du hast einen deutlich warmen Unterton und eine frische Ausstrahlung. Goldtöne, Koralle, warmes Grün und Türkis passen zu deinem natürlichen Glow. Kühle Grautöne und eisige Pastelle machen dich flacher." },
+  brightSpring: { line: "Klar, warm und unvergesslich.", text: "Du verbindest Wärme mit Kontrast und Klarheit. Du kannst leuchtende, reine Farben tragen, ohne dass sie dich übertönen: Mohnrot, Jadegrün, leuchtendes Blau. Staubige, gedämpfte Töne werden dir nicht gerecht." },
+  lightSummer: { line: "Hell, kühl und mühelos.", text: "Deine Farben sind hell und kühl, mit wenig Kontrast. Sanfte Pastelle mit blauem Unterton geben dir eine frische, ruhige Ausstrahlung: Puderrosa, Lavendel, Meeresblau. Schwarz und knallige warme Farben sind zu hart." },
+  coolSummer: { line: "Kühl, ruhig und raffiniert.", text: "Dein Unterton ist deutlich kühl und deine Farben sind mittelhell. Mitteltöne mit blauer Basis lassen dich frischer aussehen als alles andere: Denim, kühles Rosa, Graublau, Himbeere. Orange und Goldgelb lenken vom Gesicht ab." },
+  softSummer: { line: "Sanft, kühl und elegant.", text: "Deine Farben sind gedämpft und kühl, mit wenig Kontrast. Staubige, vergraute Töne lassen dein Gesicht sprechen: Salbei, Schiefer, Mauve, sanfte Pflaume. Knallige, reine Farben sind zu laut neben dir." },
+  softAutumn: { line: "Warm und sanft, wie ein Herbstnachmittag.", text: "Du hast einen warmen Unterton mit gedämpften Farben. Erdige, sanfte Töne wirken wie eine Verlängerung deiner Haut: Camel, Oliv, sanftes Petrol, warmer Lachs. Kalte, knallige Farben wirken losgelöst von dir." },
+  warmAutumn: { line: "Satt, warm und würzig.", text: "Dein Unterton ist ausgeprägt warm und deine Farben sind satt. Würzige Töne wie Ocker, Oliv, Rost und Petrol passen zu deinem Glow. Eisige und kühl-rosa Farben machen dich blass." },
+  deepAutumn: { line: "Tief, warm und kraftvoll.", text: "Du verbindest Tiefe mit Wärme. Dunkle, erdige Farben geben deinem Gesicht Kraft: Bordeaux, Waldgrün, Schokolade, Petrol. Helle Pastelle und eisige Töne verblassen neben dir." },
+  deepWinter: { line: "Tief, kühl und eindrucksvoll.", text: "Du hast Tiefe und Kontrast auf kühler Basis. Dunkle Juwelentöne passen zu deiner starken Ausstrahlung: Tintenblau, Smaragd, Rubin, Aubergine. Warme Erdtöne und sanfte Pastelle lassen dich verschwinden." },
+  coolWinter: { line: "Kühl, klar und scharf.", text: "Dein Unterton ist deutlich kühl und du verträgst viel Kontrast. Juwelentöne und klare kühle Farben stehen dir: Royal-Navy, Smaragd, Weinrot, kühles Violett. Warmes Orange und Gold sind zu weich neben dir." },
+  brightWinter: { line: "Klar, kühl und voller Kontrast.", text: "Du verbindest Kühle mit viel Kontrast und Klarheit. Leuchtende, reine Farben und Schwarz-Weiß stehen dir auffallend gut: Karmin, Kobalt, leuchtendes Smaragd. Gedämpfte, staubige Töne lassen dich fahl wirken." },
+};
+
+export const SEASON_STORY_ES: Record<SeasonKey, { line: string; text: string }> = {
+  lightSpring: { line: "Luminosa como una mañana de primavera.", text: "Tu piel, tu pelo y tus ojos están muy próximos y tienen un subtono cálido y dorado. Los colores claros y limpios con algo de calidez te hacen brillar: melocotón, dorado claro, menta. Los colores pesados y oscuros te eclipsan enseguida." },
+  warmSpring: { line: "Cálida, soleada, llena de vida.", text: "Tienes un subtono claramente cálido y un aire fresco. Los dorados, el coral, el verde cálido y el turquesa van con tu brillo natural. Los grises fríos y los pasteles helados te apagan." },
+  brightSpring: { line: "Nítida, cálida e inolvidable.", text: "Combinas calidez con contraste y claridad. Puedes llevar colores vivos y puros sin que te eclipsen: rojo amapola, verde jade, azul vivo. Los tonos empolvados y apagados no te hacen justicia." },
+  lightSummer: { line: "Clara, fresca y natural.", text: "Tus colores son claros y fríos, con poco contraste. Los pasteles suaves con subtono azul te dan un aire fresco y tranquilo: rosa empolvado, lavanda, azul mar. El negro y los colores cálidos intensos son demasiado duros." },
+  coolSummer: { line: "Fresca, serena y refinada.", text: "Tu subtono es claramente frío y tus colores tienen una claridad media. Los tonos medios con base azul te sientan mejor que nada: denim, rosa frío, gris azulado, frambuesa. El naranja y el amarillo dorado apartan la atención de tu cara." },
+  softSummer: { line: "Suave, fresca y elegante.", text: "Tus colores son apagados y fríos, con poco contraste. Los tonos empolvados y agrisados dejan hablar a tu cara: salvia, pizarra, malva, ciruela suave. Los colores vivos y puros son demasiado ruidosos a tu lado." },
+  softAutumn: { line: "Cálida y suave, como una tarde de otoño.", text: "Tienes un subtono cálido con colores apagados. Los tonos terrosos y suaves son como una prolongación de tu piel: camel, oliva, petróleo suave, salmón cálido. Los colores fríos e intensos no van contigo." },
+  warmAutumn: { line: "Rica, cálida y especiada.", text: "Tu subtono es marcadamente cálido y tus colores son ricos. Los tonos especiados como ocre, oliva, óxido y petróleo van con tu brillo. Los colores helados y el rosa frío te restan color." },
+  deepAutumn: { line: "Profunda, cálida y potente.", text: "Combinas profundidad y calidez. Los colores oscuros y terrosos dan fuerza a tu cara: burdeos, verde bosque, chocolate, petróleo. Los pasteles claros y los tonos helados se apagan a tu lado." },
+  deepWinter: { line: "Profunda, fría e impactante.", text: "Tienes profundidad y contraste sobre una base fría. Los tonos joya oscuros van con tu fuerte presencia: azul tinta, esmeralda, rubí, berenjena. Los tonos tierra cálidos y los pasteles suaves te hacen desaparecer." },
+  coolWinter: { line: "Fría, nítida y marcada.", text: "Tu subtono es claramente frío y puedes llevar mucho contraste. Los tonos joya y los colores fríos y nítidos te favorecen: azul marino real, esmeralda, rojo vino, morado frío. El naranja cálido y el dorado son demasiado suaves a tu lado." },
+  brightWinter: { line: "Nítida, fría y llena de contraste.", text: "Combinas frialdad con mucho contraste y claridad. Los colores vivos y puros y el blanco y negro te sientan llamativamente bien: carmín, cobalto, esmeralda vivo. Los tonos apagados y empolvados te restan luz." },
 };

@@ -193,7 +193,7 @@ export function Checkout({ tier, season, friendCode, note, onClose }: Props) {
       {codeMsg && <p className="small warn-text" role="alert">{codeMsg}</p>}
       <label className="check">
         <input type="checkbox" checked={waiver} onChange={(e) => setWaiver(e.target.checked)} />
-        <span>{(() => { const terms = locale === "en" ? "the terms" : "de voorwaarden"; return t.checkout.withdrawal.replace(terms, "\u0000").split("\u0000").flatMap((part, i) => (i ? [<a key="t" href="/voorwaarden" target="_blank">{terms}</a>, part] : [part])); })()}</span>
+        <span>{(() => { const terms = ({ nl: "de voorwaarden", en: "the terms", de: "die AGB", es: "las condiciones" } as const)[locale]; return t.checkout.withdrawal.replace(terms, "\u0000").split("\u0000").flatMap((part, i) => (i ? [<a key="t" href="/voorwaarden" target="_blank">{terms}</a>, part] : [part])); })()}</span>
       </label>
       {error && <p className="small warn-text" role="alert">{error}</p>}
       <button className="btn" type="submit" disabled={!valid || busy}>{busy ? FLOW[locale].wait : amount === 0 ? FLOW[locale].openGuide : F.toPay(euro(amount, locale))}</button>

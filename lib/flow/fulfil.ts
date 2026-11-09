@@ -2,6 +2,7 @@
 // set paid, mail the guide link, send the server-side "paid" event. Idempotent: an order that is
 // already paid is not mailed or counted twice (Mollie may call the webhook more than once).
 
+import { isLocale } from "@/lib/i18n/locale";
 import { supabaseRest } from "@/lib/db/supabase";
 import { guideMail, sendMail } from "@/lib/mail";
 
@@ -24,7 +25,7 @@ export async function markPaid(ref: string, origin: string, method: string, opts
   if (!o) return { found: false as const };
 
   const link = `${origin}/gids?o=${o.ref}&k=${o.secret}`;
-  const m = guideMail({ brand: o.brand, tier: o.tier, link, locale: o.profile?.locale === "en" ? "en" : "nl" });
+  const m = guideMail({ brand: o.brand, tier: o.tier, link, locale: isLocale(o.profile?.locale) ? o.profile.locale : "nl" });
   const mailed = await sendMail(o.email, m.subject, m.text, m.html).catch(() => false);
   if (mailed) await supabaseRest(`orders?ref=eq.${ref}`, { method: "PATCH", body: JSON.stringify({ mailed_at: new Date().toISOString() }) });
 

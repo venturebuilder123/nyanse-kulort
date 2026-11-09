@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isLocale } from "@/lib/i18n/locale";
 import { supabaseConfigured, supabaseRest } from "@/lib/db/supabase";
 import { markPaid } from "@/lib/flow/fulfil";
 import { mailConfigured, sendMail, shippedMail } from "@/lib/mail";
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
   // "je pas is onderweg" (CLAUDE.md §7)
   let mailed = false;
   if (status === "shipped") {
-    const m = shippedMail({ brand: o.brand, link, locale: o.profile?.locale === "en" ? "en" : "nl" });
+    const m = shippedMail({ brand: o.brand, link, locale: isLocale(o.profile?.locale) ? o.profile.locale : "nl" });
     mailed = await sendMail(o.email, m.subject, m.text, m.html).catch(() => false);
   }
   return NextResponse.json({ ok: true, link, mailed, mailConfigured: mailConfigured() });

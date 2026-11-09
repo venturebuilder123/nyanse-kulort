@@ -18,7 +18,7 @@ export type OrderRow = {
   profile: StoredProfile | null;
 };
 
-export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string>; locale?: "nl" | "en"; answers?: Answers };
+export type StoredProfile = { measurements?: unknown; hair?: string; jewel?: string; declared?: string; confirm?: Record<string, string>; locale?: "nl" | "en" | "de" | "es"; answers?: Answers };
 
 const num = (v: unknown) => typeof v === "number" && Number.isFinite(v);
 /** Keeps only the known, numeric parts of a profile, capped in size. */
@@ -28,7 +28,7 @@ export function parseProfile(raw: unknown): StoredProfile | null {
   if (typeof p.declared === "string" && p.declared in SEASONS) out.declared = p.declared;
   if (["natural", "dyed", "grey", "none", "covered"].includes(p.hair as string)) out.hair = p.hair as string;
   if (["goud", "zilver", "weetniet"].includes(p.jewel as string)) out.jewel = p.jewel as string;
-  if (p.locale === "en" || p.locale === "nl") out.locale = p.locale;
+  if (p.locale === "en" || p.locale === "nl" || p.locale === "de" || p.locale === "es") out.locale = p.locale;
   if (p.answers) {
     const a = sanitize(p.answers);
     if (a.occasions.length || a.budget || a.shops.length) out.answers = a;

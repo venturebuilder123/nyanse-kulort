@@ -1,5 +1,7 @@
 "use client";
 
+import { guideFor } from "@/lib/guide/lang";
+import { INTL } from "@/lib/i18n/locale";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import HEROES from "@/lib/brand/heroes.json";
@@ -9,7 +11,6 @@ import { oftenNamed } from "@/lib/brand/seasons-copy";
 import { nameForHex } from "@/lib/color/palette";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { buildGuide, type Swatch } from "@/lib/guide/build";
-import { guideEn } from "@/lib/guide/en";
 import { colourName, familyName, garmentName } from "@/lib/i18n/words";
 import type { Locale } from "@/lib/i18n/locale";
 import { makeReferralCode, referralUrl } from "@/lib/flow/referral";
@@ -97,6 +98,71 @@ const TEXT = {
     pushFail: "That didn't work right now. Please try again later.", footer: "Recommended by colour, never by commission.",
     shopK: "Shop your colours", shopT: "For sale now, in your colours", shopLede: "Real products whose colour we measured. Every piece matches a colour from your palette.", shopNote: "Links to shops are affiliate links: we get a small fee, you pay nothing extra. Recommended by colour, never by commission.",
   },
+  // German and Spanish (9 Nov 2026)
+  de: {
+    noProfile: "Auf diesem Gerät gibt es noch kein Farbprofil.", start: "Starte deine Farbanalyse",
+    pending: "Wir prüfen deine Zahlung. Sobald deine Überweisung eingeht, bekommst du eine E-Mail und dein Style-Guide öffnet sich hier.", order: "Bestellung ansehen",
+    notPaid: "Dein Style-Guide gehört zum Style-Guide oder zum Style-Guide mit Farbkarte.", options: "Optionen ansehen", lockedTitle: "Dein Style-Guide",
+    nameLabel: "Name auf deinem Guide", namePh: "Dein Name", pdfBusy: "PDF wird erstellt…", pdf: "PDF herunterladen", file: "style-guide",
+    guideFor: (n: string) => `Style-Guide${n ? ` · für ${n}` : ""}`, border: (s: string) => ` · an der Grenze zu ${s}`, declared: (s: string) => `Nach deiner eigenen Angabe: ${s}`,
+    glanceK: "Auf einen Blick", glanceT: "Deine Farben, kurz", type: "Typ", core: "Deine Kernfarben", avoid: "Lieber nicht", metal: "Metall", leather: "Leder", contrast: "Kontrast",
+    effectK: "Der Effekt", effectT: "Gleiches Gesicht. Andere Farbe.", badFallback: "Fällt ab", badLine: "Diese Farbe lenkt vom Gesicht ab.", goodFallback: "Deine Farbe", goodLine: "Diese Farbe passt zu den natürlichen Farben von Haut, Haar und Augen.", example: (f: string) => `Ein Beispiel aus derselben Farbfamilie (${f}).`,
+    profileK: "Dein Profil", profileT: "So ist deine Farbigkeit aufgebaut",
+    undertone: "Unterton", cool: "kühl", warm: "warm", undertoneWhat: "Der Unterton unter deiner Haut: eher rosa und blau (kühl) oder eher gold und pfirsich (warm). Er ändert sich nicht durch Bräune.",
+    undertoneCool: "Du bist kühl: Silber, Eisweiß, Navy und Blaurot lassen dich frisch aussehen. Gold, Orange und Creme machen dich grau.", undertoneWarm: "Du bist warm: Gold, Creme, Camel und Tomatenrot lassen dich strahlen. Eisweiß, Silbergrau und Blaurosa machen dich blass.", undertoneMid: "Du liegst in der Mitte: Wähle Farben, die nicht klar warm oder kühl sind, wie sanftes Navy, Rosenholz und Taupe.",
+    depth: "Tiefe", light: "hell", deep: "tief", depthWhat: "Wie hell oder dunkel Haar, Augen und Haut zusammen sind. Das bestimmt, wie hell oder dunkel deine Farben sein dürfen.",
+    depthDeep: "Du bist tief: dunkle, satte Farben tragen dich. Pastell verblasst neben dir.", depthLight: "Du bist hell: helle und mittlere Töne lassen dich strahlen. Schwarz und sehr dunkle Farben sind zu schwer.", depthMid: "Du liegst in der Mitte: Mitteltöne sind deine Basis. Sehr hell und sehr dunkel sparsam einsetzen.",
+    clarity: "Klarheit", soft: "sanft", clear: "klar", clarityWhat: "Wie klar deine Augen und der Kontrast in deinem Gesicht sind. Das bestimmt, ob deine Farben leuchtend oder gedämpft sein sollten.",
+    clarityClear: "Du bist klar: reine, leuchtende Farben passen zu deinen Augen. Staubige, gräuliche Töne machen dich müde.", claritySoft: "Du bist sanft: gedämpfte, leicht vergraute Farben lassen dich gepflegt wirken. Leuchtende Farben übertönen dich.", clarityMid: "Du liegst in der Mitte: Farben mit etwas Tiefe, nicht neon und nicht staubig.",
+    named: (f: string) => `Oft genannt als ${f}`,
+    youAre: (s: string, u: string, d: string, c: string) => <>Du bist ein <b>{s}</b>: ein {u}er Unterton, {d} in der Tiefe und {c} in der Klarheit. Farben nah an diesem Punkt lassen dein Gesicht ruhig und klar wirken. Farben weit davon entfernt lenken vom Gesicht ab.</>,
+    paletteK: "Deine Palette", paletteT: "Deine 30 Farben", combosK: "So trägst du es", combosT: "Kombinationen, die funktionieren",
+    wornK: "So sieht es aus", wornT: (s: string) => `${s}, getragen`, wornAlt: (s: string) => `Zwei Outfits in den Farben von ${s}`, wornLede: "So kleiden sich Menschen mit deinem Farbtyp: eine Farbfamilie, von Kopf bis Fuß.",
+    basicsK: "Wo du anfängst", basicsT: "Deine Basics und deine ersten 5 Käufe",
+    auditK: "Zehn Minuten", auditT: "Check deinen Kleiderschrank", auditLede: "Du musst nicht alles neu kaufen. Fang mit dem an, was du schon hast.",
+    keep: "Behalten", keepText: "Sieht aus wie eine deiner Farben oder lässt dein Gesicht strahlen.", below: "Unterhalb der Taille", belowText: (men: boolean) => `Nicht deine Farbe, aber geliebt: Trag sie ${men ? "als Hose oder Schuhe" : "als Hose, Rock oder Schuhe"}, weit weg vom Gesicht.`,
+    out: "Loslassen", outText: "Nicht deine Farbe, und ein Jahr nicht getragen. Verkauf es secondhand oder verschenk es; das Geld geht in dein erstes Teil aus deiner Palette.",
+    detailsK: "Die Details", detailsT: (men: boolean): string => (men ? "Uhr, Gürtel, Schuhe und Brille" : "Schmuck, Tasche und Make-up"),
+    swapsK: "Was dir nicht steht", swapsT: "Nicht das, sondern das", choose: "Wähle", swapsBody: (men: boolean) => `Wegwerfen musst du nichts. Unterhalb der Taille, ${men ? "als Hose oder Schuhe" : "als Hose, Rock oder Schuhe"}, fallen sie weniger auf.`,
+    capsuleK: "Deine Garderobe", capsuleT: "12 Teile, die zusammenpassen", capsuleBody: "Alles in deinen Farben, also passt alles zusammen. Ersetze, was du hast, Stück für Stück.",
+    alwaysK: "Immer dabei", alwaysT: "Im Laden und auf dem Handy", home: "Leg deine Farben auf deinen Startbildschirm",
+    iphone: (site: string) => <>Öffne {site || "die Seite"} in Safari · tippe auf Teilen (Quadrat mit Pfeil) · wähle <em>Zum Home-Bildschirm</em>.</>, android: <>In Chrome öffnen · tippe auf ⋮ · wähle <em>Zum Startbildschirm hinzufügen</em>.</>,
+    pass: "Farbkarte", qrAlt: (site: string, code: string) => `QR-Code zu ${site} mit Freundescode ${code}`, share: "Teile deine Farben", shareText: (site: string) => <>Deine Freunde bekommen 1 € Rabatt auf ihren Guide. Scanne den Code oder geh auf <b>{site}</b>.</>,
+    pushFail: "Das hat gerade nicht geklappt. Versuch es später noch einmal.", footer: "Empfohlen nach Farbe, nie nach Provision.",
+    shopK: "Shoppe deine Farben", shopT: "Jetzt erhältlich, in deinen Farben", shopLede: "Echte Produkte, deren Farbe wir gemessen haben. Jedes Teil passt zu einer Farbe aus deiner Palette.", shopNote: "Links zu Shops sind Affiliate-Links: Wir bekommen eine kleine Vergütung, du zahlst nichts extra. Empfohlen nach Farbe, nie nach Provision.",
+  },
+  es: {
+    noProfile: "Todavía no hay un perfil de color en este dispositivo.", start: "Empieza tu análisis de color",
+    pending: "Estamos comprobando tu pago. En cuanto llegue tu transferencia, recibirás un e-mail y tu guía se abrirá aquí.", order: "Ver tu pedido",
+    notPaid: "Tu guía de estilo viene con la guía de estilo o la guía con tarjeta de color.", options: "Ver opciones", lockedTitle: "Tu guía de estilo",
+    nameLabel: "Nombre en tu guía", namePh: "Tu nombre", pdfBusy: "Creando PDF…", pdf: "Descargar PDF", file: "guia-de-estilo",
+    guideFor: (n: string) => `Guía de estilo${n ? ` · para ${n}` : ""}`, border: (s: string) => ` · en el límite con ${s}`, declared: (s: string) => `Según tu propia elección: ${s}`,
+    glanceK: "De un vistazo", glanceT: "Tus colores, en breve", type: "Tipo", core: "Tus colores clave", avoid: "Mejor no", metal: "Metal", leather: "Piel", contrast: "Contraste",
+    effectK: "El efecto", effectT: "La misma cara. Otro color.", badFallback: "Apaga", badLine: "Este color aparta la atención de la cara.", goodFallback: "Tu color", goodLine: "Este color armoniza con los colores naturales de piel, pelo y ojos.", example: (f: string) => `Un ejemplo de la misma familia de color (${f}).`,
+    profileK: "Tu perfil", profileT: "Cómo es tu colorido",
+    undertone: "Subtono", cool: "frío", warm: "cálido", undertoneWhat: "El subtono bajo tu piel: más rosa y azul (frío) o más dorado y melocotón (cálido). No cambia con el bronceado.",
+    undertoneCool: "Eres de subtono frío: plata, blanco helado, azul marino y rojo azulado te dan frescura. Dorado, naranja y crema te apagan.", undertoneWarm: "Eres de subtono cálido: dorado, crema, camel y rojo tomate te hacen brillar. Blanco helado, gris plata y rosa azulado te ponen pálido.", undertoneMid: "Estás en el medio: elige colores ni claramente cálidos ni fríos, como azul marino suave, palo de rosa y topo.",
+    depth: "Profundidad", light: "claro", deep: "profundo", depthWhat: "Lo claros u oscuros que son juntos tu pelo, tus ojos y tu piel. Decide lo claros u oscuros que pueden ser tus colores.",
+    depthDeep: "Eres profundo: los colores oscuros y saturados te sostienen. Los pasteles se apagan a tu lado.", depthLight: "Eres claro: los tonos claros y medios te hacen brillar. El negro y los colores muy oscuros pesan demasiado.", depthMid: "Estás en el medio: los tonos medios son tu base. Muy claro y muy oscuro, con moderación.",
+    clarity: "Claridad", soft: "suave", clear: "nítido", clarityWhat: "Lo nítidos que son tus ojos y el contraste de tu cara. Decide si tus colores deben ser vivos o apagados.",
+    clarityClear: "Eres nítido: los colores puros y vivos van con tus ojos. Los tonos empolvados y grisáceos te cansan.", claritySoft: "Eres suave: los colores apagados y algo agrisados te dan un aire cuidado. Los colores vivos te eclipsan.", clarityMid: "Estás en el medio: colores con algo de profundidad, ni neón ni empolvados.",
+    named: (f: string) => `Se suele citar como ${f}`,
+    youAre: (s: string, u: string, d: string, c: string) => <>Eres <b>{s}</b>: subtono {u}, {d} en profundidad y {c} en claridad. Los colores cercanos a ese punto hacen que tu cara se vea tranquila y luminosa. Los colores lejanos apartan la atención de tu cara.</>,
+    paletteK: "Tu paleta", paletteT: "Tus 30 colores", combosK: "Cómo llevarlo", combosT: "Combinaciones que funcionan",
+    wornK: "Así se ve", wornT: (s: string) => `${s}, puesto`, wornAlt: (s: string) => `Dos looks en los colores de ${s}`, wornLede: "Así visten las personas con tu tipo de color: una familia de color, de pies a cabeza.",
+    basicsK: "Por dónde empezar", basicsT: "Tus básicos y tus 5 primeras compras",
+    auditK: "Diez minutos", auditT: "Revisa tu armario", auditLede: "No hace falta comprarlo todo de nuevo. Empieza por lo que ya tienes.",
+    keep: "Quedártelo", keepText: "Se parece a uno de tus colores o te ilumina la cara.", below: "De cintura para abajo", belowText: (men: boolean) => `No es tu color, pero te encanta: llévalo ${men ? "como pantalón o zapatos" : "como pantalón, falda o zapatos"}, lejos de la cara.`,
+    out: "Despedirte", outText: "No es tu color y no te lo has puesto en un año. Véndelo de segunda mano o regálalo; el dinero va para tu primera prenda de tu paleta.",
+    detailsK: "Los detalles", detailsT: (men: boolean): string => (men ? "Reloj, cinturón, zapatos y gafas" : "Joyas, bolso y maquillaje"),
+    swapsK: "Lo que no te favorece", swapsT: "Esto no, esto sí", choose: "Elige", swapsBody: (men: boolean) => `No hace falta tirarlos. De cintura para abajo, ${men ? "como pantalón o zapatos" : "como pantalón, falda o zapatos"}, llaman menos la atención.`,
+    capsuleK: "Tu armario", capsuleT: "12 prendas que combinan", capsuleBody: "Todo en tus colores, así que todo combina. Cambia lo que tienes prenda a prenda.",
+    alwaysK: "Siempre contigo", alwaysT: "En la tienda y en el móvil", home: "Pon tus colores en tu pantalla de inicio",
+    iphone: (site: string) => <>Abre {site || "la web"} en Safari · toca Compartir (cuadrado con flecha) · elige <em>Añadir a pantalla de inicio</em>.</>, android: <>Abre en Chrome · toca ⋮ · elige <em>Añadir a pantalla de inicio</em>.</>,
+    pass: "Tarjeta de color", qrAlt: (site: string, code: string) => `Código QR a ${site} con código de amigo ${code}`, share: "Comparte tus colores", shareText: (site: string) => <>Tus amigos tienen 1 € de descuento en su guía. Escanea el código o entra en <b>{site}</b>.</>,
+    pushFail: "Ahora no ha funcionado. Inténtalo más tarde.", footer: "Recomendado por color, nunca por comisión.",
+    shopK: "Compra tus colores", shopT: "A la venta ahora, en tus colores", shopLede: "Productos reales cuyo color hemos medido. Cada prenda coincide con un color de tu paleta.", shopNote: "Los enlaces a tiendas son de afiliado: recibimos una pequeña comisión y tú no pagas nada más. Recomendado por color, nunca por comisión.",
+  },
 } satisfies Record<Locale, unknown>;
 type Text = (typeof TEXT)["nl"];
 
@@ -147,7 +213,7 @@ export default function Guide() {
       .then(setQr)
       .catch(() => {});
   }, [refCode]);
-  const g = useMemo(() => (r ? (locale === "en" ? guideEn(buildGuide(r.profile, config.key)) : buildGuide(r.profile, config.key)) : null), [r, config.key, locale]);
+  const g = useMemo(() => (r ? guideFor(buildGuide(r.profile, config.key), locale) : null), [r, config.key, locale]);
 
   if (!loaded) return <main className="screen" />;
   if (!r || !g) return <Locked title={T.lockedTitle} text={T.noProfile} href="/" cta={T.start} />;
@@ -155,7 +221,7 @@ export default function Guide() {
   if (access?.state !== "paid") return <Locked title={T.lockedTitle} text={T.notPaid} href="/resultaat" cta={T.options} />;
 
   const date = new Date(r.at);
-  const month = date.toLocaleDateString(locale === "en" ? "en-GB" : "nl-NL", { month: "long", year: "numeric" });
+  const month = date.toLocaleDateString(INTL[locale], { month: "long", year: "numeric" });
   const saveName = (v: string) => {
     setName(v);
     const nm = v.trim() || undefined;
@@ -469,6 +535,16 @@ const SHOP_LABEL_EN: Record<string, string> = {
   broek: "Trousers", jeans: "Jeans", rok: "Skirts", jurk: "Dresses", schoenen: "Shoes", sneakers: "Sneakers", riem: "Belts",
   horloge: "Watches", sieraden: "Jewellery", sjaal: "Scarves", tas: "Bags", das: "Ties",
 };
+const SHOP_LABEL_DE: Record<string, string> = {
+  overhemd: "Hemden", blouse: "Blusen", top: "Tops und Shirts", trui: "Strick", vest: "Cardigans", colbert: "Sakkos und Blazer", jas: "Mäntel",
+  broek: "Hosen", jeans: "Jeans", rok: "Röcke", jurk: "Kleider", schoenen: "Schuhe", sneakers: "Sneaker", riem: "Gürtel",
+  horloge: "Uhren", sieraden: "Schmuck", sjaal: "Schals", tas: "Taschen", das: "Krawatten",
+};
+const SHOP_LABEL_ES: Record<string, string> = {
+  overhemd: "Camisas", blouse: "Blusas", top: "Tops y camisetas", trui: "Punto", vest: "Rebecas", colbert: "Americanas y blazers", jas: "Abrigos",
+  broek: "Pantalones", jeans: "Vaqueros", rok: "Faldas", jurk: "Vestidos", schoenen: "Zapatos", sneakers: "Zapatillas", riem: "Cinturones",
+  horloge: "Relojes", sieraden: "Joyas", sjaal: "Pañuelos", tas: "Bolsos", das: "Corbatas",
+};
 const SHOP_LABEL: Record<string, string> = {
   overhemd: "Overhemden", blouse: "Blouses", top: "Tops en shirts", trui: "Truien", vest: "Vesten", colbert: "Colberts en blazers", jas: "Jassen",
   broek: "Broeken", jeans: "Jeans", rok: "Rokken", jurk: "Jurken", schoenen: "Schoenen", sneakers: "Sneakers", riem: "Riemen",
@@ -498,7 +574,7 @@ function ShopPage({ brand, palette, avoid, T, locale }: { brand: string; palette
         <p className="g-lede">{T.shopLede}</p>
         {cats.map((c) => (
           <div key={c} className="g-shop-cat">
-            <b>{(locale === "en" ? SHOP_LABEL_EN : SHOP_LABEL)[c] ?? c}</b>
+            <b>{({ nl: SHOP_LABEL, en: SHOP_LABEL_EN, de: SHOP_LABEL_DE, es: SHOP_LABEL_ES } as const)[locale][c] ?? c}</b>
             <div className="g-shop-row">
               {items.filter((i) => i.category === c).map((i) => (
                 <a key={i.id} className="g-shop-item" href={`/go/${i.id}`} target="_blank" rel="sponsored noopener nofollow" onClick={() => track("affiliate_click", { brand: brand as "kulort" | "nyanse", voice: "none" }, { shop: i.shop, category: i.category })}>

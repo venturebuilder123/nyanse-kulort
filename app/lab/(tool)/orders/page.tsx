@@ -10,7 +10,8 @@ type Order = {
   /** the card language to pack (assets/passes/print/{nl,en}) */
   locale?: string | null;
 };
-const lang = (o: Order) => (o.locale === "en" ? "EN" : "NL");
+// cards exist in Dutch and English; German and Spanish buyers get the English card
+const lang = (o: Order) => (!o.locale || o.locale === "nl" ? "NL" : "EN");
 
 const TIER: Record<string, string> = { digital: "Stijlgids", card: "Gids + pas", session: "Advies (video)" };
 const seasonName = (k: string | null) => (k && k in SEASONS ? SEASONS[k as SeasonKey].name : "–");

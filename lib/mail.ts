@@ -46,10 +46,24 @@ const MAIL = {
     shipped: "Your colour card is on its way. It usually arrives within a few working days.", stays: "Your style guide stays here:", tip: "Tip: keep the card in your wallet and hold it next to a garment in the shop.",
     shippedH1: "Your colour card <i>is on its way.</i>", shippedBody: "It usually arrives within a few working days. Keep it in your wallet and hold it next to a garment in the shop.", shippedSubject: (n: string) => `Your ${n} colour card is on its way`,
   },
+  de: {
+    paid: "Deine Zahlung ist eingegangen. Danke schön.", open: "Öffne deinen persönlichen Style-Guide:", card: "Deine Farbkarte geht innerhalb von etwa einer Woche in die Post.",
+    session: "Für deine persönliche Farbberatung: Antworte auf diese E-Mail mit 3 Fotos bei Tageslicht, ohne Filter: dein Gesicht ohne Make-up und 2 Kleidungsstücke, bei denen du unsicher bist (unter dem Kinn). Innerhalb von 3 Werktagen nach deinen Fotos bekommst du ein persönliches Video von unserer Farbberaterin.",
+    keep: "Bewahre diese E-Mail auf: Mit dem Link öffnest du deinen Guide auf jedem Gerät.", h1: "Dein Style-Guide <i>ist fertig.</i>", cta: "Meinen Style-Guide öffnen", subject: (n: string) => `Dein ${n}-Style-Guide ist fertig`,
+    shipped: "Deine Farbkarte ist unterwegs. Meist ist sie in ein paar Werktagen in deinem Briefkasten.", stays: "Dein Style-Guide bleibt hier:", tip: "Tipp: Bewahre die Karte in deinem Portemonnaie auf und halte sie im Laden neben ein Kleidungsstück.",
+    shippedH1: "Deine Farbkarte <i>ist unterwegs.</i>", shippedBody: "Meist ist sie in ein paar Werktagen in deinem Briefkasten. Bewahre sie im Portemonnaie auf und halte sie im Laden neben ein Kleidungsstück.", shippedSubject: (n: string) => `Deine ${n}-Farbkarte ist unterwegs`,
+  },
+  es: {
+    paid: "Hemos recibido tu pago. Gracias.", open: "Abre tu guía de estilo personal:", card: "Tu tarjeta de color sale por correo en aproximadamente una semana.",
+    session: "Para tu asesoría de color personal: responde a este e-mail con 3 fotos con luz natural, sin filtro: tu cara sin maquillaje y 2 prendas sobre las que dudas (bajo la barbilla). En 3 días laborables tras recibir tus fotos tendrás un vídeo personal de nuestra asesora de color.",
+    keep: "Guarda este e-mail: con el enlace abres tu guía en cualquier dispositivo.", h1: "Tu guía de estilo <i>está lista.</i>", cta: "Abrir mi guía de estilo", subject: (n: string) => `Tu guía de estilo ${n} está lista`,
+    shipped: "Tu tarjeta de color está en camino. Suele llegar en unos días laborables.", stays: "Tu guía de estilo sigue aquí:", tip: "Consejo: guarda la tarjeta en la cartera y ponla junto a una prenda en la tienda.",
+    shippedH1: "Tu tarjeta de color <i>está en camino.</i>", shippedBody: "Suele llegar en unos días laborables. Guárdala en la cartera y ponla junto a una prenda en la tienda.", shippedSubject: (n: string) => `Tu tarjeta de color ${n} está en camino`,
+  },
 } as const;
 
 /** The mail after payment: one message, one button, the house style (BRANDBOOK §7). */
-export function guideMail(o: { brand: string; tier: string; link: string; locale?: "nl" | "en" }) {
+export function guideMail(o: { brand: string; tier: string; link: string; locale?: "nl" | "en" | "de" | "es" }) {
   const M = MAIL[o.locale ?? "nl"];
   const name = o.brand === "kulort" ? "KULØRT" : "NYANSE";
   const pass = o.tier !== "digital";
@@ -60,7 +74,7 @@ export function guideMail(o: { brand: string; tier: string; link: string; locale
 }
 
 /** "Je pas is onderweg": when the founder marks the colour card as shipped (CLAUDE.md §7). */
-export function shippedMail(o: { brand: string; link: string; locale?: "nl" | "en" }) {
+export function shippedMail(o: { brand: string; link: string; locale?: "nl" | "en" | "de" | "es" }) {
   const M = MAIL[o.locale ?? "nl"];
   const name = o.brand === "kulort" ? "KULØRT" : "NYANSE";
   const text = [M.shipped, ``, `${M.stays} ${o.link}`, ``, M.tip, ``, `${name} · kulort-nyanse.com`].join("\n");

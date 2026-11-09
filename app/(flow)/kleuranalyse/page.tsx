@@ -19,7 +19,8 @@ const DESCRIPTION_EN =
 
 export async function generateMetadata() {
   const { locale } = await currentBrand();
-  const en = locale === "en";
+  // German and Spanish readers get the English article for now (a translation can follow)
+  const en = locale !== "nl";
   const [title, description, url] = en ? [TITLE_EN, DESCRIPTION_EN, URL_EN] : [TITLE, DESCRIPTION, URL];
   return {
     title: `${title} · KULØRT · NYANSE`,
@@ -80,7 +81,7 @@ function Cta() {
 
 export default async function ColourAnalysis() {
   const { locale } = await currentBrand();
-  if (locale === "en") return <ColourAnalysisEn />;
+  if (locale !== "nl") return <ColourAnalysisEn />;
   return (
     <main className="screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldArticle) }} />

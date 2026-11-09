@@ -3,11 +3,12 @@ import { COMPANY } from "@/lib/company";
 import { AppBar, Footer } from "../ui";
 import { currentBrand } from "../brand";
 import DeleteProfile from "./DeleteProfile";
+import { PrivacyDe, PrivacyEs } from "./PrivacyIntl";
 
 // Privacy statement for both brands (CLAUDE.md §9), in Dutch and English (21 Oct 2026).
 export default async function Privacy() {
   const { locale } = await currentBrand();
-  return locale === "en" ? <PrivacyEn /> : <PrivacyNl />;
+  return locale === "en" ? <PrivacyEn /> : locale === "de" ? <PrivacyDe /> : locale === "es" ? <PrivacyEs /> : <PrivacyNl />;
 }
 
 function PrivacyNl() {

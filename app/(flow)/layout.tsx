@@ -12,8 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: copy.meta.title,
     description: copy.meta.description,
-    // the English home exists once English is switched on; search engines get both
-    ...(enabledLocales().includes("en") ? { alternates: { languages: { nl: "https://www.kulort-nyanse.com/", en: "https://www.kulort-nyanse.com/en", "x-default": "https://www.kulort-nyanse.com/" } } } : {}),
+    // every switched-on language has its own home URL; search engines get all of them
+    alternates: { languages: { ...Object.fromEntries(enabledLocales().map((l) => [l, `https://www.kulort-nyanse.com${l === "nl" ? "/" : `/${l}`}`])), "x-default": "https://www.kulort-nyanse.com/" } },
     manifest: "/manifest.webmanifest",
     appleWebApp: { capable: true, title: config.name, statusBarStyle: "default" },
     // the house monogram Ø|N for both brands; app/favicon.ico (picked up by Next.js) covers the browser tab

@@ -56,4 +56,59 @@ const en: Dict = {
   },
 };
 
-export const UI = { nl, en } as const;
+// German and Spanish (9 Nov 2026)
+const de: Dict = {
+  nav: { colourAnalysis: "Farbanalyse", contact: "Kontakt", how: "So funktioniert's", prices: "Preise", start: "Kostenlos starten" },
+  steps: { label: (n, of) => `Schritt ${n} von ${of}`, names: ["Du", "Selfie", "Analyse", "Ergebnis"] },
+  footer: { terms: "AGB", privacy: "Datenschutz", vat: "Preise inkl. MwSt." },
+  switchTo: { kulort: "Für Männer", nyanse: "Für Frauen" },
+  home: {
+    eyebrow: "Farbanalyse mit einem Selfie",
+    h1: ["Deine Farben.", "Dein Kleiderschrank. Dein Guide."],
+    sub: "Finde in wenigen Minuten heraus, welche Farben dir stehen. Kostenlos, mit einem Selfie.",
+    doors: { kulort: ["Für ihn", "Der erste Eindruck: erledigt."], nyanse: ["Für sie", "Weniger kaufen, besser wählen."] },
+    begin: "Kostenlos starten",
+    facts: (price) => ["Farbprofil kostenlos", "Dein Foto wird nirgends gespeichert", `Style-Guide ab ${price}`, "Farbkarte per Post"],
+    proof: { eyebrow: "Der Effekt", h2: ["Gleiches Gesicht.", "Andere Farbe."], text: "Eine Farbe, die zu dir passt, lässt deine Haut ebenmäßig und deine Augen klar wirken. Eine Farbe, die nicht passt, lenkt vom Gesicht ab. Den Unterschied siehst du auf einen Blick, und danach überall." },
+    how: { eyebrow: "So funktioniert's", h2: ["Drei Schritte.", "Ein Kleiderschrank, der zusammenpasst."], steps: [["Ein Selfie", "Bei Tageslicht, ohne Filter. Ein paar Minuten, ohne Konto."], ["Dein Farbprofil", "Dein Farbtyp, deine besten Farben und was du hängen lassen kannst. Kostenlos."], ["Dein Style-Guide", "30 Farben mit Namen, Outfits, deine ersten fünf Käufe und ein Kleiderschrank-Check. Als PDF und auf dem Handy."]] },
+    band: ["Weniger kaufen.", "Besser wählen."],
+    prices: {
+      eyebrow: "Was es kostet", h2: ["Kostenlos starten.", "Dann wählen, was passt."],
+      tiers: [["Farbprofil", "Kostenlos", "Dein Farbtyp, dein Platz auf den drei Skalen und deine 6 besten Farben."], ["Style-Guide", "", "Alle 30 Farben, Looks pro Anlass, deine Capsule und dein Kleiderschrank-Check. Sofort als PDF."], ["Style-Guide + Farbkarte", "", "Plus eine stabile Karte mit deinen 8 Kernfarben für dein Portemonnaie. Kostenloser Versand."], ["Persönliche Farbberatung", "", "Eine Farbberaterin sieht sich deine Fotos an und schickt dir ein persönliches Video. Ohne Termin."]],
+      badge: "Empfehlung", fine: "Preise inkl. MwSt. Du zahlst erst, wenn du deinen Style-Guide wählst, nach deinem kostenlosen Profil.",
+    },
+    seasons: { eyebrow: "Vier Jahreszeiten, zwölf Farbtypen", h2: ["Welche Jahreszeit", "bist du?"], names: [["Frühling", "warm und klar"], ["Sommer", "kühl und sanft"], ["Herbst", "warm und tief"], ["Winter", "kühl und kontrastreich"]], more: "Alles über Farbanalyse und die 12 Farbtypen →" },
+    faqTitle: "Fragen",
+    faq: [["Wie funktioniert es?", "Du machst ein Selfie bei Tageslicht. Die Analyse läuft auf deinem Handy und misst Unterton, Tiefe und Klarheit. Daraus ergibt sich dein Farbtyp mit deinen besten Farben. Das Profil ist kostenlos."], ["Was steht im Style-Guide?", "Alle 30 Farben mit Namen, Kombinationen für Arbeit, Wochenende, Date und Party, deine Basics (Weiß, Dunkel, Denim), deine ersten fünf Käufe, ein Kleiderschrank-Check und die Farben für Uhr, Schmuck und Make-up. Als PDF und auf dem Handy."], ["Ich kenne meinen Farbtyp schon?", "Dann wähle ihn selbst und geh direkt zu deinen Farben und deinem Style-Guide, ohne Selfie."], ["Was passiert mit meinem Foto?", "Es wird nicht an uns geschickt und nirgends gespeichert."]],
+    final: { h2: ["Bereit für", "deine Farben", "?"], sub: "Kostenlos, mit einem Selfie. Für sie oder für ihn?" },
+  },
+};
+
+const es: Dict = {
+  nav: { colourAnalysis: "Análisis de color", contact: "Contacto", how: "Cómo funciona", prices: "Precios", start: "Empieza gratis" },
+  steps: { label: (n, of) => `Paso ${n} de ${of}`, names: ["Tú", "Selfie", "Análisis", "Resultado"] },
+  footer: { terms: "Condiciones", privacy: "Privacidad", vat: "Precios con IVA incluido" },
+  switchTo: { kulort: "Para hombres", nyanse: "Para mujeres" },
+  home: {
+    eyebrow: "Análisis de color con un selfie",
+    h1: ["Tus colores.", "Tu armario. Tu guía."],
+    sub: "Descubre en pocos minutos qué colores te favorecen. Gratis, con un solo selfie.",
+    doors: { kulort: ["Para él", "La primera impresión, resuelta."], nyanse: ["Para ella", "Compra menos, elige mejor."] },
+    begin: "Empieza gratis",
+    facts: (price) => ["Perfil de color gratis", "Tu foto no se guarda en ningún sitio", `Guía de estilo desde ${price}`, "Tarjeta de color por correo"],
+    proof: { eyebrow: "El efecto", h2: ["La misma cara.", "Otro color."], text: "Un color que te favorece hace que tu piel se vea uniforme y tus ojos claros. Un color que no te favorece aparta la atención de tu cara. Ves la diferencia de un vistazo, y después la ves en todas partes." },
+    how: { eyebrow: "Cómo funciona", h2: ["Tres pasos.", "Un armario que combina."], steps: [["Un selfie", "Con luz natural, sin filtro. Unos minutos, sin cuenta."], ["Tu perfil de color", "Tu tipo de color, tus mejores colores y lo que mejor dejar en la percha. Gratis."], ["Tu guía de estilo", "30 colores con nombre, looks, tus cinco primeras compras y una revisión de armario. En PDF y en tu móvil."]] },
+    band: ["Compra menos.", "Elige mejor."],
+    prices: {
+      eyebrow: "Lo que cuesta", h2: ["Empieza gratis.", "Luego elige lo que te va."],
+      tiers: [["Perfil de color", "Gratis", "Tu tipo de color, tu lugar en las tres escalas y tus 6 mejores colores."], ["Guía de estilo", "", "Tus 30 colores, looks por ocasión, tu cápsula y tu revisión de armario. Al instante en PDF."], ["Guía de estilo + tarjeta de color", "", "Más una tarjeta resistente con tus 8 colores clave, para la cartera. Envío gratis."], ["Asesoría de color personal", "", "Una asesora de color mira tus fotos y te envía un vídeo personal. Sin cita."]],
+      badge: "Recomendado", fine: "Precios con IVA incluido. Solo pagas cuando eliges tu guía de estilo, después de tu perfil gratuito.",
+    },
+    seasons: { eyebrow: "Cuatro estaciones, doce tipos de color", h2: ["¿Qué estación", "eres?"], names: [["Primavera", "cálida y clara"], ["Verano", "fresco y suave"], ["Otoño", "cálido y profundo"], ["Invierno", "frío y contrastado"]], more: "Todo sobre el análisis de color y los 12 tipos →" },
+    faqTitle: "Preguntas",
+    faq: [["¿Cómo funciona?", "Te haces un selfie con luz natural. El análisis se hace en tu móvil y mide tu subtono, profundidad y claridad. De ahí sale tu tipo de color, con tus mejores colores. El perfil es gratis."], ["¿Qué incluye la guía de estilo?", "Tus 30 colores con nombre, combinaciones para trabajo, fin de semana, citas y fiestas, tus básicos (blanco, oscuro, denim), tus cinco primeras compras, una revisión de armario y los colores para reloj, joyas y maquillaje. En PDF y en tu móvil."], ["¿Ya sé mi tipo de color?", "Entonces elígelo tú y ve directamente a tus colores y tu guía, sin selfie."], ["¿Qué pasa con mi foto?", "No se nos envía y no se guarda en ningún sitio."]],
+    final: { h2: ["¿Quieres ver", "tus colores", "?"], sub: "Gratis, con un selfie. ¿Para ella o para él?" },
+  },
+};
+
+export const UI = { nl, en, de, es } as const;

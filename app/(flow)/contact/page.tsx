@@ -2,6 +2,7 @@ import Link from "next/link";
 import { COMPANY } from "@/lib/company";
 import { currentBrand } from "../brand";
 import { AppBar, Footer } from "../ui";
+import { ContactDe, ContactEs } from "./ContactIntl";
 
 export const metadata = { title: "Contact · KULØRT · NYANSE" };
 
@@ -9,6 +10,8 @@ export const metadata = { title: "Contact · KULØRT · NYANSE" };
 export default async function Contact() {
   const { locale } = await currentBrand();
   if (locale === "en") return <ContactEn />;
+  if (locale === "de") return <ContactDe />;
+  if (locale === "es") return <ContactEs />;
   return (
     <main className="screen">
       <AppBar />

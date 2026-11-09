@@ -78,6 +78,9 @@ Zelfde mensen als hierboven: upload het portret en zeg *"Same person as in this 
 | `kulort-v2-3.jpg` | kulort-jong-4 | Warm Spring: camel, warm white, light denim | weekend market, sunlight, laughing with off-camera friends |
 | `kulort-v2-4.jpg` | kulort-jong-5 | Bright Winter: cobalt, black, white | minimal gallery space, bold and clean |
 
+## C2. Voorkant van de stijlgids
+De voorkant van elke gids gebruikt nu een ouder seizoensportret (`public/brand/heroes/`). Zodra de campagnebeelden uit C er zijn, laat ik de voorkant per seizoensfamilie het passende jonge campagnebeeld van het eigen merk kiezen. Daarvoor hoef je niets extra te maken.
+
 ## D. Aanleveren
 1. Portretten in `public/brand/people/` met precies de namen hierboven. Ze vervangen de huidige `-jong-` beelden.
 2. Campagnebeelden in `public/brand/editorial/` (4:5) en `public/brand/editorial/story/` (9:16).

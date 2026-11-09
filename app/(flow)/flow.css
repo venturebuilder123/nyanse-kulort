@@ -1272,3 +1272,19 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
   .l-stage .st-fan i { height: 200px; width: 50px; left: -25px; transform-origin: 25px 300px; }
   .l-stage .st-label b { font-size: 28px; }
 }
+
+/* language: all four inline on desktop, a compact menu on phones (9 Nov 2026) */
+.lang-row { display: inline-flex; align-items: center; gap: 4px; }
+.lang-item { display: inline-flex; align-items: center; gap: 4px; }
+.lang-menu { position: relative; display: none; }
+.lang-menu select { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; font-size: 16px; cursor: pointer; }
+.lang-menu-face { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px; background: rgba(0,0,0,.06); color: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: .06em; }
+.lang-menu:focus-within .lang-menu-face { outline: 2px solid var(--ink); outline-offset: 2px; }
+@media (max-width: 899px) {
+  .lang-top .lang-row { display: none; }
+  .lang-top .lang-menu { display: inline-flex; }
+}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* longer words in German and Spanish (9 Nov 2026): on the smallest phones the header keeps the logo and
+   the language menu; the big brand buttons sit right below it */
+@media (max-width: 380px) { .mh-top-cta { display: none; } }

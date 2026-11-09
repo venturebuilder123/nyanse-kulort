@@ -1,5 +1,6 @@
 "use client";
 
+import { colourName } from "@/lib/i18n/words";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
@@ -160,7 +161,7 @@ export default function Split() {
       <div className="mh-ribbon" aria-hidden="true">
         <div className="mh-ribbon-track">
           {[...RIBBON, ...RIBBON].map(([hex, nl, en], i) => (
-            <span key={i}><i style={{ background: hex }} />{locale === "en" ? en : nl}</span>
+            <span key={i}><i style={{ background: hex }} />{locale === "nl" ? nl : locale === "en" ? en : colourName(nl, locale)}</span>
           ))}
         </div>
       </div>

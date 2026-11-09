@@ -1,0 +1,226 @@
+import type { AnalysisCopy, EmailCopy, ResultCopy, SelfieCopy, VoiceCopy } from "./types";
+
+// Shared Spanish copy (9 Nov 2026), same structure as common.en.ts. Informal "tú", prices as 12,99 €,
+// gender-neutral where both brands read it. The withdrawal line contains "las condiciones": the checkout
+// turns those words into the link to the terms.
+
+const SELFIE_BASE_ES: SelfieCopy = {
+  pill: "Gratis",
+  intro: "Un selfie, con luz natural",
+  introText: "El análisis de color se hace en tu móvil. Mira de frente a la cámara, con luz natural, sin filtro ni gafas.",
+  under16: "¿Menos de 16? Todavía no puedes hacerlo.",
+  startCamera: "Tengo 16+ · activar cámara",
+  denied: "No hay acceso a tu cámara. Permítelo en los ajustes del navegador (iPhone: Ajustes › Safari › Cámara) o hazte un selfie con la app de cámara.",
+  hold: "No te muevas…",
+  tips: { face: "Cara en el óvalo", light: "Luz suficiente", even: "Luz uniforme" },
+  fixTips: {
+    faces: "Solo tú en la imagen, por favor.",
+    face: "Un poco más cerca, en el centro del óvalo.",
+    light: "Gírate hacia la ventana, no de espaldas a ella.",
+    even: "Ponte de frente a la ventana para que la luz llegue a las dos mejillas.",
+  },
+  issueTips: {
+    dark: "Está algo oscuro. Ponte de cara a una ventana.",
+    uneven: "Un lado está en sombra. Ponte de frente a la ventana.",
+    overexposed: "Demasiada luz. Sal del sol directo y apaga el flash.",
+    small: "Acércate un poco a la cámara.",
+    faces: "Solo tú en la imagen, por favor.",
+    eyes: "Quítate las gafas un momento y mira de frente a la cámara.",
+    skin: "Apártate el pelo de la cara un momento.",
+  },
+  loadSlow: "Está tardando. Prueba con wifi.",
+  retryLoad: "Reintentar",
+  desktopTitle: "Va mejor en el móvil",
+  desktopText: "Escanea el código con la cámara de tu móvil. Tus respuestas se vienen contigo.",
+  hint: "Luz natural, sin gafas, prenda neutra",
+  clothing: "Lleva algo neutro (blanco, gris, beige) o ponte una toalla blanca sobre los hombros: una prenda llamativa tiñe tu piel en la foto.",
+  age: "Tengo 16 años o más",
+  start: "Empezar mi análisis de color",
+  busy: "Un momento…",
+  loading: "Iniciando la cámara…",
+  trust: "Tu foto no sale de tu móvil",
+  takePhoto: "Hacer un selfie",
+  pickPhoto: "¿Prefieres una foto de tu galería? Solo tuya, 16+.",
+  noCamera: "Toca aquí y hazte un selfie con tu cámara.",
+  retryTitle: "¿Otro selfie?",
+  retryGeneric: "Ponte junto a una ventana, de cara a la luz.",
+  noFace: "No vemos bien tu cara. Mira de frente a la cámara.",
+  failed: "No ha funcionado. Inténtalo de nuevo.",
+};
+
+export const SELFIE_ES = SELFIE_BASE_ES;
+export const SELFIE_ES_NYANSE: SelfieCopy = { ...SELFIE_BASE_ES, introExtra: "La base de maquillaje cambia tu tono de piel: mejor sin ella, o con tu maquillaje de día habitual." };
+
+const ANALYSIS_BASE_ES = {
+  pill: "Casi listo",
+  label: "Probando paños de color",
+  scales: { undertone: "Subtono", depth: "Profundidad", clarity: "Claridad" },
+  goodLines: ["ilumina tu cara", "le da a tu piel un brillo fresco", "hace que hablen tus ojos"],
+  badLines: ["aparta la atención de tu cara", "se apaga junto a tu piel", "es demasiado junto a tu cara"],
+  questionsTitle: "Unas preguntas rápidas para afinar aún más tu perfil",
+  skinQ: "Creemos que este es tu color de piel. ¿Es correcto?",
+  skinHint: "Pon tu mano junto a la pantalla, con luz natural.",
+  irisQ: "¿Y tus ojos?",
+  irisHint: "Échate un vistazo rápido en el espejo.",
+  hairShadeQ: "¿Y tu color de pelo?",
+  hairShadeHint: "Tu color natural, en la raíz.",
+  shade: { lighter: "Más claro", match: "Es correcto", darker: "Más oscuro" },
+  hairQ: "¿Es tu color de pelo natural?",
+  hair: { natural: "Sí, natural", dyed: "Teñido", grey: "Gris o blanco", none: "Sin pelo", covered: "Cubierto (pañuelo, gorra)" },
+  jewel: { goud: "Oro", zilver: "Plata", weetniet: "Me da igual" },
+  thanks: "Genial, anotado.",
+  waiting: "Probando colores…",
+  cta: "Ver mis colores",
+  skip: "Saltar",
+};
+export const analysisEs = (jewelQ: string): AnalysisCopy => ({ ...ANALYSIS_BASE_ES, jewelQ });
+
+const EMAIL_BASE_ES = {
+  pill: "Perfil listo",
+  teaser: "Tu tipo de color y 6 colores están listos",
+  lead: "¿Adónde te enviamos tu perfil de color?",
+  placeholder: "tu@ejemplo.es",
+  optin: "Un look y consejos de rebajas en mis colores, cada mes",
+  submit: "Guardar y ver",
+  skip: "Ahora no, enséñamelo",
+  invalid: "Escribe una dirección de e-mail válida, por ejemplo tu@ejemplo.es.",
+};
+export const emailEs = (headline: EmailCopy["headline"]): EmailCopy => ({ ...EMAIL_BASE_ES, headline });
+
+const RESULT_BASE_ES: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
+  pill: "Perfil gratis",
+  welcomeBack: "Hola de nuevo: eres {familie}.",
+  seeColors: "Ver mis colores",
+  startOver: "Empezar de nuevo",
+  noPhoto: "No guardamos tu foto, ni siquiera en tu móvil. ¿Quieres ver la diferencia? Hazte un selfie nuevo.",
+  newSelfie: "Selfie nuevo",
+  lowCta: "Otro selfie con luz natural",
+  lowTiersNote: "Tu guía usa tu mejor selfie. ¿Un selfie nuevo? Tu guía se actualiza gratis.",
+  mailTitle: "Envíame mi perfil por e-mail",
+  mailCta: "Enviar",
+  mailDone: "Guardado. Tu perfil va de camino a {email}.",
+  deleteProfile: "Borrar mi perfil",
+  deleted: "Tu perfil se ha borrado de este dispositivo.",
+  label: "Tu tipo de color",
+  provisional: "Provisional",
+  between: "en el límite con {b}",
+  typeLabel: "Tu tipo exacto",
+  scalesTitle: "Cómo es tu colorido",
+  avoidTitle: "Mejor no cerca de la cara",
+  avoidText: "Estos colores juegan en tu contra. Evita llevarlos justo debajo de la cara.",
+  baTitle: "Mira la diferencia",
+  baHint: "Desliza para comparar",
+  lowConfidence: "Tu foto era difícil de leer, así que este perfil es provisional. Un selfie con luz natural lo hace más preciso.",
+  lowConfidenceCta: "Otro selfie",
+  lockedTitle: "Lo que añade la guía",
+  lockedWhy: "Tu paleta completa tiene 30 colores. Los 6 primeros te los regalamos. Los otros 24, con nombre y cómo combinarlos, están en tu guía de estilo.",
+  tiersTitle: "Elige tu guía de estilo",
+  tiers: {
+    digital: {
+      name: "Guía de estilo",
+      line: "Al instante en tu móvil y en PDF",
+      features: ["Tus 30 colores, con nombre", "4 looks y una cápsula de 12 prendas", "Metales, piel y lo que mejor dejar en la percha"],
+    },
+    card: {
+      name: "Guía de estilo + tarjeta de color",
+      badge: "Recomendado",
+      line: "Tus colores siempre contigo, también en el probador",
+      note: "Envío gratis a NL, BE y DE, en una semana aprox.",
+      features: ["Todo lo de la guía de estilo", "Una tarjeta resistente con tus 8 colores clave, para la cartera"],
+    },
+    session: {
+      name: "Asesoría de color personal",
+      line: "Una asesora de color mira tus fotos y graba un vídeo para ti",
+      note: "Sin cita, en tu bandeja de entrada en 3 días laborables",
+      features: ["Todo lo de la guía + tarjeta", "Tu resultado revisado por una asesora de color", "Un vídeo personal sobre tus colores y tu propio armario"],
+    },
+  },
+  ctaChoose: "Elige tu guía",
+  buyCard: "Elegir guía + tarjeta · {price}",
+  buyDigital: "Elegir guía de estilo · {price}",
+  buySession: "Elegir asesoría personal · {price}",
+  ctaFrom: "Ver tu guía · desde {price}",
+  mailLater: "¿Necesitas un momento? Envíame mi perfil por e-mail",
+  next: "Abajo: tus colores, tu look y lo que mejor dejar en la percha",
+  ctaDigital: "Quiero mi guía",
+  ctaCard: "Quiero mi guía + tarjeta",
+  fine: "Precios con IVA y envío incluidos.",
+  checkout: {
+    pay: "Pagar",
+    shipping: "Envío",
+    shippingWhen: "incluido · en una semana aprox.",
+    address: "¿Adónde enviamos tu tarjeta?",
+    name: "Nombre",
+    street: "Calle y número",
+    postcode: "Código postal",
+    city: "Ciudad",
+    country: "País",
+    countryNote: "Por ahora enviamos la tarjeta a Países Bajos, Bélgica y Alemania. Elige la guía digital o escríbenos.",
+    withdrawal: "Acepto las condiciones y quiero mi guía ya. Con ello pierdo el derecho de desistimiento sobre la guía.",
+    test: "Versión de prueba: los pagos están desactivados.",
+    close: "Cerrar",
+  },
+};
+export const resultEs = (colorsTitle: string, lockedItems: readonly string[], why: ResultCopy["why"]): ResultCopy => ({ ...RESULT_BASE_ES, colorsTitle, lockedItems, why });
+
+type Page = VoiceCopy["page"];
+export const pageEs = (o: { galleryTitle: Page["gallery"]["title"]; howTitle: Page["how"]["title"]; compareTitle: Page["compare"]["title"]; finalTitle: Page["final"]["title"]; accessories: string; trustTitle: Page["trust"]["title"] }): Page => ({
+  nav: { how: "Cómo funciona", prices: "Qué recibes", start: "Empieza gratis" },
+  gallery: { title: o.galleryTitle, text: "La misma foto, solo otro paño de color debajo. Exactamente lo que hace la app con tu selfie." },
+  how: {
+    title: o.howTitle,
+    steps: [
+      ["Un selfie", "Con luz natural, en tu móvil. El análisis se hace en tu dispositivo; tu foto no va a ningún sitio."],
+      ["Tu perfil de color", "Tu tipo exacto, tu lugar en las escalas de subtono, profundidad y claridad, y 6 colores que te favorecen. Gratis."],
+      ["Tu guía", "Tus 30 colores con nombre, combinaciones que funcionan y " + o.accessories + ". En PDF, con una tarjeta para las tiendas."],
+    ],
+  },
+  compare: {
+    title: o.compareTitle,
+    free: "Gratis",
+    paid: "Guía",
+    rows: [
+      ["Tu tipo de color exacto (1 de 12)", true, true],
+      ["Subtono, profundidad y claridad", true, true],
+      ["6 colores que te favorecen", true, true],
+      ["Colores que evitar", true, true],
+      ["Los 30 colores con nombre", false, true],
+      ["Combinaciones que funcionan", false, true],
+      [o.accessories.charAt(0).toUpperCase() + o.accessories.slice(1), false, true],
+      ["Tu guía de estilo personal en PDF", false, true],
+      ["Tarjeta de color digital (o una real por correo)", false, true],
+    ],
+  },
+  trust: {
+    title: o.trustTitle,
+    items: [
+      ["Tu foto se queda contigo", "El análisis se hace en tu móvil. No enviamos tu foto a ningún sitio ni la guardamos."],
+      ["Sin cuenta", "Tu perfil vive en tu propio dispositivo. Se borra con un toque."],
+      ["Recomendado por color", "Nunca por comisión. Te mostramos lo que te favorece, no lo que más nos conviene."],
+    ],
+  },
+  final: { title: o.finalTitle, cta: "Empieza gratis" },
+});
+
+type Retention = VoiceCopy["retention"];
+export const retentionEs = (o: { friend: string; friendLine: string; weekly: Retention["weekly"]["bodies"]; calm?: boolean }): Retention => ({
+  greet: o.calm ? "Hola de nuevo, {type}." : "{type}. Qué bien verte otra vez.",
+  resumeTitle: "Ya casi está.",
+  resumeText: "Quedan {n} pasos, unos {s} segundos. Tus respuestas están guardadas.",
+  resumeCta: o.calm ? "Seguir donde lo dejaste" : "Seguir",
+  resultText: "Tus colores están listos, tal como los dejaste.",
+  guideText: "Tu guía de estilo está lista.",
+  invited: "{naam} te ha enviado esto. Tienes 1 € de descuento en tu guía.",
+  invitedAnon: `Te lo ha enviado ${o.friend}. Tienes 1 € de descuento en tu guía.`,
+  friendLine: o.friendLine,
+  push: {
+    title: "Un color a la semana",
+    text: "Cada semana un color de tu paleta y cómo llevarlo. Como mucho un aviso a la semana, de día. Se desactiva con un toque.",
+    cta: o.calm ? "Recibir el color de la semana" : "Activar consejos de color",
+    on: "Activado. Tu primer color llega la semana que viene.",
+    off: o.calm ? "Desactivar el color de la semana" : "Desactivar consejos de color",
+    ios: "En iPhone funciona desde tu pantalla de inicio. Añade primero la app (paso de abajo) y ábrela desde ahí.",
+    denied: "Los avisos están desactivados en tus ajustes. Puedes volver a activarlos allí.",
+  },
+  weekly: { title: "{type} · color de la semana", bodies: o.weekly },
+});

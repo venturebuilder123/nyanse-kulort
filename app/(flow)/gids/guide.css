@@ -336,3 +336,6 @@
   .guide .g-strip.named span { font-size: 11px; }
   .guide .g-audit-piles { grid-template-columns: 1fr; gap: 14px; }
 }
+/* "not this, but this" stacks on phones, so long German and Spanish words never push the page wider */
+.guide .g-swap > * { min-width: 0; }
+@media (max-width: 700px) { .guide .g-swap { grid-template-columns: 1fr; gap: 10px; } }

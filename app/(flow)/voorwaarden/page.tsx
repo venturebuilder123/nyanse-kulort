@@ -3,6 +3,7 @@ import { COMPANY } from "@/lib/company";
 import { euro, PRICES } from "@/lib/flow/pricing";
 import { currentBrand } from "../brand";
 import { AppBar, Footer } from "../ui";
+import { TermsDe, TermsEs } from "./TermsIntl";
 
 export const metadata = {
   title: "Algemene voorwaarden · KULØRT · NYANSE",
@@ -13,7 +14,7 @@ export const metadata = {
 // English translation (21 Oct 2026) for EU customers; the Dutch text prevails.
 export default async function Terms() {
   const { locale } = await currentBrand();
-  return locale === "en" ? <TermsEn /> : <TermsNl />;
+  return locale === "en" ? <TermsEn /> : locale === "de" ? <TermsDe /> : locale === "es" ? <TermsEs /> : <TermsNl />;
 }
 
 function TermsNl() {

@@ -1,5 +1,6 @@
 "use client";
 
+import { guideFor } from "@/lib/guide/lang";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -12,7 +13,6 @@ import { LOW_CONFIDENCE } from "@/lib/color/profile";
 import { colorName, mostDifferent, paletteFor, showcase } from "@/lib/color/palette";
 import { FLOW } from "@/lib/i18n/flow";
 import { familyName, colourName, garmentName, scaleWord } from "@/lib/i18n/words";
-import { guideEn } from "@/lib/guide/en";
 import { track } from "@/lib/analytics";
 import { euro, PRICES, type Tier } from "@/lib/flow/pricing";
 import { suggestEmail } from "@/lib/flow/email";
@@ -113,7 +113,7 @@ export default function Result() {
   const six = config.key === "kulort" ? [...showcase(pal)].sort((a, b) => chroma(a.hex) - chroma(b.hex)) : showcase(pal);
   const bad = six[0] ? mostDifferent(six[0], pal.avoid) : undefined;
   const name = (c: (typeof six)[number]) => colourName(colorName(c, config.key), locale);
-  const g = locale === "en" ? guideEn(buildGuide(p, config.key)) : buildGuide(p, config.key);
+  const g = guideFor(buildGuide(p, config.key), locale);
   // the glow and the type name: the most vivid palette colour that is light enough to read on dark
   const glow =
     [...g.groups.flatMap((gr) => gr.colors)]

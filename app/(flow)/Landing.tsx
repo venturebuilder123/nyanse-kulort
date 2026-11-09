@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { OCCASIONS } from "@/lib/brand/config";
+import { labelIn, OCCASIONS } from "@/lib/brand/config";
 import type { OccasionKey } from "@/lib/brand/types";
 import { track } from "@/lib/analytics";
 import { SEASONS } from "@/lib/color/seasons";
@@ -153,7 +153,7 @@ export default function Landing() {
               {OCCASIONS.map((o) => (
                 <button key={o.key} className="tile" aria-pressed={answers.occasions.includes(o.key)} onClick={() => pick(o.key)}>
                   <OccasionIcon k={o.key} />
-                  {locale === "en" ? o.en : o.label}
+                  {labelIn(o, locale)}
                 </button>
               ))}
             </div>

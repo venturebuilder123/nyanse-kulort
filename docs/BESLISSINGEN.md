@@ -2,6 +2,15 @@
 
 Nieuwste bovenaan. Per beslissing: wat, waarom, en wat het kost.
 
+## 9 november 2026 — Duits en Spaans live; stijlgids in de nieuwe stijl
+
+- **Talen:** NL, EN, DE en ES. Adressen /de en /es. Het talenmenu toont op desktop alle vier en is op telefoons een compact menu ("NL ▾"). De taalsuggestie volgt de browsertaal. Bedragen in de lokale notatie (12,99 €).
+- **Vertaald:** de hele flow, alle vijf stemmen, de stijlgids (via de Engelse laag, met een test die alle 24 gidsen controleert), de seizoensteksten, de mails, privacy, AGB/condiciones en contact. De Duitse contactpagina is ook het Impressum.
+- **Nog Engels voor DE/ES:** het lange artikel /kleuranalyse (vertaling kan later). De kleurenpas bestaat in NL en EN; Duitse en Spaanse kopers krijgen de Engelse pas.
+- **Juridisch:** de Duitse en Spaanse voorwaarden zijn vertalingen; de Nederlandse tekst gaat voor. Laat ze samen met NL en EN door een jurist checken, vooral de zin over het vervallen van het herroepingsrecht.
+- **Stijlgids:** koppen in de nieuwe stijl, kleurnamen breken niet meer letter voor letter af, en "Houden / Weg" en "Niet dit, maar dit" staan op telefoons onder elkaar. De voorkant krijgt de nieuwe modellen zodra die er zijn.
+- **Kosten:** €0.
+
 ## 9 november 2026 — koerswijziging: bereik en een jonger design
 
 - **FEIT:** 7 betaalde bestellingen, allemaal van 14 tot 23 oktober. Sindsdien geen. Meta blokkeert de Instagram-API sinds 23 oktober elke dag. Nog geen SEASON-reacties.

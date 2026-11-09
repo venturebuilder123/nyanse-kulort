@@ -1,8 +1,9 @@
-// Words that come out of the (Dutch) colour engine, shown in the visitor's language.
-import { colourSafe, FAMILY_EN, itemSafe, SCALE_WORD_EN } from "@/lib/guide/en";
+// Single words in the visitor's language (colour names, scale words, season families, garments).
+// The engine and the data speak Dutch; lib/guide/lang.ts holds the translations.
 import type { Locale } from "./locale";
+import { colourIn_, familyIn, itemIn, scaleIn } from "@/lib/guide/lang";
 
-export const colourName = (nl: string, locale: Locale) => (locale === "en" ? colourSafe(nl) : nl);
-export const scaleWord = (nl: string, locale: Locale) => (locale === "en" ? SCALE_WORD_EN[nl] ?? nl : nl);
-export const familyName = (nl: string, locale: Locale) => (locale === "en" ? FAMILY_EN[nl] ?? nl : nl);
-export const garmentName = (nl: string, locale: Locale) => (locale === "en" ? itemSafe(nl) : nl);
+export const colourName = (nl: string, locale: Locale) => colourIn_(nl, locale);
+export const scaleWord = (nl: string, locale: Locale) => scaleIn(nl, locale);
+export const familyName = (nl: string, locale: Locale) => familyIn(nl, locale);
+export const garmentName = (nl: string, locale: Locale) => itemIn(nl, locale);

@@ -1,5 +1,6 @@
 "use client";
 
+import { prefixOf } from "@/lib/i18n/locale";
 import { useState } from "react";
 import { track } from "@/lib/analytics";
 import { FLOW } from "@/lib/i18n/flow";
@@ -80,7 +81,7 @@ export function ShareCard({ season, colours, photo }: { season: string; colours:
     try {
       const blob = await draw({ season, colours, photo: withPhoto ? photo : null, T });
       const file = new File([blob], `${season.toLowerCase().replace(/\s+/g, "-")}.png`, { type: "image/png" });
-      const url = `https://www.kulort-nyanse.com${locale === "en" ? "/en" : ""}/?utm_source=share&utm_medium=story&utm_content=${encodeURIComponent(season.toLowerCase().replace(/\s+/g, "-"))}`;
+      const url = `https://www.kulort-nyanse.com${prefixOf(locale)}/?utm_source=share&utm_medium=story&utm_content=${encodeURIComponent(season.toLowerCase().replace(/\s+/g, "-"))}`;
       if (navigator.canShare?.({ files: [file] })) {
         await navigator.share({ files: [file], text: `${T.text(season)} ${url}` });
         track("share_clicked", ctx, { season, photo: withPhoto, method: "share" });

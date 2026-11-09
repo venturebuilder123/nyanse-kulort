@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BUDGETS } from "@/lib/brand/config";
+import { BUDGETS, labelIn } from "@/lib/brand/config";
 import { FLOW } from "@/lib/i18n/flow";
 import { track } from "@/lib/analytics";
 import { cleanShop, EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
@@ -54,7 +54,7 @@ export default function Style() {
           <div className="chips">
             {BUDGETS.map((b) => (
               <button key={b.key} aria-pressed={a.budget === b.key} onClick={() => update({ ...a, budget: b.key })}>
-                {locale === "en" ? b.en : b.label}
+                {labelIn(b, locale)}
               </button>
             ))}
           </div>

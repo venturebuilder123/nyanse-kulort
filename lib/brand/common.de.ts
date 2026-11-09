@@ -1,0 +1,225 @@
+import type { AnalysisCopy, EmailCopy, ResultCopy, SelfieCopy, VoiceCopy } from "./types";
+
+// Shared German copy (9 Nov 2026), same structure as common.en.ts. Informal "du"; prices as 12,99 €.
+// The withdrawal line contains "die AGB": the checkout turns those words into the link to the terms.
+
+const SELFIE_BASE_DE: SelfieCopy = {
+  pill: "Kostenlos",
+  intro: "Ein Selfie, bei Tageslicht",
+  introText: "Die Farbanalyse läuft auf deinem Handy. Schau gerade in die Kamera, bei Tageslicht, ohne Filter oder Brille.",
+  under16: "Unter 16? Dann kannst du das noch nicht machen.",
+  startCamera: "Ich bin 16+ · Kamera an",
+  denied: "Kein Zugriff auf deine Kamera. Erlaube ihn in den Browser-Einstellungen (iPhone: Einstellungen › Safari › Kamera) oder mach ein Selfie mit deiner Kamera-App.",
+  hold: "Kurz stillhalten…",
+  tips: { face: "Gesicht im Oval", light: "Genug Licht", even: "Gleichmäßiges Licht" },
+  fixTips: {
+    faces: "Bitte nur du im Bild.",
+    face: "Etwas näher, mitten ins Oval.",
+    light: "Dreh dich zum Fenster, nicht mit dem Rücken dazu.",
+    even: "Stell dich gerade vors Fenster, damit beide Wangen Licht bekommen.",
+  },
+  issueTips: {
+    dark: "Es ist etwas dunkel. Dreh dich zu einem Fenster.",
+    uneven: "Eine Seite liegt im Schatten. Stell dich gerade vors Fenster.",
+    overexposed: "Zu hell. Geh aus der direkten Sonne und schalte den Blitz aus.",
+    small: "Komm etwas näher an die Kamera.",
+    faces: "Bitte nur du im Bild.",
+    eyes: "Nimm kurz die Brille ab und schau gerade in die Kamera.",
+    skin: "Streich dir kurz die Haare aus dem Gesicht.",
+  },
+  loadSlow: "Das dauert etwas. Versuch es im WLAN.",
+  retryLoad: "Erneut versuchen",
+  desktopTitle: "Auf dem Handy geht es besser",
+  desktopText: "Scanne den Code mit deiner Handykamera. Deine Antworten kommen mit.",
+  hint: "Tageslicht, Brille ab, neutrales Oberteil",
+  clothing: "Trag etwas Neutrales (Weiß, Grau, Beige) oder leg ein weißes Handtuch um die Schultern: Ein knalliges Oberteil färbt deine Haut auf dem Foto.",
+  age: "Ich bin 16 oder älter",
+  start: "Meine Farbanalyse starten",
+  busy: "Einen Moment…",
+  loading: "Kamera startet…",
+  trust: "Dein Foto verlässt dein Handy nicht",
+  takePhoto: "Selfie machen",
+  pickPhoto: "Lieber ein Foto aus deiner Galerie? Nur von dir selbst, 16+.",
+  noCamera: "Tippe hier und mach ein Selfie mit deiner Kamera.",
+  retryTitle: "Noch ein Selfie?",
+  retryGeneric: "Stell dich ans Fenster, mit dem Gesicht zum Licht.",
+  noFace: "Wir sehen dein Gesicht nicht deutlich. Schau gerade in die Kamera.",
+  failed: "Das hat nicht geklappt. Versuch es noch einmal.",
+};
+
+export const SELFIE_DE = SELFIE_BASE_DE;
+export const SELFIE_DE_NYANSE: SelfieCopy = { ...SELFIE_BASE_DE, introExtra: "Foundation verändert deinen Hautton: am besten ohne, oder dein übliches Tages-Make-up." };
+
+const ANALYSIS_BASE_DE = {
+  pill: "Fast geschafft",
+  label: "Farbtücher werden probiert",
+  scales: { undertone: "Unterton", depth: "Tiefe", clarity: "Klarheit" },
+  goodLines: ["lässt dein Gesicht klar wirken", "gibt deiner Haut frischen Glow", "lässt deine Augen sprechen"],
+  badLines: ["lenkt von deinem Gesicht ab", "verblasst neben deiner Haut", "ist zu viel neben deinem Gesicht"],
+  questionsTitle: "Ein paar kurze Fragen, damit dein Profil noch genauer wird",
+  skinQ: "Wir denken, das ist deine Hautfarbe. Stimmt das?",
+  skinHint: "Halte deine Hand neben den Bildschirm, bei Tageslicht.",
+  irisQ: "Und deine Augen?",
+  irisHint: "Schau kurz in den Spiegel.",
+  hairShadeQ: "Und deine Haarfarbe?",
+  hairShadeHint: "Deine natürliche Farbe, am Ansatz.",
+  shade: { lighter: "Heller", match: "Stimmt", darker: "Dunkler" },
+  hairQ: "Ist das deine natürliche Haarfarbe?",
+  hair: { natural: "Ja, natürlich", dyed: "Gefärbt", grey: "Grau oder weiß", none: "Glatze", covered: "Bedeckt (Kopftuch, Mütze)" },
+  jewel: { goud: "Gold", zilver: "Silber", weetniet: "Egal" },
+  thanks: "Super, notiert.",
+  waiting: "Farben werden probiert…",
+  cta: "Meine Farben ansehen",
+  skip: "Überspringen",
+};
+export const analysisDe = (jewelQ: string): AnalysisCopy => ({ ...ANALYSIS_BASE_DE, jewelQ });
+
+const EMAIL_BASE_DE = {
+  pill: "Profil fertig",
+  teaser: "Dein Farbtyp und 6 Farben sind fertig",
+  lead: "Wohin sollen wir dein Farbprofil schicken?",
+  placeholder: "du@beispiel.de",
+  optin: "Jeden Monat ein Outfit und Sale-Tipps in meinen Farben",
+  submit: "Speichern und zeigen",
+  skip: "Jetzt nicht, zeig es mir",
+  invalid: "Bitte gib eine gültige E-Mail-Adresse ein, zum Beispiel du@beispiel.de.",
+};
+export const emailDe = (headline: EmailCopy["headline"]): EmailCopy => ({ ...EMAIL_BASE_DE, headline });
+
+const RESULT_BASE_DE: Omit<ResultCopy, "why" | "colorsTitle" | "lockedItems"> = {
+  pill: "Kostenloses Profil",
+  welcomeBack: "Willkommen zurück: Du bist {familie}.",
+  seeColors: "Meine Farben ansehen",
+  startOver: "Neu anfangen",
+  noPhoto: "Wir behalten dein Foto nicht, nicht einmal auf deinem Handy. Willst du den Unterschied sehen? Mach schnell ein neues Selfie.",
+  newSelfie: "Neues Selfie",
+  lowCta: "Noch ein Selfie bei Tageslicht",
+  lowTiersNote: "Dein Guide nutzt dein bestes Selfie. Ein neues Selfie? Dein Guide aktualisiert sich kostenlos.",
+  mailTitle: "Profil per E-Mail schicken",
+  mailCta: "Senden",
+  mailDone: "Gespeichert. Dein Profil ist unterwegs an {email}.",
+  deleteProfile: "Mein Profil löschen",
+  deleted: "Dein Profil wurde von diesem Gerät gelöscht.",
+  label: "Dein Farbtyp",
+  provisional: "Vorläufig",
+  between: "an der Grenze zu {b}",
+  typeLabel: "Dein genauer Typ",
+  scalesTitle: "So ist deine Farbigkeit aufgebaut",
+  avoidTitle: "Lieber nicht am Gesicht",
+  avoidText: "Diese Farben arbeiten gegen dich. Trag sie lieber nicht direkt unter dem Gesicht.",
+  baTitle: "Sieh den Unterschied",
+  baHint: "Zum Vergleichen ziehen",
+  lowConfidence: "Dein Foto war schwer zu lesen, deshalb ist das ein vorläufiges Profil. Ein Selfie bei Tageslicht macht es genauer.",
+  lowConfidenceCta: "Noch ein Selfie",
+  lockedTitle: "Was der Guide dazugibt",
+  lockedWhy: "Deine ganze Palette hat 30 Farben. Die ersten 6 schenken wir dir. Die anderen 24, mit Namen und Kombinationen, stehen in deinem Style-Guide.",
+  tiersTitle: "Wähle deinen Style-Guide",
+  tiers: {
+    digital: {
+      name: "Style-Guide",
+      line: "Sofort auf dem Handy und als PDF",
+      features: ["Alle 30 Farben, mit Namen", "4 Looks und eine Capsule aus 12 Teilen", "Metalle, Leder und was du hängen lassen kannst"],
+    },
+    card: {
+      name: "Style-Guide + Farbkarte",
+      badge: "Empfehlung",
+      line: "Deine Farben immer dabei, auch in der Umkleide",
+      note: "Kostenloser Versand nach NL, BE und DE, in etwa einer Woche",
+      features: ["Alles aus dem Style-Guide", "Eine stabile Karte mit deinen 8 Kernfarben für dein Portemonnaie"],
+    },
+    session: {
+      name: "Persönliche Farbberatung",
+      line: "Eine Farbberaterin sieht sich deine Fotos an und nimmt ein Video für dich auf",
+      note: "Ohne Termin, innerhalb von 3 Werktagen in deinem Postfach",
+      features: ["Alles aus Guide + Farbkarte", "Dein Ergebnis von einer Farbberaterin geprüft", "Ein persönliches Video über deine Farben und deinen Kleiderschrank"],
+    },
+  },
+  ctaChoose: "Wähle deinen Guide",
+  buyCard: "Guide + Karte wählen · {price}",
+  buyDigital: "Style-Guide wählen · {price}",
+  buySession: "Persönliche Beratung wählen · {price}",
+  ctaFrom: "Deinen Guide ansehen · ab {price}",
+  mailLater: "Brauchst du kurz? Profil per E-Mail schicken",
+  next: "Unten: deine Farben, dein Look und was du hängen lassen kannst",
+  ctaDigital: "Meinen Guide holen",
+  ctaCard: "Guide + Karte holen",
+  fine: "Preise inkl. MwSt. und Versand.",
+  checkout: {
+    pay: "Bezahlen",
+    shipping: "Versand",
+    shippingWhen: "inklusive · in etwa einer Woche",
+    address: "Wohin soll deine Karte?",
+    name: "Name",
+    street: "Straße und Hausnummer",
+    postcode: "Postleitzahl",
+    city: "Ort",
+    country: "Land",
+    countryNote: "Wir verschicken die Karte derzeit in die Niederlande, nach Belgien und Deutschland. Wähle den digitalen Guide oder schreib uns.",
+    withdrawal: "Ich akzeptiere die AGB und möchte meinen Guide sofort. Damit erlischt mein Widerrufsrecht für den Guide.",
+    test: "Testversion: Zahlungen sind ausgeschaltet.",
+    close: "Schließen",
+  },
+};
+export const resultDe = (colorsTitle: string, lockedItems: readonly string[], why: ResultCopy["why"]): ResultCopy => ({ ...RESULT_BASE_DE, colorsTitle, lockedItems, why });
+
+type Page = VoiceCopy["page"];
+export const pageDe = (o: { galleryTitle: Page["gallery"]["title"]; howTitle: Page["how"]["title"]; compareTitle: Page["compare"]["title"]; finalTitle: Page["final"]["title"]; accessories: string; trustTitle: Page["trust"]["title"] }): Page => ({
+  nav: { how: "So funktioniert's", prices: "Was du bekommst", start: "Kostenlos starten" },
+  gallery: { title: o.galleryTitle, text: "Dasselbe Foto, nur ein anderes Farbtuch darunter. Genau das macht die App mit deinem Selfie." },
+  how: {
+    title: o.howTitle,
+    steps: [
+      ["Ein Selfie", "Bei Tageslicht, auf deinem Handy. Die Analyse läuft auf deinem Gerät; dein Foto geht nirgendwohin."],
+      ["Dein Farbprofil", "Dein genauer Typ, dein Platz auf den Skalen Unterton, Tiefe und Klarheit, und 6 Farben, die passen. Kostenlos."],
+      ["Dein Guide", "Alle 30 Farben mit Namen, Kombinationen, die funktionieren, und " + o.accessories + ". Als PDF, mit einer Karte für den Laden."],
+    ],
+  },
+  compare: {
+    title: o.compareTitle,
+    free: "Kostenlos",
+    paid: "Guide",
+    rows: [
+      ["Dein genauer Farbtyp (1 von 12)", true, true],
+      ["Unterton, Tiefe und Klarheit", true, true],
+      ["6 Farben, die passen", true, true],
+      ["Farben, die du meiden solltest", true, true],
+      ["Alle 30 Farben mit Namen", false, true],
+      ["Kombinationen, die zusammenpassen", false, true],
+      [o.accessories.charAt(0).toUpperCase() + o.accessories.slice(1), false, true],
+      ["Dein persönlicher Style-Guide als PDF", false, true],
+      ["Digitale Farbkarte (oder eine echte per Post)", false, true],
+    ],
+  },
+  trust: {
+    title: o.trustTitle,
+    items: [
+      ["Dein Foto bleibt bei dir", "Die Analyse läuft auf deinem Handy. Wir schicken dein Foto nirgendwohin und behalten es nicht."],
+      ["Kein Konto nötig", "Dein Profil liegt auf deinem eigenen Gerät. Mit einem Tipp gelöscht."],
+      ["Empfohlen nach Farbe", "Nie nach Provision. Wir zeigen, was dir steht, nicht, was uns am meisten bringt."],
+    ],
+  },
+  final: { title: o.finalTitle, cta: "Kostenlos starten" },
+});
+
+type Retention = VoiceCopy["retention"];
+export const retentionDe = (o: { friend: string; friendLine: string; weekly: Retention["weekly"]["bodies"]; calm?: boolean }): Retention => ({
+  greet: o.calm ? "Willkommen zurück, {type}." : "{type}. Schön, dass du wieder da bist.",
+  resumeTitle: "Du bist fast fertig.",
+  resumeText: "Noch {n} Schritte, etwa {s} Sekunden. Deine Antworten sind gespeichert.",
+  resumeCta: o.calm ? "Weitermachen, wo du warst" : "Weiter",
+  resultText: "Deine Farben sind fertig, genau so, wie du sie verlassen hast.",
+  guideText: "Dein Style-Guide ist fertig.",
+  invited: "{naam} hat dir das geschickt. Du bekommst 1 € Rabatt auf deinen Guide.",
+  invitedAnon: `${o.friend.charAt(0).toUpperCase()}${o.friend.slice(1)} hat dir das geschickt. Du bekommst 1 € Rabatt auf deinen Guide.`,
+  friendLine: o.friendLine,
+  push: {
+    title: "Eine Farbe pro Woche",
+    text: "Jede Woche eine Farbe aus deiner Palette und wie du sie trägst. Höchstens eine Mitteilung pro Woche, tagsüber. Mit einem Tipp aus.",
+    cta: o.calm ? "Farbe der Woche erhalten" : "Farbtipps einschalten",
+    on: "Eingeschaltet. Deine erste Farbe kommt nächste Woche.",
+    off: o.calm ? "Farbe der Woche ausschalten" : "Farbtipps ausschalten",
+    ios: "Auf dem iPhone geht das über deinen Startbildschirm. Leg die App zuerst dort ab (Schritt unten) und öffne sie von dort.",
+    denied: "Mitteilungen sind in deinen Einstellungen aus. Dort kannst du sie wieder einschalten.",
+  },
+  weekly: { title: "{type} · Farbe der Woche", bodies: o.weekly },
+});

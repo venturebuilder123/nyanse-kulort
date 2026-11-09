@@ -31,7 +31,7 @@ export function Wordmark() {
 export function HouseMark() {
   const { config, locale } = useBrand();
   return (
-    <a className="maison-mark house-mark" href="/kies" aria-label={locale === "en" ? `KULØRT and NYANSE, now ${config.name}` : `KULØRT en NYANSE, nu ${config.name}`}>
+    <a className="maison-mark house-mark" href="/kies" aria-label={`KULØRT | NYANSE · ${config.name}`}>
       <span className={`wordmark wm-kulort${config.key === "kulort" ? " is-on" : ""}`} aria-hidden="true">KUL<span className="wm-o">O</span>RT</span>
       <i aria-hidden="true" />
       <span className={`wordmark wm-nyanse${config.key === "nyanse" ? " is-on" : ""}`} aria-hidden="true">NYANSE</span>

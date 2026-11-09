@@ -1,10 +1,10 @@
 "use client";
 
+import { guideFor } from "@/lib/guide/lang";
 import { profileForSeason } from "@/lib/color/declared";
 import type { SeasonKey } from "@/lib/color/seasons";
 import { PRICES, euro } from "@/lib/flow/pricing";
 import { buildGuide } from "@/lib/guide/build";
-import { guideEn } from "@/lib/guide/en";
 import { FLOW } from "@/lib/i18n/flow";
 import { garmentName } from "@/lib/i18n/words";
 import { useBrand } from "./BrandProvider";
@@ -26,7 +26,7 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
   const L = FLOW[locale].sections;
   const st = copy.story;
   const pg = copy.page;
-  const guide = locale === "en" ? guideEn(buildGuide(profileForSeason(EXAMPLE[config.key]), config.key)) : buildGuide(profileForSeason(EXAMPLE[config.key]), config.key);
+  const guide = guideFor(buildGuide(profileForSeason(EXAMPLE[config.key]), config.key), locale);
   // NYANSE: a softer weekend look (top, skirt, loafers, scarf); KULØRT: the work look
   const cols = guide.groups.flatMap((gr) => gr.colors);
   const look =
