@@ -15,11 +15,11 @@ const NONE = { brand: "none", voice: "none" };
 const DOORS = [
   {
     key: "kulort",
-    imgs: ["kulort-40-campagne-1", "kulort-jong-campagne-1", "kulort-vol-campagne-1", "kulort-jv-campagne-1"],
+    imgs: ["kulort-jong-campagne-1", "kulort-jv-campagne-1", "kulort-vol-campagne-1", "kulort-40-campagne-1"],
   },
   {
     key: "nyanse",
-    imgs: ["nyanse-40-campagne-1", "nyanse-jong-campagne-1", "nyanse-vol-campagne-1", "nyanse-jv-campagne-1"],
+    imgs: ["nyanse-jong-campagne-1", "nyanse-jv-campagne-1", "nyanse-vol-campagne-1", "nyanse-40-campagne-1"],
   },
 ] as const;
 
