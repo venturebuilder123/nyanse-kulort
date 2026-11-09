@@ -19,9 +19,9 @@ const NONE = { brand: "none", voice: "none" };
 const STEP = 3800;
 
 /** The young set, her and him in turn. */
-export function youngPeople(): (Person & { brand: "kulort" | "nyanse" })[] {
-  const her = PEOPLE.nyanse.filter((p) => p.segment === "jong").map((p) => ({ ...p, brand: "nyanse" as const }));
-  const him = PEOPLE.kulort.filter((p) => p.segment === "jong").map((p) => ({ ...p, brand: "kulort" as const }));
+export function youngPeople(only?: "kulort" | "nyanse"): (Person & { brand: "kulort" | "nyanse" })[] {
+  const her = only === "kulort" ? [] : PEOPLE.nyanse.filter((p) => p.segment === "jong").map((p) => ({ ...p, brand: "nyanse" as const }));
+  const him = (only === "nyanse" ? [] : PEOPLE.kulort).filter((p) => p.segment === "jong").map((p) => ({ ...p, brand: "kulort" as const }));
   const out: (Person & { brand: "kulort" | "nyanse" })[] = [];
   for (let i = 0; i < Math.max(her.length, him.length); i++) { if (her[i]) out.push(her[i]!); if (him[i]) out.push(him[i]!); }
   return out;
@@ -36,11 +36,33 @@ export const tint = (hex: string, w = 0.84) => {
 export function Studio() {
   const { locale } = useBrand();
   const T = FLOW[locale].home2;
-  const people = useMemo(youngPeople, []);
+  const [hex, setHex] = useState("#EE7A67");
+  return (
+    <section className="st" style={{ ["--tint" as string]: tint(hex) }} id="start">
+      <div className="st-copy">
+        <h1 className="st-h1">{T.h1[0]} <em>{T.h1[1]}</em></h1>
+        <p className="st-sub">{T.sub}</p>
+      </div>
+      <PaletteStage onColour={setHex} />
+      <div className="st-doors">
+        <a className="st-door" href="/nyanse" onClick={() => track("brand_switch", NONE, { to: "nyanse", from: "maison-studio" })}>{T.her}</a>
+        <a className="st-door" href="/kulort" onClick={() => track("brand_switch", NONE, { to: "kulort", from: "maison-studio" })}>{T.him}</a>
+      </div>
+      <p className="st-facts">{T.facts.map((f) => <span key={f}>✓ {f}</span>)}</p>
+      <p className="st-ai">{T.ai}</p>
+    </section>
+  );
+}
+
+/** The story stage: models in their best colour with their palette fanning out; for one brand or both. */
+export function PaletteStage({ only, onColour }: { only?: "kulort" | "nyanse"; onColour?: (hex: string) => void }) {
+  const { locale } = useBrand();
+  const T = FLOW[locale].home2;
+  const people = useMemo(() => youngPeople(only), [only]);
   const fans = useMemo(() => people.map((p) => buildGuide(profileForSeason(p.season as SeasonKey), p.brand).summary.core.slice(0, 7).map((c) => c.hex)), [people]);
   const [i, setI] = useState(0);
   const [run, setRun] = useState(0); // restarts the progress bar after a tap
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const reduce = useRef(false);
 
   useEffect(() => {
@@ -57,14 +79,11 @@ export function Studio() {
 
   const p = people[i]!;
   const good = nameForHex(p.good, p.brand);
+  useEffect(() => onColour?.(p.good), [p.good, onColour]);
   const pick = (n: number) => { setI(n); setRun((r) => r + 1); track("home_story", NONE, { to: n }); };
 
   return (
-    <section className="st" ref={ref} style={{ ["--tint" as string]: tint(p.good), ["--ink2" as string]: p.good }} id="start">
-      <div className="st-copy">
-        <h1 className="st-h1">{T.h1[0]} <em>{T.h1[1]}</em></h1>
-        <p className="st-sub">{T.sub}</p>
-      </div>
+    <div ref={ref} className="st-stage-wrap">
       <div className="st-stage">
         <div className="st-bars" role="tablist" aria-label={T.people}>
           {people.map((x, n) => (
@@ -84,12 +103,6 @@ export function Studio() {
           <span><i style={{ background: p.good }} />{T.wears(good ? colourName(good, locale) : p.good)}</span>
         </p>
       </div>
-      <div className="st-doors">
-        <a className="st-door" href="/nyanse" onClick={() => track("brand_switch", NONE, { to: "nyanse", from: "maison-studio" })}>{T.her}</a>
-        <a className="st-door" href="/kulort" onClick={() => track("brand_switch", NONE, { to: "kulort", from: "maison-studio" })}>{T.him}</a>
-      </div>
-      <p className="st-facts">{T.facts.map((f) => <span key={f}>✓ {f}</span>)}</p>
-      <p className="st-ai">{T.ai}</p>
-    </section>
+    </div>
   );
 }

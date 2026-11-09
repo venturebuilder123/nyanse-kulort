@@ -16,10 +16,10 @@ import { youngPeople } from "./Studio";
 // that is also the proof, and it ends at the test.
 const NONE = { brand: "none", voice: "none" };
 
-export function SwipeTest() {
+export function SwipeTest({ only }: { only?: "kulort" | "nyanse" } = {}) {
   const { locale } = useBrand();
   const T = FLOW[locale].home2.swipe;
-  const people = useMemo(youngPeople, []);
+  const people = useMemo(() => youngPeople(only), [only]);
   const [n, setN] = useState(0);
   const [picked, setPicked] = useState<"l" | "r" | null>(null);
   const [score, setScore] = useState({ right: 0, played: 0 });

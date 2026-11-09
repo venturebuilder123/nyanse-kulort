@@ -1132,7 +1132,7 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 .st-ai { margin: 0; text-align: center; font-size: 11px; color: rgba(27,23,21,.6); }
 @media (min-width: 900px) {
   .st { grid-template-columns: 1.05fr 1fr; grid-template-areas: "copy stage" "doors stage" "facts stage" "ai stage"; align-items: center; column-gap: 48px; padding: 48px 56px 40px; margin: 0; border-radius: 32px; }
-  .st-copy { grid-area: copy; align-self: end; } .st-stage { grid-area: stage; min-height: 560px; } .st-doors { grid-area: doors; } .st-facts { grid-area: facts; justify-content: start; } .st-ai { grid-area: ai; text-align: left; }
+  .st-copy { grid-area: copy; align-self: end; } .st-stage-wrap { grid-area: stage; } .st-stage { min-height: 560px; } .st-doors { grid-area: doors; } .st-facts { grid-area: facts; justify-content: start; } .st-ai { grid-area: ai; text-align: left; }
   .st-face { width: 340px; } .st-fan i { height: 210px; transform-origin: 24px 300px; }
   .st-h1 { font-size: clamp(56px, 5.4vw, 76px); }
 }
@@ -1159,3 +1159,22 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 @media (prefers-reduced-motion: reduce) {
   .st, .st-face, .st-label, .st-fan i, .sw-pair, .sw-card, .sw-after { animation: none !important; transition: none !important; }
 }
+
+/* brand landings: the same stage on a tinted card (9 Nov 2026) */
+.l-stage { background: var(--tint); border-radius: 28px; padding: 14px 14px 18px; transition: background-color .7s cubic-bezier(.22, 1, .36, 1); color: #1B1715; }
+.l-stage .st-stage { min-height: 400px; }
+@media (min-width: 900px) { .l-stage .st-stage { min-height: 520px; } }
+.l-proof .sw-test { padding: 8px 0 24px; }
+
+/* direction C everywhere in the flow (9 Nov 2026): bold Bricolage headings, Bodoni italic as the accent
+   (the logo's face), so all screens speak one younger language */
+.app .disp { font-family: var(--font-bricolage), var(--f-body); font-weight: 800; letter-spacing: -0.04em; line-height: .98; }
+.app .disp em { font-family: var(--f-logo); font-weight: 400; font-style: italic; letter-spacing: -0.012em; }
+/* the landing stage stays compact, so the first question stays in sight */
+.l-stage { overflow: hidden; }
+.l-stage .st-stage { min-height: 330px; padding-top: 18px; }
+.l-stage .st-face { width: min(50vw, 210px); margin-top: 52px; }
+.l-stage .st-fan { top: 40px; }
+.l-stage .st-fan i { height: 140px; width: 42px; left: -21px; transform-origin: 21px 210px; }
+.l-stage .st-label { margin-top: 10px; }
+.l-stage .st-label b { font-size: 22px; }

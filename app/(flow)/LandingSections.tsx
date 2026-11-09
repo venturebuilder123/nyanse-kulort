@@ -9,6 +9,7 @@ import { FLOW } from "@/lib/i18n/flow";
 import { garmentName } from "@/lib/i18n/words";
 import { useBrand } from "./BrandProvider";
 import { DrapeMirror } from "./DrapeMirror";
+import { SwipeTest } from "./home/SwipeTest";
 import { FlatLay } from "./Flats";
 import { Display } from "./ui";
 
@@ -40,7 +41,6 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
           extras: [{ item: "Sjaal", color: cols.find((c) => /salie|zeegroen|grijsgroen/i.test(c.name)) ?? cols[2]! }],
         }
       : guide.combos[0]!;
-  const proof = config.key === "kulort" ? "/brand/ads/proof-men.jpg" : "/brand/ads/proof-women.jpg";
 
   return (
     <>
@@ -64,10 +64,8 @@ export function LandingSections({ onStart }: { onStart: () => void }) {
           <Display text={st.proof.title} as="h2" small />
           <p className="sub">{st.proof.text}</p>
         </div>
-        <figure className="l-proof-img">
-          <img src={proof} alt={L.proofAlt(config.key === "kulort")} width={1200} height={1200} loading="lazy" />
-          <figcaption>{L.proofCap}</figcaption>
-        </figure>
+        {/* the left-or-right test with this brand's models (9 Nov 2026) */}
+        <SwipeTest only={config.key} />
         <p className="eyebrow-h l-try">{L.try}</p>
         <DrapeMirror brand={config.key} segment={segment} />
       </section>

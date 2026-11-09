@@ -17,9 +17,11 @@ import { useBrand, useT } from "./BrandProvider";
 import { LandingSections } from "./LandingSections";
 import { AppBar, CheckIcon, Display, Footer, HouseMark, OccasionIcon } from "./ui";
 import { LangSwitch } from "./Lang";
+import { PaletteStage, tint } from "./home/Studio";
 
 export default function Landing() {
   const { config, copy, ctx, segment, locale } = useBrand();
+  const [stageHex, setStageHex] = useState("#EE7A67");
   const t = useT();
   const rt = copy.retention;
   const router = useRouter();
@@ -133,15 +135,10 @@ export default function Landing() {
             <Display text={copy.landing.headline} />
             <p className="sub">{copy.landing.sub}</p>
           </div>
-          <figure className="l-visual l-photo">
-            <img
-              src={segment ? `/brand/editorial/${config.key}-${segment}-campagne-1.jpg` : copy.story.image}
-              alt={copy.story.imageAlt}
-              width={1200}
-              height={1490}
-              fetchPriority="high"
-            />
-          </figure>
+          {/* the story stage with this brand's models (9 Nov 2026), instead of one still photo */}
+          <div className="l-visual l-stage" style={{ ["--tint" as string]: tint(stageHex) }}>
+            <PaletteStage only={config.key} onColour={setStageHex} />
+          </div>
           <section className="l-tap q" aria-labelledby="occ-q">
             <h2 id="occ-q">{copy.landing.occasionQuestion}</h2>
             <div className="tiles">
