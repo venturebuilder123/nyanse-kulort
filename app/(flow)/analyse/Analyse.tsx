@@ -116,7 +116,7 @@ export default function Analyse() {
   return (
     <main className="screen">
       <AppBar pill={t.pill} />
-      <Crumbs step={3} />
+      <Crumbs step={2} />
       <div className="pad">
         <section className="scan">
           <p className="label-sm">{t.label}</p>

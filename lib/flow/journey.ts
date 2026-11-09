@@ -48,7 +48,7 @@ export function resumeFor(j: Journey | null, hasResult: boolean, paid: boolean, 
   if (hasResult) return { kind: "result" };
   if (!j || now - j.lastAt > RESUME_MAX_AGE_MS) return null;
   // the photo is never stored, so anything after the selfie restarts at the selfie
-  const at = rank(j.step) >= rank("selfie") ? "selfie" : j.step === "stijl" ? "stijl" : null;
+  const at = rank(j.step) >= rank("stijl") ? "selfie" : null; // the style step now comes after the result
   if (!at) return null;
   const stepsLeft = rank("resultaat") - rank(at);
   return { kind: "continue", href: `/${at}`, stepsLeft, seconds: SECONDS_LEFT[at] ?? 30 };

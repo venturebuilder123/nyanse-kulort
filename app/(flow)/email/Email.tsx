@@ -54,7 +54,7 @@ export default function Email() {
   return (
     <main className="screen">
       <AppBar pill={t.pill} />
-      <Crumbs step={3} />
+      <Crumbs step={2} />
       <div className="pad">
         <Display text={t.headline} />
         <div className="teaser">

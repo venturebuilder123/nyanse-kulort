@@ -200,6 +200,14 @@ export default function Result() {
           return (
             <section className="q wardrobe">
               <h2 className="eyebrow-h">{F.result.wardrobe}</h2>
+              {/* the style step comes here now (9 Nov 2026), only for who wants better-fitting looks */}
+              {!loadAnswers().shops.length && (
+                <Link href="/stijl" className="shops-nudge" onClick={() => track("shops_nudge", ctx)}>
+                  <b>{F.result.shopsTitle}</b>
+                  <span>{F.result.shopsText}</span>
+                  <em>{F.result.shopsCta}</em>
+                </Link>
+              )}
               <figure className="wd-worn">
                 <img src={`/brand/outfits/${p.match.season}-${config.key}.jpg`} alt={F.result.wornAlt(SEASONS[p.match.season].name)} width={800} height={1600} loading="lazy" />
                 <figcaption>{F.result.worn(SEASONS[p.match.season].name)}</figcaption>

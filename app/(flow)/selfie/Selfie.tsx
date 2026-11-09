@@ -244,15 +244,19 @@ export default function Selfie() {
   return (
     <main className="screen">
       <AppBar pill={t.pill} />
-      <Crumbs step={2} />
+      <Crumbs step={1} />
       <div className="pad selfie">
         {!live && (
           <section className="selfie-intro">
             <div className="intro-oval" aria-hidden="true"><span /></div>
             <h1 className="disp sm">{t.intro}</h1>
-            <p className="sub">{t.introText}</p>
-            {t.introExtra && <p className="sub small">{t.introExtra}</p>}
-            <p className="sub small">{t.clothing}</p>
+            {/* scan, don't read (9 Nov 2026): three tips as icons; the AI notice stays as one line (AI Act) */}
+            <ul className="tips3">
+              {FLOW[locale].selfie.tips3.map(([k, b, s]) => (
+                <li key={k}><TipIcon k={k} /><b>{b}</b><span>{s}</span></li>
+              ))}
+            </ul>
+            <p className="sub small">{FLOW[locale].selfie.aiLine}</p>
           </section>
         )}
 
@@ -349,4 +353,11 @@ function CameraIcon() {
       <circle cx="12" cy="13" r="3.5" />
     </svg>
   );
+}
+
+function TipIcon({ k }: { k: string }) {
+  const p = { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
+  if (k === "light") return <svg {...p}><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>;
+  if (k === "filter") return <svg {...p}><circle cx="7" cy="13" r="3.5" /><circle cx="17" cy="13" r="3.5" /><path d="M10.5 13h3M3 11l1-3M21 11l-1-3M4 20l16-16" /></svg>;
+  return <svg {...p}><path d="M8 3l4 2 4-2 5 4-3 3-2-1v12H8V9l-2 1-3-3z" /></svg>;
 }

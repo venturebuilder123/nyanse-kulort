@@ -19,7 +19,7 @@ describe("journey", () => {
 
   it("resumes at the selfie when someone stopped during or after it (the photo is never kept)", () => {
     expect(resumeFor(j("analyse"), false, false, DAY)).toMatchObject({ kind: "continue", href: "/selfie", stepsLeft: 3 });
-    expect(resumeFor(j("stijl"), false, false, DAY)).toMatchObject({ kind: "continue", href: "/stijl", stepsLeft: 4 });
+    expect(resumeFor(j("stijl"), false, false, DAY)).toMatchObject({ kind: "continue", href: "/selfie", stepsLeft: 3 });
   });
 
   it("says nothing on a first visit or after 30 days", () => {

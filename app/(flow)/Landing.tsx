@@ -73,8 +73,14 @@ export default function Landing() {
     setAnswers(next);
     saveAnswers(next);
     if (!has) track("occasion_pick", ctx, { occasion: k });
+    // warm up the face models (±8 MB) while they decide, so the selfie starts fast
+    if (!has && answers.occasions.length === 0) {
+      const warm = () => void import("@/lib/analysis/face/mediapipe").then((m) => m.loadVision()).catch(() => {});
+      if ("requestIdleCallback" in window) requestIdleCallback(warm); else setTimeout(warm, 500);
+    }
   }
-  const goOn = () => router.push("/stijl");
+  // easy flow (9 Nov 2026): straight from the first tap to the selfie; budget and shops come after the result
+  const goOn = () => router.push("/selfie");
 
   const startHere = () => {
     document.getElementById("occ-q")?.scrollIntoView({ behavior: "smooth", block: "center" });

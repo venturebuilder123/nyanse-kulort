@@ -58,7 +58,7 @@ export function AppBar({ pill }: { pill?: string }) {
 
 const STEPS = ["Jij", "Stijl", "Selfie", "Analyse", "Resultaat"];
 // steps you can go back to (the analysis itself is not a place to return to)
-const STEP_HREF: (string | null)[] = ["/", "/stijl", "/selfie", null, null];
+const STEP_HREF: (string | null)[] = ["/", "/selfie", null, null];
 
 export function Crumbs({ step }: { step: number }) {
   const t = useT();

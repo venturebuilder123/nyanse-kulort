@@ -7,13 +7,16 @@ import { FLOW } from "@/lib/i18n/flow";
 import { track } from "@/lib/analytics";
 import { cleanShop, EMPTY, loadAnswers, saveAnswers, type Answers } from "@/lib/flow/answers";
 import { useBrand } from "../BrandProvider";
-import { AppBar, Crumbs, Display } from "../ui";
+import { AppBar, Display } from "../ui";
+import { flowSession } from "@/lib/flow/session";
 
 export default function Style() {
   const { config, copy, ctx, locale } = useBrand();
   const router = useRouter();
   const [a, setA] = useState<Answers>(EMPTY);
   const [own, setOwn] = useState("");
+  const [after, setAfter] = useState(false); // reached from the result page
+  useEffect(() => setAfter(!!flowSession.result()), []);
   const S = FLOW[locale].style;
   // the shops that really are in the catalogue (CLAUDE.md §6); until then the brand's own list
   const [shops, setShops] = useState<string[]>([...config.shops]);
@@ -43,7 +46,6 @@ export default function Style() {
   return (
     <main className="screen">
       <AppBar pill={copy.style.pill} />
-      <Crumbs step={1} />
       <div className="pad">
         <Display text={copy.style.headline} as="h1" small />
 
@@ -103,14 +105,17 @@ export default function Style() {
             // budget is optional: without an answer we search the middle range
             // the names too (no personal data): which shops and brands our people like, to choose partners
             track("style_done", ctx, { occasions: a.occasions, budget: a.budget ?? "none", shops: a.shops.length, shop_names: a.shops, premium: a.shops.filter((s) => config.premium.includes(s)).length, own: a.shops.filter((s) => !shops.includes(s) && !config.premium.includes(s)) });
-            router.push("/selfie");
+            // since 9 Nov 2026 this step comes after the result: back there, with outfits from their shops
+            router.push(flowSession.result() ? "/resultaat" : "/selfie");
           }}
         >
-          {copy.style.next}
+          {after ? S.save : copy.style.next}
         </button>
-        <button className="link-btn" onClick={() => router.push("/type")}>
-          {FLOW[locale].landing.knownShort}
-        </button>
+        {!after && (
+          <button className="link-btn" onClick={() => router.push("/type")}>
+            {FLOW[locale].landing.knownShort}
+          </button>
+        )}
       </div>
     </main>
   );

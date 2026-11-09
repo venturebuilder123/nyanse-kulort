@@ -3,7 +3,7 @@
 
 const nl = {
   nav: { colourAnalysis: "Kleuranalyse", contact: "Contact", how: "Hoe het werkt", prices: "Prijzen", start: "Begin gratis" },
-  steps: { label: (n: number, of: number) => `Stap ${n} van ${of}`, names: ["Jij", "Stijl", "Selfie", "Analyse", "Resultaat"] },
+  steps: { label: (n: number, of: number) => `Stap ${n} van ${of}`, names: ["Jij", "Selfie", "Analyse", "Resultaat"] },
   footer: { terms: "Voorwaarden", privacy: "Privacy", vat: "Prijzen inclusief btw" },
   switchTo: { kulort: "Voor mannen", nyanse: "Voor vrouwen" },
   home: {
@@ -31,7 +31,7 @@ const nl = {
 type Dict = typeof nl;
 const en: Dict = {
   nav: { colourAnalysis: "Colour analysis", contact: "Contact", how: "How it works", prices: "Prices", start: "Start free" },
-  steps: { label: (n, of) => `Step ${n} of ${of}`, names: ["You", "Style", "Selfie", "Analysis", "Result"] },
+  steps: { label: (n, of) => `Step ${n} of ${of}`, names: ["You", "Selfie", "Analysis", "Result"] },
   footer: { terms: "Terms", privacy: "Privacy", vat: "Prices include VAT" },
   switchTo: { kulort: "For men", nyanse: "For women" },
   home: {
