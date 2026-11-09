@@ -7,6 +7,7 @@
 //              their aura blooms → end card. H.264 with a silent track (sound is added in TikTok/IG).
 //   cover.jpg  1080×1920 frame of the reveal, as the Reel/TikTok cover
 //   post.jpg   1080×1350 feed post
+//   slide-1..4.jpg  Instagram carousel: wrong colour → their colour → the palette with names → "comment AURA"
 // plus public/social/aura/grid-{brand}.jpg, all 12 seasons as auras ("which aura are you?").
 // Writes lib/social/aura-posts.json (read by /lab/tiktok).
 // Needs ffmpeg: `npm install --no-save ffmpeg-static`. Run: npx tsx scripts/make-aura.ts
@@ -50,8 +51,9 @@ const jobs = (["nyanse", "kulort"] as const).flatMap((brand) =>
       img: `data:image/jpeg;base64,${readFileSync(`public${p.src}`).toString("base64")}`,
       // where the photo sits in the 4:5 frame (fractions of the frame), as in app/(flow)/Drape.tsx
       photo: { s, left: 0.5 - f.cx * s, top: (FIT.cy * 1.25 - f.cy * (s / f.aspect)) / 1.25, aspect: f.aspect },
-      cloth: clothPath(FIT, f.h * (s / f.aspect)),
+      cloth: clothPath(FIT, f.h * (s / f.aspect), 0.12), // shoulders a little higher: no T-shirt beside the cloth
       good: p.good, goodName: nl ? colourName(nl, "en") : "",
+      names: pal.core.map((c) => c.name),
       wrong: [...new Set([p.bad, ...pal.avoid])].slice(0, 4),
       palette: pal.core.map((c) => c.hex),
       dark: avgLum(pal.core.map((c) => c.hex)) < 0.36, // dark aura: light text
@@ -113,7 +115,7 @@ function aura(colors, W, H, t, glow = 1) {
 }
 
 // ---- the polaroid: the photo with the drape, the aura mist over its edges, a handwritten line
-async function polaroid(j, cx, cy, PW, rot, colour, mist, mistAmt, caption, t) {
+async function polaroid(j, cx, cy, PW, rot, colour, mist, mistAmt, caption, t, dev = 1) {
   const PH = PW * 1.25, pad = PW * 0.04, bottom = PW * 0.19, CW = PW + 2 * pad, CH = PH + pad + bottom;
   X.save(); X.translate(cx, cy); X.rotate(rot);
   X.shadowColor = "rgba(0,0,0,.28)"; X.shadowBlur = 60; X.shadowOffsetY = 26;
@@ -150,6 +152,8 @@ async function polaroid(j, cx, cy, PW, rot, colour, mist, mistAmt, caption, t) {
     });
     X.restore();
   }
+  // a polaroid develops: olive-grey first, then the picture comes through
+  if (dev < 1) { X.fillStyle = "rgba(58,60,50," + (1 - dev).toFixed(3) + ")"; X.fillRect(0, 0, PW, PH); }
   X.restore();
   // a faint frame line on the photo, and the caption in pen
   X.strokeStyle = "rgba(0,0,0,.06)"; X.lineWidth = 2; X.strokeRect(ox, oy, PW, PH);
@@ -186,11 +190,13 @@ function mark(cx, y, size, colour = INK) {
 const grey = (cs) => cs.map((c) => mix(c, "#8f8a84", 0.62));
 const who = (j) => (j.brand === "nyanse" ? "her" : "his");
 
-// ---- the Reel, 8 s
+// ---- the Reel, 8 s. Everything that matters sits in the safe zone of Instagram and TikTok
+// (clear of the top 250 px and the bottom 340 px, where the app's own buttons and caption sit),
+// and the cover reads in the 3:4 crop of the profile grid.
 async function reel(j, t) {
   const W = 1080, H = 1920; C.width = W; C.height = H;
-  const SWEEP = [3.0, 3.75], END = 6.35;
-  const good = t >= (SWEEP[0] + SWEEP[1]) / 2;
+  const SWEEP = [3.0, 3.75], END = 6.35, FLIP = (SWEEP[0] + SWEEP[1]) / 2;
+  const good = t >= FLIP;
   const wi = Math.min(j.wrong.length - 1, Math.floor(Math.max(0, t - 0.7) / 0.58));
   const colour = good ? j.good : j.wrong[wi];
   const bloom = easeOut(seg(t, 3.4, 4.6));
@@ -201,36 +207,37 @@ async function reel(j, t) {
   const endP = easeIO(seg(t, END, END + 0.55));
   X.save(); X.textAlign = "center"; X.textBaseline = "alphabetic"; X.fillStyle = ink; X.globalAlpha = 1 - endP;
   if (!good) {
-    const p = back(seg(t, 0.05, 0.45)); X.translate(540, 250); X.scale(p, p);
-    X.font = BRIC(800, 170); X.fillText("aura check", 0, 0);
-    X.font = BRIC(500, 44); X.globalAlpha = (1 - endP) * seg(t, 0.5, 0.8); X.fillText("wait for " + who(j) + " colour", 0, 78);
+    const p = back(seg(t, 0.05, 0.45)); X.translate(540, 350); X.scale(p, p);
+    X.font = BRIC(800, 150); X.fillText("aura check", 0, 0);
+    X.font = BRIC(500, 42); X.globalAlpha = (1 - endP) * seg(t, 0.5, 0.8); X.fillText("wait for " + who(j) + " colour", 0, 66);
   } else {
-    const p = back(seg(t, 3.5, 3.95)); X.translate(540, 250); X.scale(p, p);
-    X.font = "italic 400 150px 'Bodoni Moda'"; X.fillText(j.seasonName.toLowerCase(), 0, 0);
-    X.font = BRIC(500, 44); X.fillText("measured, not a vibe", 0, 78);
+    const p = back(seg(t, 3.5, 3.95)); X.translate(540, 350); X.scale(p, p);
+    X.font = "italic 400 136px 'Bodoni Moda'"; X.fillText(j.seasonName.toLowerCase(), 0, 0);
+    X.font = BRIC(500, 42); X.fillText("measured, not a vibe", 0, 66);
   }
   X.restore();
 
-  // the polaroid
+  // the polaroid: it develops while it slides in, and punches in on the reveal
   if (t < END + 0.6) {
     const inP = easeOut(seg(t, 0, 0.6));
     const shake = !good && t > 0.7 ? Math.sin((t - 0.7) * 34) * 0.012 * Math.exp(-((t - 0.7) % 0.58) * 9) : 0;
     const rot = good ? -0.035 + 0.055 * easeOut(seg(t, 3.4, 4.2)) : -0.035 + shake;
-    const y = 1000 + (1 - inP) * 900 - endP * 1300, sc = 1 - endP * 0.25;
+    const punch = good ? 0.07 * Math.sin(Math.PI * seg(t, FLIP, FLIP + 0.45)) : 0;
+    const y = 985 + (1 - inP) * 900 - endP * 1300, sc = (1 + punch) * (1 - endP * 0.25);
     X.save(); X.globalAlpha = 1 - endP; X.translate(540, y); X.scale(sc, sc);
-    await polaroid(j, 0, 0, 800, rot, colour, good ? j.palette : grey(j.wrong), good ? 0.62 * bloom : 0.28, good ? j.seasonName.toLowerCase() + " ✦" : "aura: meh", t);
+    await polaroid(j, 0, 0, 680, rot, colour, good ? j.palette : grey(j.wrong), good ? 0.62 * bloom : 0.28, good ? j.seasonName.toLowerCase() + " ✦" : "aura: meh", t, easeOut(seg(t, 0.15, 1.2)));
     X.restore();
     // stickers
     if (!good) {
       const words = ["✕ washed out", "✕ tired??", "✕ grey vibes", "✕ nope"];
       const k = Math.max(0, Math.floor((t - 0.7) / 0.58));
-      if (t > 0.7) sticker(words[k % 4], k % 2 ? 320 : 760, 1240 - (k % 3) * 70, k % 2 ? -0.12 : 0.1, seg(t, 0.7 + k * 0.58, 0.7 + k * 0.58 + 0.2), true);
+      if (t > 0.7) sticker(words[k % 4], k % 2 ? 330 : 750, 1220 - (k % 3) * 70, k % 2 ? -0.12 : 0.1, seg(t, 0.7 + k * 0.58, 0.7 + k * 0.58 + 0.2), true, 46);
     } else if (t < END + 0.3) {
-      sticker("✓ " + who(j) + " colour", 800, 560, 0.08, seg(t, 3.9, 4.15) * (1 - endP), false, 52);
-      if (j.goodName) sticker(j.goodName.toLowerCase(), 300, 1300, -0.06, seg(t, 4.05, 4.3) * (1 - endP), true, 44);
+      sticker("✓ " + who(j) + " colour", 760, 600, 0.08, seg(t, 3.9, 4.15) * (1 - endP), false, 48);
+      if (j.goodName) sticker(j.goodName.toLowerCase(), 330, 1250, -0.06, seg(t, 4.05, 4.3) * (1 - endP), true, 42);
     }
-    if (good) { X.save(); X.globalAlpha = 1 - endP; dots(j.palette, 540, 1720, 52, 18, 4.2, t); X.restore(); }
-    if (!good && t > 0.7) { X.save(); X.globalAlpha = seg(t, 0.9, 1.2); X.fillStyle = INK; X.font = BRIC(500, 40); X.textAlign = "center"; X.fillText("wrong colour = grey aura", 540, 1780); X.restore(); }
+    if (good) { X.save(); X.globalAlpha = 1 - endP; dots(j.palette, 540, 1560, 44, 14, 4.2, t); X.restore(); }
+    if (!good && t > 0.7) { X.save(); X.globalAlpha = seg(t, 0.9, 1.2); X.fillStyle = INK; X.font = BRIC(500, 40); X.textAlign = "center"; X.fillText("wrong colour = grey aura", 540, 1570); X.restore(); }
   }
 
   // the sweep: a band of the palette flowing across, under it the switch
@@ -242,21 +249,71 @@ async function reel(j, t) {
     g.addColorStop(0, j.palette[0] + "00"); j.palette.forEach((c, k) => g.addColorStop(0.08 + (k / (j.palette.length - 1)) * 0.84, c)); g.addColorStop(1, j.palette[j.palette.length - 1] + "00");
     X.fillStyle = g; X.fillRect(-bw / 2, -2400, bw, 4800); X.restore();
   }
+  // a soft flash on the switch, like a camera
+  if (good && t < FLIP + 0.3) { X.fillStyle = "rgba(255,255,255," + (0.55 * (1 - seg(t, FLIP, FLIP + 0.3))).toFixed(3) + ")"; X.fillRect(0, 0, W, H); }
 
   // end card
   if (endP > 0) {
     X.save(); X.globalAlpha = endP; X.fillStyle = ink; X.textAlign = "center";
-    X.font = BRIC(800, 112); X.fillText("what's your", 540, 700);
-    X.font = "italic 400 168px 'Bodoni Moda'"; X.fillText("colour aura?", 540, 870);
+    X.font = BRIC(800, 112); X.fillText("what's your", 540, 640);
+    X.font = "italic 400 168px 'Bodoni Moda'"; X.fillText("colour aura?", 540, 810);
     X.restore();
-    dots(j.palette, 540, 1040, 50, 16, END + 0.3, t);
+    dots(j.palette, 540, 970, 50, 16, END + 0.3, t);
     X.save(); X.globalAlpha = seg(t, END + 0.5, END + 0.9); X.fillStyle = ink; X.textAlign = "center";
-    X.font = BRIC(500, 46); X.fillText("not a vibe. measured from one selfie.", 540, 1220);
+    X.font = BRIC(500, 46); X.fillText("not a vibe. measured from one selfie.", 540, 1140);
     X.restore();
-    sticker("free · link in bio", 540, 1380, -0.03, seg(t, END + 0.7, END + 0.95), !j.dark, 56);
-    X.save(); X.globalAlpha = seg(t, END + 0.8, END + 1.2); mark(540, 1640, 40, ink); X.restore();
+    sticker("free · link in bio", 540, 1290, -0.03, seg(t, END + 0.7, END + 0.95), !j.dark, 56);
+    X.save(); X.globalAlpha = seg(t, END + 0.8, END + 1.2); mark(540, 1470, 40, ink); X.restore();
   }
   addGrain(W, H, t);
+}
+
+// ---- Instagram carousel, 4 slides of 1080×1350: wrong colour → their colour → the palette → your turn
+async function slide(j, n) {
+  const W = 1080, H = 1350; C.width = W; C.height = H;
+  const w = who(j);
+  const text = (font, s, y, colour) => { X.save(); X.fillStyle = colour; X.textAlign = "center"; X.textBaseline = "alphabetic"; X.font = font; X.fillText(s, 540, y); X.restore(); };
+  if (n === 1) {
+    aura(grey(j.wrong.concat(j.palette.slice(0, 3))), W, H, 1.3, 0.85);
+    text(BRIC(800, 112), "aura check", 150, INK);
+    text(BRIC(500, 40), "swipe for " + w + " colour →", 212, INK);
+    await polaroid(j, 540, 735, 540, -0.035, j.wrong[0], grey(j.wrong), 0.28, "aura: meh", 1.3);
+    sticker("✕ grey aura", 300, 960, -0.1, 1, true, 44);
+    text(BRIC(500, 38), "wrong colour = the face goes flat", 1265, INK);
+  } else if (n === 2) {
+    const ink = j.dark ? PAPER : INK;
+    aura(j.palette, W, H, 2.2, 1.15);
+    text("italic 400 112px 'Bodoni Moda'", j.seasonName.toLowerCase(), 160, ink);
+    text(BRIC(500, 40), "measured, not a vibe", 246, ink);
+    await polaroid(j, 540, 750, 540, 0.025, j.good, j.palette, 0.62, j.seasonName.toLowerCase() + " ✦", 2.2);
+    sticker("✓ " + w + " colour", 790, 420, 0.09, 1, false, 42);
+    if (j.goodName) sticker(j.goodName.toLowerCase(), 310, 975, -0.06, 1, true, 38);
+    text(BRIC(800, 40), "same face. the aura switched on.", 1265, ink);
+  } else if (n === 3) {
+    const ink = j.dark ? PAPER : INK;
+    aura(j.palette, W, H, 3.1, 1.15);
+    text(BRIC(800, 84), w + " aura,", 150, ink);
+    text("italic 400 96px 'Bodoni Moda'", "measured", 245, ink);
+    j.palette.forEach((c, k) => {
+      const y = 330 + k * 118;
+      X.save(); X.fillStyle = "rgba(251,248,243,.88)"; X.beginPath(); X.roundRect(170, y, 740, 100, 50); X.fill();
+      X.beginPath(); X.arc(222, y + 50, 38, 0, Math.PI * 2); X.fillStyle = c; X.fill();
+      X.fillStyle = INK; X.font = BRIC(800, 42); X.textBaseline = "middle"; X.fillText((j.names[k] || "").toLowerCase(), 290, y + 52);
+      X.restore();
+    });
+    text(BRIC(500, 38), "wear these near your face. save this.", 1265, ink);
+  } else {
+    X.fillStyle = PAPER; X.fillRect(0, 0, W, H);
+    // a tall aura window with the question in it
+    X.save(); X.beginPath(); X.roundRect(70, 70, 940, 900, 48); X.clip(); X.translate(70, 70); aura(j.palette, 940, 900, 4.4, 1.2); X.restore();
+    text(BRIC(800, 104), "what's your", 420, INK);
+    text("italic 400 150px 'Bodoni Moda'", "colour aura?", 580, INK);
+    sticker("comment AURA", 540, 760, -0.04, 1, true, 58);
+    text(BRIC(800, 46), "we DM you the free check", 1075, INK);
+    text(BRIC(500, 36), "one selfie · one minute · your photo stays on your phone", 1140, INK);
+    mark(540, 1262, 30);
+  }
+  addGrain(W, H, n);
 }
 
 // ---- feed post 1080×1350
@@ -296,7 +353,7 @@ function grid(g) {
   mark(540, 1306, 24);
   addGrain(W, H, 0);
 }
-window.R = { reel, post, grid };
+window.R = { reel, post, grid, slide };
 </script>`;
 
 const browser = await chromium.launch();
@@ -320,6 +377,7 @@ for (const j of jobs) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(`${dir}/post.jpg`, await shot("post", j));
   writeFileSync(`${dir}/cover.jpg`, await shot("reel", j, 5.2));
+  for (const n of [1, 2, 3, 4]) writeFileSync(`${dir}/slide-${n}.jpg`, await shot("slide", j, n));
   made.push({ slug: j.slug, brand: j.brand, season: j.seasonName, dir: dir.replace("public", "") });
   if (only && only !== j.slug) continue;
   const tmp = `${dir}/_frames`;

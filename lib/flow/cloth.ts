@@ -5,7 +5,8 @@
  * neck just below the chin and falls over the shoulders, so no T-shirt shows above it.
  * Proportions from portrait anatomy, in face widths and heights.
  */
-export function clothPath(fit: { w: number; cy: number }, faceH?: number) {
+/** `lift` raises the shoulders (in face heights), for portraits where the T-shirt shows beside the cloth. */
+export function clothPath(fit: { w: number; cy: number }, faceH?: number, lift = 0) {
   const fw = fit.w * 100;
   const fh = (faceH ?? fit.w * 1.32) * 100;
   const cx = 50;
@@ -13,7 +14,7 @@ export function clothPath(fit: { w: number; cy: number }, faceH?: number) {
   const neckY = chin + 0.2 * fh; // where the cloth meets the neck
   const neckHalf = 0.34 * fw;
   const dip = neckY + 0.07 * fh; // the collar's curve under the throat
-  const shY = chin + 0.4 * fh; // top of the shoulders
+  const shY = chin + (0.4 - lift) * fh; // top of the shoulders
   const shX = 1.9 * fw;
   const outY = shY + 0.4 * fh; // where the arms fall away
   const L = cx - neckHalf, R = cx + neckHalf;

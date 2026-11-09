@@ -13,14 +13,15 @@ Op TikTok en Instagram zijn aura's populair: een polaroid met een waas van kleur
 |---|---|---|
 | 12 reels (8 s, 9:16) | `public/social/aura/{merk}-jong-{1..6}/reel.mp4` | TikTok, Instagram Reels, YouTube Shorts |
 | 12 covers | `…/cover.jpg` | omslag van de reel |
-| 12 feedposts (4:5) | `…/post.jpg` | Instagram, Facebook, Pinterest |
+| 12 Instagram-carrousels (4 slides, 4:5) | `…/slide-1..4.jpg` | Instagram, Facebook |
+| 12 feedposts (4:5) | `…/post.jpg` | Pinterest, Facebook |
 | 2 rasters "which aura are you?" | `public/social/aura/grid-nyanse.jpg`, `grid-kulort.jpg` | Instagram (reacties uitlokken), Pinterest |
 | Aura-deelkaart | resultaatpagina, knop "Deel je kleur-aura" | elke bezoeker deelt zijn eigen aura als story |
 
-**Opbouw van een reel:**
-1. "aura check": de polaroid schuift in beeld.
+**Opbouw van een reel** (alles staat binnen de veilige zone van Instagram en TikTok, dus niet onder de knoppen of de tekst van de app; de cover blijft leesbaar in het profielraster):
+1. "aura check": de polaroid schuift in beeld en ontwikkelt zich, zoals een echte polaroid.
 2. De verkeerde kleuren flitsen voorbij. De aura is grijs en er komen stickers als "✕ washed out" en "✕ tired??".
-3. Een verloop in de paletkleuren veegt over het scherm.
+3. Een verloop in de paletkleuren veegt over het scherm, met een flits en een zoom op het moment van de wissel.
 4. Daarna: de eigen kleur, de aura bloeit op, en de stickers "✓ her colour" en "soft raspberry" verschijnen.
 5. Eindbeeld: "what's your colour aura?" en "free · link in bio".
 
@@ -28,7 +29,14 @@ Opnieuw maken (bijvoorbeeld na nieuwe modellen): `npx tsx scripts/make-aura.ts`.
 
 ## Posten (jij, ±3 minuten per dag)
 - **TikTok:** de 12 aura-video's staan bovenaan in **/lab/tiktok**, één per dag vanaf 10 november, afwisselend voor haar en voor hem. De oude "same face"-reels schuiven 12 dagen op. Werkwijze: zie `TIKTOK.md`. Zet het **AI-label** aan, want de modellen zijn met AI gemaakt.
-- **Instagram:** dezelfde reel als Reel. Zet op dag 1 en dag 7 het raster als feedpost met de tekst: *which aura are you? comment yours 👇 not sure? one selfie tells you, free: link in bio.* Reageer op elke reactie met de aura van die persoon, als vraag: "sounds like a soft summer, check it free in bio?"
+- **Instagram gaat automatisch** (de agenda in `lib/social/calendar.ts`, te zien in /lab/social):
+  - **Woensdag 11 november, 12:00:** de twee rasters "which aura are you?" als carrousel.
+  - **Elke donderdag om 19:00**, vanaf 12 november, 12 weken lang: een aura-reel.
+  - **Elke zaterdag om 12:00**, vanaf 14 november: een aura-carrousel van een ander model. De slides: "aura check" (verkeerde kleur, grijze aura) → de eigen kleur → het hele palet met namen ("save this") → "comment AURA".
+  - **"Comment AURA"** stuurt automatisch de gratis check per DM, net als SEASON. Zolang de DM's bij Instagram nog uit staan, krijgt de reageerder een openbaar antwoord met "link in bio".
+  - Werkt de koppeling met Instagram niet, dan plaats je de posts met de hand vanuit /lab/social; de knoppen staan daar al.
+- **Instagram Stories (jij, met de hand):** zet de `cover.jpg` van die dag als story met een **linksticker** onder de kleurbolletjes. Doe er een **poll** bij: "grey aura or glow?".
+- **Reageren:** antwoord met de aura die je bij die persoon vermoedt, in de vorm van een vraag: "sounds like a soft summer, check it free in bio?"
 - **Pinterest:** de 12 posts en 2 rasters als pins, met de link `https://www.kulort-nyanse.com/?utm_source=pinterest&utm_campaign=aura`.
 - **Geluid:** kies in de Commercial Music Library iets met een duidelijke drop. De kleurveeg valt op ongeveer 3,3 seconden; leg de drop daar.
 

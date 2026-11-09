@@ -8,6 +8,7 @@
 // so new Gemini images can change the choice without anything being posted twice. The models are
 // AI-generated: the caption says so (Meta asks for it on photorealistic AI content).
 
+import AURA from "./aura-posts.json";
 import DATA from "./seasons-data.json";
 import EFFECTS from "./effect-posts.json";
 import BENEFITS from "./benefits.json";
@@ -53,6 +54,29 @@ function seasonCaption(key: string, no: number): string {
 }
 
 const AI_LINE = "Models are AI-generated; the colours are the real ones from your guide.";
+
+// "Colour Aura" (9 Nov 2026, for 18–25; docs/marketing/AURA.md): her and him in turn
+type Aura = { slug: string; brand: "nyanse" | "kulort"; season: string; dir: string };
+export function auraOrder(list: Aura[] = AURA as Aura[]): Aura[] {
+  const her = list.filter((a) => a.brand === "nyanse"), him = list.filter((a) => a.brand === "kulort"), out: Aura[] = [];
+  while (her.length || him.length) { const a = her.shift(), b = him.shift(); if (a) out.push(a); if (b) out.push(b); }
+  return out;
+}
+function auraCaption(a: Aura, kind: "reel" | "carousel"): string {
+  const w = a.brand === "nyanse" ? "her" : "his", tag = "#" + a.season.toLowerCase().replace(/\s+/g, "");
+  return [
+    kind === "reel" ? `aura check ✨ wait for ${w} colour` : `aura check ✨ swipe for ${w} colour →`,
+    ``,
+    `In the wrong colour ${w === "her" ? "her" : "his"} aura goes grey. In ${w} own colours it switches on. This is a ${a.season} aura: not a vibe, measured from one selfie.`,
+    kind === "carousel" ? `Slide 3: ${w} whole palette by name. Save it if it's yours too.` : `Which second did ${w} face light up?`,
+    ``,
+    `What's your colour aura? Comment AURA and we'll DM you the free check.`,
+    ``,
+    AI_LINE,
+    ``,
+    `#colouraura #auracheck ${tag} #coloranalysis #seasonalcoloranalysis #${a.brand === "nyanse" ? "personalstyle" : "mensstyle"}`,
+  ].join("\n");
+}
 
 function effectCaption(e: Effect, reel: boolean, teaser = false): string {
   const tag = "#" + e.season.toLowerCase().replace(/\s+/g, "");
@@ -152,6 +176,17 @@ export function calendar(start = process.env.SOCIAL_START ?? "2026-10-26", base 
       slots.push({ key: `w${i + 1}-tue-short`, at, kind: "short", images, ...shortMeta(reel, base) });
     }
     if (still) slots.push({ key: `w${i + 1}-thu-effect`, at: day(i * 7 + POST_TIMES.image.weekday, POST_TIMES.image), kind: "image", images: [`${base}${still.dir}/post.jpg`], caption: effectCaption(still, false) });
+  });
+  // Colour Aura, weeks 3–14: Thursday 19:00 a reel, Saturday 12:00 a carousel (another model, six weeks later in the reels)
+  const auras = auraOrder();
+  auras.forEach((r, k) => {
+    const i = k + 2, c = auras[(k + 6) % auras.length]!;
+    slots.push({ key: `aura-reel-${r.slug}`, at: day(i * 7 + 3, { hour: 19, minute: 0 }), kind: "reel", images: [`${base}${r.dir}/reel.mp4`, `${base}${r.dir}/cover.jpg`], caption: auraCaption(r, "reel") });
+    slots.push({ key: `aura-carousel-${c.slug}`, at: day(i * 7 + 5, { hour: 12, minute: 0 }), kind: "carousel", images: [1, 2, 3, 4].map((n) => `${base}${c.dir}/slide-${n}.jpg`), caption: auraCaption(c, "carousel") });
+  });
+  slots.push({
+    key: "aura-grid-2026-11-11", at: amsterdamAt(2026, 11, 11, 12, 0), kind: "carousel", images: [`${base}/social/aura/grid-nyanse.jpg`, `${base}/social/aura/grid-kulort.jpg`],
+    caption: [`which aura are you? ✨ comment yours 👇`, ``, `12 seasons, 12 colour auras. Slide 1 for her, slide 2 for him.`, `Not sure? Comment AURA and we'll DM you the free check: one selfie, and your photo never leaves your phone.`, ``, `#colouraura #auracheck #coloranalysis #seasonalcoloranalysis #whatseasonami`].join("\n"),
   });
   // once: the Etsy shop opened (21 Oct 2026); a fixed date, outside the weekly rhythm
   slots.push({

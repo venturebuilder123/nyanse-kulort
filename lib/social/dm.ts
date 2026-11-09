@@ -3,7 +3,7 @@
 // who asked for it by commenting the word. Each comment is handled once (social_posts, "dm-<id>").
 import { commentsSince, privateReply, replyToComment, whoami } from "./instagram";
 
-export const KEYWORD = /\b(season|seizoen)\b/i;
+export const KEYWORD = /\b(season|seizoen|aura)\b/i; // "aura": the Colour Aura campaign (9 Nov 2026)
 const LINK = (dutch: boolean) => `https://www.kulort-nyanse.com${dutch ? "" : "/en"}/kleuranalyse?utm_source=instagram&utm_medium=dm&utm_campaign=season`;
 /** Dutch when the comment is: the reply follows the commenter's language. */
 export const isDutch = (text: string) => /\b(seizoen|ik|ben|mijn|graag|wat|welk|jij|hoi)\b/i.test(text);
