@@ -1084,3 +1084,15 @@ html[lang="en"] .mh-h1 { font-size: clamp(36px, 9vw, 72px); }
 .own-shop label { font-weight: 700; }
 .own-shop > div { display: flex; gap: 8px; }
 .own-shop input { flex: 1; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: var(--radius-chip, 10px); background: var(--bg); color: var(--ink); font: inherit; }
+
+/* result: share your season (9 Nov 2026) */
+.share-card { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: start; padding: 18px; border-radius: var(--radius, 14px); background: #141414; color: #fff; }
+.share-preview { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; }
+.share-preview i { display: block; }
+.share-copy { display: grid; gap: 10px; min-width: 0; }
+.share-copy h2 { margin: 0; font-size: 22px; line-height: 1.1; font-family: var(--f-display); font-weight: 600; }
+.share-copy p { margin: 0; font-size: 14px; line-height: 1.45; color: rgba(255,255,255,.78); }
+.share-photo { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.share-photo input { width: 20px; height: 20px; accent-color: #fff; }
+.share-card .btn { background: #fff !important; color: #141414 !important; }
+.share-card .muted { color: rgba(255,255,255,.7); }

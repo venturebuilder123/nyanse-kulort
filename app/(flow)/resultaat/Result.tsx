@@ -30,6 +30,7 @@ import { buildGuide } from "@/lib/guide/build";
 import { FlatLay } from "../Flats";
 import { Checkout } from "./Checkout";
 import { Deck } from "./Deck";
+import { ShareCard } from "./ShareCard";
 import { Reveal } from "./Reveal";
 import { AppBar, Footer } from "../ui";
 
@@ -177,6 +178,9 @@ export default function Result() {
             <Link href="/selfie" className="notice-link">{t.newSelfie} →</Link>
           </div>
         )}
+
+        {/* every result can bring the next visitor (9 Nov 2026) */}
+        <ShareCard season={SEASONS[p.match.season].name} colours={g.summary.core} photo={photo} />
 
         <section className="q deck-sec">
           <h2 className="eyebrow-h">{r.paid ? F.result.all30 : F.result.first6}</h2>

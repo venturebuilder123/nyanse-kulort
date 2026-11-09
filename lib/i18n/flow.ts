@@ -36,6 +36,11 @@ const nl = {
     none: "Geen bestelling gevonden.", noneText: "Open de link uit je bevestigingsmail, of kies je stijlgids op je resultaatpagina.",
     paid: "Betaald", ordered: "Besteld", orderNo: (r: string) => `Bestelnummer ${r}`, ready: "Je stijlgids", readyEm: "staat klaar.", toResult: "Naar mijn resultaat", dateLocale: "nl-NL",
   },
+  share: {
+    title: "Deel je seizoen", lede: "Een story met je seizoen en je kleuren. Je vrienden zien meteen welke kleuren jou staan, en vragen zich af welke van hen.",
+    withPhoto: "Met mijn foto (alleen op je telefoon gemaakt)", btn: "Deel je seizoen", im: "IK BEN", ask: "Wat is jouw seizoen?", sub: "Gratis kleurcheck met één selfie",
+    text: (s: string) => `Ik ben een ${s}! Wat is jouw seizoen? Gratis kleurcheck met één selfie:`, saved: "Opgeslagen. Zet hem in je story of stuur hem door.", failed: "Dat lukte niet. Probeer het nog eens.",
+  },
   mirror: { good: "laat het gezicht oplichten", bad: "trekt de aandacht weg: laat hangen", pick: "Kies een kleur", legendGood: "Kleuren die je goed staan", legendBad: "Minder mooi bij je gezicht" },
   selfie: { qrAlt: "QR-code naar deze pagina op je telefoon", privacy: "De analyse draait op je eigen telefoon. Wij ontvangen je foto niet, bewaren hem niet en delen hem met niemand. Je profiel bestaat alleen uit getallen en verwijder je met één tik.", privacyLink: "Privacyverklaring" },
   error: { title: "Er ging iets mis.", text: "Je foto is nergens heen gestuurd. Probeer het nog een keer.", again: "Opnieuw", home: "Naar het begin" },
@@ -89,6 +94,11 @@ const en: FlowText = {
     mailed: "We've e-mailed the link too, so you can open your guide on any device. Not there? Check your spam folder.", homeTip: "Tip: put your guide on your home screen via Share › Add to Home Screen.",
     none: "No order found.", noneText: "Open the link from your confirmation e-mail, or choose your style guide on your result page.",
     paid: "Paid", ordered: "Ordered", orderNo: (r) => `Order number ${r}`, ready: "Your style guide", readyEm: "is ready.", toResult: "Go to my result", dateLocale: "en-GB",
+  },
+  share: {
+    title: "Share your season", lede: "A story with your season and your colours. Your friends see at once what suits you, and wonder what suits them.",
+    withPhoto: "With my photo (made on your phone only)", btn: "Share your season", im: "I'M A", ask: "What's your season?", sub: "Free colour check with one selfie",
+    text: (s) => `I'm a ${s}! What's your season? Free colour check with one selfie:`, saved: "Saved. Put it in your story or send it on.", failed: "That didn't work. Please try again.",
   },
   mirror: { good: "makes the face light up", bad: "pulls attention away: leave it", pick: "Choose a colour", legendGood: "Colours that suit you", legendBad: "Less flattering near your face" },
   selfie: { qrAlt: "QR code to this page on your phone", privacy: "The analysis runs on your own phone. We don't receive your photo, don't store it and don't share it with anyone. Your profile is just numbers, and you delete it with one tap.", privacyLink: "Privacy statement" },
