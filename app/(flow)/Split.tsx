@@ -7,6 +7,8 @@ import { euro, PRICES } from "@/lib/flow/pricing";
 import { LangSwitch } from "./Lang";
 import { FLOW } from "@/lib/i18n/flow";
 import { useBrand, useT } from "./BrandProvider";
+import { Studio } from "./home/Studio";
+import { SwipeTest } from "./home/SwipeTest";
 
 const NONE = { brand: "none", voice: "none" };
 
@@ -152,17 +154,8 @@ export default function Split() {
         </nav>
       </header>
 
-      <section className="mh-hero" id="start">
-        <div className="mh-hero-copy">
-          <p className="mh-eyebrow">{h.eyebrow}</p>
-          <h1 className="mh-h1">{h.h1[0]} <em>{h.h1[1]}</em></h1>
-          <p className="mh-sub">{h.sub}</p>
-        </div>
-        <Doors where="hero" priority />
-        <ul className="mh-facts">
-          {h.facts(price(PRICES.digital)).map((f) => <li key={f}>{f}</li>)}
-        </ul>
-      </section>
+      {/* direction C with a little of B (founder, 9 Nov 2026) */}
+      <Studio />
 
       <div className="mh-ribbon" aria-hidden="true">
         <div className="mh-ribbon-track">
@@ -172,24 +165,7 @@ export default function Split() {
         </div>
       </div>
 
-      <section className="mh-proof mh-reveal">
-        <div className="mh-proof-copy">
-          <p className="mh-eyebrow">{h.proof.eyebrow}</p>
-          <h2 className="mh-h2">{h.proof.h2[0]} <em>{h.proof.h2[1]}</em></h2>
-          <p className="mh-sub">{h.proof.text}</p>
-        </div>
-        <div className="mh-proof-pair">
-          {PROOF.map((p) => (
-            <figure key={p.src}>
-              <img src={p.src} alt={locale === "en" ? p.alt[1] : p.alt[0]} width={1200} height={1200} loading="lazy" />
-              <figcaption aria-hidden="true">
-                <span><i style={{ background: p.bad[0] }} />✕ {locale === "en" ? p.bad[2] : p.bad[1]}</span>
-                <span className="ok"><i style={{ background: p.good[0] }} />✓ {locale === "en" ? p.good[2] : p.good[1]}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <SwipeTest />
 
       <section className="mh-how" id="hoe">
         <div className="mh-head mh-reveal">

@@ -36,6 +36,17 @@ const nl = {
     none: "Geen bestelling gevonden.", noneText: "Open de link uit je bevestigingsmail, of kies je stijlgids op je resultaatpagina.",
     paid: "Betaald", ordered: "Besteld", orderNo: (r: string) => `Bestelnummer ${r}`, ready: "Je stijlgids", readyEm: "staat klaar.", toResult: "Naar mijn resultaat", dateLocale: "nl-NL",
   },
+  home2: {
+    h1: ["Jouw kleuren,", "in 30 seconden."] as [string, string], sub: "Eén selfie, en je ziet meteen welke kleuren jou laten stralen. Gratis, en je foto blijft op je telefoon.",
+    people: "Voorbeelden", next: "Volgende", wears: (c: string) => `draagt ${c}`, her: "Voor haar · NYANSE", him: "Voor hem · KULØRT",
+    facts: ["Gratis kleurprofiel", "Foto blijft op je telefoon", "Klaar in 30 seconden"], ai: "Modellen zijn met AI gemaakt; de kleuren komen uit onze kleurmotor.",
+    swipe: {
+      eyebrow: "De test", q: (her: boolean): string => (her ? "Welke laat haar stralen?" : "Welke laat hem stralen?"), right: "Goed gezien.", wrong: "Bijna.",
+      score: (r: number, p: number) => `${r} van ${p} goed`, left: "Links", right_: "Rechts", hint: "Tik op de foto die je het mooiste vindt.",
+      why: (g: string, b: string, s: string) => `${g} laat de huid stralen en de ogen oplichten. ${b} trekt de aandacht weg van het gezicht. Deze persoon is een ${s}.`,
+      cta: "Wat is mijn kleur? Gratis test", next: "Nog een",
+    },
+  },
   share: {
     title: "Deel je seizoen", lede: "Een story met je seizoen en je kleuren. Je vrienden zien meteen welke kleuren jou staan, en vragen zich af welke van hen.",
     withPhoto: "Met mijn foto (alleen op je telefoon gemaakt)", btn: "Deel je seizoen", im: "IK BEN", ask: "Wat is jouw seizoen?", sub: "Gratis kleurcheck met één selfie",
@@ -94,6 +105,17 @@ const en: FlowText = {
     mailed: "We've e-mailed the link too, so you can open your guide on any device. Not there? Check your spam folder.", homeTip: "Tip: put your guide on your home screen via Share › Add to Home Screen.",
     none: "No order found.", noneText: "Open the link from your confirmation e-mail, or choose your style guide on your result page.",
     paid: "Paid", ordered: "Ordered", orderNo: (r) => `Order number ${r}`, ready: "Your style guide", readyEm: "is ready.", toResult: "Go to my result", dateLocale: "en-GB",
+  },
+  home2: {
+    h1: ["Your colours,", "in 30 seconds."], sub: "One selfie, and you see at once which colours make you glow. Free, and your photo stays on your phone.",
+    people: "Examples", next: "Next", wears: (c) => `wearing ${c}`, her: "For her · NYANSE", him: "For him · KULØRT",
+    facts: ["Free colour profile", "Photo stays on your phone", "Done in 30 seconds"], ai: "Models are AI-generated; the colours come from our colour engine.",
+    swipe: {
+      eyebrow: "The test", q: (her) => (her ? "Which one makes her glow?" : "Which one makes him glow?"), right: "Well spotted.", wrong: "Close.",
+      score: (r, p) => `${r} of ${p} right`, left: "Left", right_: "Right", hint: "Tap the photo you like best.",
+      why: (g, b, s) => `${g} makes the skin glow and the eyes light up. ${b} pulls attention away from the face. This person is a ${s}.`,
+      cta: "What's my colour? Free test", next: "Another one",
+    },
   },
   share: {
     title: "Share your season", lede: "A story with your season and your colours. Your friends see at once what suits you, and wonder what suits them.",
